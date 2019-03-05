@@ -1,0 +1,145 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @Overview|@Patterns Color 1`] = `
+.c0 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 150px;
+  width: 200px;
+  padding: 20px;
+  margin: 10px;
+  box-sizing: border-box;
+  color: #000;
+  background: #FFF;
+  border: solid 1px #bdbbb9;
+  border-radius: 2px;
+  font-family: Roboto,sans-serif;
+  cursor: pointer;
+}
+
+.c0:hover label {
+  opacity: 1;
+}
+
+.c4 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 150px;
+  width: 200px;
+  padding: 20px;
+  margin: 10px;
+  box-sizing: border-box;
+  color: #fff;
+  background: #000;
+  border: solid 1px #bdbbb9;
+  border-radius: 2px;
+  font-family: Roboto,sans-serif;
+  cursor: pointer;
+}
+
+.c4:hover label {
+  opacity: 1;
+}
+
+.c1 {
+  margin: 0 0 10px;
+  font-weight: bold;
+}
+
+.c2 {
+  margin: 0;
+}
+
+.c3 {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  opacity: 0;
+  -webkit-transition: .3s all;
+  transition: .3s all;
+}
+
+<div>
+  <h2
+    style={
+      Object {
+        "fontFamily": "Roboto",
+        "margin": "20px 10px",
+      }
+    }
+  >
+    Color
+  </h2>
+  <div
+    style={
+      Object {
+        "display": "flex",
+        "flexWrap": "wrap",
+      }
+    }
+  >
+    <div
+      className="c0"
+      color="#FFF"
+      data-clipboard-text="\${props => props.theme.colors.white}"
+    >
+      <p
+        className="c1"
+      >
+        White
+      </p>
+      <p
+        className="c2"
+      >
+        #FFF
+      </p>
+      <label
+        className="c3"
+      >
+        Copy
+      </label>
+    </div>
+    <div
+      className="c4"
+      color="#000"
+      data-clipboard-text="\${props => props.theme.colors.black}"
+    >
+      <p
+        className="c1"
+      >
+        Black
+      </p>
+      <p
+        className="c2"
+      >
+        #000
+      </p>
+      <label
+        className="c3"
+      >
+        Copy
+      </label>
+    </div>
+  </div>
+</div>
+`;
