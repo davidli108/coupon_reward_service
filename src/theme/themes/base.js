@@ -21,6 +21,10 @@ export const GlobalStyle = createGlobalStyle`
     transition-delay: 99999s;
   }
 
+  * {
+    font-family: Roboto, sans-serif !important;
+  }
+
   a {
     text-decoration: none;
 

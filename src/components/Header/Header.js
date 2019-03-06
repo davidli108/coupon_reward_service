@@ -67,7 +67,9 @@ const Header = () => {
 
   return (
     <Header.Wrapper>
-      <Header.Logo src={logo} />
+      <HeaderItem link="/">
+        <Header.Logo src={logo} />
+      </HeaderItem>
       <Header.Controls>{renderHeaderItems(items)}</Header.Controls>
       <Header.BurgerButtonWrapper>
         <BurgerButton isOpen={isOpen} onClick={() => setOpen(!isOpen)} />
@@ -94,13 +96,17 @@ Header.Wrapper = styled.header`
 `;
 
 Header.Overlay = styled.div`
-  display: contents;
+  display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
   position: absolute;
   top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: black;
-  opacity: ${({ isOpen }) => (isOpen ? '0.4' : '0')};
+  opacity: 0.4;
   width: 100%;
   height: 100%;
+  z-index: 3;
 `;
 
 Header.Logo = styled.img`
