@@ -16,7 +16,7 @@ StoreSearch.Wrapper = styled.div`
   display: flex;
   align-items: center;
   width: 89%;
-  border: 1px solid #dadde2;
+  border: 1px solid ${props => props.theme.colors.whiteLight};
   margin: 0 0 33px 0;
   border-radius: 5px;
 
@@ -47,7 +47,7 @@ StoreSearch.Input = styled.input`
   outline: none;
 
   &::placeholder {
-    color: #adb8c0;
+    color: ${props => props.theme.colors.whiteDark};
   }
 `;
 

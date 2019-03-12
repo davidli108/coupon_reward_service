@@ -54,15 +54,15 @@ StoreSidebar.Wrapper = styled.div`
 `;
 
 StoreSidebar.Mobile = styled.div`
-  background: #fff;
+  background: ${props => props.theme.colors.white};
   position: relative;
 
   ${breakpoint('xs')`
     margin: 0;
-    border: 0.5px solid #dadde2;
+    border: 0.5px solid ${props => props.theme.colors.whiteLight};
     border-radius: 5px;
     padding: 12px 25px;
-    box-shadow: ${props => props.active && '2px 3px 22px rgba(0, 0, 0, 0.2)'};
+    box-shadow: ${props => props.active && `2px 3px 22px ${props.theme.colors.blackAlpha}`};
     border-bottom: ${props => props.active && 'none'};
     border-bottom-left-radius: ${props => props.active && '0'};
     border-bottom-right-radius: ${props => props.active && '0'};
@@ -82,7 +82,7 @@ StoreSidebar.Title = styled.h3`
   font-size: 18px;
   font-weight: bold;
   letter-spacing: 0.45px;
-  color: #899197;
+  color: ${props => props.theme.colors.blackExLight};
 
   ${breakpoint('xs')`
     position: relative;

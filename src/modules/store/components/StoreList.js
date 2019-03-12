@@ -83,7 +83,7 @@ StoreList.StoreItem = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-  border: 1px solid #ccc;
+  border: 1px solid ${props => props.theme.colors.whiteLight};
   border-bottom: none;
 
   &:first-child {
@@ -92,7 +92,7 @@ StoreList.StoreItem = styled.div`
   }
 
   &:last-child {
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid ${props => props.theme.colors.whiteLight};
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
   }
@@ -125,7 +125,7 @@ StoreList.StoreNew = styled.span`
   left: 0;
   top: 0;
   padding: 3px 10px;
-  background: #f9fafc;
+  background: ${props => props.theme.colors.whiteExLight};
   border-radius: 4px;
   font-weight: 500;
   line-height: 15px;
@@ -253,7 +253,7 @@ StoreList.BrandName = styled.span`
   font-weight: 500;
   line-height: 23px;
   font-size: 13px;
-  color: #c2c2c2;
+  color: ${props => props.theme.colors.grayLight};
 
   ${breakpoint('sm')`
     margin: 0 11px 0 0;
@@ -263,7 +263,7 @@ StoreList.BrandName = styled.span`
 StoreList.BranDeals = styled.p`
   font-weight: bold;
   line-height: 21px;
-  color: #374b5a;
+  color: ${props => props.theme.colors.blackLight};
 
   ${breakpoint('xs')`
     font-size: 13px;
@@ -289,7 +289,7 @@ StoreList.Cash = styled.p`
   font-weight: 500;
   line-height: 23px;
   font-size: 13px;
-  color: #374b5a;
+  color: ${props => props.theme.colors.blackLight};
 
   ${breakpoint('xs')`
     margin: 12px 0 0 0;
@@ -316,7 +316,7 @@ StoreList.Coupons = styled.p`
   margin: 30px 57px 0 0;
   font-weight: 500;
   line-height: 23px;
-  color: #7f7f7f;
+  color: ${props => props.theme.colors.grayDark};
 
   ${breakpoint('xs')`
     margin: 0 0 0 0;
@@ -344,7 +344,7 @@ StoreList.Link = styled.a`
   padding: 9px 0;
   font-weight: bold;
   background: ${props => props.theme.colors.blue};
-  border: 1px solid #00b4cf;
+  border: 1px solid ${props => props.theme.colors.blueDark};
   border-radius: 4px;
   line-height: 20px;
   font-size: 17px;
@@ -397,7 +397,7 @@ StoreList.LoadMoreButton = styled.button`
   font-size: 18px;
   text-align: center;
   letter-spacing: 0.45px;
-  color: #adb8c0;
+  color: ${props => props.theme.colors.whiteDark};
   background: transparent;
   border: none;
   outline: none;

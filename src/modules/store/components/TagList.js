@@ -37,7 +37,7 @@ TagList.Item = styled.li`
   justify-content: space-between;
   margin: 0 0 11px 0;
   font-size: 13px;
-  color: #c2c2c2;
+  color: ${props => props.theme.colors.grayLight};
 `;
 
 TagList.Numb = styled.span`
@@ -45,10 +45,10 @@ TagList.Numb = styled.span`
   width: 50px;
   text-align: center;
   padding: 3px 0;
-  border: 2px solid #d4d4d4;
+  border: 2px solid ${props => props.theme.colors.gray};
   border-radius: 7px;
   font-size: 13px;
-  color: #c2c2c2;
+  color: ${props => props.theme.colors.grayLight};
 `;
 
 export default TagList;

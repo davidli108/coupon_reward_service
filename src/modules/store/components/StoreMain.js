@@ -34,7 +34,7 @@ StoreMain.Title = styled.h3`
   line-height: 29px;
   font-weight: bold;
   font-size: 25px;
-  color: #374b5a;
+  color: ${props => props.theme.colors.blackLight};
 
   ${breakpoint('xs')`
     display: none;

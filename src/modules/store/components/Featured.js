@@ -66,7 +66,7 @@ Featured.Item = styled.div`
   justify-content: center;
   flex-basis: 33.33%;
   padding: 10px 32px 18px;
-  border: 1px solid #dadde2;
+  border: 1px solid ${props => props.theme.colors.whiteLight};
   border-radius: 5px;
 
   &:nth-child(2) {
@@ -138,7 +138,7 @@ Featured.Link = styled.a`
   width: 100%;
   padding: 9px 0;
   background: ${props => props.theme.colors.blue};
-  border: 1px solid #00b4cf;
+  border: 1px solid ${props => props.theme.colors.blueDark};
   border-radius: 4px;
   font-weight: bold;
   line-height: 20px;
@@ -154,7 +154,7 @@ Featured.Cash = styled.p`
   font-weight: 500;
   line-height: 21px;
   font-size: 16px;
-  color: #374b5a;
+  color: ${props => props.theme.colors.blackLight};
 `;
 
 export default Featured;
