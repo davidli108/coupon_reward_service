@@ -27,7 +27,7 @@ type StoresPageProps = {
 };
 
 const StoresPage = ({ stores, categories }: StoresPageProps) => (
-  <div>
+  <React.Fragment>
     <Helmet>
       <title>Stores</title>
     </Helmet>
@@ -43,12 +43,27 @@ const StoresPage = ({ stores, categories }: StoresPageProps) => (
         </StoresPage.Box>
       </StoresPage.Container>
     </StoresPage.Wrapper>
-  </div>
+  </React.Fragment>
 );
 
-StoresPage.Wrapper = styled.div`
+StoresPage.Wrapper = styled.section`
   position: relative;
-  padding: 50px 0 75px 0;
+
+  ${breakpoint('xs')`
+    padding: 21px 0 75px 0;
+  `}
+  @media (min-width: 413px) {
+    padding: 25px 0 75px 0;
+  }
+  ${breakpoint('md')`
+    padding: 36px 0 75px 0;
+  `}
+  ${breakpoint('lg')`
+    padding: 41px 0 75px 0;
+  `}
+  ${breakpoint('xl')`
+    padding: 57px 0 75px 0;
+  `}
 `;
 
 StoresPage.Container = styled.div`
@@ -64,8 +79,7 @@ StoresPage.Container = styled.div`
 `;
 
 StoresPage.Title = styled.h3`
-  padding: 7px 0 0 0;
-  margin: 0 0 16px 0;
+  margin: 0 0 18px 0;
   text-align: center;
   line-height: 29px;
   font-weight: bold;
@@ -73,9 +87,16 @@ StoresPage.Title = styled.h3`
   color: #374b5a;
   ${breakpoint('xs')`
     display: block;
+    font-size: 17px;
+    padding: 0;
   `}
+  @media (min-width: 413px) {
+    font-size: 22px;
+  }
   ${breakpoint('sm')`
     display: none;
+    font-size: 25px;
+    padding: 7px 0 0 0;
   `}
 `;
 
