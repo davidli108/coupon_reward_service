@@ -35,6 +35,7 @@ TagList.List = styled.ul`
 TagList.Item = styled.li`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin: 0 0 11px 0;
   font-size: 13px;
   color: ${props => props.theme.colors.grayLight};
