@@ -50,7 +50,13 @@ StoreSearch.Input = styled.input`
 
 StoreSearch.Icon = styled.img`
   display: block;
-  padding: 0 20px 0 0;
+
+  ${breakpoint('xs')`
+    padding: 0 28px 0 0;
+  `}
+  ${breakpoint('sm')`
+    padding: 0 20px 0 0;
+  `}
 `;
 
 export default StoreSearch;

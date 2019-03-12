@@ -5,6 +5,7 @@ import breakpoint from 'styled-components-breakpoint';
 
 import Search from './Search';
 import TagList from './TagList';
+import TagListMobile from './TagListMobile';
 
 type StoreSidebarProps = {
   categories: {
@@ -18,10 +19,13 @@ const StoreSidebar = ({ categories }: StoreSidebarProps) => {
   return (
     <StoreSidebar.Wrapper>
       <Search />
-      <StoreSidebar.Title onClick={() => setToggle(!toggled)}>
-        Stores
-      </StoreSidebar.Title>
-      {toggled && <TagList categories={categories} />}
+      <StoreSidebar.Mobile boxShadow={toggled}>
+        <StoreSidebar.Title rotateIcon={toggled} onClick={() => setToggle(!toggled)}>
+          Stores
+        </StoreSidebar.Title >
+        {toggled && <TagListMobile categories={categories} />}
+      </StoreSidebar.Mobile>
+      <TagList categories={categories}/>
     </StoreSidebar.Wrapper>
   );
 };
@@ -45,8 +49,25 @@ StoreSidebar.Wrapper = styled.div`
   `}
 `;
 
+StoreSidebar.Mobile = styled.div`
+  background: #fff;
+  ${breakpoint('xs')`
+    margin: 0;
+    border: 0.5px solid #dadde2;
+    border-radius: 5px;
+    padding: 12px 25px;
+    box-shadow: ${props => props.boxShadow && '0px 12px 22px rgba(0, 0, 0, 0.2)'};
+  `}
+  ${breakpoint('sm')`
+    margin: 0 0 25px 0;
+    border: none;
+    border-radius: none;
+    padding: 0;
+    box-shadow: none;
+  `}
+`;
+
 StoreSidebar.Title = styled.h3`
-  margin: 0 0 25px 0;
   line-height: 21px;
   font-size: 18px;
   font-weight: bold;
@@ -54,26 +75,25 @@ StoreSidebar.Title = styled.h3`
   color: #899197;
   ${breakpoint('xs')`
     position: relative;
-    padding: 12px 25px;
-    background: #FFFFFF;
-    border: 0.5px solid #DADDE2;
     box-sizing: border-box;
     border-radius: 5px;
     &::before{
       position: absolute;
       content: '';
-      right: 25px;
+      right: 0;
       top: 42%;
-      border: 10px solid transparent;
-      border-top: 10px solid #B1B1B1;
-      border-radius: 4px;
+      border-radius: 10px;
+      transition: transform 250ms linear;
+      ${props => props.rotateIcon && 'transform: rotate(180deg)'};
       width: 0;
       height: 0;
+      border-top: 11px solid #b1b1b1;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
     }
   `}
   ${breakpoint('sm')`
     position: relative;
-    padding: 0;
     border: none;
     box-sizing: border-box;
     border-radius: 0;

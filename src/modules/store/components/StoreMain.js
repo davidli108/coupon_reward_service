@@ -40,6 +40,10 @@ StoreMain.Title = styled.h3`
   `}
   ${breakpoint('sm')`
     display: block;
+    font-size: 19px;
+  `}
+  ${breakpoint('sm')`
+    font-size: 25px;
   `}
 `;
 

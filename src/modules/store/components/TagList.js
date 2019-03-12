@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
+import breakpoint from 'styled-components-breakpoint';
 
 type TagListProps = {
   categories: {
@@ -21,6 +22,12 @@ const TagList = ({ categories }: TagListProps) => (
 
 TagList.List = styled.ul`
   display: block;
+  ${breakpoint('xs')`
+    display: none;
+  `}
+  ${breakpoint('sm')`
+    display: block;
+  `}
 `;
 
 TagList.Item = styled.li`

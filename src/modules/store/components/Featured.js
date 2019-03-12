@@ -30,7 +30,27 @@ const Featured = ({ stores }: StoreFeaturedProps) => (
 
 Featured.Wrapper = styled.div`
   display: flex;
-  padding: 33px 0;
+  ${breakpoint('xs')`
+    padding: 11px 0;
+    flex-direction: column;
+  `}
+  @media (min-width: 413px) {
+    flex-direction: row;
+    font-size: 22px;
+    padding: 28px 0 20px;
+  }
+  ${breakpoint('sm')`
+    padding: 33px 0;
+  `}
+  ${breakpoint('md')`
+    padding: 28px 0 20px;
+  `}
+  ${breakpoint('lg')`
+    padding: 37px 0;
+  `}
+  ${breakpoint('xl')`
+    padding: 37px 0 33px;
+  `}
 `;
 
 Featured.Item = styled.div`
@@ -48,16 +68,25 @@ Featured.Item = styled.div`
   }
   ${breakpoint('xs')`
     flex-basis: 100%;
-    padding: 10px 18px 18px;
+    margin: 0 0 15px 0;
+    padding: 10px 28px 18px;
     &:nth-child(2) {
-      margin: 0 0 0 30px;
+      margin: 0;
     }
     &:nth-child(3) {
       display: none;
     }
   `}
+  @media (min-width: 413px) {
+    margin: 0;
+    padding: 10px 28px 18px;
+
+    &:nth-child(2) {
+      margin: 0 0 0 30px;
+    }
+  }
   ${breakpoint('sm')`
-    padding: 10px 32px 18px;
+    padding: 10px 14px 18px;
     &:nth-child(2) {
       display: flex;
     }
@@ -69,6 +98,9 @@ Featured.Item = styled.div`
       margin: 0 0 0 30px;
     }
 
+  `}
+  ${breakpoint('md')`
+    padding: 10px 32px 18px;
   `}
   ${breakpoint('lg')`
     &:nth-child(2) {
