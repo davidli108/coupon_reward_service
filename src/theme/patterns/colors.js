@@ -15,6 +15,7 @@ export const colorScheme = {
   gray: { value: '#D4D4D4', name: 'Gray' },
   grayLight: { value: '#C2C2C2', name: 'GrayLight' },
   grayDark: { value: '#7F7F7F', name: 'GrayDark' },
+  grayTintsDark: { value: '#B1B1B1', name: 'GrayTintsDark' },
 };
 
 export const getColor = (colorKey: string) =>
