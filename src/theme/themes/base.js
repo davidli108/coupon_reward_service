@@ -9,6 +9,10 @@ import fonts from '../patterns/fonts';
 export const GlobalStyle = createGlobalStyle`
   ${reset}
 
+  body {
+    font-family : ${props => props.theme.fonts.roboto};
+  }
+
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus,
