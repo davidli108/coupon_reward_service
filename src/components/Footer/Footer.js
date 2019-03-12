@@ -115,8 +115,8 @@ const Footer = () => (
 );
 
 Footer.Wrapper = styled.footer`
-  position: absolute;
-  bottom: 0;
+  /* position: absolute;
+  bottom: 0; */
 
   background: #40c8e5;
   width: 100%;
