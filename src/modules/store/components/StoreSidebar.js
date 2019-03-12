@@ -16,16 +16,20 @@ type StoreSidebarProps = {
 
 const StoreSidebar = ({ categories }: StoreSidebarProps) => {
   const [toggled, setToggle] = useState(false);
+
   return (
     <StoreSidebar.Wrapper>
       <Search />
       <StoreSidebar.Mobile active={toggled}>
-        <StoreSidebar.Title rotateIcon={toggled} onClick={() => setToggle(!toggled)}>
+        <StoreSidebar.Title
+          rotateIcon={toggled}
+          onClick={() => setToggle(!toggled)}
+        >
           Stores
-        </StoreSidebar.Title >
+        </StoreSidebar.Title>
         {toggled && <TagListMobile categories={categories} />}
       </StoreSidebar.Mobile>
-      <TagList categories={categories}/>
+      <TagList categories={categories} />
     </StoreSidebar.Wrapper>
   );
 };
@@ -62,7 +66,8 @@ StoreSidebar.Mobile = styled.div`
     border: 0.5px solid ${props => props.theme.colors.whiteLight};
     border-radius: 5px;
     padding: 12px 25px;
-    box-shadow: ${props => props.active && `2px 3px 22px ${props.theme.colors.blackAlpha}`};
+    box-shadow: ${props =>
+      props.active && `2px 3px 22px ${props.theme.colors.blackAlpha}`};
     border-bottom: ${props => props.active && 'none'};
     border-bottom-left-radius: ${props => props.active && '0'};
     border-bottom-right-radius: ${props => props.active && '0'};

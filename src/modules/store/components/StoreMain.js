@@ -25,6 +25,10 @@ const StoreMain = ({ stores }: StoresListProps) => (
   </StoreMain.Wrapper>
 );
 
+StoreMain.defaultProps = {
+  stores: [],
+};
+
 StoreMain.Wrapper = styled.div`
   flex-basis: 850px;
 `;

@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
-type StoreFeaturedProps = {
+type FeaturedProps = {
   stores: {
     name: string,
     newStore: boolean,
@@ -14,11 +14,11 @@ type StoreFeaturedProps = {
   }[],
 };
 
-const Featured = ({ stores }: StoreFeaturedProps) => (
+const Featured = ({ stores }: FeaturedProps) => (
   <Featured.Wrapper>
     {stores.map(({ name, offer, logo, url }) => (
       <Featured.Item key={name}>
-        <Featured.Image src={logo} alt={name} />
+        {logo && <Featured.Image src={logo} alt={name} />}
         <Featured.Link href={url} target="_blank">
           Visit Store
         </Featured.Link>
@@ -27,6 +27,10 @@ const Featured = ({ stores }: StoreFeaturedProps) => (
     ))}
   </Featured.Wrapper>
 );
+
+Featured.defaultProps = {
+  stores: [],
+};
 
 Featured.Wrapper = styled.div`
   display: flex;

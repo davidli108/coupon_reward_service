@@ -49,11 +49,17 @@ const StoreList = ({ stores }: StoreListProps) => (
         </StoreList.StoreItem>
       ))}
     </StoreList.StoreContainer>
-    <StoreList.LoadMoreButton onClick={() => console.log('Click: Load more deals')}>
+    <StoreList.LoadMoreButton
+      onClick={() => console.log('Click: Load more deals')}
+    >
       Load more deals
     </StoreList.LoadMoreButton>
   </div>
 );
+
+StoreList.defaultProps = {
+  stores: [],
+};
 
 StoreList.Box = styled.div`
   width: 100%;

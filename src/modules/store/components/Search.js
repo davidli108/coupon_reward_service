@@ -5,14 +5,14 @@ import breakpoint from 'styled-components-breakpoint';
 
 import IconSearch from '../assets/icon-search.png';
 
-const StoreSearch = () => (
-  <StoreSearch.Wrapper>
-    <StoreSearch.Input type="text" placeholder="Search" />
-    <StoreSearch.Icon src={IconSearch} alt="search" />
-  </StoreSearch.Wrapper>
+const Search = () => (
+  <Search.Wrapper>
+    <Search.Input type="text" placeholder="Search" />
+    <Search.Icon src={IconSearch} alt="search" />
+  </Search.Wrapper>
 );
 
-StoreSearch.Wrapper = styled.div`
+Search.Wrapper = styled.div`
   display: flex;
   align-items: center;
   width: 89%;
@@ -34,7 +34,7 @@ StoreSearch.Wrapper = styled.div`
   `}
 `;
 
-StoreSearch.Input = styled.input`
+Search.Input = styled.input`
   display: block;
   border: none;
   width: 100%;
@@ -51,7 +51,7 @@ StoreSearch.Input = styled.input`
   }
 `;
 
-StoreSearch.Icon = styled.img`
+Search.Icon = styled.img`
   display: block;
 
   ${breakpoint('xs')`
@@ -63,4 +63,4 @@ StoreSearch.Icon = styled.img`
   `}
 `;
 
-export default StoreSearch;
+export default Search;

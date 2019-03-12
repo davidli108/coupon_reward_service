@@ -49,6 +49,96 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
   padding: 20px;
   margin: 10px;
   box-sizing: border-box;
+  color: #000;
+  background: #ADB8C0;
+  border: solid 1px #bdbbb9;
+  border-radius: 2px;
+  font-family: Roboto,sans-serif;
+  cursor: pointer;
+}
+
+.c4:hover label {
+  opacity: 1;
+}
+
+.c5 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 150px;
+  width: 200px;
+  padding: 20px;
+  margin: 10px;
+  box-sizing: border-box;
+  color: #000;
+  background: #DADDE2;
+  border: solid 1px #bdbbb9;
+  border-radius: 2px;
+  font-family: Roboto,sans-serif;
+  cursor: pointer;
+}
+
+.c5:hover label {
+  opacity: 1;
+}
+
+.c6 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 150px;
+  width: 200px;
+  padding: 20px;
+  margin: 10px;
+  box-sizing: border-box;
+  color: #000;
+  background: #F9FAFC;
+  border: solid 1px #bdbbb9;
+  border-radius: 2px;
+  font-family: Roboto,sans-serif;
+  cursor: pointer;
+}
+
+.c6:hover label {
+  opacity: 1;
+}
+
+.c7 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 150px;
+  width: 200px;
+  padding: 20px;
+  margin: 10px;
+  box-sizing: border-box;
   color: #fff;
   background: #000;
   border: solid 1px #bdbbb9;
@@ -57,7 +147,277 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
   cursor: pointer;
 }
 
-.c4:hover label {
+.c7:hover label {
+  opacity: 1;
+}
+
+.c8 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 150px;
+  width: 200px;
+  padding: 20px;
+  margin: 10px;
+  box-sizing: border-box;
+  color: #fff;
+  background: #374B5A;
+  border: solid 1px #bdbbb9;
+  border-radius: 2px;
+  font-family: Roboto,sans-serif;
+  cursor: pointer;
+}
+
+.c8:hover label {
+  opacity: 1;
+}
+
+.c9 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 150px;
+  width: 200px;
+  padding: 20px;
+  margin: 10px;
+  box-sizing: border-box;
+  color: #fff;
+  background: rgba(0,0,0,0.2);
+  border: solid 1px #bdbbb9;
+  border-radius: 2px;
+  font-family: Roboto,sans-serif;
+  cursor: pointer;
+}
+
+.c9:hover label {
+  opacity: 1;
+}
+
+.c10 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 150px;
+  width: 200px;
+  padding: 20px;
+  margin: 10px;
+  box-sizing: border-box;
+  color: #000;
+  background: #899197;
+  border: solid 1px #bdbbb9;
+  border-radius: 2px;
+  font-family: Roboto,sans-serif;
+  cursor: pointer;
+}
+
+.c10:hover label {
+  opacity: 1;
+}
+
+.c11 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 150px;
+  width: 200px;
+  padding: 20px;
+  margin: 10px;
+  box-sizing: border-box;
+  color: #000;
+  background: #00CBE9;
+  border: solid 1px #bdbbb9;
+  border-radius: 2px;
+  font-family: Roboto,sans-serif;
+  cursor: pointer;
+}
+
+.c11:hover label {
+  opacity: 1;
+}
+
+.c12 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 150px;
+  width: 200px;
+  padding: 20px;
+  margin: 10px;
+  box-sizing: border-box;
+  color: #000;
+  background: #00B4CF;
+  border: solid 1px #bdbbb9;
+  border-radius: 2px;
+  font-family: Roboto,sans-serif;
+  cursor: pointer;
+}
+
+.c12:hover label {
+  opacity: 1;
+}
+
+.c13 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 150px;
+  width: 200px;
+  padding: 20px;
+  margin: 10px;
+  box-sizing: border-box;
+  color: #000;
+  background: #D4D4D4;
+  border: solid 1px #bdbbb9;
+  border-radius: 2px;
+  font-family: Roboto,sans-serif;
+  cursor: pointer;
+}
+
+.c13:hover label {
+  opacity: 1;
+}
+
+.c14 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 150px;
+  width: 200px;
+  padding: 20px;
+  margin: 10px;
+  box-sizing: border-box;
+  color: #000;
+  background: #C2C2C2;
+  border: solid 1px #bdbbb9;
+  border-radius: 2px;
+  font-family: Roboto,sans-serif;
+  cursor: pointer;
+}
+
+.c14:hover label {
+  opacity: 1;
+}
+
+.c15 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 150px;
+  width: 200px;
+  padding: 20px;
+  margin: 10px;
+  box-sizing: border-box;
+  color: #000;
+  background: #7F7F7F;
+  border: solid 1px #bdbbb9;
+  border-radius: 2px;
+  font-family: Roboto,sans-serif;
+  cursor: pointer;
+}
+
+.c15:hover label {
+  opacity: 1;
+}
+
+.c16 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 150px;
+  width: 200px;
+  padding: 20px;
+  margin: 10px;
+  box-sizing: border-box;
+  color: #000;
+  background: #B1B1B1;
+  border: solid 1px #bdbbb9;
+  border-radius: 2px;
+  font-family: Roboto,sans-serif;
+  cursor: pointer;
+}
+
+.c16:hover label {
   opacity: 1;
 }
 
@@ -75,8 +435,8 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
   top: 20px;
   right: 20px;
   opacity: 0;
-  -webkit-transition: .3s all;
-  transition: .3s all;
+  -webkit-transition: 0.3s all;
+  transition: 0.3s all;
 }
 
 <div>
@@ -121,6 +481,69 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
     </div>
     <div
       className="c4"
+      color="#ADB8C0"
+      data-clipboard-text="\${props => props.theme.colors.whiteDark}"
+    >
+      <p
+        className="c1"
+      >
+        WhiteDark
+      </p>
+      <p
+        className="c2"
+      >
+        #ADB8C0
+      </p>
+      <label
+        className="c3"
+      >
+        Copy
+      </label>
+    </div>
+    <div
+      className="c5"
+      color="#DADDE2"
+      data-clipboard-text="\${props => props.theme.colors.whiteLight}"
+    >
+      <p
+        className="c1"
+      >
+        WhiteLight
+      </p>
+      <p
+        className="c2"
+      >
+        #DADDE2
+      </p>
+      <label
+        className="c3"
+      >
+        Copy
+      </label>
+    </div>
+    <div
+      className="c6"
+      color="#F9FAFC"
+      data-clipboard-text="\${props => props.theme.colors.whiteExLight}"
+    >
+      <p
+        className="c1"
+      >
+        WhiteExLight
+      </p>
+      <p
+        className="c2"
+      >
+        #F9FAFC
+      </p>
+      <label
+        className="c3"
+      >
+        Copy
+      </label>
+    </div>
+    <div
+      className="c7"
       color="#000"
       data-clipboard-text="\${props => props.theme.colors.black}"
     >
@@ -140,6 +563,2364 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
         Copy
       </label>
     </div>
+    <div
+      className="c8"
+      color="#374B5A"
+      data-clipboard-text="\${props => props.theme.colors.blackLight}"
+    >
+      <p
+        className="c1"
+      >
+        BlackLight
+      </p>
+      <p
+        className="c2"
+      >
+        #374B5A
+      </p>
+      <label
+        className="c3"
+      >
+        Copy
+      </label>
+    </div>
+    <div
+      className="c9"
+      color="rgba(0, 0, 0, 0.2)"
+      data-clipboard-text="\${props => props.theme.colors.blackAlpha}"
+    >
+      <p
+        className="c1"
+      >
+        BlackAlpha
+      </p>
+      <p
+        className="c2"
+      >
+        rgba(0, 0, 0, 0.2)
+      </p>
+      <label
+        className="c3"
+      >
+        Copy
+      </label>
+    </div>
+    <div
+      className="c10"
+      color="#899197"
+      data-clipboard-text="\${props => props.theme.colors.blackExLight}"
+    >
+      <p
+        className="c1"
+      >
+        BlackExLight
+      </p>
+      <p
+        className="c2"
+      >
+        #899197
+      </p>
+      <label
+        className="c3"
+      >
+        Copy
+      </label>
+    </div>
+    <div
+      className="c11"
+      color="#00CBE9"
+      data-clipboard-text="\${props => props.theme.colors.blue}"
+    >
+      <p
+        className="c1"
+      >
+        Blue
+      </p>
+      <p
+        className="c2"
+      >
+        #00CBE9
+      </p>
+      <label
+        className="c3"
+      >
+        Copy
+      </label>
+    </div>
+    <div
+      className="c12"
+      color="#00B4CF"
+      data-clipboard-text="\${props => props.theme.colors.blueDark}"
+    >
+      <p
+        className="c1"
+      >
+        BlueDark
+      </p>
+      <p
+        className="c2"
+      >
+        #00B4CF
+      </p>
+      <label
+        className="c3"
+      >
+        Copy
+      </label>
+    </div>
+    <div
+      className="c13"
+      color="#D4D4D4"
+      data-clipboard-text="\${props => props.theme.colors.gray}"
+    >
+      <p
+        className="c1"
+      >
+        Gray
+      </p>
+      <p
+        className="c2"
+      >
+        #D4D4D4
+      </p>
+      <label
+        className="c3"
+      >
+        Copy
+      </label>
+    </div>
+    <div
+      className="c14"
+      color="#C2C2C2"
+      data-clipboard-text="\${props => props.theme.colors.grayLight}"
+    >
+      <p
+        className="c1"
+      >
+        GrayLight
+      </p>
+      <p
+        className="c2"
+      >
+        #C2C2C2
+      </p>
+      <label
+        className="c3"
+      >
+        Copy
+      </label>
+    </div>
+    <div
+      className="c15"
+      color="#7F7F7F"
+      data-clipboard-text="\${props => props.theme.colors.grayDark}"
+    >
+      <p
+        className="c1"
+      >
+        GrayDark
+      </p>
+      <p
+        className="c2"
+      >
+        #7F7F7F
+      </p>
+      <label
+        className="c3"
+      >
+        Copy
+      </label>
+    </div>
+    <div
+      className="c16"
+      color="#B1B1B1"
+      data-clipboard-text="\${props => props.theme.colors.grayTintsDark}"
+    >
+      <p
+        className="c1"
+      >
+        GrayTintsDark
+      </p>
+      <p
+        className="c2"
+      >
+        #B1B1B1
+      </p>
+      <label
+        className="c3"
+      >
+        Copy
+      </label>
+    </div>
   </div>
 </div>
+`;
+
+exports[`Storyshots Components|@Store Featured 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 11px 0;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-basis: 33.33%;
+  -ms-flex-preferred-size: 33.33%;
+  flex-basis: 33.33%;
+  padding: 10px 32px 18px;
+  border: 1px solid #DADDE2;
+  border-radius: 5px;
+  -webkit-flex-basis: 100%;
+  -ms-flex-preferred-size: 100%;
+  flex-basis: 100%;
+  margin: 0 0 15px 0;
+  padding: 10px 28px 18px;
+}
+
+.c1:nth-child(2) {
+  margin: 0 30px;
+}
+
+.c1:nth-child(2) {
+  margin: 0;
+}
+
+.c1:nth-child(3) {
+  display: none;
+}
+
+.c2 {
+  display: block;
+  width: 100%;
+  padding: 9px 0;
+  background: #00CBE9;
+  border: 1px solid #00B4CF;
+  border-radius: 4px;
+  font-weight: bold;
+  line-height: 20px;
+  font-size: 17px;
+  text-align: center;
+  -webkit-letter-spacing: 0.51px;
+  -moz-letter-spacing: 0.51px;
+  -ms-letter-spacing: 0.51px;
+  letter-spacing: 0.51px;
+  color: #FFF;
+  cursor: pointer;
+}
+
+.c3 {
+  padding: 24px 0 0;
+  font-weight: 500;
+  line-height: 21px;
+  font-size: 16px;
+  color: #374B5A;
+}
+
+@media (min-width:25.8125em) {
+  .c0 {
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    font-size: 22px;
+    padding: 28px 0 20px;
+  }
+}
+
+@media (min-width:36em) {
+  .c0 {
+    padding: 33px 0;
+  }
+}
+
+@media (min-width:48em) {
+  .c0 {
+    padding: 28px 0 20px;
+  }
+}
+
+@media (min-width:62em) {
+  .c0 {
+    padding: 37px 0;
+  }
+}
+
+@media (min-width:75em) {
+  .c0 {
+    padding: 37px 0 33px;
+  }
+}
+
+@media (min-width:25.8125em) {
+  .c1 {
+    margin: 0;
+    padding: 10px 28px 18px;
+  }
+
+  .c1:nth-child(2) {
+    margin: 0 0 0 30px;
+  }
+}
+
+@media (min-width:36em) {
+  .c1 {
+    padding: 10px 14px 18px;
+  }
+
+  .c1:nth-child(2) {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+
+  .c1:nth-child(3) {
+    display: none;
+  }
+
+  .c1:nth-child(2) {
+    margin: 0 0 0 30px;
+  }
+}
+
+@media (min-width:48em) {
+  .c1 {
+    padding: 10px 32px 18px;
+  }
+}
+
+@media (min-width:62em) {
+  .c1:nth-child(2) {
+    margin: 0 30px;
+  }
+
+  .c1:nth-child(3) {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <a
+      className="c2"
+      href="https://target.com"
+      target="_blank"
+    >
+      Visit Store
+    </a>
+    <p
+      className="c3"
+    >
+      -12%
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Components|@Store Search 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 89%;
+  border: 1px solid #DADDE2;
+  margin: 0 0 33px 0;
+  border-radius: 5px;
+  width: calc(100% - 2px);
+  margin: 0 0 15px 0;
+}
+
+.c1 {
+  display: block;
+  border: none;
+  width: 100%;
+  padding: 11px 10px 11px 20px;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  line-height: 19px;
+  font-size: 16px;
+  -webkit-letter-spacing: 0.571428px;
+  -moz-letter-spacing: 0.571428px;
+  -ms-letter-spacing: 0.571428px;
+  letter-spacing: 0.571428px;
+  outline: none;
+}
+
+.c1::-webkit-input-placeholder {
+  color: #ADB8C0;
+}
+
+.c1::-moz-placeholder {
+  color: #ADB8C0;
+}
+
+.c1:-ms-input-placeholder {
+  color: #ADB8C0;
+}
+
+.c1::placeholder {
+  color: #ADB8C0;
+}
+
+.c2 {
+  display: block;
+  padding: 0 28px 0 0;
+}
+
+@media (min-width:36em) {
+  .c0 {
+    margin: 0 0 33px 0;
+  }
+}
+
+@media (min-width:62em) {
+  .c0 {
+    width: 89%;
+  }
+}
+
+@media (min-width:36em) {
+  .c2 {
+    padding: 0 20px 0 0;
+  }
+}
+
+<div
+  className="c0"
+>
+  <input
+    className="c1"
+    placeholder="Search"
+    type="text"
+  />
+  <img
+    alt="search"
+    className="c2"
+    src="icon-search.png"
+  />
+</div>
+`;
+
+exports[`Storyshots Components|@Store StoreList 1`] = `
+.c2 {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 100%;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c0 {
+  margin: 0 0 50px 0;
+}
+
+.c1 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border: 1px solid #DADDE2;
+  border-bottom: none;
+  padding: 30px 28px 30px 28px;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c1:first-child {
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+
+.c1:last-child {
+  border-bottom: 1px solid #DADDE2;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.c3 {
+  display: block;
+  width: 88px;
+  margin: 0 17px 0 0;
+}
+
+.c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-basis: 100%;
+  -ms-flex-preferred-size: 100%;
+  flex-basis: 100%;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  margin: 0 0 11px 0;
+}
+
+.c6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0 0 11px 0;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c7 {
+  margin: 0 30px 0 0;
+  margin: 0 21px 0 0;
+}
+
+.c8 {
+  display: block;
+  font-weight: 500;
+  line-height: 23px;
+  font-size: 13px;
+  color: #C2C2C2;
+}
+
+.c9 {
+  font-weight: bold;
+  line-height: 21px;
+  color: #374B5A;
+  font-size: 13px;
+  margin: 5px 0 0 0;
+}
+
+.c10 {
+  font-weight: 500;
+  line-height: 23px;
+  font-size: 13px;
+  color: #374B5A;
+  margin: 12px 0 0 0;
+}
+
+.c11 {
+  margin: 30px 57px 0 0;
+  font-weight: 500;
+  line-height: 23px;
+  color: #7F7F7F;
+  margin: 0 0 0 0;
+  font-size: 12px;
+}
+
+.c12 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-basis: 184px;
+  -ms-flex-preferred-size: 184px;
+  flex-basis: 184px;
+  padding: 9px 0;
+  font-weight: bold;
+  background: #00CBE9;
+  border: 1px solid #00B4CF;
+  border-radius: 4px;
+  line-height: 20px;
+  font-size: 17px;
+  text-align: center;
+  -webkit-letter-spacing: 0.51px;
+  -moz-letter-spacing: 0.51px;
+  -ms-letter-spacing: 0.51px;
+  letter-spacing: 0.51px;
+  color: #FFF;
+  cursor: pointer;
+  display: none;
+}
+
+.c13 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-basis: 184px;
+  -ms-flex-preferred-size: 184px;
+  flex-basis: 184px;
+  padding: 9px 0;
+  font-weight: bold;
+  background: #00CBE9;
+  border: 1px solid #00B4CF;
+  border-radius: 4px;
+  line-height: 20px;
+  font-size: 17px;
+  text-align: center;
+  -webkit-letter-spacing: 0.51px;
+  -moz-letter-spacing: 0.51px;
+  -ms-letter-spacing: 0.51px;
+  letter-spacing: 0.51px;
+  color: #FFF;
+  cursor: pointer;
+  display: none;
+  display: block;
+  -webkit-flex-basis: auto;
+  -ms-flex-preferred-size: auto;
+  flex-basis: auto;
+  width: 100%;
+}
+
+.c14 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0 auto;
+  font-weight: bold;
+  line-height: 21px;
+  font-size: 18px;
+  text-align: center;
+  -webkit-letter-spacing: 0.45px;
+  -moz-letter-spacing: 0.45px;
+  -ms-letter-spacing: 0.45px;
+  letter-spacing: 0.45px;
+  color: #ADB8C0;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+@media (min-width:48em) {
+  .c4 {
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+}
+
+@media (min-width:25.8125em) {
+  .c1 {
+    padding: 30px 28px 30px 35px;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+}
+
+@media (min-width:36em) {
+  .c1 {
+    padding: 10px 7px 10px 10px;
+  }
+}
+
+@media (min-width:48em) {
+  .c1 {
+    padding: 23px 24px 23px 18px;
+  }
+}
+
+@media (min-width:62em) {
+  .c1 {
+    padding: 23px 42px 23px 35px;
+  }
+}
+
+@media (min-width:25.8125em) {
+  .c3 {
+    margin: 0 33px 0 0;
+  }
+}
+
+@media (min-width:36em) {
+  .c3 {
+    margin: 0 23px 0 0;
+  }
+}
+
+@media (min-width:48em) {
+  .c3 {
+    margin: 0 26px 0 0;
+  }
+}
+
+@media (min-width:62em) {
+  .c3 {
+    margin: 0 37px 0 0;
+  }
+}
+
+@media (min-width:36em) {
+  .c5 {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-flex-basis: auto;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+  }
+}
+
+@media (min-width:48em) {
+  .c5 {
+    -webkit-align-items: flex-start;
+    -webkit-box-align: flex-start;
+    -ms-flex-align: flex-start;
+    align-items: flex-start;
+    -webkit-flex-basis: 100%;
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+    margin: 0;
+  }
+}
+
+@media (min-width:62em) {
+  .c5 {
+    -webkit-flex-basis: auto;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-align-items: flex-end;
+    -webkit-box-align: flex-end;
+    -ms-flex-align: flex-end;
+    align-items: flex-end;
+  }
+}
+
+@media (min-width:25.8125em) {
+  .c6 {
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+}
+
+@media (min-width:36em) {
+  .c6 {
+    margin: 0;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+}
+
+@media (min-width:48em) {
+  .c6 {
+    -webkit-flex-basis: auto;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+    margin: 0 0 5px 0;
+  }
+}
+
+@media (min-width:62em) {
+  .c6 {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    margin: 0;
+    -webkit-flex-basis: auto;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+  }
+}
+
+@media (min-width:75em) {
+  .c6 {
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-align-items: flex-end;
+    -webkit-box-align: flex-end;
+    -ms-flex-align: flex-end;
+    align-items: flex-end;
+  }
+}
+
+@media (min-width:36em) {
+  .c7 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    margin: 0 0 5px 0;
+  }
+}
+
+@media (min-width:48em) {
+  .c7 {
+    margin: 0 0 2px 0;
+  }
+}
+
+@media (min-width:62em) {
+  .c7 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    margin: 0 30px 14px 0;
+  }
+}
+
+@media (min-width:75em) {
+  .c7 {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    margin: 0 30px 0 0;
+  }
+}
+
+@media (min-width:36em) {
+  .c8 {
+    margin: 0 11px 0 0;
+  }
+}
+
+@media (min-width:36em) {
+  .c9 {
+    font-size: 16px;
+    margin: 0;
+  }
+}
+
+@media (min-width:48em) {
+  .c9 {
+    font-size: 16px;
+  }
+}
+
+@media (min-width:62em) {
+  .c9 {
+    font-size: 16px;
+    margin: 0;
+  }
+}
+
+@media (min-width:25.8125em) {
+  .c10 {
+    margin: 28px 0 0 0;
+  }
+}
+
+@media (min-width:36em) {
+  .c10 {
+    margin: 0 0 5px 0;
+  }
+}
+
+@media (min-width:48em) {
+  .c10 {
+    margin: 0;
+  }
+}
+
+@media (min-width:75em) {
+  .c10 {
+    margin: 0 30px 0 0;
+  }
+}
+
+@media (min-width:36em) {
+  .c11 {
+    margin: 0 0 0 0;
+    font-size: 13px;
+  }
+}
+
+@media (min-width:48em) {
+  .c11 {
+    margin: 0 0 0 0;
+  }
+}
+
+@media (min-width:62em) {
+  .c11 {
+    margin: 30px 39px 0 0;
+  }
+}
+
+@media (min-width:25.8125em) {
+  .c12 {
+    display: block;
+    -webkit-flex-basis: auto;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+    width: 100%;
+  }
+}
+
+@media (min-width:48em) {
+  .c12 {
+    -webkit-flex-basis: 242px;
+    -ms-flex-preferred-size: 242px;
+    flex-basis: 242px;
+    margin-left: auto;
+  }
+}
+
+@media (min-width:62em) {
+  .c12 {
+    -webkit-flex-basis: 188px;
+    -ms-flex-preferred-size: 188px;
+    flex-basis: 188px;
+  }
+}
+
+@media (min-width:75em) {
+  .c12 {
+    -webkit-flex-basis: 255px;
+    -ms-flex-preferred-size: 255px;
+    flex-basis: 255px;
+  }
+}
+
+@media (min-width:25.8125em) {
+  .c13 {
+    display: block;
+    -webkit-flex-basis: auto;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+    width: 100%;
+  }
+}
+
+@media (min-width:48em) {
+  .c13 {
+    -webkit-flex-basis: 242px;
+    -ms-flex-preferred-size: 242px;
+    flex-basis: 242px;
+    margin-left: auto;
+  }
+}
+
+@media (min-width:62em) {
+  .c13 {
+    -webkit-flex-basis: 188px;
+    -ms-flex-preferred-size: 188px;
+    flex-basis: 188px;
+  }
+}
+
+@media (min-width:75em) {
+  .c13 {
+    -webkit-flex-basis: 255px;
+    -ms-flex-preferred-size: 255px;
+    flex-basis: 255px;
+  }
+}
+
+@media (min-width:25.8125em) {
+  .c13 {
+    display: none;
+  }
+}
+
+<div>
+  <div
+    className="c0"
+  >
+    <div
+      className="c1"
+    >
+      <div
+        className="c2"
+      >
+        <img
+          alt="Target"
+          className="c3"
+          src={null}
+        />
+        <div
+          className="c4"
+        >
+          <div
+            className="c5"
+          >
+            <div
+              className="c6"
+            >
+              <div
+                className="c7"
+              >
+                <span
+                  className="c8"
+                >
+                  Target
+                </span>
+                <p
+                  className="c9"
+                >
+                  1000
+                   Deals
+                </p>
+              </div>
+              <p
+                className="c10"
+              >
+                -12%
+              </p>
+            </div>
+            <p
+              className="c11"
+            >
+              <img
+                alt="verify"
+                src="verif.png"
+              />
+              coupons activated
+            </p>
+          </div>
+          <a
+            className="c12"
+            href="https://target.com"
+            target="_blank"
+          >
+            Visit Store
+          </a>
+        </div>
+      </div>
+      <a
+        className="c13"
+        href="https://target.com"
+        target="_blank"
+      >
+        Visit Store
+      </a>
+    </div>
+  </div>
+  <button
+    className="c14"
+    onClick={[Function]}
+  >
+    Load more deals
+  </button>
+</div>
+`;
+
+exports[`Storyshots Components|@Store StoreMain 1`] = `
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 11px 0;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-basis: 33.33%;
+  -ms-flex-preferred-size: 33.33%;
+  flex-basis: 33.33%;
+  padding: 10px 32px 18px;
+  border: 1px solid #DADDE2;
+  border-radius: 5px;
+  -webkit-flex-basis: 100%;
+  -ms-flex-preferred-size: 100%;
+  flex-basis: 100%;
+  margin: 0 0 15px 0;
+  padding: 10px 28px 18px;
+}
+
+.c3:nth-child(2) {
+  margin: 0 30px;
+}
+
+.c3:nth-child(2) {
+  margin: 0;
+}
+
+.c3:nth-child(3) {
+  display: none;
+}
+
+.c4 {
+  display: block;
+  width: 100%;
+  padding: 9px 0;
+  background: #00CBE9;
+  border: 1px solid #00B4CF;
+  border-radius: 4px;
+  font-weight: bold;
+  line-height: 20px;
+  font-size: 17px;
+  text-align: center;
+  -webkit-letter-spacing: 0.51px;
+  -moz-letter-spacing: 0.51px;
+  -ms-letter-spacing: 0.51px;
+  letter-spacing: 0.51px;
+  color: #FFF;
+  cursor: pointer;
+}
+
+.c5 {
+  padding: 24px 0 0;
+  font-weight: 500;
+  line-height: 21px;
+  font-size: 16px;
+  color: #374B5A;
+}
+
+.c8 {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c10 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 100%;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c6 {
+  margin: 0 0 50px 0;
+}
+
+.c7 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border: 1px solid #DADDE2;
+  border-bottom: none;
+  padding: 30px 28px 30px 28px;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c7:first-child {
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+
+.c7:last-child {
+  border-bottom: 1px solid #DADDE2;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.c9 {
+  display: block;
+  width: 88px;
+  margin: 0 17px 0 0;
+}
+
+.c11 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-basis: 100%;
+  -ms-flex-preferred-size: 100%;
+  flex-basis: 100%;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  margin: 0 0 11px 0;
+}
+
+.c12 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0 0 11px 0;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c13 {
+  margin: 0 30px 0 0;
+  margin: 0 21px 0 0;
+}
+
+.c14 {
+  display: block;
+  font-weight: 500;
+  line-height: 23px;
+  font-size: 13px;
+  color: #C2C2C2;
+}
+
+.c15 {
+  font-weight: bold;
+  line-height: 21px;
+  color: #374B5A;
+  font-size: 13px;
+  margin: 5px 0 0 0;
+}
+
+.c16 {
+  font-weight: 500;
+  line-height: 23px;
+  font-size: 13px;
+  color: #374B5A;
+  margin: 12px 0 0 0;
+}
+
+.c17 {
+  margin: 30px 57px 0 0;
+  font-weight: 500;
+  line-height: 23px;
+  color: #7F7F7F;
+  margin: 0 0 0 0;
+  font-size: 12px;
+}
+
+.c18 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-basis: 184px;
+  -ms-flex-preferred-size: 184px;
+  flex-basis: 184px;
+  padding: 9px 0;
+  font-weight: bold;
+  background: #00CBE9;
+  border: 1px solid #00B4CF;
+  border-radius: 4px;
+  line-height: 20px;
+  font-size: 17px;
+  text-align: center;
+  -webkit-letter-spacing: 0.51px;
+  -moz-letter-spacing: 0.51px;
+  -ms-letter-spacing: 0.51px;
+  letter-spacing: 0.51px;
+  color: #FFF;
+  cursor: pointer;
+  display: none;
+}
+
+.c19 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-basis: 184px;
+  -ms-flex-preferred-size: 184px;
+  flex-basis: 184px;
+  padding: 9px 0;
+  font-weight: bold;
+  background: #00CBE9;
+  border: 1px solid #00B4CF;
+  border-radius: 4px;
+  line-height: 20px;
+  font-size: 17px;
+  text-align: center;
+  -webkit-letter-spacing: 0.51px;
+  -moz-letter-spacing: 0.51px;
+  -ms-letter-spacing: 0.51px;
+  letter-spacing: 0.51px;
+  color: #FFF;
+  cursor: pointer;
+  display: none;
+  display: block;
+  -webkit-flex-basis: auto;
+  -ms-flex-preferred-size: auto;
+  flex-basis: auto;
+  width: 100%;
+}
+
+.c20 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0 auto;
+  font-weight: bold;
+  line-height: 21px;
+  font-size: 18px;
+  text-align: center;
+  -webkit-letter-spacing: 0.45px;
+  -moz-letter-spacing: 0.45px;
+  -ms-letter-spacing: 0.45px;
+  letter-spacing: 0.45px;
+  color: #ADB8C0;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.c0 {
+  -webkit-flex-basis: 850px;
+  -ms-flex-preferred-size: 850px;
+  flex-basis: 850px;
+}
+
+.c1 {
+  padding: 7px 0 0 0;
+  line-height: 29px;
+  font-weight: bold;
+  font-size: 25px;
+  color: #374B5A;
+  display: none;
+}
+
+@media (min-width:25.8125em) {
+  .c2 {
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    font-size: 22px;
+    padding: 28px 0 20px;
+  }
+}
+
+@media (min-width:36em) {
+  .c2 {
+    padding: 33px 0;
+  }
+}
+
+@media (min-width:48em) {
+  .c2 {
+    padding: 28px 0 20px;
+  }
+}
+
+@media (min-width:62em) {
+  .c2 {
+    padding: 37px 0;
+  }
+}
+
+@media (min-width:75em) {
+  .c2 {
+    padding: 37px 0 33px;
+  }
+}
+
+@media (min-width:25.8125em) {
+  .c3 {
+    margin: 0;
+    padding: 10px 28px 18px;
+  }
+
+  .c3:nth-child(2) {
+    margin: 0 0 0 30px;
+  }
+}
+
+@media (min-width:36em) {
+  .c3 {
+    padding: 10px 14px 18px;
+  }
+
+  .c3:nth-child(2) {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+
+  .c3:nth-child(3) {
+    display: none;
+  }
+
+  .c3:nth-child(2) {
+    margin: 0 0 0 30px;
+  }
+}
+
+@media (min-width:48em) {
+  .c3 {
+    padding: 10px 32px 18px;
+  }
+}
+
+@media (min-width:62em) {
+  .c3:nth-child(2) {
+    margin: 0 30px;
+  }
+
+  .c3:nth-child(3) {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+@media (min-width:48em) {
+  .c10 {
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+}
+
+@media (min-width:25.8125em) {
+  .c7 {
+    padding: 30px 28px 30px 35px;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+}
+
+@media (min-width:36em) {
+  .c7 {
+    padding: 10px 7px 10px 10px;
+  }
+}
+
+@media (min-width:48em) {
+  .c7 {
+    padding: 23px 24px 23px 18px;
+  }
+}
+
+@media (min-width:62em) {
+  .c7 {
+    padding: 23px 42px 23px 35px;
+  }
+}
+
+@media (min-width:25.8125em) {
+  .c9 {
+    margin: 0 33px 0 0;
+  }
+}
+
+@media (min-width:36em) {
+  .c9 {
+    margin: 0 23px 0 0;
+  }
+}
+
+@media (min-width:48em) {
+  .c9 {
+    margin: 0 26px 0 0;
+  }
+}
+
+@media (min-width:62em) {
+  .c9 {
+    margin: 0 37px 0 0;
+  }
+}
+
+@media (min-width:36em) {
+  .c11 {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-flex-basis: auto;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+  }
+}
+
+@media (min-width:48em) {
+  .c11 {
+    -webkit-align-items: flex-start;
+    -webkit-box-align: flex-start;
+    -ms-flex-align: flex-start;
+    align-items: flex-start;
+    -webkit-flex-basis: 100%;
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+    margin: 0;
+  }
+}
+
+@media (min-width:62em) {
+  .c11 {
+    -webkit-flex-basis: auto;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-align-items: flex-end;
+    -webkit-box-align: flex-end;
+    -ms-flex-align: flex-end;
+    align-items: flex-end;
+  }
+}
+
+@media (min-width:25.8125em) {
+  .c12 {
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+}
+
+@media (min-width:36em) {
+  .c12 {
+    margin: 0;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+}
+
+@media (min-width:48em) {
+  .c12 {
+    -webkit-flex-basis: auto;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+    margin: 0 0 5px 0;
+  }
+}
+
+@media (min-width:62em) {
+  .c12 {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    margin: 0;
+    -webkit-flex-basis: auto;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+  }
+}
+
+@media (min-width:75em) {
+  .c12 {
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-align-items: flex-end;
+    -webkit-box-align: flex-end;
+    -ms-flex-align: flex-end;
+    align-items: flex-end;
+  }
+}
+
+@media (min-width:36em) {
+  .c13 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    margin: 0 0 5px 0;
+  }
+}
+
+@media (min-width:48em) {
+  .c13 {
+    margin: 0 0 2px 0;
+  }
+}
+
+@media (min-width:62em) {
+  .c13 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    margin: 0 30px 14px 0;
+  }
+}
+
+@media (min-width:75em) {
+  .c13 {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    margin: 0 30px 0 0;
+  }
+}
+
+@media (min-width:36em) {
+  .c14 {
+    margin: 0 11px 0 0;
+  }
+}
+
+@media (min-width:36em) {
+  .c15 {
+    font-size: 16px;
+    margin: 0;
+  }
+}
+
+@media (min-width:48em) {
+  .c15 {
+    font-size: 16px;
+  }
+}
+
+@media (min-width:62em) {
+  .c15 {
+    font-size: 16px;
+    margin: 0;
+  }
+}
+
+@media (min-width:25.8125em) {
+  .c16 {
+    margin: 28px 0 0 0;
+  }
+}
+
+@media (min-width:36em) {
+  .c16 {
+    margin: 0 0 5px 0;
+  }
+}
+
+@media (min-width:48em) {
+  .c16 {
+    margin: 0;
+  }
+}
+
+@media (min-width:75em) {
+  .c16 {
+    margin: 0 30px 0 0;
+  }
+}
+
+@media (min-width:36em) {
+  .c17 {
+    margin: 0 0 0 0;
+    font-size: 13px;
+  }
+}
+
+@media (min-width:48em) {
+  .c17 {
+    margin: 0 0 0 0;
+  }
+}
+
+@media (min-width:62em) {
+  .c17 {
+    margin: 30px 39px 0 0;
+  }
+}
+
+@media (min-width:25.8125em) {
+  .c18 {
+    display: block;
+    -webkit-flex-basis: auto;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+    width: 100%;
+  }
+}
+
+@media (min-width:48em) {
+  .c18 {
+    -webkit-flex-basis: 242px;
+    -ms-flex-preferred-size: 242px;
+    flex-basis: 242px;
+    margin-left: auto;
+  }
+}
+
+@media (min-width:62em) {
+  .c18 {
+    -webkit-flex-basis: 188px;
+    -ms-flex-preferred-size: 188px;
+    flex-basis: 188px;
+  }
+}
+
+@media (min-width:75em) {
+  .c18 {
+    -webkit-flex-basis: 255px;
+    -ms-flex-preferred-size: 255px;
+    flex-basis: 255px;
+  }
+}
+
+@media (min-width:25.8125em) {
+  .c19 {
+    display: block;
+    -webkit-flex-basis: auto;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+    width: 100%;
+  }
+}
+
+@media (min-width:48em) {
+  .c19 {
+    -webkit-flex-basis: 242px;
+    -ms-flex-preferred-size: 242px;
+    flex-basis: 242px;
+    margin-left: auto;
+  }
+}
+
+@media (min-width:62em) {
+  .c19 {
+    -webkit-flex-basis: 188px;
+    -ms-flex-preferred-size: 188px;
+    flex-basis: 188px;
+  }
+}
+
+@media (min-width:75em) {
+  .c19 {
+    -webkit-flex-basis: 255px;
+    -ms-flex-preferred-size: 255px;
+    flex-basis: 255px;
+  }
+}
+
+@media (min-width:25.8125em) {
+  .c19 {
+    display: none;
+  }
+}
+
+@media (min-width:36em) {
+  .c1 {
+    display: block;
+    font-size: 19px;
+  }
+}
+
+@media (min-width:36em) {
+  .c1 {
+    font-size: 25px;
+  }
+}
+
+<div
+  className="c0"
+>
+  <h3
+    className="c1"
+  >
+    Browse among more than 1000 stores
+  </h3>
+  <div
+    className="c2"
+  >
+    <div
+      className="c3"
+    >
+      <a
+        className="c4"
+        href="https://target.com"
+        target="_blank"
+      >
+        Visit Store
+      </a>
+      <p
+        className="c5"
+      >
+        -12%
+      </p>
+    </div>
+  </div>
+  <div>
+    <div
+      className="c6"
+    >
+      <div
+        className="c7"
+      >
+        <div
+          className="c8"
+        >
+          <img
+            alt="Target"
+            className="c9"
+            src={null}
+          />
+          <div
+            className="c10"
+          >
+            <div
+              className="c11"
+            >
+              <div
+                className="c12"
+              >
+                <div
+                  className="c13"
+                >
+                  <span
+                    className="c14"
+                  >
+                    Target
+                  </span>
+                  <p
+                    className="c15"
+                  >
+                    1000
+                     Deals
+                  </p>
+                </div>
+                <p
+                  className="c16"
+                >
+                  -12%
+                </p>
+              </div>
+              <p
+                className="c17"
+              >
+                <img
+                  alt="verify"
+                  src="verif.png"
+                />
+                coupons activated
+              </p>
+            </div>
+            <a
+              className="c18"
+              href="https://target.com"
+              target="_blank"
+            >
+              Visit Store
+            </a>
+          </div>
+        </div>
+        <a
+          className="c19"
+          href="https://target.com"
+          target="_blank"
+        >
+          Visit Store
+        </a>
+      </div>
+    </div>
+    <button
+      className="c20"
+      onClick={[Function]}
+    >
+      Load more deals
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Components|@Store StoreSidebar 1`] = `
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 89%;
+  border: 1px solid #DADDE2;
+  margin: 0 0 33px 0;
+  border-radius: 5px;
+  width: calc(100% - 2px);
+  margin: 0 0 15px 0;
+}
+
+.c2 {
+  display: block;
+  border: none;
+  width: 100%;
+  padding: 11px 10px 11px 20px;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  line-height: 19px;
+  font-size: 16px;
+  -webkit-letter-spacing: 0.571428px;
+  -moz-letter-spacing: 0.571428px;
+  -ms-letter-spacing: 0.571428px;
+  letter-spacing: 0.571428px;
+  outline: none;
+}
+
+.c2::-webkit-input-placeholder {
+  color: #ADB8C0;
+}
+
+.c2::-moz-placeholder {
+  color: #ADB8C0;
+}
+
+.c2:-ms-input-placeholder {
+  color: #ADB8C0;
+}
+
+.c2::placeholder {
+  color: #ADB8C0;
+}
+
+.c3 {
+  display: block;
+  padding: 0 28px 0 0;
+}
+
+.c6 {
+  display: block;
+  display: none;
+}
+
+.c7 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin: 0 0 11px 0;
+  font-size: 13px;
+  color: #C2C2C2;
+}
+
+.c8 {
+  display: block;
+  width: 50px;
+  text-align: center;
+  padding: 3px 0;
+  border: 2px solid #D4D4D4;
+  border-radius: 7px;
+  font-size: 13px;
+  color: #C2C2C2;
+}
+
+.c0 {
+  -webkit-flex-basis: 261px;
+  -ms-flex-preferred-size: 261px;
+  flex-basis: 261px;
+  padding: 0 30px 0 0;
+  padding: 0 0 0 0;
+  -webkit-flex-basis: auto;
+  -ms-flex-preferred-size: auto;
+  flex-basis: auto;
+}
+
+.c4 {
+  background: #FFF;
+  position: relative;
+  margin: 0;
+  border: 0.5px solid #DADDE2;
+  border-radius: 5px;
+  padding: 12px 25px;
+}
+
+.c5 {
+  line-height: 21px;
+  font-size: 18px;
+  font-weight: bold;
+  -webkit-letter-spacing: 0.45px;
+  -moz-letter-spacing: 0.45px;
+  -ms-letter-spacing: 0.45px;
+  letter-spacing: 0.45px;
+  color: #899197;
+  position: relative;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.c5::before {
+  position: absolute;
+  content: '';
+  right: 0;
+  top: 28%;
+  border-radius: 10px;
+  -webkit-transition: -webkit-transform 250ms linear;
+  -webkit-transition: transform 250ms linear;
+  transition: transform 250ms linear;
+  width: 0;
+  height: 0;
+  border-top: 11px solid #B1B1B1;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+}
+
+@media (min-width:36em) {
+  .c1 {
+    margin: 0 0 33px 0;
+  }
+}
+
+@media (min-width:62em) {
+  .c1 {
+    width: 89%;
+  }
+}
+
+@media (min-width:36em) {
+  .c3 {
+    padding: 0 20px 0 0;
+  }
+}
+
+@media (min-width:36em) {
+  .c6 {
+    display: block;
+  }
+}
+
+@media (min-width:36em) {
+  .c0 {
+    -webkit-flex-basis: 321px;
+    -ms-flex-preferred-size: 321px;
+    flex-basis: 321px;
+    padding: 0 30px 0 0;
+  }
+}
+
+@media (min-width:48em) {
+  .c0 {
+    -webkit-flex-basis: 390px;
+    -ms-flex-preferred-size: 390px;
+    flex-basis: 390px;
+  }
+}
+
+@media (min-width:62em) {
+  .c0 {
+    -webkit-flex-basis: 261px;
+    -ms-flex-preferred-size: 261px;
+    flex-basis: 261px;
+  }
+}
+
+@media (min-width:36em) {
+  .c4 {
+    margin: 0 0 25px 0;
+    border: none;
+    border-radius: none;
+    padding: 0;
+    box-shadow: none;
+  }
+}
+
+@media (min-width:36em) {
+  .c5 {
+    position: relative;
+    border: none;
+    box-sizing: border-box;
+    border-radius: 0;
+  }
+
+  .c5::before {
+    display: none;
+  }
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <input
+      className="c2"
+      placeholder="Search"
+      type="text"
+    />
+    <img
+      alt="search"
+      className="c3"
+      src="icon-search.png"
+    />
+  </div>
+  <div
+    className="c4"
+  >
+    <h3
+      className="c5"
+      onClick={[Function]}
+    >
+      Stores
+    </h3>
+  </div>
+  <ul
+    className="c6"
+  >
+    <li
+      className="c7"
+    >
+      Clothing
+       
+      <span
+        className="c8"
+      >
+        100
+      </span>
+    </li>
+    <li
+      className="c7"
+    >
+      Cars
+       
+      <span
+        className="c8"
+      >
+        81
+      </span>
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`Storyshots Components|@Store TagList 1`] = `
+.c0 {
+  display: block;
+  display: none;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin: 0 0 11px 0;
+  font-size: 13px;
+  color: #C2C2C2;
+}
+
+.c2 {
+  display: block;
+  width: 50px;
+  text-align: center;
+  padding: 3px 0;
+  border: 2px solid #D4D4D4;
+  border-radius: 7px;
+  font-size: 13px;
+  color: #C2C2C2;
+}
+
+@media (min-width:36em) {
+  .c0 {
+    display: block;
+  }
+}
+
+<ul
+  className="c0"
+>
+  <li
+    className="c1"
+  >
+    Clothing
+     
+    <span
+      className="c2"
+    >
+      100
+    </span>
+  </li>
+  <li
+    className="c1"
+  >
+    Cars
+     
+    <span
+      className="c2"
+    >
+      81
+    </span>
+  </li>
+</ul>
+`;
+
+exports[`Storyshots Components|@Store TagListMobile 1`] = `
+.c0 {
+  display: block;
+  position: absolute;
+  left: -1px;
+  top: 44px;
+  width: 100%;
+  background: #FFF;
+  border: 0.5px solid #DADDE2;
+  box-shadow: 0 12px 22px rgba(0,0,0,0.2);
+  border-top: none;
+  border-radius: 5px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  padding: 24px 0 32px;
+  display: block;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin: 0 0 11px 0;
+  font-size: 13px;
+  color: #C2C2C2;
+  padding: 0 25px;
+}
+
+.c1:last-child {
+  margin: 0;
+}
+
+.c2 {
+  display: block;
+  width: 50px;
+  text-align: center;
+  padding: 3px 0;
+  border: 2px solid #D4D4D4;
+  border-radius: 7px;
+  font-size: 13px;
+  color: #C2C2C2;
+}
+
+@media (min-width:36em) {
+  .c0 {
+    display: none;
+  }
+}
+
+<ul
+  className="c0"
+>
+  <li
+    className="c1"
+  >
+    Clothing
+     
+    <span
+      className="c2"
+    >
+      100
+    </span>
+  </li>
+  <li
+    className="c1"
+  >
+    Cars
+     
+    <span
+      className="c2"
+    >
+      81
+    </span>
+  </li>
+</ul>
 `;
