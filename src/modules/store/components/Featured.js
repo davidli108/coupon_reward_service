@@ -1,28 +1,30 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
+import breakpoint from 'styled-components-breakpoint';
 
-import targetIcon from '../assets/target.png';
-import walmartIcon from '../assets/walmart.png';
-import macysIcon from '../assets/macys.png';
+type StoreFeaturedProps = {
+  stores: {
+    name: string,
+    newStore: boolean,
+    deals: string,
+    offer: string,
+    logo: string,
+    url: string,
+  }[],
+};
 
-const Featured = () => (
+const Featured = ({ stores }: StoreFeaturedProps) => (
   <Featured.Wrapper>
-    <Featured.Item>
-      <Featured.Image src={targetIcon} alt="title" />
-      <Featured.Link>Visit Store</Featured.Link>
-      <Featured.Cash>5.0% Cash Back</Featured.Cash>
-    </Featured.Item>
-    <Featured.Item>
-      <Featured.Image src={walmartIcon} alt="title" />
-      <Featured.Link>Visit Store</Featured.Link>
-      <Featured.Cash>5.0% Cash Back</Featured.Cash>
-    </Featured.Item>
-    <Featured.Item>
-      <Featured.Image src={macysIcon} alt="title" />
-      <Featured.Link>Visit Store</Featured.Link>
-      <Featured.Cash>5.0% Cash Back</Featured.Cash>
-    </Featured.Item>
+    {stores.map(({ name, offer, logo, url }) => (
+      <Featured.Item key={name}>
+        <Featured.Image src={logo} alt={name} />
+        <Featured.Link href={url} target="_blank">
+          Visit Store
+        </Featured.Link>
+        <Featured.Cash>{offer}</Featured.Cash>
+      </Featured.Item>
+    ))}
   </Featured.Wrapper>
 );
 
@@ -42,8 +44,40 @@ Featured.Item = styled.div`
   border-radius: 5px;
 
   &:nth-child(2) {
-    margin: 0 15px;
+    margin: 0 30px;
   }
+  ${breakpoint('xs')`
+    flex-basis: 100%;
+    padding: 10px 18px 18px;
+    &:nth-child(2) {
+      margin: 0 0 0 30px;
+    }
+    &:nth-child(3) {
+      display: none;
+    }
+  `}
+  ${breakpoint('sm')`
+    padding: 10px 32px 18px;
+    &:nth-child(2) {
+      display: flex;
+    }
+    &:nth-child(3) {
+      display: none;
+    }
+
+    &:nth-child(2) {
+      margin: 0 0 0 30px;
+    }
+
+  `}
+  ${breakpoint('lg')`
+    &:nth-child(2) {
+      margin: 0 30px;
+    }
+    &:nth-child(3) {
+      display: flex;
+    }
+  `}
 `;
 
 Featured.Image = styled.img`
@@ -55,14 +89,15 @@ Featured.Link = styled.a`
   display: block;
   width: 100%;
   padding: 9px 0;
-  background: #00cbe9;
+  background: ${props => props.theme.colors.blue};
   border: 1px solid #00b4cf;
   border-radius: 4px;
+  font-weight: bold;
   line-height: 20px;
   font-size: 17px;
   text-align: center;
   letter-spacing: 0.51px;
-  color: #fff;
+  color: ${props => props.theme.colors.white};
   cursor: pointer;
 `;
 

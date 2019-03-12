@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
+import breakpoint from 'styled-components-breakpoint';
 
 import IconSearch from '../assets/icon-search.png';
 
@@ -18,6 +19,16 @@ StoreSearch.Wrapper = styled.div`
   border: 1px solid #dadde2;
   margin: 0 0 33px 0;
   border-radius: 5px;
+  ${breakpoint('xs')`
+    width: 100%;
+    margin: 0 0 15px 0;
+  `}
+  ${breakpoint('sm')`
+    margin: 0 0 33px 0;
+  `}
+  ${breakpoint('lg')`
+    width: 89%;
+  `}
 `;
 
 StoreSearch.Input = styled.input`
@@ -25,6 +36,8 @@ StoreSearch.Input = styled.input`
   border: none;
   width: 100%;
   padding: 11px 10px 11px 20px;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
   line-height: 19px;
   font-size: 16px;
   letter-spacing: 0.571428px;
