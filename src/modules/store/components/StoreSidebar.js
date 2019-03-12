@@ -98,7 +98,7 @@ StoreSidebar.Title = styled.h3`
       ${props => props.rotateIcon && 'transform: rotate(180deg)'};
       width: 0;
       height: 0;
-      border-top: 11px solid #b1b1b1;
+      border-top: 11px solid ${props => props.theme.colors.grayTintsDark};
       border-left: 10px solid transparent;
       border-right: 10px solid transparent;
     }

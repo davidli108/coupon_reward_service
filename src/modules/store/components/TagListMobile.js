@@ -28,7 +28,7 @@ TagListMobile.List = styled.ul`
   width: 100%;
   background: ${props => props.theme.colors.white};
   border: 0.5px solid ${props => props.theme.colors.whiteLight};
-  box-shadow: 0 12px 22px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 12px 22px ${props => props.theme.colors.blackAlpha};
   border-top: none;
   border-radius: 5px;
   border-top-left-radius: 0;
