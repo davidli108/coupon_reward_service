@@ -6,14 +6,14 @@ import breakpoint from 'styled-components-breakpoint';
 type TagListProps = {
   categories: {
     title: string,
-    number: string,
+    number: number,
   }[],
 };
 
 const TagList = ({ categories }: TagListProps) => (
   <TagList.List>
     {categories.map(({ title, number }) => (
-      <TagList.Item key={title}>
+      <TagList.Item key={`tag_item_${title}`}>
         {title} <TagList.Numb>{number}</TagList.Numb>
       </TagList.Item>
     ))}
@@ -22,9 +22,11 @@ const TagList = ({ categories }: TagListProps) => (
 
 TagList.List = styled.ul`
   display: block;
+
   ${breakpoint('xs')`
     display: none;
   `}
+
   ${breakpoint('sm')`
     display: block;
   `}

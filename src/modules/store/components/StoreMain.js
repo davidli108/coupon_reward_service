@@ -10,7 +10,7 @@ type StoresListProps = {
   stores: {
     name: string,
     newStore: boolean,
-    deals: string,
+    deals: number,
     offer: string,
     logo: string,
     url: string,
@@ -35,13 +35,16 @@ StoreMain.Title = styled.h3`
   font-weight: bold;
   font-size: 25px;
   color: #374b5a;
+
   ${breakpoint('xs')`
     display: none;
   `}
+
   ${breakpoint('sm')`
     display: block;
     font-size: 19px;
   `}
+
   ${breakpoint('sm')`
     font-size: 25px;
   `}

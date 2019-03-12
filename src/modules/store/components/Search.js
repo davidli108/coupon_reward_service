@@ -19,13 +19,16 @@ StoreSearch.Wrapper = styled.div`
   border: 1px solid #dadde2;
   margin: 0 0 33px 0;
   border-radius: 5px;
+
   ${breakpoint('xs')`
-    width: 100%;
+    width: calc(100% - 2px);
     margin: 0 0 15px 0;
   `}
+
   ${breakpoint('sm')`
     margin: 0 0 33px 0;
   `}
+
   ${breakpoint('lg')`
     width: 89%;
   `}
@@ -54,6 +57,7 @@ StoreSearch.Icon = styled.img`
   ${breakpoint('xs')`
     padding: 0 28px 0 0;
   `}
+
   ${breakpoint('sm')`
     padding: 0 20px 0 0;
   `}

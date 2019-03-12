@@ -10,7 +10,7 @@ import TagListMobile from './TagListMobile';
 type StoreSidebarProps = {
   categories: {
     title: string,
-    number: string,
+    number: number,
   }[],
 };
 
@@ -19,7 +19,7 @@ const StoreSidebar = ({ categories }: StoreSidebarProps) => {
   return (
     <StoreSidebar.Wrapper>
       <Search />
-      <StoreSidebar.Mobile boxShadow={toggled}>
+      <StoreSidebar.Mobile active={toggled}>
         <StoreSidebar.Title rotateIcon={toggled} onClick={() => setToggle(!toggled)}>
           Stores
         </StoreSidebar.Title >
@@ -33,17 +33,21 @@ const StoreSidebar = ({ categories }: StoreSidebarProps) => {
 StoreSidebar.Wrapper = styled.div`
   flex-basis: 261px;
   padding: 0 30px 0 0;
+
   ${breakpoint('xs')`
     padding: 0 0 0 0;
     flex-basis: auto;
   `}
+
   ${breakpoint('sm')`
     flex-basis: 321px;
     padding: 0 30px 0 0;
   `}
+
   ${breakpoint('md')`
     flex-basis: 390px;
   `}
+
   ${breakpoint('lg')`
     flex-basis: 261px;
   `}
@@ -51,13 +55,19 @@ StoreSidebar.Wrapper = styled.div`
 
 StoreSidebar.Mobile = styled.div`
   background: #fff;
+  position: relative;
+
   ${breakpoint('xs')`
     margin: 0;
     border: 0.5px solid #dadde2;
     border-radius: 5px;
     padding: 12px 25px;
-    box-shadow: ${props => props.boxShadow && '0px 12px 22px rgba(0, 0, 0, 0.2)'};
+    box-shadow: ${props => props.active && '2px 3px 22px rgba(0, 0, 0, 0.2)'};
+    border-bottom: ${props => props.active && 'none'};
+    border-bottom-left-radius: ${props => props.active && '0'};
+    border-bottom-right-radius: ${props => props.active && '0'};
   `}
+
   ${breakpoint('sm')`
     margin: 0 0 25px 0;
     border: none;
@@ -73,6 +83,7 @@ StoreSidebar.Title = styled.h3`
   font-weight: bold;
   letter-spacing: 0.45px;
   color: #899197;
+
   ${breakpoint('xs')`
     position: relative;
     box-sizing: border-box;
@@ -81,7 +92,7 @@ StoreSidebar.Title = styled.h3`
       position: absolute;
       content: '';
       right: 0;
-      top: 42%;
+      top: 28%;
       border-radius: 10px;
       transition: transform 250ms linear;
       ${props => props.rotateIcon && 'transform: rotate(180deg)'};
@@ -92,6 +103,7 @@ StoreSidebar.Title = styled.h3`
       border-right: 10px solid transparent;
     }
   `}
+
   ${breakpoint('sm')`
     position: relative;
     border: none;
