@@ -2,14 +2,21 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
+import breakpoint from 'styled-components-breakpoint';
 
 import StoreSidebar from '../components/StoreSidebar';
 import StoreMain from '../components/StoreMain';
 
+import targetIcon from '../assets/target.png';
+import walmartIcon from '../assets/walmart.png';
+import macysIcon from '../assets/macys.png';
+
 type StoresPageProps = {
   stores: {
     name: string,
+    newStore: boolean,
     offer: string,
+    deals: string,
     logo: string,
     url: string,
   }[],
@@ -28,6 +35,9 @@ const StoresPage = ({ stores, categories }: StoresPageProps) => (
     <StoresPage.Wrapper>
       <StoresPage.Container>
         <StoresPage.Box>
+          <StoresPage.Title>
+            Browse among more than 1000 stores
+          </StoresPage.Title>
           <StoreSidebar categories={categories} />
           <StoreMain stores={stores} />
         </StoresPage.Box>
@@ -38,36 +48,72 @@ const StoresPage = ({ stores, categories }: StoresPageProps) => (
 
 StoresPage.Wrapper = styled.div`
   position: relative;
-  padding: 50px 0 0 0;
+  padding: 50px 0 75px 0;
 `;
 
 StoresPage.Container = styled.div`
-  max-width: 1100px;
+  max-width: 1141px;
   margin: 0 auto;
+  padding: 0 15px;
+  ${breakpoint('sm')`
+    padding: 0 40px;
+  `}
+  ${breakpoint('md')`
+    padding: 0 15px;
+  `}
+`;
+
+StoresPage.Title = styled.h3`
+  padding: 7px 0 0 0;
+  margin: 0 0 16px 0;
+  text-align: center;
+  line-height: 29px;
+  font-weight: bold;
+  font-size: 25px;
+  color: #374b5a;
+  ${breakpoint('xs')`
+    display: block;
+  `}
+  ${breakpoint('sm')`
+    display: none;
+  `}
 `;
 
 StoresPage.Box = styled.div`
   display: flex;
+  width: 100%;
+  ${breakpoint('xs')`
+    flex-direction: column;
+  `}
+  ${breakpoint('sm')`
+    flex-direction: row;
+  `}
 `;
 
 StoresPage.defaultProps = {
   stores: [
     {
       name: 'Target',
-      logo: '',
+      logo: targetIcon,
+      newStore: true,
+      deals: '258456 Deals',
       offer: '+12% Cash Back',
       url: 'https://target.com',
     },
     {
       name: 'Welmart',
-      logo: '',
-      offer: '+12% Cash Back',
+      logo: walmartIcon,
+      newStore: true,
+      deals: '258422 Deals',
+      offer: '+1% Cash Back',
       url: 'https://welmart.com',
     },
     {
       name: 'Macus',
-      logo: '',
-      offer: '+12% Cash Back',
+      logo: macysIcon,
+      newStore: false,
+      deals: '211156 Deals',
+      offer: '+50% Cash Back',
       url: 'https://macus.com',
     },
   ],
