@@ -616,7 +616,9 @@ StorePage.PiggyExtAdvertisement = styled.div`
   padding-top: 25px;
 
   ${breakpoint('xl')`
-    width: 250px;
+    width: 25%;
+    max-width: 254px;
+    min-width: 160px;
 
     flex-flow: column-reverse nowrap;
     align-items: center;
@@ -686,8 +688,6 @@ StorePage.NeverOverpay = styled.section`
   }
 `;
 
-StorePage.NeverOverpayWithBorder = styled.div;
-
 StorePage.AddExtensionButton = styled.a`
   display: flex;
   justify-content: center;
@@ -722,8 +722,16 @@ StorePage.Offer = styled.div`
 
   ${breakpoint('xl')`
     width: 100%;
-    align-items: center;
-    justify-content: space-between;
+
+    display: grid;
+
+    grid-template-columns: 55px auto auto;
+    grid-template-rows: auto;
+
+    grid-template-areas:
+      "newDeal . ."
+      ". content viewDeal"
+      ". info .";
   `}
 `;
 
@@ -739,6 +747,10 @@ StorePage.NewDeal = styled.div`
     font-size: 13px;
     font-weight: bold;
   }
+
+  ${breakpoint('xl')`
+    grid-area: newDeal;
+  `}
 `;
 
 StorePage.PiggyContent = styled.div`
@@ -797,12 +809,15 @@ StorePage.Info = styled.div`
   margin-bottom: 25px;
 
   ${breakpoint('xl')`
-    width: 100%;
-      flex-flow: row nowrap;
-      align-items: center;
-      margin-top: -60px;
-      margin-right: 150px;
-    `}
+    flex-flow: row wrap;
+    align-items: center;
+    margin-top: -50px;
+    margin-left: 22%;
+    width: fit-content;
+
+    grid-area: info;
+    justify-self: center;
+  `}
 
   > p {
     width: 100%;
@@ -813,6 +828,7 @@ StorePage.Info = styled.div`
 
     color: #c2c2c2;
     ${breakpoint('xl')`
+      white-space: nowrap;
       width: fit-content;
       margin: 0 15px;
     `}
@@ -828,8 +844,13 @@ StorePage.ViewDeal = styled.div`
   width: 100%;
 
   ${breakpoint('xl')`
-    width: 254px;
+    width: calc(100% - 17px);
+    max-width: 254px;
+    min-width: 160px;
     margin-right: 17px;
+    grid-area: viewDeal;
+    justify-self: end;
+
   `}
 
   > p {
@@ -849,7 +870,9 @@ StorePage.Content = styled.div`
   ${breakpoint('xl')`
     justify-content: space-between;
     align-items: flex-start;
-    margin-left: 130px;
+    grid-area: content;
+
+    justify-self: center;
   `}
 
   > p:first-child {
@@ -866,7 +889,6 @@ StorePage.Content = styled.div`
 
     ${breakpoint('xl')`
       width: fit-content;
-      margin-right: 45px;
       margin-top: -3px;
     `}
 
