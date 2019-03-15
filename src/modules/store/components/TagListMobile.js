@@ -3,11 +3,9 @@ import React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
+import { type Categories } from '../models';
 type TagListMobileProps = {
-  categories: {
-    title: string,
-    number: number,
-  }[],
+  categories: Categories[],
 };
 
 const TagListMobile = ({ categories }: TagListMobileProps) => (

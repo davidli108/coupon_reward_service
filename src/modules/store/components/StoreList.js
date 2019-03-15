@@ -5,21 +5,17 @@ import breakpoint from 'styled-components-breakpoint';
 
 import verificationIcon from '../assets/verif.png';
 
+import { type Store } from '../models';
+
 type StoreListProps = {
-  stores: {
-    name: string,
-    newStore: boolean,
-    deals: number,
-    offer: string,
-    logo: string,
-    url: string,
-  }[],
+  stores: Store[],
+  onLoadMore: Function,
 };
 
-const StoreList = ({ stores }: StoreListProps) => (
+const StoreList = ({ stores, onLoadMore }: StoreListProps) => (
   <div>
     <StoreList.StoreContainer>
-      {stores.map(({ name, offer, newStore, deals, logo, url }) => (
+      {stores.map(({ name, offer, newStore, deals, logo, url, couponActive }) => (
         <StoreList.StoreItem key={`list_item_${name}`}>
           {newStore && <StoreList.StoreNew>New Store</StoreList.StoreNew>}
           <StoreList.Box>
@@ -33,10 +29,14 @@ const StoreList = ({ stores }: StoreListProps) => (
                   </StoreList.Brand>
                   <StoreList.Cash>{offer}</StoreList.Cash>
                 </StoreList.Info>
-                <StoreList.Coupons>
-                  <img src={verificationIcon} alt="verify" />
-                  coupons activated
-                </StoreList.Coupons>
+                {
+                  couponActive && (
+                    <StoreList.Coupons>
+                      <img src={verificationIcon} alt="verify" />
+                      coupons activated
+                    </StoreList.Coupons>
+                  )
+                }
               </StoreList.Content>
               <StoreList.Link href={url} target="_blank">
                 Visit Store
@@ -50,7 +50,7 @@ const StoreList = ({ stores }: StoreListProps) => (
       ))}
     </StoreList.StoreContainer>
     <StoreList.LoadMoreButton
-      onClick={() => console.log('Click: Load more deals')}
+      onClick={onLoadMore}
     >
       Load more deals
     </StoreList.LoadMoreButton>
@@ -59,6 +59,7 @@ const StoreList = ({ stores }: StoreListProps) => (
 
 StoreList.defaultProps = {
   stores: [],
+  onLoadMore: Function,
 };
 
 StoreList.Box = styled.div`

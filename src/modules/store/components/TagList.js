@@ -3,11 +3,9 @@ import React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
+import { type Categories } from '../models';
 type TagListProps = {
-  categories: {
-    title: string,
-    number: number,
-  }[],
+  categories: Categories[],
 };
 
 const TagList = ({ categories }: TagListProps) => (
@@ -39,6 +37,7 @@ TagList.Item = styled.li`
   margin: 0 0 11px 0;
   font-size: 13px;
   color: ${props => props.theme.colors.grayLight};
+  cursor: pointer;
 `;
 
 TagList.Numb = styled.span`

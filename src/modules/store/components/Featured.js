@@ -3,15 +3,10 @@ import React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
+import { type Store } from '../models';
+
 type FeaturedProps = {
-  stores: {
-    name: string,
-    newStore: boolean,
-    deals: number,
-    offer: string,
-    logo: string,
-    url: string,
-  }[],
+  stores: Store[],
 };
 
 const Featured = ({ stores }: FeaturedProps) => (
