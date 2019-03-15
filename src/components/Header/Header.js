@@ -18,7 +18,7 @@ const items = [
     bgColor: '#40c8e5',
     hoverBgColor: '#34a6bf',
     title: 'Stores',
-    link: '/cashback-stores',
+    link: '/stores',
   },
   {
     bgColor: '#3ab7d1',

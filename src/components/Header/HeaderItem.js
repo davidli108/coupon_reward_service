@@ -55,6 +55,7 @@ HeaderItem.NavLink = styled(NavLink)`
 HeaderItem.Link = styled.a`
   display: flex;
   align-items: center;
+  box-sizing: border-box;
 
   width: 100%;
   height: 100%;
