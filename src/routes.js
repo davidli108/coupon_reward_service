@@ -25,7 +25,7 @@ const StoresPage = Loadable({
     '@modules/store/pages/StoresPage.js' /* webpackChunkName: "StoresPage" */),
 const StorePage = Loadable({
   loader: () =>
-    import('@modules/landing/pages/StorePage' /* webpackChunkName: "NotFoundPage" */),
+    import('@modules/store/pages/StorePage' /* webpackChunkName: "NotFoundPage" */),
   loading: () => <Preloader />,
 });
 
