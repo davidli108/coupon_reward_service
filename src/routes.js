@@ -23,15 +23,19 @@ const StoresPage = Loadable({
   loader: () =>
     import(//$FlowFixMe
     '@modules/store/pages/StoresPage.js' /* webpackChunkName: "StoresPage" */),
+const StorePage = Loadable({
+  loader: () =>
+    import('@modules/landing/pages/StorePage' /* webpackChunkName: "NotFoundPage" */),
   loading: () => <Preloader />,
 });
 
 export default (
-  <div>
+  <div style={{ overflow: 'hidden' }}>
     <Header />
     <Switch>
       <Route exact path="/" component={HomePage} />
       <Route exact path="/stores" component={StoresPage} />
+      <Route exact path="/coupons/:storeName" component={StorePage} />
 
       {/* Catch all routes */}
       <Route component={NotFoundPage} />

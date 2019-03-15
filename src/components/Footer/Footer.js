@@ -108,7 +108,7 @@ const Footer = () => (
             Unsubscribe
           </Footer.CopyrightLink>
         </div>
-        <p>Copyright © 2019 All Rights Reserved.</p>
+        <p>Copyright © {new Date().getFullYear()} All Rights Reserved.</p>
       </div>
     </Footer.CopyrightWrapper>
   </Footer.Wrapper>

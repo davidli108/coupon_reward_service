@@ -8,6 +8,7 @@
     "comment-empty-line-before": null,
     "declaration-colon-space-before": null,
     "declaration-empty-line-before": null,
-    "number-leading-zero": null
+    "number-leading-zero": null,
+    "no-descending-specificity": null
   }
 }

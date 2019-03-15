@@ -1,0 +1,773 @@
+//@flow
+import * as R from 'ramda';
+import * as React from 'react';
+import styled from 'styled-components';
+import {
+  MdSearch,
+  MdFavorite,
+  MdFavoriteBorder,
+  MdKeyboardArrowUp,
+  MdStar,
+  MdStarBorder,
+  MdStarHalf,
+} from 'react-icons/md';
+
+type Extension = {
+  reviewsCount: string,
+  stars: number,
+};
+
+type Store = {
+  name: string,
+  isFollowed: boolean,
+};
+
+type Offer = {
+  title: string,
+  value?: string,
+  expDate?: string,
+  discountPercent?: number,
+  cashbackPercent?: number,
+  usesToday?: number,
+  isCoupon?: boolean,
+  isDeal?: boolean,
+  isBonus?: boolean,
+  isLimited?: boolean,
+  isNew?: boolean,
+};
+
+type StorePageProps = {
+  store: Store,
+  offers: Offer[],
+  extension: Extension,
+};
+
+const getCoupons = offers => offers.filter(x => x.isCoupon);
+const getDeals = offers => offers.filter(x => x.isDeal);
+const getHighestCashback = offers =>
+  offers.reduce((acc, val) => {
+    if (val.cashbackPercent && val.cashbackPercent > acc) {
+      acc = val.cashbackPercent;
+    }
+    return acc;
+  }, 0);
+
+const renderStarsReview = rating => {
+
+  const fullStarsCount = R.repeat('full', Math.floor(rating));
+  const halfStarsCount = R.repeat('half', Math.ceil(rating % 1));
+  const emptyStarsCount = R.repeat('empty', 5 - (fullStarsCount.length + halfStarsCount.length));
+
+
+  if (rating > 5) {
+    return <>{R.repeat('empty', 5).map((_, index) => <MdStar key={`full_${index}`}/>)}</>;
+  }
+
+  // since i need at least one source of dynamic information to create keys
+  // and we are not allowed to use for loops - i did it like this
+
+  return (
+    <>
+      {fullStarsCount.map((_, index) => <MdStar key={`full_${index}`} />)}
+      {halfStarsCount.map((_, index) => <MdStarHalf key={`half_${index}`} />)}
+      {emptyStarsCount.map((_, index) => <MdStarBorder key={`empty_${index}`} />)}
+    </>
+  );
+};
+
+const formatNumberByThousands = value => {
+  const thousands = Math.floor(Number(value) / 1000);
+  const rest = Number(value) % 1000;
+  const shortRest = String(rest).split('')[0];
+
+  if (thousands === 0) {
+    return value;
+  }
+
+  return `${thousands}.${shortRest}k`;
+};
+
+const formatWithZeroPadding = value => String(value).padStart(2, '0');
+
+const renderOffers = offers =>
+  offers.map(
+    ({
+      title,
+      expDate,
+      discountPercent,
+      cashbackPercent,
+      usesToday,
+      isCoupon,
+      isDeal,
+      isNew,
+      isBonus,
+      isLimited,
+      value,
+    }) => (
+      <div key={`${title}_${usesToday || ''}`}>
+      {/* temp key, i guess server will return ids*/}
+        {(isDeal || isCoupon) && (
+          <StorePage.Offer >
+            {isNew && (
+              <StorePage.NewDeal>
+                <p>New Deal</p>
+              </StorePage.NewDeal>
+            )}
+            <StorePage.Content>
+              <p>
+                <span>{formatWithZeroPadding(discountPercent)}%</span>
+                <span>O f f</span>
+              </p>
+              <p>{title}</p>
+            </StorePage.Content>
+            <StorePage.ViewDeal>
+              {isDeal && (
+                <StorePage.ViewDealButton
+                  href="https://google.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View Deal
+                </StorePage.ViewDealButton>
+              )}
+              {isCoupon && (
+                <StorePage.RevealCouponButton
+                  href="https://google.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Reveal Coupon
+                </StorePage.RevealCouponButton>
+              )}
+              <p>Exp. {expDate}</p>
+            </StorePage.ViewDeal>
+            <StorePage.Info>
+              <p>
+                Verified today · {formatNumberByThousands(usesToday)} uses
+                today.
+              </p>
+              <p>+{cashbackPercent}% Cash Back</p>
+            </StorePage.Info>
+          </StorePage.Offer>
+        )}
+        {isBonus && (
+          <StorePage.PiggyOffer>
+            <StorePage.PiggyBonus>PiggyBonus</StorePage.PiggyBonus>
+            <StorePage.PiggyContent>
+              <h2>{value}</h2>
+              <p>{title}</p>
+              <a
+                href="https://google.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Get Piggy
+              </a>
+            </StorePage.PiggyContent>
+          </StorePage.PiggyOffer>
+        )}
+      </div>
+    ),
+  );
+
+const StorePage = ({ store, offers, extension }: StorePageProps) => {
+  const [searchValue, setSearchValue] = React.useState('');
+  const [isStoreFollowed, setStoreFollowed] = React.useState(store.isFollowed);
+  const [isCovered, setCovered] = React.useState(true);
+
+  const handleSearchChange = ({ target: { value } }) => setSearchValue(value);
+  const handleStoreFollowToggler = () => setStoreFollowed(!isStoreFollowed);
+  const handleCoveredToggler = () => setCovered(!isCovered);
+
+  return (
+    <StorePage.Wrapper>
+      <StorePage.SearchBar>
+        <input
+          type="text"
+          name="searchBar"
+          value={searchValue}
+          onChange={handleSearchChange}
+          placeholder="Search"
+        />
+        <MdSearch />
+      </StorePage.SearchBar>
+      <StorePage.Brand>
+        <StorePage.BrandImageWrapper>
+          <img
+            src="http://www.legacypowerwashing.com/wp-content/uploads/2015/11/macys-logo-fix.png"
+            alt="brand-logo"
+          />
+        </StorePage.BrandImageWrapper>
+        <StorePage.BrandName>
+          {store.name}'s Coupon Codes & Deals
+        </StorePage.BrandName>
+      </StorePage.Brand>
+      <StorePage.OffersStats>
+        <span>{getCoupons(offers).length} Coupons</span>
+        <span>-</span>
+        <span>{getDeals(offers).length} Deals</span>
+        <span>-</span>
+        <span>Up to {getHighestCashback(offers)}% Cash Back </span>
+      </StorePage.OffersStats>
+      <StorePage.FollowStoreWrapper isStoreFollowed={isStoreFollowed}>
+        <div onClick={handleStoreFollowToggler}>
+          {isStoreFollowed ? <MdFavorite /> : <MdFavoriteBorder />}
+          <span>Follow Store</span>
+        </div>
+      </StorePage.FollowStoreWrapper>
+      <StorePage.Cover>
+        <StorePage.NeverOverpay isCovered={isCovered}>
+          <h2>Never Overpay Again at {store.name}'s</h2>
+          <p>
+            Automatically add all active coupons to your order with Piggy's
+            browser extension. When you get to checkout, Piggy will find coupons
+            and cash back at Macy's and more.
+          </p>
+        </StorePage.NeverOverpay>
+        <span onClick={handleCoveredToggler}>
+          {isCovered ? 'See More' : <MdKeyboardArrowUp />}
+        </span>
+      </StorePage.Cover>
+      <StorePage.PiggyExtAdvertisement>
+        <StorePage.OffersStats>
+          <span>Automatic Coupons</span>
+          <span>-</span>
+          <span>Price Check</span>
+          <span>-</span>
+          <span>Secret Rates and Deals</span>
+        </StorePage.OffersStats>
+        <StorePage.Reviews>
+          <div>{renderStarsReview(extension.stars)}</div>
+          <span>{extension.reviewsCount} reviews</span>
+        </StorePage.Reviews>
+        <StorePage.AddExtensionButton>
+          Add to Chrome
+        </StorePage.AddExtensionButton>
+      </StorePage.PiggyExtAdvertisement>
+      {renderOffers(offers)}
+    </StorePage.Wrapper>
+  );
+};
+
+StorePage.Wrapper = styled.div`
+  display: flex;
+  flex-flow: column wrap;
+
+  padding: 15px;
+`;
+
+StorePage.SearchBar = styled.div`
+  position: relative;
+  width: 100%;
+
+  padding-top: 15px;
+
+  > input {
+    background: #fff;
+    border: 1px solid #dadde2;
+    box-sizing: border-box;
+    border-radius: 5px;
+    width: 100%;
+    height: 40px;
+    font-size: 18px;
+    padding: 11px 20px;
+    outline: none;
+
+    ::placeholder {
+      color: #adb8c0;
+    }
+  }
+
+  > svg {
+    position: absolute;
+    top: 17px;
+    right: 15px;
+    padding-top: 3px;
+    color: #d2d2d2;
+    width: 30px;
+    height: 30px;
+    transition: 0.2s;
+    cursor: pointer;
+
+    :hover {
+      filter: brightness(35%);
+    }
+  }
+`;
+
+StorePage.Brand = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  padding-top: 15px;
+`;
+
+StorePage.BrandImageWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 150px;
+
+  border: 1px solid #dadde2;
+  border-radius: 5px;
+
+  > img {
+    height: auto;
+    width: auto;
+    max-width: 100%;
+    max-height: 100%;
+  }
+`;
+
+StorePage.BrandName = styled.h2`
+  font-size: 22px;
+  font-weight: bold;
+  color: #374b5a;
+
+  text-align: center;
+  padding-top: 15px;
+`;
+
+StorePage.Reviews = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding-top: 3px;
+
+  > div {
+    display: flex;
+    color: #00cbe9;
+  }
+
+  > span {
+    padding-top: 15px;
+    color: #c2c2c2;
+    font-size: 13px;
+  }
+`;
+
+StorePage.OffersStats = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  width: 100%;
+  padding: 15px 0 25px 0;
+
+  & > span {
+    font-weight: bold;
+    font-size: 10px;
+    color: #62707b;
+
+    &:first-child {
+      margin-left: 5px;
+    }
+
+    &:last-child {
+      margin-right: 5px;
+    }
+  }
+`;
+
+StorePage.FollowStoreWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 25px 0 10px 0;
+
+  > div {
+    display: flex;
+    align-items: center;
+
+    width: fit-content;
+    height: auto;
+
+    cursor: pointer;
+
+    > svg {
+      width: 22px;
+      height: 22px;
+      color: ${({ isStoreFollowed }) => (isStoreFollowed ? 'red' : '#D2D2D2')};
+    }
+
+    > span {
+      padding-left: 5px;
+      font-size: 14px;
+      color: ${({ isStoreFollowed }) => isStoreFollowed ? 'black' : '#b1b1b1'};
+    }
+  }
+`;
+
+StorePage.Cover = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  > span {
+    text-align: center;
+    font-weight: bold;
+    line-height: 20px;
+    margin-top: 5px;
+    font-size: 13px;
+    color: #899197;
+    cursor: pointer;
+  }
+`;
+
+StorePage.Advantages = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  width: 100%;
+  padding: 15px 0 25px 0;
+
+  > span {
+    font-weight: bold;
+    font-size: 10px;
+    color: #62707b;
+
+    &:first-child {
+      margin-left: 5px;
+    }
+
+    &:last-child {
+      margin-right: 5px;
+    }
+  }
+`;
+
+StorePage.PiggyExtAdvertisement = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+
+  width: 100%;
+  padding-top: 25px;
+`;
+
+StorePage.NeverOverpay = styled.section`
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: ${({ isCovered }) => (isCovered ? '87px' : 'auto')};
+
+  overflow: hidden;
+
+  > h2 {
+    position: relative;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    color: #374b5a;
+
+    padding-top: 15px;
+
+    ${({ isCovered }) =>
+      isCovered
+        ? `
+      &:after {
+        content: '';
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 55px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.496207) 0%, #fff 100%);
+      }
+    `
+        : ''}
+  }
+
+  > p {
+    padding: 15px;
+    font-weight: 500;
+    font-size: 13px;
+    color: #899197;
+    line-height: 20px;
+  }
+`;
+
+StorePage.AddExtensionButton = styled.a`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: 2px solid #7ed321;
+  border-radius: 4px;
+
+  font-weight: bold;
+  font-size: 18px;
+  color: #7ed321;
+
+  margin-left: auto;
+  padding: 17px 13px;
+`;
+
+StorePage.Offer = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+
+  background: #fff;
+  border: 1px solid #dadde2;
+  border-radius: 5px;
+
+  margin-top: 25px;
+`;
+
+StorePage.NewDeal = styled.div`
+  display: flex;
+
+  width: 100%;
+  height: 20px;
+  padding: 2px 0 0 5px;
+
+  > p {
+    color: #00cbe9;
+    font-size: 13px;
+    font-weight: bold;
+  }
+`;
+
+StorePage.PiggyContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+
+  padding: 10px;
+
+  > h2 {
+    font-weight: bold;
+    line-height: 40px;
+    font-size: 34px;
+    text-align: center;
+    color: #62707b;
+  }
+
+  > p {
+    width: 80%;
+    text-align: center;
+
+    line-height: 20px;
+    font-size: 13px;
+    color: #62707b;
+  }
+
+  > a {
+    background: #fff;
+    border: 2px solid #7ed321;
+    border-radius: 5px;
+
+    text-align: center;
+    width: 80%;
+    margin-top: 15px;
+    max-width: 330px;
+    padding: 10px 0;
+
+    font-weight: bold;
+    line-height: 20px;
+    font-size: 17px;
+    letter-spacing: -0.188889px;
+
+    color: #7ed321;
+  }
+`;
+
+StorePage.Info = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  width: 100%;
+  margin-bottom: 25px;
+
+  > p {
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    line-height: 23px;
+    font-size: 13px;
+
+    color: #c2c2c2;
+  }
+`;
+
+StorePage.ViewDeal = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+  margin: 15px 0;
+
+  > p {
+    font-weight: bold;
+    line-height: 23px;
+    font-size: 13px;
+    color: #c2c2c2;
+    margin-top: 15px;
+  }
+`;
+
+StorePage.Content = styled.div`
+  display: flex;
+
+  padding: 25px;
+
+  > p:first-child {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    margin-right: 15px;
+
+    color: #7ed321;
+    font-weight: bold;
+    line-height: 46px;
+    font-size: 39px;
+
+    > span {
+      width: 100%;
+
+      &:nth-child(2) {
+        letter-spacing: -1.5px;
+      }
+    }
+  }
+
+  > p:nth-child(2) {
+    line-height: 19px;
+    font-size: 15px;
+    letter-spacing: 0.375px;
+    font-weight: bold;
+    color: #374b5a;
+  }
+`;
+
+StorePage.ViewDealButton = styled.a`
+  width: 80%;
+  max-width: 300px;
+  padding: 15px;
+
+  background: #00cbe9;
+  border-radius: 4px;
+
+  font-weight: bold;
+  font-size: 17px;
+  text-align: center;
+  letter-spacing: 0.51px;
+  color: #fff;
+`;
+
+StorePage.RevealCouponButton = styled.a`
+  width: 80%;
+  max-width: 300px;
+  padding: 15px;
+
+  background: #00cbe9;
+  border-radius: 4px;
+
+  font-weight: bold;
+  font-size: 17px;
+  text-align: center;
+  letter-spacing: 0.51px;
+  color: #fff;
+
+  clip-path: polygon(92% 0, 100% 49%, 100% 100%, 0 100%, 0 0);
+`;
+
+StorePage.PiggyOffer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  background: #fff;
+  border: 1px dashed #adb8c0;
+  border-radius: 5px;
+
+  margin-top: 25px;
+`;
+
+StorePage.PiggyBonus = styled.div`
+  background: #f9fafc;
+  border-radius: 5px;
+
+  font-weight: bold;
+  line-height: 15px;
+  font-size: 13px;
+  text-align: center;
+  color: #00cbe9;
+  padding: 7px;
+`;
+
+StorePage.defaultProps = {
+  store: {
+    name: 'Macy',
+    isFollowed: false,
+  },
+  offers: [
+    {
+      title:
+        'Free Makeup Or Skin Care Gift With Any $55. This would be a second line.',
+      cashbackPercent: 4,
+      discountPercent: 7,
+      expDate: '06/25/2019',
+      usesToday: 4200,
+      isDeal: true,
+      isNew: true,
+    },
+    {
+      title:
+        'Free Makeup Or Skin Care Gift With Any $65. This would be a second line.',
+      cashbackPercent: 25,
+      discountPercent: 39,
+      expDate: '01/12/2019',
+      usesToday: 10,
+      isDeal: true,
+      isNew: false,
+    },
+    {
+      title:
+        'Free Makeup Or Skin Care Gift With Any $75. This would be a second line.',
+      cashbackPercent: 8,
+      discountPercent: 15,
+      expDate: '06/01/2019',
+      usesToday: 300,
+      isCoupon: true,
+      isNew: true,
+    },
+    {
+      title:
+        'Free Makeup Or Skin Care Gift With Any $85. This would be a second line.',
+      cashbackPercent: 1,
+      discountPercent: 1,
+      expDate: '06/02/2025',
+      usesToday: 1,
+      isCoupon: true,
+      isNew: true,
+    },
+    {
+      title:
+        'Get a $25 Bonus when you shop at Macy’s with Piggy and get gift cards.',
+      value: '30 codes',
+      isLimited: true,
+      isBonus: true,
+      isNew: true,
+    },
+  ],
+  extension: {
+    reviewsCount: '14,239',
+    stars: 4.5,
+  },
+  specialConditions: {
+    title: '',
+    body: '',
+  },
+};
+
+export default StorePage;

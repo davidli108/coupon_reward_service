@@ -3,7 +3,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 
 const HomePage = () => (
-  <div style={{ overflow: 'hidden' }}>
+  <div>
     <Helmet>
       <title>Dashboard</title>
     </Helmet>
