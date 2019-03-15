@@ -23,9 +23,12 @@ const StoresPage = Loadable({
   loader: () =>
     import(//$FlowFixMe
     '@modules/store/pages/StoresPage.js' /* webpackChunkName: "StoresPage" */),
+    loading: () => <Preloader />,
+});
+
 const StorePage = Loadable({
   loader: () =>
-    import('@modules/store/pages/StorePage' /* webpackChunkName: "NotFoundPage" */),
+    import('@modules/storeCoupons/pages/StorePage' /* webpackChunkName: "NotFoundPage" */),
   loading: () => <Preloader />,
 });
 
