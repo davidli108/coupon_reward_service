@@ -39,7 +39,7 @@ export type Offer = {
   isBonus?: boolean,
   isLimited?: boolean,
   isNew?: boolean,
-  key?: string,
+  couponCode?: string,
 };
 
 export type SearchBarProps = {

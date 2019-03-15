@@ -31,10 +31,13 @@ const Offer = ({
   isBonus,
   isLimited,
   value,
+  couponCode,
 }: OfferModel) => {
+  const [isCouponRevealed, setCouponRevealed] = React.useState(false);
+  const couponRevealedToggler = () => setCouponRevealed(!isCouponRevealed);
+
   return (
     <>
-      {/* temp key, i guess server will return ids*/}
       {(isDeal || isCoupon) && (
         <Offer.Wrapper>
           {isNew && (
@@ -61,11 +64,11 @@ const Offer = ({
             )}
             {isCoupon && (
               <Offer.RevealCouponButton
-                href="https://google.com"
-                target="_blank"
-                rel="noopener noreferrer"
+                isRevealed={isCouponRevealed}
+                onClick={couponRevealedToggler}
               >
-                Reveal Coupon
+                <p>Reveal Coupon</p>
+                <p>{couponCode}</p>
               </Offer.RevealCouponButton>
             )}
             <p>Exp. {expDate}</p>
@@ -213,21 +216,43 @@ Offer.ViewDealButton = styled.a`
   `}
 `;
 
-Offer.RevealCouponButton = styled.a`
-  width: 80%;
+Offer.RevealCouponButton = styled.div`
+  width: 100%;
   max-width: 300px;
-  padding: 15px;
-
-  background: #00cbe9;
-  border-radius: 4px;
-
+  height: 47px;
   font-weight: bold;
   font-size: 17px;
-  text-align: center;
   letter-spacing: 0.51px;
   color: #fff;
+  cursor: pointer;
 
-  clip-path: polygon(92% 0, 100% 49%, 100% 100%, 0 100%, 0 0);
+  > p:first-child {
+    display: ${({ isRevealed }) => (isRevealed ? 'none' : 'flex')};
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    width: 100%;
+    height: 100%;
+    background: #00cbe9;
+    clip-path: polygon(92% 0, 100% 49%, 100% 100%, 0 100%, 0 0);
+  }
+
+  > p:last-child {
+    ${({ isRevealed }) =>
+      isRevealed
+        ? `
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    width: 100%;
+    height: 100%;
+    color: black;
+    background: white;
+  `
+        : 'display: none'};
+  }
 `;
 
 Offer.PiggyOffer = styled.div`

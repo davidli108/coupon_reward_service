@@ -154,6 +154,7 @@ StorePage.defaultProps = {
       usesToday: 300,
       isCoupon: true,
       isNew: true,
+      couponCode: '123123123',
     },
     {
       title:
@@ -163,6 +164,7 @@ StorePage.defaultProps = {
       expDate: '06/02/2025',
       usesToday: 1,
       isCoupon: true,
+      couponCode: '98769876',
       isNew: true,
     },
     {

@@ -135,7 +135,8 @@ BrandHeader.FollowStoreWrapper = styled.div`
     > span {
       padding-left: 5px;
       font-size: 14px;
-      color: ${({ isStoreFollowed }) => isStoreFollowed ? 'black' : '#b1b1b1'};
+      color: ${({ isStoreFollowed }) =>
+        isStoreFollowed ? 'black' : '#b1b1b1'};
     }
   }
 `;
