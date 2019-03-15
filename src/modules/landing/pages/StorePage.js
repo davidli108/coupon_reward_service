@@ -2,6 +2,7 @@
 import * as R from 'ramda';
 import * as React from 'react';
 import styled from 'styled-components';
+import breakpoint from 'styled-components-breakpoint';
 import {
   MdSearch,
   MdFavorite,
@@ -12,14 +13,31 @@ import {
   MdStarHalf,
 } from 'react-icons/md';
 
+type Content = {
+  title?: string,
+  body: string,
+  bonus?: string,
+};
+
+type AdditionalInfo = {
+  title: string,
+  content: Content[],
+};
+
 type Extension = {
   reviewsCount: string,
   stars: number,
 };
 
+type StoreInformation = {
+  title?: string,
+  body?: string,
+};
+
 type Store = {
   name: string,
   isFollowed: boolean,
+  info: StoreInformation[],
 };
 
 type Offer = {
@@ -40,6 +58,7 @@ type StorePageProps = {
   store: Store,
   offers: Offer[],
   extension: Extension,
+  additionalInfo: AdditionalInfo[],
 };
 
 const getCoupons = offers => offers.filter(x => x.isCoupon);
@@ -53,24 +72,37 @@ const getHighestCashback = offers =>
   }, 0);
 
 const renderStarsReview = rating => {
-
   const fullStarsCount = R.repeat('full', Math.floor(rating));
   const halfStarsCount = R.repeat('half', Math.ceil(rating % 1));
-  const emptyStarsCount = R.repeat('empty', 5 - (fullStarsCount.length + halfStarsCount.length));
-
+  const emptyStarsCount = R.repeat(
+    'empty',
+    5 - (fullStarsCount.length + halfStarsCount.length),
+  );
 
   if (rating > 5) {
-    return <>{R.repeat('empty', 5).map((_, index) => <MdStar key={`full_${index}`}/>)}</>;
+    return (
+      <>
+        {R.repeat('empty', 5).map((_, index) => (
+          <MdStar key={`empty_${index}`} />
+        ))}
+      </>
+    );
   }
 
   // since i need at least one source of dynamic information to create keys
-  // and we are not allowed to use for loops - i did it like this
+  // and we are not allowed to use for loops - i looped it like this
 
   return (
     <>
-      {fullStarsCount.map((_, index) => <MdStar key={`full_${index}`} />)}
-      {halfStarsCount.map((_, index) => <MdStarHalf key={`half_${index}`} />)}
-      {emptyStarsCount.map((_, index) => <MdStarBorder key={`empty_${index}`} />)}
+      {fullStarsCount.map((x, index) => (
+        <MdStar key={`${x}_${index}`} />
+      ))}
+      {halfStarsCount.map((x, index) => (
+        <MdStarHalf key={`${x}_${index}`} />
+      ))}
+      {emptyStarsCount.map((x, index) => (
+        <MdStarBorder key={`${x}_${index}`} />
+      ))}
     </>
   );
 };
@@ -105,9 +137,9 @@ const renderOffers = offers =>
       value,
     }) => (
       <div key={`${title}_${usesToday || ''}`}>
-      {/* temp key, i guess server will return ids*/}
+        {/* temp key, i guess server will return ids*/}
         {(isDeal || isCoupon) && (
-          <StorePage.Offer >
+          <StorePage.Offer>
             {isNew && (
               <StorePage.NewDeal>
                 <p>New Deal</p>
@@ -170,7 +202,45 @@ const renderOffers = offers =>
     ),
   );
 
-const StorePage = ({ store, offers, extension }: StorePageProps) => {
+const renderAdditionalInfo = info => (
+  <StorePage.AdditionalInfoWrapper>
+    {info.map(section => (
+      <StorePage.AdditionalInfoSection key={`section_${section.title}`}>
+        <h2>{section.title}</h2>
+        {section.content.map(content => (
+          <StorePage.AdditionalInfoContent
+            key={`section_content_${content.title || 'title'}_${content.bonus ||
+              'bonus'}`}
+          >
+            {content.title && <h3>{content.title}</h3>}
+            {content.body && <p>{content.body}</p>}
+            {content.bonus && <h4>{content.bonus}</h4>}
+          </StorePage.AdditionalInfoContent>
+        ))}
+      </StorePage.AdditionalInfoSection>
+    ))}
+  </StorePage.AdditionalInfoWrapper>
+);
+
+const renderStoreInformation = info => (
+  <StorePage.StoreInformationWrapper>
+    {info.map(section => (
+      <StorePage.StoreInformationSection
+        key={`store_information_${section.title || 'title'}`}
+      >
+        <h2>{section.title}</h2>
+        <p>{section.body}</p>
+      </StorePage.StoreInformationSection>
+    ))}
+  </StorePage.StoreInformationWrapper>
+);
+
+const StorePage = ({
+  store,
+  offers,
+  extension,
+  additionalInfo,
+}: StorePageProps) => {
   const [searchValue, setSearchValue] = React.useState('');
   const [isStoreFollowed, setStoreFollowed] = React.useState(store.isFollowed);
   const [isCovered, setCovered] = React.useState(true);
@@ -245,6 +315,8 @@ const StorePage = ({ store, offers, extension }: StorePageProps) => {
         </StorePage.AddExtensionButton>
       </StorePage.PiggyExtAdvertisement>
       {renderOffers(offers)}
+      {renderAdditionalInfo(additionalInfo)}
+      {renderStoreInformation(store.info)}
     </StorePage.Wrapper>
   );
 };
@@ -253,12 +325,21 @@ StorePage.Wrapper = styled.div`
   display: flex;
   flex-flow: column wrap;
 
+  ${breakpoint('xl')`
+    width: 80%;
+    margin: 0 auto;
+  `}
+
   padding: 15px;
 `;
 
 StorePage.SearchBar = styled.div`
   position: relative;
   width: 100%;
+
+  ${breakpoint('xl')`
+    width: 457px;
+  `}
 
   padding-top: 15px;
 
@@ -705,10 +786,123 @@ StorePage.PiggyBonus = styled.div`
   padding: 7px;
 `;
 
+StorePage.AdditionalInfoWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  padding: 15px;
+`;
+
+StorePage.AdditionalInfoSection = styled.section`
+  display: flex;
+  flex-direction: column;
+
+  padding: 15px 0;
+
+  :not(:last-child) {
+    border-bottom: 1px solid #dadde2;
+  }
+
+  > h2 {
+    font-weight: bold;
+    line-height: 24px;
+    font-size: 20px;
+    letter-spacing: 0.5px;
+    color: #899197;
+
+    padding-bottom: 10px;
+  }
+`;
+
+StorePage.AdditionalInfoContent = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  padding: 15px 0;
+
+  > h3 {
+    line-height: 21px;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 0.45px;
+
+    padding-bottom: 15px;
+
+    color: #899197;
+  }
+
+  > h4 {
+    font-weight: bold;
+    line-height: 15px;
+    font-size: 13px;
+
+    padding-top: 15px;
+
+    color: #899197;
+  }
+
+  > p {
+    line-height: 21px;
+    font-size: 16px;
+
+    color: #b1b1b1;
+  }
+`;
+
+StorePage.StoreInformationWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  border: 1px solid #dadde2;
+  border-radius: 5px;
+`;
+
+StorePage.StoreInformationSection = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  padding: 25px;
+
+  > h2 {
+    font-weight: bold;
+    line-height: 21px;
+    font-size: 18px;
+    letter-spacing: 0.45px;
+    color: #b1b1b1;
+  }
+
+  > p {
+    line-height: 23px;
+    font-size: 16px;
+    letter-spacing: 0.1px;
+    color: #b1b1b1;
+
+    padding-top: 15px;
+  }
+`;
+
 StorePage.defaultProps = {
   store: {
     name: 'Macy',
     isFollowed: false,
+    info: [
+      {
+        title: 'Macy´s',
+        body: `View the latest Online Coupons for Shoes below!
+          Never miss a Shoes coupon or Cash Back opportunities
+          from any of our 1,800 other stores with our Free Mobile App
+          and Browser app! Any of Shoes's online coupons can be combined
+          with Free, Automatic Rebates. Up to 7.0% Cash Back! Only from Piggy! Any of
+          these Shoes coupon codes and promotions can be combined with our Automatic Cash
+          Back at Shoes`,
+      },
+      {
+        title: 'Cash Back not available:',
+        body: `On email exclusive offers;
+          Sales of products believed to be sold to parties reselling products offered by Macy´s;
+          Use of coupons/promotional gift cards that are found outside of JoinPiggy.com or our browser App.`,
+      },
+    ],
   },
   offers: [
     {
@@ -768,6 +962,46 @@ StorePage.defaultProps = {
     title: '',
     body: '',
   },
+  additionalInfo: [
+    {
+      title: 'Return Policy',
+      content: [
+        {
+          body:
+            'Sign up for Free Sale Alerts and be the first to know when there is a huge discount. This way you can save up to 65%.',
+          bonus: 'Plus get 7.0% Cash Back from Macy´s !',
+        },
+      ],
+    },
+    {
+      title: 'Shopping Secrets',
+      content: [
+        {
+          title: 'Sale alerts',
+          body:
+            'Sign up for Free Sale Alerts and be the first to know when there is a huge discount. This way you can save up to 65%.',
+        },
+        {
+          title: '$100 Gift Certificate',
+          body:
+            'Every week you have the opportunity to get this certificate and you only need to enter once - they will include you in every drawing every week.',
+        },
+        {
+          title: 'Sales Tax',
+          body: 'They Handle all sale tax for orders that are in the US.',
+        },
+      ],
+    },
+    {
+      title: "About Macy's",
+      content: [
+        {
+          body: 'Free shipping on every order.',
+          bonus: 'Shop Macy´s with 7.0% Cash Back',
+        },
+      ],
+    },
+  ],
 };
 
 export default StorePage;
