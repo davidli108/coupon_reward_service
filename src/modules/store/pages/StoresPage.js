@@ -10,10 +10,7 @@ import breakpoint from 'styled-components-breakpoint';
 import StoreSidebar from '../components/StoreSidebar';
 import StoreMain from '../components/StoreMain';
 
-import {
-  type Store,
-  type Categories,
-} from '../models';
+import { type Store, type Categories } from '../models';
 
 import {
   setLoadMore,
@@ -62,8 +59,11 @@ const StoresPage = ({
   onSetFilterClear,
   onSetSearchClear,
 }: StoresPageProps) => {
-
-  const onSearch = (search, categories) => R.filter(({title}) => R.toLower(title).indexOf(R.toLower(search)) > -1, categories);
+  const onSearch = (search, categories) =>
+    R.filter(
+      ({ title }) => R.toLower(title).indexOf(R.toLower(search)) > -1,
+      categories,
+    );
 
   return (
     <React.Fragment>
@@ -78,7 +78,7 @@ const StoresPage = ({
               Browse among more than 1000 stores
             </StoresPage.Title>
             <StoreSidebar
-              title='Stores'
+              title="Stores"
               categories={onSearch(search, categories)}
               filter={filter}
               search={search}
@@ -98,7 +98,7 @@ const StoresPage = ({
         </StoresPage.Container>
       </StoresPage.Wrapper>
     </React.Fragment>
-  )
+  );
 };
 
 const mapStateToProps = state => ({
@@ -109,7 +109,7 @@ const mapStateToProps = state => ({
   loadState: getLoadState(state),
   loadToState: getLoadToState(state),
   storesAll: getStoresAll(state),
-})
+});
 
 const mapDispatchToProps = {
   onLoadMore: setLoadMore,
@@ -195,5 +195,7 @@ StoresPage.Box = styled.div`
   `}
 `;
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(StoresPage);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(StoresPage);

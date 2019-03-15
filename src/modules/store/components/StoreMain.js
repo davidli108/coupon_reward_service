@@ -22,7 +22,7 @@ const StoreMain = ({
   loadState,
   loadToState,
   storesAll,
-  }: StoresListProps) => (
+}: StoresListProps) => (
   <StoreMain.Wrapper>
     <StoreMain.Title>Browse among more than 1000 stores</StoreMain.Title>
     <Featured stores={stores} />

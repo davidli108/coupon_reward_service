@@ -21,5 +21,6 @@ storiesOf('Components|@Store', module)
           number: 81,
         },
       ]}
+      onSetFilter={() => {}}
     />
   ));

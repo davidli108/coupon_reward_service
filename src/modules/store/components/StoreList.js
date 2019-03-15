@@ -15,17 +15,17 @@ type StoreListProps = {
   onLoadMore: Function,
 };
 
-
 const StoreList = ({
   stores,
   onLoadMore,
   loadState,
   loadToState,
   storesAll,
-  }: StoreListProps) => (
-    <div>
-      <StoreList.StoreContainer>
-        {stores.map(({ name, offer, newStore, deals, logo, url, couponActive }) => (
+}: StoreListProps) => (
+  <div>
+    <StoreList.StoreContainer>
+      {stores.map(
+        ({ name, offer, newStore, deals, logo, url, couponActive }) => (
           <StoreList.StoreItem key={`list_item_${name}`}>
             {newStore && <StoreList.StoreNew>New Store</StoreList.StoreNew>}
             <StoreList.Box>
@@ -39,14 +39,12 @@ const StoreList = ({
                     </StoreList.Brand>
                     <StoreList.Cash>+{offer}% Cash Back</StoreList.Cash>
                   </StoreList.Info>
-                  {
-                    couponActive && (
-                      <StoreList.Coupons>
-                        <img src={verificationIcon} alt="verify" />
-                        coupons activated
-                      </StoreList.Coupons>
-                    )
-                  }
+                  {couponActive && (
+                    <StoreList.Coupons>
+                      <img src={verificationIcon} alt="verify" />
+                      coupons activated
+                    </StoreList.Coupons>
+                  )}
                 </StoreList.Content>
                 <StoreList.Link href={url} target="_blank">
                   Visit Store
@@ -57,19 +55,18 @@ const StoreList = ({
               Visit Store
             </StoreList.LinkMobile>
           </StoreList.StoreItem>
-        ))}
-      </StoreList.StoreContainer>
-      {
-        loadState <= stores.length && storesAll.length > loadState && (
-          <StoreList.LoadMoreButton
-            onClick={onLoadMore.bind(null, loadState += loadToState)}
-          >
-            Load more deals
-          </StoreList.LoadMoreButton>
-        )
-      }
-    </div>
-  );
+        ),
+      )}
+    </StoreList.StoreContainer>
+    {loadState <= stores.length && storesAll.length > loadState && (
+      <StoreList.LoadMoreButton
+        onClick={onLoadMore.bind(null, (loadState += loadToState))}
+      >
+        Load more deals
+      </StoreList.LoadMoreButton>
+    )}
+  </div>
+);
 
 StoreList.defaultProps = {
   stores: [],

@@ -7,7 +7,7 @@ export type Store = {
   deals: number,
   logo: string,
   url: string,
-  couponActive: boolean
+  couponActive: boolean,
 };
 
 export type Categories = {

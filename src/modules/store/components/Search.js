@@ -10,23 +10,20 @@ type StoreSearch = {
   search: string,
 };
 
-const Search = ({search, onSetSearch}: StoreSearch) => {
+const Search = ({ search, onSetSearch }: StoreSearch) => {
   return (
     <Search.Wrapper>
       <Search.Input
         type="text"
         name="search"
         value={search}
-        onChange={(e) => onSetSearch(e.target.value)}
+        onChange={e => onSetSearch(e.target.value)}
         placeholder="Search"
       />
-      <Search.Icon
-        src={IconSearch}
-        alt="search"
-      />
+      <Search.Icon src={IconSearch} alt="search" />
     </Search.Wrapper>
-  )
-}
+  );
+};
 
 Search.Wrapper = styled.div`
   display: flex;

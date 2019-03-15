@@ -16,7 +16,7 @@ const TagList = ({
   onSetFilter,
   filter,
   toggled,
-  }: TagListProps) => (
+}: TagListProps) => (
   <TagList.List toggled={toggled}>
     {categories.map(({ title, number }) => (
       <TagList.Item
@@ -24,7 +24,8 @@ const TagList = ({
         filterActive={filter === title}
         onClick={onSetFilter.bind(null, title)}
       >
-        {title} <TagList.Numb filterActive={filter === title}>{number}</TagList.Numb>
+        {title}{' '}
+        <TagList.Numb filterActive={filter === title}>{number}</TagList.Numb>
       </TagList.Item>
     ))}
   </TagList.List>
@@ -45,9 +46,9 @@ TagList.List = styled.ul`
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     padding: 13px 0 32px;
-    opacity: ${props => props.toggled ? '1' : '0'};
-    z-index: ${props => props.toggled ? '1' : '-1'};
-    pointer-events: ${props => props.toggled ? 'initial' : 'none'};
+    opacity: ${props => (props.toggled ? '1' : '0')};
+    z-index: ${props => (props.toggled ? '1' : '-1')};
+    pointer-events: ${props => (props.toggled ? 'initial' : 'none')};
   `}
 
   ${breakpoint('sm')`
@@ -66,15 +67,22 @@ TagList.Item = styled.li`
   justify-content: space-between;
   align-items: center;
   border-radius: 3px;
-  padding: ${props => props.filterActive ? `5px` : `5px 0`};
+  padding: ${props => (props.filterActive ? `5px` : `5px 0`)};
   margin: 0;
   font-size: 13px;
-  color: ${props => props.filterActive ? `${props.theme.colors.white}` : `${props.theme.colors.grayLight}`};
-  background: ${props => props.filterActive  && `${props.theme.colors.blackLight}` };
+  color: ${props =>
+    props.filterActive
+      ? `${props.theme.colors.white}`
+      : `${props.theme.colors.grayLight}`};
+  background: ${props =>
+    props.filterActive && `${props.theme.colors.blackLight}`};
   cursor: pointer;
 
   &:hover {
-    background: ${props => props.filterActive ? `${props.theme.colors.blackLight}` : `${props.theme.colors.whiteExLight}`};
+    background: ${props =>
+      props.filterActive
+        ? `${props.theme.colors.blackLight}`
+        : `${props.theme.colors.whiteExLight}`};
   }
 
   ${breakpoint('xs')`
@@ -82,7 +90,7 @@ TagList.Item = styled.li`
   `}
 
   ${breakpoint('sm')`
-    padding: ${props => props.filterActive ? `5px 5px` : `5px 0`};
+    padding: ${props => (props.filterActive ? `5px 5px` : `5px 0`)};
   `}
 `;
 
@@ -91,10 +99,17 @@ TagList.Numb = styled.span`
   width: 50px;
   text-align: center;
   padding: 3px 0;
-  border: 2px solid ${props => props.filterActive ? `${props.theme.colors.white}` : `${props.theme.colors.gray}`};
+  border: 2px solid
+    ${props =>
+      props.filterActive
+        ? `${props.theme.colors.white}`
+        : `${props.theme.colors.gray}`};
   border-radius: 7px;
   font-size: 13px;
-  color: ${props => props.filterActive ?  `${props.theme.colors.white}` : `${props.theme.colors.grayLight}`};
+  color: ${props =>
+    props.filterActive
+      ? `${props.theme.colors.white}`
+      : `${props.theme.colors.grayLight}`};
 `;
 
 export default TagList;

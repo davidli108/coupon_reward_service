@@ -28,14 +28,14 @@ const StoreSidebar = ({
   onSetFilter,
   onSetFilterClear,
   onSetSearchClear,
-  onSetSearch ,
-  }: StoreSidebarProps) => {
+  onSetSearch,
+}: StoreSidebarProps) => {
   const [toggled, setToggle] = useState(false);
 
   const handleClick = () => {
     onSetFilterClear();
     onSetSearchClear();
-  }
+  };
 
   return (
     <StoreSidebar.Wrapper>
@@ -47,7 +47,11 @@ const StoreSidebar = ({
         >
           {title}
         </StoreSidebar.Title>
-        {filter && <StoreSidebar.ClearFilter onClick={handleClick} >clear</StoreSidebar.ClearFilter>}
+        {filter && (
+          <StoreSidebar.ClearFilter onClick={handleClick}>
+            clear
+          </StoreSidebar.ClearFilter>
+        )}
         <TagList
           categories={categories}
           onSetFilter={onSetFilter}
@@ -62,7 +66,7 @@ const StoreSidebar = ({
 
 StoreSidebar.defaultProps = {
   categories: [],
-}
+};
 
 StoreSidebar.Wrapper = styled.div`
   flex-basis: 261px;

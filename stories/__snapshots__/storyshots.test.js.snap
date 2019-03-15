@@ -826,6 +826,12 @@ exports[`Storyshots Components|@Store Featured 1`] = `
   letter-spacing: 0.51px;
   color: #FFF;
   cursor: pointer;
+  -webkit-transition: background 205ms linear;
+  transition: background 205ms linear;
+}
+
+.c2:hover {
+  background: #00B4CF;
 }
 
 .c3 {
@@ -937,7 +943,9 @@ exports[`Storyshots Components|@Store Featured 1`] = `
     <p
       className="c3"
     >
+      +
       -12%
+      % Cash Back
     </p>
   </div>
 </div>
@@ -1021,6 +1029,8 @@ exports[`Storyshots Components|@Store Search 1`] = `
 >
   <input
     className="c1"
+    name="search"
+    onChange={[Function]}
     placeholder="Search"
     type="text"
   />
@@ -1180,7 +1190,13 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
   letter-spacing: 0.51px;
   color: #FFF;
   cursor: pointer;
+  -webkit-transition: background 205ms linear;
+  transition: background 205ms linear;
   display: none;
+}
+
+.c11:hover {
+  background: #00B4CF;
 }
 
 .c12 {
@@ -1209,6 +1225,8 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
   letter-spacing: 0.51px;
   color: #FFF;
   cursor: pointer;
+  -webkit-transition: background 205ms linear;
+  transition: background 205ms linear;
   display: none;
   display: block;
   -webkit-flex-basis: auto;
@@ -1217,25 +1235,8 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
   width: 100%;
 }
 
-.c13 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  margin: 0 auto;
-  font-weight: bold;
-  line-height: 21px;
-  font-size: 18px;
-  text-align: center;
-  -webkit-letter-spacing: 0.45px;
-  -moz-letter-spacing: 0.45px;
-  -ms-letter-spacing: 0.45px;
-  letter-spacing: 0.45px;
-  color: #ADB8C0;
-  background: transparent;
-  border: none;
-  outline: none;
-  cursor: pointer;
+.c12:hover {
+  background: #00B4CF;
 }
 
 @media (min-width:48em) {
@@ -1589,7 +1590,9 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
               <p
                 className="c10"
               >
+                +
                 -12%
+                % Cash Back
               </p>
             </div>
           </div>
@@ -1611,12 +1614,6 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
       </a>
     </div>
   </div>
-  <button
-    className="c13"
-    onClick={[Function]}
-  >
-    Load more deals
-  </button>
 </div>
 `;
 
@@ -1690,6 +1687,12 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
   letter-spacing: 0.51px;
   color: #FFF;
   cursor: pointer;
+  -webkit-transition: background 205ms linear;
+  transition: background 205ms linear;
+}
+
+.c4:hover {
+  background: #00B4CF;
 }
 
 .c5 {
@@ -1847,7 +1850,13 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
   letter-spacing: 0.51px;
   color: #FFF;
   cursor: pointer;
+  -webkit-transition: background 205ms linear;
+  transition: background 205ms linear;
   display: none;
+}
+
+.c17:hover {
+  background: #00B4CF;
 }
 
 .c18 {
@@ -1876,6 +1885,8 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
   letter-spacing: 0.51px;
   color: #FFF;
   cursor: pointer;
+  -webkit-transition: background 205ms linear;
+  transition: background 205ms linear;
   display: none;
   display: block;
   -webkit-flex-basis: auto;
@@ -1884,25 +1895,8 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
   width: 100%;
 }
 
-.c19 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  margin: 0 auto;
-  font-weight: bold;
-  line-height: 21px;
-  font-size: 18px;
-  text-align: center;
-  -webkit-letter-spacing: 0.45px;
-  -moz-letter-spacing: 0.45px;
-  -ms-letter-spacing: 0.45px;
-  letter-spacing: 0.45px;
-  color: #ADB8C0;
-  background: transparent;
-  border: none;
-  outline: none;
-  cursor: pointer;
+.c18:hover {
+  background: #00B4CF;
 }
 
 .c0 {
@@ -2351,7 +2345,9 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
       <p
         className="c5"
       >
+        +
         -12%
+        % Cash Back
       </p>
     </div>
   </div>
@@ -2397,7 +2393,9 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
                 <p
                   className="c16"
                 >
+                  +
                   -12%
+                  % Cash Back
                 </p>
               </div>
             </div>
@@ -2419,12 +2417,6 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
         </a>
       </div>
     </div>
-    <button
-      className="c19"
-      onClick={[Function]}
-    >
-      Load more deals
-    </button>
   </div>
 </div>
 `;
@@ -2485,8 +2477,22 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
 }
 
 .c6 {
-  display: block;
-  display: none;
+  padding: 25px 0 0 0;
+  position: absolute;
+  left: -1px;
+  top: 44px;
+  width: 100%;
+  background: #FFF;
+  border: 0.5px solid #DADDE2;
+  box-shadow: 0 12px 22px rgba(0,0,0,0.2);
+  border-top: none;
+  border-radius: 5px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  padding: 13px 0 32px;
+  opacity: 0;
+  z-index: -1;
+  pointer-events: none;
 }
 
 .c7 {
@@ -2502,10 +2508,17 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  margin: 0 0 11px 0;
+  border-radius: 3px;
+  padding: 5px 0;
+  margin: 0;
   font-size: 13px;
   color: #C2C2C2;
   cursor: pointer;
+  padding: 5px 25px;
+}
+
+.c7:hover {
+  background: #F9FAFC;
 }
 
 .c8 {
@@ -2590,6 +2603,18 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
 @media (min-width:36em) {
   .c6 {
     display: block;
+    position: static;
+    box-shadow: none;
+    border: none;
+    opacity: 1;
+    z-index: 1;
+    pointer-events: initial;
+  }
+}
+
+@media (min-width:36em) {
+  .c7 {
+    padding: 5px 0;
   }
 }
 
@@ -2622,7 +2647,7 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
   .c4 {
     margin: 0 0 25px 0;
     border: none;
-    border-radius: none;
+    border-radius: 0;
     padding: 0;
     box-shadow: none;
   }
@@ -2630,6 +2655,7 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
 
 @media (min-width:36em) {
   .c5 {
+    pointer-events: none;
     position: relative;
     border: none;
     box-sizing: border-box;
@@ -2649,6 +2675,8 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
   >
     <input
       className="c2"
+      name="search"
+      onChange={[Function]}
       placeholder="Search"
       type="text"
     />
@@ -2664,43 +2692,57 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
     <h3
       className="c5"
       onClick={[Function]}
+    />
+    <ul
+      className="c6"
     >
-      Stores
-    </h3>
+      <li
+        className="c7"
+        onClick={[Function]}
+      >
+        Clothing
+         
+        <span
+          className="c8"
+        >
+          100
+        </span>
+      </li>
+      <li
+        className="c7"
+        onClick={[Function]}
+      >
+        Cars
+         
+        <span
+          className="c8"
+        >
+          81
+        </span>
+      </li>
+    </ul>
   </div>
-  <ul
-    className="c6"
-  >
-    <li
-      className="c7"
-    >
-      Clothing
-       
-      <span
-        className="c8"
-      >
-        100
-      </span>
-    </li>
-    <li
-      className="c7"
-    >
-      Cars
-       
-      <span
-        className="c8"
-      >
-        81
-      </span>
-    </li>
-  </ul>
 </div>
 `;
 
 exports[`Storyshots Components|@Store TagList 1`] = `
 .c0 {
-  display: block;
-  display: none;
+  padding: 25px 0 0 0;
+  position: absolute;
+  left: -1px;
+  top: 44px;
+  width: 100%;
+  background: #FFF;
+  border: 0.5px solid #DADDE2;
+  box-shadow: 0 12px 22px rgba(0,0,0,0.2);
+  border-top: none;
+  border-radius: 5px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  padding: 13px 0 32px;
+  opacity: 0;
+  z-index: -1;
+  pointer-events: none;
 }
 
 .c1 {
@@ -2716,10 +2758,17 @@ exports[`Storyshots Components|@Store TagList 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  margin: 0 0 11px 0;
+  border-radius: 3px;
+  padding: 5px 0;
+  margin: 0;
   font-size: 13px;
   color: #C2C2C2;
   cursor: pointer;
+  padding: 5px 25px;
+}
+
+.c1:hover {
+  background: #F9FAFC;
 }
 
 .c2 {
@@ -2736,6 +2785,18 @@ exports[`Storyshots Components|@Store TagList 1`] = `
 @media (min-width:36em) {
   .c0 {
     display: block;
+    position: static;
+    box-shadow: none;
+    border: none;
+    opacity: 1;
+    z-index: 1;
+    pointer-events: initial;
+  }
+}
+
+@media (min-width:36em) {
+  .c1 {
+    padding: 5px 0;
   }
 }
 
@@ -2744,6 +2805,7 @@ exports[`Storyshots Components|@Store TagList 1`] = `
 >
   <li
     className="c1"
+    onClick={[Function]}
   >
     Clothing
      
@@ -2755,6 +2817,7 @@ exports[`Storyshots Components|@Store TagList 1`] = `
   </li>
   <li
     className="c1"
+    onClick={[Function]}
   >
     Cars
      

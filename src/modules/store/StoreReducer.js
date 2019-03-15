@@ -1,17 +1,14 @@
 // @flow
 import * as R from 'ramda';
 
-import targetIcon   from './assets/target.png';
-import walmartIcon  from './assets/walmart.png';
-import macysIcon    from './assets/macys.png';
-import udemyIcon    from './assets/udemy.png';
-import verizonIcon  from './assets/verizon.png';
-import flowersIcon  from './assets/flowers.png';
+import targetIcon from './assets/target.png';
+import walmartIcon from './assets/walmart.png';
+import macysIcon from './assets/macys.png';
+import udemyIcon from './assets/udemy.png';
+import verizonIcon from './assets/verizon.png';
+import flowersIcon from './assets/flowers.png';
 
-import {
-  type Store,
-  type Categories,
-} from './models';
+import { type Store, type Categories } from './models';
 import {
   SET_FILTER,
   SET_CATEGORY,
@@ -169,12 +166,15 @@ const StoreReducer = (state: StoresState = initialState, action: Object) => {
 
 export const getLoadState = R.path<number>([STATE_KEY, 'loadState']);
 export const getLoadToState = R.path<number>([STATE_KEY, 'loadToState']);
-export const getStoreCategories = R.path<Categories[]>([STATE_KEY, 'categories']);
-export const getStoreSearch     = R.path<string>([STATE_KEY, 'search']);
-export const getStoreFilters    = R.path<string>([STATE_KEY, 'filter']);
-export const getStores          = R.path<Store[]>([STATE_KEY, 'stores']);
-export const getStoresAll       = R.path<Store[]>([STATE_KEY, 'stores']);
-export const getFilteredStores  = (state: Object) => {
+export const getStoreCategories = R.path<Categories[]>([
+  STATE_KEY,
+  'categories',
+]);
+export const getStoreSearch = R.path<string>([STATE_KEY, 'search']);
+export const getStoreFilters = R.path<string>([STATE_KEY, 'filter']);
+export const getStores = R.path<Store[]>([STATE_KEY, 'stores']);
+export const getStoresAll = R.path<Store[]>([STATE_KEY, 'stores']);
+export const getFilteredStores = (state: Object) => {
   const filter = getStoreFilters(state);
   const stores = getStores(state);
   const loadState = getLoadState(state);
@@ -186,7 +186,9 @@ export const getFilteredStores  = (state: Object) => {
       if (!a.newStore && b.newStore) return 1;
       return 0;
     }),
-    R.filter((store => filter ? R.prop<string, Object>('category', store) === filter : true)),
+    R.filter(store =>
+      filter ? R.prop<string, Object>('category', store) === filter : true,
+    ),
   )(stores);
 };
 
