@@ -5,12 +5,19 @@ import breakpoint from 'styled-components-breakpoint';
 
 import IconSearch from '../assets/icon-search.png';
 
-const Search = () => (
-  <Search.Wrapper>
-    <Search.Input type="text" placeholder="Search" />
-    <Search.Icon src={IconSearch} alt="search" />
-  </Search.Wrapper>
-);
+type StoreSearch = {
+  onSetSearch: Function,
+  search: string,
+};
+
+const Search = ({search, onSetSearch}: StoreSearch) => {
+  return (
+    <Search.Wrapper>
+      <Search.Input type="text" name="search" value={search} onChange={(e) => onSetSearch(e.target.value)} placeholder="Search"/>
+      <Search.Icon src={IconSearch} alt="search" />
+    </Search.Wrapper>
+  )
+}
 
 Search.Wrapper = styled.div`
   display: flex;

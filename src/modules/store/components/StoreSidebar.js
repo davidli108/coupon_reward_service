@@ -5,34 +5,48 @@ import breakpoint from 'styled-components-breakpoint';
 
 import Search from './Search';
 import TagList from './TagList';
-import TagListMobile from './TagListMobile';
 
 type StoreSidebarProps = {
   categories: {
     title: string,
     number: number,
   }[],
+  filter: string,
+  search: string,
+  onSetFilter: Function,
+  onSetFilterClear: Function,
+  onSetSearch: Function,
 };
 
-const StoreSidebar = ({ categories }: StoreSidebarProps) => {
+const StoreSidebar = ({ categories, filter, search, onSetFilter, onSetFilterClear, onSetSearch }: StoreSidebarProps) => {
   const [toggled, setToggle] = useState(false);
 
   return (
     <StoreSidebar.Wrapper>
-      <Search />
-      <StoreSidebar.Mobile active={toggled}>
+      <Search onSetSearch={onSetSearch} search={search} />
+      <StoreSidebar.Content active={toggled}>
         <StoreSidebar.Title
           rotateIcon={toggled}
           onClick={() => setToggle(!toggled)}
         >
           Stores
         </StoreSidebar.Title>
-        {toggled && <TagListMobile categories={categories} />}
-      </StoreSidebar.Mobile>
-      <TagList categories={categories} />
+        {filter && <StoreSidebar.ClearFilter onClick={onSetFilterClear.bind(null)} >clear</StoreSidebar.ClearFilter>}
+        <TagList
+          categories={categories}
+          onSetFilter={onSetFilter}
+          toggled={toggled}
+          filter={filter}
+          search={search}
+        />
+      </StoreSidebar.Content>
     </StoreSidebar.Wrapper>
   );
 };
+
+StoreSidebar.defaultProps = {
+  categories: [],
+}
 
 StoreSidebar.Wrapper = styled.div`
   flex-basis: 261px;
@@ -57,7 +71,7 @@ StoreSidebar.Wrapper = styled.div`
   `}
 `;
 
-StoreSidebar.Mobile = styled.div`
+StoreSidebar.Content = styled.div`
   background: ${props => props.theme.colors.white};
   position: relative;
 
@@ -110,6 +124,7 @@ StoreSidebar.Title = styled.h3`
   `}
 
   ${breakpoint('sm')`
+    pointer-events: none;
     position: relative;
     border: none;
     box-sizing: border-box;
@@ -117,6 +132,26 @@ StoreSidebar.Title = styled.h3`
     &::before{
       display: none;
     }
+  `}
+`;
+
+StoreSidebar.ClearFilter = styled.button`
+  position: absolute;
+  font-size: 13px;
+  padding: 3px 5px;
+  border-radius: 3px;
+  border: 1px solid ${props => props.theme.colors.blueDark};
+  background: ${props => props.theme.colors.blue};
+  color: ${props => props.theme.colors.white};
+  cursor: pointer;
+
+  ${breakpoint('xs')`
+    top: 12px;
+    right: 70px;
+  `}
+  ${breakpoint('sm')`
+    top: 3px;
+    right: 0;
   `}
 `;
 

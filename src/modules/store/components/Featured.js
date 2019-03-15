@@ -2,6 +2,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
+import * as R from 'ramda';
 
 import { type Store } from '../models';
 
@@ -11,7 +12,7 @@ type FeaturedProps = {
 
 const Featured = ({ stores }: FeaturedProps) => (
   <Featured.Wrapper>
-    {stores.map(({ name, offer, logo, url }) => (
+    {R.slice(0, 3, stores).map(({ name, offer, logo, url }) => (
       <Featured.Item key={name}>
         {logo && <Featured.Image src={logo} alt={name} />}
         <Featured.Link href={url} target="_blank">

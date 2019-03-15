@@ -1,7 +1,8 @@
 // @flow
-import React from 'react';
+import React, {useState} from 'react';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
+// import * as R from 'ramda';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
@@ -9,21 +10,30 @@ import StoreSidebar from '../components/StoreSidebar';
 import StoreMain from '../components/StoreMain';
 
 import { type Store, type Categories } from '../models';
-import { loadMore } from '../StoreActions';
-import { getStores } from '../StoreReducer';
+import { loadMore, setFilter, setFilterClear } from '../StoreActions';
+import { getFilteredStores, getStoreCategories, getStoreFilters } from '../StoreReducer';
 
 type StoresPageProps = {
   stores: Store[],
   categories: Categories[],
+  filter: string,
   onLoadMore: Function,
+  onSetFilter: Function,
+  onSetFilterClear: Function,
 };
 
 const StoresPage = ({
   stores,
   categories,
+  filter,
   onLoadMore,
+  onSetFilter,
+  onSetFilterClear,
 }: StoresPageProps) => {
-
+  const [tern, setTern] = useState('');
+  const onSetSearch = (val) => {
+    setTern(val);
+  }
   return (
     <React.Fragment>
       <Helmet>
@@ -36,7 +46,13 @@ const StoresPage = ({
             <StoresPage.Title>
               Browse among more than 1000 stores
             </StoresPage.Title>
-            <StoreSidebar categories={categories} />
+            <StoreSidebar
+              categories={categories}
+              filter={filter}
+              search={tern}
+              onSetSearch={onSetSearch}
+              onSetFilter={onSetFilter}
+              onSetFilterClear={onSetFilterClear} />
             <StoreMain
               stores={stores}
               onLoadMore={onLoadMore}
@@ -124,23 +140,16 @@ StoresPage.Box = styled.div`
   `}
 `;
 
-StoresPage.defaultProps = {
-  categories: [
-    { title: 'Accessories', number: 101 },
-    { title: 'Beauty', number: 200002 },
-    { title: 'Clothing', number: 9991 },
-    { title: 'Computers', number: 2 },
-    { title: 'Department', number: 10 },
-  ],
-  onLoadMore: Function,
-};
-
 const mapStateToProps = state => ({
-  stores: getStores(state),
+  stores: getFilteredStores(state),
+  filter: getStoreFilters(state),
+  categories: getStoreCategories(state),
 })
 
 const mapDispatchToProps = {
   onLoadMore: loadMore,
+  onSetFilter: setFilter,
+  onSetFilterClear: setFilterClear,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(StoresPage);

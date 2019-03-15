@@ -12,50 +12,57 @@ type StoreListProps = {
   onLoadMore: Function,
 };
 
-const StoreList = ({ stores, onLoadMore }: StoreListProps) => (
-  <div>
-    <StoreList.StoreContainer>
-      {stores.map(({ name, offer, newStore, deals, logo, url, couponActive }) => (
-        <StoreList.StoreItem key={`list_item_${name}`}>
-          {newStore && <StoreList.StoreNew>New Store</StoreList.StoreNew>}
-          <StoreList.Box>
-            <StoreList.Image src={logo} alt={name} />
-            <StoreList.ContentWrap>
-              <StoreList.Content>
-                <StoreList.Info>
-                  <StoreList.Brand>
-                    <StoreList.BrandName>{name}</StoreList.BrandName>
-                    <StoreList.BranDeals>{deals} Deals</StoreList.BranDeals>
-                  </StoreList.Brand>
-                  <StoreList.Cash>{offer}</StoreList.Cash>
-                </StoreList.Info>
-                {
-                  couponActive && (
-                    <StoreList.Coupons>
-                      <img src={verificationIcon} alt="verify" />
-                      coupons activated
-                    </StoreList.Coupons>
-                  )
-                }
-              </StoreList.Content>
-              <StoreList.Link href={url} target="_blank">
-                Visit Store
-              </StoreList.Link>
-            </StoreList.ContentWrap>
-          </StoreList.Box>
-          <StoreList.LinkMobile href={url} target="_blank">
-            Visit Store
-          </StoreList.LinkMobile>
-        </StoreList.StoreItem>
-      ))}
-    </StoreList.StoreContainer>
-    <StoreList.LoadMoreButton
-      onClick={onLoadMore}
-    >
-      Load more deals
-    </StoreList.LoadMoreButton>
-  </div>
-);
+
+const StoreList = ({ stores, onLoadMore }: StoreListProps) => {
+  return(
+    <div>
+      <StoreList.StoreContainer>
+        {stores.map(({ name, offer, newStore, deals, logo, url, couponActive }) => (
+          <StoreList.StoreItem key={`list_item_${name}`}>
+            {newStore && <StoreList.StoreNew>New Store</StoreList.StoreNew>}
+            <StoreList.Box>
+              <StoreList.Image src={logo} alt={name} />
+              <StoreList.ContentWrap>
+                <StoreList.Content>
+                  <StoreList.Info>
+                    <StoreList.Brand>
+                      <StoreList.BrandName>{name}</StoreList.BrandName>
+                      <StoreList.BranDeals>{deals} Deals</StoreList.BranDeals>
+                    </StoreList.Brand>
+                    <StoreList.Cash>{offer}</StoreList.Cash>
+                  </StoreList.Info>
+                  {
+                    couponActive && (
+                      <StoreList.Coupons>
+                        <img src={verificationIcon} alt="verify" />
+                        coupons activated
+                      </StoreList.Coupons>
+                    )
+                  }
+                </StoreList.Content>
+                <StoreList.Link href={url} target="_blank">
+                  Visit Store
+                </StoreList.Link>
+              </StoreList.ContentWrap>
+            </StoreList.Box>
+            <StoreList.LinkMobile href={url} target="_blank">
+              Visit Store
+            </StoreList.LinkMobile>
+          </StoreList.StoreItem>
+        ))}
+      </StoreList.StoreContainer>
+      {
+        stores.length > 6 && (
+          <StoreList.LoadMoreButton
+            onClick={onLoadMore}
+          >
+            Load more deals
+          </StoreList.LoadMoreButton>
+        )
+      }
+    </div>
+  )
+};
 
 StoreList.defaultProps = {
   stores: [],
