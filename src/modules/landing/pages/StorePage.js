@@ -136,7 +136,7 @@ const renderOffers = offers =>
       isLimited,
       value,
     }) => (
-      <div key={`${title}_${usesToday || ''}`}>
+      <React.Fragment key={`${title}_${usesToday || ''}`}>
         {/* temp key, i guess server will return ids*/}
         {(isDeal || isCoupon) && (
           <StorePage.Offer>
@@ -198,7 +198,7 @@ const renderOffers = offers =>
             </StorePage.PiggyContent>
           </StorePage.PiggyOffer>
         )}
-      </div>
+      </React.Fragment>
     ),
   );
 
@@ -257,7 +257,7 @@ const StorePage = ({
           name="searchBar"
           value={searchValue}
           onChange={handleSearchChange}
-          placeholder="Search"
+          placeholder="Search Stores"
         />
         <MdSearch />
       </StorePage.SearchBar>
@@ -268,54 +268,69 @@ const StorePage = ({
             alt="brand-logo"
           />
         </StorePage.BrandImageWrapper>
-        <StorePage.BrandName>
-          {store.name}'s Coupon Codes & Deals
-        </StorePage.BrandName>
+        <StorePage.WrapFlexBox>
+          <StorePage.BrandName>
+            {store.name}'s Coupon Codes & Deals
+          </StorePage.BrandName>
+          <StorePage.NoWrapFlexBox>
+            <StorePage.OffersStats>
+              <span>{getCoupons(offers).length} Coupons</span>
+              <span>-</span>
+              <span>{getDeals(offers).length} Deals</span>
+              <span>-</span>
+              <span>Up to {getHighestCashback(offers)}% Cash Back </span>
+            </StorePage.OffersStats>
+            <StorePage.FollowStoreWrapper isStoreFollowed={isStoreFollowed}>
+              <div onClick={handleStoreFollowToggler}>
+                {isStoreFollowed ? <MdFavorite /> : <MdFavoriteBorder />}
+                <span>Follow Store</span>
+              </div>
+            </StorePage.FollowStoreWrapper>
+          </StorePage.NoWrapFlexBox>
+
+          <StorePage.NoWrapFlexBoxWithBorder>
+            <div>
+              <StorePage.Cover>
+                <StorePage.NeverOverpay isCovered={isCovered}>
+                  <h2>Never Overpay Again at {store.name}'s</h2>
+                  <p>
+                    Automatically add all active coupons to your order with
+                    Piggy's browser extension. When you get to checkout, Piggy
+                    will find coupons and cash back at Macy's and more.
+                  </p>
+                </StorePage.NeverOverpay>
+                <span onClick={handleCoveredToggler}>
+                  {isCovered ? 'See More' : <MdKeyboardArrowUp />}
+                </span>
+              </StorePage.Cover>
+              <StorePage.Advantages>
+                <span>Automatic Coupons</span>
+                <span>-</span>
+                <span>Price Check</span>
+                <span>-</span>
+                <span>Secret Rates and Deals</span>
+              </StorePage.Advantages>
+            </div>
+            <StorePage.PiggyExtAdvertisement>
+              <StorePage.Reviews>
+                <div>{renderStarsReview(extension.stars)}</div>
+                <span>{extension.reviewsCount} reviews</span>
+              </StorePage.Reviews>
+              <StorePage.AddExtensionButton>
+                Add to Chrome
+              </StorePage.AddExtensionButton>
+            </StorePage.PiggyExtAdvertisement>
+          </StorePage.NoWrapFlexBoxWithBorder>
+        </StorePage.WrapFlexBox>
       </StorePage.Brand>
-      <StorePage.OffersStats>
-        <span>{getCoupons(offers).length} Coupons</span>
-        <span>-</span>
-        <span>{getDeals(offers).length} Deals</span>
-        <span>-</span>
-        <span>Up to {getHighestCashback(offers)}% Cash Back </span>
-      </StorePage.OffersStats>
-      <StorePage.FollowStoreWrapper isStoreFollowed={isStoreFollowed}>
-        <div onClick={handleStoreFollowToggler}>
-          {isStoreFollowed ? <MdFavorite /> : <MdFavoriteBorder />}
-          <span>Follow Store</span>
-        </div>
-      </StorePage.FollowStoreWrapper>
-      <StorePage.Cover>
-        <StorePage.NeverOverpay isCovered={isCovered}>
-          <h2>Never Overpay Again at {store.name}'s</h2>
-          <p>
-            Automatically add all active coupons to your order with Piggy's
-            browser extension. When you get to checkout, Piggy will find coupons
-            and cash back at Macy's and more.
-          </p>
-        </StorePage.NeverOverpay>
-        <span onClick={handleCoveredToggler}>
-          {isCovered ? 'See More' : <MdKeyboardArrowUp />}
-        </span>
-      </StorePage.Cover>
-      <StorePage.PiggyExtAdvertisement>
-        <StorePage.OffersStats>
-          <span>Automatic Coupons</span>
-          <span>-</span>
-          <span>Price Check</span>
-          <span>-</span>
-          <span>Secret Rates and Deals</span>
-        </StorePage.OffersStats>
-        <StorePage.Reviews>
-          <div>{renderStarsReview(extension.stars)}</div>
-          <span>{extension.reviewsCount} reviews</span>
-        </StorePage.Reviews>
-        <StorePage.AddExtensionButton>
-          Add to Chrome
-        </StorePage.AddExtensionButton>
-      </StorePage.PiggyExtAdvertisement>
-      {renderOffers(offers)}
-      {renderAdditionalInfo(additionalInfo)}
+      <StorePage.DesktopContent>
+        <StorePage.ColumnNoWrapFlexBox order="2">
+          {renderOffers(offers)}
+        </StorePage.ColumnNoWrapFlexBox>
+        <StorePage.ColumnNoWrapFlexBox order="1">
+          {renderAdditionalInfo(additionalInfo)}
+        </StorePage.ColumnNoWrapFlexBox>
+      </StorePage.DesktopContent>
       {renderStoreInformation(store.info)}
     </StorePage.Wrapper>
   );
@@ -325,23 +340,27 @@ StorePage.Wrapper = styled.div`
   display: flex;
   flex-flow: column wrap;
 
+  padding: 15px;
+
   ${breakpoint('xl')`
     width: 80%;
     margin: 0 auto;
-  `}
 
-  padding: 15px;
+    flex-flow: row wrap;
+  `}
 `;
 
 StorePage.SearchBar = styled.div`
   position: relative;
   width: 100%;
 
+  padding-top: 15px;
+
   ${breakpoint('xl')`
     width: 457px;
+    margin-right: calc(100% - 457px);
+    margin-bottom: 25px;
   `}
-
-  padding-top: 15px;
 
   > input {
     background: #fff;
@@ -380,6 +399,13 @@ StorePage.Brand = styled.div`
   display: flex;
   flex-direction: column;
 
+  ${breakpoint('xl')`
+    flex-flow: row nowrap;
+
+    height: auto;
+    width: 100%;
+  `}
+
   padding-top: 15px;
 `;
 
@@ -394,13 +420,26 @@ StorePage.BrandImageWrapper = styled.div`
   border: 1px solid #dadde2;
   border-radius: 5px;
 
+  ${breakpoint('xl')`
+    width: 270px;
+    height: 270px;
+  `}
+
   > img {
     height: auto;
     width: auto;
     max-width: 100%;
     max-height: 100%;
+
+    ${breakpoint('xl')`
+      width: 140px;
+      height: 140px;
+    `}
   }
 `;
+
+// ${breakpoint('xl')`
+// `}
 
 StorePage.BrandName = styled.h2`
   font-size: 22px;
@@ -409,6 +448,15 @@ StorePage.BrandName = styled.h2`
 
   text-align: center;
   padding-top: 15px;
+
+  ${breakpoint('xl')`
+    padding: 0 0 0  30px;
+    width: 100%;
+
+    text-align: start;
+    line-height: 46px;
+    font-size: 39px;
+  `}
 `;
 
 StorePage.Reviews = styled.div`
@@ -417,6 +465,15 @@ StorePage.Reviews = styled.div`
   align-items: center;
 
   padding-top: 3px;
+
+  ${breakpoint('xl')`
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 100%;
+    padding-top: 10px;
+  `}
 
   > div {
     display: flex;
@@ -427,6 +484,9 @@ StorePage.Reviews = styled.div`
     padding-top: 15px;
     color: #c2c2c2;
     font-size: 13px;
+    ${breakpoint('xl')`
+      padding: 0 0 0 10px;
+    `}
   }
 `;
 
@@ -437,10 +497,20 @@ StorePage.OffersStats = styled.div`
   width: 100%;
   padding: 15px 0 25px 0;
 
+  ${breakpoint('xl')`
+    width: 100%;
+    max-width: 500px;
+    padding: 0 0 5px 30px;
+  `}
+
   & > span {
     font-weight: bold;
     font-size: 10px;
     color: #62707b;
+
+    ${breakpoint('xl')`
+      font-size: 16px;
+    `}
 
     &:first-child {
       margin-left: 5px;
@@ -459,6 +529,10 @@ StorePage.FollowStoreWrapper = styled.div`
 
   padding: 25px 0 10px 0;
 
+  ${breakpoint('xl')`
+    padding: 0 0 0 30px;
+  `}
+
   > div {
     display: flex;
     align-items: center;
@@ -471,13 +545,14 @@ StorePage.FollowStoreWrapper = styled.div`
     > svg {
       width: 22px;
       height: 22px;
-      color: ${({ isStoreFollowed }) => (isStoreFollowed ? 'red' : '#D2D2D2')};
+      color: ${({ isStoreFollowed }) => (isStoreFollowed ? 'red' : '#d2d2d2')};
     }
 
     > span {
       padding-left: 5px;
       font-size: 14px;
-      color: ${({ isStoreFollowed }) => isStoreFollowed ? 'black' : '#b1b1b1'};
+      color: ${({ isStoreFollowed }) =>
+        isStoreFollowed ? 'black' : '#b1b1b1'};
     }
   }
 `;
@@ -487,6 +562,10 @@ StorePage.Cover = styled.div`
   flex-direction: column;
 
   > span {
+    ${breakpoint('xl')`
+      display: none;
+    `}
+
     text-align: center;
     font-weight: bold;
     line-height: 20px;
@@ -504,10 +583,20 @@ StorePage.Advantages = styled.div`
   width: 100%;
   padding: 15px 0 25px 0;
 
-  > span {
+
+  ${breakpoint('xl')`
+      max-width: 500px;
+  `}
+
+  & > span {
     font-weight: bold;
     font-size: 10px;
     color: #62707b;
+
+    ${breakpoint('xl')`
+      font-size: 13px;
+      max-width: 300px;
+    `}
 
     &:first-child {
       margin-left: 5px;
@@ -516,7 +605,6 @@ StorePage.Advantages = styled.div`
     &:last-child {
       margin-right: 5px;
     }
-  }
 `;
 
 StorePage.PiggyExtAdvertisement = styled.div`
@@ -526,6 +614,15 @@ StorePage.PiggyExtAdvertisement = styled.div`
 
   width: 100%;
   padding-top: 25px;
+
+  ${breakpoint('xl')`
+    width: 250px;
+
+    flex-flow: column-reverse nowrap;
+    align-items: center;
+
+
+  `}
 `;
 
 StorePage.NeverOverpay = styled.section`
@@ -537,12 +634,19 @@ StorePage.NeverOverpay = styled.section`
 
   overflow: hidden;
 
+  ${breakpoint('xl')`
+    height: auto;
+  `}
+
   > h2 {
     position: relative;
     text-align: center;
     font-size: 22px;
     font-weight: bold;
     color: #374b5a;
+    ${breakpoint('xl')`
+      text-align: start;
+    `}
 
     padding-top: 15px;
 
@@ -560,6 +664,12 @@ StorePage.NeverOverpay = styled.section`
       }
     `
         : ''}
+
+    &:after {
+      ${breakpoint('xl')`
+        display: none;
+      `}
+    }
   }
 
   > p {
@@ -568,8 +678,15 @@ StorePage.NeverOverpay = styled.section`
     font-size: 13px;
     color: #899197;
     line-height: 20px;
+
+    ${breakpoint('xl')`
+      max-width: 600px;
+      padding: 15px 0;
+    `}
   }
 `;
+
+StorePage.NeverOverpayWithBorder = styled.div;
 
 StorePage.AddExtensionButton = styled.a`
   display: flex;
@@ -585,6 +702,12 @@ StorePage.AddExtensionButton = styled.a`
 
   margin-left: auto;
   padding: 17px 13px;
+
+  cursor: pointer;
+
+  ${breakpoint('xl')`
+    width: calc(100% - 26px);
+  `}
 `;
 
 StorePage.Offer = styled.div`
@@ -596,6 +719,12 @@ StorePage.Offer = styled.div`
   border-radius: 5px;
 
   margin-top: 25px;
+
+  ${breakpoint('xl')`
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+  `}
 `;
 
 StorePage.NewDeal = styled.div`
@@ -667,6 +796,14 @@ StorePage.Info = styled.div`
   width: 100%;
   margin-bottom: 25px;
 
+  ${breakpoint('xl')`
+    width: 100%;
+      flex-flow: row nowrap;
+      align-items: center;
+      margin-top: -60px;
+      margin-right: 150px;
+    `}
+
   > p {
     width: 100%;
     text-align: center;
@@ -675,16 +812,25 @@ StorePage.Info = styled.div`
     font-size: 13px;
 
     color: #c2c2c2;
+    ${breakpoint('xl')`
+      width: fit-content;
+      margin: 0 15px;
+    `}
   }
 `;
 
 StorePage.ViewDeal = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
 
   width: 100%;
-  margin: 15px 0;
+
+  ${breakpoint('xl')`
+    width: 254px;
+    margin-right: 17px;
+  `}
 
   > p {
     font-weight: bold;
@@ -700,6 +846,12 @@ StorePage.Content = styled.div`
 
   padding: 25px;
 
+  ${breakpoint('xl')`
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-left: 130px;
+  `}
+
   > p:first-child {
     display: flex;
     flex-direction: column;
@@ -711,6 +863,12 @@ StorePage.Content = styled.div`
     font-weight: bold;
     line-height: 46px;
     font-size: 39px;
+
+    ${breakpoint('xl')`
+      width: fit-content;
+      margin-right: 45px;
+      margin-top: -3px;
+    `}
 
     > span {
       width: 100%;
@@ -727,6 +885,11 @@ StorePage.Content = styled.div`
     letter-spacing: 0.375px;
     font-weight: bold;
     color: #374b5a;
+
+    ${breakpoint('xl')`
+      font-size: 18px;
+      max-width: 400px;
+    `}
   }
 `;
 
@@ -743,6 +906,10 @@ StorePage.ViewDealButton = styled.a`
   text-align: center;
   letter-spacing: 0.51px;
   color: #fff;
+
+  ${breakpoint('xl')`
+    width: calc(100% - 30px);
+  `}
 `;
 
 StorePage.RevealCouponButton = styled.a`
@@ -772,6 +939,10 @@ StorePage.PiggyOffer = styled.div`
   border-radius: 5px;
 
   margin-top: 25px;
+
+  ${breakpoint('lg')`
+    width: 100%;
+  `}
 `;
 
 StorePage.PiggyBonus = styled.div`
@@ -879,6 +1050,74 @@ StorePage.StoreInformationSection = styled.div`
 
     padding-top: 15px;
   }
+`;
+
+StorePage.NoWrapFlexBox = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+
+  ${breakpoint('xl')`
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: baseline;
+
+    width: 100%;
+    padding: 10px 0;
+  `}
+`;
+
+StorePage.NoWrapFlexBoxWithBorder = styled(StorePage.NoWrapFlexBox)`
+  ${breakpoint('xl')`
+      border: 1px dashed #00CBE9;
+      border-radius: 5px;
+      margin-left: 30px;
+      padding: 8px 20px;
+
+      align-items: center;
+
+      height: auto;
+
+      > * {
+        padding: 0;
+      }
+    `}
+`;
+
+StorePage.WrapFlexBox = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+
+  ${breakpoint('xl')`
+    flex-flow: row wrap;
+    align-items: center;
+
+    width: calc(100% - 270px);
+  `}
+`;
+
+StorePage.DesktopContent = styled(StorePage.NoWrapFlexBox)`
+  ${breakpoint('xl')`
+    > div:first-child {
+      width: calc(100% - 300px);
+    }
+
+    > div:last-child {
+      width: 280px;
+    }
+  `}
+`;
+
+StorePage.ColumnNoWrapFlexBox = styled.div`
+  ${breakpoint('xl')`
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    order: ${({ order }) => order};
+
+    width: 100%;
+
+  `}
 `;
 
 StorePage.defaultProps = {
