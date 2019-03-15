@@ -1,5 +1,6 @@
 // @flow
 import React from 'react';
+import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
@@ -7,44 +8,45 @@ import breakpoint from 'styled-components-breakpoint';
 import StoreSidebar from '../components/StoreSidebar';
 import StoreMain from '../components/StoreMain';
 
-import targetIcon from '../assets/target.png';
-import walmartIcon from '../assets/walmart.png';
-import macysIcon from '../assets/macys.png';
+import { type Store, type Categories } from '../models';
+import { loadMore } from '../StoreActions';
+import { getStores } from '../StoreReducer';
 
 type StoresPageProps = {
-  stores: {
-    name: string,
-    newStore: boolean,
-    offer: string,
-    deals: number,
-    logo: string,
-    url: string,
-  }[],
-  categories: {
-    title: string,
-    number: number,
-  }[],
+  stores: Store[],
+  categories: Categories[],
+  onLoadMore: Function,
 };
 
-const StoresPage = ({ stores, categories }: StoresPageProps) => (
-  <React.Fragment>
-    <Helmet>
-      <title>Stores</title>
-    </Helmet>
+const StoresPage = ({
+  stores,
+  categories,
+  onLoadMore,
+}: StoresPageProps) => {
 
-    <StoresPage.Wrapper>
-      <StoresPage.Container>
-        <StoresPage.Box>
-          <StoresPage.Title>
-            Browse among more than 1000 stores
-          </StoresPage.Title>
-          <StoreSidebar categories={categories} />
-          <StoreMain stores={stores} />
-        </StoresPage.Box>
-      </StoresPage.Container>
-    </StoresPage.Wrapper>
-  </React.Fragment>
-);
+  return (
+    <React.Fragment>
+      <Helmet>
+        <title>Stores</title>
+      </Helmet>
+
+      <StoresPage.Wrapper>
+        <StoresPage.Container>
+          <StoresPage.Box>
+            <StoresPage.Title>
+              Browse among more than 1000 stores
+            </StoresPage.Title>
+            <StoreSidebar categories={categories} />
+            <StoreMain
+              stores={stores}
+              onLoadMore={onLoadMore}
+            />
+          </StoresPage.Box>
+        </StoresPage.Container>
+      </StoresPage.Wrapper>
+    </React.Fragment>
+  )
+};
 
 StoresPage.Wrapper = styled.section`
   position: relative;
@@ -123,32 +125,6 @@ StoresPage.Box = styled.div`
 `;
 
 StoresPage.defaultProps = {
-  stores: [
-    {
-      name: 'Target',
-      logo: targetIcon,
-      newStore: true,
-      deals: 258456,
-      offer: '+12% Cash Back',
-      url: 'https://target.com',
-    },
-    {
-      name: 'Welmart',
-      logo: walmartIcon,
-      newStore: true,
-      deals: 258422,
-      offer: '+1% Cash Back',
-      url: 'https://welmart.com',
-    },
-    {
-      name: 'Macus',
-      logo: macysIcon,
-      newStore: false,
-      deals: 211156,
-      offer: '+50% Cash Back',
-      url: 'https://macus.com',
-    },
-  ],
   categories: [
     { title: 'Accessories', number: 101 },
     { title: 'Beauty', number: 200002 },
@@ -156,6 +132,15 @@ StoresPage.defaultProps = {
     { title: 'Computers', number: 2 },
     { title: 'Department', number: 10 },
   ],
+  onLoadMore: Function,
 };
 
-export default StoresPage;
+const mapStateToProps = state => ({
+  stores: getStores(state),
+})
+
+const mapDispatchToProps = {
+  onLoadMore: loadMore,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(StoresPage);

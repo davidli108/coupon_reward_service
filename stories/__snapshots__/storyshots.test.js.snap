@@ -1155,15 +1155,6 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
 }
 
 .c11 {
-  margin: 30px 57px 0 0;
-  font-weight: 500;
-  line-height: 23px;
-  color: #7F7F7F;
-  margin: 0 0 0 0;
-  font-size: 12px;
-}
-
-.c12 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1192,7 +1183,7 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
   display: none;
 }
 
-.c13 {
+.c12 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1226,7 +1217,7 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
   width: 100%;
 }
 
-.c14 {
+.c13 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1480,22 +1471,38 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
   }
 }
 
-@media (min-width:36em) {
+@media (min-width:25.8125em) {
   .c11 {
-    margin: 0 0 0 0;
-    font-size: 13px;
+    display: block;
+    -webkit-flex-basis: auto;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+    width: 100%;
   }
 }
 
 @media (min-width:48em) {
   .c11 {
-    margin: 0 0 0 0;
+    -webkit-flex-basis: 242px;
+    -ms-flex-preferred-size: 242px;
+    flex-basis: 242px;
+    margin-left: auto;
   }
 }
 
 @media (min-width:62em) {
   .c11 {
-    margin: 30px 39px 0 0;
+    -webkit-flex-basis: 188px;
+    -ms-flex-preferred-size: 188px;
+    flex-basis: 188px;
+  }
+}
+
+@media (min-width:75em) {
+  .c11 {
+    -webkit-flex-basis: 255px;
+    -ms-flex-preferred-size: 255px;
+    flex-basis: 255px;
   }
 }
 
@@ -1535,42 +1542,7 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
 }
 
 @media (min-width:25.8125em) {
-  .c13 {
-    display: block;
-    -webkit-flex-basis: auto;
-    -ms-flex-preferred-size: auto;
-    flex-basis: auto;
-    width: 100%;
-  }
-}
-
-@media (min-width:48em) {
-  .c13 {
-    -webkit-flex-basis: 242px;
-    -ms-flex-preferred-size: 242px;
-    flex-basis: 242px;
-    margin-left: auto;
-  }
-}
-
-@media (min-width:62em) {
-  .c13 {
-    -webkit-flex-basis: 188px;
-    -ms-flex-preferred-size: 188px;
-    flex-basis: 188px;
-  }
-}
-
-@media (min-width:75em) {
-  .c13 {
-    -webkit-flex-basis: 255px;
-    -ms-flex-preferred-size: 255px;
-    flex-basis: 255px;
-  }
-}
-
-@media (min-width:25.8125em) {
-  .c13 {
+  .c12 {
     display: none;
   }
 }
@@ -1620,18 +1592,9 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
                 -12%
               </p>
             </div>
-            <p
-              className="c11"
-            >
-              <img
-                alt="verify"
-                src="verif.png"
-              />
-              coupons activated
-            </p>
           </div>
           <a
-            className="c12"
+            className="c11"
             href="https://target.com"
             target="_blank"
           >
@@ -1640,7 +1603,7 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
         </div>
       </div>
       <a
-        className="c13"
+        className="c12"
         href="https://target.com"
         target="_blank"
       >
@@ -1649,7 +1612,7 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
     </div>
   </div>
   <button
-    className="c14"
+    className="c13"
     onClick={[Function]}
   >
     Load more deals
@@ -1859,15 +1822,6 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 }
 
 .c17 {
-  margin: 30px 57px 0 0;
-  font-weight: 500;
-  line-height: 23px;
-  color: #7F7F7F;
-  margin: 0 0 0 0;
-  font-size: 12px;
-}
-
-.c18 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1896,7 +1850,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
   display: none;
 }
 
-.c19 {
+.c18 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1930,7 +1884,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
   width: 100%;
 }
 
-.c20 {
+.c19 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2284,22 +2238,38 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
   }
 }
 
-@media (min-width:36em) {
+@media (min-width:25.8125em) {
   .c17 {
-    margin: 0 0 0 0;
-    font-size: 13px;
+    display: block;
+    -webkit-flex-basis: auto;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+    width: 100%;
   }
 }
 
 @media (min-width:48em) {
   .c17 {
-    margin: 0 0 0 0;
+    -webkit-flex-basis: 242px;
+    -ms-flex-preferred-size: 242px;
+    flex-basis: 242px;
+    margin-left: auto;
   }
 }
 
 @media (min-width:62em) {
   .c17 {
-    margin: 30px 39px 0 0;
+    -webkit-flex-basis: 188px;
+    -ms-flex-preferred-size: 188px;
+    flex-basis: 188px;
+  }
+}
+
+@media (min-width:75em) {
+  .c17 {
+    -webkit-flex-basis: 255px;
+    -ms-flex-preferred-size: 255px;
+    flex-basis: 255px;
   }
 }
 
@@ -2339,42 +2309,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 }
 
 @media (min-width:25.8125em) {
-  .c19 {
-    display: block;
-    -webkit-flex-basis: auto;
-    -ms-flex-preferred-size: auto;
-    flex-basis: auto;
-    width: 100%;
-  }
-}
-
-@media (min-width:48em) {
-  .c19 {
-    -webkit-flex-basis: 242px;
-    -ms-flex-preferred-size: 242px;
-    flex-basis: 242px;
-    margin-left: auto;
-  }
-}
-
-@media (min-width:62em) {
-  .c19 {
-    -webkit-flex-basis: 188px;
-    -ms-flex-preferred-size: 188px;
-    flex-basis: 188px;
-  }
-}
-
-@media (min-width:75em) {
-  .c19 {
-    -webkit-flex-basis: 255px;
-    -ms-flex-preferred-size: 255px;
-    flex-basis: 255px;
-  }
-}
-
-@media (min-width:25.8125em) {
-  .c19 {
+  .c18 {
     display: none;
   }
 }
@@ -2465,18 +2400,9 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
                   -12%
                 </p>
               </div>
-              <p
-                className="c17"
-              >
-                <img
-                  alt="verify"
-                  src="verif.png"
-                />
-                coupons activated
-              </p>
             </div>
             <a
-              className="c18"
+              className="c17"
               href="https://target.com"
               target="_blank"
             >
@@ -2485,7 +2411,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
           </div>
         </div>
         <a
-          className="c19"
+          className="c18"
           href="https://target.com"
           target="_blank"
         >
@@ -2494,7 +2420,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
       </div>
     </div>
     <button
-      className="c20"
+      className="c19"
       onClick={[Function]}
     >
       Load more deals
@@ -2579,6 +2505,7 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
   margin: 0 0 11px 0;
   font-size: 13px;
   color: #C2C2C2;
+  cursor: pointer;
 }
 
 .c8 {
@@ -2792,6 +2719,7 @@ exports[`Storyshots Components|@Store TagList 1`] = `
   margin: 0 0 11px 0;
   font-size: 13px;
   color: #C2C2C2;
+  cursor: pointer;
 }
 
 .c2 {
