@@ -9,12 +9,20 @@ import { type Store } from '../models';
 
 type StoreListProps = {
   stores: Store[],
+  storesAll: Store[],
+  loadState: number,
+  loadToState: number,
   onLoadMore: Function,
 };
 
 
-const StoreList = ({ stores, onLoadMore }: StoreListProps) => {
-  return(
+const StoreList = ({
+  stores,
+  onLoadMore,
+  loadState,
+  loadToState,
+  storesAll,
+  }: StoreListProps) => (
     <div>
       <StoreList.StoreContainer>
         {stores.map(({ name, offer, newStore, deals, logo, url, couponActive }) => (
@@ -29,7 +37,7 @@ const StoreList = ({ stores, onLoadMore }: StoreListProps) => {
                       <StoreList.BrandName>{name}</StoreList.BrandName>
                       <StoreList.BranDeals>{deals} Deals</StoreList.BranDeals>
                     </StoreList.Brand>
-                    <StoreList.Cash>{offer}</StoreList.Cash>
+                    <StoreList.Cash>+{offer}% Cash Back</StoreList.Cash>
                   </StoreList.Info>
                   {
                     couponActive && (
@@ -52,21 +60,19 @@ const StoreList = ({ stores, onLoadMore }: StoreListProps) => {
         ))}
       </StoreList.StoreContainer>
       {
-        stores.length > 6 && (
+        loadState <= stores.length && storesAll.length > loadState && (
           <StoreList.LoadMoreButton
-            onClick={onLoadMore}
+            onClick={onLoadMore.bind(null, loadState += loadToState)}
           >
             Load more deals
           </StoreList.LoadMoreButton>
         )
       }
     </div>
-  )
-};
+  );
 
 StoreList.defaultProps = {
   stores: [],
-  onLoadMore: Function,
 };
 
 StoreList.Box = styled.div`
@@ -366,6 +372,11 @@ StoreList.Link = styled.a`
   letter-spacing: 0.51px;
   color: ${props => props.theme.colors.white};
   cursor: pointer;
+  transition: background 205ms linear;
+
+  &:hover {
+    background: ${props => props.theme.colors.blueDark};
+  }
 
   ${breakpoint('xs')`
     display: none;
@@ -416,6 +427,12 @@ StoreList.LoadMoreButton = styled.button`
   border: none;
   outline: none;
   cursor: pointer;
+
+  transition: color 205ms linear;
+
+  &:hover {
+    color: ${props => props.theme.colors.grayDark};
+  }
 `;
 
 export default StoreList;

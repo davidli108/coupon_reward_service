@@ -1,13 +1,20 @@
 // @flow
-export const namespace = 'STORE';
-export const SET_FILTER = `${namespace}/SET_FILTER`;
-export const SET_CATEGORY = `${namespace}/SET_CATEGORY`;
-export const SET_SEARCH = `${namespace}/SET_SEARCH`;
+export const namespace        = 'STORE';
+export const SET_FILTER       = `${namespace}/SET_FILTER`;
+export const SET_CATEGORY     = `${namespace}/SET_CATEGORY`;
+export const SET_SEARCH       = `${namespace}/SET_SEARCH`;
 export const SET_FILTER_CLEAR = `${namespace}/SET_FILTER_CLEAR`;
-export const LOAD_MORE  = `${namespace}/LOAD_MORE`;
+export const SET_SEARCH_CLEAR = `${namespace}/SET_SEARCH_CLEAR`;
+export const SET_LOAD_MORE    = `${namespace}/SET_LOAD_MORE`;
+export const LOAD_MORE_STATE  = `${namespace}/LOAD_MORE_STATE`;
 
-export const loadMore = (payload: any) => ({
-  type: LOAD_MORE,
+export const setLoadMore = (payload: any) => ({
+  type: SET_LOAD_MORE,
+  payload,
+});
+
+export const setFilter = (payload: any) => ({
+  type: SET_FILTER,
   payload,
 });
 
@@ -20,8 +27,6 @@ export const setFilterClear = () => ({
   type: SET_FILTER_CLEAR,
 });
 
-
-export const setFilter = (payload: any) => ({
-  type: SET_FILTER,
-  payload,
+export const setSearchClear = () => ({
+  type: SET_SEARCH_CLEAR,
 });

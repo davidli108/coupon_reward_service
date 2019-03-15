@@ -18,7 +18,7 @@ const Featured = ({ stores }: FeaturedProps) => (
         <Featured.Link href={url} target="_blank">
           Visit Store
         </Featured.Link>
-        <Featured.Cash>{offer}</Featured.Cash>
+        <Featured.Cash>+{offer}% Cash Back</Featured.Cash>
       </Featured.Item>
     ))}
   </Featured.Wrapper>
@@ -147,6 +147,12 @@ Featured.Link = styled.a`
   letter-spacing: 0.51px;
   color: ${props => props.theme.colors.white};
   cursor: pointer;
+
+  transition: background 205ms linear;
+
+  &:hover {
+    background: ${props => props.theme.colors.blueDark};
+  }
 `;
 
 Featured.Cash = styled.p`

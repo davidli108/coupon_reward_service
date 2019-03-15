@@ -10,20 +10,34 @@ import { type Store } from '../models';
 
 type StoresListProps = {
   stores: Store[],
+  storesAll: Store[],
+  loadState: number,
+  loadToState: number,
   onLoadMore: Function,
 };
 
-const StoreMain = ({ stores, onLoadMore }: StoresListProps) => (
+const StoreMain = ({
+  stores,
+  onLoadMore,
+  loadState,
+  loadToState,
+  storesAll,
+  }: StoresListProps) => (
   <StoreMain.Wrapper>
     <StoreMain.Title>Browse among more than 1000 stores</StoreMain.Title>
     <Featured stores={stores} />
-    <StoreList stores={stores} onLoadMore={onLoadMore} />
+    <StoreList
+      stores={stores}
+      onLoadMore={onLoadMore}
+      loadState={loadState}
+      loadToState={loadToState}
+      storesAll={storesAll}
+    />
   </StoreMain.Wrapper>
 );
 
 StoreMain.defaultProps = {
   stores: [],
-  onLoadMore: Function,
 };
 
 StoreMain.Wrapper = styled.div`

@@ -11,15 +11,31 @@ type StoreSidebarProps = {
     title: string,
     number: number,
   }[],
+  title: string,
   filter: string,
   search: string,
   onSetFilter: Function,
   onSetFilterClear: Function,
   onSetSearch: Function,
+  onSetSearchClear: Function,
 };
 
-const StoreSidebar = ({ categories, filter, search, onSetFilter, onSetFilterClear, onSetSearch }: StoreSidebarProps) => {
+const StoreSidebar = ({
+  title,
+  categories,
+  filter,
+  search,
+  onSetFilter,
+  onSetFilterClear,
+  onSetSearchClear,
+  onSetSearch ,
+  }: StoreSidebarProps) => {
   const [toggled, setToggle] = useState(false);
+
+  const handleClick = () => {
+    onSetFilterClear();
+    onSetSearchClear();
+  }
 
   return (
     <StoreSidebar.Wrapper>
@@ -29,9 +45,9 @@ const StoreSidebar = ({ categories, filter, search, onSetFilter, onSetFilterClea
           rotateIcon={toggled}
           onClick={() => setToggle(!toggled)}
         >
-          Stores
+          {title}
         </StoreSidebar.Title>
-        {filter && <StoreSidebar.ClearFilter onClick={onSetFilterClear.bind(null)} >clear</StoreSidebar.ClearFilter>}
+        {filter && <StoreSidebar.ClearFilter onClick={handleClick} >clear</StoreSidebar.ClearFilter>}
         <TagList
           categories={categories}
           onSetFilter={onSetFilter}
@@ -90,7 +106,7 @@ StoreSidebar.Content = styled.div`
   ${breakpoint('sm')`
     margin: 0 0 25px 0;
     border: none;
-    border-radius: none;
+    border-radius: 0;
     padding: 0;
     box-shadow: none;
   `}

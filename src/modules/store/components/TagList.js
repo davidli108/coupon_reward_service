@@ -11,10 +11,19 @@ type TagListProps = {
   toggled: boolean,
 };
 
-const TagList = ({ categories, onSetFilter, filter, toggled }: TagListProps) => (
+const TagList = ({
+  categories,
+  onSetFilter,
+  filter,
+  toggled,
+  }: TagListProps) => (
   <TagList.List toggled={toggled}>
     {categories.map(({ title, number }) => (
-      <TagList.Item key={`tag_item_${title}`} filterActive={filter === title} onClick={onSetFilter.bind(null, title)}>
+      <TagList.Item
+        key={`tag_item_${title}`}
+        filterActive={filter === title}
+        onClick={onSetFilter.bind(null, title)}
+      >
         {title} <TagList.Numb filterActive={filter === title}>{number}</TagList.Numb>
       </TagList.Item>
     ))}
@@ -63,9 +72,15 @@ TagList.Item = styled.li`
   color: ${props => props.filterActive ? `${props.theme.colors.white}` : `${props.theme.colors.grayLight}`};
   background: ${props => props.filterActive  && `${props.theme.colors.blackLight}` };
   cursor: pointer;
+
+  &:hover {
+    background: ${props => props.filterActive ? `${props.theme.colors.blackLight}` : `${props.theme.colors.whiteExLight}`};
+  }
+
   ${breakpoint('xs')`
     padding: 5px 25px;
   `}
+
   ${breakpoint('sm')`
     padding: ${props => props.filterActive ? `5px 5px` : `5px 0`};
   `}
