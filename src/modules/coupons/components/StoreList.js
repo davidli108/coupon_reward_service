@@ -1,6 +1,7 @@
 //@flow
 import * as React from 'react';
 import styled from 'styled-components';
+import breakpoint from 'styled-components-breakpoint';
 
 import type { StoreListProps } from '../models/CouponsPage';
 
@@ -30,6 +31,11 @@ StoreList.Wrapper = styled.div`
     padding: 5px;
     margin-right: 15px;
   }
+
+  ${breakpoint('xl')`
+    overflow-x: hidden;
+    margin-bottom: 25px;
+  `}
 `;
 
 StoreList.Item = styled.div`
@@ -62,6 +68,11 @@ StoreList.Item = styled.div`
 
     color: #899197;
   }
+
+  ${breakpoint('xl')`
+    width: 165px;
+    height: 136px;
+  `}
 `;
 
 export default StoreList;

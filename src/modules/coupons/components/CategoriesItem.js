@@ -7,7 +7,9 @@ import type { CategoriesItemProps } from '../models/CouponsPage';
 const CategoriesItem = ({ title, value, setOpen }: CategoriesItemProps) => {
   return (
     <CategoriesItem.Wrapper
-      onClick={() => console.log(`clicked on ${title}`) || setOpen(false)}
+      onClick={() =>
+        console.log(`clicked on ${title}`) || (setOpen && setOpen(false))
+      }
     >
       <CategoriesItem.Title>{title}</CategoriesItem.Title>
       <CategoriesItem.Value>{value}</CategoriesItem.Value>

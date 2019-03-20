@@ -1,6 +1,7 @@
 //@flow
 import * as React from 'react';
 import styled from 'styled-components';
+import breakpoint from 'styled-components-breakpoint';
 
 import CategoriesItem from './CategoriesItem';
 
@@ -39,8 +40,11 @@ CategoriesMobile.Wrapper = styled.div`
   border-radius: 5px;
 
   margin-top: 25px;
-
   cursor: pointer;
+
+  ${breakpoint('md')`
+    display: none;
+  `}
 `;
 
 CategoriesMobile.Title = styled.p`

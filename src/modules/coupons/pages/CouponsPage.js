@@ -1,6 +1,7 @@
 //@flow
 import * as React from 'react';
 import styled from 'styled-components';
+import breakpoint from 'styled-components-breakpoint';
 
 import SearchBar from '@modules/store/components/Search';
 import TodaysFeaturedCoupon from '../components/TodaysFeaturedCoupon';
@@ -17,7 +18,9 @@ const CouponsPage = ({
 }: CouponsPageProps) => {
   return (
     <CouponsPage.Wrapper>
-      <SearchBar />
+      <CouponsPage.SearchWrapper>
+        <SearchBar />
+      </CouponsPage.SearchWrapper>
 
       <TodaysFeaturedCoupon {...featuredCoupon} />
       <StoreList stores={stores} />
@@ -35,6 +38,25 @@ CouponsPage.Wrapper = styled.div`
   flex-flow: column nowrap;
 
   padding: 10px;
+
+  ${breakpoint('xl')`
+    width: 80%;
+    margin: 0 auto;
+  `}
+`;
+
+CouponsPage.SearchWrapper = styled.div`
+  width: inherit;
+
+  ${breakpoint('md')`
+    width: 80%;
+    max-width: 617px;
+    margin: 0 auto;
+
+    > div {
+      width: 100%;
+    }
+  `}
 `;
 
 CouponsPage.defaultProps = {

@@ -1,8 +1,11 @@
 //@flow
 import * as React from 'react';
 import styled from 'styled-components';
+import breakpoint from 'styled-components-breakpoint';
 
 import type { Coupon as CouponModel } from '../models/CouponsPage';
+
+const zeroPadStars = val => String(val).padStart(2, '0');
 
 const Coupon = ({ logo, discount, cashback, expDate }: CouponModel) => {
   return (
@@ -14,7 +17,7 @@ const Coupon = ({ logo, discount, cashback, expDate }: CouponModel) => {
       <Coupon.Content>
         <Coupon.StoreLogo src={logo} alt="store logo" />
         <Coupon.Discount>
-          <span>{discount}%</span>
+          <span>{zeroPadStars(discount)}%</span>
           <span>off</span>
         </Coupon.Discount>
         <Coupon.ExpDate>
@@ -34,6 +37,10 @@ Coupon.Wrapper = styled.div`
 
   margin: 20px auto;
   overflow: hidden;
+
+  ${breakpoint('sx')`
+    margin: 20px 0;
+  `}
 `;
 
 Coupon.BorderWrapper = styled.div`
@@ -44,15 +51,22 @@ Coupon.BorderWrapper = styled.div`
 
   border-radius: 3px;
   border: 1px solid #dadde2;
+
+  pointer-events: none;
 `;
 
 Coupon.Circle = styled.div`
   position: absolute;
+  top: 50%;
 
   background: white;
 
   width: 14px;
   height: 14px;
+
+  border-top: 1px solid #dadde2;
+  border-bottom: 1px solid #dadde2;
+  border-radius: 50%;
 
   z-index: 3;
 
@@ -61,23 +75,13 @@ Coupon.Circle = styled.div`
       case 'left': {
         return `
           border-right: 1px solid #dadde2;
-          border-top: 1px solid #dadde2;
-          border-bottom: 1px solid #dadde2;
-          border-radius: 50%;
-
           left: -7px;
-          top: 50%;
         `;
       }
       case 'right': {
         return `
           border-left: 1px solid #dadde2;
-          border-top: 1px solid #dadde2;
-          border-bottom: 1px solid #dadde2;
-          border-radius: 50%;
-
           right: -7px;
-          top: 50%;
         `;
       }
 
@@ -145,6 +149,10 @@ Coupon.ExpDate = styled.div`
 `;
 
 Coupon.ViewDealButton = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   width: 90%;
 
   background: #00cbe9;
@@ -164,6 +172,13 @@ Coupon.ViewDealButton = styled.div`
 
   padding: 13px 30px;
   margin: 30px 0 14px 0;
+
+  white-space: nowrap;
+  cursor: pointer;
+
+  &:hover {
+    background: #00bad5;
+  }
 `;
 
 Coupon.CashbackPercent = styled.div`

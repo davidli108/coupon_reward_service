@@ -36,7 +36,7 @@ export type ControlsProps = {
 export type CategoriesItemProps = {
   title: string,
   value: string | number,
-  setOpen: boolean => void,
+  setOpen?: boolean => void,
 };
 
 export type CategoriesMobileProps = {
