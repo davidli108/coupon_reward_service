@@ -1,11 +1,12 @@
 //@flow
 import * as React from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
 import Coupon from './Coupon';
-
 import type { CouponsProps } from '../models/CouponsPage';
+import { getFilteredDeals } from '../CouponsReducer';
 
 const Coupons = ({ coupons }: CouponsProps) => {
   return (
@@ -44,4 +45,10 @@ Coupons.Wrapper = styled.div`
   `}
 `;
 
-export default Coupons;
+const mapStateToProps = state => ({
+  coupons: getFilteredDeals(state),
+});
+
+const enhance = connect(mapStateToProps);
+
+export default enhance(Coupons);

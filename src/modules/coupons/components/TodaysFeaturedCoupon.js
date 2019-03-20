@@ -1,11 +1,13 @@
 //@flow
 import * as React from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { IoIosHeartEmpty, IoIosHeart } from 'react-icons/io';
 import { FiShare2 } from 'react-icons/fi';
 import breakpoint from 'styled-components-breakpoint';
 
 import type { FeaturedCoupon } from '../models/CouponsPage';
+import { getFeaturedCoupon } from '@modules/coupons/CouponsReducer';
 
 const TodaysFeaturedCoupon = ({
   storeName,
@@ -396,4 +398,10 @@ TodaysFeaturedCoupon.Button = styled.button`
   `}
 `;
 
-export default TodaysFeaturedCoupon;
+const mapStateToProps = state => ({
+  ...getFeaturedCoupon(state),
+});
+
+const enhance = connect(mapStateToProps);
+
+export default enhance(TodaysFeaturedCoupon);

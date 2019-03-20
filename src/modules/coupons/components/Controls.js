@@ -1,5 +1,6 @@
 //@flow
 import * as React from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 import allDealsSvg from '../assets/allDeals.svg';
@@ -12,6 +13,9 @@ import favoriteStoresSvg from '../assets/favoriteStores.svg';
 import favoriteStoresActiveSvg from '../assets/favoriteStoresActive.svg';
 
 import type { ControlsProps } from '../models/CouponsPage';
+
+import * as actions from '@modules/coupons/CouponsActions';
+import { getFilter } from '@modules/coupons/CouponsReducer';
 
 const Controls = ({ filterBy, setFilter }: ControlsProps) => {
   return (
@@ -106,4 +110,17 @@ Controls.Pointer = styled.div`
   align-self: center;
 `;
 
-export default Controls;
+const mapStateToProps = state => ({
+  filterBy: getFilter(state),
+});
+
+const mapDispatchToProps = {
+  setFilter: actions.setFilter,
+};
+
+const enhance = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
+
+export default enhance(Controls);

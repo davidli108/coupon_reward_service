@@ -22,11 +22,13 @@ export type Categories = {
   stores: Category[],
 };
 
-export type Coupon = {
+export type Deal = {
   logo: string,
   discount: number,
   cashback: number,
   expDate: string,
+  isCoupon: boolean,
+  isFavorite: boolean,
 };
 
 export type StoreListProps = {
@@ -50,12 +52,12 @@ export type CategoriesMobileProps = {
 
 export type ContentProps = {
   categories: Categories,
-  coupons: Coupon[],
+  coupons: Deal[],
   loadMore: number => void,
 };
 
 export type CouponsProps = {
-  coupons: Coupon[],
+  coupons: Deal[],
 };
 
 export type CategoriesProps = {
@@ -67,5 +69,10 @@ export type CouponsPageProps = {
   featuredCoupon: FeaturedCoupon,
   stores: Store[],
   categories: Categories,
-  coupons: Coupon[],
+  coupons: Deal[],
+};
+
+export type CouponsReducerProps = {
+  ...CouponsPageProps,
+  filterBy: string,
 };

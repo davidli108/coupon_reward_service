@@ -2,18 +2,19 @@
 import * as R from 'ramda';
 
 import type {
-  CouponsPageProps,
+  CouponsReducerProps,
   FeaturedCoupon,
   Store,
-  Coupon,
+  Deal,
   Categories,
 } from './models/CouponsPage';
 
-import { LOAD_MORE } from './CouponsActions';
+import { LOAD_MORE, SET_FILTER } from './CouponsActions';
 
 export const STATE_KEY = 'coupons';
 
-const initialState: CouponsPageProps = {
+const initialState: CouponsReducerProps = {
+  filterBy: 'allDeals',
   featuredCoupon: {
     storeName: 'Macy',
     highestCashbackPercent: 4,
@@ -77,48 +78,62 @@ const initialState: CouponsPageProps = {
     ],
   },
 
-  coupons: [
+  deals: [
     {
       logo: 'https://logo.clearbit.com/xhamster.com',
       discount: 5,
       cashback: 15,
       expDate: '01/02/2019',
+      isCoupon: true,
+      isFavorite: true,
     },
     {
       logo: 'https://logo.clearbit.com/ew.com',
       discount: 5,
       cashback: 15,
       expDate: '01/02/2019',
+      isCoupon: false,
+      isFavorite: false,
     },
     {
       logo: 'https://logo.clearbit.com/hgtv.com',
       discount: 5,
       cashback: 15,
       expDate: '01/02/2019',
+      isCoupons: false,
+      isFavorite: true,
     },
     {
       logo: 'https://logo.clearbit.com/bc.edu',
       discount: 5,
       cashback: 15,
       expDate: '01/02/2019',
+      isCoupons: true,
+      isFavorite: true,
     },
     {
       logo: 'https://logo.clearbit.com/sportingnews.com',
       discount: 5,
       cashback: 15,
       expDate: '01/02/2019',
+      isCoupons: true,
+      isFavorite: false,
     },
     {
       logo: 'https://logo.clearbit.com/bgr.com',
       discount: 5,
       cashback: 15,
       expDate: '01/02/2019',
+      isCoupons: false,
+      isFavorite: false,
     },
     {
       logo: 'https://logo.clearbit.com/xhamster.com',
       discount: 5,
       cashback: 15,
       expDate: '01/02/2019',
+      isCoupon: true,
+      isFavorite: true,
     },
   ],
 };
@@ -147,12 +162,16 @@ const generateRandomCoupon = () => {
   const expDate = `${generateRandomNumber(12)}/${generateRandomNumber(
     30,
   )}/${generateRandomNumber(3000)}}`;
+  const isFavorite = Math.random() > 0.5;
+  const isCoupon = Math.random() > 0.5;
 
   return {
     logo,
     discount,
     cashback,
     expDate,
+    isFavorite,
+    isCoupon,
   };
 };
 
@@ -161,18 +180,24 @@ const generateRandomCoupons = quantity => {
 };
 
 const CouponsReducer = (
-  state: CouponsPageProps = initialState,
+  state: CouponsReducerProps = initialState,
   action: Object,
 ) => {
   switch (action.type) {
     case LOAD_MORE: {
       return R.assoc<Object, Object>(
-        'coupons',
+        'deals',
         [
           //$FlowFixMe
-          ...R.path<Coupon[]>(['coupons'])(state),
+          ...R.path<Deal[]>(['deals'])(state),
           ...generateRandomCoupons(action.payload),
         ],
+        state,
+      );
+    }
+
+    case SET_FILTER: {
+      return R.assoc<Object, Object>('filterBy', R.path(['payload'], action))(
         state,
       );
     }
@@ -183,12 +208,36 @@ const CouponsReducer = (
   }
 };
 
+const filterDeals = (x, filterBy) => {
+  switch (filterBy) {
+    case 'allDeals': {
+      return true;
+    }
+    case 'onlyCoupons': {
+      return x.isCoupon;
+    }
+    case 'favoriteStores': {
+      return x.isFavorite;
+    }
+    default: {
+      return false;
+    }
+  }
+};
+
 export const getFeaturedCoupon = R.path<FeaturedCoupon>([
   STATE_KEY,
   'featuredCoupon',
 ]);
 export const getStores = R.path<Store[]>([STATE_KEY, 'stores']);
 export const getCategories = R.path<Categories>([STATE_KEY, 'categories']);
-export const getCoupons = R.path<Coupon[]>([STATE_KEY, 'coupons']);
+export const getDeals = R.path<Deal[]>([STATE_KEY, 'deals']);
+export const getFilter = R.path<string>([STATE_KEY, 'filterBy']);
+export const getFilteredDeals = (state: Object) => {
+  return R.compose(
+    R.filter(x => filterDeals(x, getFilter(state))),
+    getDeals,
+  )(state);
+};
 
 export default CouponsReducer;

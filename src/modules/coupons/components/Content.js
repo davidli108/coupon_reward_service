@@ -1,5 +1,4 @@
 //@flow
-import * as R from 'ramda';
 import * as React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
@@ -11,21 +10,20 @@ import Categories from './Categories';
 import Coupons from '../components/Coupons';
 
 import * as actions from '../CouponsActions';
+import { getCategories } from '../CouponsReducer';
 import type { ContentProps } from '../models/CouponsPage';
 
-const Content = ({ categories, coupons, loadMore }: ContentProps) => {
-  const [filterBy, setFilter] = React.useState('allDeals');
-
+const Content = ({ categories, loadMore }: ContentProps) => {
   return (
     <div>
-      <Controls filterBy={filterBy} setFilter={setFilter} />
-      <CategoriesMobile categories={R.toPairs(categories)} />
+      <Controls />
+      <CategoriesMobile />
       <Content.Grid>
         <Content.CategoriesWrapper>
           <Categories categories={categories.categories} title="Categories" />
           <Categories categories={categories.stores} title="Stores" />
         </Content.CategoriesWrapper>
-        <Coupons coupons={coupons} />
+        <Coupons />
       </Content.Grid>
       <Content.LoadMoreDeals onClick={() => loadMore(5)}>
         Load More Deals
@@ -81,12 +79,16 @@ Content.LoadMoreDeals = styled.div`
   margin: 40px 0;
 `;
 
+const mapStateToProps = state => ({
+  categories: getCategories(state),
+});
+
 const mapDispatchToProps = {
   loadMore: actions.loadMore,
 };
 
 const enhance = connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 );
 

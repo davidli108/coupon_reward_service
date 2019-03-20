@@ -1,11 +1,13 @@
 //@flow
 import * as R from 'ramda';
 import * as React from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
 import CategoriesItem from './CategoriesItem';
 import type { CategoriesMobileProps } from '../models/CouponsPage';
+import { getCategories } from '../CouponsReducer';
 
 const capitalize = R.compose(
   R.join(''),
@@ -138,4 +140,10 @@ CategoriesMobile.Section = styled.div`
   }
 `;
 
-export default CategoriesMobile;
+const mapStateToProps = state => ({
+  categories: R.toPairs(getCategories(state)),
+});
+
+const enhance = connect(mapStateToProps);
+
+export default enhance(CategoriesMobile);

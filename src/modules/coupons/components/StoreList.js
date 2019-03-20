@@ -1,9 +1,11 @@
 //@flow
 import * as React from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
 import type { StoreListProps } from '../models/CouponsPage';
+import { getStores } from '@modules/coupons/CouponsReducer';
 
 const StoreList = ({ stores }: StoreListProps) => {
   return (
@@ -75,4 +77,10 @@ StoreList.Item = styled.div`
   `}
 `;
 
-export default StoreList;
+const mapStateToProps = state => ({
+  stores: getStores(state),
+});
+
+const enhance = connect(mapStateToProps);
+
+export default enhance(StoreList);

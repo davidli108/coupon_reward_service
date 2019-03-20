@@ -1,6 +1,5 @@
 //@flow
 import * as React from 'react';
-import { connect } from 'react-redux';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
@@ -9,20 +8,7 @@ import TodaysFeaturedCoupon from '../components/TodaysFeaturedCoupon';
 import StoreList from '../components/StoreList';
 import Content from '../components/Content';
 
-import type { CouponsPageProps } from '../models/CouponsPage';
-import {
-  getFeaturedCoupon,
-  getCategories,
-  getCoupons,
-  getStores,
-} from '../CouponsReducer';
-
-const CouponsPage = ({
-  featuredCoupon,
-  categories,
-  stores,
-  coupons,
-}: CouponsPageProps) => {
+const CouponsPage = () => {
   const [search, setSearch] = React.useState('');
 
   return (
@@ -31,9 +17,9 @@ const CouponsPage = ({
         <SearchBar search={search} onSetSearch={setSearch} />
       </CouponsPage.SearchWrapper>
 
-      <TodaysFeaturedCoupon {...featuredCoupon} />
-      <StoreList stores={stores} />
-      <Content categories={categories} coupons={coupons} />
+      <TodaysFeaturedCoupon />
+      <StoreList />
+      <Content />
     </CouponsPage.Wrapper>
   );
 };
@@ -64,13 +50,4 @@ CouponsPage.SearchWrapper = styled.div`
   `}
 `;
 
-const mapStateToProps = state => ({
-  featuredCoupon: getFeaturedCoupon(state),
-  categories: getCategories(state),
-  coupons: getCoupons(state),
-  stores: getStores(state),
-});
-
-const withState = connect(mapStateToProps);
-
-export default withState(CouponsPage);
+export default CouponsPage;

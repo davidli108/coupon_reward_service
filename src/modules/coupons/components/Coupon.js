@@ -3,11 +3,11 @@ import * as React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
-import type { Coupon as CouponModel } from '../models/CouponsPage';
+import type { Deal as DealModel } from '../models/CouponsPage';
 
 const zeroPadStars = val => String(val).padStart(2, '0');
 
-const Coupon = ({ logo, discount, cashback, expDate }: CouponModel) => {
+const Coupon = ({ logo, discount, cashback, expDate }: DealModel) => {
   return (
     <Coupon.Wrapper>
       <Coupon.BorderWrapper>
