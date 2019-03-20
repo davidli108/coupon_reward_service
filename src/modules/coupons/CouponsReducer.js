@@ -52,17 +52,6 @@ const initialState: CouponsPageProps = {
     },
   ],
   categories: {
-    stores: [
-      { title: 'MACY´S', value: 12 },
-      { title: 'SEARS', value: 13 },
-      { title: 'UDEMY', value: 14 },
-      { title: 'VERIZON', value: 15 },
-      { title: 'WALLGREENS', value: 16 },
-      { title: 'MACY´S', value: 17 },
-      { title: 'SEARS', value: 18 },
-      { title: 'UDEMY', value: 19 },
-      { title: 'VERIZON', value: 10 },
-    ],
     categories: [
       { title: 'Accessories', value: 122 },
       { title: 'Automotive', value: 1222 },
@@ -74,6 +63,17 @@ const initialState: CouponsPageProps = {
       { title: 'Clothing', value: 212 },
       { title: 'Computers', value: 39 },
       { title: 'Department Stores', value: 74 },
+    ],
+    stores: [
+      { title: 'MACY´S', value: 12 },
+      { title: 'SEARS', value: 13 },
+      { title: 'UDEMY', value: 14 },
+      { title: 'VERIZON', value: 15 },
+      { title: 'WALLGREENS', value: 16 },
+      { title: 'MACY´S', value: 17 },
+      { title: 'SEARS', value: 18 },
+      { title: 'UDEMY', value: 19 },
+      { title: 'VERIZON', value: 10 },
     ],
   },
 

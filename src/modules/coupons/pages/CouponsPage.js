@@ -23,7 +23,7 @@ const CouponsPage = ({
   stores,
   coupons,
 }: CouponsPageProps) => {
-  const [ search, setSearch ] = React.useState('');
+  const [search, setSearch] = React.useState('');
 
   return (
     <CouponsPage.Wrapper>
@@ -33,11 +33,7 @@ const CouponsPage = ({
 
       <TodaysFeaturedCoupon {...featuredCoupon} />
       <StoreList stores={stores} />
-      <Content
-        categories={categories.categories}
-        stores={categories.stores}
-        coupons={coupons}
-      />
+      <Content categories={categories} coupons={coupons} />
     </CouponsPage.Wrapper>
   );
 };

@@ -5,9 +5,9 @@ import breakpoint from 'styled-components-breakpoint';
 
 import CategoriesItem from './CategoriesItem';
 
-import type { CategoriesMobileProps } from '../models/CouponsPage';
+import type { CategoriesProps } from '../models/CouponsPage';
 
-const Categories = ({ title, categories }: CategoriesMobileProps) => {
+const Categories = ({ title, categories }: CategoriesProps) => {
   return (
     <Categories.Wrapper>
       <h2>{title}</h2>

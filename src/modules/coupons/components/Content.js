@@ -1,4 +1,5 @@
 //@flow
+import * as R from 'ramda';
 import * as React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
@@ -12,18 +13,17 @@ import Coupons from '../components/Coupons';
 import * as actions from '../CouponsActions';
 import type { ContentProps } from '../models/CouponsPage';
 
-const Content = ({ categories, stores, coupons, loadMore }: ContentProps) => {
+const Content = ({ categories, coupons, loadMore }: ContentProps) => {
   const [filterBy, setFilter] = React.useState('allDeals');
 
   return (
     <div>
       <Controls filterBy={filterBy} setFilter={setFilter} />
-      <CategoriesMobile categories={categories} title="Categories" />
-      <CategoriesMobile categories={stores} title="Stores" />
+      <CategoriesMobile categories={R.toPairs(categories)} />
       <Content.Grid>
         <Content.CategoriesWrapper>
-          <Categories categories={categories} title="Categories" />
-          <Categories categories={categories} title="Stores" />
+          <Categories categories={categories.categories} title="Categories" />
+          <Categories categories={categories.stores} title="Stores" />
         </Content.CategoriesWrapper>
         <Coupons coupons={coupons} />
       </Content.Grid>
@@ -56,7 +56,7 @@ Content.CategoriesWrapper = styled.div`
     flex-flow: column nowrap;
 
     > :not(:first-child) {
-      border-top: 3px solid #D8D8D8;
+      border-top: 1px solid #D8D8D8;
     }
   `}
 

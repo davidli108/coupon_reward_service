@@ -18,8 +18,8 @@ export type Category = {
 };
 
 export type Categories = {
-  stores: Category[],
   categories: Category[],
+  stores: Category[],
 };
 
 export type Coupon = {
@@ -45,19 +45,22 @@ export type CategoriesItemProps = {
 };
 
 export type CategoriesMobileProps = {
-  categories: Category[],
-  title: string,
+  categories: [$Keys<Categories>, Array<Category>][],
 };
 
 export type ContentProps = {
-  categories: Category[],
-  stores: Category[],
+  categories: Categories,
   coupons: Coupon[],
   loadMore: number => void,
 };
 
 export type CouponsProps = {
   coupons: Coupon[],
+};
+
+export type CategoriesProps = {
+  categories: Category[],
+  title: string,
 };
 
 export type CouponsPageProps = {
