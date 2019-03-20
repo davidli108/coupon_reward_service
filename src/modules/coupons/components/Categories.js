@@ -1,19 +1,30 @@
 //@flow
 import * as React from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
 import CategoriesItem from './CategoriesItem';
-
 import type { CategoriesProps } from '../models/CouponsPage';
+import * as actions from '../CouponsActions';
 
-const Categories = ({ title, categories }: CategoriesProps) => {
+const Categories = ({
+  title,
+  categories,
+  setCategoryFilter,
+}: CategoriesProps) => {
+  const [itemChecked, setCheckedItem] = React.useState('');
+
   return (
     <Categories.Wrapper>
       <h2>{title}</h2>
       {categories.map<React.Node>((category, index) => (
         <CategoriesItem
           key={`category_${category.title}_${index}`}
+          sectionTitle={title}
+          onClick={setCategoryFilter}
+          setCheckedItem={setCheckedItem}
+          isActive={itemChecked === category.title}
           {...category}
         />
       ))}
@@ -43,4 +54,13 @@ Categories.Wrapper = styled.div`
   `}
 `;
 
-export default Categories;
+const mapDispatchToProps = {
+  setCategoryFilter: actions.setCategoryFilter,
+};
+
+const enhance = connect(
+  null,
+  mapDispatchToProps,
+);
+
+export default enhance(Categories);

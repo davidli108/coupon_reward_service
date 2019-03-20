@@ -29,6 +29,8 @@ export type Deal = {
   expDate: string,
   isCoupon: boolean,
   isFavorite: boolean,
+  category?: string,
+  storeName?: string,
 };
 
 export type StoreListProps = {
@@ -41,9 +43,15 @@ export type ControlsProps = {
 };
 
 export type CategoriesItemProps = {
+  deals: Deal[],
   title: string,
-  value: string | number,
+  value?: string | number,
   setOpen?: boolean => void,
+  onClick: any => any,
+  sectionTitle: string,
+  filters: string[],
+  setCheckedItem: string => void,
+  isActive: boolean,
 };
 
 export type CategoriesMobileProps = {
@@ -63,6 +71,7 @@ export type CouponsProps = {
 export type CategoriesProps = {
   categories: Category[],
   title: string,
+  setCategoryFilter: string => void,
 };
 
 export type CouponsPageProps = {
@@ -74,5 +83,6 @@ export type CouponsPageProps = {
 
 export type CouponsReducerProps = {
   ...CouponsPageProps,
-  filterBy: string,
+  dealsFilter: string,
+  categoryFilter?: string,
 };

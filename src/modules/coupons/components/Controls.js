@@ -15,7 +15,7 @@ import favoriteStoresActiveSvg from '../assets/favoriteStoresActive.svg';
 import type { ControlsProps } from '../models/CouponsPage';
 
 import * as actions from '@modules/coupons/CouponsActions';
-import { getFilter } from '@modules/coupons/CouponsReducer';
+import { getDealsFilter } from '@modules/coupons/CouponsReducer';
 
 const Controls = ({ filterBy, setFilter }: ControlsProps) => {
   return (
@@ -111,11 +111,11 @@ Controls.Pointer = styled.div`
 `;
 
 const mapStateToProps = state => ({
-  filterBy: getFilter(state),
+  filterBy: getDealsFilter(state),
 });
 
 const mapDispatchToProps = {
-  setFilter: actions.setFilter,
+  setFilter: actions.setDealsFilter,
 };
 
 const enhance = connect(
