@@ -17,6 +17,11 @@ export type Category = {
   value: string | number,
 };
 
+export type Categories = {
+  stores: Category[],
+  categories: Category[],
+};
+
 export type Coupon = {
   logo: string,
   discount: number,
@@ -48,6 +53,7 @@ export type ContentProps = {
   categories: Category[],
   stores: Category[],
   coupons: Coupon[],
+  loadMore: number => void,
 };
 
 export type CouponsProps = {
@@ -57,9 +63,6 @@ export type CouponsProps = {
 export type CouponsPageProps = {
   featuredCoupon: FeaturedCoupon,
   stores: Store[],
-  filters: {
-    categories: Category[],
-    stores: Category[],
-  },
+  categories: Categories,
   coupons: Coupon[],
 };

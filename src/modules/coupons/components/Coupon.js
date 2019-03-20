@@ -31,9 +31,13 @@ const Coupon = ({ logo, discount, cashback, expDate }: CouponModel) => {
 };
 
 Coupon.Wrapper = styled.div`
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
   position: relative;
 
   width: 100%;
+  max-height: 477px;
 
   margin: 20px auto;
   overflow: hidden;
@@ -95,9 +99,8 @@ Coupon.Circle = styled.div`
 Coupon.Content = styled.div`
   display: flex;
   flex-flow: column nowrap;
-  justify-items: center;
   align-items: center;
-
+  width: 100%;
   padding: 60px 27px 23px 27px;
 `;
 
@@ -152,6 +155,7 @@ Coupon.ViewDealButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  align-self: flex-end;
 
   width: 90%;
 

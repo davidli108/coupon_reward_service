@@ -23,7 +23,7 @@ const StoresPage = Loadable({
   loader: () =>
     import(//$FlowFixMe
     '@modules/store/pages/StoresPage.js' /* webpackChunkName: "StoresPage" */),
-    loading: () => <Preloader />,
+  loading: () => <Preloader />,
 });
 
 const StorePage = Loadable({

@@ -23,10 +23,11 @@ Coupons.Wrapper = styled.div`
 
   ${breakpoint('sx')`
     flex-flow: row wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
 
     > div {
       width: calc(50% - 16px);
+      margin-right: 16px;
     }
   `}
 

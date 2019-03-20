@@ -10,6 +10,9 @@ import RouterReducer, {
 import StoreReducer, {
   STATE_KEY as STORE_STATE_KEY,
 } from '@modules/store/StoreReducer';
+import CouponsReducer, {
+  STATE_KEY as COUPONS_STATE_KEY,
+} from '@modules/coupons/CouponsReducer';
 
 const persist = R.curry(persistReducer)(ReduxPersist.storeConfig);
 
@@ -20,4 +23,5 @@ export default history =>
     combineReducers,
     R.assoc(ROUTER_STATE_KEY, RouterReducer(history)),
     R.assoc(STORE_STATE_KEY, StoreReducer),
+    R.assoc(COUPONS_STATE_KEY, CouponsReducer),
   )({});

@@ -2,15 +2,17 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
+import { connect } from 'react-redux';
 
 import Controls from './Controls';
 import CategoriesMobile from './CategoriesMobile';
 import Categories from './Categories';
 import Coupons from '../components/Coupons';
 
+import * as actions from '../CouponsActions';
 import type { ContentProps } from '../models/CouponsPage';
 
-const Content = ({ categories, stores, coupons }: ContentProps) => {
+const Content = ({ categories, stores, coupons, loadMore }: ContentProps) => {
   const [filterBy, setFilter] = React.useState('allDeals');
 
   return (
@@ -25,6 +27,9 @@ const Content = ({ categories, stores, coupons }: ContentProps) => {
         </Content.CategoriesWrapper>
         <Coupons coupons={coupons} />
       </Content.Grid>
+      <Content.LoadMoreDeals onClick={() => loadMore(5)}>
+        Load More Deals
+      </Content.LoadMoreDeals>
     </div>
   );
 };
@@ -60,4 +65,29 @@ Content.CategoriesWrapper = styled.div`
   `}
 `;
 
-export default Content;
+Content.LoadMoreDeals = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  line-height: 21px;
+  font-size: 18px;
+  letter-spacing: 0.45px;
+
+  color: #adb8c0;
+  cursor: pointer;
+
+  margin: 40px 0;
+`;
+
+const mapDispatchToProps = {
+  loadMore: actions.loadMore,
+};
+
+const enhance = connect(
+  null,
+  mapDispatchToProps,
+);
+
+export default enhance(Content);
