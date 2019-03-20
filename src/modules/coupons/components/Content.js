@@ -3,10 +3,11 @@ import * as React from 'react';
 
 import Controls from './Controls';
 import CategoriesMobile from './CategoriesMobile';
+import Coupons from '../components/Coupons';
 
 import type { ContentProps } from '../models/CouponsPage';
 
-const Content = ({ categories, stores }: ContentProps) => {
+const Content = ({ categories, stores, coupons }: ContentProps) => {
   const [filterBy, setFilter] = React.useState('allDeals');
 
   return (
@@ -14,6 +15,7 @@ const Content = ({ categories, stores }: ContentProps) => {
       <Controls filterBy={filterBy} setFilter={setFilter} />
       <CategoriesMobile categories={categories} title="Categories" />
       <CategoriesMobile categories={stores} title="Stores" />
+      <Coupons coupons={coupons} />
     </div>
   );
 };

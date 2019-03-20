@@ -11,7 +11,9 @@ const CategoriesMobile = ({ categories, title }: CategoriesMobileProps) => {
 
   return (
     <CategoriesMobile.Wrapper>
-      <CategoriesMobile.Title onClick={() => setOpen(false) || setOpen(!isOpen)}>
+      <CategoriesMobile.Title
+        onClick={() => setOpen(false) || setOpen(!isOpen)}
+      >
         {title}
       </CategoriesMobile.Title>
       {isOpen && (

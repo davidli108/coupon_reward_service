@@ -13,6 +13,7 @@ const CouponsPage = ({
   featuredCoupon,
   filters,
   stores,
+  coupons,
 }: CouponsPageProps) => {
   return (
     <CouponsPage.Wrapper>
@@ -20,7 +21,11 @@ const CouponsPage = ({
 
       <TodaysFeaturedCoupon {...featuredCoupon} />
       <StoreList stores={stores} />
-      <Content categories={filters.categories} stores={filters.stores} />
+      <Content
+        categories={filters.categories}
+        stores={filters.stores}
+        coupons={coupons}
+      />
     </CouponsPage.Wrapper>
   );
 };
@@ -96,6 +101,51 @@ CouponsPage.defaultProps = {
       { title: 'Department Stores', value: 74 },
     ],
   },
+
+  coupons: [
+    {
+      logo: 'https://logo.clearbit.com/xhamster.com',
+      discount: 5,
+      cashback: 15,
+      expDate: '01/02/2019',
+    },
+    {
+      logo: 'https://logo.clearbit.com/ew.com',
+      discount: 5,
+      cashback: 15,
+      expDate: '01/02/2019',
+    },
+    {
+      logo: 'https://logo.clearbit.com/hgtv.com',
+      discount: 5,
+      cashback: 15,
+      expDate: '01/02/2019',
+    },
+    {
+      logo: 'https://logo.clearbit.com/bc.edu',
+      discount: 5,
+      cashback: 15,
+      expDate: '01/02/2019',
+    },
+    {
+      logo: 'https://logo.clearbit.com/sportingnews.com',
+      discount: 5,
+      cashback: 15,
+      expDate: '01/02/2019',
+    },
+    {
+      logo: 'https://logo.clearbit.com/bgr.com',
+      discount: 5,
+      cashback: 15,
+      expDate: '01/02/2019',
+    },
+    {
+      logo: 'https://logo.clearbit.com/xhamster.com',
+      discount: 5,
+      cashback: 15,
+      expDate: '01/02/2019',
+    },
+  ],
 };
 
 export default CouponsPage;
