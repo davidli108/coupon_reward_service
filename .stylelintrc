@@ -10,6 +10,7 @@
     "declaration-empty-line-before": null,
     "number-leading-zero": null,
     "no-descending-specificity": null,
+    "length-zero-no-unit": null,
     "declaration-colon-newline-after": null
   }
 }

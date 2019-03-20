@@ -32,6 +32,12 @@ const StorePage = Loadable({
   loading: () => <Preloader />,
 });
 
+const CouponsPage = Loadable({
+  loader: () =>
+    import('@modules/coupons/pages/CouponsPage.js' /* webpackChunkName: "CouponsPage" */),
+  loading: () => <Preloader />,
+});
+
 export default (
   <div style={{ overflow: 'hidden' }}>
     <Header />
@@ -39,6 +45,7 @@ export default (
       <Route exact path="/" component={HomePage} />
       <Route exact path="/stores" component={StoresPage} />
       <Route exact path="/coupons/:storeName" component={StorePage} />
+      <Route exact path="/coupons" component={CouponsPage} />
 
       {/* Catch all routes */}
       <Route component={NotFoundPage} />
