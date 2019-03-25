@@ -12,7 +12,6 @@ import { type Store } from './models';
 import {
   SET_FILTER,
   SET_FILTER_CLEAR,
-  SET_SEARCH_CLEAR,
   SET_SEARCH,
   SET_LOAD_MORE,
   LOAD_MORE_STATE,
@@ -148,9 +147,6 @@ const StoreReducer = (state: StoresState = initialState, action: Object) => {
     }
     case SET_FILTER_CLEAR: {
       return R.assoc<Object, Object>('filter', null, state);
-    }
-    case SET_SEARCH_CLEAR: {
-      return R.assoc<Object, Object>('search', '', state);
     }
     case SET_SEARCH: {
       return R.assoc<Object, Object>('search', action.payload, state);

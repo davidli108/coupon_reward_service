@@ -13,10 +13,10 @@ type StoreSidebarProps = {
   storesAll: Store[],
   filter: string,
   search: string,
+  searchResult: Store[],
   onSetFilter: Function,
   onSetFilterClear: Function,
   onSetSearch: Function,
-  onSetSearchClear: Function,
 };
 
 const StoreSidebar = ({
@@ -24,21 +24,24 @@ const StoreSidebar = ({
   filter,
   search,
   storesAll,
+  searchResult,
   onSetFilter,
   onSetFilterClear,
-  onSetSearchClear,
   onSetSearch,
 }: StoreSidebarProps) => {
   const [toggled, setToggle] = useState(false);
 
   const handleClick = () => {
     onSetFilterClear();
-    onSetSearchClear();
   };
 
   return (
     <StoreSidebar.Wrapper>
-      <Search onSetSearch={onSetSearch} search={search} />
+      <Search
+        onSetSearch={onSetSearch}
+        searchResult={searchResult}
+        search={search}
+      />
       <StoreSidebar.Content active={toggled}>
         <StoreSidebar.Title
           rotateIcon={toggled}
@@ -66,6 +69,7 @@ const StoreSidebar = ({
 StoreSidebar.defaultProps = {
   categories: [],
   storesAll: [],
+  searchResult: [],
 };
 
 StoreSidebar.Wrapper = styled.div`

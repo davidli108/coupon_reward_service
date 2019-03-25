@@ -5,12 +5,17 @@ import breakpoint from 'styled-components-breakpoint';
 
 import IconSearch from '../assets/icon-search.png';
 
+import SearchStoreItem from './SearchStoreItem';
+
+import { type Store } from '../models';
+
 type StoreSearch = {
   onSetSearch: Function,
+  searchResult: Store[],
   search: string,
 };
 
-const Search = ({ search, onSetSearch }: StoreSearch) => {
+const Search = ({ search, onSetSearch, searchResult }: StoreSearch) => {
   return (
     <Search.Wrapper>
       <Search.Input
@@ -21,11 +26,13 @@ const Search = ({ search, onSetSearch }: StoreSearch) => {
         placeholder="Search"
       />
       <Search.Icon src={IconSearch} alt="search" />
+      {searchResult && <SearchStoreItem searchResult={searchResult} />}
     </Search.Wrapper>
   );
 };
 
 Search.Wrapper = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   width: 89%;
@@ -74,6 +81,46 @@ Search.Icon = styled.img`
   ${breakpoint('sm')`
     padding: 0 20px 0 0;
   `}
+`;
+
+Search.StoreWrapper = styled.div`
+  position: absolute;
+  background: ${props => props.theme.colors.white};
+  z-index: 1;
+  width: 100%;
+  left: 0;
+  top: 42px;
+  border: 1px solid ${props => props.theme.colors.whiteLight};
+  border-radius: 5px;
+`;
+
+Search.Item = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background: ${props => props.theme.colors.whiteExLight};
+  }
+
+  img {
+    width: 80px;
+    border: 1px solid ${props => props.theme.colors.whiteLight};
+  }
+
+  div {
+    margin: 0 0 0 5px;
+
+    h3 {
+      margin: 0 0 5px 0;
+      font-weight: bold;
+    }
+
+    p {
+      font-size: 13px;
+    }
+  }
 `;
 
 export default Search;

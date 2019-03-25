@@ -3,7 +3,6 @@ export const namespace = 'STORE';
 export const SET_FILTER = `${namespace}/SET_FILTER`;
 export const SET_SEARCH = `${namespace}/SET_SEARCH`;
 export const SET_FILTER_CLEAR = `${namespace}/SET_FILTER_CLEAR`;
-export const SET_SEARCH_CLEAR = `${namespace}/SET_SEARCH_CLEAR`;
 export const SET_LOAD_MORE = `${namespace}/SET_LOAD_MORE`;
 export const LOAD_MORE_STATE = `${namespace}/LOAD_MORE_STATE`;
 
@@ -24,8 +23,4 @@ export const setSearch = (payload: any) => ({
 
 export const setFilterClear = () => ({
   type: SET_FILTER_CLEAR,
-});
-
-export const setSearchClear = () => ({
-  type: SET_SEARCH_CLEAR,
 });
