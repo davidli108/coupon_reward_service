@@ -944,7 +944,7 @@ exports[`Storyshots Components|@Store Featured 1`] = `
       className="c3"
     >
       +
-      -12%
+      12
       % Cash Back
     </p>
   </div>
@@ -1629,81 +1629,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
   flex-direction: column;
 }
 
-.c3 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-flex-basis: 33.33%;
-  -ms-flex-preferred-size: 33.33%;
-  flex-basis: 33.33%;
-  padding: 10px 32px 18px;
-  border: 1px solid #DADDE2;
-  border-radius: 5px;
-  -webkit-flex-basis: 100%;
-  -ms-flex-preferred-size: 100%;
-  flex-basis: 100%;
-  margin: 0 0 15px 0;
-  padding: 10px 28px 18px;
-}
-
-.c3:nth-child(2) {
-  margin: 0 30px;
-}
-
-.c3:nth-child(2) {
-  margin: 0;
-}
-
-.c3:nth-child(3) {
-  display: none;
-}
-
-.c4 {
-  display: block;
-  width: 100%;
-  padding: 9px 0;
-  background: #00CBE9;
-  border: 1px solid #00B4CF;
-  border-radius: 4px;
-  font-weight: bold;
-  line-height: 20px;
-  font-size: 17px;
-  text-align: center;
-  -webkit-letter-spacing: 0.51px;
-  -moz-letter-spacing: 0.51px;
-  -ms-letter-spacing: 0.51px;
-  letter-spacing: 0.51px;
-  color: #FFF;
-  cursor: pointer;
-  -webkit-transition: background 205ms linear;
-  transition: background 205ms linear;
-}
-
-.c4:hover {
-  background: #00B4CF;
-}
-
 .c5 {
-  padding: 24px 0 0;
-  font-weight: 500;
-  line-height: 21px;
-  font-size: 16px;
-  color: #374B5A;
-}
-
-.c8 {
   width: 100%;
   display: -webkit-box;
   display: -webkit-flex;
@@ -1713,28 +1639,28 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-}
-
-.c10 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  width: 100%;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-}
-
-.c6 {
-  margin: 0 0 50px 0;
 }
 
 .c7 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 100%;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c3 {
+  margin: 0 0 50px 0;
+}
+
+.c4 {
   position: relative;
   display: -webkit-box;
   display: -webkit-flex;
@@ -1752,24 +1678,24 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
   flex-direction: column;
 }
 
-.c7:first-child {
+.c4:first-child {
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
 }
 
-.c7:last-child {
+.c4:last-child {
   border-bottom: 1px solid #DADDE2;
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
 }
 
-.c9 {
+.c6 {
   display: block;
   width: 88px;
   margin: 0 17px 0 0;
 }
 
-.c11 {
+.c8 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1784,7 +1710,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
   margin: 0 0 11px 0;
 }
 
-.c12 {
+.c9 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1795,12 +1721,12 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
   flex-direction: column;
 }
 
-.c13 {
+.c10 {
   margin: 0 30px 0 0;
   margin: 0 21px 0 0;
 }
 
-.c14 {
+.c11 {
   display: block;
   font-weight: 500;
   line-height: 23px;
@@ -1808,7 +1734,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
   color: #C2C2C2;
 }
 
-.c15 {
+.c12 {
   font-weight: bold;
   line-height: 21px;
   color: #374B5A;
@@ -1816,7 +1742,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
   margin: 5px 0 0 0;
 }
 
-.c16 {
+.c13 {
   font-weight: 500;
   line-height: 23px;
   font-size: 13px;
@@ -1824,7 +1750,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
   margin: 12px 0 0 0;
 }
 
-.c17 {
+.c14 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1855,11 +1781,11 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
   display: none;
 }
 
-.c17:hover {
+.c14:hover {
   background: #00B4CF;
 }
 
-.c18 {
+.c15 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1895,7 +1821,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
   width: 100%;
 }
 
-.c18:hover {
+.c15:hover {
   background: #00B4CF;
 }
 
@@ -1948,59 +1874,8 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
   }
 }
 
-@media (min-width:25.8125em) {
-  .c3 {
-    margin: 0;
-    padding: 10px 28px 18px;
-  }
-
-  .c3:nth-child(2) {
-    margin: 0 0 0 30px;
-  }
-}
-
-@media (min-width:36em) {
-  .c3 {
-    padding: 10px 14px 18px;
-  }
-
-  .c3:nth-child(2) {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-  }
-
-  .c3:nth-child(3) {
-    display: none;
-  }
-
-  .c3:nth-child(2) {
-    margin: 0 0 0 30px;
-  }
-}
-
 @media (min-width:48em) {
-  .c3 {
-    padding: 10px 32px 18px;
-  }
-}
-
-@media (min-width:62em) {
-  .c3:nth-child(2) {
-    margin: 0 30px;
-  }
-
-  .c3:nth-child(3) {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-  }
-}
-
-@media (min-width:48em) {
-  .c10 {
+  .c7 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -2008,7 +1883,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 }
 
 @media (min-width:25.8125em) {
-  .c7 {
+  .c4 {
     padding: 30px 28px 30px 35px;
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
@@ -2017,49 +1892,49 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 }
 
 @media (min-width:36em) {
-  .c7 {
+  .c4 {
     padding: 10px 7px 10px 10px;
   }
 }
 
 @media (min-width:48em) {
-  .c7 {
+  .c4 {
     padding: 23px 24px 23px 18px;
   }
 }
 
 @media (min-width:62em) {
-  .c7 {
+  .c4 {
     padding: 23px 42px 23px 35px;
   }
 }
 
 @media (min-width:25.8125em) {
-  .c9 {
+  .c6 {
     margin: 0 33px 0 0;
   }
 }
 
 @media (min-width:36em) {
-  .c9 {
+  .c6 {
     margin: 0 23px 0 0;
   }
 }
 
 @media (min-width:48em) {
-  .c9 {
+  .c6 {
     margin: 0 26px 0 0;
   }
 }
 
 @media (min-width:62em) {
-  .c9 {
+  .c6 {
     margin: 0 37px 0 0;
   }
 }
 
 @media (min-width:36em) {
-  .c11 {
+  .c8 {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
@@ -2070,7 +1945,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 }
 
 @media (min-width:48em) {
-  .c11 {
+  .c8 {
     -webkit-align-items: flex-start;
     -webkit-box-align: flex-start;
     -ms-flex-align: flex-start;
@@ -2083,7 +1958,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 }
 
 @media (min-width:62em) {
-  .c11 {
+  .c8 {
     -webkit-flex-basis: auto;
     -ms-flex-preferred-size: auto;
     flex-basis: auto;
@@ -2098,7 +1973,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 }
 
 @media (min-width:25.8125em) {
-  .c12 {
+  .c9 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -2106,7 +1981,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 }
 
 @media (min-width:36em) {
-  .c12 {
+  .c9 {
     margin: 0;
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
@@ -2115,7 +1990,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 }
 
 @media (min-width:48em) {
-  .c12 {
+  .c9 {
     -webkit-flex-basis: auto;
     -ms-flex-preferred-size: auto;
     flex-basis: auto;
@@ -2124,7 +1999,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 }
 
 @media (min-width:62em) {
-  .c12 {
+  .c9 {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
@@ -2136,7 +2011,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 }
 
 @media (min-width:75em) {
-  .c12 {
+  .c9 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -2148,7 +2023,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 }
 
 @media (min-width:36em) {
-  .c13 {
+  .c10 {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -2158,13 +2033,13 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 }
 
 @media (min-width:48em) {
-  .c13 {
+  .c10 {
     margin: 0 0 2px 0;
   }
 }
 
 @media (min-width:62em) {
-  .c13 {
+  .c10 {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -2174,7 +2049,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 }
 
 @media (min-width:75em) {
-  .c13 {
+  .c10 {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
@@ -2183,57 +2058,57 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 }
 
 @media (min-width:36em) {
-  .c14 {
+  .c11 {
     margin: 0 11px 0 0;
   }
 }
 
 @media (min-width:36em) {
-  .c15 {
+  .c12 {
     font-size: 16px;
     margin: 0;
   }
 }
 
 @media (min-width:48em) {
-  .c15 {
+  .c12 {
     font-size: 16px;
   }
 }
 
 @media (min-width:62em) {
-  .c15 {
+  .c12 {
     font-size: 16px;
     margin: 0;
   }
 }
 
 @media (min-width:25.8125em) {
-  .c16 {
+  .c13 {
     margin: 28px 0 0 0;
   }
 }
 
 @media (min-width:36em) {
-  .c16 {
+  .c13 {
     margin: 0 0 5px 0;
   }
 }
 
 @media (min-width:48em) {
-  .c16 {
+  .c13 {
     margin: 0;
   }
 }
 
 @media (min-width:75em) {
-  .c16 {
+  .c13 {
     margin: 0 30px 0 0;
   }
 }
 
 @media (min-width:25.8125em) {
-  .c17 {
+  .c14 {
     display: block;
     -webkit-flex-basis: auto;
     -ms-flex-preferred-size: auto;
@@ -2243,7 +2118,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 }
 
 @media (min-width:48em) {
-  .c17 {
+  .c14 {
     -webkit-flex-basis: 242px;
     -ms-flex-preferred-size: 242px;
     flex-basis: 242px;
@@ -2252,7 +2127,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 }
 
 @media (min-width:62em) {
-  .c17 {
+  .c14 {
     -webkit-flex-basis: 188px;
     -ms-flex-preferred-size: 188px;
     flex-basis: 188px;
@@ -2260,7 +2135,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 }
 
 @media (min-width:75em) {
-  .c17 {
+  .c14 {
     -webkit-flex-basis: 255px;
     -ms-flex-preferred-size: 255px;
     flex-basis: 255px;
@@ -2268,7 +2143,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 }
 
 @media (min-width:25.8125em) {
-  .c18 {
+  .c15 {
     display: block;
     -webkit-flex-basis: auto;
     -ms-flex-preferred-size: auto;
@@ -2278,7 +2153,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 }
 
 @media (min-width:48em) {
-  .c18 {
+  .c15 {
     -webkit-flex-basis: 242px;
     -ms-flex-preferred-size: 242px;
     flex-basis: 242px;
@@ -2287,7 +2162,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 }
 
 @media (min-width:62em) {
-  .c18 {
+  .c15 {
     -webkit-flex-basis: 188px;
     -ms-flex-preferred-size: 188px;
     flex-basis: 188px;
@@ -2295,7 +2170,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 }
 
 @media (min-width:75em) {
-  .c18 {
+  .c15 {
     -webkit-flex-basis: 255px;
     -ms-flex-preferred-size: 255px;
     flex-basis: 255px;
@@ -2303,7 +2178,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 }
 
 @media (min-width:25.8125em) {
-  .c18 {
+  .c15 {
     display: none;
   }
 }
@@ -2331,67 +2206,48 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
   </h3>
   <div
     className="c2"
-  >
+  />
+  <div>
     <div
       className="c3"
     >
-      <a
-        className="c4"
-        href="https://target.com"
-        target="_blank"
-      >
-        Visit Store
-      </a>
-      <p
-        className="c5"
-      >
-        +
-        -12%
-        % Cash Back
-      </p>
-    </div>
-  </div>
-  <div>
-    <div
-      className="c6"
-    >
       <div
-        className="c7"
+        className="c4"
       >
         <div
-          className="c8"
+          className="c5"
         >
           <img
             alt="Target"
-            className="c9"
+            className="c6"
             src={null}
           />
           <div
-            className="c10"
+            className="c7"
           >
             <div
-              className="c11"
+              className="c8"
             >
               <div
-                className="c12"
+                className="c9"
               >
                 <div
-                  className="c13"
+                  className="c10"
                 >
                   <span
-                    className="c14"
+                    className="c11"
                   >
                     Target
                   </span>
                   <p
-                    className="c15"
+                    className="c12"
                   >
                     1000
                      Deals
                   </p>
                 </div>
                 <p
-                  className="c16"
+                  className="c13"
                 >
                   +
                   -12%
@@ -2400,7 +2256,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
               </div>
             </div>
             <a
-              className="c17"
+              className="c14"
               href="https://target.com"
               target="_blank"
             >
@@ -2409,7 +2265,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
           </div>
         </div>
         <a
-          className="c18"
+          className="c15"
           href="https://target.com"
           target="_blank"
         >
@@ -2700,24 +2556,36 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
         className="c7"
         onClick={[Function]}
       >
-        Clothing
+        Accessories
          
         <span
           className="c8"
         >
-          100
+          0
         </span>
       </li>
       <li
         className="c7"
         onClick={[Function]}
       >
-        Cars
+        Beauty
          
         <span
           className="c8"
         >
-          81
+          0
+        </span>
+      </li>
+      <li
+        className="c7"
+        onClick={[Function]}
+      >
+        Clothing
+         
+        <span
+          className="c8"
+        >
+          0
         </span>
       </li>
     </ul>
@@ -2807,110 +2675,36 @@ exports[`Storyshots Components|@Store TagList 1`] = `
     className="c1"
     onClick={[Function]}
   >
-    Clothing
+    Accessories
      
     <span
       className="c2"
     >
-      100
+      0
     </span>
   </li>
   <li
     className="c1"
     onClick={[Function]}
   >
-    Cars
+    Beauty
      
     <span
       className="c2"
     >
-      81
+      0
     </span>
   </li>
-</ul>
-`;
-
-exports[`Storyshots Components|@Store TagListMobile 1`] = `
-.c0 {
-  display: block;
-  position: absolute;
-  left: -1px;
-  top: 44px;
-  width: 100%;
-  background: #FFF;
-  border: 0.5px solid #DADDE2;
-  box-shadow: 0 12px 22px rgba(0,0,0,0.2);
-  border-top: none;
-  border-radius: 5px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  padding: 24px 0 32px;
-  display: block;
-}
-
-.c1 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  margin: 0 0 11px 0;
-  font-size: 13px;
-  color: #C2C2C2;
-  padding: 0 25px;
-}
-
-.c1:last-child {
-  margin: 0;
-}
-
-.c2 {
-  display: block;
-  width: 50px;
-  text-align: center;
-  padding: 3px 0;
-  border: 2px solid #D4D4D4;
-  border-radius: 7px;
-  font-size: 13px;
-  color: #C2C2C2;
-}
-
-@media (min-width:36em) {
-  .c0 {
-    display: none;
-  }
-}
-
-<ul
-  className="c0"
->
   <li
     className="c1"
+    onClick={[Function]}
   >
     Clothing
      
     <span
       className="c2"
     >
-      100
-    </span>
-  </li>
-  <li
-    className="c1"
-  >
-    Cars
-     
-    <span
-      className="c2"
-    >
-      81
+      0
     </span>
   </li>
 </ul>
