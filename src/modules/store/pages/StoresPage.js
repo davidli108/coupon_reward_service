@@ -1,5 +1,5 @@
 // @flow
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import * as R from 'ramda';
@@ -7,15 +7,10 @@ import * as R from 'ramda';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
-import Modal from '../modal/Authentication';
-
 import StoreSidebar from '../components/StoreSidebar';
 import StoreMain from '../components/StoreMain';
 
 import { type Store } from '../models';
-
-import googleIcon from '../assets/googleIcon.png';
-import facebookIcon from '../assets/facebookIcon.png';
 
 import {
   setLoadMore,
@@ -63,14 +58,6 @@ const StoresPage = ({
   onSetSearch,
   onSetFilterClear,
 }: StoresPageProps) => {
-  const [open, setOpen] = useState(false);
-  const openModal = () => {
-    setOpen(!open);
-  };
-  const closeModal = action => {
-    setOpen(!action);
-  };
-
   const onSearch = (search, stores) => {
     if (search === '') return false;
     return R.filter(
@@ -103,100 +90,6 @@ const StoresPage = ({
 
       <StoresPage.Wrapper>
         <StoresPage.Container>
-          <button onClick={openModal}>click</button>
-          <Modal isActive={open} closeModal={closeModal}>
-            <button type="button" onClick={closeModal}>
-              <span>×</span>
-            </button>
-            <h2>Welcome Back</h2>
-            <p>Good to see you again</p>
-            <a href="#!">
-              <img src={facebookIcon} alt="facebook" />
-              Login with Facebook
-            </a>
-            <a href="#!">
-              <img src={googleIcon} alt="google" />
-              Login with Google
-            </a>
-            <Modal.Or>
-              <span>or</span>
-            </Modal.Or>
-            <Modal.Form>
-              <form>
-                <input
-                  name="email"
-                  type="email"
-                  placeholder="Email Address"
-                  required
-                />
-                <input
-                  name="password"
-                  type="password"
-                  placeholder="Password"
-                  required
-                />
-                <button>Login with Email</button>
-              </form>
-              <span>
-                <a href="#!">Forgot Password?</a>
-              </span>
-              <hr />
-              <p>
-                Not A Member?
-                <a href="#!">Join Piggy</a>
-              </p>
-            </Modal.Form>
-          </Modal>
-          {/* <Modal isActive={open} closeModal={closeModal}>
-            <button type="button" onClick={closeModal}>
-              <span>×</span>
-            </button>
-            <h2>Register to Get <br/>Automatic Cash Back</h2>
-            <p>Its that easy</p>
-            <a href="#!">
-              <img src={facebookIcon} alt="facebook" />
-              Login with Facebook
-            </a>
-            <a href="#!">
-              <img src={googleIcon} alt="google" />
-              Login with Google
-            </a>
-            <Modal.Or>
-              <span>or</span>
-            </Modal.Or>
-            <Modal.Form>
-              <form>
-                <input name="email" type="email" placeholder="Email Address" required/>
-                <button>Join Piggy</button>
-              </form>
-              <span>
-                By joining, I agree to be added to daily mailing list and Piggy's
-                <a href="#!">terms of service</a>
-              </span>
-              <hr/>
-              <p>
-                Already A Member? <a href="#!">Login</a>
-              </p>
-            </Modal.Form>
-          </Modal> */}
-          {/* <Modal isActive={open} closeModal={closeModal}>
-            <button type="button" onClick={closeModal}>
-              <span>×</span>
-            </button>
-            <h2>Forgot Your Password?</h2>
-            <p>Forgot Your Password</p>
-            <Modal.Form>
-              <form>
-                <input name="email" type="email" placeholder="Email Address" required/>
-                <button>Send Reset Email</button>
-              </form>
-              <hr/>
-              <p>
-                Send Reset Email <a href="#!">Join Piggy</a>
-              </p>
-            </Modal.Form>
-          </Modal> */}
-
           <StoresPage.Box>
             <StoresPage.Title>{title}</StoresPage.Title>
             <StoreSidebar
