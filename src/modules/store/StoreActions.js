@@ -1,7 +1,6 @@
 // @flow
 export const namespace = 'STORE';
 export const SET_FILTER = `${namespace}/SET_FILTER`;
-export const SET_CATEGORY = `${namespace}/SET_CATEGORY`;
 export const SET_SEARCH = `${namespace}/SET_SEARCH`;
 export const SET_FILTER_CLEAR = `${namespace}/SET_FILTER_CLEAR`;
 export const SET_SEARCH_CLEAR = `${namespace}/SET_SEARCH_CLEAR`;
