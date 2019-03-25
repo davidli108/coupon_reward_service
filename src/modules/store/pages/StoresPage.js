@@ -10,7 +10,7 @@ import breakpoint from 'styled-components-breakpoint';
 import StoreSidebar from '../components/StoreSidebar';
 import StoreMain from '../components/StoreMain';
 
-import { type Store, type Categories } from '../models';
+import { type Store } from '../models';
 
 import {
   setLoadMore,
@@ -22,7 +22,7 @@ import {
 
 import {
   getFilteredStores,
-  getStoreCategories,
+  getFeatured,
   getStoreFilters,
   getStoreSearch,
   getLoadState,
@@ -31,9 +31,10 @@ import {
 } from '../StoreReducer';
 
 type StoresPageProps = {
+  title: string,
   stores: Store[],
   storesAll: Store[],
-  categories: Categories[],
+  featured: Store[],
   filter: string,
   search: string,
   loadState: number,
@@ -46,8 +47,9 @@ type StoresPageProps = {
 };
 
 const StoresPage = ({
+  title,
   stores,
-  categories,
+  featured,
   filter,
   search,
   onLoadMore,
@@ -59,11 +61,15 @@ const StoresPage = ({
   onSetFilterClear,
   onSetSearchClear,
 }: StoresPageProps) => {
-  const onSearch = (search, categories) =>
+  const onSearch = (search, stores) =>
     R.filter(
-      ({ title }) => R.toLower(title).indexOf(R.toLower(search)) > -1,
-      categories,
+      ({ name }) =>
+        R.includes(R.toLower(R.trim(search)), R.toLower(R.trim(name))),
+      stores,
     );
+
+  const onFilterFeatured = stores =>
+    R.filter(({ isFeatured }) => isFeatured === true, stores);
 
   return (
     <React.Fragment>
@@ -74,21 +80,21 @@ const StoresPage = ({
       <StoresPage.Wrapper>
         <StoresPage.Container>
           <StoresPage.Box>
-            <StoresPage.Title>
-              Browse among more than 1000 stores
-            </StoresPage.Title>
+            <StoresPage.Title>{title}</StoresPage.Title>
             <StoreSidebar
               title="Stores"
-              categories={onSearch(search, categories)}
               filter={filter}
               search={search}
+              storesAll={storesAll}
               onSetSearch={onSetSearch}
               onSetFilter={onSetFilter}
               onSetFilterClear={onSetFilterClear}
               onSetSearchClear={onSetSearchClear}
             />
             <StoreMain
-              stores={stores}
+              title={title}
+              stores={onSearch(search, stores)}
+              featured={onFilterFeatured(featured)}
               onLoadMore={onLoadMore}
               loadState={loadState}
               loadToState={loadToState}
@@ -101,11 +107,15 @@ const StoresPage = ({
   );
 };
 
+StoresPage.defaultProps = {
+  title: 'Browse among more than 1000 stores',
+};
+
 const mapStateToProps = state => ({
   stores: getFilteredStores(state),
+  featured: getFeatured(state),
   filter: getStoreFilters(state),
   search: getStoreSearch(state),
-  categories: getStoreCategories(state),
   loadState: getLoadState(state),
   loadToState: getLoadToState(state),
   storesAll: getStoresAll(state),
