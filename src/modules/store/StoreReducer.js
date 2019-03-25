@@ -8,10 +8,9 @@ import udemyIcon from './assets/udemy.png';
 import verizonIcon from './assets/verizon.png';
 import flowersIcon from './assets/flowers.png';
 
-import { type Store, type Categories } from './models';
+import { type Store } from './models';
 import {
   SET_FILTER,
-  SET_CATEGORY,
   SET_FILTER_CLEAR,
   SET_SEARCH_CLEAR,
   SET_SEARCH,
@@ -21,18 +20,21 @@ import {
 
 export const STATE_KEY = 'store';
 
+const FEATURE_ITEMS = 3;
+const STORE_ITEMS = 6;
+const STORE_ITEMS_LOAD = 1;
+
 type StoresState = {
   filter: ?string,
   stores: Store[],
-  categories: Categories[],
   search: string,
   loadState: number,
   loadToState: number,
 };
 
 const initialState: StoresState = {
-  loadState: 6,
-  loadToState: 1,
+  loadState: STORE_ITEMS,
+  loadToState: STORE_ITEMS_LOAD,
   search: '',
   filter: null,
   stores: [
@@ -45,6 +47,7 @@ const initialState: StoresState = {
       url: 'https://target.com',
       couponActive: true,
       category: 'Accessories',
+      isFeatured: true,
     },
     {
       name: 'Welmart',
@@ -55,6 +58,7 @@ const initialState: StoresState = {
       url: 'https://welmart.com',
       couponActive: false,
       category: 'Beauty',
+      isFeatured: false,
     },
     {
       name: 'Macus',
@@ -65,6 +69,7 @@ const initialState: StoresState = {
       url: 'https://macus.com',
       couponActive: true,
       category: 'Clothing',
+      isFeatured: true,
     },
     {
       name: 'Verizon',
@@ -75,6 +80,7 @@ const initialState: StoresState = {
       url: 'https://target.com',
       couponActive: false,
       category: 'Accessories',
+      isFeatured: false,
     },
     {
       name: 'Udemy',
@@ -85,6 +91,7 @@ const initialState: StoresState = {
       url: 'https://macus.com',
       couponActive: true,
       category: 'Clothing',
+      isFeatured: true,
     },
     {
       name: 'FLowers',
@@ -95,6 +102,7 @@ const initialState: StoresState = {
       url: 'https://welmart.com',
       couponActive: false,
       category: 'Beauty',
+      isFeatured: false,
     },
     // LOAD MORE
     {
@@ -106,6 +114,7 @@ const initialState: StoresState = {
       url: 'https://target.com',
       couponActive: false,
       category: 'Accessories',
+      isFeatured: true,
     },
     {
       name: 'Udemy1',
@@ -116,6 +125,7 @@ const initialState: StoresState = {
       url: 'https://macus.com',
       couponActive: true,
       category: 'Clothing',
+      isFeatured: false,
     },
     {
       name: 'FLowers1',
@@ -126,12 +136,8 @@ const initialState: StoresState = {
       url: 'https://welmart.com',
       couponActive: false,
       category: 'Beauty',
+      isFeatured: true,
     },
-  ],
-  categories: [
-    { title: 'Accessories', number: 101 },
-    { title: 'Beauty', number: 200002 },
-    { title: 'Clothing', number: 9991 },
   ],
 };
 
@@ -145,9 +151,6 @@ const StoreReducer = (state: StoresState = initialState, action: Object) => {
     }
     case SET_SEARCH_CLEAR: {
       return R.assoc<Object, Object>('search', '', state);
-    }
-    case SET_CATEGORY: {
-      return R.assoc<Object, Object>('categories', action.payload, state);
     }
     case SET_SEARCH: {
       return R.assoc<Object, Object>('search', action.payload, state);
@@ -166,14 +169,12 @@ const StoreReducer = (state: StoresState = initialState, action: Object) => {
 
 export const getLoadState = R.path<number>([STATE_KEY, 'loadState']);
 export const getLoadToState = R.path<number>([STATE_KEY, 'loadToState']);
-export const getStoreCategories = R.path<Categories[]>([
-  STATE_KEY,
-  'categories',
-]);
+
 export const getStoreSearch = R.path<string>([STATE_KEY, 'search']);
 export const getStoreFilters = R.path<string>([STATE_KEY, 'filter']);
 export const getStores = R.path<Store[]>([STATE_KEY, 'stores']);
 export const getStoresAll = R.path<Store[]>([STATE_KEY, 'stores']);
+
 export const getFilteredStores = (state: Object) => {
   const filter = getStoreFilters(state);
   const stores = getStores(state);
@@ -186,6 +187,19 @@ export const getFilteredStores = (state: Object) => {
       if (!a.newStore && b.newStore) return 1;
       return 0;
     }),
+    R.filter(store =>
+      filter ? R.prop<string, Object>('category', store) === filter : true,
+    ),
+  )(stores);
+};
+
+export const getFeatured = (state: Object) => {
+  const filter = getStoreFilters(state);
+  const stores = getStores(state);
+
+  return R.compose(
+    R.slice(0, FEATURE_ITEMS),
+    R.filter(R.prop('isFeatured')),
     R.filter(store =>
       filter ? R.prop<string, Object>('category', store) === filter : true,
     ),
