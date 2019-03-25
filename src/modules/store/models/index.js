@@ -8,9 +8,17 @@ export type Store = {
   logo: string,
   url: string,
   couponActive: boolean,
+  isFeatured: boolean,
+  category: string,
 };
 
 export type Categories = {
   title: string,
   number: number,
+};
+
+export const CATEGORIES = {
+  ACCESSORIES: 'Accessories',
+  BEAUTY: 'Beauty',
+  CLOTHING: 'Clothing',
 };
