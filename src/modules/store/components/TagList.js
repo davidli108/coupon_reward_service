@@ -1,35 +1,49 @@
 // @flow
+import * as R from 'ramda';
 import React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
-import { type Categories } from '../models';
+import { type Store, CATEGORIES } from '../models';
 type TagListProps = {
-  categories: Categories[],
   filter: string,
+  storesAll: Store[],
   onSetFilter: Function,
   toggled: boolean,
 };
 
 const TagList = ({
-  categories,
+  storesAll,
   onSetFilter,
   filter,
+  countStores,
   toggled,
 }: TagListProps) => (
   <TagList.List toggled={toggled}>
-    {categories.map(({ title, number }) => (
-      <TagList.Item
-        key={`tag_item_${title}`}
-        filterActive={filter === title}
-        onClick={onSetFilter.bind(null, title)}
-      >
-        {title}{' '}
-        <TagList.Numb filterActive={filter === title}>{number}</TagList.Numb>
-      </TagList.Item>
-    ))}
+    {R.compose(
+      R.map(category => (
+        <TagList.Item
+          key={`tag_item_${category}`}
+          filterActive={filter === category}
+          onClick={onSetFilter.bind(null, category)}
+        >
+          {category}{' '}
+          <TagList.Numb filterActive={filter === category}>
+            {R.compose(
+              R.length,
+              R.filter(store => category === R.prop('category', store)),
+            )(storesAll)}
+          </TagList.Numb>
+        </TagList.Item>
+      )),
+      R.values,
+    )(CATEGORIES)}
   </TagList.List>
 );
+
+TagList.defaultProps = {
+  storesAll: [],
+};
 
 TagList.List = styled.ul`
   padding: 25px 0 0 0;

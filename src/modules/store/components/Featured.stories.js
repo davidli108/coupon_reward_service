@@ -11,14 +11,16 @@ storiesOf('Components|@Store', module)
   .addDecorator(StyledComponentsDecorator)
   .add('Featured', () => (
     <Featured
-      stores={[
+      featured={[
         {
           name: 'Target',
-          newStore: false,
-          deals: 1000,
-          offer: '-12%',
-          logo: null,
+          newStore: true,
+          deals: 258456,
+          offer: '12',
           url: 'https://target.com',
+          couponActive: true,
+          category: 'Accessories',
+          isFeatured: true,
         },
       ]}
     />

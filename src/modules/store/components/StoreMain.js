@@ -9,7 +9,9 @@ import Featured from './Featured';
 import { type Store } from '../models';
 
 type StoresListProps = {
+  title: string,
   stores: Store[],
+  featured: Store[],
   storesAll: Store[],
   loadState: number,
   loadToState: number,
@@ -17,7 +19,9 @@ type StoresListProps = {
 };
 
 const StoreMain = ({
+  title,
   stores,
+  featured,
   onLoadMore,
   loadState,
   loadToState,
@@ -25,7 +29,7 @@ const StoreMain = ({
 }: StoresListProps) => (
   <StoreMain.Wrapper>
     <StoreMain.Title>Browse among more than 1000 stores</StoreMain.Title>
-    <Featured stores={stores} />
+    <Featured featured={featured} />
     <StoreList
       stores={stores}
       onLoadMore={onLoadMore}
@@ -38,6 +42,8 @@ const StoreMain = ({
 
 StoreMain.defaultProps = {
   stores: [],
+  featured: [],
+  storesAll: [],
 };
 
 StoreMain.Wrapper = styled.div`

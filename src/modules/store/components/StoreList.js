@@ -70,6 +70,7 @@ const StoreList = ({
 
 StoreList.defaultProps = {
   stores: [],
+  storesAll: [],
 };
 
 StoreList.Box = styled.div`

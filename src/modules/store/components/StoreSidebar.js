@@ -3,15 +3,14 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
+import { type Store } from '../models';
+
 import Search from './Search';
 import TagList from './TagList';
 
 type StoreSidebarProps = {
-  categories: {
-    title: string,
-    number: number,
-  }[],
   title: string,
+  storesAll: Store[],
   filter: string,
   search: string,
   onSetFilter: Function,
@@ -22,9 +21,9 @@ type StoreSidebarProps = {
 
 const StoreSidebar = ({
   title,
-  categories,
   filter,
   search,
+  storesAll,
   onSetFilter,
   onSetFilterClear,
   onSetSearchClear,
@@ -53,8 +52,8 @@ const StoreSidebar = ({
           </StoreSidebar.ClearFilter>
         )}
         <TagList
-          categories={categories}
           onSetFilter={onSetFilter}
+          storesAll={storesAll}
           toggled={toggled}
           filter={filter}
           search={search}
@@ -66,6 +65,7 @@ const StoreSidebar = ({
 
 StoreSidebar.defaultProps = {
   categories: [],
+  storesAll: [],
 };
 
 StoreSidebar.Wrapper = styled.div`
@@ -160,6 +160,7 @@ StoreSidebar.ClearFilter = styled.button`
   font-size: 13px;
   padding: 3px 5px;
   border-radius: 3px;
+  outline: none;
   border: 1px solid ${props => props.theme.colors.blueDark};
   background: ${props => props.theme.colors.blue};
   color: ${props => props.theme.colors.white};
