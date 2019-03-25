@@ -3,41 +3,19 @@ import * as React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
+import SignInModal from '../../modules/auth/components/SignInModal';
+import SignUpModal from '../../modules/auth/components/SignUpModal';
+import ResetPasswordModal from '../../modules/auth/components/ResetPasswordModal';
+
 import BurgerButton from './BurgerButton';
 import HeaderItem from './HeaderItem';
 import logo from './logo.svg';
 
-const items = [
-  {
-    bgColor: '#40c8e5',
-    hoverBgColor: '#34a6bf',
-    title: 'Coupons',
-    link: '/coupons',
-  },
-  {
-    bgColor: '#40c8e5',
-    hoverBgColor: '#34a6bf',
-    title: 'Stores',
-    link: '/stores',
-  },
-  {
-    bgColor: '#3ab7d1',
-    hoverBgColor: '#ef65a0',
-    title: 'Get the App!',
-    redirect:
-      'https://chrome.google.com/webstore/detail/piggy-automatic-coupons-c/hfapbcheiepjppjbnkphkmegjlipojba?hl=en',
-  },
-  {
-    bgColor: '#34a6bf',
-    hoverBgColor: '#29899e',
-    title: 'Login',
-  },
-  {
-    bgColor: '#34a6bf',
-    hoverBgColor: '#29899e',
-    title: 'Create an Account',
-  },
-];
+const modal = {
+  modalSignIn: 'modalSignIn',
+  modalSignUp: 'modalSignUp',
+  modalResetPassword: 'modalResetPassword',
+};
 
 type renderHeaderItemsProps = {
   bgColor?: string,
@@ -45,7 +23,7 @@ type renderHeaderItemsProps = {
   title: string,
   link?: string,
   redirect?: string,
-  onClick?: void,
+  onClick?: Function,
 };
 
 const renderHeaderItems = (items: Array<renderHeaderItemsProps>) =>
@@ -64,7 +42,41 @@ const renderHeaderItems = (items: Array<renderHeaderItemsProps>) =>
 
 const Header = () => {
   const [isOpen, setOpen] = React.useState(false);
+  const [currentModal, setCurrentModal] = React.useState(null);
 
+  const items = [
+    {
+      bgColor: '#40c8e5',
+      hoverBgColor: '#34a6bf',
+      title: 'Coupons',
+      link: '/coupons',
+    },
+    {
+      bgColor: '#40c8e5',
+      hoverBgColor: '#34a6bf',
+      title: 'Stores',
+      link: '/stores',
+    },
+    {
+      bgColor: '#3ab7d1',
+      hoverBgColor: '#ef65a0',
+      title: 'Get the App!',
+      redirect:
+        'https://chrome.google.com/webstore/detail/piggy-automatic-coupons-c/hfapbcheiepjppjbnkphkmegjlipojba?hl=en',
+    },
+    {
+      bgColor: '#34a6bf',
+      hoverBgColor: '#29899e',
+      title: 'Login',
+      onClick: () => setCurrentModal(modal.modalSignIn),
+    },
+    {
+      bgColor: '#34a6bf',
+      hoverBgColor: '#29899e',
+      title: 'Create an Account',
+      onClick: () => setCurrentModal(modal.modalSignUp),
+    },
+  ];
   return (
     <Header.Wrapper>
       <HeaderItem link="/">
@@ -81,6 +93,38 @@ const Header = () => {
         </div>
       </Header.SlidingMenu>
       <Header.Overlay isOpen={isOpen} onClick={() => setOpen(false)} />
+
+      {currentModal === modal.modalSignIn && (
+        <SignInModal
+          title="Welcome Back"
+          subTitle="Good to see you again"
+          submitLabel="Login with Email"
+          isActive={true}
+          onModalToReset={() => setCurrentModal(modal.modalResetPassword)}
+          onModalToSignUp={() => setCurrentModal(modal.modalSignUp)}
+          closeModal={setCurrentModal.bind(null)}
+        />
+      )}
+      {currentModal === modal.modalSignUp && (
+        <SignUpModal
+          title="Register to Get Automatic Cash Back"
+          subTitle="Its that easy"
+          submitLabel="Join Piggy"
+          isActive={true}
+          onModalToSignIn={() => setCurrentModal(modal.modalSignIn)}
+          closeModal={setCurrentModal.bind(null)}
+        />
+      )}
+      {currentModal === modal.modalResetPassword && (
+        <ResetPasswordModal
+          title="Forgot Your Password?"
+          subTitle="Forgot Your Password"
+          submitLabel="Send Reset Email"
+          isActive={true}
+          onModalToSignUp={() => setCurrentModal(modal.modalSignUp)}
+          closeModal={setCurrentModal.bind(null)}
+        />
+      )}
     </Header.Wrapper>
   );
 };
