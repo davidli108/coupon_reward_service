@@ -7,7 +7,7 @@ import * as R from 'ramda';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
-import Modal from '../Modal/Modal';
+import Modal from '../modal/Authentication';
 
 import StoreSidebar from '../components/StoreSidebar';
 import StoreMain from '../components/StoreMain';
