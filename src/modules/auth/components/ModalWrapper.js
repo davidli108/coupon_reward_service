@@ -46,7 +46,7 @@ ModalWrapper.Overlay = styled.div`
   position: absolute;
   left: 0;
   top: 0;
-  background: rgba(0, 0, 0, 0.4);
+  background: ${props => props.theme.colors.blackAlphaDark};
   height: 100%;
   width: 100%;
 `;
@@ -68,11 +68,10 @@ ModalWrapper.Content = styled.div`
   position: relative;
   top: ${props => (props.isActive ? '0px' : '-100vh')};
   padding: 2rem 3rem;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-  background-color: #fff;
+  box-shadow: 0 5px 15px ${props => props.theme.colors.blackAlphaDark};
+  background-color: ${props => props.theme.colors.white};
   background-clip: padding-box;
-  border: 1px solid #999;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: 1px solid ${props => props.theme.colors.blackAlpha};
   border-radius: 6px;
   outline: 0;
 
@@ -92,6 +91,7 @@ ModalWrapper.Content = styled.div`
     font-size: 2rem;
     border: none;
     background: transparent;
+    color: ${props => props.theme.colors.black};
     outline: none;
     opacity: 0.2;
     cursor: pointer;
@@ -103,8 +103,9 @@ ModalWrapper.Content = styled.div`
 
   > h2 {
     text-align: center;
-    margin: 1rem 0;
-    color: #434343;
+    max-width: 310px;
+    margin: 1rem auto;
+    color: ${props => props.theme.colors.blackGray};
     font-size: 1.75rem;
 
     ${breakpoint('xs')`

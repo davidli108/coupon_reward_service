@@ -100,8 +100,8 @@ const Header = () => {
           subTitle="Good to see you again"
           submitLabel="Login with Email"
           isActive={true}
-          onModalToReset={() => setCurrentModal(modal.modalResetPassword)}
-          onModalToSignUp={() => setCurrentModal(modal.modalSignUp)}
+          onRoutModalReset={() => setCurrentModal(modal.modalResetPassword)}
+          onRoutModal={() => setCurrentModal(modal.modalSignUp)}
           closeModal={setCurrentModal.bind(null)}
         />
       )}
@@ -110,8 +110,9 @@ const Header = () => {
           title="Register to Get Automatic Cash Back"
           subTitle="Its that easy"
           submitLabel="Join Piggy"
+          linkTerms="https://www.joinpiggy.com/terms"
           isActive={true}
-          onModalToSignIn={() => setCurrentModal(modal.modalSignIn)}
+          onRoutModal={() => setCurrentModal(modal.modalSignIn)}
           closeModal={setCurrentModal.bind(null)}
         />
       )}
@@ -121,7 +122,7 @@ const Header = () => {
           subTitle="Forgot Your Password"
           submitLabel="Send Reset Email"
           isActive={true}
-          onModalToSignUp={() => setCurrentModal(modal.modalSignUp)}
+          onRoutModal={() => setCurrentModal(modal.modalSignUp)}
           closeModal={setCurrentModal.bind(null)}
         />
       )}

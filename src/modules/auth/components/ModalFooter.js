@@ -5,16 +5,21 @@ import breakpoint from 'styled-components-breakpoint';
 
 type ModalFooterProps = {
   footerText: string,
-  onModalToSignUp: Function,
+  textButton: string,
+  onRoutModal: Function,
 };
 
-const ModalFooter = ({ footerText, onModalToSignUp }: ModalFooterProps) => (
+const ModalFooter = ({
+  footerText,
+  onRoutModal,
+  textButton,
+}: ModalFooterProps) => (
   <Fragment>
     <ModalFooter.Border />
     <ModalFooter.Content>
       <ModalFooter.Text>{footerText}</ModalFooter.Text>
-      <ModalFooter.Button onClick={onModalToSignUp}>
-        Join Piggy
+      <ModalFooter.Button onClick={onRoutModal}>
+        {textButton}
       </ModalFooter.Button>
     </ModalFooter.Content>
   </Fragment>
@@ -22,7 +27,7 @@ const ModalFooter = ({ footerText, onModalToSignUp }: ModalFooterProps) => (
 
 ModalFooter.Border = styled.hr`
   border: 0;
-  border-top: 1px solid #eee;
+  border-top: 1px solid ${props => props.theme.colors.blackAlpha};
 
   ${breakpoint('xs')`
     margin-top: 10px;
@@ -47,10 +52,11 @@ ModalFooter.Text = styled.p`
 `;
 
 ModalFooter.Button = styled.button`
-  color: #337ab7;
+  color: ${props => props.theme.colors.blueExDark};
   border: none;
   cursor: pointer;
   background: transparent;
+  outline: none;
 
   &:hover {
     text-decoration: underline;

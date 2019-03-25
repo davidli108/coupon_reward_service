@@ -6,14 +6,25 @@ import breakpoint from 'styled-components-breakpoint';
 type ModalInputProps = {
   name: string,
   type: string,
+  value: string,
+  onChange: Function,
   placeholder: string,
   required: boolean,
 };
 
-const ModalInput = ({ name, type, placeholder, required }: ModalInputProps) => (
+const ModalInput = ({
+  name,
+  value,
+  onChange,
+  type,
+  placeholder,
+  required,
+}: ModalInputProps) => (
   <ModalInput.Field
     name={name}
     type={type}
+    value={value}
+    onChange={onChange}
     placeholder={placeholder}
     required
   />
@@ -22,9 +33,9 @@ const ModalInput = ({ name, type, placeholder, required }: ModalInputProps) => (
 ModalInput.Field = styled.input`
   display: block;
   margin-bottom: 1rem;
-  border: 1px solid #e0dfd7;
+  border: 1px solid ${props => props.theme.colors.gray};
   border-radius: 3px;
-  color: #242628;
+  color: ${props => props.theme.colors.blackGray};
   padding: 10px 10px;
   font-size: 14px;
   transition: border-color 0.15s linear;
@@ -38,7 +49,7 @@ ModalInput.Field = styled.input`
   ${breakpoint('sx')`
     margin-bottom: 1rem;
     padding: 10px 10px;
-`}
+  `}
 `;
 
 export default ModalInput;

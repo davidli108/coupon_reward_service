@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
@@ -14,8 +14,8 @@ type SignInModalProps = {
   submitLabel: string,
   isActive: boolean,
   closeModal: Function,
-  onModalToSignUp: Function,
-  onModalToReset: Function,
+  onRoutModal: Function,
+  onRoutModalReset: Function,
 };
 
 const SignInModal = ({
@@ -24,30 +24,55 @@ const SignInModal = ({
   submitLabel,
   isActive,
   closeModal,
-  onModalToSignUp,
-  onModalToReset,
-}: SignInModalProps) =>
-  isActive && (
+  onRoutModal,
+  onRoutModalReset,
+}: SignInModalProps) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleFormSubmit = e => {
+    e.preventDefault();
+    console.log({ email, password });
+    setEmail('');
+    setPassword('');
+  };
+
+  const onAuthGoogle = () => {
+    console.log('Auth Google');
+  };
+
+  const onAuthFacebook = () => {
+    console.log('Auth Facebook');
+  };
+
+  return (
     <ModalWrapper
       title={title}
       subTitle={subTitle}
       isActive={isActive}
       closeModal={closeModal}
     >
-      <ModalSocial />
+      <ModalSocial
+        onAuthGoogle={onAuthGoogle}
+        onAuthFacebook={onAuthFacebook}
+      />
       <SignInModal.Or>
         <span>or</span>
       </SignInModal.Or>
       <div>
-        <SignInModal.Form>
+        <SignInModal.Form onSubmit={handleFormSubmit}>
           <ModalInput
             name="email"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
             type="email"
             placeholder="Email Address"
             required
           />
           <ModalInput
             name="password"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
             type="password"
             placeholder="Password"
             required
@@ -55,15 +80,17 @@ const SignInModal = ({
           <button>{submitLabel}</button>
         </SignInModal.Form>
         <SignInModal.PreFooter>
-          <button onClick={onModalToReset}>Forgot Password?</button>
+          <button onClick={onRoutModalReset}>Forgot Password?</button>
         </SignInModal.PreFooter>
         <ModalFooter
           footerText="Not A Member?"
-          onModalToSignUp={onModalToSignUp}
+          textButton="Join Piggy"
+          onRoutModal={onRoutModal}
         />
       </div>
     </ModalWrapper>
   );
+};
 
 SignInModal.Or = styled.div`
   position: relative;
@@ -84,7 +111,7 @@ SignInModal.Or = styled.div`
     display: block;
     position: relative;
     margin: 0 auto;
-    background: #fff;
+    background: ${props => props.theme.colors.white};
     text-align: center;
     z-index: 3;
   }
@@ -98,7 +125,7 @@ SignInModal.Or = styled.div`
     top: 50%;
     left: 50%;
     height: 2px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid ${props => props.theme.colors.blackAlpha};
   }
 `;
 
@@ -106,13 +133,13 @@ SignInModal.Form = styled.form`
   display: flex;
   flex-direction: column;
 
-  > button {
+  button {
     display: block;
     padding: 1rem;
     width: 100%;
-    background-color: #ef65a0;
-    border-color: #ee5797;
-    color: #fff;
+    background-color: ${props => props.theme.colors.pink};
+    border-color: ${props => props.theme.colors.pinkDark};
+    color: ${props => props.theme.colors.white};
     transition: background 0.5s ease;
     border-radius: 4px;
     font-size: 14px;
@@ -120,7 +147,7 @@ SignInModal.Form = styled.form`
     outline: none;
 
     &:hover {
-      background-color: #ee5797;
+      background-color: ${props => props.theme.colors.pinkDark};
     }
 
     ${breakpoint('xs')`
@@ -129,7 +156,7 @@ SignInModal.Form = styled.form`
 
     ${breakpoint('sx')`
       padding: 1rem;
-`}
+  `}
   }
 `;
 
@@ -147,11 +174,12 @@ SignInModal.PreFooter = styled.span`
     margin-top: 2rem;
   `}
 
-  > button {
-    color: #337ab7;
+  button {
+    color: ${props => props.theme.colors.blueExDark};
     border: none;
     cursor: pointer;
     background: transparent;
+    outline: none;
 
     &:hover {
       text-decoration: underline;
