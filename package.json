@@ -169,5 +169,6 @@
     "commitizen": {
       "path": "cz-conventional-changelog"
     }
-  }
+  },
+  "proxy": "http://joinpiggy.local:8080/"
 }
