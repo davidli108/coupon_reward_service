@@ -12,14 +12,19 @@ type FeaturedProps = {
 const Featured = ({ featured }: FeaturedProps) => (
   <Featured.Wrapper>
     {featured.map(
-      ({ store_name, cashback_text, offer_img, offer_id, offer_link }) => (
-        <Featured.Item key={offer_id}>
+      ({ store_name, cashback_text, offer_img, store_id, offer_link }) => (
+        <Featured.Item key={store_id}>
           {offer_img && (
             <Featured.WrapperImage>
-              <Featured.Image src={offer_img} alt={store_name} />
+              <Featured.Image
+                src={`http://d2umvgb8hls1bt.cloudfront.net${offer_img}`}
+                alt={store_name}
+              />
             </Featured.WrapperImage>
           )}
-          <Featured.Link href={offer_link}>Visit Store</Featured.Link>
+          <Featured.Link href={offer_link} target="_blank">
+            Visit Store
+          </Featured.Link>
           <Featured.Cash>{cashback_text}</Featured.Cash>
         </Featured.Item>
       ),

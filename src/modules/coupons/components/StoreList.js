@@ -6,18 +6,23 @@ import breakpoint from 'styled-components-breakpoint';
 
 import type { StoreListProps } from '../models/CouponsPage';
 
-const StoreList = ({ stores }: StoreListProps) => {
-  return (
-    <StoreList.Wrapper>
-      {stores.map(store => (
-        <StoreList.Item key={`store_${store.offer_id}`}>
-          <img src={store.store_logo} alt={store.store_name} />
-          <p>{store.discount_print}</p>
-        </StoreList.Item>
-      ))}
-    </StoreList.Wrapper>
-  );
-};
+const StoreList = ({ stores }: StoreListProps) => (
+  <StoreList.Wrapper>
+    {stores.map(store => (
+      <StoreList.Item
+        key={`store_${store.offer_id}`}
+        href={store.offer_link}
+        target="_blank"
+      >
+        <img
+          src={`http://d2umvgb8hls1bt.cloudfront.net${store.store_logo}`}
+          alt={store.store_name}
+        />
+        <p>{store.discount_print}</p>
+      </StoreList.Item>
+    ))}
+  </StoreList.Wrapper>
+);
 
 StoreList.Wrapper = styled.div`
   display: flex;
@@ -26,9 +31,9 @@ StoreList.Wrapper = styled.div`
   margin-top: 20px;
   overflow-x: scroll;
 
-  height: 130px;
+  height: 140px;
 
-  > div {
+  > a {
     padding: 5px;
     margin-right: 15px;
   }
@@ -39,9 +44,10 @@ StoreList.Wrapper = styled.div`
   `}
 `;
 
-StoreList.Item = styled.div`
+StoreList.Item = styled.a`
   display: flex;
   flex-flow: column nowrap;
+  box-sizing: border-box;
 
   background: #fff;
 

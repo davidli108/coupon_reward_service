@@ -33,13 +33,6 @@ const SignUpModal = ({
     console.log({ email });
     setEmail('');
   };
-  const onAuthGoogle = () => {
-    console.log('Auth Google');
-  };
-
-  const onAuthFacebook = () => {
-    console.log('Auth Facebook');
-  };
 
   return (
     isActive && (
@@ -49,10 +42,7 @@ const SignUpModal = ({
         isActive={isActive}
         closeModal={closeModal}
       >
-        <ModalSocial
-          onAuthGoogle={onAuthGoogle}
-          onAuthFacebook={onAuthFacebook}
-        />
+        <ModalSocial />
         <SignUpModal.Or>
           <span>or</span>
         </SignUpModal.Or>

@@ -1,31 +1,30 @@
 //@flow
-import * as R from 'ramda';
 import * as React from 'react';
 import styled from 'styled-components';
 import { IoIosHeartEmpty, IoIosHeart } from 'react-icons/io';
 import { FiShare2 } from 'react-icons/fi';
 import breakpoint from 'styled-components-breakpoint';
 
-import type { RandomStore } from '../models/CouponsPage';
+import type { Store } from '../models/CouponsPage';
 
-const TodaysFeaturedCoupon = ({ randomStore }: RandomStore) => {
+type TodaysFeaturedCouponProps = {
+  store: Store,
+};
+
+const TodaysFeaturedCoupon = ({ store }: TodaysFeaturedCouponProps) => {
   const [isFeaturedCouponLiked, setFeaturedCouponLike] = React.useState('');
-
-  const store_logo = R.propOr('', 'store_logo', randomStore);
-  const store_name = R.propOr('', 'store_name', randomStore);
-  const discount = R.propOr('', 'discount', randomStore);
-  const discount_print = R.propOr('', 'discount_print', randomStore);
-  const ref_text = R.propOr('', 'ref_text', randomStore);
-
   const handleFeaturedCouponLikeToggler = () =>
     setFeaturedCouponLike(!isFeaturedCouponLiked);
 
   return (
     <TodaysFeaturedCoupon.Wrapper>
-      <h2>Today's Featured Coupon From {store_name}'s</h2>
+      <h2>Today's Featured Coupon From {store.store_name}'s</h2>
       <TodaysFeaturedCoupon.Content>
         <TodaysFeaturedCoupon.LogoControlsWrapper>
-          <TodaysFeaturedCoupon.Logo src={store_logo} alt={store_name} />
+          <TodaysFeaturedCoupon.Logo
+            src={`http://d2umvgb8hls1bt.cloudfront.net${store.store_logo}`}
+            alt={store.store_name}
+          />
           <TodaysFeaturedCoupon.Controls isLiked={isFeaturedCouponLiked}>
             {isFeaturedCouponLiked ? (
               <IoIosHeart onClick={handleFeaturedCouponLikeToggler} />
@@ -38,16 +37,18 @@ const TodaysFeaturedCoupon = ({ randomStore }: RandomStore) => {
 
         <TodaysFeaturedCoupon.OfferingWrapper>
           <TodaysFeaturedCoupon.Offering>
-            <span>{discount}% OFF</span>
-            <span>up to {discount_print}k</span>
+            <span>{store.discount}% OFF</span>
+            <span>up to {store.discount_print}</span>
           </TodaysFeaturedCoupon.Offering>
         </TodaysFeaturedCoupon.OfferingWrapper>
 
         <TodaysFeaturedCoupon.DescriptionButtonWrapper>
           <TodaysFeaturedCoupon.Description>
-            {ref_text}
+            {store.ref_text}
           </TodaysFeaturedCoupon.Description>
-          <TodaysFeaturedCoupon.Button>View Deal</TodaysFeaturedCoupon.Button>
+          <TodaysFeaturedCoupon.Button href={store.offer_link} target="_blank">
+            View Deal
+          </TodaysFeaturedCoupon.Button>
         </TodaysFeaturedCoupon.DescriptionButtonWrapper>
       </TodaysFeaturedCoupon.Content>
     </TodaysFeaturedCoupon.Wrapper>
@@ -358,7 +359,10 @@ TodaysFeaturedCoupon.Description = styled.p`
   `}
 `;
 
-TodaysFeaturedCoupon.Button = styled.button`
+TodaysFeaturedCoupon.Button = styled.a`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: #00cbe9;
   border: 1px solid #00b4cf;
   box-sizing: border-box;

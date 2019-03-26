@@ -14,7 +14,10 @@ const SearchStoreItem = ({ searchResult }: SearchStoreItemProps) =>
       {searchResult
         ? searchResult.map(item => (
             <SearchStoreItem.Item key={`store_item_${item.offer_id}`}>
-              <img src={item.store_logo} alt={item.store_name} />
+              <img
+                src={`http://d2umvgb8hls1bt.cloudfront.net${item.store_logo}`}
+                alt={item.store_name}
+              />
               <div>
                 <h3>{item.store_name}</h3>
                 <p>{item.discount_print}</p>

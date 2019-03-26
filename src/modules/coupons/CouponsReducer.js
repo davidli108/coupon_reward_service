@@ -132,12 +132,13 @@ const CouponsReducer = (
 
       return R.assoc('loadState', loadState + count, state);
     }
-    case GET_COUPONS: {
-      const offersData = R.compose(R.pathOr([], ['payload', 'offers_data']))(
+    case `${GET_COUPONS}_SUCCESS`: {
+      const offersData = R.pathOr(
+        [],
+        ['payload', 'data', 'offers_data'],
         action,
       );
-
-      return R.compose(R.assoc<Object, Object>('stores', offersData))(state);
+      return R.assoc<Object, Object>('stores', offersData, state);
     }
     case SET_DEALS_FILTER: {
       return R.assoc<Object, Object>(

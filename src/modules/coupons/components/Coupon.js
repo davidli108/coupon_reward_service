@@ -8,11 +8,12 @@ import type { Deal as DealModel } from '../models/CouponsPage';
 const zeroPadStars = val => String(val).padStart(2, '0');
 
 const Coupon = ({
-  store_logo,
   discount,
-  show_exp_date,
-  store_name,
   discount_print,
+  offer_link,
+  show_exp_date,
+  store_logo,
+  store_name,
 }: DealModel) => {
   return (
     <Coupon.Wrapper>
@@ -21,7 +22,10 @@ const Coupon = ({
         <Coupon.Circle position="right" />
       </Coupon.BorderWrapper>
       <Coupon.Content>
-        <Coupon.StoreLogo src={store_logo} alt={store_name} />
+        <Coupon.StoreLogo
+          src={`http://d2umvgb8hls1bt.cloudfront.net${store_logo}`}
+          alt={store_name}
+        />
         <Coupon.Discount>
           <span>{zeroPadStars(discount)}</span>
           <span>off</span>
@@ -29,7 +33,9 @@ const Coupon = ({
         <Coupon.ExpDate>
           <p>{show_exp_date}</p>
         </Coupon.ExpDate>
-        <Coupon.ViewDealButton>View Deal</Coupon.ViewDealButton>
+        <Coupon.ViewDealButton href={offer_link} target="_blank">
+          View Deal
+        </Coupon.ViewDealButton>
         <Coupon.CashbackPercent>{discount_print}</Coupon.CashbackPercent>
       </Coupon.Content>
     </Coupon.Wrapper>
@@ -157,7 +163,7 @@ Coupon.ExpDate = styled.div`
   }
 `;
 
-Coupon.ViewDealButton = styled.div`
+Coupon.ViewDealButton = styled.a`
   display: flex;
   justify-content: center;
   align-items: center;

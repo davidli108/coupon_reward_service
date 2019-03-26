@@ -39,7 +39,7 @@ const CouponsPage = ({ stores, storesAll, onStore }) => {
           search={search}
         />
       </CouponsPage.SearchWrapper>
-      <TodaysFeaturedCoupon randomStore={stores[0]} />
+      {Boolean(stores.length) && <TodaysFeaturedCoupon store={stores[0]} />}
       <StoreList stores={stores} />
       <Content />
     </CouponsPage.Wrapper>

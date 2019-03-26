@@ -1,5 +1,6 @@
 // @flow
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
@@ -25,7 +26,7 @@ const StoreList = ({
   <div>
     <StoreList.StoreContainer>
       {stores.length === 0
-        ? 'no store'
+        ? null
         : stores.map(
             ({
               store_name,
@@ -37,7 +38,10 @@ const StoreList = ({
               <StoreList.StoreItem key={`list_item_${store_name}_${offer_id}`}>
                 {/* {offer_success_print && <StoreList.StoreNew>New Store</StoreList.StoreNew>} */}
                 <StoreList.Box>
-                  <StoreList.Image src={store_logo} alt={store_name} />
+                  <StoreList.Image
+                    src={`http://d2umvgb8hls1bt.cloudfront.net${store_logo}`}
+                    alt={store_name}
+                  />
                   <StoreList.ContentWrap>
                     <StoreList.Content>
                       <StoreList.Info>
@@ -56,12 +60,12 @@ const StoreList = ({
                     </StoreList.Coupons>
                   )} */}
                     </StoreList.Content>
-                    <StoreList.Link href={store_page_link}>
+                    <StoreList.Link to={store_page_link}>
                       Visit Store
                     </StoreList.Link>
                   </StoreList.ContentWrap>
                 </StoreList.Box>
-                <StoreList.LinkMobile href={store_page_link}>
+                <StoreList.LinkMobile to={store_page_link}>
                   Visit Store
                 </StoreList.LinkMobile>
               </StoreList.StoreItem>
@@ -366,7 +370,7 @@ StoreList.Coupons = styled.p`
   `}
 `;
 
-StoreList.Link = styled.a`
+StoreList.Link = styled(Link)`
   display: flex;
   justify-content: center;
   flex-basis: 184px;

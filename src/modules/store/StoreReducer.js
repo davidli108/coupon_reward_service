@@ -34,15 +34,15 @@ const initialState: StoresState = {
 
 const StoreReducer = (state: StoresState = initialState, action: Object) => {
   switch (action.type) {
-    case GET_STORE: {
+    case `${GET_STORE}_SUCCESS`: {
       const offersData = R.compose(
         // R.indexBy(R.prop('offer_id')),
-        R.pathOr([], ['payload', 'offers_data']),
+        R.pathOr([], ['payload', 'data', 'offers_data']),
       )(action);
 
       const featuredStores = R.compose(
         // R.indexBy(R.prop('store_id')),
-        R.pathOr([], ['payload', 'featured_stores']),
+        R.pathOr([], ['payload', 'data', 'featured_stores']),
       )(action);
 
       return R.compose(

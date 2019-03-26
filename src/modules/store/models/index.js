@@ -14,6 +14,7 @@ export type Feature = {
   offer_img: string,
   offer_link: string,
   offer_id: string,
+  store_id: string,
 };
 
 export type Categories = {

@@ -37,14 +37,6 @@ const SignInModal = ({
     setPassword('');
   };
 
-  const onAuthGoogle = () => {
-    console.log('Auth Google');
-  };
-
-  const onAuthFacebook = () => {
-    console.log('Auth Facebook');
-  };
-
   return (
     <ModalWrapper
       title={title}
@@ -52,10 +44,7 @@ const SignInModal = ({
       isActive={isActive}
       closeModal={closeModal}
     >
-      <ModalSocial
-        onAuthGoogle={onAuthGoogle}
-        onAuthFacebook={onAuthFacebook}
-      />
+      <ModalSocial />
       <SignInModal.Or>
         <span>or</span>
       </SignInModal.Or>

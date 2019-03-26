@@ -9,16 +9,13 @@ export type FeaturedCoupon = {
 
 export type Store = {
   offer_id: string,
+  offer_link: string,
   store_logo: string,
   store_name: string,
   discount_print: string,
   discount: string,
   ref_text: string,
   randomStore: Object,
-};
-
-export type RandomStore = {
-  randomStore: {},
 };
 
 export type Category = {
@@ -40,6 +37,7 @@ export type Deal = {
   isFavorite: boolean,
   category?: string,
   store_name?: string,
+  offer_link: string,
 };
 
 export type StoreListProps = {

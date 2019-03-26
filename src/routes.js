@@ -43,7 +43,7 @@ export default (
     <Header />
     <Switch>
       <Route exact path="/" component={HomePage} />
-      <Route exact path="/stores" component={StoresPage} />
+      <Route exact path="/cashback-stores" component={StoresPage} />
       <Route exact path="/coupons/:storeName" component={StorePage} />
       <Route exact path="/coupons" component={CouponsPage} />
 

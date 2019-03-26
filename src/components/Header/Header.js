@@ -55,7 +55,7 @@ const Header = () => {
       bgColor: '#40c8e5',
       hoverBgColor: '#34a6bf',
       title: 'Stores',
-      link: '/stores',
+      link: '/cashback-stores',
     },
     {
       bgColor: '#3ab7d1',

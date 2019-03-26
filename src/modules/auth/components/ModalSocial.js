@@ -6,25 +6,20 @@ import breakpoint from 'styled-components-breakpoint';
 import googleIcon from '../assets/googleIcon.png';
 import facebookIcon from '../assets/facebookIcon.png';
 
-type ModalSocialProps = {
-  onAuthGoogle: Function,
-  onAuthFacebook: Function,
-};
-
-const ModalSocial = ({ onAuthFacebook, onAuthGoogle }: ModalSocialProps) => (
+const ModalSocial = () => (
   <div>
-    <ModalSocial.LinkFacebook onClick={onAuthFacebook}>
+    <ModalSocial.LinkFacebook href="https://www.joinpiggy.com/fb">
       <img src={facebookIcon} alt="facebook" />
       Login with Facebook
     </ModalSocial.LinkFacebook>
-    <ModalSocial.LinkGoogle onClick={onAuthGoogle}>
+    <ModalSocial.LinkGoogle href="https://www.joinpiggy.com/google/signin">
       <img src={googleIcon} alt="google" />
       Login with Google
     </ModalSocial.LinkGoogle>
   </div>
 );
 
-ModalSocial.LinkFacebook = styled.button`
+ModalSocial.LinkFacebook = styled.a`
   position: relative;
   display: block;
   width: 100%;
