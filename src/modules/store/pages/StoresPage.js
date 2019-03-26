@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import * as R from 'ramda';
@@ -10,20 +10,19 @@ import breakpoint from 'styled-components-breakpoint';
 import StoreSidebar from '../components/StoreSidebar';
 import StoreMain from '../components/StoreMain';
 
-import { type Store } from '../models';
+import { type Store, type Feature } from '../models';
 
 import {
   setLoadMore,
   setFilter,
-  setSearch,
   setFilterClear,
+  getStore,
 } from '../StoreActions';
 
 import {
   getFilteredStores,
   getFeatured,
   getStoreFilters,
-  getStoreSearch,
   getLoadState,
   getLoadToState,
   getStoresAll,
@@ -33,15 +32,15 @@ type StoresPageProps = {
   title: string,
   stores: Store[],
   storesAll: Store[],
-  featured: Store[],
+  featured: Feature[],
   filter: string,
   search: string,
   loadState: number,
   loadToState: number,
   onLoadMore: Function,
   onSetFilter: Function,
-  onSetSearch: Function,
   onSetFilterClear: Function,
+  onGetStore: Function,
 };
 
 const StoresPage = ({
@@ -49,44 +48,51 @@ const StoresPage = ({
   stores,
   featured,
   filter,
-  search,
   onLoadMore,
   loadState,
   loadToState,
   storesAll,
   onSetFilter,
-  onSetSearch,
   onSetFilterClear,
+  onGetStore,
 }: StoresPageProps) => {
+  const [search, setSearch] = React.useState('');
+
+  useEffect(() => {
+    onGetStore();
+  }, []);
+
   const onSearch = (search, stores) => {
     if (search === '') return false;
-    return R.filter(
-      ({ name }) =>
-        R.includes(R.toLower(R.trim(search)), R.toLower(R.trim(name))),
-      stores,
-    );
+    return R.compose(
+      R.slice(0, 6),
+      R.filter(({ store_name }) =>
+        R.includes(R.toLower(search), R.toLower(store_name)),
+      ),
+    )(stores);
   };
 
-  const onFilterFeatured = stores =>
-    R.filter(({ isFeatured }) => isFeatured === true, stores);
+  const onSetSearch = tern => {
+    setSearch(tern);
+  };
+
+  // const onFilterFeatured = stores =>
+  //   R.filter(({ isFeatured }) => isFeatured === true, stores);
 
   return (
     <React.Fragment>
-      <Helmet>
-        <title>Stores</title>
-        <meta
-          name="description"
-          content="Download Piggy's Automatic Coupons at Checkout and Never Miss a Deal Again!"
+      {
+        <Helmet
+          title="Stores"
+          meta={[
+            {
+              name: 'description',
+              content:
+                "Download Piggy's Automatic Coupons at Checkout and Never Miss a Deal Again!",
+            },
+          ]}
         />
-        <meta
-          property="og:image"
-          content="//d26fg97ql61k4.cloudfront.net/img/widget-logo-blue.png"
-        />
-        <meta
-          property="og:title"
-          content="Automatic Coupons, Huge Sales, and Cash back! - Piggy"
-        />
-      </Helmet>
+      }
 
       <StoresPage.Wrapper>
         <StoresPage.Container>
@@ -106,7 +112,8 @@ const StoresPage = ({
             <StoreMain
               title={title}
               stores={stores}
-              featured={onFilterFeatured(featured)}
+              // featured={onFilterFeatured(featured)}
+              featured={featured}
               onLoadMore={onLoadMore}
               loadState={loadState}
               loadToState={loadToState}
@@ -121,13 +128,13 @@ const StoresPage = ({
 
 StoresPage.defaultProps = {
   title: 'Browse among more than 1000 stores',
+  filter: [],
 };
 
 const mapStateToProps = state => ({
   stores: getFilteredStores(state),
   featured: getFeatured(state),
   filter: getStoreFilters(state),
-  search: getStoreSearch(state),
   loadState: getLoadState(state),
   loadToState: getLoadToState(state),
   storesAll: getStoresAll(state),
@@ -136,8 +143,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   onLoadMore: setLoadMore,
   onSetFilter: setFilter,
-  onSetSearch: setSearch,
   onSetFilterClear: setFilterClear,
+  onGetStore: getStore,
 };
 
 StoresPage.Wrapper = styled.section`

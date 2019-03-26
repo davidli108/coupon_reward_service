@@ -21,6 +21,7 @@ storiesOf('Components|@Store', module)
           couponActive: true,
           category: 'Accessories',
           isFeatured: true,
+          offer_id: 12344,
         },
       ]}
     />

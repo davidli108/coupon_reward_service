@@ -6,12 +6,12 @@ import breakpoint from 'styled-components-breakpoint';
 import StoreList from './StoreList';
 import Featured from './Featured';
 
-import { type Store } from '../models';
+import { type Store, type Feature } from '../models';
 
 type StoresListProps = {
   title: string,
   stores: Store[],
-  featured: Store[],
+  featured: Feature[],
   storesAll: Store[],
   loadState: number,
   loadToState: number,

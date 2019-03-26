@@ -1,15 +1,19 @@
 // @flow
-
 export type Store = {
-  name: string,
-  newStore: boolean,
-  offer: string,
-  deals: number,
-  logo: string,
-  url: string,
-  couponActive: boolean,
-  isFeatured: boolean,
-  category: string,
+  store_name: string,
+  discount_print: string,
+  offer_success_print: string,
+  offer_id: string,
+  store_logo: string,
+  store_page_link: string,
+};
+
+export type Feature = {
+  store_name: string,
+  cashback_text: string,
+  offer_img: string,
+  offer_link: string,
+  offer_id: string,
 };
 
 export type Categories = {

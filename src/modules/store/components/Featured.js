@@ -3,23 +3,27 @@ import React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
-import { type Store } from '../models';
+import { type Feature } from '../models';
 
 type FeaturedProps = {
-  featured: Store[],
+  featured: Feature[],
 };
 
 const Featured = ({ featured }: FeaturedProps) => (
   <Featured.Wrapper>
-    {featured.map(({ name, offer, logo, url }) => (
-      <Featured.Item key={name}>
-        {logo && <Featured.Image src={logo} alt={name} />}
-        <Featured.Link href={url} target="_blank">
-          Visit Store
-        </Featured.Link>
-        <Featured.Cash>+{offer}% Cash Back</Featured.Cash>
-      </Featured.Item>
-    ))}
+    {featured.map(
+      ({ store_name, cashback_text, offer_img, offer_id, offer_link }) => (
+        <Featured.Item key={offer_id}>
+          {offer_img && (
+            <Featured.WrapperImage>
+              <Featured.Image src={offer_img} alt={store_name} />
+            </Featured.WrapperImage>
+          )}
+          <Featured.Link href={offer_link}>Visit Store</Featured.Link>
+          <Featured.Cash>{cashback_text}</Featured.Cash>
+        </Featured.Item>
+      ),
+    )}
   </Featured.Wrapper>
 );
 
@@ -127,9 +131,17 @@ Featured.Item = styled.div`
   `}
 `;
 
+Featured.WrapperImage = styled.div`
+  margin: 0 0 10px 0;
+  height: 105px;
+  width: 105px;
+`;
+
 Featured.Image = styled.img`
   display: block;
-  margin: 0 0 10px 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 `;
 
 Featured.Link = styled.a`

@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
-import verificationIcon from '../assets/verif.png';
+// import verificationIcon from '../assets/verif.png';
 
 import { type Store } from '../models';
 
@@ -24,39 +24,49 @@ const StoreList = ({
 }: StoreListProps) => (
   <div>
     <StoreList.StoreContainer>
-      {stores.map(
-        ({ name, offer, newStore, deals, logo, url, couponActive }) => (
-          <StoreList.StoreItem key={`list_item_${name}`}>
-            {newStore && <StoreList.StoreNew>New Store</StoreList.StoreNew>}
-            <StoreList.Box>
-              <StoreList.Image src={logo} alt={name} />
-              <StoreList.ContentWrap>
-                <StoreList.Content>
-                  <StoreList.Info>
-                    <StoreList.Brand>
-                      <StoreList.BrandName>{name}</StoreList.BrandName>
-                      <StoreList.BranDeals>{deals} Deals</StoreList.BranDeals>
-                    </StoreList.Brand>
-                    <StoreList.Cash>+{offer}% Cash Back</StoreList.Cash>
-                  </StoreList.Info>
-                  {couponActive && (
+      {stores.length === 0
+        ? 'no store'
+        : stores.map(
+            ({
+              store_name,
+              discount_print,
+              offer_id,
+              store_logo,
+              store_page_link,
+            }) => (
+              <StoreList.StoreItem key={`list_item_${store_name}_${offer_id}`}>
+                {/* {offer_success_print && <StoreList.StoreNew>New Store</StoreList.StoreNew>} */}
+                <StoreList.Box>
+                  <StoreList.Image src={store_logo} alt={store_name} />
+                  <StoreList.ContentWrap>
+                    <StoreList.Content>
+                      <StoreList.Info>
+                        <StoreList.Brand>
+                          <StoreList.BrandName>
+                            {store_name}
+                          </StoreList.BrandName>
+                          <StoreList.BranDeals>Deals</StoreList.BranDeals>
+                        </StoreList.Brand>
+                        <StoreList.Cash>{discount_print}</StoreList.Cash>
+                      </StoreList.Info>
+                      {/* {couponActive && (
                     <StoreList.Coupons>
                       <img src={verificationIcon} alt="verify" />
                       coupons activated
                     </StoreList.Coupons>
-                  )}
-                </StoreList.Content>
-                <StoreList.Link href={url} target="_blank">
+                  )} */}
+                    </StoreList.Content>
+                    <StoreList.Link href={store_page_link}>
+                      Visit Store
+                    </StoreList.Link>
+                  </StoreList.ContentWrap>
+                </StoreList.Box>
+                <StoreList.LinkMobile href={store_page_link}>
                   Visit Store
-                </StoreList.Link>
-              </StoreList.ContentWrap>
-            </StoreList.Box>
-            <StoreList.LinkMobile href={url} target="_blank">
-              Visit Store
-            </StoreList.LinkMobile>
-          </StoreList.StoreItem>
-        ),
-      )}
+                </StoreList.LinkMobile>
+              </StoreList.StoreItem>
+            ),
+          )}
     </StoreList.StoreContainer>
     {loadState <= stores.length && storesAll.length > loadState && (
       <StoreList.LoadMoreButton
@@ -154,9 +164,10 @@ StoreList.StoreNew = styled.span`
 
 StoreList.Image = styled.img`
   display: block;
-
   ${breakpoint('xs')`
     width: 88px;
+    height: 88px;
+    object-fit: contain;
     margin: 0 17px 0 0;
   `}
 

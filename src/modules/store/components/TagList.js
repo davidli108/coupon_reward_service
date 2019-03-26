@@ -31,7 +31,7 @@ const TagList = ({
           <TagList.Numb filterActive={filter === category}>
             {R.compose(
               R.length,
-              R.filter(store => category === R.prop('category', store)),
+              // R.filter(store => category === R.prop('category', store)),
             )(storesAll)}
           </TagList.Numb>
         </TagList.Item>

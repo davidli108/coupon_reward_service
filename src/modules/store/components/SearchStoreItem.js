@@ -8,23 +8,22 @@ type SearchStoreItemProps = {
   searchResult: Store[],
 };
 
-const SearchStoreItem = ({ searchResult }: SearchStoreItemProps) => {
-  return (
+const SearchStoreItem = ({ searchResult }: SearchStoreItemProps) =>
+  searchResult.length > 0 && (
     <SearchStoreItem.StoreWrapper>
       {searchResult
         ? searchResult.map(item => (
-            <SearchStoreItem.Item key={`store_item_${item.name}`}>
-              <img src={item.logo} alt={item.name} />
+            <SearchStoreItem.Item key={`store_item_${item.offer_id}`}>
+              <img src={item.store_logo} alt={item.store_name} />
               <div>
-                <h3>{item.name}</h3>
-                <p>+{item.offer}% Cash Back</p>
+                <h3>{item.store_name}</h3>
+                <p>{item.discount_print}</p>
               </div>
             </SearchStoreItem.Item>
           ))
         : null}
     </SearchStoreItem.StoreWrapper>
   );
-};
 
 SearchStoreItem.defaultProps = {
   searchResult: [],
@@ -53,6 +52,8 @@ SearchStoreItem.Item = styled.div`
 
   img {
     width: 80px;
+    height: 80px;
+    object-fit: contain;
     border: 1px solid ${props => props.theme.colors.whiteLight};
   }
 
