@@ -1,24 +1,46 @@
 //@flow
+import * as R from 'ramda';
 import * as React from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
+import { getStores, getStoresAll } from '@modules/coupons/CouponsReducer';
+import { getCoupons } from '@modules/coupons/CouponsActions';
 
 import SearchBar from '@modules/store/components/Search';
 import TodaysFeaturedCoupon from '../components/TodaysFeaturedCoupon';
 import StoreList from '../components/StoreList';
 import Content from '../components/Content';
 
-const CouponsPage = () => {
+const CouponsPage = ({ stores, storesAll, onStore }) => {
   const [search, setSearch] = React.useState('');
+  React.useEffect(() => {
+    onStore();
+  }, []);
+  const onSetSearch = tern => {
+    setSearch(tern);
+  };
+  const onSearch = (search, stores) => {
+    if (search === '') return [];
+    return R.compose(
+      R.slice(0, 6),
+      R.filter(({ store_name }) =>
+        R.includes(R.toLower(search), R.toLower(store_name)),
+      ),
+    )(stores);
+  };
 
   return (
     <CouponsPage.Wrapper>
       <CouponsPage.SearchWrapper>
-        <SearchBar search={search} onSetSearch={setSearch} />
+        <SearchBar
+          onSetSearch={onSetSearch}
+          searchResult={onSearch(search, storesAll)}
+          search={search}
+        />
       </CouponsPage.SearchWrapper>
-
-      <TodaysFeaturedCoupon />
-      <StoreList />
+      <TodaysFeaturedCoupon randomStore={stores[0]} />
+      <StoreList stores={stores} />
       <Content />
     </CouponsPage.Wrapper>
   );
@@ -50,4 +72,16 @@ CouponsPage.SearchWrapper = styled.div`
   `}
 `;
 
-export default CouponsPage;
+const mapStateToProps = state => ({
+  stores: getStores(state),
+  storesAll: getStoresAll(state),
+});
+
+const mapDispatchToProps = {
+  onStore: getCoupons,
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(CouponsPage);

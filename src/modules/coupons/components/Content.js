@@ -10,10 +10,10 @@ import Categories from './Categories';
 import Coupons from '../components/Coupons';
 
 import * as actions from '../CouponsActions';
-import { getCategories } from '../CouponsReducer';
+import { getCategories, getStoresAll } from '../CouponsReducer';
 import type { ContentProps } from '../models/CouponsPage';
 
-const Content = ({ categories, loadMore }: ContentProps) => {
+const Content = ({ categories, loadMore, storeAll }: ContentProps) => {
   return (
     <div>
       <Controls />
@@ -81,6 +81,7 @@ Content.LoadMoreDeals = styled.div`
 
 const mapStateToProps = state => ({
   categories: getCategories(state),
+  storeAll: getStoresAll(state),
 });
 
 const mapDispatchToProps = {

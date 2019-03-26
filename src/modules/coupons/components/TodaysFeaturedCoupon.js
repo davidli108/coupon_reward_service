@@ -1,37 +1,31 @@
 //@flow
+import * as R from 'ramda';
 import * as React from 'react';
-import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { IoIosHeartEmpty, IoIosHeart } from 'react-icons/io';
 import { FiShare2 } from 'react-icons/fi';
 import breakpoint from 'styled-components-breakpoint';
 
-import type { FeaturedCoupon } from '../models/CouponsPage';
-import { getFeaturedCoupon } from '@modules/coupons/CouponsReducer';
+import type { RandomStore } from '../models/CouponsPage';
 
-const TodaysFeaturedCoupon = ({
-  storeName,
-  highestCashbackPercent,
-  discountPercent,
-  description,
-  isFavorited,
-}: FeaturedCoupon) => {
-  const [isFeaturedCouponLiked, setFeaturedCouponLike] = React.useState(
-    isFavorited,
-  );
+const TodaysFeaturedCoupon = ({ randomStore }: RandomStore) => {
+  const [isFeaturedCouponLiked, setFeaturedCouponLike] = React.useState('');
+
+  const store_logo = R.propOr('', 'store_logo', randomStore);
+  const store_name = R.propOr('', 'store_name', randomStore);
+  const discount = R.propOr('', 'discount', randomStore);
+  const discount_print = R.propOr('', 'discount_print', randomStore);
+  const ref_text = R.propOr('', 'ref_text', randomStore);
 
   const handleFeaturedCouponLikeToggler = () =>
     setFeaturedCouponLike(!isFeaturedCouponLiked);
 
   return (
     <TodaysFeaturedCoupon.Wrapper>
-      <h2>Today's Featured Coupon From {storeName}'s</h2>
+      <h2>Today's Featured Coupon From {store_name}'s</h2>
       <TodaysFeaturedCoupon.Content>
         <TodaysFeaturedCoupon.LogoControlsWrapper>
-          <TodaysFeaturedCoupon.Logo
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Walmart_logo.svg/1280px-Walmart_logo.svg.png"
-            alt="logo"
-          />
+          <TodaysFeaturedCoupon.Logo src={store_logo} alt={store_name} />
           <TodaysFeaturedCoupon.Controls isLiked={isFeaturedCouponLiked}>
             {isFeaturedCouponLiked ? (
               <IoIosHeart onClick={handleFeaturedCouponLikeToggler} />
@@ -44,14 +38,14 @@ const TodaysFeaturedCoupon = ({
 
         <TodaysFeaturedCoupon.OfferingWrapper>
           <TodaysFeaturedCoupon.Offering>
-            <span>{discountPercent}% OFF</span>
-            <span>up to {highestCashbackPercent}% Cash Back</span>
+            <span>{discount}% OFF</span>
+            <span>up to {discount_print}k</span>
           </TodaysFeaturedCoupon.Offering>
         </TodaysFeaturedCoupon.OfferingWrapper>
 
         <TodaysFeaturedCoupon.DescriptionButtonWrapper>
           <TodaysFeaturedCoupon.Description>
-            {description}
+            {ref_text}
           </TodaysFeaturedCoupon.Description>
           <TodaysFeaturedCoupon.Button>View Deal</TodaysFeaturedCoupon.Button>
         </TodaysFeaturedCoupon.DescriptionButtonWrapper>
@@ -190,7 +184,9 @@ TodaysFeaturedCoupon.Logo = styled.img`
   `}
 
   ${breakpoint('lg')`
-    height: 40px;
+    width: 140px;
+    height: 140px;
+    object-fit: contain;
     margin: 0;
   `}
 `;
@@ -398,10 +394,4 @@ TodaysFeaturedCoupon.Button = styled.button`
   `}
 `;
 
-const mapStateToProps = state => ({
-  ...getFeaturedCoupon(state),
-});
-
-const enhance = connect(mapStateToProps);
-
-export default enhance(TodaysFeaturedCoupon);
+export default TodaysFeaturedCoupon;

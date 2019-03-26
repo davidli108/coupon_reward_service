@@ -12,7 +12,7 @@ const Coupons = ({ coupons }: CouponsProps) => {
   return (
     <Coupons.Wrapper>
       {coupons.map((coupon, index) => (
-        <Coupon key={`coupon_${index}_${coupon.expDate}`} {...coupon} />
+        <Coupon key={`coupon_${index}_${coupon.show_exp_date}`} {...coupon} />
       ))}
     </Coupons.Wrapper>
   );

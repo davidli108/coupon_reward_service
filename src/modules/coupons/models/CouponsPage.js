@@ -8,8 +8,17 @@ export type FeaturedCoupon = {
 };
 
 export type Store = {
-  cashback: number,
-  logo: string,
+  offer_id: string,
+  store_logo: string,
+  store_name: string,
+  discount_print: string,
+  discount: string,
+  ref_text: string,
+  randomStore: Object,
+};
+
+export type RandomStore = {
+  randomStore: {},
 };
 
 export type Category = {
@@ -23,14 +32,14 @@ export type Categories = {
 };
 
 export type Deal = {
-  logo: string,
+  store_logo: string,
   discount: number,
-  cashback: number,
-  expDate: string,
+  discount_print: number,
+  show_exp_date: string,
   isCoupon: boolean,
   isFavorite: boolean,
   category?: string,
-  storeName?: string,
+  store_name?: string,
 };
 
 export type StoreListProps = {

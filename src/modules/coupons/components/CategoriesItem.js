@@ -21,7 +21,7 @@ const camelize = str => {
 
 const getQuantity = (deals, title) =>
   deals.filter(
-    x => x.storeName === camelize(title) || x.category === camelize(title),
+    x => x.store_name === camelize(title) || x.category === camelize(title),
   ).length;
 
 const isCheckedAlready = (title, filters) => filters.includes(camelize(title));

@@ -1,19 +1,18 @@
 //@flow
 import * as React from 'react';
-import { connect } from 'react-redux';
+
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
 import type { StoreListProps } from '../models/CouponsPage';
-import { getStores } from '@modules/coupons/CouponsReducer';
 
 const StoreList = ({ stores }: StoreListProps) => {
   return (
     <StoreList.Wrapper>
       {stores.map(store => (
-        <StoreList.Item key={`store_${store.cashback}`}>
-          <img src={store.logo} alt="store-logo" />
-          <p>+{store.cashback}% Cash Back</p>
+        <StoreList.Item key={`store_${store.offer_id}`}>
+          <img src={store.store_logo} alt={store.store_name} />
+          <p>{store.discount_print}</p>
         </StoreList.Item>
       ))}
     </StoreList.Wrapper>
@@ -77,10 +76,4 @@ StoreList.Item = styled.div`
   `}
 `;
 
-const mapStateToProps = state => ({
-  stores: getStores(state),
-});
-
-const enhance = connect(mapStateToProps);
-
-export default enhance(StoreList);
+export default StoreList;

@@ -7,7 +7,13 @@ import type { Deal as DealModel } from '../models/CouponsPage';
 
 const zeroPadStars = val => String(val).padStart(2, '0');
 
-const Coupon = ({ logo, discount, cashback, expDate }: DealModel) => {
+const Coupon = ({
+  store_logo,
+  discount,
+  show_exp_date,
+  store_name,
+  discount_print,
+}: DealModel) => {
   return (
     <Coupon.Wrapper>
       <Coupon.BorderWrapper>
@@ -15,16 +21,16 @@ const Coupon = ({ logo, discount, cashback, expDate }: DealModel) => {
         <Coupon.Circle position="right" />
       </Coupon.BorderWrapper>
       <Coupon.Content>
-        <Coupon.StoreLogo src={logo} alt="store logo" />
+        <Coupon.StoreLogo src={store_logo} alt={store_name} />
         <Coupon.Discount>
-          <span>{zeroPadStars(discount)}%</span>
+          <span>{zeroPadStars(discount)}</span>
           <span>off</span>
         </Coupon.Discount>
         <Coupon.ExpDate>
-          <p>Exp. {expDate}</p>
+          <p>{show_exp_date}</p>
         </Coupon.ExpDate>
         <Coupon.ViewDealButton>View Deal</Coupon.ViewDealButton>
-        <Coupon.CashbackPercent>+{cashback}% Cashback</Coupon.CashbackPercent>
+        <Coupon.CashbackPercent>{discount_print}</Coupon.CashbackPercent>
       </Coupon.Content>
     </Coupon.Wrapper>
   );
