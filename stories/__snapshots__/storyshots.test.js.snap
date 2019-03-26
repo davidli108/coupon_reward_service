@@ -1241,18 +1241,12 @@ exports[`Storyshots Components|@Store Featured 1`] = `
   >
     <a
       className="c2"
-      href="https://target.com"
-      target="_blank"
     >
       Visit Store
     </a>
     <p
       className="c3"
-    >
-      +
-      12
-      % Cash Back
-    </p>
+    />
   </div>
 </div>
 `;
@@ -1380,6 +1374,8 @@ exports[`Storyshots Components|@Store SearchStoreItem 1`] = `
 
 .c1 img {
   width: 80px;
+  height: 80px;
+  object-fit: contain;
   border: 1px solid #DADDE2;
 }
 
@@ -1402,19 +1398,10 @@ exports[`Storyshots Components|@Store SearchStoreItem 1`] = `
   <div
     className="c1"
   >
-    <img
-      alt="Target"
-      src={null}
-    />
+    <img />
     <div>
-      <h3>
-        Target
-      </h3>
-      <p>
-        +
-        -12%
-        % Cash Back
-      </p>
+      <h3 />
+      <p />
     </div>
   </div>
 </div>
@@ -1484,6 +1471,8 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
 .c3 {
   display: block;
   width: 88px;
+  height: 88px;
+  object-fit: contain;
   margin: 0 17px 0 0;
 }
 
@@ -1937,9 +1926,7 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
         className="c2"
       >
         <img
-          alt="Target"
           className="c3"
-          src={null}
         />
         <div
           className="c4"
@@ -1955,29 +1942,20 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
               >
                 <span
                   className="c8"
-                >
-                  Target
-                </span>
+                />
                 <p
                   className="c9"
                 >
-                  1000
-                   Deals
+                  Deals
                 </p>
               </div>
               <p
                 className="c10"
-              >
-                +
-                -12%
-                % Cash Back
-              </p>
+              />
             </div>
           </div>
           <a
             className="c11"
-            href="https://target.com"
-            target="_blank"
           >
             Visit Store
           </a>
@@ -1985,8 +1963,6 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
       </div>
       <a
         className="c12"
-        href="https://target.com"
-        target="_blank"
       >
         Visit Store
       </a>
@@ -2070,6 +2046,8 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 .c6 {
   display: block;
   width: 88px;
+  height: 88px;
+  object-fit: contain;
   margin: 0 17px 0 0;
 }
 
@@ -2596,9 +2574,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
           className="c5"
         >
           <img
-            alt="Target"
             className="c6"
-            src={null}
           />
           <div
             className="c7"
@@ -2614,29 +2590,20 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
                 >
                   <span
                     className="c11"
-                  >
-                    Target
-                  </span>
+                  />
                   <p
                     className="c12"
                   >
-                    1000
-                     Deals
+                    Deals
                   </p>
                 </div>
                 <p
                   className="c13"
-                >
-                  +
-                  -12%
-                  % Cash Back
-                </p>
+                />
               </div>
             </div>
             <a
               className="c14"
-              href="https://target.com"
-              target="_blank"
             >
               Visit Store
             </a>
@@ -2644,8 +2611,6 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
         </div>
         <a
           className="c15"
-          href="https://target.com"
-          target="_blank"
         >
           Visit Store
         </a>
@@ -2656,17 +2621,6 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 `;
 
 exports[`Storyshots Components|@Store StoreSidebar 1`] = `
-.c4 {
-  position: absolute;
-  background: #FFF;
-  z-index: 1;
-  width: 100%;
-  left: 0;
-  top: 42px;
-  border: 1px solid #DADDE2;
-  border-radius: 5px;
-}
-
 .c1 {
   position: relative;
   display: -webkit-box;
@@ -2722,7 +2676,7 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
   padding: 0 28px 0 0;
 }
 
-.c7 {
+.c6 {
   padding: 25px 0 0 0;
   position: absolute;
   left: -1px;
@@ -2741,7 +2695,7 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
   pointer-events: none;
 }
 
-.c8 {
+.c7 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2763,11 +2717,11 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
   padding: 5px 25px;
 }
 
-.c8:hover {
+.c7:hover {
   background: #F9FAFC;
 }
 
-.c9 {
+.c8 {
   display: block;
   width: 50px;
   text-align: center;
@@ -2789,7 +2743,7 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
   flex-basis: auto;
 }
 
-.c5 {
+.c4 {
   background: #FFF;
   position: relative;
   margin: 0;
@@ -2798,7 +2752,7 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
   padding: 12px 25px;
 }
 
-.c6 {
+.c5 {
   line-height: 21px;
   font-size: 18px;
   font-weight: bold;
@@ -2812,7 +2766,7 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
   border-radius: 5px;
 }
 
-.c6::before {
+.c5::before {
   position: absolute;
   content: '';
   right: 0;
@@ -2847,7 +2801,7 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
 }
 
 @media (min-width:36em) {
-  .c7 {
+  .c6 {
     display: block;
     position: static;
     box-shadow: none;
@@ -2859,7 +2813,7 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
 }
 
 @media (min-width:36em) {
-  .c8 {
+  .c7 {
     padding: 5px 0;
   }
 }
@@ -2890,7 +2844,7 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
 }
 
 @media (min-width:36em) {
-  .c5 {
+  .c4 {
     margin: 0 0 25px 0;
     border: none;
     border-radius: 0;
@@ -2900,7 +2854,7 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
 }
 
 @media (min-width:36em) {
-  .c6 {
+  .c5 {
     pointer-events: none;
     position: relative;
     border: none;
@@ -2908,7 +2862,7 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
     border-radius: 0;
   }
 
-  .c6::before {
+  .c5::before {
     display: none;
   }
 }
@@ -2931,52 +2885,49 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
       className="c3"
       src="icon-search.png"
     />
-    <div
-      className="c4"
-    />
   </div>
   <div
-    className="c5"
+    className="c4"
   >
     <h3
-      className="c6"
+      className="c5"
       onClick={[Function]}
     />
     <ul
-      className="c7"
+      className="c6"
     >
       <li
-        className="c8"
+        className="c7"
         onClick={[Function]}
       >
         Accessories
          
         <span
-          className="c9"
+          className="c8"
         >
           0
         </span>
       </li>
       <li
-        className="c8"
+        className="c7"
         onClick={[Function]}
       >
         Beauty
          
         <span
-          className="c9"
+          className="c8"
         >
           0
         </span>
       </li>
       <li
-        className="c8"
+        className="c7"
         onClick={[Function]}
       >
         Clothing
          
         <span
-          className="c9"
+          className="c8"
         >
           0
         </span>
