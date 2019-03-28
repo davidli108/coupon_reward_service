@@ -14,11 +14,11 @@ const BrandNeverOverpay = ({ storeName }: BrandNeverOverpayProps) => {
     <>
       <BrandNeverOverpay.Cover>
         <BrandNeverOverpay.NeverOverpay isCovered={isCovered}>
-          <h2>Never Overpay Again at {storeName}'s</h2>
+          <h2>Never Overpay Again at {storeName}</h2>
           <p>
             Automatically add all active coupons to your order with Piggy's
             browser extension. When you get to checkout, Piggy will find coupons
-            and cash back at Macy's and more.
+            and cash back at {storeName} and more.
           </p>
         </BrandNeverOverpay.NeverOverpay>
         <span onClick={handleCoveredToggler}>

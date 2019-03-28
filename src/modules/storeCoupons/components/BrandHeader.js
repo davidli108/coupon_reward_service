@@ -22,7 +22,7 @@ const BrandHeader = ({ storeName, isFollowed, offers }: BrandHeaderProps) => {
 
   return (
     <>
-      <BrandHeader.Name>{storeName}'s Coupon Codes & Deals</BrandHeader.Name>
+      <BrandHeader.Name>{storeName} Coupon Codes & Deals</BrandHeader.Name>
       <BrandHeader.NoWrapFlexBox>
         <BrandHeader.OffersStats>
           <span>{getCoupons(offers).length} Coupons</span>

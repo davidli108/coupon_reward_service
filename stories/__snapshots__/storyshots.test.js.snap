@@ -1495,6 +1495,7 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
 }
 
 .c6 {
+  width: 100%;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1607,6 +1608,33 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
 
 .c12:hover {
   background: #00B4CF;
+}
+
+.c13 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0 auto;
+  font-weight: bold;
+  line-height: 21px;
+  font-size: 18px;
+  text-align: center;
+  -webkit-letter-spacing: 0.45px;
+  -moz-letter-spacing: 0.45px;
+  -ms-letter-spacing: 0.45px;
+  letter-spacing: 0.45px;
+  color: #ADB8C0;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  -webkit-transition: color 205ms linear;
+  transition: color 205ms linear;
+}
+
+.c13:hover {
+  color: #7F7F7F;
 }
 
 @media (min-width:48em) {
@@ -1838,7 +1866,7 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
 
 @media (min-width:75em) {
   .c10 {
-    margin: 0 30px 0 0;
+    margin: 0 100px 0 auto;
   }
 }
 
@@ -1976,6 +2004,12 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
       </a>
     </div>
   </div>
+  <button
+    className="c13"
+    onClick={[Function]}
+  >
+    Load more deals
+  </button>
 </div>
 `;
 
@@ -2075,6 +2109,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 }
 
 .c9 {
+  width: 100%;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2187,6 +2222,33 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 
 .c15:hover {
   background: #00B4CF;
+}
+
+.c16 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0 auto;
+  font-weight: bold;
+  line-height: 21px;
+  font-size: 18px;
+  text-align: center;
+  -webkit-letter-spacing: 0.45px;
+  -moz-letter-spacing: 0.45px;
+  -ms-letter-spacing: 0.45px;
+  letter-spacing: 0.45px;
+  color: #ADB8C0;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  -webkit-transition: color 205ms linear;
+  transition: color 205ms linear;
+}
+
+.c16:hover {
+  color: #7F7F7F;
 }
 
 .c0 {
@@ -2467,7 +2529,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 
 @media (min-width:75em) {
   .c13 {
-    margin: 0 30px 0 0;
+    margin: 0 100px 0 auto;
   }
 }
 
@@ -2629,6 +2691,12 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
         </a>
       </div>
     </div>
+    <button
+      className="c16"
+      onClick={[Function]}
+    >
+      Load more deals
+    </button>
   </div>
 </div>
 `;
