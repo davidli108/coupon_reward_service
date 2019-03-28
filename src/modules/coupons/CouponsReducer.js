@@ -18,19 +18,16 @@ import {
 
 export const STATE_KEY = 'coupons';
 
-const LOAD_STATE = 9;
-
 const initialState: CouponsReducerProps = {
-  loadState: LOAD_STATE,
   dealsFilter: 'allDeals',
   categoriesFilter: null,
   storesFilter: null,
   search: '',
   featuredCoupon: {
-    storeName: 'Macy',
-    highestCashbackPercent: 4,
-    discountPercent: 20,
-    description: `Sports Shoes - For all the unstoppable man looking for adventure.`,
+    storeName: '',
+    highestCashbackPercent: null,
+    discountPercent: null,
+    description: ``,
     isFavorited: false,
   },
   stores: [],
@@ -125,19 +122,26 @@ const CouponsReducer = (
   action: Object,
 ) => {
   switch (action.type) {
-    case LOAD_MORE: {
+    case `${LOAD_MORE}_SUCCESS`: {
       // $FlowFixMe
-      const loadState = R.prop('loadState', state);
-      const count = R.prop('payload', action);
-
-      return R.assoc('loadState', loadState + count, state);
-    }
-    case `${GET_COUPONS}_SUCCESS`: {
       const offersData = R.pathOr(
         [],
         ['payload', 'data', 'offers_data'],
         action,
       );
+      // $FlowFixMe
+      const data = R.concat(state.stores, offersData);
+
+      return R.assoc<Object, Object>('stores', data, state);
+    }
+    case `${GET_COUPONS}_SUCCESS`: {
+      // $FlowFixMe
+      const offersData = R.pathOr(
+        [],
+        ['payload', 'data', 'offers_data'],
+        action,
+      );
+
       return R.assoc<Object, Object>('stores', offersData, state);
     }
     case SET_DEALS_FILTER: {
@@ -184,7 +188,11 @@ export const getOffersData = R.compose(
   R.values,
   R.path([STATE_KEY, 'offersData']),
 );
-export const getStores = R.path<Store[]>([STATE_KEY, 'stores']);
+// $FlowFixMe
+export const getStores = (state: Object) =>
+  // $FlowFixMe
+  R.uniqBy(i => i.store_id, state.coupons.stores);
+export const getCoupons = (state: Object) => state.coupons.stores;
 export const getCategories = R.path<Categories>([STATE_KEY, 'categories']);
 export const getDeals = R.path<Deal[]>([STATE_KEY, 'deals']);
 export const getDealsFilter = R.path<string>([STATE_KEY, 'dealsFilter']);
@@ -222,12 +230,13 @@ export const getFilteredDeals = (state: Object) => {
   //   filterByControls(state),
   // );
 
-  return R.compose(
-    // filter,
-    // $FlowFixMe
-    R.slice(0, getLoadState(state)),
-    getStores,
-  )(state);
+  if (state.coupons.dealsFilter === 'allDeals') {
+    return getCoupons(state);
+  } else if (state.coupons.dealsFilter === 'onlyCoupons') {
+    return R.filter(i => i.coupon_code !== '', getCoupons(state));
+  }
+
+  return null;
 };
 
 export default CouponsReducer;

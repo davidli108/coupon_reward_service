@@ -1,8 +1,8 @@
 //@flow
 export type FeaturedCoupon = {
   storeName: string,
-  highestCashbackPercent?: number,
-  discountPercent?: number,
+  highestCashbackPercent?: ?number,
+  discountPercent?: ?number,
   description?: string,
   isFavorited?: boolean,
 };
@@ -38,6 +38,8 @@ export type Deal = {
   category?: string,
   store_name?: string,
   offer_link: string,
+  ref_text: string,
+  offer_type: string,
 };
 
 export type StoreListProps = {
@@ -68,7 +70,8 @@ export type CategoriesMobileProps = {
 export type ContentProps = {
   categories: Categories,
   coupons: Deal[],
-  loadMore: number => void,
+  loadMore: number => Promise<number>,
+  getFilteredDeals: Object,
 };
 
 export type CouponsProps = {

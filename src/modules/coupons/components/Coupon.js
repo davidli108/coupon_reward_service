@@ -7,13 +7,20 @@ import type { Deal as DealModel } from '../models/CouponsPage';
 
 const zeroPadStars = val => String(val).padStart(2, '0');
 
+const OfferType = {
+  discount: 'discount',
+  freeShipping: 'free-shipping',
+};
+
 const Coupon = ({
   discount,
   discount_print,
+  offer_type,
   offer_link,
   show_exp_date,
   store_logo,
   store_name,
+  ref_text,
 }: DealModel) => {
   return (
     <Coupon.Wrapper>
@@ -26,13 +33,21 @@ const Coupon = ({
           src={`http://d2umvgb8hls1bt.cloudfront.net${store_logo}`}
           alt={store_name}
         />
-        <Coupon.Discount>
-          <span>{zeroPadStars(discount)}</span>
-          <span>off</span>
-        </Coupon.Discount>
+        {offer_type === OfferType.freeShipping ? (
+          <Coupon.Discount>
+            <span>Free</span>
+            <span>Shipping</span>
+          </Coupon.Discount>
+        ) : (
+          <Coupon.Discount>
+            <span>{zeroPadStars(discount)}</span>
+            <span>off</span>
+          </Coupon.Discount>
+        )}
         <Coupon.ExpDate>
           <p>{show_exp_date}</p>
         </Coupon.ExpDate>
+        <Coupon.OfferText>{ref_text}</Coupon.OfferText>
         <Coupon.ViewDealButton href={offer_link} target="_blank">
           View Deal
         </Coupon.ViewDealButton>
@@ -124,6 +139,7 @@ Coupon.StoreLogo = styled.img`
 Coupon.Discount = styled.p`
   display: flex;
   flex-flow: column nowrap;
+  text-align: center;
 
   white-space: nowrap;
   color: #d0c000;
@@ -163,6 +179,17 @@ Coupon.ExpDate = styled.div`
   }
 `;
 
+Coupon.OfferText = styled.p`
+  line-height: 20px;
+  text-overflow: ellipsis;
+  overflow-y: hidden;
+  height: 60px;
+  margin: 10px 0;
+  color: #b1b1b1;
+  text-align: center;
+  font-size: 16px;
+`;
+
 Coupon.ViewDealButton = styled.a`
   display: flex;
   justify-content: center;
@@ -187,7 +214,7 @@ Coupon.ViewDealButton = styled.a`
   color: #fff;
 
   padding: 13px 30px;
-  margin: 30px 0 14px 0;
+  margin: 0 0 14px 0;
 
   white-space: nowrap;
   cursor: pointer;

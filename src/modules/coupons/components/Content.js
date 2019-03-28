@@ -1,5 +1,5 @@
 //@flow
-import * as React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { connect } from 'react-redux';
@@ -8,12 +8,33 @@ import Controls from './Controls';
 import CategoriesMobile from './CategoriesMobile';
 import Categories from './Categories';
 import Coupons from '../components/Coupons';
+import preloader from '../assets/preloader.svg';
 
 import * as actions from '../CouponsActions';
-import { getCategories, getStoresAll } from '../CouponsReducer';
+import {
+  getCategories,
+  getStoresAll,
+  getFilteredDeals,
+} from '../CouponsReducer';
 import type { ContentProps } from '../models/CouponsPage';
 
-const Content = ({ categories, loadMore, storeAll }: ContentProps) => {
+const Content = ({
+  categories,
+  loadMore,
+  storeAll,
+  getFilteredDeals,
+}: ContentProps) => {
+  const [loadCount, setLoadCount] = useState(20);
+  const [isLoaded, setIsLoaded] = useState(true);
+
+  const onLoadMore = () => {
+    if (isLoaded) {
+      setLoadCount(loadCount + 20);
+      setIsLoaded(false);
+      loadMore(loadCount).then(() => setIsLoaded(true));
+    }
+  };
+
   return (
     <div>
       <Controls />
@@ -25,8 +46,16 @@ const Content = ({ categories, loadMore, storeAll }: ContentProps) => {
         </Content.CategoriesWrapper>
         <Coupons />
       </Content.Grid>
-      <Content.LoadMoreDeals onClick={() => loadMore(5)}>
-        Load More Deals
+      <Content.LoadMoreDeals onClick={onLoadMore}>
+        {isLoaded ? (
+          getFilteredDeals && getFilteredDeals.length !== 0 ? (
+            'Load More Deals'
+          ) : (
+            ''
+          )
+        ) : (
+          <img src={preloader} alt="" />
+        )}
       </Content.LoadMoreDeals>
     </div>
   );
@@ -82,6 +111,7 @@ Content.LoadMoreDeals = styled.div`
 const mapStateToProps = state => ({
   categories: getCategories(state),
   storeAll: getStoresAll(state),
+  getFilteredDeals: getFilteredDeals(state),
 });
 
 const mapDispatchToProps = {

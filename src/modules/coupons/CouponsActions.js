@@ -14,9 +14,13 @@ export const getCoupons = () => ({
   },
 });
 
-export const loadMore = (payload: number) => ({
+export const loadMore = (count: number) => ({
   type: LOAD_MORE,
-  payload,
+  payload: {
+    request: {
+      url: `/api/coupons/${count}`,
+    },
+  },
 });
 
 export const setDealsFilter = (payload: string) => ({

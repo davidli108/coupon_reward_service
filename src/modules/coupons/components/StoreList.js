@@ -43,6 +43,10 @@ StoreList.Wrapper = styled.div`
     margin-right: 15px;
   }
 
+  ::-webkit-scrollbar {
+    height: 0;
+  }
+
   ${breakpoint('xl')`
     overflow-x: scroll;
     margin-bottom: 25px;

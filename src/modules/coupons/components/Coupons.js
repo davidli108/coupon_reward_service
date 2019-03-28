@@ -12,14 +12,16 @@ import { getFilteredDeals } from '../CouponsReducer';
 const Coupons = ({ coupons }: CouponsProps) => {
   return (
     <Coupons.Wrapper>
-      {coupons.length !== 0 ? (
+      {coupons && coupons.length !== 0 ? (
         coupons.map((coupon, index) => (
           <Coupon key={`coupon_${index}_${coupon.show_exp_date}`} {...coupon} />
         ))
-      ) : (
+      ) : coupons ? (
         <Coupons.Preloader>
           <img src={preloader} alt="" />
         </Coupons.Preloader>
+      ) : (
+        ''
       )}
     </Coupons.Wrapper>
   );

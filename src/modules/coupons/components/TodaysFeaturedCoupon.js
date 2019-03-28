@@ -18,7 +18,7 @@ const TodaysFeaturedCoupon = ({ store }: TodaysFeaturedCouponProps) => {
 
   return (
     <TodaysFeaturedCoupon.Wrapper>
-      <h2>Today's Featured Coupon From {store.store_name}'s</h2>
+      <h2>Today's Featured Coupon From {store.store_name}</h2>
       <TodaysFeaturedCoupon.Content>
         <TodaysFeaturedCoupon.LogoControlsWrapper>
           <TodaysFeaturedCoupon.Logo
@@ -37,7 +37,7 @@ const TodaysFeaturedCoupon = ({ store }: TodaysFeaturedCouponProps) => {
 
         <TodaysFeaturedCoupon.OfferingWrapper>
           <TodaysFeaturedCoupon.Offering>
-            <span>{store.discount}% OFF</span>
+            <span>{store.discount} OFF</span>
             <span>up to {store.discount_print}</span>
           </TodaysFeaturedCoupon.Offering>
         </TodaysFeaturedCoupon.OfferingWrapper>
@@ -355,7 +355,6 @@ TodaysFeaturedCoupon.Description = styled.p`
 
   ${breakpoint('xl')`
     flex: 1 1 50%;
-    margin-right: 25%;
   `}
 `;
 
@@ -395,6 +394,9 @@ TodaysFeaturedCoupon.Button = styled.a`
     flex: 1 1 220px;
     white-space: nowrap;
     height: 60px;
+    margin-left: 30px;
+    margin-top: auto;
+    margin-bottom: auto;
   `}
 `;
 
