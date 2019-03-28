@@ -71,6 +71,7 @@ export type StorePageProps = {
   additionalInfo: AdditionalInfo[],
   fetchStoreCoupons: ({ storeName: string }) => void,
   match: Object,
+  state?: string,
 };
 
 export type BrandProps = {

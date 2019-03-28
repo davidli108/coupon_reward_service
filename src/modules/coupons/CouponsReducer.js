@@ -55,68 +55,6 @@ const initialState: CouponsReducerProps = {
   deals: [],
 };
 
-// const generateRandomNumber = (max = 100) =>
-//   Math.floor(Math.random() * Math.floor(max));
-
-// const generateRandomCoupon = () => {
-//   const logos = [
-//     'https://logo.clearbit.com/adobe.com',
-//     'https://logo.clearbit.com/salesforce.com',
-//     'https://logo.clearbit.com/walmart.com',
-//     'https://logo.clearbit.com/ebay.com',
-//     'https://logo.clearbit.com/discordapp.com',
-//     'https://logo.clearbit.com/zillow.com',
-//     'https://logo.clearbit.com/pinterest.com',
-//     'https://logo.clearbit.com/webex.com',
-//     'https://logo.clearbit.com/microsoft.com',
-//     'https://logo.clearbit.com/ew.com',
-//     'https://logo.clearbit.com/trello.com',
-//     'https://logo.clearbit.com/xhamster.com',
-//   ];
-
-//   const categories = [
-//     'departmentStores',
-//     'computers',
-//     'baby',
-//     'beauty',
-//     'booksMedia',
-//     'businessOffice',
-//     'cellPhones',
-//     'computers',
-//     'clothing',
-//   ];
-
-//   const storeNames = ['macys', 'sears', 'udemy', 'verizon', 'wallgreens'];
-
-//   const logo = logos[generateRandomNumber(logos.length - 1)];
-//   const discount = generateRandomNumber();
-//   const cashback = generateRandomNumber();
-//   const expDate = `${generateRandomNumber(12)}/${generateRandomNumber(
-//     30,
-//   )}/${generateRandomNumber(3000)}}`;
-
-//   const category = categories[generateRandomNumber(categories.length - 1)];
-//   const storeName = storeNames[generateRandomNumber(categories.length - 1)];
-
-//   const isFavorite = Math.random() > 0.5;
-//   const isCoupon = Math.random() > 0.5;
-
-//   return {
-//     logo,
-//     discount,
-//     cashback,
-//     expDate,
-//     isFavorite,
-//     isCoupon,
-//     category,
-//     storeName,
-//   };
-// };
-
-// const generateRandomCoupons = quantity => {
-//   return R.repeat('hi', quantity).map(() => generateRandomCoupon());
-// };
-
 const CouponsReducer = (
   state: CouponsReducerProps = initialState,
   action: Object,
@@ -160,25 +98,6 @@ const CouponsReducer = (
   }
 };
 
-// const filterByControls = state => x => {
-//   return x.filter(y => {
-//     switch (getDealsFilter(state)) {
-//       case 'allDeals': {
-//         return true;
-//       }
-//       case 'onlyCoupons': {
-//         return y.isCoupon;
-//       }
-//       case 'favoriteStores': {
-//         return y.isFavorite;
-//       }
-//       default: {
-//         return false;
-//       }
-//     }
-//   });
-// };
-
 export const getFeaturedCoupon = R.path<FeaturedCoupon>([
   STATE_KEY,
   'featuredCoupon',
@@ -213,23 +132,7 @@ export const getCategoryFilter = R.path<string>([
 
 export const getStoresFilter = R.path<string>([STATE_KEY, 'storesFilter']);
 
-// const filterByCategory = state => x =>
-//   getCategoryFilter(state)
-//     ? x.filter<Deal[]>(y => y.category === getCategoryFilter(state))
-//     : x;
-
-// const filterByStores = state => x =>
-//   getStoresFilter(state)
-//     ? x.filter<Deal[]>(y => y.storeName === getStoresFilter(state))
-//     : x;
-
 export const getFilteredDeals = (state: Object) => {
-  // const filter = R.compose(
-  //   filterByStores(state),
-  //   filterByCategory(state),
-  //   filterByControls(state),
-  // );
-
   if (state.coupons.dealsFilter === 'allDeals') {
     return getCoupons(state);
   } else if (state.coupons.dealsFilter === 'onlyCoupons') {

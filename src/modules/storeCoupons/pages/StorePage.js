@@ -11,15 +11,18 @@ import Brand from '../components/Brand';
 import Offers from '../components/Offers';
 import AdditionalInfo from '../components/AdditionalInfo';
 import StoreInformation from '../components/StoreInformation';
+import Preloader from '@components/Preloader/Preloader';
 import type { StorePageProps } from '../models/StorePage';
+import { getFetchingState } from '../StoreCouponsReducer';
 import * as actions from '../StoreCouponsActions';
 
-const StorePage = ({ fetchStoreCoupons, match }: StorePageProps) => {
+const StorePage = ({ fetchStoreCoupons, match, state }: StorePageProps) => {
   React.useEffect(() => {
-    fetchStoreCoupons({ storeName: match.params.storeName });
+    match.params.storeName &&
+      fetchStoreCoupons({ storeName: match.params.storeName });
   });
 
-  return (
+  return state === 'LOADED' ? (
     <StorePage.Wrapper>
       <SearchBar name="storeSearch" placeholder="Search Stores" />
       <Brand />
@@ -33,6 +36,8 @@ const StorePage = ({ fetchStoreCoupons, match }: StorePageProps) => {
       </StorePage.DesktopContent>
       <StoreInformation />
     </StorePage.Wrapper>
+  ) : (
+    <Preloader />
   );
 };
 
@@ -104,6 +109,10 @@ StorePage.ColumnNoWrapFlexBox = styled.div`
   `}
 `;
 
+const mapStateToProps = state => ({
+  state: getFetchingState(state),
+});
+
 const mapDispatchToProps = {
   fetchStoreCoupons: actions.fetchStoreCoupons,
 };
@@ -111,7 +120,7 @@ const mapDispatchToProps = {
 const enhance = compose(
   withRouter,
   connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps,
   ),
 );

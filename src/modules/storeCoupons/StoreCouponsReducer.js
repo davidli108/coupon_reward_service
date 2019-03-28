@@ -4,10 +4,10 @@ import * as R from 'ramda';
 import { FETCH_STORE_COUPONS } from './StoreCouponsActions';
 
 export const STATE_KEY = 'storeCoupons';
-
 type StoreCouponsState = {};
 
 const initialState = {
+  fetchingState: null,
   offers: [],
   store: {
     id: '',
@@ -21,48 +21,14 @@ const initialState = {
   additionalInfo: [],
 };
 
-// const parseHtmlEnteties = str => {
-//   return str.replace(/&#([0-9]{1,3});/gi, (match, numStr) => {
-//     const num = parseInt(numStr, 10);
-//     return String.fromCharCode(num);
-//   });
-// };
-
-// span -> cashback
-// p -> body
-// h5 -> title
-// \r\n -> new section
-
-// const matchHTML = (x : string, tag : string) : string => R.pathOr('', [0], x.match(new RegExp(`(?<=(<${tag}>)).+(?=(</${tag}>))`)));
-
-// const formatAdditionalInfo = R.curry(additionalInfo => {
-//   return additionalInfo.map<Object>(([key, value]) => {
-//     const title =  R.match(/(?<=_)[a-zA-Z]+(?=(_content|_body))/g)(key)[0];
-//     const content = value.replace(/style=".+"/g, '').split('\\r\\n').map(x => {
-//       const title = matchHTML(x, 'h5')
-//       const content = matchHTML(x, 'p');
-//       const bonus = matchHTML(x, 'span');
-
-//       console.log('title', title);
-//       console.log('content', content);
-//       console.log('bonus', bonus);
-
-//       return {
-//         title,
-//         content,
-//         bonus,
-//       }
-//     })
-
-//     return { title, content };
-//   });
-// });
-
 const StoreCouponsReducer = (
   state: StoreCouponsState = initialState,
   action: Object,
 ) => {
   switch (action.type) {
+    case `${FETCH_STORE_COUPONS}_START`: {
+      return R.assoc<Object, Object>('fetchingState', 'FETCHING')(state);
+    }
     case `${FETCH_STORE_COUPONS}_SUCCESS`: {
       const offers = R.pathOr([], ['payload', 'data', 'offers_data'])(action);
 
@@ -86,12 +52,16 @@ const StoreCouponsReducer = (
       )(action);
 
       const newState = {
+        ...state,
         offers,
         store,
         additionalInfo,
       };
 
-      return newState;
+      return R.assoc<Object, Object>('fetchingState', 'LOADED')(newState);
+    }
+    case `${FETCH_STORE_COUPONS}_ERROR`: {
+      return R.assoc<Object, Object>('fetchingState', 'ERROR')(state);
     }
     default: {
       return state;
@@ -105,5 +75,6 @@ export const getAdditionalInfo = R.path<Object[]>([
   STATE_KEY,
   'additionalInfo',
 ]);
+export const getFetchingState = R.path<string>([STATE_KEY, 'fetchingState']);
 
 export default StoreCouponsReducer;
