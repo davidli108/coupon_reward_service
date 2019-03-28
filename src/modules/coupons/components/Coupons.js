@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
+import preloader from '../assets/preloader.svg';
 import Coupon from './Coupon';
 import type { CouponsProps } from '../models/CouponsPage';
 import { getFilteredDeals } from '../CouponsReducer';
@@ -11,9 +12,15 @@ import { getFilteredDeals } from '../CouponsReducer';
 const Coupons = ({ coupons }: CouponsProps) => {
   return (
     <Coupons.Wrapper>
-      {coupons.map((coupon, index) => (
-        <Coupon key={`coupon_${index}_${coupon.show_exp_date}`} {...coupon} />
-      ))}
+      {coupons.length !== 0 ? (
+        coupons.map((coupon, index) => (
+          <Coupon key={`coupon_${index}_${coupon.show_exp_date}`} {...coupon} />
+        ))
+      ) : (
+        <Coupons.Preloader>
+          <img src={preloader} alt="" />
+        </Coupons.Preloader>
+      )}
     </Coupons.Wrapper>
   );
 };
@@ -43,6 +50,13 @@ Coupons.Wrapper = styled.div`
       width: calc(33% - 30px);
     }
   `}
+`;
+
+Coupons.Preloader = styled.div`
+  width: 100%;
+  position: absolute;
+  margin-top: 200px;
+  text-align: right;
 `;
 
 const mapStateToProps = state => ({

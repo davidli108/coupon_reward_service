@@ -4,23 +4,28 @@ import * as React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
+import preloader from '../assets/preloader.svg';
 import type { StoreListProps } from '../models/CouponsPage';
 
 const StoreList = ({ stores }: StoreListProps) => (
   <StoreList.Wrapper>
-    {stores.map(store => (
-      <StoreList.Item
-        key={`store_${store.offer_id}`}
-        href={store.offer_link}
-        target="_blank"
-      >
-        <img
-          src={`http://d2umvgb8hls1bt.cloudfront.net${store.store_logo}`}
-          alt={store.store_name}
-        />
-        <p>{store.discount_print}</p>
-      </StoreList.Item>
-    ))}
+    {stores.length !== 0 ? (
+      stores.map(store => (
+        <StoreList.Item
+          key={`store_${store.offer_id}`}
+          href={store.offer_link}
+          target="_blank"
+        >
+          <img
+            src={`http://d2umvgb8hls1bt.cloudfront.net${store.store_logo}`}
+            alt={store.store_name}
+          />
+          <p>{store.discount_print}</p>
+        </StoreList.Item>
+      ))
+    ) : (
+      <img src={preloader} alt="" />
+    )}
   </StoreList.Wrapper>
 );
 
@@ -39,7 +44,7 @@ StoreList.Wrapper = styled.div`
   }
 
   ${breakpoint('xl')`
-    overflow-x: hidden;
+    overflow-x: scroll;
     margin-bottom: 25px;
   `}
 `;
