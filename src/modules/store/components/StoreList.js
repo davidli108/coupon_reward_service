@@ -1,8 +1,10 @@
 // @flow
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
+
+import preloader from '../../coupons/assets/preloader.svg';
 
 // import verificationIcon from '../assets/verif.png';
 
@@ -22,12 +24,27 @@ const StoreList = ({
   loadState,
   loadToState,
   storesAll,
-}: StoreListProps) => (
-  <div>
-    <StoreList.StoreContainer>
-      {stores.length === 0
-        ? null
-        : stores.map(
+}: StoreListProps) => {
+  const [loadCount, setLoadCount] = useState(20);
+  const [isLoaded, setIsLoaded] = useState(true);
+
+  const onLoad = () => {
+    if (isLoaded) {
+      setLoadCount(loadCount + 20);
+      setIsLoaded(false);
+      onLoadMore(loadCount).then(() => setIsLoaded(true));
+    }
+  };
+
+  return (
+    <div>
+      <StoreList.StoreContainer>
+        {stores.length === 0 ? (
+          <StoreList.PreloaderWrapper>
+            <img src={preloader} alt="" />
+          </StoreList.PreloaderWrapper>
+        ) : (
+          stores.map(
             ({
               store_name,
               discount_print,
@@ -54,11 +71,11 @@ const StoreList = ({
                         <StoreList.Cash>{discount_print}</StoreList.Cash>
                       </StoreList.Info>
                       {/* {couponActive && (
-                    <StoreList.Coupons>
-                      <img src={verificationIcon} alt="verify" />
-                      coupons activated
-                    </StoreList.Coupons>
-                  )} */}
+                      <StoreList.Coupons>
+                        <img src={verificationIcon} alt="verify" />
+                        coupons activated
+                      </StoreList.Coupons>
+                    )} */}
                     </StoreList.Content>
                     <StoreList.Link to={store_page_link}>
                       Visit Store
@@ -70,17 +87,23 @@ const StoreList = ({
                 </StoreList.LinkMobile>
               </StoreList.StoreItem>
             ),
-          )}
-    </StoreList.StoreContainer>
-    {loadState <= stores.length && storesAll.length > loadState && (
-      <StoreList.LoadMoreButton
-        onClick={onLoadMore.bind(null, (loadState += loadToState))}
-      >
-        Load more deals
+          )
+        )}
+      </StoreList.StoreContainer>
+      <StoreList.LoadMoreButton onClick={onLoad}>
+        {isLoaded ? (
+          stores.length !== 0 ? (
+            'Load more deals'
+          ) : (
+            ''
+          )
+        ) : (
+          <img src={preloader} alt="" />
+        )}
       </StoreList.LoadMoreButton>
-    )}
-  </div>
-);
+    </div>
+  );
+};
 
 StoreList.defaultProps = {
   stores: [],
@@ -109,6 +132,12 @@ StoreList.ContentWrap = styled.div`
 
 StoreList.StoreContainer = styled.div`
   margin: 0 0 50px 0;
+`;
+
+StoreList.PreloaderWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
 `;
 
 StoreList.StoreItem = styled.div`
@@ -221,6 +250,7 @@ StoreList.Content = styled.div`
 `;
 
 StoreList.Info = styled.div`
+  width: 100%;
   display: flex;
 
   ${breakpoint('xs')`
@@ -341,7 +371,7 @@ StoreList.Cash = styled.p`
   `}
 
   ${breakpoint('xl')`
-    margin: 0 30px 0 0;
+    margin: 0 100px 0 auto;
   `}
 `;
 

@@ -131,22 +131,6 @@ StoresPage.defaultProps = {
   filter: [],
 };
 
-const mapStateToProps = state => ({
-  stores: getFilteredStores(state),
-  featured: getFeatured(state),
-  filter: getStoreFilters(state),
-  loadState: getLoadState(state),
-  loadToState: getLoadToState(state),
-  storesAll: getStoresAll(state),
-});
-
-const mapDispatchToProps = {
-  onLoadMore: setLoadMore,
-  onSetFilter: setFilter,
-  onSetFilterClear: setFilterClear,
-  onGetStore: getStore,
-};
-
 StoresPage.Wrapper = styled.section`
   position: relative;
 
@@ -222,6 +206,22 @@ StoresPage.Box = styled.div`
     flex-direction: row;
   `}
 `;
+
+const mapStateToProps = state => ({
+  stores: getFilteredStores(state),
+  featured: getFeatured(state),
+  filter: getStoreFilters(state),
+  loadState: getLoadState(state),
+  loadToState: getLoadToState(state),
+  storesAll: getStoresAll(state),
+});
+
+const mapDispatchToProps = {
+  onLoadMore: setLoadMore,
+  onSetFilter: setFilter,
+  onSetFilterClear: setFilterClear,
+  onGetStore: getStore,
+};
 
 export default connect(
   mapStateToProps,

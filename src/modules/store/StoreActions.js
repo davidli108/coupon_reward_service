@@ -11,14 +11,18 @@ export const getStore = () => ({
   type: GET_STORE,
   payload: {
     request: {
-      url: '/api/coupons',
+      url: `/api/coupons`,
     },
   },
 });
 
-export const setLoadMore = (payload: any) => ({
+export const setLoadMore = (count: number) => ({
   type: SET_LOAD_MORE,
-  payload,
+  payload: {
+    request: {
+      url: `/api/coupons/${count}`,
+    },
+  },
 });
 
 export const setFilter = (payload: any) => ({

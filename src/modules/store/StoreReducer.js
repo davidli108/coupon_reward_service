@@ -13,20 +13,14 @@ import {
 export const STATE_KEY = 'store';
 
 const FEATURE_ITEMS = 3;
-const STORE_ITEMS = 6;
-const STORE_ITEMS_LOAD = 4;
 
 type StoresState = {
   filter: ?string,
   stores: Store[],
   featured: Feature[],
-  loadState: number,
-  loadToState: number,
 };
 
 const initialState: StoresState = {
-  loadState: STORE_ITEMS,
-  loadToState: STORE_ITEMS_LOAD,
   filter: null,
   stores: [],
   featured: [],
@@ -36,7 +30,6 @@ const StoreReducer = (state: StoresState = initialState, action: Object) => {
   switch (action.type) {
     case `${GET_STORE}_SUCCESS`: {
       const offersData = R.compose(
-        // R.indexBy(R.prop('offer_id')),
         R.pathOr([], ['payload', 'data', 'offers_data']),
       )(action);
 
@@ -47,7 +40,10 @@ const StoreReducer = (state: StoresState = initialState, action: Object) => {
 
       return R.compose(
         R.assoc<Object, Object>('featured', featuredStores),
-        R.assoc<Object, Object>('stores', offersData),
+        R.assoc<Object, Object>(
+          'stores',
+          R.uniqBy(i => i.store_id, offersData),
+        ),
       )(state);
     }
     case SET_FILTER: {
@@ -56,8 +52,17 @@ const StoreReducer = (state: StoresState = initialState, action: Object) => {
     case SET_FILTER_CLEAR: {
       return R.assoc<Object, Object>('filter', null, state);
     }
-    case SET_LOAD_MORE: {
-      return R.assoc<Object, Object>('loadState', action.payload, state);
+    case `${SET_LOAD_MORE}_SUCCESS`: {
+      const offersData = R.compose(
+        R.pathOr([], ['payload', 'data', 'offers_data']),
+      )(action);
+      // $FlowFixMe
+      return R.assoc<Object, Object>(
+        'stores',
+        // $FlowFixMe
+        R.uniqBy(i => i.store_id, R.concat(state.stores, offersData)),
+        state,
+      );
     }
     case LOAD_MORE_STATE: {
       return R.assoc<Object, Object>('loadToState', null, state);
