@@ -42,7 +42,6 @@ Brand.Wrapper = styled.div`
 
   ${breakpoint('xl')`
     flex-flow: row nowrap;
-
     height: auto;
     width: 100%;
   `}
@@ -71,11 +70,6 @@ Brand.BrandImageWrapper = styled.div`
     width: auto;
     max-width: 100%;
     max-height: 100%;
-
-    ${breakpoint('xl')`
-      width: 140px;
-      height: 140px;
-    `}
   }
 `;
 
