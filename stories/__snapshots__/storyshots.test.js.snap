@@ -1241,6 +1241,7 @@ exports[`Storyshots Components|@Store Featured 1`] = `
   >
     <a
       className="c2"
+      target="_blank"
     >
       Visit Store
     </a>
@@ -1398,7 +1399,9 @@ exports[`Storyshots Components|@Store SearchStoreItem 1`] = `
   <div
     className="c1"
   >
-    <img />
+    <img
+      src="http://d2umvgb8hls1bt.cloudfront.netundefined"
+    />
     <div>
       <h3 />
       <p />
@@ -1927,6 +1930,7 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
       >
         <img
           className="c3"
+          src="http://d2umvgb8hls1bt.cloudfront.netundefined"
         />
         <div
           className="c4"
@@ -1956,6 +1960,8 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
           </div>
           <a
             className="c11"
+            href="/https://target.com"
+            onClick={[Function]}
           >
             Visit Store
           </a>
@@ -1963,6 +1969,8 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
       </div>
       <a
         className="c12"
+        href="/https://target.com"
+        onClick={[Function]}
       >
         Visit Store
       </a>
@@ -2575,6 +2583,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
         >
           <img
             className="c6"
+            src="http://d2umvgb8hls1bt.cloudfront.netundefined"
           />
           <div
             className="c7"
@@ -2604,6 +2613,8 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
             </div>
             <a
               className="c14"
+              href=""
+              onClick={[Function]}
             >
               Visit Store
             </a>
@@ -2611,6 +2622,8 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
         </div>
         <a
           className="c15"
+          href=""
+          onClick={[Function]}
         >
           Visit Store
         </a>
