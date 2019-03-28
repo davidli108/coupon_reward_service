@@ -1,19 +1,20 @@
 //@flow
 import * as React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 
 import StoreInformationSection from './StoreInformationSection';
 import type { StoreInformationProps } from '../models/StorePage';
+import { getStore } from '../StoreCouponsReducer';
 
-const StoreInformation = ({ info }: StoreInformationProps) => {
+const StoreInformation = ({ store }: StoreInformationProps) => {
   return (
     <StoreInformation.Wrapper>
-      {info.map(x => (
-        <StoreInformationSection
-          key={`store_information_${x.title || 'title'}`}
-          {...x}
-        />
-      ))}
+      <StoreInformationSection
+        key={`store_${store.store_id}`}
+        title="About"
+        body={store.store_description}
+      />
     </StoreInformation.Wrapper>
   );
 };
@@ -26,4 +27,10 @@ StoreInformation.Wrapper = styled.div`
   border-radius: 5px;
 `;
 
-export default StoreInformation;
+const mapStateToProps = state => ({
+  store: getStore(state),
+});
+
+const enhance = connect(mapStateToProps);
+
+export default enhance(StoreInformation);

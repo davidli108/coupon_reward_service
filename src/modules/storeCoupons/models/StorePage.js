@@ -7,8 +7,9 @@ export type Content = {
 };
 
 export type AdditionalInfo = {
-  title: string,
-  content: Content[],
+  featured_store_shipping_content: string,
+  featured_store_secrets_body: string,
+  featured_store_returns_body: string,
 };
 
 export type Extension = {
@@ -22,24 +23,40 @@ export type StoreInformation = {
 };
 
 export type Store = {
-  name: string,
-  isFollowed: boolean,
-  info: StoreInformation[],
+  store_id: string,
+  store_name: string,
+  store_description: string,
+  store_cashback_text: string,
+  store_logo_image_path: string,
+  stores_sale_count: string,
+  stores_code_count: string,
 };
 
 export type Offer = {
-  title: string,
-  value?: string,
-  expDate?: string,
-  discountPercent?: number,
-  cashbackPercent?: number,
-  usesToday?: number,
-  isCoupon?: boolean,
-  isDeal?: boolean,
-  isBonus?: boolean,
-  isLimited?: boolean,
-  isNew?: boolean,
-  couponCode?: string,
+  store_logo: string,
+  store_page_link: string,
+  store_id: string,
+  discount: string,
+  discount_print: string,
+  coupon_code: string,
+  offer_name: string,
+  offer_id: string,
+  discount_amt: string,
+  discount_type: string,
+  cashback_ok: string,
+  offer_type: string,
+  numeric_type: string,
+  offer_image: string,
+  offer_link: string,
+  offer_text_short: string,
+  offer_success: number,
+  offer_success_print: string,
+  show_exp_date: string,
+  ref_link: string,
+  ref_text: string,
+  facebook_link: string,
+  twitter_link: string,
+  pinterest_link: string,
 };
 
 export type SearchBarProps = {
@@ -52,12 +69,12 @@ export type StorePageProps = {
   offers: Offer[],
   extension: Extension,
   additionalInfo: AdditionalInfo[],
+  fetchStoreCoupons: ({ storeName: string }) => void,
+  match: Object,
 };
 
 export type BrandProps = {
   store: Store,
-  offers: Offer[],
-  extension: Extension,
 };
 
 export type BrandContentProps = {
@@ -67,9 +84,7 @@ export type BrandContentProps = {
 };
 
 export type BrandHeaderProps = {
-  storeName: string,
-  isFollowed: boolean,
-  offers: Offer[],
+  store: Store,
 };
 
 export type BrandNeverOverpayProps = {
@@ -86,7 +101,7 @@ export type OffersProps = {
 };
 
 export type AdditionalInfoProps = {
-  info: AdditionalInfo[],
+  additionalInfo: AdditionalInfo,
 };
 
 export type AdditionaInfoSectionProps = {
@@ -101,5 +116,5 @@ export type AdditionalInfoContentProps = {
 };
 
 export type StoreInformationProps = {
-  info: StoreInformation[],
+  store: Store,
 };

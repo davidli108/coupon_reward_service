@@ -2,6 +2,9 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
+import { withRouter } from 'react-router-dom';
+import { compose } from 'recompose';
+import { connect } from 'react-redux';
 
 import SearchBar from '../components/SearchBar';
 import Brand from '../components/Brand';
@@ -10,25 +13,33 @@ import AdditionalInfo from '../components/AdditionalInfo';
 import StoreInformation from '../components/StoreInformation';
 import type { StorePageProps } from '../models/StorePage';
 
+import * as actions from '../StoreCouponsActions';
+
 const StorePage = ({
   store,
   offers,
   extension,
   additionalInfo,
+  fetchStoreCoupons,
+  match,
 }: StorePageProps) => {
+  React.useEffect(() => {
+    fetchStoreCoupons({ storeName: match.params.storeName });
+  });
+
   return (
     <StorePage.Wrapper>
       <SearchBar name="storeSearch" placeholder="Search Stores" />
-      <Brand store={store} offers={offers} extension={extension} />
+      <Brand />
       <StorePage.DesktopContent>
         <StorePage.ColumnNoWrapFlexBox order="2">
-          <Offers offers={offers} />
+          <Offers />
         </StorePage.ColumnNoWrapFlexBox>
         <StorePage.ColumnNoWrapFlexBox order="1">
           <AdditionalInfo info={additionalInfo} />
         </StorePage.ColumnNoWrapFlexBox>
       </StorePage.DesktopContent>
-      <StoreInformation info={store.info} />
+      <StoreInformation />
     </StorePage.Wrapper>
   );
 };
@@ -226,4 +237,16 @@ StorePage.defaultProps = {
   ],
 };
 
-export default StorePage;
+const mapDispatchToProps = {
+  fetchStoreCoupons: actions.fetchStoreCoupons,
+};
+
+const enhance = compose(
+  withRouter,
+  connect(
+    null,
+    mapDispatchToProps,
+  ),
+);
+
+export default enhance(StorePage);

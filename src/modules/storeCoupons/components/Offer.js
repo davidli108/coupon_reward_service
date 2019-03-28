@@ -5,98 +5,56 @@ import breakpoint from 'styled-components-breakpoint';
 
 import type { Offer as OfferModel } from '../models/StorePage';
 
-const formatNumberByThousands = value => {
-  const thousands = Math.floor(Number(value) / 1000);
-  const rest = Number(value) % 1000;
-  const shortRest = String(rest).split('')[0];
-
-  if (thousands === 0) {
-    return value;
-  }
-
-  return `${thousands}.${shortRest}k`;
-};
-
-const formatWithZeroPadding = value => String(value).padStart(2, '0');
-
 const Offer = ({
-  title,
-  expDate,
-  discountPercent,
-  cashbackPercent,
-  usesToday,
-  isCoupon,
-  isDeal,
-  isNew,
-  isBonus,
-  isLimited,
-  value,
-  couponCode,
+  coupon_code,
+  show_exp_date,
+  discount,
+  discount_print,
+  offer_name,
+  offer_success_print,
 }: OfferModel) => {
   const [isCouponRevealed, setCouponRevealed] = React.useState(false);
   const couponRevealedToggler = () => setCouponRevealed(!isCouponRevealed);
 
   return (
     <>
-      {(isDeal || isCoupon) && (
-        <Offer.Wrapper>
-          {isNew && (
-            <Offer.NewDeal>
-              <p>New Deal</p>
-            </Offer.NewDeal>
-          )}
-          <Offer.Content>
-            <p>
-              <span>{formatWithZeroPadding(discountPercent)}%</span>
-              <span>O f f</span>
-            </p>
-            <p>{title}</p>
-          </Offer.Content>
-          <Offer.ViewDeal>
-            {isDeal && (
-              <Offer.ViewDealButton
-                href="https://google.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                View Deal
-              </Offer.ViewDealButton>
-            )}
-            {isCoupon && (
-              <Offer.RevealCouponButton
-                isRevealed={isCouponRevealed}
-                onClick={couponRevealedToggler}
-              >
-                <p>Reveal Coupon</p>
-                <p>{couponCode}</p>
-              </Offer.RevealCouponButton>
-            )}
-            <p>Exp. {expDate}</p>
-          </Offer.ViewDeal>
-          <Offer.Info>
-            <p>
-              Verified today · {formatNumberByThousands(usesToday)} uses today.
-            </p>
-            <p>+{cashbackPercent}% Cash Back</p>
-          </Offer.Info>
-        </Offer.Wrapper>
-      )}
-      {isBonus && (
-        <Offer.PiggyOffer>
-          <Offer.PiggyBonus>PiggyBonus</Offer.PiggyBonus>
-          <Offer.PiggyContent>
-            <h2>{value}</h2>
-            <p>{title}</p>
-            <a
+      <Offer.Wrapper>
+        {offer_success_print && (
+          <Offer.NewDeal>
+            <p>{offer_success_print}</p>
+          </Offer.NewDeal>
+        )}
+        <Offer.Content>
+          <p>
+            <span>{Number(discount.replace('%', '')) * 10}%</span>
+            <span>O f f</span>
+          </p>
+          <p>{offer_name}</p>
+        </Offer.Content>
+        <Offer.ViewDeal>
+          {false && (
+            <Offer.ViewDealButton
               href="https://google.com"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Get Piggy
-            </a>
-          </Offer.PiggyContent>
-        </Offer.PiggyOffer>
-      )}
+              View Deal
+            </Offer.ViewDealButton>
+          )}
+          <Offer.RevealCouponButton
+            isRevealed={isCouponRevealed}
+            onClick={couponRevealedToggler}
+          >
+            <p>Reveal Coupon</p>
+            <p>{coupon_code}</p>
+          </Offer.RevealCouponButton>
+          <p>{show_exp_date}</p>
+        </Offer.ViewDeal>
+        <Offer.Info>
+          <p>Verified today · XXX uses today.</p>
+          <p>{discount_print}</p>
+        </Offer.Info>
+      </Offer.Wrapper>
     </>
   );
 };
@@ -253,34 +211,6 @@ Offer.RevealCouponButton = styled.div`
   `
         : 'display: none'};
   }
-`;
-
-Offer.PiggyOffer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  background: #fff;
-  border: 1px dashed #adb8c0;
-  border-radius: 5px;
-
-  margin-top: 25px;
-
-  ${breakpoint('lg')`
-    width: 100%;
-  `}
-`;
-
-Offer.PiggyBonus = styled.div`
-  background: #f9fafc;
-  border-radius: 5px;
-
-  font-weight: bold;
-  line-height: 15px;
-  font-size: 13px;
-  text-align: center;
-  color: #00cbe9;
-  padding: 7px;
 `;
 
 Offer.ViewDeal = styled.div`

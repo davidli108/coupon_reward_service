@@ -2,32 +2,33 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
+import { connect } from 'react-redux';
 
 import BrandHeader from './BrandHeader';
 import BrandContent from './BrandContent';
 
 import type { BrandProps } from '../models/StorePage';
 
-const Brand = ({ store, offers, extension }: BrandProps) => {
+import { getStore } from '../StoreCouponsReducer';
+
+const Brand = ({
+  store: { store_logo_image_path, store_name },
+}: BrandProps) => {
   return (
     <Brand.Wrapper>
       <Brand.BrandImageWrapper>
         <img
-          src="http://www.legacypowerwashing.com/wp-content/uploads/2015/11/macys-logo-fix.png"
+          src={`http://8ea9c26d.ngrok.io/${store_logo_image_path}`}
           alt="brand-logo"
         />
       </Brand.BrandImageWrapper>
       <Brand.WrapFlexBox>
-        <BrandHeader
-          storeName={store.name}
-          offers={offers}
-          isFollowed={store.isFollowed}
-        />
+        <BrandHeader />
         <Brand.NoWrapFlexBoxWithBorder>
           <BrandContent
-            storeName={store.name}
-            stars={extension.stars}
-            reviewsCount={extension.reviewsCount}
+            storeName={store_name}
+            stars={4.5}
+            reviewsCount={'1000'}
           />
         </Brand.NoWrapFlexBoxWithBorder>
       </Brand.WrapFlexBox>
@@ -121,4 +122,10 @@ Brand.WrapFlexBox = styled.div`
   `}
 `;
 
-export default Brand;
+const mapStateToProps = state => ({
+  store: getStore(state),
+});
+
+const enhance = connect(mapStateToProps);
+
+export default enhance(Brand);

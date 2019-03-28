@@ -1,35 +1,34 @@
 //@flow
 import * as React from 'react';
-import styled from 'styled-components';
-import breakpoint from 'styled-components-breakpoint';
 import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
+import breakpoint from 'styled-components-breakpoint';
+import styled from 'styled-components';
+import { connect } from 'react-redux';
 
 import type { BrandHeaderProps } from '../models/StorePage';
+import { getStore } from '../StoreCouponsReducer';
 
-const getCoupons = offers => offers.filter(x => x.isCoupon);
-const getDeals = offers => offers.filter(x => x.isDeal);
-const getHighestCashback = offers =>
-  offers.reduce((acc, val) => {
-    if (val.cashbackPercent && val.cashbackPercent > acc) {
-      acc = val.cashbackPercent;
-    }
-    return acc;
-  }, 0);
-
-const BrandHeader = ({ storeName, isFollowed, offers }: BrandHeaderProps) => {
-  const [isStoreFollowed, setStoreFollowed] = React.useState(isFollowed);
+const BrandHeader = ({
+  store: {
+    store_name,
+    store_cashback_text,
+    stores_sale_count,
+    stores_code_count,
+  },
+}: BrandHeaderProps) => {
+  const [isStoreFollowed, setStoreFollowed] = React.useState(false);
   const handleStoreFollowToggler = () => setStoreFollowed(!isStoreFollowed);
 
   return (
     <>
-      <BrandHeader.Name>{storeName} Coupon Codes & Deals</BrandHeader.Name>
+      <BrandHeader.Name>{store_name} Coupon Codes & Deals</BrandHeader.Name>
       <BrandHeader.NoWrapFlexBox>
         <BrandHeader.OffersStats>
-          <span>{getCoupons(offers).length} Coupons</span>
+          <span>{stores_sale_count} Coupons</span>
           <span>-</span>
-          <span>{getDeals(offers).length} Deals</span>
+          <span>{stores_code_count} Deals</span>
           <span>-</span>
-          <span>Up to {getHighestCashback(offers)}% Cash Back </span>
+          <span>{store_cashback_text}</span>
         </BrandHeader.OffersStats>
         <BrandHeader.FollowStoreWrapper isStoreFollowed={isStoreFollowed}>
           <div onClick={handleStoreFollowToggler}>
@@ -141,4 +140,10 @@ BrandHeader.FollowStoreWrapper = styled.div`
   }
 `;
 
-export default BrandHeader;
+const mapStateToProps = state => ({
+  store: getStore(state),
+});
+
+const enhance = connect(mapStateToProps);
+
+export default enhance(BrandHeader);
