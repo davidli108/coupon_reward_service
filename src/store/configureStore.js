@@ -1,7 +1,6 @@
 // @flow
 import { routerMiddleware } from 'connected-react-router';
-import createMemoryHistory from 'history/createMemoryHistory';
-import createBrowserHistory from 'history/createBrowserHistory';
+import { createBrowserHistory, createMemoryHistory } from 'history';
 import { applyMiddleware, compose, createStore } from 'redux';
 import { persistStore } from 'redux-persist';
 import createSagaMiddleware from 'redux-saga';
