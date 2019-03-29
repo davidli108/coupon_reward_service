@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
+import { withTranslation } from 'react-i18next';
 
 import ModalWrapper from './ModalWrapper';
 import ModalSocial from './ModalSocial';
@@ -9,6 +10,7 @@ import ModalInput from './ModalInput';
 import ModalFooter from './ModalFooter';
 
 type SignInModalProps = {
+  t: string => string,
   title: string,
   subTitle: string,
   submitLabel: string,
@@ -19,6 +21,7 @@ type SignInModalProps = {
 };
 
 const SignInModal = ({
+  t,
   title,
   subTitle,
   submitLabel,
@@ -46,7 +49,7 @@ const SignInModal = ({
     >
       <ModalSocial />
       <SignInModal.Or>
-        <span>or</span>
+        <span>{t('auth.signIn.or')}</span>
       </SignInModal.Or>
       <div>
         <SignInModal.Form onSubmit={handleFormSubmit}>
@@ -55,7 +58,7 @@ const SignInModal = ({
             value={email}
             onChange={e => setEmail(e.target.value)}
             type="email"
-            placeholder="Email Address"
+            placeholder={t('auth.signIn.emailAddress')}
             required
           />
           <ModalInput
@@ -63,17 +66,19 @@ const SignInModal = ({
             value={password}
             onChange={e => setPassword(e.target.value)}
             type="password"
-            placeholder="Password"
+            placeholder={t('auth.signIn.password')}
             required
           />
           <button>{submitLabel}</button>
         </SignInModal.Form>
         <SignInModal.PreFooter>
-          <button onClick={onRoutModalReset}>Forgot Password?</button>
+          <button onClick={onRoutModalReset}>
+            {t('auth.signIn.forgotPassword')}
+          </button>
         </SignInModal.PreFooter>
         <ModalFooter
-          footerText="Not A Member?"
-          textButton="Join Piggy"
+          footerText={t('auth.signIn.footer.text')}
+          textButton={t('auth.signIn.footer.button')}
           onRoutModal={onRoutModal}
         />
       </div>
@@ -176,4 +181,4 @@ SignInModal.PreFooter = styled.span`
   }
 `;
 
-export default SignInModal;
+export default withTranslation()(SignInModal);

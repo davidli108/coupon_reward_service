@@ -2,19 +2,20 @@
 import React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
+import { withTranslation } from 'react-i18next';
 
 import googleIcon from '../assets/googleIcon.png';
 import facebookIcon from '../assets/facebookIcon.png';
 
-const ModalSocial = () => (
+const ModalSocial = ({ t }) => (
   <div>
     <ModalSocial.LinkFacebook href="https://www.joinpiggy.com/fb">
       <img src={facebookIcon} alt="facebook" />
-      Login with Facebook
+      {t('auth.social.loginFacebook')}
     </ModalSocial.LinkFacebook>
     <ModalSocial.LinkGoogle href="https://www.joinpiggy.com/google/signin">
       <img src={googleIcon} alt="google" />
-      Login with Google
+      {t('auth.social.loginGoogle')}
     </ModalSocial.LinkGoogle>
   </div>
 );
@@ -58,4 +59,4 @@ ModalSocial.LinkGoogle = styled(ModalSocial.LinkFacebook)`
   }
 `;
 
-export default ModalSocial;
+export default withTranslation()(ModalSocial);

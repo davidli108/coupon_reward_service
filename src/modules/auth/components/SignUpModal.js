@@ -2,12 +2,15 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
+import { withTranslation } from 'react-i18next';
 
 import ModalWrapper from './ModalWrapper';
 import ModalSocial from './ModalSocial';
 import ModalInput from './ModalInput';
 import ModalFooter from './ModalFooter';
+
 type SignUpModalProps = {
+  t: string => string,
   title: string,
   subTitle: string,
   submitLabel: string,
@@ -18,6 +21,7 @@ type SignUpModalProps = {
 };
 
 const SignUpModal = ({
+  t,
   title,
   subTitle,
   submitLabel,
@@ -44,7 +48,7 @@ const SignUpModal = ({
       >
         <ModalSocial />
         <SignUpModal.Or>
-          <span>or</span>
+          <span>{t('auth.signUp.or')}</span>
         </SignUpModal.Or>
         <div>
           <SignUpModal.Form onSubmit={handleFormSubmit}>
@@ -53,18 +57,18 @@ const SignUpModal = ({
               value={email}
               onChange={e => setEmail(e.target.value)}
               type="email"
-              placeholder="Email Address"
+              placeholder={t('auth.signUp.emailAddress')}
               required
             />
             <button>{submitLabel}</button>
           </SignUpModal.Form>
           <SignUpModal.PreFooter>
-            By joining, I agree to be added to daily mailing list and Piggy's
-            <a href={linkTerms}>terms of service</a>
+            {t('auth.signUp.preFooter.label')}
+            <a href={linkTerms}>{t('auth.signUp.preFooter.terms')}</a>
           </SignUpModal.PreFooter>
           <ModalFooter
-            footerText="Already A Member?"
-            textButton="Login"
+            footerText={t('auth.signUp.footer.text')}
+            textButton={t('auth.signUp.footer.button')}
             onRoutModal={onRoutModal}
           />
         </div>
@@ -170,4 +174,4 @@ SignUpModal.PreFooter = styled.span`
   }
 `;
 
-export default SignUpModal;
+export default withTranslation()(SignUpModal);

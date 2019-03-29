@@ -2,12 +2,14 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
+import { withTranslation } from 'react-i18next';
 
 import ModalWrapper from './ModalWrapper';
 import ModalInput from './ModalInput';
 import ModalFooter from './ModalFooter';
 
 type ResetPasswordModalProps = {
+  t: string => string,
   title: string,
   subTitle: string,
   submitLabel: string,
@@ -17,6 +19,7 @@ type ResetPasswordModalProps = {
 };
 
 const ResetPasswordModal = ({
+  t,
   title,
   subTitle,
   submitLabel,
@@ -45,14 +48,14 @@ const ResetPasswordModal = ({
               value={email}
               onChange={e => setEmail(e.target.value)}
               type="email"
-              placeholder="Email Address"
+              placeholder={t('auth.forgotPassword.emailAddress')}
               required
             />
             <button>{submitLabel}</button>
           </ResetPasswordModal.Form>
           <ModalFooter
-            footerText="Send Reset Email"
-            textButton="Join Piggy"
+            footerText={t('auth.footer.text')}
+            textButton={t('auth.footer.button')}
             onRoutModal={onRoutModal}
           />
         </div>
@@ -92,4 +95,4 @@ ResetPasswordModal.Form = styled.form`
   }
 `;
 
-export default ResetPasswordModal;
+export default withTranslation()(ResetPasswordModal);

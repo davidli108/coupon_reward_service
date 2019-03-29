@@ -18,12 +18,13 @@ const resources = {
   },
 };
 
+// eslint-disable-next-line import/no-named-as-default-member
 i18n
   .use(languageDetector)
   .use(initReactI18next)
   .init({
     resources,
-    fallbackLng: 'fr',
+    fallbackLng: 'en',
     keySeparator: '.',
     interpolation: {
       escapeValue: false,

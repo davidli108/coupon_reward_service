@@ -97,9 +97,9 @@ const Header = ({ t }) => {
 
       {currentModal === modal.modalSignIn && (
         <SignInModal
-          title="Welcome Back"
-          subTitle="Good to see you again"
-          submitLabel="Login with Email"
+          title={t('auth.signIn.title')}
+          subTitle={t('auth.signIn.subTitle')}
+          submitLabel={t('auth.signIn.button')}
           isActive={true}
           onRoutModalReset={() => setCurrentModal(modal.modalResetPassword)}
           onRoutModal={() => setCurrentModal(modal.modalSignUp)}
@@ -108,9 +108,9 @@ const Header = ({ t }) => {
       )}
       {currentModal === modal.modalSignUp && (
         <SignUpModal
-          title="Register to Get Automatic Cash Back"
-          subTitle="Its that easy"
-          submitLabel="Join Piggy"
+          title={t('auth.signUp.title')}
+          subTitle={t('auth.signUp.subTitle')}
+          submitLabel={t('auth.signUp.button')}
           linkTerms="https://www.joinpiggy.com/terms"
           isActive={true}
           onRoutModal={() => setCurrentModal(modal.modalSignIn)}
@@ -119,9 +119,9 @@ const Header = ({ t }) => {
       )}
       {currentModal === modal.modalResetPassword && (
         <ResetPasswordModal
-          title="Forgot Your Password?"
-          subTitle="Forgot Your Password"
-          submitLabel="Send Reset Email"
+          title={t('auth.forgotPassword.title')}
+          subTitle={t('auth.forgotPassword.subTitle')}
+          submitLabel={t('auth.forgotPassword.button')}
           isActive={true}
           onRoutModal={() => setCurrentModal(modal.modalSignUp)}
           closeModal={setCurrentModal.bind(null)}
