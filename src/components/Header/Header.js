@@ -2,6 +2,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
+import { withTranslation } from 'react-i18next';
 
 import SignInModal from '../../modules/auth/components/SignInModal';
 import SignUpModal from '../../modules/auth/components/SignUpModal';
@@ -40,7 +41,7 @@ const renderHeaderItems = (items: Array<renderHeaderItemsProps>) =>
     </HeaderItem>
   ));
 
-const Header = () => {
+const Header = ({ t }) => {
   const [isOpen, setOpen] = React.useState(false);
   const [currentModal, setCurrentModal] = React.useState(null);
 
@@ -48,32 +49,32 @@ const Header = () => {
     {
       bgColor: '#40c8e5',
       hoverBgColor: '#34a6bf',
-      title: 'Coupons',
+      title: t('header.coupons'),
       link: '/coupons',
     },
     {
       bgColor: '#40c8e5',
       hoverBgColor: '#34a6bf',
-      title: 'Stores',
+      title: t('header.stores'),
       link: '/cashback-stores',
     },
     {
       bgColor: '#3ab7d1',
       hoverBgColor: '#ef65a0',
-      title: 'Get the App!',
+      title: t('header.getApp'),
       redirect:
         'https://chrome.google.com/webstore/detail/piggy-automatic-coupons-c/hfapbcheiepjppjbnkphkmegjlipojba?hl=en',
     },
     {
       bgColor: '#34a6bf',
       hoverBgColor: '#29899e',
-      title: 'Login',
+      title: t('header.login'),
       onClick: () => setCurrentModal(modal.modalSignIn),
     },
     {
       bgColor: '#34a6bf',
       hoverBgColor: '#29899e',
-      title: 'Create an Account',
+      title: t('header.createAccount'),
       onClick: () => setCurrentModal(modal.modalSignUp),
     },
   ];
@@ -227,4 +228,4 @@ Header.SlidingMenu = styled.div`
   `}
 `;
 
-export default Header;
+export default withTranslation()(Header);

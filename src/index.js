@@ -1,6 +1,7 @@
 import React from 'react';
 import { hydrate, render } from 'react-dom';
 import Loadable from 'react-loadable';
+import './modules/localization/i18n';
 
 import AppContainer from './AppContainer';
 import { unregister } from './registerServiceWorker';
