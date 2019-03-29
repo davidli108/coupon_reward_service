@@ -6,15 +6,15 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 
 import type { BrandHeaderProps } from '../models/StorePage';
-import { getStore } from '../StoreCouponsReducer';
+import { getStore, getOffers } from '../StoreCouponsReducer';
+
+const getCouponsCount = offers =>
+  offers.filter(x => x.coupon_code !== '').length;
+const getDealsCount = offers => offers.filter(x => x.coupon_code === '').length;
 
 const BrandHeader = ({
-  store: {
-    store_name,
-    store_cashback_text,
-    stores_sale_count,
-    stores_code_count,
-  },
+  store: { store_name, store_cashback_text },
+  offers,
 }: BrandHeaderProps) => {
   const [isStoreFollowed, setStoreFollowed] = React.useState(false);
   const handleStoreFollowToggler = () => setStoreFollowed(!isStoreFollowed);
@@ -24,9 +24,9 @@ const BrandHeader = ({
       <BrandHeader.Name>{store_name} Coupon Codes & Deals</BrandHeader.Name>
       <BrandHeader.NoWrapFlexBox>
         <BrandHeader.OffersStats>
-          <span>{stores_sale_count} Coupons</span>
+          <span>{getCouponsCount(offers)} Coupons</span>
           <span>-</span>
-          <span>{stores_code_count} Deals</span>
+          <span>{getDealsCount(offers)} Deals</span>
           <span>-</span>
           <span>{store_cashback_text}</span>
         </BrandHeader.OffersStats>
@@ -142,6 +142,7 @@ BrandHeader.FollowStoreWrapper = styled.div`
 
 const mapStateToProps = state => ({
   store: getStore(state),
+  offers: getOffers(state),
 });
 
 const enhance = connect(mapStateToProps);

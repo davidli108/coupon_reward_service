@@ -86,6 +86,7 @@ export type BrandContentProps = {
 
 export type BrandHeaderProps = {
   store: Store,
+  offers: Offer[],
 };
 
 export type BrandNeverOverpayProps = {
