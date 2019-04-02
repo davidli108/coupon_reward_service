@@ -50,19 +50,21 @@ const Content = ({
           />
           <Categories categories={categories.stores} title="Stores" />
         </Content.CategoriesWrapper>
-        <Coupons />
+        <Content.CouponsWrapper>
+          <Coupons />
+          <Content.LoadMoreDeals onClick={onLoadMore}>
+            {isLoaded ? (
+              getFilteredDeals && getFilteredDeals.length !== 0 ? (
+                'Load More Deals'
+              ) : (
+                ''
+              )
+            ) : (
+              <img src={preloader} alt="" />
+            )}
+          </Content.LoadMoreDeals>
+        </Content.CouponsWrapper>
       </Content.Grid>
-      <Content.LoadMoreDeals onClick={onLoadMore}>
-        {isLoaded ? (
-          getFilteredDeals && getFilteredDeals.length !== 0 ? (
-            'Load More Deals'
-          ) : (
-            ''
-          )
-        ) : (
-          <img src={preloader} alt="" />
-        )}
-      </Content.LoadMoreDeals>
     </div>
   );
 };
@@ -98,8 +100,14 @@ Content.CategoriesWrapper = styled.div`
   `}
 `;
 
+Content.CouponsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 Content.LoadMoreDeals = styled.div`
   width: 100%;
+  height: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -107,12 +115,22 @@ Content.LoadMoreDeals = styled.div`
   line-height: 21px;
   font-size: 18px;
   letter-spacing: 0.45px;
-
   color: #adb8c0;
   cursor: pointer;
 
-  margin: 40px 0;
+  ${breakpoint('lg')`
+    width: 95%;
+  `}
 `;
+
+/*
+  xs: 0,
+  sx: 413,
+  sm: 576,
+  md: 768,
+  lg: 992,
+  xl: 1200,
+*/
 
 const mapStateToProps = state => ({
   categories: getCategories(state),
