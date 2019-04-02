@@ -7,6 +7,7 @@ import breakpoint from 'styled-components-breakpoint';
 import { getStores, getStoresAll } from '@modules/coupons/CouponsReducer';
 import { getCoupons } from '@modules/coupons/CouponsActions';
 
+import DownloadPiggy from '../components/DownloadPiggy';
 import SearchBar from '@modules/store/components/Search';
 import TodaysFeaturedCoupon from '../components/TodaysFeaturedCoupon';
 import StoreList from '../components/StoreList';
@@ -32,6 +33,7 @@ const CouponsPage = ({ stores, storesAll, onStore }) => {
 
   return (
     <CouponsPage.Wrapper>
+      <DownloadPiggy />
       <CouponsPage.SearchWrapper>
         <SearchBar
           onSetSearch={onSetSearch}
@@ -59,12 +61,14 @@ CouponsPage.Wrapper = styled.div`
 `;
 
 CouponsPage.SearchWrapper = styled.div`
+  margin-top: 50px;
   width: inherit;
 
   ${breakpoint('md')`
     width: 80%;
     max-width: 617px;
     margin: 0 auto;
+    margin-top: 50px;
 
     > div {
       width: 100%;
