@@ -49,9 +49,18 @@ export type Deal = {
   coupon_code: string,
 };
 
+export type featuredStore = {
+  store_id: string,
+  store_name: string,
+  offer_link: string,
+  offer_img: string,
+  short_name: string,
+  cashback_text: string,
+};
+
 export type StoreListProps = {
   t: string => string,
-  stores: Store[],
+  stores: featuredStore[],
 };
 
 export type ControlsProps = {

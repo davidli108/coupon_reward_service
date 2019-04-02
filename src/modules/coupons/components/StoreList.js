@@ -10,19 +10,19 @@ import type { StoreListProps } from '../models/CouponsPage';
 
 const StoreList = ({ t, stores }: StoreListProps) => (
   <StoreList.Wrapper>
-    {stores.length !== 0 ? (
+    {stores && stores.length !== 0 ? (
       stores.map(store => (
         <StoreList.Item
-          key={`store_${store.offer_id}`}
+          key={`store_${store.store_id}`}
           href={store.offer_link}
           target="_blank"
         >
           <img
-            src={`http://d2umvgb8hls1bt.cloudfront.net${store.store_logo}`}
+            src={`http://d2umvgb8hls1bt.cloudfront.net${store.offer_img}`}
             alt={store.store_name}
           />
           <p>
-            {store.discount_print
+            {store.cashback_text
               .replace('Cash Back', t('global.cashBack'))
               .replace('Instant Savings', t('global.instantSaving'))}
           </p>

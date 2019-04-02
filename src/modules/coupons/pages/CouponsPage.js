@@ -4,7 +4,11 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
-import { getStores, getStoresAll } from '@modules/coupons/CouponsReducer';
+import {
+  getStores,
+  getCategories,
+  getStoresAll,
+} from '@modules/coupons/CouponsReducer';
 import { getCoupons } from '@modules/coupons/CouponsActions';
 
 import DownloadPiggy from '../components/DownloadPiggy';
@@ -13,7 +17,7 @@ import TodaysFeaturedCoupon from '../components/TodaysFeaturedCoupon';
 import StoreList from '../components/StoreList';
 import Content from '../components/Content';
 
-const CouponsPage = ({ stores, storesAll, onStore }) => {
+const CouponsPage = ({ stores, categories, storesAll, onStore }) => {
   const [search, setSearch] = React.useState('');
   React.useEffect(() => {
     onStore();
@@ -42,7 +46,7 @@ const CouponsPage = ({ stores, storesAll, onStore }) => {
         />
       </CouponsPage.SearchWrapper>
       {Boolean(stores.length) && <TodaysFeaturedCoupon store={stores[0]} />}
-      <StoreList stores={stores} />
+      <StoreList stores={categories.stores} />
       <Content />
     </CouponsPage.Wrapper>
   );
@@ -77,6 +81,7 @@ CouponsPage.SearchWrapper = styled.div`
 `;
 
 const mapStateToProps = state => ({
+  categories: getCategories(state),
   stores: getStores(state),
   storesAll: getStoresAll(state),
 });

@@ -93,8 +93,12 @@ const Content = ({
         <Content.CouponsWrapper>
           {isLoaded ? (
             <Coupons />
-          ) : (
+          ) : activeCategory ? (
             <Content.Preloader src={preloader} alt="" />
+          ) : (
+            <>
+              <Coupons /> <img src={preloader} alt="" />
+            </>
           )}
           <Content.LoadMoreDeals onClick={onLoadMore}>
             {isLoaded &&
