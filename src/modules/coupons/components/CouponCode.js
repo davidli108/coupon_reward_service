@@ -4,18 +4,25 @@ import styled from 'styled-components';
 
 type CouponCodeProps = {
   code: string,
+  link: string,
 };
 
-const CouponCode = ({ code }: CouponCodeProps) => {
+const CouponCode = ({ code, link }: CouponCodeProps) => {
   const [isShowCode, setIsShowCode] = useState(false);
 
   return (
     <CouponCode.Wrapper>
       <CouponCode.Button
-        onClick={() => setIsShowCode(true)}
+        onClick={() => {
+          if (code) {
+            setIsShowCode(true);
+          } else {
+            window.location.href = link;
+          }
+        }}
         isShow={!isShowCode}
       >
-        COUPON CODE
+        {code ? 'VIEW CCOUPON' : 'VIEW DEAL'}
       </CouponCode.Button>
       <CouponCode.Code isShow={isShowCode}>{code}</CouponCode.Code>
     </CouponCode.Wrapper>

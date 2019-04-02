@@ -89,7 +89,7 @@ const CategoryItem = ({
     }}
   >
     <CategoryItem.Title>{getLocalTitle(name, t)}</CategoryItem.Title>
-    <CategoryItem.Value>0</CategoryItem.Value>
+    {/*<CategoryItem.Value>0</CategoryItem.Value>*/}
   </CategoryItem.Wrapper>
 );
 

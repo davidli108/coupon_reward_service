@@ -46,6 +46,7 @@ export default (
       <Route exact path="/cashback-stores" component={StoresPage} />
       <Route exact path="/coupons/:storeName" component={StorePage} />
       <Route exact path="/coupons" component={CouponsPage} />
+      <Route exact path="/coupons/category/:name" component={CouponsPage} />
 
       {/* Catch all routes */}
       <Route component={NotFoundPage} />

@@ -1,6 +1,8 @@
 //@flow
 import * as R from 'ramda';
 import * as React from 'react';
+import { compose } from 'recompose';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
@@ -17,10 +19,12 @@ import TodaysFeaturedCoupon from '../components/TodaysFeaturedCoupon';
 import StoreList from '../components/StoreList';
 import Content from '../components/Content';
 
-const CouponsPage = ({ stores, categories, storesAll, onStore }) => {
+const CouponsPage = ({ match, stores, categories, storesAll, onStore }) => {
   const [search, setSearch] = React.useState('');
   React.useEffect(() => {
-    onStore();
+    if (!match.params.name) {
+      onStore();
+    }
   }, []);
   const onSetSearch = tern => {
     setSearch(tern);
@@ -90,7 +94,10 @@ const mapDispatchToProps = {
   onStore: getCoupons,
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  ),
+  withRouter,
 )(CouponsPage);

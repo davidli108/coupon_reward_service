@@ -1,6 +1,7 @@
 //@flow
 import React, { useState, useEffect } from 'react';
 import { compose } from 'recompose';
+import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { connect } from 'react-redux';
@@ -25,6 +26,8 @@ import {
 
 type ContentProps = {
   t: string => string,
+  history: Object,
+  match: Object,
   categories: Object,
   loadMore: Function,
   getFilteredDeals: Object,
@@ -34,6 +37,8 @@ type ContentProps = {
 
 const Content = ({
   t,
+  history,
+  match,
   categories,
   loadMore,
   getFilteredDeals,
@@ -43,10 +48,12 @@ const Content = ({
   const [loadCount, setLoadCount] = useState(20);
   const [isLoaded, setIsLoaded] = useState(true);
   const [isLoadedCategories, setIsLoadedCategories] = useState(false);
-  const [activeCategory, setActiveCategory] = useState(null);
+  const [activeCategory, setActiveCategory] = useState(match.params.name);
 
   useEffect(() => {
     fetchCategories().then(() => setIsLoadedCategories(true));
+    setIsLoaded(false);
+    getCouponsByCategory(match.params.name).then(() => setIsLoaded(true));
   }, []);
 
   const onLoadMore = () => {
@@ -58,6 +65,7 @@ const Content = ({
   };
 
   const onActiveCategory = shortName => {
+    history.push('/coupons/category/' + shortName);
     setActiveCategory(shortName);
     setIsLoaded(false);
     getCouponsByCategory(shortName).then(() => setIsLoaded(true));
@@ -152,7 +160,6 @@ Content.CouponsWrapper = styled.div`
 
 Content.LoadMoreDeals = styled.div`
   width: 100%;
-  height: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -195,4 +202,5 @@ const enhance = connect(
 export default compose(
   enhance,
   withTranslation(),
+  withRouter,
 )(Content);

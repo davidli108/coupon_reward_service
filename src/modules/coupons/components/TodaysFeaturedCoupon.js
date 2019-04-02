@@ -38,7 +38,7 @@ const TodaysFeaturedCoupon = ({ store }: TodaysFeaturedCouponProps) => {
         <TodaysFeaturedCoupon.OfferingWrapper>
           <TodaysFeaturedCoupon.Offering>
             <span>{store.discount} OFF</span>
-            <span>up to {store.discount_print}</span>
+            <span>up to Instant Savings</span>
           </TodaysFeaturedCoupon.Offering>
         </TodaysFeaturedCoupon.OfferingWrapper>
 

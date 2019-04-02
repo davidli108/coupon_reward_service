@@ -36,7 +36,6 @@ const StoreList = ({ t, stores }: StoreListProps) => (
 
 StoreList.Wrapper = styled.div`
   display: flex;
-  flex-flow: column wrap;
 
   margin-top: 20px;
   overflow-x: scroll;

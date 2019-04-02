@@ -35,26 +35,32 @@ const Coupon = ({
         <Coupon.Circle position="right" />
       </Coupon.BorderWrapper>
       <Coupon.Content>
-        <Coupon.StoreLogo
-          src={`http://d2umvgb8hls1bt.cloudfront.net${store_logo}`}
-          alt={store_name}
-        />
+        <Coupon.StoreLogoWrapper>
+          <Coupon.StoreLogo
+            src={`http://d2umvgb8hls1bt.cloudfront.net${store_logo}`}
+            alt={store_name}
+          />
+        </Coupon.StoreLogoWrapper>
         {offer_type === OfferType.freeShipping ? (
           <Coupon.Discount>
             <span>Free</span>
             <span>Shipping</span>
           </Coupon.Discount>
+        ) : coupon_code ? (
+          <Coupon.Discount>
+            <span>Coupon</span>
+            <span>Code</span>
+          </Coupon.Discount>
         ) : (
           <Coupon.Discount>
-            <span>{zeroPadStars(discount)}</span>
-            <span>off</span>
+            <span>Deal</span>
           </Coupon.Discount>
         )}
         <Coupon.ExpDate>
           <p>{show_exp_date}</p>
         </Coupon.ExpDate>
         <Coupon.OfferText>{ref_text}</Coupon.OfferText>
-        <CouponCode code={coupon_code} />
+        <CouponCode code={coupon_code} link={offer_link} />
         <Coupon.CashbackPercent>
           {discount_print
             .replace('Cash Back', t('global.cashBack'))
@@ -140,12 +146,20 @@ Coupon.Content = styled.div`
   padding: 60px 27px 23px 27px;
 `;
 
-Coupon.StoreLogo = styled.img`
+Coupon.StoreLogoWrapper = styled.div`
   width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+`;
+
+Coupon.StoreLogo = styled.img`
+  width: 100%;
   height: auto;
 `;
 
 Coupon.Discount = styled.p`
+  height: 100px;
   display: flex;
   flex-flow: column nowrap;
   text-align: center;
