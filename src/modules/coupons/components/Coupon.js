@@ -2,6 +2,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
+import { withTranslation } from 'react-i18next';
 
 import type { Deal as DealModel } from '../models/CouponsPage';
 
@@ -13,6 +14,7 @@ const OfferType = {
 };
 
 const Coupon = ({
+  t,
   discount,
   discount_print,
   offer_type,
@@ -51,13 +53,18 @@ const Coupon = ({
         <Coupon.ViewDealButton href={offer_link} target="_blank">
           View Deal
         </Coupon.ViewDealButton>
-        <Coupon.CashbackPercent>{discount_print}</Coupon.CashbackPercent>
+        <Coupon.CashbackPercent>
+          {discount_print
+            .replace('Cash Back', t('global.cashBack'))
+            .replace('Instant Savings', t('global.instantSaving'))}
+        </Coupon.CashbackPercent>
       </Coupon.Content>
     </Coupon.Wrapper>
   );
 };
 
 Coupon.Wrapper = styled.div`
+  padding-top: 30px;
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -194,7 +201,6 @@ Coupon.ViewDealButton = styled.a`
   display: flex;
   justify-content: center;
   align-items: center;
-  align-self: flex-end;
 
   width: 90%;
 
@@ -232,4 +238,4 @@ Coupon.CashbackPercent = styled.div`
   color: #b1b1b1;
 `;
 
-export default Coupon;
+export default withTranslation()(Coupon);
