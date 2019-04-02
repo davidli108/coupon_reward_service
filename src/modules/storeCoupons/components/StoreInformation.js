@@ -1,22 +1,19 @@
 //@flow
 import * as React from 'react';
-import { compose } from 'recompose';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { withTranslation } from 'react-i18next';
 
 import StoreInformationSection from './StoreInformationSection';
 import type { StoreInformationProps } from '../models/StorePage';
 import { getStore } from '../StoreCouponsReducer';
 
-const StoreInformation = ({ t, store }: StoreInformationProps) => {
+const StoreInformation = ({ store }: StoreInformationProps) => {
   return (
     <StoreInformation.Wrapper>
-      {console.log(store)}
       <StoreInformationSection
         key={`store_${store.store_id}`}
         title="About"
-        body={t('storeCoupons.viewLatestCoupons')}
+        body={store.store_description}
       />
     </StoreInformation.Wrapper>
   );
@@ -34,7 +31,6 @@ const mapStateToProps = state => ({
   store: getStore(state),
 });
 
-export default compose(
-  connect(mapStateToProps),
-  withTranslation(),
-)(StoreInformation);
+const enhance = connect(mapStateToProps);
+
+export default enhance(StoreInformation);

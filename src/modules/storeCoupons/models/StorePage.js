@@ -118,6 +118,5 @@ export type AdditionalInfoContentProps = {
 };
 
 export type StoreInformationProps = {
-  t: string => string,
   store: Store,
 };

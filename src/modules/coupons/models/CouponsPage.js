@@ -29,10 +29,9 @@ export type Categories = {
 };
 
 export type Deal = {
-  t: string => string,
   store_logo: string,
   discount: number,
-  discount_print: string,
+  discount_print: number,
   show_exp_date: string,
   isCoupon: boolean,
   isFavorite: boolean,
@@ -44,7 +43,6 @@ export type Deal = {
 };
 
 export type StoreListProps = {
-  t: string => string,
   stores: Store[],
 };
 
@@ -54,7 +52,6 @@ export type ControlsProps = {
 };
 
 export type CategoriesItemProps = {
-  t: string => string,
   deals: Deal[],
   title: string,
   value?: string | number,
@@ -71,7 +68,6 @@ export type CategoriesMobileProps = {
 };
 
 export type ContentProps = {
-  t: Function,
   categories: Categories,
   coupons: Deal[],
   loadMore: number => Promise<number>,

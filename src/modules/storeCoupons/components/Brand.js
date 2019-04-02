@@ -18,7 +18,7 @@ const Brand = ({
     <Brand.Wrapper>
       <Brand.BrandImageWrapper>
         <img
-          src={`http://33499c7a.ngrok.io/${store_logo_image_path}`}
+          src={`http://8ea9c26d.ngrok.io/${store_logo_image_path}`}
           alt="brand-logo"
         />
       </Brand.BrandImageWrapper>

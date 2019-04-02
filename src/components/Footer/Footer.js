@@ -5,25 +5,20 @@ import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { MdAndroid, MdLaptop } from 'react-icons/md';
 import { IoLogoApple } from 'react-icons/io';
-import { withTranslation } from 'react-i18next';
 
 import logo from '../Header/logo.svg';
 
-type FooterProps = {
-  t: Function,
-};
-
-const Footer = ({ t }: FooterProps) => (
+const Footer = () => (
   <Footer.Wrapper>
     <Footer.Strip>
       <div>
-        <p>{t('footer.stopMissingOut')}</p>
+        <p>Stop missing out. Get the app today!</p>
         <Footer.StripLink
           href="https://chrome.google.com/webstore/detail/piggy-automatic-coupons-c/hfapbcheiepjppjbnkphkmegjlipojba?hl=en"
           rel="noopener noreferrer"
           target="_blank"
         >
-          {t('footer.getTheApp')}
+          Get the App!
         </Footer.StripLink>
       </div>
     </Footer.Strip>
@@ -57,7 +52,7 @@ const Footer = ({ t }: FooterProps) => (
               style={{ height: '22px', width: '22px', color: '#00b2cc' }}
             />
           </div>
-          <p>{t('footer.downloadButtons.android')}</p>
+          <p>Download for Android</p>
         </Footer.DownloadAppLink>
         <Footer.DownloadAppLink
           href="https://itunes.apple.com/us/app/coupons-cashback-piggy/id1176303802?ls=1&mt=8"
@@ -69,7 +64,7 @@ const Footer = ({ t }: FooterProps) => (
               style={{ height: '30px', width: '30px', color: '#00b2cc' }}
             />
           </div>
-          <p>{t('footer.downloadButtons.ios')}</p>
+          <p>Download for IOS</p>
         </Footer.DownloadAppLink>
         <Footer.DownloadAppLink
           href="https://chrome.google.com/webstore/detail/piggy-automatic-coupons-c/hfapbcheiepjppjbnkphkmegjlipojba?hl=en"
@@ -81,74 +76,43 @@ const Footer = ({ t }: FooterProps) => (
               style={{ height: '22px', width: '22px', color: '#00b2cc' }}
             />
           </div>
-          <p>{t('footer.downloadButtons.desktop')}</p>
+          <p>Download for Desktop</p>
         </Footer.DownloadAppLink>
       </Footer.DownloadAppLinksWrapper>
       <Footer.Navigation>
-        <Footer.NavLink to="/howtoinstall">
-          {t('footer.menu.howToInstall')}
-        </Footer.NavLink>
-        <Footer.NavLink to="/about-cashback">
-          {t('footer.menu.aboutCashBack')}
-        </Footer.NavLink>
-        <Footer.NavLink to="/account/referrals">
-          {t('footer.menu.referrals')}
-        </Footer.NavLink>
-        <Footer.NavLink to="/careers">
-          {t('footer.menu.careers')}
-        </Footer.NavLink>
-        <Footer.NavLink to="/howtoremove">
-          {t('footer.menu.howToUninstall')}
-        </Footer.NavLink>
+        <Footer.NavLink to="/howtoinstall">How to Install</Footer.NavLink>
+        <Footer.NavLink to="/about-cashback">Aboust Cash Back</Footer.NavLink>
+        <Footer.NavLink to="/account/referrals">Referrals</Footer.NavLink>
+        <Footer.NavLink to="/careers">Careers</Footer.NavLink>
+        <Footer.NavLink to="/howtoremove">How to Uninstall</Footer.NavLink>
         <Footer.NavLink to="/consumer-resources">
-          {t('footer.menu.consumerResources')}
+          Consumer Resources
         </Footer.NavLink>
         <Footer.NavLink to="/blog">Blog</Footer.NavLink>
-        <Footer.NavLink to="/cashback-apps">
-          {t('footer.menu.aboutOurApp')}
-        </Footer.NavLink>
+        <Footer.NavLink to="/cashback-apps">About our App</Footer.NavLink>
         <Footer.NavLink to="/about">About us</Footer.NavLink>
-        <Footer.NavLink to="/contactus">
-          {t('footer.menu.contact')}
-        </Footer.NavLink>
+        <Footer.NavLink to="/contactus">Contact</Footer.NavLink>
         <Footer.NavLink to="/info">Help</Footer.NavLink>
       </Footer.Navigation>
     </Footer.Container>
     <Footer.CopyrightWrapper>
       <div>
         <div>
-          <Footer.CopyrightLink to="/terms">
-            {t('footer.copiright.menu.termsOfUse')}
-          </Footer.CopyrightLink>
-          <Footer.CopyrightLink to="/sitemap">
-            {t('footer.copiright.menu.sitemap')}
-          </Footer.CopyrightLink>
-          <Footer.CopyrightLink to="/eula">
-            {t('footer.copiright.menu.eula')}
-          </Footer.CopyrightLink>
+          <Footer.CopyrightLink to="/terms">Terms of Use</Footer.CopyrightLink>
+          <Footer.CopyrightLink to="/sitemap">Sitemap</Footer.CopyrightLink>
+          <Footer.CopyrightLink to="/eula">EULA</Footer.CopyrightLink>
           <Footer.CopyrightLink to="/privacy">
-            {t('footer.copiright.menu.privacyPolicy')}
+            Privacy Policy
           </Footer.CopyrightLink>
           <Footer.CopyrightLink to="/unsubscribe">
-            {t('footer.copiright.menu.unsubscribe')}
+            Unsubscribe
           </Footer.CopyrightLink>
         </div>
-        <p>
-          {t('footer.copiright.text')} © {new Date().getFullYear()}{' '}
-          {t('footer.copiright.allRightReserved')}
-        </p>
+        <p>Copyright © {new Date().getFullYear()} All Rights Reserved.</p>
       </div>
     </Footer.CopyrightWrapper>
   </Footer.Wrapper>
 );
-
-/*
-
-footer: {
-      aboutOurApp: 'About Our App',
-},
-
-*/
 
 Footer.Wrapper = styled.footer`
   background: #40c8e5;
@@ -395,4 +359,4 @@ Footer.CopyrightLink = styled(Link)`
   }
 `;
 
-export default withTranslation()(Footer);
+export default Footer;

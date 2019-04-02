@@ -100,7 +100,6 @@ export default {
     },
   },
   categories: {
-    name: 'Catégories',
     accessories: 'Accessoires',
     automotive: 'Automobile',
     baby: 'Bébé',
@@ -128,17 +127,14 @@ export default {
     toysGames: 'Jouets & Jeux',
     travel: 'Voyage',
   },
-  global: {
+  coupons: {
     learnMore: 'En savoir plus',
     get25dollars: 'Obtenez 25€',
     cashBack: 'Cashback',
-    instantSaving: 'Économies instantanées',
     downloadPiggy:
       "Téléchargez les coupons automatiques de Piggy's à la caisse et ne ratez plus jamais une affaire !",
     neverMiss:
       'Ne manquez plus jamais un coupon avec notre application gratuite !',
-  },
-  coupons: {
     shopBy: {
       couponSales: 'Coupon & Ventes',
       browseByStore: 'Voir par boutique',
@@ -165,6 +161,13 @@ export default {
     },
   },
   cashbackStores: {
+    learnMore: 'En savoir plus',
+    get25dollars: 'Obtenez 25€',
+    cashBack: 'Cashback',
+    downloadPiggy:
+      "Téléchargez les coupons automatiques de Piggy's à la caisse et ne ratez plus jamais une affaire !",
+    neverMiss:
+      'Ne manquez plus jamais un coupon avec notre application gratuite!',
     shopBy: {
       couponSales: 'Coupon & Ventes',
       browseByStore: 'Voir par boutique',
@@ -185,33 +188,12 @@ export default {
     resetPassword: 'Réinitialiser le mot de passe',
     testimonials: 'Témoignages',
   },
-  storeCoupons: {
-    viewLatestCoupons:
-      "voir les derniers coupons en ligne pour build ci-dessous ! Ne manquez jamais un coupon de réduction ou un cashback dans l'une de nos 3 000 autres boutiques grâce à notre application gratuite pour mobile et à notre extension de navigateur ! Tous les coupons en ligne de Build peuvent être combinés avec des réductions automatiques et gratuites. Jusqu'à 3,0 % de cashback ! Chacun de ces coupons et promotions peuvent être combinés avec notre cashback automatique à l'achat d'un produit Piggy !",
-  },
-  build: {
-    visitStore: 'Visitez la boutique',
-    addToFavorites: 'Ajouter aux favoris',
-    freeShiping: 'Livraison gratuite',
-    freeShipingOver49:
-      'Livraison standarde par voie terrestre gratuite  pour les commandes de plus de 49€ !',
-    shopBuild:
-      "Shop Build avec 3.0% de cashback (shop build doesn't have any meaning in french)",
-    returnPolicy: 'Politique de retour',
-    returnItems30days:
-      "Vous pouvez faire un retour de produit dans les 30 jours suivant la réception de celui-ci pour obtenir un remboursement. Les retours demandés entre 31 et 60 jours après réception ne donneront droit qu'à un crédit magasin.Les retours en dehors de notre politique de retour général de 30 à 60 jours ne seront pas acceptés.Les remboursements seront appliqués à votre compte(moins les frais de retour) une fois que le produit aura été reçu et inspecté par notre atelier.",
-    threePercentCashBack:
-      "De plus, obtenez 3,0 % de cashback from 'Build' ! (no meaning for build here also)",
-    otherPopularStores: 'Autres boutiques populaires',
-    indicatesMaximumCashBack:
-      "- indique le cashback, la récompense ou le rabais maximum qu'un utilisateur peut gagner.Certains articles peuvent donner droit à un cashback moins élevée et il peut y avoir certaines exclusions.Toutes les boutiques n'offrent pas de cashback. Le cashback ne peut pas être combiné avec des coupons ou des offres extérieures. Veuillez consulter les conditions générales ou les profils individuels des boutiques pour plus d'informations.",
-  },
   footer: {
     stopMissingOut:
       "Ne manquez plus rien. Obtenez l'application dès aujourd'hui!",
     getTheApp: "Obtenir l'application",
     downloadButtons: {
-      desktop: 'Télécharger sur PC',
+      desctop: 'Télécharger sur PC',
       android: 'Télécharger sur Android',
       ios: 'Télécharger sur IOS',
     },
@@ -223,9 +205,8 @@ export default {
       careers: 'Carrières',
       contact: 'Contact',
       consumerResources: 'Ressources pour les consommateurs',
-      referrals: 'Parrainages',
     },
-    copiright: {
+    footer: {
       menu: {
         termsOfUse: "Conditions d'utilisation",
         privacyPolicy: 'Politique de confidentialité',
@@ -233,8 +214,7 @@ export default {
         unsubscribe: 'Se désabonner',
         eula: "ALUF (accord de licence pour l'utilisateur final)",
       },
-      text: 'Copyright',
-      allRightReserved: 'Tous droits réservés',
+      copyright: 'Copyright 2019 Tous droits réservés',
     },
   },
 };

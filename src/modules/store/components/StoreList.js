@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
-import { withTranslation } from 'react-i18next';
 
 import preloader from '../../coupons/assets/preloader.svg';
 
@@ -12,7 +11,6 @@ import preloader from '../../coupons/assets/preloader.svg';
 import { type Store } from '../models';
 
 type StoreListProps = {
-  t: string => string,
   stores: Store[],
   storesAll: Store[],
   loadState: number,
@@ -21,7 +19,6 @@ type StoreListProps = {
 };
 
 const StoreList = ({
-  t,
   stores,
   onLoadMore,
   loadState,
@@ -71,14 +68,7 @@ const StoreList = ({
                           </StoreList.BrandName>
                           <StoreList.BranDeals>Deals</StoreList.BranDeals>
                         </StoreList.Brand>
-                        <StoreList.Cash>
-                          {discount_print
-                            .replace('Cash Back', t('global.cashBack'))
-                            .replace(
-                              'Instant Savings',
-                              t('global.instantSaving'),
-                            )}
-                        </StoreList.Cash>
+                        <StoreList.Cash>{discount_print}</StoreList.Cash>
                       </StoreList.Info>
                       {/* {couponActive && (
                       <StoreList.Coupons>
@@ -488,4 +478,4 @@ StoreList.LoadMoreButton = styled.button`
   }
 `;
 
-export default withTranslation()(StoreList);
+export default StoreList;

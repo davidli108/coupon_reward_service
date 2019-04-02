@@ -2,16 +2,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
-import { withTranslation } from 'react-i18next';
 
 import { type Feature } from '../models';
 
 type FeaturedProps = {
-  t: string => string,
   featured: Feature[],
 };
 
-const Featured = ({ t, featured }: FeaturedProps) => (
+const Featured = ({ featured }: FeaturedProps) => (
   <Featured.Wrapper>
     {featured.map(
       ({ store_name, cashback_text, offer_img, store_id, offer_link }) => (
@@ -27,11 +25,7 @@ const Featured = ({ t, featured }: FeaturedProps) => (
           <Featured.Link href={offer_link} target="_blank">
             Visit Store
           </Featured.Link>
-          <Featured.Cash>
-            {cashback_text
-              .replace('Cash Back', t('global.cashBack'))
-              .replace('Instant Savings', t('global.instantSaving'))}
-          </Featured.Cash>
+          <Featured.Cash>{cashback_text}</Featured.Cash>
         </Featured.Item>
       ),
     )}
@@ -185,4 +179,4 @@ Featured.Cash = styled.p`
   color: ${props => props.theme.colors.blackLight};
 `;
 
-export default withTranslation()(Featured);
+export default Featured;
