@@ -1,12 +1,11 @@
-//@flow
+// @flow
 import * as R from 'ramda';
-import * as React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
-import CategoriesItem from './CategoriesItem';
-import type { CategoriesMobileProps } from '../models/CouponsPage';
+import CategoryItem from './CategoryItem';
 import { getCategories } from '../CouponsReducer';
 
 const capitalize = R.compose(
@@ -22,32 +21,44 @@ const capitalize = R.compose(
 
 const capitalizeOrNull = R.unless(R.isNil, capitalize);
 
-const CategoriesMobile = ({ categories }: CategoriesMobileProps) => {
-  const [isOpen, setOpen] = React.useState(false);
+type CategoriesMobileProps = {
+  categories: Object,
+  activeCategory: string,
+  onActiveCategory: string => void,
+};
+
+const CategoriesMobile = ({
+  categories,
+  activeCategory,
+  onActiveCategory,
+}: CategoriesMobileProps) => {
+  const [isOpen, setOpen] = useState(false);
 
   return (
     <CategoriesMobile.Wrapper>
-      <CategoriesMobile.Title
-        onClick={() => setOpen(false) || setOpen(!isOpen)}
-      >
-        {capitalizeOrNull(categories[0][0])}
+      <CategoriesMobile.Title onClick={() => setOpen(!isOpen)}>
+        Select category...
       </CategoriesMobile.Title>
       {isOpen && (
         <CategoriesMobile.ItemsWrapper items={categories[1]}>
-          {categories.map(([sectionTitle, category], index) => (
-            <CategoriesMobile.Section
-              key={`categories_section_${sectionTitle}`}
-            >
-              {index !== 0 && <h2>{capitalizeOrNull(sectionTitle)}</h2>}
-              {category.map(x => (
-                <CategoriesItem
-                  setOpen={setOpen}
-                  key={`category_${x.title}_${x.value}`}
-                  {...x}
-                />
-              ))}
-            </CategoriesMobile.Section>
-          ))}
+          {categories &&
+            categories.map(([sectionTitle, category], index) => (
+              <CategoriesMobile.Section
+                key={`categories_section_${sectionTitle}`}
+              >
+                {index !== 0 && <h2>{capitalizeOrNull(sectionTitle)}</h2>}
+                {category.map(i => (
+                  <CategoryItem
+                    setOpen={setOpen}
+                    key={`category_${i.title}_${i.value}`}
+                    name={i.name || i.store_name}
+                    shortName={i.shortName || i.short_name}
+                    isActive={activeCategory === (i.shortName || i.short_name)}
+                    onActive={onActiveCategory}
+                  />
+                ))}
+              </CategoriesMobile.Section>
+            ))}
         </CategoriesMobile.ItemsWrapper>
       )}
       <CategoriesMobile.Triangle isOpen={isOpen} />
@@ -141,6 +152,7 @@ CategoriesMobile.Section = styled.div`
 `;
 
 const mapStateToProps = state => ({
+  /* $FlowFixMe */
   categories: R.toPairs(getCategories(state)),
 });
 

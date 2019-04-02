@@ -2,6 +2,8 @@
 export const namespace = 'COUPONS';
 export const GET_COUPONS = `${namespace}/GET_COUPONS`;
 export const LOAD_MORE = `${namespace}/LOAD_MORE`;
+export const FETCH_CATEGORIES = `${namespace}/FETCH_CATEGORIES`;
+export const GET_COUPONS_BY_CATEGORY = `${namespace}/GET_COUPONS_BY_CATEGORY`;
 export const SET_DEALS_FILTER = `${namespace}/SET_DEALS_FILTER`;
 export const SET_FILTER_TYPE = `${namespace}/SET_FILTER_TYPE`;
 
@@ -19,6 +21,24 @@ export const loadMore = (count: number) => ({
   payload: {
     request: {
       url: `/api/coupons/${count}`,
+    },
+  },
+});
+
+export const getCouponsByCategory = (category: string) => ({
+  type: GET_COUPONS_BY_CATEGORY,
+  payload: {
+    request: {
+      url: `/api/coupons/${category}`,
+    },
+  },
+});
+
+export const fetchCategories = () => ({
+  type: FETCH_CATEGORIES,
+  payload: {
+    request: {
+      url: '/api/coupons',
     },
   },
 });

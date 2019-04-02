@@ -1,5 +1,5 @@
 //@flow
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { compose } from 'recompose';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
@@ -12,23 +12,42 @@ import Categories from './Categories';
 import Coupons from '../components/Coupons';
 import preloader from '../assets/preloader.svg';
 
-import * as actions from '../CouponsActions';
+import {
+  loadMore,
+  fetchCategories,
+  getCouponsByCategory,
+} from '../CouponsActions';
 import {
   getCategories,
   getStoresAll,
   getFilteredDeals,
 } from '../CouponsReducer';
-import type { ContentProps } from '../models/CouponsPage';
+
+type ContentProps = {
+  t: string => string,
+  categories: Object,
+  loadMore: Function,
+  getFilteredDeals: Object,
+  fetchCategories: () => Promise<number>,
+  getCouponsByCategory: string => Promise<number>,
+};
 
 const Content = ({
   t,
   categories,
   loadMore,
-  storeAll,
   getFilteredDeals,
+  fetchCategories,
+  getCouponsByCategory,
 }: ContentProps) => {
   const [loadCount, setLoadCount] = useState(20);
   const [isLoaded, setIsLoaded] = useState(true);
+  const [isLoadedCategories, setIsLoadedCategories] = useState(false);
+  const [activeCategory, setActiveCategory] = useState(null);
+
+  useEffect(() => {
+    fetchCategories().then(() => setIsLoadedCategories(true));
+  }, []);
 
   const onLoadMore = () => {
     if (isLoaded) {
@@ -38,30 +57,52 @@ const Content = ({
     }
   };
 
+  const onActiveCategory = shortName => {
+    setActiveCategory(shortName);
+    setIsLoaded(false);
+    getCouponsByCategory(shortName).then(() => setIsLoaded(true));
+  };
+
   return (
     <div>
       <Controls />
-      <CategoriesMobile />
+      <CategoriesMobile
+        categories={categories.categories}
+        activeCategory={activeCategory}
+        onActiveCategory={onActiveCategory}
+      />
       <Content.Grid>
-        <Content.CategoriesWrapper>
-          <Categories
-            categories={categories.categories}
-            title={t('categories.name')}
-          />
-          <Categories categories={categories.stores} title="Stores" />
-        </Content.CategoriesWrapper>
+        {isLoadedCategories ? (
+          <Content.CategoriesWrapper>
+            <Categories
+              categories={categories.categories}
+              title={t('categories.name')}
+              activeCategory={activeCategory}
+              onActiveCategory={onActiveCategory}
+            />
+            <Categories
+              categories={categories.stores}
+              title="Stores"
+              activeCategory={activeCategory}
+              onActiveCategory={onActiveCategory}
+            />
+          </Content.CategoriesWrapper>
+        ) : (
+          <img src={preloader} alt="" />
+        )}
         <Content.CouponsWrapper>
-          <Coupons />
+          {isLoaded ? (
+            <Coupons />
+          ) : (
+            <Content.Preloader src={preloader} alt="" />
+          )}
           <Content.LoadMoreDeals onClick={onLoadMore}>
-            {isLoaded ? (
-              getFilteredDeals && getFilteredDeals.length !== 0 ? (
-                'Load More Deals'
-              ) : (
-                ''
-              )
-            ) : (
-              <img src={preloader} alt="" />
-            )}
+            {isLoaded &&
+              (getFilteredDeals &&
+              getFilteredDeals.length !== 0 &&
+              !activeCategory
+                ? 'Load More Deals'
+                : '')}
           </Content.LoadMoreDeals>
         </Content.CouponsWrapper>
       </Content.Grid>
@@ -123,14 +164,12 @@ Content.LoadMoreDeals = styled.div`
   `}
 `;
 
-/*
-  xs: 0,
-  sx: 413,
-  sm: 576,
-  md: 768,
-  lg: 992,
-  xl: 1200,
-*/
+Content.Preloader = styled.img`
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 200px;
+  text-align: right;
+`;
 
 const mapStateToProps = state => ({
   categories: getCategories(state),
@@ -139,7 +178,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  loadMore: actions.loadMore,
+  loadMore,
+  fetchCategories,
+  getCouponsByCategory,
 };
 
 const enhance = connect(

@@ -13,6 +13,8 @@ import {
   LOAD_MORE,
   SET_DEALS_FILTER,
   SET_FILTER_TYPE,
+  FETCH_CATEGORIES,
+  GET_COUPONS_BY_CATEGORY,
   GET_COUPONS,
 } from './CouponsActions';
 
@@ -31,27 +33,7 @@ const initialState: CouponsReducerProps = {
     isFavorited: false,
   },
   stores: [],
-  categories: {
-    categories: [
-      { title: 'Accessories', value: 122 },
-      { title: 'Automotive', value: 1222 },
-      { title: 'Baby', value: 123 },
-      { title: 'Beauty', value: 34 },
-      { title: 'Books & Media', value: 58 },
-      { title: 'Business & Office', value: 0 },
-      { title: 'Cell Phones', value: 54 },
-      { title: 'Clothing', value: 212 },
-      { title: 'Computers', value: 39 },
-      { title: 'Department Stores', value: 74 },
-    ],
-    stores: [
-      { title: 'Macy`s', value: 12 },
-      { title: 'Sears', value: 13 },
-      { title: 'Udemy', value: 14 },
-      { title: 'Verizon', value: 15 },
-      { title: 'Wallgreens', value: 16 },
-    ],
-  },
+  categories: {},
   deals: [],
 };
 
@@ -74,6 +56,23 @@ const CouponsReducer = (
     }
     case `${GET_COUPONS}_SUCCESS`: {
       // $FlowFixMe
+      const offersData = R.pathOr(
+        [],
+        ['payload', 'data', 'offers_data'],
+        action,
+      );
+
+      return R.assoc<Object, Object>('stores', offersData, state);
+    }
+    case `${FETCH_CATEGORIES}_SUCCESS`: {
+      const data = {
+        categories: R.pathOr([], ['payload', 'data', 'categories'], action),
+        stores: R.pathOr([], ['payload', 'data', 'featured_stores'], action),
+      };
+
+      return R.assoc<Object, Object>('categories', data, state);
+    }
+    case `${GET_COUPONS_BY_CATEGORY}_SUCCESS`: {
       const offersData = R.pathOr(
         [],
         ['payload', 'data', 'offers_data'],

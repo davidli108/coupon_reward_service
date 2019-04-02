@@ -28,6 +28,7 @@ const Coupons = ({ coupons }: CouponsProps) => {
 };
 
 Coupons.Wrapper = styled.div`
+  min-height: 400px;
   display: flex;
   flex-flow: column nowrap;
 

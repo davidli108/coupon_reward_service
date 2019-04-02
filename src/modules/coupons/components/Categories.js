@@ -1,36 +1,39 @@
-//@flow
-import * as React from 'react';
-import { connect } from 'react-redux';
+// @flow
+import React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
-import CategoriesItem from './CategoriesItem';
-import type { CategoriesProps } from '../models/CouponsPage';
-import * as actions from '../CouponsActions';
+import CategoryItem from './CategoryItem';
+
+type CategoriesProps = {
+  title: string,
+  categories: Object,
+  activeCategory: ?string,
+  onActiveCategory: string => void,
+};
 
 const Categories = ({
   title,
   categories,
-  setCategoryFilter,
-}: CategoriesProps) => {
-  const [itemChecked, setCheckedItem] = React.useState('');
-
-  return (
-    <Categories.Wrapper>
-      <h2>{title}</h2>
-      {categories.map<React.Node>((category, index) => (
-        <CategoriesItem
-          key={`category_${category.title}_${index}`}
-          sectionTitle={title}
-          onClick={setCategoryFilter}
-          setCheckedItem={setCheckedItem}
-          isActive={itemChecked === category.title}
-          {...category}
+  activeCategory,
+  onActiveCategory,
+}: CategoriesProps) => (
+  <Categories.Wrapper>
+    <h2>{title}</h2>
+    {categories &&
+      categories.map(category => (
+        <CategoryItem
+          key={`key_${category.shortName || category.short_name}`}
+          name={category.name || category.store_name}
+          shortName={category.shortName || category.short_name}
+          isActive={
+            activeCategory === (category.shortName || category.short_name)
+          }
+          onActive={onActiveCategory}
         />
       ))}
-    </Categories.Wrapper>
-  );
-};
+  </Categories.Wrapper>
+);
 
 Categories.Wrapper = styled.div`
   display: none;
@@ -54,13 +57,4 @@ Categories.Wrapper = styled.div`
   `}
 `;
 
-const mapDispatchToProps = {
-  setCategoryFilter: actions.setCategoryFilter,
-};
-
-const enhance = connect(
-  null,
-  mapDispatchToProps,
-);
-
-export default enhance(Categories);
+export default Categories;

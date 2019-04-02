@@ -19,13 +19,18 @@ export type Store = {
 };
 
 export type Category = {
-  title: string,
-  value: string | number,
+  name: string,
+  shortName: string,
+};
+
+export type CategoryStores = {
+  name: string,
+  short_name: string,
 };
 
 export type Categories = {
   categories: Category[],
-  stores: Category[],
+  stores: CategoryStores[],
 };
 
 export type Deal = {
@@ -92,7 +97,7 @@ export type CategoriesProps = {
 export type CouponsPageProps = {
   featuredCoupon: FeaturedCoupon,
   stores: Store[],
-  categories: Categories,
+  categories: Categories | {},
   coupons: Deal[],
 };
 
