@@ -5,6 +5,7 @@ import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
 
 import type { Deal as DealModel } from '../models/CouponsPage';
+import SocialShare from './SocialShare';
 
 const zeroPadStars = val => String(val).padStart(2, '0');
 
@@ -58,20 +59,20 @@ const Coupon = ({
             .replace('Cash Back', t('global.cashBack'))
             .replace('Instant Savings', t('global.instantSaving'))}
         </Coupon.CashbackPercent>
+        <SocialShare text={ref_text} link={offer_link} />
       </Coupon.Content>
     </Coupon.Wrapper>
   );
 };
 
 Coupon.Wrapper = styled.div`
-  padding-top: 30px;
   display: flex;
   align-items: flex-end;
   justify-content: center;
   position: relative;
 
   width: 100%;
-  max-height: 477px;
+  max-height: 550px;
 
   margin: 20px auto;
   overflow: hidden;
