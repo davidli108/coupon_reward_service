@@ -12,7 +12,6 @@ import { getStore } from '../StoreCouponsReducer';
 const StoreInformation = ({ t, store }: StoreInformationProps) => {
   return (
     <StoreInformation.Wrapper>
-      {console.log(store)}
       <StoreInformationSection
         key={`store_${store.store_id}`}
         title="About"

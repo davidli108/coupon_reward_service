@@ -142,14 +142,6 @@ const Footer = ({ t }: FooterProps) => (
   </Footer.Wrapper>
 );
 
-/*
-
-footer: {
-      aboutOurApp: 'About Our App',
-},
-
-*/
-
 Footer.Wrapper = styled.footer`
   background: #40c8e5;
   width: 100%;
