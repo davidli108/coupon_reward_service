@@ -3,11 +3,12 @@ import * as React from 'react';
 
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
+import { withTranslation } from 'react-i18next';
 
 import preloader from '../assets/preloader.svg';
 import type { StoreListProps } from '../models/CouponsPage';
 
-const StoreList = ({ stores }: StoreListProps) => (
+const StoreList = ({ t, stores }: StoreListProps) => (
   <StoreList.Wrapper>
     {stores.length !== 0 ? (
       stores.map(store => (
@@ -20,7 +21,11 @@ const StoreList = ({ stores }: StoreListProps) => (
             src={`http://d2umvgb8hls1bt.cloudfront.net${store.store_logo}`}
             alt={store.store_name}
           />
-          <p>{store.discount_print}</p>
+          <p>
+            {store.discount_print
+              .replace('Cash Back', t('global.cashBack'))
+              .replace('Instant Savings', t('global.instantSaving'))}
+          </p>
         </StoreList.Item>
       ))
     ) : (
@@ -91,4 +96,4 @@ StoreList.Item = styled.a`
   `}
 `;
 
-export default StoreList;
+export default withTranslation()(StoreList);

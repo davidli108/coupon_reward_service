@@ -97,6 +97,7 @@ export default {
     },
   },
   categories: {
+    name: 'Categories',
     accessories: 'Accessories',
     automotive: 'Automotive',
     baby: 'Baby',
@@ -124,13 +125,16 @@ export default {
     toysGames: 'Toys & Games',
     travel: 'Travel',
   },
-  coupons: {
+  global: {
     learnMore: 'Learn more',
     get25dollars: 'Get $25',
     cashBack: 'Cash back',
+    instantSaving: 'Instant Savings',
     downloadPiggy:
       "Download Pigg's Automatic Coupons at Checkout and Never Miss a Deal Again!",
     neverMiss: 'Never miss a coupon with our free app!',
+  },
+  coupons: {
     shopBy: {
       couponSales: 'Coupon & Sales',
       browseByStore: 'Browse by Store',
@@ -157,12 +161,6 @@ export default {
     },
   },
   cashbackStores: {
-    learnMore: 'Learn more',
-    get25dollars: 'Get $25',
-    cashBack: 'Cash back',
-    downloadPiggy:
-      "Download Pigg's Automatic Coupons at Checkout and Never Miss a Deal Again!",
-    neverMiss: 'Never miss a coupon with our free app!',
     shopBy: {
       couponSales: 'Coupon & Sales',
       browseByStore: 'Browse by Store',
@@ -181,11 +179,30 @@ export default {
     resetPassword: 'Reset Password',
     testimonials: 'Testimonials',
   },
+  storeCoupons: {
+    viewLatestCoupons:
+      "View the latest Online Coupons for Build below! Never miss a Build coupon or Cash Back opportunities from any of our 3,000 other stores with our Free Mobile App and Browser app! Any of Build's online coupons can be combined with Free, Automatic Rebates.Up to 3.0% Cash Back! Only from Piggy!Any of these Build coupon codes and promotions can be combined with our Automatic Cash Back at Build",
+  },
+  build: {
+    visitStore: 'Visit Store',
+    addToFavorites: 'Add to favorites',
+    freeShiping: 'Free Shipping',
+    freeShipingOver49:
+      'FREE Shipping Standard Ground Shipping on Orders over $49!',
+    shopBuild: 'Shop Build with 3.0% Cash Back',
+    returnPolicy: 'Return Policy',
+    returnItems30days:
+      'You may initiate a return for an item(s) within 30 days of receipt for a refund. Returns requested between 31 - 60 days after receipt will only qualify for store credit. Returns outside of our 30 to 60 day General Return policy will not be accepted. Refunds will be applied to your account (minus return shipping) once the item has been received and inspected through our warehouse.',
+    threePercentCashBack: 'Plus get 3.0% Cash Back from Build!',
+    otherPopularStores: 'Other Popular Stores',
+    indicatesMaximumCashBack:
+      '- indicates the maximum cash back, reward, or discount a user may earn. Some items may pay lower cash back and some exclusions may exist. Not all stores pay cashback. Cash back not combinable with outside coupons or offers. Please view Terms or individual store profiles for more info.',
+  },
   footer: {
     stopMissingOut: 'Stop missing out. Get the app today!',
     getTheApp: 'Get The App',
     downloadButtons: {
-      desctop: 'Download for Desktop',
+      desktop: 'Download for Desktop',
       android: 'Download for Android',
       ios: 'Download for iOS',
     },
@@ -197,8 +214,9 @@ export default {
       careers: 'Careers',
       contact: 'Contact',
       consumerResources: 'Consumer Resources',
+      referrals: 'Referrals',
     },
-    footer: {
+    copiright: {
       menu: {
         termsOfUse: 'Terms of Use',
         privacyPolicy: 'Privacy Policy',
@@ -206,7 +224,8 @@ export default {
         unsubscribe: 'Unsubscribe',
         eula: 'EULA',
       },
-      copyright: 'Copyright 2019 All Rights Reserved',
+      text: 'Copyright',
+      allRightReserved: 'All Rights Reserved',
     },
   },
 };

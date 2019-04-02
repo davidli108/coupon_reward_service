@@ -13,32 +13,32 @@ export default {
       loginGoogle: 'Mit Google anmelden',
     },
     signUp: {
-      title: 'Register to Get Automatic Cash Back',
-      subTitle: 'Its that easy',
+      title: 'Registrieren, um automatisches Bargeld Zurückzubekommen',
+      subTitle: 'So einfach ist das',
       or: 'oder',
       emailAddress: 'E-Mail Adresse',
-      button: 'Join Piggy',
+      button: 'Piggy Beitreten',
       preFooter: {
         label:
-          "By joining, I agree to be added to daily mailing list and Piggy's",
-        terms: 'terms of service',
+          'Mit dem Beitritt stimme ich zu, in die tägliche Mailingliste aufgenommen zu werden und die',
+        terms: 'Nutzungsbedingungen von Piggy',
       },
       footer: {
-        text: 'Already A Member?',
-        button: 'Login',
+        text: 'Bereits ein Mitglied?',
+        button: 'Einloggen',
       },
       messages: {
-        inputEmpty: 'Please fill out this field',
-        existAccount: 'Looks like you already have an account. Please login.',
-        passwordNotMatch: 'Passwords do not match!',
-        shortPassword: 'Password must be 8 characters long!',
-        invalidEmail: 'Invalid email format',
+        inputEmpty: 'Bitte füllen Sie dieses Feld aus',
+        existAccount: 'Sieht aus, als hätten Sie bereits ein Konto. Einloggen.',
+        passwordNotMatch: 'Passwörter stimmen nicht überein',
+        shortPassword: 'Passwort muss 8 Zeichen lang sein!',
+        invalidEmail: 'Ungültiges Email-Format',
         emailNotContainComma:
-          "A part followed by '@' should not contain the symbol ','.",
-        errorTryAgain: 'There was an error. Please try again.',
+          "Ein Teil gefolgt von '@' sollte nicht das Symbol ',' enthalten.",
+        errorTryAgain: 'Es gab einen Fehler. Bitte versuche es erneut.',
       },
-      password: 'Password',
-      confirmPassword: 'Confirm Password',
+      password: 'Passwort',
+      confirmPassword: 'Passwort bestätigen',
     },
     signIn: {
       title: 'Willkommen zurück',
@@ -98,6 +98,7 @@ export default {
     },
   },
   categories: {
+    name: 'Kategorien',
     accessories: 'Zubehör',
     automotive: 'Automotive',
     baby: 'Baby',
@@ -125,13 +126,16 @@ export default {
     toysGames: 'Spielzeug & Spiele',
     travel: 'Reise',
   },
-  coupons: {
+  global: {
     learnMore: 'Mehr erfahren',
     get25dollars: '25 € erhalten',
     cashBack: 'Bargeld zurück',
+    instantSaving: 'Sofortige Einsparungen',
     downloadPiggy:
       "Laden Sie die automatischen Coupons von Piggy's bei Checkout herunter und verpassen Sie nie wieder einen Deal!",
     neverMiss: 'Verpassen Sie niemals ein Coupon mit unserer kostenlosen App!',
+  },
+  coupons: {
     shopBy: {
       couponSales: 'Gutschein & Verkauf',
       browseByStore: 'Nach Geschäft durchsuchen',
@@ -158,12 +162,6 @@ export default {
     },
   },
   cashbackStores: {
-    learnMore: 'Mehr erfahren',
-    get25dollars: '25 € erhalten',
-    cashBack: 'Bargeld zurück',
-    downloadPiggy:
-      "Laden Sie die automatischen Coupons von Piggy's bei Checkout herunter und verpassen Sie nie wieder einen Deal!",
-    neverMiss: 'Verpassen Sie niemals ein Coupon mit unserer kostenlosen App!',
     shopBy: {
       couponSales: 'Gutschein & Verkauf',
       browseByStore: 'Nach Geschäft durchsuchen',
@@ -184,12 +182,31 @@ export default {
     resetPassword: 'Passwort zurücksetzen',
     testimonials: 'Referenzen',
   },
+  storeCoupons: {
+    viewLatestCoupons:
+      'Sehen Sie sich die neuesten Online-Gutscheine für Build unten an! Verpassen Sie niemals einen Coupon oder Cash Back aus einem unserer 3.000 anderen Stores mit unserer kostenlosen App für mobile Apps und Browser! Alle Online-Gutscheine von Build können mit kostenlosen automatischen Rabatten kombiniert werden. Bis zu 3,0 % Cash Back! Nur von Piggy! Jeder dieser Build-Gutscheincodes und Promotion kann mit unserem automatischen Cash Back-Build kombiniert werden',
+  },
+  build: {
+    visitStore: 'Shop besuchen',
+    addToFavorites: 'Zu den Favoriten hinzufügen',
+    freeShiping: 'Kostenloser Versand',
+    freeShipingOver49:
+      'KOSTENLOSER Versand Standard Bodenversand für Bestellungen über 49 € !',
+    shopBuild: 'Shop Build mit 3,0 % Cash Back',
+    returnPolicy: 'Rücknahmegarantie',
+    returnItems30days:
+      'Sie können eine Rückgabe für einen Artikel innerhalb von 30 Tagen nach Erhalt für eine Rückerstattung veranlassen. Rücksendungen, die zwischen 31 und 60 Tagen nach Erhalt angefordert werden, sind nur für die Gutschrift im Geschäft berechtigt. Rücksendungen außerhalb unserer 30 bis 60-tägigen allgemeinen Rückgabebedingungen werden nicht akzeptiert. Rückerstattungen werden Ihrem Konto gutgeschrieben (abzüglich Rücksendung), sobald der Artikel bei uns eingegangen und durch unser Lager geprüft wurde.',
+    threePercentCashBack: 'Plus erhalten Sie 3,0% Cash Back von Build!',
+    otherPopularStores: 'Andere beliebte Geschäfte',
+    indicatesMaximumCashBack:
+      '- gibt den maximalen Cashback, die maximale Prämie oder den Rabatt an, den ein Benutzer verdienen kann. Einige Artikel können einen niedrigeren Cash-Back-Betrag ausweisen und einige Ausschlüsse bestehen. Nicht alle Geschäfte zahlen Cashback. Cash Back nicht mit externen Gutscheinen oder Angeboten kombinierbar. Weitere Informationen finden Sie in den Nutzungsbedingungen oder in den einzelnen Shop-Profilen.',
+  },
   footer: {
     stopMissingOut:
       'Verpassen Sie es nicht. Holen Sie sich die App noch heute!',
     getTheApp: 'Holen Sie sich die App',
     downloadButtons: {
-      desctop: 'Für Desktop Herunterladen',
+      desktop: 'Für Desktop Herunterladen',
       android: 'Für Android Herunterladen',
       ios: 'Für IOS Herunterladen',
     },
@@ -201,8 +218,9 @@ export default {
       careers: 'Karriere',
       contact: 'Kontakt',
       consumerResources: 'Verbraucherressourcen',
+      referrals: 'Verweise',
     },
-    footer: {
+    copiright: {
       menu: {
         termsOfUse: 'Nutzungsbedingungen',
         privacyPolicy: 'Datenschutzerklärung',
@@ -210,7 +228,8 @@ export default {
         unsubscribe: 'Abmelden',
         eula: 'EULA',
       },
-      copyright: 'Copyright 2019 alle Rechte vorbehalten',
+      text: 'Copyright',
+      allRightReserved: 'alle Rechte vorbehalten',
     },
   },
 };

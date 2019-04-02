@@ -1,8 +1,10 @@
 //@flow
 import React, { useState } from 'react';
+import { compose } from 'recompose';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { connect } from 'react-redux';
+import { withTranslation } from 'react-i18next';
 
 import Controls from './Controls';
 import CategoriesMobile from './CategoriesMobile';
@@ -19,6 +21,7 @@ import {
 import type { ContentProps } from '../models/CouponsPage';
 
 const Content = ({
+  t,
   categories,
   loadMore,
   storeAll,
@@ -41,7 +44,10 @@ const Content = ({
       <CategoriesMobile />
       <Content.Grid>
         <Content.CategoriesWrapper>
-          <Categories categories={categories.categories} title="Categories" />
+          <Categories
+            categories={categories.categories}
+            title={t('categories.name')}
+          />
           <Categories categories={categories.stores} title="Stores" />
         </Content.CategoriesWrapper>
         <Coupons />
@@ -123,4 +129,7 @@ const enhance = connect(
   mapDispatchToProps,
 );
 
-export default enhance(Content);
+export default compose(
+  enhance,
+  withTranslation(),
+)(Content);
