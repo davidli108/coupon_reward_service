@@ -41,6 +41,7 @@ export type Deal = {
   offer_link: string,
   ref_text: string,
   offer_type: string,
+  coupon_code: string,
 };
 
 export type StoreListProps = {

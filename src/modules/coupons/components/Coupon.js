@@ -4,8 +4,10 @@ import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
 
-import type { Deal as DealModel } from '../models/CouponsPage';
+import CouponCode from './CouponCode';
 import SocialShare from './SocialShare';
+
+import type { Deal as DealModel } from '../models/CouponsPage';
 
 const zeroPadStars = val => String(val).padStart(2, '0');
 
@@ -24,6 +26,7 @@ const Coupon = ({
   store_logo,
   store_name,
   ref_text,
+  coupon_code,
 }: DealModel) => {
   return (
     <Coupon.Wrapper>
@@ -51,9 +54,7 @@ const Coupon = ({
           <p>{show_exp_date}</p>
         </Coupon.ExpDate>
         <Coupon.OfferText>{ref_text}</Coupon.OfferText>
-        <Coupon.ViewDealButton href={offer_link} target="_blank">
-          View Deal
-        </Coupon.ViewDealButton>
+        <CouponCode code={coupon_code} />
         <Coupon.CashbackPercent>
           {discount_print
             .replace('Cash Back', t('global.cashBack'))
@@ -196,39 +197,6 @@ Coupon.OfferText = styled.p`
   color: #b1b1b1;
   text-align: center;
   font-size: 16px;
-`;
-
-Coupon.ViewDealButton = styled.a`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  width: 90%;
-
-  background: #00cbe9;
-  border: 1px solid #00b4cf;
-  box-sizing: border-box;
-  box-shadow: inset 0px 1px 2px rgba(255, 255, 255, 0.5),
-    inset 0px -1px 5px rgba(0, 0, 0, 0.0584805),
-    inset 0px -2px 0px rgba(255, 255, 255, 0.213315);
-  border-radius: 4px;
-
-  font-weight: bold;
-  line-height: 20px;
-  font-size: 17px;
-  text-align: center;
-  letter-spacing: 0.51px;
-  color: #fff;
-
-  padding: 13px 30px;
-  margin: 0 0 14px 0;
-
-  white-space: nowrap;
-  cursor: pointer;
-
-  &:hover {
-    background: #00bad5;
-  }
 `;
 
 Coupon.CashbackPercent = styled.div`

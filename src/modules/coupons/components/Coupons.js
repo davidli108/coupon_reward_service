@@ -10,6 +10,7 @@ import type { CouponsProps } from '../models/CouponsPage';
 import { getFilteredDeals } from '../CouponsReducer';
 
 const Coupons = ({ coupons }: CouponsProps) => {
+  console.log(coupons);
   return (
     <Coupons.Wrapper>
       {coupons && coupons.length !== 0 ? (
