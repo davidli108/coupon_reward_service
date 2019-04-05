@@ -22,7 +22,6 @@ const TagList = ({
   categories,
 }: TagListProps) => (
   <TagList.List toggled={toggled}>
-    {console.log(categories)}
     {R.compose(
       R.map(category => (
         <TagList.Item

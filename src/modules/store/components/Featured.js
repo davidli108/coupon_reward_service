@@ -12,7 +12,6 @@ type FeaturedProps = {
 
 const Featured = ({ t, featured }: FeaturedProps) => (
   <Featured.Wrapper>
-    {console.log(featured)}
     {featured.map(
       ({
         store_name,

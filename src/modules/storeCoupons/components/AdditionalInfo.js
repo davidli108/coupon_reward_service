@@ -50,7 +50,7 @@ const AdditionalInfo = ({ additionalInfo }: AdditionalInfoProps) => {
 
 AdditionalInfo.Wrapper = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   padding: 15px;
   margin-top: 50px;
 
@@ -66,6 +66,11 @@ AdditionalInfo.Wrapper = styled.div`
     color: #899197;
     line-height: 20px;
   }
+
+  ${breakpoint('sm')`
+    flex-direction: row;
+    margin-top: 0;
+  `}
 
   ${breakpoint('lg')`
     flex-direction: column;
@@ -97,10 +102,14 @@ AdditionalInfo.Separator = styled.div`
 `;
 
 AdditionalInfo.ContentWrapper = styled.div`
-  width: 33%;
+  width: 95%;
   flex-grow: 1;
   margin-left: 15px;
   margin-right: 15px;
+
+  ${breakpoint('sm')`
+    width: 33%;
+  `}
 
   ${breakpoint('lg')`
     width: 100%;
