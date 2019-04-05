@@ -1,6 +1,5 @@
 //@flow
 import * as React from 'react';
-import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 import allDealsSvg from '../assets/allDeals.svg';
@@ -12,54 +11,56 @@ import onlyCouponsActiveSvg from '../assets/onlyCouponsActive.svg';
 import favoriteStoresSvg from '../assets/favoriteStores.svg';
 import favoriteStoresActiveSvg from '../assets/favoriteStoresActive.svg';
 
-import type { ControlsProps } from '../models/CouponsPage';
+type ControlsProps = {
+  getDealsFilter: Object,
+  setDealsFilter: Object,
+};
 
-import * as actions from '@modules/coupons/CouponsActions';
-import { getDealsFilter } from '@modules/coupons/CouponsReducer';
-
-const Controls = ({ filterBy, setFilter }: ControlsProps) => {
+const Controls = ({ getDealsFilter, setDealsFilter }: ControlsProps) => {
   return (
     <Controls.Wrapper>
       <Controls.Button
-        isActive={filterBy === 'allDeals'}
-        onClick={() => setFilter('allDeals')}
+        isActive={getDealsFilter === 'allDeals'}
+        onClick={() => setDealsFilter('allDeals')}
       >
         <img
-          src={filterBy === 'allDeals' ? allDealsActiveSvg : allDealsSvg}
+          src={getDealsFilter === 'allDeals' ? allDealsActiveSvg : allDealsSvg}
           alt="all deals"
         />
         <p>All Deals</p>
-        {filterBy === 'allDeals' && <Controls.Pointer />}
+        {getDealsFilter === 'allDeals' && <Controls.Pointer />}
       </Controls.Button>
 
       <Controls.Button
-        isActive={filterBy === 'onlyCoupons'}
-        onClick={() => setFilter('onlyCoupons')}
+        isActive={getDealsFilter === 'onlyCoupons'}
+        onClick={() => setDealsFilter('onlyCoupons')}
       >
         <img
           src={
-            filterBy === 'onlyCoupons' ? onlyCouponsActiveSvg : onlyCouponsSvg
+            getDealsFilter === 'onlyCoupons'
+              ? onlyCouponsActiveSvg
+              : onlyCouponsSvg
           }
           alt="only coupons"
         />
         <p>Only Coupons</p>
-        {filterBy === 'onlyCoupons' && <Controls.Pointer />}
+        {getDealsFilter === 'onlyCoupons' && <Controls.Pointer />}
       </Controls.Button>
 
       <Controls.Button
-        isActive={filterBy === 'favoriteStores'}
-        onClick={() => setFilter('favoriteStores')}
+        isActive={getDealsFilter === 'favoriteStores'}
+        onClick={() => setDealsFilter('favoriteStores')}
       >
         <img
           src={
-            filterBy === 'favoriteStores'
+            getDealsFilter === 'favoriteStores'
               ? favoriteStoresActiveSvg
               : favoriteStoresSvg
           }
           alt="favorite stores"
         />
         <p>Favorite Stores</p>
-        {filterBy === 'favoriteStores' && <Controls.Pointer />}
+        {getDealsFilter === 'favoriteStores' && <Controls.Pointer />}
       </Controls.Button>
     </Controls.Wrapper>
   );
@@ -110,17 +111,4 @@ Controls.Pointer = styled.div`
   align-self: center;
 `;
 
-const mapStateToProps = state => ({
-  filterBy: getDealsFilter(state),
-});
-
-const mapDispatchToProps = {
-  setFilter: actions.setDealsFilter,
-};
-
-const enhance = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
-
-export default enhance(Controls);
+export default Controls;

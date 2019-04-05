@@ -1,12 +1,15 @@
 //@flow
-import * as React from 'react';
-
+import React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
 
 import preloader from '../assets/preloader.svg';
-import type { StoreListProps } from '../models/CouponsPage';
+
+type StoreListProps = {
+  t: string => string,
+  stores: Object,
+};
 
 const StoreList = ({ t, stores }: StoreListProps) => (
   <StoreList.Wrapper>

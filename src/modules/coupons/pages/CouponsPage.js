@@ -1,17 +1,26 @@
 //@flow
 import * as R from 'ramda';
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import { compose } from 'recompose';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
+
 import {
   getStores,
   getCategories,
   getStoresAll,
+  getFilteredDeals,
+  getDealsFilter,
 } from '@modules/coupons/CouponsReducer';
-import { getCoupons } from '@modules/coupons/CouponsActions';
+import {
+  getCoupons,
+  loadMore,
+  fetchCategories,
+  getCouponsByCategory,
+  setDealsFilter,
+} from '@modules/coupons/CouponsActions';
 
 import DownloadPiggy from '../components/DownloadPiggy';
 import SearchBar from '@modules/store/components/Search';
@@ -19,16 +28,45 @@ import TodaysFeaturedCoupon from '../components/TodaysFeaturedCoupon';
 import StoreList from '../components/StoreList';
 import Content from '../components/Content';
 
-const CouponsPage = ({ match, stores, categories, storesAll, onStore }) => {
-  const [search, setSearch] = React.useState('');
-  React.useEffect(() => {
+type CouponsPageProps = {
+  match: Object,
+  categories: Object,
+  stores: Object,
+  storesAll: Object,
+  getFilteredDeals: () => Object,
+  getCoupons: () => Promise<number>,
+  loadMore: number => Promise<number>,
+  fetchCategories: () => Promise<number>,
+  getCouponsByCategory: string => Promise<number>,
+  getDealsFilter: Object,
+  setDealsFilter: string => void,
+};
+
+const CouponsPage = ({
+  match,
+  categories,
+  stores,
+  storesAll,
+  getFilteredDeals,
+  getCoupons,
+  loadMore,
+  fetchCategories,
+  getCouponsByCategory,
+  getDealsFilter,
+  setDealsFilter,
+}: CouponsPageProps) => {
+  const [search, setSearch] = useState('');
+
+  useEffect(() => {
     if (!match.params.name) {
-      onStore();
+      getCoupons();
     }
   }, []);
+
   const onSetSearch = tern => {
     setSearch(tern);
   };
+
   const onSearch = (search, stores) => {
     if (search === '') return [];
     return R.compose(
@@ -51,16 +89,23 @@ const CouponsPage = ({ match, stores, categories, storesAll, onStore }) => {
       </CouponsPage.SearchWrapper>
       {Boolean(stores.length) && <TodaysFeaturedCoupon store={stores[0]} />}
       <StoreList stores={categories.stores} />
-      <Content />
+      <Content
+        categories={categories}
+        getFilteredDeals={getFilteredDeals}
+        loadMore={loadMore}
+        fetchCategories={fetchCategories}
+        getCouponsByCategory={getCouponsByCategory}
+        getDealsFilter={getDealsFilter}
+        setDealsFilter={setDealsFilter}
+      />
     </CouponsPage.Wrapper>
   );
 };
 
 CouponsPage.Wrapper = styled.div`
+  padding: 10px;
   display: flex;
   flex-flow: column nowrap;
-
-  padding: 10px;
 
   ${breakpoint('xl')`
     width: 80%;
@@ -69,8 +114,8 @@ CouponsPage.Wrapper = styled.div`
 `;
 
 CouponsPage.SearchWrapper = styled.div`
-  margin-top: 50px;
   width: inherit;
+  margin-top: 50px;
 
   ${breakpoint('md')`
     width: 80%;
@@ -88,10 +133,16 @@ const mapStateToProps = state => ({
   categories: getCategories(state),
   stores: getStores(state),
   storesAll: getStoresAll(state),
+  getFilteredDeals: getFilteredDeals(state),
+  getDealsFilter: getDealsFilter(state),
 });
 
 const mapDispatchToProps = {
-  onStore: getCoupons,
+  getCoupons: getCoupons,
+  loadMore,
+  fetchCategories,
+  getCouponsByCategory,
+  setDealsFilter,
 };
 
 export default compose(

@@ -1,13 +1,14 @@
 //@flow
 import * as React from 'react';
-import { connect } from 'react-redux';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
 import preloader from '../assets/preloader.svg';
 import Coupon from './Coupon';
-import type { CouponsProps } from '../models/CouponsPage';
-import { getFilteredDeals } from '../CouponsReducer';
+
+type CouponsProps = {
+  coupons: Object,
+};
 
 const Coupons = ({ coupons }: CouponsProps) => {
   return (
@@ -62,10 +63,4 @@ Coupons.Preloader = styled.div`
   text-align: right;
 `;
 
-const mapStateToProps = state => ({
-  coupons: getFilteredDeals(state),
-});
-
-const enhance = connect(mapStateToProps);
-
-export default enhance(Coupons);
+export default Coupons;

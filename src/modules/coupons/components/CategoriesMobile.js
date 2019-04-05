@@ -1,12 +1,10 @@
 // @flow
 import * as R from 'ramda';
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
 import CategoryItem from './CategoryItem';
-import { getCategories } from '../CouponsReducer';
 
 const capitalize = R.compose(
   R.join(''),
@@ -42,15 +40,13 @@ const CategoriesMobile = ({
       {isOpen && (
         <CategoriesMobile.ItemsWrapper items={categories[1]}>
           {categories &&
-            categories.map(([sectionTitle, category], index) => (
-              <CategoriesMobile.Section
-                key={`categories_section_${sectionTitle}`}
-              >
-                {index !== 0 && <h2>{capitalizeOrNull(sectionTitle)}</h2>}
-                {category.map(i => (
+            Object.keys(categories).map(key => (
+              <CategoriesMobile.Section key={`key_${key}`}>
+                <h2>{capitalizeOrNull(key)}</h2>
+                {categories[key].map(i => (
                   <CategoryItem
                     setOpen={setOpen}
-                    key={`category_${i.title}_${i.value}`}
+                    key={`key_${i.shortName || i.short_name}`}
                     name={i.name || i.store_name}
                     shortName={i.shortName || i.short_name}
                     isActive={activeCategory === (i.shortName || i.short_name)}
@@ -109,9 +105,11 @@ CategoriesMobile.Triangle = styled.div`
 `;
 
 CategoriesMobile.ItemsWrapper = styled.div`
+  height: 50vh;
   position: absolute;
-  top: 35px;
+  top: 45px;
   left: -1px;
+  overflow-y: scroll;
 
   border: 1px solid #dadde2;
   border-radius: 5px;
@@ -151,11 +149,4 @@ CategoriesMobile.Section = styled.div`
   }
 `;
 
-const mapStateToProps = state => ({
-  /* $FlowFixMe */
-  categories: R.toPairs(getCategories(state)),
-});
-
-const enhance = connect(mapStateToProps);
-
-export default enhance(CategoriesMobile);
+export default CategoriesMobile;

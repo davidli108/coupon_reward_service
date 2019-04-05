@@ -4,35 +4,26 @@ import { compose } from 'recompose';
 import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
-import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 
 import Controls from './Controls';
 import CategoriesMobile from './CategoriesMobile';
 import Categories from './Categories';
 import Coupons from '../components/Coupons';
-import preloader from '../assets/preloader.svg';
 
-import {
-  loadMore,
-  fetchCategories,
-  getCouponsByCategory,
-} from '../CouponsActions';
-import {
-  getCategories,
-  getStoresAll,
-  getFilteredDeals,
-} from '../CouponsReducer';
+import preloader from '../assets/preloader.svg';
 
 type ContentProps = {
   t: string => string,
   history: Object,
   match: Object,
   categories: Object,
-  loadMore: Function,
   getFilteredDeals: Object,
+  loadMore: Function,
   fetchCategories: () => Promise<number>,
   getCouponsByCategory: string => Promise<number>,
+  getDealsFilter: Object,
+  setDealsFilter: Object,
 };
 
 const Content = ({
@@ -40,10 +31,12 @@ const Content = ({
   history,
   match,
   categories,
-  loadMore,
   getFilteredDeals,
+  loadMore,
   fetchCategories,
   getCouponsByCategory,
+  getDealsFilter,
+  setDealsFilter,
 }: ContentProps) => {
   const [loadCount, setLoadCount] = useState(20);
   const [isLoaded, setIsLoaded] = useState(true);
@@ -73,9 +66,12 @@ const Content = ({
 
   return (
     <div>
-      <Controls />
+      <Controls
+        getDealsFilter={getDealsFilter}
+        setDealsFilter={setDealsFilter}
+      />
       <CategoriesMobile
-        categories={categories.categories}
+        categories={categories}
         activeCategory={activeCategory}
         onActiveCategory={onActiveCategory}
       />
@@ -100,12 +96,13 @@ const Content = ({
         )}
         <Content.CouponsWrapper>
           {isLoaded ? (
-            <Coupons />
+            <Coupons coupons={getFilteredDeals} />
           ) : activeCategory ? (
             <Content.Preloader src={preloader} alt="" />
           ) : (
             <>
-              <Coupons /> <img src={preloader} alt="" />
+              <Coupons coupons={getFilteredDeals} />{' '}
+              <img src={preloader} alt="" />
             </>
           )}
           <Content.LoadMoreDeals onClick={onLoadMore}>
@@ -182,25 +179,7 @@ Content.Preloader = styled.img`
   text-align: right;
 `;
 
-const mapStateToProps = state => ({
-  categories: getCategories(state),
-  storeAll: getStoresAll(state),
-  getFilteredDeals: getFilteredDeals(state),
-});
-
-const mapDispatchToProps = {
-  loadMore,
-  fetchCategories,
-  getCouponsByCategory,
-};
-
-const enhance = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
-
 export default compose(
-  enhance,
   withTranslation(),
   withRouter,
 )(Content);
