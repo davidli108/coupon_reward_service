@@ -16,6 +16,11 @@ type StoresListProps = {
   loadState: number,
   loadToState: number,
   onLoadMore: Function,
+  storesCount: number,
+  isLoadedStores: boolean,
+  setIsLoadedStores: boolean => void,
+  isLoadedMore: boolean,
+  setIsLoadedMore: boolean => void,
 };
 
 const StoreMain = ({
@@ -26,6 +31,11 @@ const StoreMain = ({
   loadState,
   loadToState,
   storesAll,
+  storesCount,
+  isLoadedStores,
+  setIsLoadedStores,
+  isLoadedMore,
+  setIsLoadedMore,
 }: StoresListProps) => (
   <StoreMain.Wrapper>
     <StoreMain.Title>Browse among more than 1000 stores</StoreMain.Title>
@@ -36,6 +46,11 @@ const StoreMain = ({
       loadState={loadState}
       loadToState={loadToState}
       storesAll={storesAll}
+      storesCount={storesCount}
+      isLoadedStores={isLoadedStores}
+      setIsLoadedStores={setIsLoadedStores}
+      isLoadedMore={isLoadedMore}
+      setIsLoadedMore={setIsLoadedMore}
     />
   </StoreMain.Wrapper>
 );

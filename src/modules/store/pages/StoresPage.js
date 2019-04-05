@@ -1,5 +1,7 @@
 // @flow
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { compose } from 'recompose';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 
@@ -8,16 +10,11 @@ import breakpoint from 'styled-components-breakpoint';
 
 import StoreSidebar from '../components/StoreSidebar';
 import StoreMain from '../components/StoreMain';
+import preloader from '../../coupons/assets/preloader.svg';
 
 import { type Store, type Feature } from '../models';
 
-import {
-  setLoadMore,
-  setFilter,
-  setFilterClear,
-  getStore,
-  onSearch,
-} from '../StoreActions';
+import * as storeActions from '../StoreActions';
 
 import {
   getFilteredStores,
@@ -27,9 +24,13 @@ import {
   getLoadToState,
   getStoresAll,
   getStoreSearch,
+  searchIsLoading,
+  getCategories,
+  getStoresCount,
 } from '../StoreReducer';
 
 type StoresPageProps = {
+  match: Object,
   title: string,
   stores: Store[],
   storesAll: Store[],
@@ -44,9 +45,14 @@ type StoresPageProps = {
   onGetStore: Function,
   storeSearchResult: Object,
   onSearch: Function,
+  searchIsLoading: boolean,
+  categories: Object,
+  getCategories: Function,
+  storesCount: number,
 };
 
 const StoresPage = ({
+  match,
   title,
   stores,
   featured,
@@ -60,9 +66,18 @@ const StoresPage = ({
   onGetStore,
   storeSearchResult,
   onSearch,
+  searchIsLoading,
+  categories,
+  getCategories,
+  storesCount,
 }: StoresPageProps) => {
+  const [isLoadedStores, setIsLoadedStores] = useState(false);
+  const [isLoadedMore, setIsLoadedMore] = useState(true);
+
   useEffect(() => {
-    onGetStore();
+    getCategories();
+    setIsLoadedStores(false);
+    onGetStore(match.params.name || '').then(() => setIsLoadedStores(true));
   }, []);
 
   // const onFilterFeatured = stores =>
@@ -96,17 +111,32 @@ const StoresPage = ({
               storesAll={storesAll}
               onSetFilter={onSetFilter}
               onSetFilterClear={onSetFilterClear}
+              searchIsLoading={searchIsLoading}
+              categories={categories}
+              getStore={onGetStore}
+              setIsLoadedStores={setIsLoadedStores}
             />
-            <StoreMain
-              title={title}
-              stores={stores}
-              // featured={onFilterFeatured(featured)}
-              featured={featured}
-              onLoadMore={onLoadMore}
-              loadState={loadState}
-              loadToState={loadToState}
-              storesAll={storesAll}
-            />
+            {!isLoadedMore || isLoadedStores ? (
+              <StoreMain
+                title={title}
+                stores={stores}
+                // featured={onFilterFeatured(featured)}
+                featured={featured}
+                onLoadMore={onLoadMore}
+                loadState={loadState}
+                loadToState={loadToState}
+                storesAll={storesAll}
+                storesCount={storesCount}
+                isLoadedStores={isLoadedStores}
+                setIsLoadedStores={setIsLoadedStores}
+                isLoadedMore={isLoadedMore}
+                setIsLoadedMore={setIsLoadedMore}
+              />
+            ) : (
+              <StoresPage.PreloaderWrapper>
+                <img src={preloader} alt="" />
+              </StoresPage.PreloaderWrapper>
+            )}
           </StoresPage.Box>
         </StoresPage.Container>
       </StoresPage.Wrapper>
@@ -116,8 +146,14 @@ const StoresPage = ({
 
 StoresPage.defaultProps = {
   title: 'Browse among more than 1000 stores',
-  filter: [],
 };
+
+StoresPage.PreloaderWrapper = styled.div`
+  width: 100%;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+`;
 
 StoresPage.Wrapper = styled.section`
   position: relative;
@@ -203,17 +239,24 @@ const mapStateToProps = state => ({
   loadToState: getLoadToState(state),
   storesAll: getStoresAll(state),
   storeSearchResult: getStoreSearch(state),
+  searchIsLoading: searchIsLoading(state),
+  categories: getCategories(state),
+  storesCount: getStoresCount(state),
 });
 
 const mapDispatchToProps = {
-  onLoadMore: setLoadMore,
-  onSetFilter: setFilter,
-  onSetFilterClear: setFilterClear,
-  onGetStore: getStore,
-  onSearch,
+  onLoadMore: storeActions.setLoadMore,
+  onSetFilter: storeActions.setFilter,
+  onSetFilterClear: storeActions.setFilterClear,
+  onGetStore: storeActions.getStores,
+  onSearch: storeActions.requestSearch,
+  getCategories: storeActions.getCategories,
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  ),
+  withRouter,
 )(StoresPage);

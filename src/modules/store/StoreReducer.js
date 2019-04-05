@@ -8,7 +8,9 @@ import {
   SET_FILTER_CLEAR,
   SET_LOAD_MORE,
   LOAD_MORE_STATE,
-  ON_SEARCH,
+  SEARCH,
+  REQUEST_SEARCH,
+  GET_CATEGORIES,
 } from './StoreActions';
 
 export const STATE_KEY = 'store';
@@ -19,6 +21,8 @@ type StoresState = {
   filter: ?string,
   stores: Store[],
   featured: Feature[],
+  searchIsLoading: boolean,
+  storesCount: number,
 };
 
 const initialState: StoresState = {
@@ -26,6 +30,9 @@ const initialState: StoresState = {
   stores: [],
   featured: [],
   search: [],
+  searchIsLoading: false,
+  categories: [],
+  storesCount: 0,
 };
 
 const StoreReducer = (state: StoresState = initialState, action: Object) => {
@@ -40,9 +47,14 @@ const StoreReducer = (state: StoresState = initialState, action: Object) => {
         R.pathOr([], ['payload', 'data', 'featured_stores']),
       )(action);
 
+      const count = R.compose(
+        R.pathOr([], ['payload', 'data', 'stores_count']),
+      )(action);
+
       return R.compose(
         R.assoc<Object, Object>('featured', featuredStores),
         R.assoc<Object, Object>('stores', storesData),
+        R.assoc<Object, Object>('storesCount', count),
       )(state);
     }
     case SET_FILTER: {
@@ -63,8 +75,19 @@ const StoreReducer = (state: StoresState = initialState, action: Object) => {
         state,
       );
     }
-    case `${ON_SEARCH}_SUCCESS`: {
-      return R.assoc<Object, Object>('search', action.payload.data, state);
+    case REQUEST_SEARCH: {
+      return R.assoc<Object, Object>('searchIsLoading', false, state);
+    }
+    case `${GET_CATEGORIES}_SUCCESS`: {
+      const data = R.pathOr([], ['payload', 'data', 'categories'], action);
+
+      return R.assoc<Object, Object>('categories', data, state);
+    }
+    case `${SEARCH}_SUCCESS`: {
+      return R.compose(
+        R.assoc<Object, Object>('search', action.payload.data),
+        R.assoc<Object, Object>('searchIsLoading', true),
+      )(state);
     }
     case LOAD_MORE_STATE: {
       return R.assoc<Object, Object>('loadToState', null, state);
@@ -79,6 +102,9 @@ export const getLoadState = R.path<number>([STATE_KEY, 'loadState']);
 export const getLoadToState = R.path<number>([STATE_KEY, 'loadToState']);
 export const getStoreFilters = R.path<string>([STATE_KEY, 'filter']);
 export const getStoreSearch = R.path<string>([STATE_KEY, 'search']);
+export const searchIsLoading = R.path<string>([STATE_KEY, 'searchIsLoading']);
+export const getCategories = R.path<string>([STATE_KEY, 'categories']);
+export const getStoresCount = R.path<string>([STATE_KEY, 'storesCount']);
 
 // $FlowFixMe
 export const getStores = R.compose(

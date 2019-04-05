@@ -1,5 +1,6 @@
 // @flow
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 
 import preloader from '../../coupons/assets/preloader.svg';
@@ -7,9 +8,14 @@ import preloader from '../../coupons/assets/preloader.svg';
 type SearchStoreItemProps = {
   result: Object,
   isLoading: boolean,
+  history: Object,
 };
 
-const SearchStoreItem = ({ result, isLoading }: SearchStoreItemProps) => (
+const SearchStoreItem = ({
+  history,
+  result,
+  isLoading,
+}: SearchStoreItemProps) => (
   <SearchStoreItem.StoreWrapper>
     {!isLoading ? (
       <SearchStoreItem.PreloaderWrapper>
@@ -17,7 +23,10 @@ const SearchStoreItem = ({ result, isLoading }: SearchStoreItemProps) => (
       </SearchStoreItem.PreloaderWrapper>
     ) : result.length > 0 ? (
       result.map(item => (
-        <SearchStoreItem.Item key={`store_item_${item.store_id}`}>
+        <SearchStoreItem.Item
+          key={`store_item_${item.store_id}`}
+          onClick={() => history.push(`/coupons/${item.short_name}`)}
+        >
           <img
             src={`http://d2umvgb8hls1bt.cloudfront.net${item.image}`}
             alt={item.store_name}
@@ -90,4 +99,4 @@ SearchStoreItem.Item = styled.div`
   }
 `;
 
-export default SearchStoreItem;
+export default withRouter(SearchStoreItem);

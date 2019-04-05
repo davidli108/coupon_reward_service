@@ -1,20 +1,27 @@
 // @flow
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
 
-import { type Feature } from '../models';
-
 type FeaturedProps = {
   t: string => string,
-  featured: Feature[],
+  featured: Object,
 };
 
 const Featured = ({ t, featured }: FeaturedProps) => (
   <Featured.Wrapper>
+    {console.log(featured)}
     {featured.map(
-      ({ store_name, cashback_text, offer_img, store_id, offer_link }) => (
+      ({
+        store_name,
+        cashback_text,
+        offer_img,
+        store_id,
+        offer_link,
+        short_name,
+      }) => (
         <Featured.Item key={store_id}>
           {offer_img && (
             <Featured.WrapperImage>
@@ -24,7 +31,7 @@ const Featured = ({ t, featured }: FeaturedProps) => (
               />
             </Featured.WrapperImage>
           )}
-          <Featured.Link href={offer_link} target="_blank">
+          <Featured.Link to={`/coupons/${short_name}`}>
             Visit Store
           </Featured.Link>
           <Featured.Cash>
@@ -155,7 +162,7 @@ Featured.Image = styled.img`
   object-fit: contain;
 `;
 
-Featured.Link = styled.a`
+Featured.Link = styled(Link)`
   display: block;
   width: 100%;
   padding: 9px 0;

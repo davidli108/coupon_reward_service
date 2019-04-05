@@ -1,14 +1,19 @@
 // @flow
 import React, { useState } from 'react';
+import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
 import { type Store } from '../models';
 
 import Search from './Search';
-import TagList from './TagList';
+import Categories from './Categories';
+import CategoriesMobile from './CategoriesMobile';
+//import TagList from './TagList';
 
 type StoreSidebarProps = {
+  match: Object,
+  history: Object,
   title: string,
   storesAll: Store[],
   filter: string,
@@ -17,9 +22,15 @@ type StoreSidebarProps = {
   onSetFilter: Function,
   onSetFilterClear: Function,
   onSearch: Function,
+  searchIsLoading: boolean,
+  categories: Object,
+  getStore: Function,
+  setIsLoadedStores: boolean => void,
 };
 
 const StoreSidebar = ({
+  match,
+  history,
   title,
   filter,
   storesAll,
@@ -28,21 +39,26 @@ const StoreSidebar = ({
   onSetFilter,
   onSetFilterClear,
   onSearch,
+  searchIsLoading,
+  categories,
+  getStore,
+  setIsLoadedStores,
 }: StoreSidebarProps) => {
-  const [toggled, setToggle] = useState(false);
   const [searchValue, setSearchValue] = useState('');
-  const [isLoadingSearch, setIsLoadingSearch] = useState(false);
+  const [activeCategory, setActiveCategory] = useState(match.params.name);
 
   const onSearchChange = e => {
     setSearchValue(e.target.value);
     if (e.target.value) {
-      setIsLoadingSearch(false);
-      onSearch(e.target.value).then(() => setIsLoadingSearch(true));
+      onSearch(e.target.value);
     }
   };
 
-  const handleClick = () => {
-    onSetFilterClear();
+  const onActiveCategory = shortName => {
+    history.push('/cashback-stores/category/' + shortName);
+    setActiveCategory(shortName);
+    setIsLoadedStores(false);
+    getStore(shortName).then(() => setIsLoadedStores(true));
   };
 
   return (
@@ -51,28 +67,19 @@ const StoreSidebar = ({
         onSet={onSearchChange}
         result={searchResult}
         value={searchValue}
-        isLoading={isLoadingSearch}
+        isLoading={searchIsLoading}
       />
-      <StoreSidebar.Content active={toggled}>
-        <StoreSidebar.Title
-          rotateIcon={toggled}
-          onClick={() => setToggle(!toggled)}
-        >
-          {title}
-        </StoreSidebar.Title>
-        {filter && (
-          <StoreSidebar.ClearFilter onClick={handleClick}>
-            clear
-          </StoreSidebar.ClearFilter>
-        )}
-        <TagList
-          onSetFilter={onSetFilter}
-          storesAll={storesAll}
-          toggled={toggled}
-          filter={filter}
-          search={search}
-        />
-      </StoreSidebar.Content>
+      <Categories
+        categories={categories}
+        title="Stores"
+        activeCategory={activeCategory}
+        onActiveCategory={onActiveCategory}
+      />
+      <CategoriesMobile
+        categories={categories}
+        activeCategory={activeCategory}
+        onActiveCategory={onActiveCategory}
+      />
     </StoreSidebar.Wrapper>
   );
 };
@@ -92,13 +99,13 @@ StoreSidebar.Wrapper = styled.div`
     flex-basis: auto;
   `}
 
-  ${breakpoint('sm')`
-    flex-basis: 321px;
-    padding: 0 30px 0 0;
-  `}
-
   ${breakpoint('md')`
     flex-basis: 390px;
+  `}
+
+  ${breakpoint('sm')`
+    flex-basis: 321px;
+    padding: 0 10px 0 0;
   `}
 
   ${breakpoint('lg')`
@@ -191,4 +198,4 @@ StoreSidebar.ClearFilter = styled.button`
   `}
 `;
 
-export default StoreSidebar;
+export default withRouter(StoreSidebar);

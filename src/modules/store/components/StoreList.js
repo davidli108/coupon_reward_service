@@ -1,6 +1,7 @@
 // @flow
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { compose } from 'recompose';
+import { Link, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
@@ -13,29 +14,50 @@ import { type Store } from '../models';
 
 type StoreListProps = {
   t: string => string,
+  match: Object,
   stores: Store[],
   storesAll: Store[],
   loadState: number,
   loadToState: number,
   onLoadMore: Function,
+  storesCount: number,
+  isLoadedStores: boolean,
+  setIsLoadedStores: boolean => void,
+  isLoadedMore: boolean,
+  setIsLoadedMore: boolean => void,
 };
 
 const StoreList = ({
   t,
+  match,
   stores,
   onLoadMore,
   loadState,
   loadToState,
   storesAll,
+  storesCount,
+  isLoadedStores,
+  setIsLoadedStores,
+  isLoadedMore,
+  setIsLoadedMore,
 }: StoreListProps) => {
   const [loadCount, setLoadCount] = useState(20);
-  const [isLoaded, setIsLoaded] = useState(true);
+
+  useEffect(() => {
+    if (stores.length <= 20) {
+      setLoadCount(20);
+    }
+  });
 
   const onLoad = () => {
-    if (isLoaded) {
-      setLoadCount(loadCount + 20);
-      setIsLoaded(false);
-      onLoadMore(loadCount).then(() => setIsLoaded(true));
+    if (isLoadedStores) {
+      setIsLoadedStores(false);
+      setIsLoadedMore(false);
+      onLoadMore(match.params.name, loadCount).then(() => {
+        setIsLoadedStores(true);
+        setIsLoadedMore(true);
+        setLoadCount(loadCount + 20);
+      });
     }
   };
 
@@ -47,43 +69,51 @@ const StoreList = ({
             <img src={preloader} alt="" />
           </StoreList.PreloaderWrapper>
         ) : (
-          stores.map(({ name, id, img, link }: Object) => (
-            <StoreList.StoreItem key={`list_item_${name}_${id}`}>
-              {/* {offer_success_print && <StoreList.StoreNew>New Store</StoreList.StoreNew>} */}
-              <StoreList.Box>
-                <StoreList.Image
-                  src={`http://d2umvgb8hls1bt.cloudfront.net${img}`}
-                  alt={name}
-                />
-                <StoreList.ContentWrap>
-                  <StoreList.Content>
-                    <StoreList.Info>
-                      <StoreList.Brand>
-                        <StoreList.BrandName>{name}</StoreList.BrandName>
-                        <StoreList.BranDeals>Deals</StoreList.BranDeals>
-                      </StoreList.Brand>
-                      <StoreList.Cash>
-                        {t('global.instantSaving')}
-                      </StoreList.Cash>
-                    </StoreList.Info>
-                    {/* {couponActive && (
+          stores.map(
+            ({ name, id, img, link, storeDiscount, shortName }: Object) => (
+              <StoreList.StoreItem key={`list_item_${name}_${id}`}>
+                {/* {offer_success_print && <StoreList.StoreNew>New Store</StoreList.StoreNew>} */}
+                <StoreList.Box>
+                  <StoreList.ImageWrapper>
+                    <StoreList.Image
+                      src={`http://d2umvgb8hls1bt.cloudfront.net${img}`}
+                      alt={name}
+                    />
+                  </StoreList.ImageWrapper>
+                  <StoreList.ContentWrap>
+                    <StoreList.Content>
+                      <StoreList.Info>
+                        <StoreList.Brand>
+                          <StoreList.BrandName>{name}</StoreList.BrandName>
+                          <StoreList.BranDeals>Deals</StoreList.BranDeals>
+                        </StoreList.Brand>
+                        <StoreList.Cash>
+                          {`${storeDiscount} ${t('global.cashBack')}`}
+                        </StoreList.Cash>
+                      </StoreList.Info>
+                      {/* {couponActive && (
                       <StoreList.Coupons>
                         <img src={verificationIcon} alt="verify" />
                         coupons activated
                       </StoreList.Coupons>
                     )} */}
-                  </StoreList.Content>
-                  <StoreList.Link to={link}>Visit Store</StoreList.Link>
-                </StoreList.ContentWrap>
-              </StoreList.Box>
-              <StoreList.LinkMobile to={link}>Visit Store</StoreList.LinkMobile>
-            </StoreList.StoreItem>
-          ))
+                    </StoreList.Content>
+                    <StoreList.Link to={`/coupons/${shortName}`}>
+                      Visit Store
+                    </StoreList.Link>
+                  </StoreList.ContentWrap>
+                </StoreList.Box>
+                <StoreList.LinkMobile to={`/coupons/${shortName}`}>
+                  Visit Store
+                </StoreList.LinkMobile>
+              </StoreList.StoreItem>
+            ),
+          )
         )}
       </StoreList.StoreContainer>
       <StoreList.LoadMoreButton onClick={onLoad}>
-        {isLoaded ? (
-          stores.length !== 0 ? (
+        {isLoadedStores ? (
+          stores.length !== 0 && storesCount > stores.length ? (
             'Load more deals'
           ) : (
             ''
@@ -184,6 +214,10 @@ StoreList.StoreNew = styled.span`
   font-size: 13px;
   text-align: center;
   color: ${props => props.theme.colors.blue};
+`;
+
+StoreList.ImageWrapper = styled.div`
+  width: 150px;
 `;
 
 StoreList.Image = styled.img`
@@ -469,4 +503,7 @@ StoreList.LoadMoreButton = styled.button`
   }
 `;
 
-export default withTranslation()(StoreList);
+export default compose(
+  withTranslation(),
+  withRouter,
+)(StoreList);

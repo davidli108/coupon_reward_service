@@ -10,6 +10,7 @@ type TagListProps = {
   storesAll: Store[],
   onSetFilter: Function,
   toggled: boolean,
+  categories: Object,
 };
 
 const TagList = ({
@@ -18,8 +19,10 @@ const TagList = ({
   filter,
   countStores,
   toggled,
+  categories,
 }: TagListProps) => (
   <TagList.List toggled={toggled}>
+    {console.log(categories)}
     {R.compose(
       R.map(category => (
         <TagList.Item
