@@ -8,6 +8,7 @@ import {
   SET_FILTER_CLEAR,
   SET_LOAD_MORE,
   LOAD_MORE_STATE,
+  ON_SEARCH,
 } from './StoreActions';
 
 export const STATE_KEY = 'store';
@@ -24,6 +25,7 @@ const initialState: StoresState = {
   filter: null,
   stores: [],
   featured: [],
+  search: [],
 };
 
 const StoreReducer = (state: StoresState = initialState, action: Object) => {
@@ -61,6 +63,9 @@ const StoreReducer = (state: StoresState = initialState, action: Object) => {
         state,
       );
     }
+    case `${ON_SEARCH}_SUCCESS`: {
+      return R.assoc<Object, Object>('search', action.payload.data, state);
+    }
     case LOAD_MORE_STATE: {
       return R.assoc<Object, Object>('loadToState', null, state);
     }
@@ -73,6 +78,7 @@ const StoreReducer = (state: StoresState = initialState, action: Object) => {
 export const getLoadState = R.path<number>([STATE_KEY, 'loadState']);
 export const getLoadToState = R.path<number>([STATE_KEY, 'loadToState']);
 export const getStoreFilters = R.path<string>([STATE_KEY, 'filter']);
+export const getStoreSearch = R.path<string>([STATE_KEY, 'search']);
 
 // $FlowFixMe
 export const getStores = R.compose(

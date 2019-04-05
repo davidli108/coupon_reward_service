@@ -29,13 +29,13 @@ const SocialShare = ({ text, link }: SocialShareProps) => {
       </SocialShare.Button>
       <SocialShare.SocialsWrapper isShow={isShowSocial}>
         <SocialShare.Social href={facebookLink} target="_blank">
-          <img src={facebookIcon} alt="" />
+          <img src={facebookIcon} alt="facebook" />
         </SocialShare.Social>
         <SocialShare.Social href={twitterLink} target="_blank">
-          <img src={twitterIcon} alt="" />
+          <img src={twitterIcon} alt="twitter" />
         </SocialShare.Social>
         <SocialShare.Social href={pinterestLink} target="_blank">
-          <img src={pinterestIcon} alt="" />
+          <img src={pinterestIcon} alt="pinterest" />
         </SocialShare.Social>
       </SocialShare.SocialsWrapper>
     </SocialShare.Wrapper>
@@ -72,6 +72,10 @@ SocialShare.Button = styled.div`
 SocialShare.SocialsWrapper = styled.div`
   width: 100px;
   display: ${props => (props.isShow ? 'flex' : 'none')};
+
+  img {
+    padding-right: 0 !important;
+  }
 `;
 
 SocialShare.Social = styled.a`

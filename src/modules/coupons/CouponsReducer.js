@@ -16,6 +16,7 @@ import {
   FETCH_CATEGORIES,
   GET_COUPONS_BY_CATEGORY,
   GET_COUPONS,
+  ON_SEARCH,
 } from './CouponsActions';
 
 export const STATE_KEY = 'coupons';
@@ -24,7 +25,7 @@ const initialState: CouponsReducerProps = {
   dealsFilter: 'allDeals',
   categoriesFilter: null,
   storesFilter: null,
-  search: '',
+  search: [],
   featuredCoupon: {
     storeName: '',
     highestCashbackPercent: null,
@@ -80,6 +81,9 @@ const CouponsReducer = (
       );
 
       return R.assoc<Object, Object>('stores', offersData, state);
+    }
+    case `${ON_SEARCH}_SUCCESS`: {
+      return R.assoc<Object, Object>('search', action.payload.data, state);
     }
     case SET_DEALS_FILTER: {
       return R.assoc<Object, Object>(

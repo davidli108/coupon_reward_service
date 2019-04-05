@@ -12,24 +12,34 @@ type StoreSidebarProps = {
   title: string,
   storesAll: Store[],
   filter: string,
-  search: string,
+  search?: string,
   searchResult: Store[],
   onSetFilter: Function,
   onSetFilterClear: Function,
-  onSetSearch: Function,
+  onSearch: Function,
 };
 
 const StoreSidebar = ({
   title,
   filter,
-  search,
   storesAll,
+  search,
   searchResult,
   onSetFilter,
   onSetFilterClear,
-  onSetSearch,
+  onSearch,
 }: StoreSidebarProps) => {
   const [toggled, setToggle] = useState(false);
+  const [searchValue, setSearchValue] = useState('');
+  const [isLoadingSearch, setIsLoadingSearch] = useState(false);
+
+  const onSearchChange = e => {
+    setSearchValue(e.target.value);
+    if (e.target.value) {
+      setIsLoadingSearch(false);
+      onSearch(e.target.value).then(() => setIsLoadingSearch(true));
+    }
+  };
 
   const handleClick = () => {
     onSetFilterClear();
@@ -38,9 +48,10 @@ const StoreSidebar = ({
   return (
     <StoreSidebar.Wrapper>
       <Search
-        onSetSearch={onSetSearch}
-        searchResult={searchResult}
-        search={search}
+        onSet={onSearchChange}
+        result={searchResult}
+        value={searchValue}
+        isLoading={isLoadingSearch}
       />
       <StoreSidebar.Content active={toggled}>
         <StoreSidebar.Title

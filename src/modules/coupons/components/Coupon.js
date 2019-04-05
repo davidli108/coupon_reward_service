@@ -9,8 +9,6 @@ import SocialShare from './SocialShare';
 
 import type { Deal as DealModel } from '../models/CouponsPage';
 
-const zeroPadStars = val => String(val).padStart(2, '0');
-
 const OfferType = {
   discount: 'discount',
   freeShipping: 'free-shipping',

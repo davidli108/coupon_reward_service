@@ -1,5 +1,4 @@
 //@flow
-import * as R from 'ramda';
 import React, { useState, useEffect } from 'react';
 import { compose } from 'recompose';
 import { withRouter } from 'react-router-dom';
@@ -13,6 +12,7 @@ import {
   getStoresAll,
   getFilteredDeals,
   getDealsFilter,
+  getStoreSearch,
 } from '@modules/coupons/CouponsReducer';
 import {
   getCoupons,
@@ -20,10 +20,11 @@ import {
   fetchCategories,
   getCouponsByCategory,
   setDealsFilter,
+  onSearch,
 } from '@modules/coupons/CouponsActions';
 
 import DownloadPiggy from '../components/DownloadPiggy';
-import SearchBar from '@modules/store/components/Search';
+import SearchBar from '../components/SearchBar';
 import TodaysFeaturedCoupon from '../components/TodaysFeaturedCoupon';
 import StoreList from '../components/StoreList';
 import Content from '../components/Content';
@@ -41,6 +42,8 @@ type CouponsPageProps = {
   getCouponsByCategory: string => Promise<number>,
   getDealsFilter: Object,
   setDealsFilter: string => void,
+  storeSearchResult: Object,
+  onSearch: Function,
 };
 
 const CouponsPage = ({
@@ -55,8 +58,11 @@ const CouponsPage = ({
   getCouponsByCategory,
   getDealsFilter,
   setDealsFilter,
+  storeSearchResult,
+  onSearch,
 }: CouponsPageProps) => {
-  const [search, setSearch] = useState('');
+  const [searchValue, setSearchValue] = useState('');
+  const [isLoadingSearch, setIsLoadingSearch] = useState(false);
 
   useEffect(() => {
     if (!match.params.name) {
@@ -64,19 +70,15 @@ const CouponsPage = ({
     }
   }, []);
 
-  const onSetSearch = tern => {
-    setSearch(tern);
-  };
-
-  const onSearch = (search, stores) => {
-    console.log('sksksk');
-    if (search === '') return [];
-    return R.compose(
-      R.slice(0, 6),
-      R.filter(({ store_name }) =>
-        R.includes(R.toLower(search), R.toLower(store_name)),
-      ),
-    )(stores);
+  const onSearchChange = e => {
+    setSearchValue(e.target.value);
+    if (e.target.value) {
+      setIsLoadingSearch(false);
+      setTimeout(
+        onSearch(e.target.value).then(() => setIsLoadingSearch(true)),
+        1000,
+      );
+    }
   };
 
   return (
@@ -84,9 +86,10 @@ const CouponsPage = ({
       <DownloadPiggy />
       <CouponsPage.SearchWrapper>
         <SearchBar
-          onSetSearch={onSetSearch}
-          searchResult={onSearch(search, stores)}
-          search={search}
+          onSet={onSearchChange}
+          result={searchValue ? storeSearchResult : []}
+          value={searchValue}
+          isLoading={isLoadingSearch}
         />
       </CouponsPage.SearchWrapper>
       {Boolean(stores.length) ? (
@@ -146,6 +149,7 @@ const mapStateToProps = state => ({
   storesAll: getStoresAll(state),
   getFilteredDeals: getFilteredDeals(state),
   getDealsFilter: getDealsFilter(state),
+  storeSearchResult: getStoreSearch(state),
 });
 
 const mapDispatchToProps = {
@@ -154,6 +158,7 @@ const mapDispatchToProps = {
   fetchCategories,
   getCouponsByCategory,
   setDealsFilter,
+  onSearch,
 };
 
 export default compose(

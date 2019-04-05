@@ -17,7 +17,7 @@ const CouponCode = ({ code, link }: CouponCodeProps) => {
           if (code) {
             setIsShowCode(true);
           } else {
-            window.location.href = link;
+            window.open(link, '_blank');
           }
         }}
         isShow={!isShowCode}

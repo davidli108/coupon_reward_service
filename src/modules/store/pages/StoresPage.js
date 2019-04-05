@@ -2,7 +2,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
-import * as R from 'ramda';
 
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
@@ -17,6 +16,7 @@ import {
   setFilter,
   setFilterClear,
   getStore,
+  onSearch,
 } from '../StoreActions';
 
 import {
@@ -26,6 +26,7 @@ import {
   getLoadState,
   getLoadToState,
   getStoresAll,
+  getStoreSearch,
 } from '../StoreReducer';
 
 type StoresPageProps = {
@@ -41,6 +42,8 @@ type StoresPageProps = {
   onSetFilter: Function,
   onSetFilterClear: Function,
   onGetStore: Function,
+  storeSearchResult: Object,
+  onSearch: Function,
 };
 
 const StoresPage = ({
@@ -55,26 +58,12 @@ const StoresPage = ({
   onSetFilter,
   onSetFilterClear,
   onGetStore,
+  storeSearchResult,
+  onSearch,
 }: StoresPageProps) => {
-  const [search, setSearch] = React.useState('');
-
   useEffect(() => {
     onGetStore();
   }, []);
-
-  const onSearch = (search, stores) => {
-    if (search === '') return false;
-    return R.compose(
-      R.slice(0, 6),
-      R.filter(({ store_name }) =>
-        R.includes(R.toLower(search), R.toLower(store_name)),
-      ),
-    )(stores);
-  };
-
-  const onSetSearch = tern => {
-    setSearch(tern);
-  };
 
   // const onFilterFeatured = stores =>
   //   R.filter(({ isFeatured }) => isFeatured === true, stores);
@@ -101,11 +90,10 @@ const StoresPage = ({
             <StoreSidebar
               title="Stores"
               filter={filter}
-              search={search}
               // $FlowFixMe
-              searchResult={onSearch(search, storesAll)}
+              onSearch={onSearch}
+              searchResult={storeSearchResult}
               storesAll={storesAll}
-              onSetSearch={onSetSearch}
               onSetFilter={onSetFilter}
               onSetFilterClear={onSetFilterClear}
             />
@@ -214,6 +202,7 @@ const mapStateToProps = state => ({
   loadState: getLoadState(state),
   loadToState: getLoadToState(state),
   storesAll: getStoresAll(state),
+  storeSearchResult: getStoreSearch(state),
 });
 
 const mapDispatchToProps = {
@@ -221,6 +210,7 @@ const mapDispatchToProps = {
   onSetFilter: setFilter,
   onSetFilterClear: setFilterClear,
   onGetStore: getStore,
+  onSearch,
 };
 
 export default connect(

@@ -6,6 +6,7 @@ export const SET_SEARCH = `${namespace}/SET_SEARCH`;
 export const SET_FILTER_CLEAR = `${namespace}/SET_FILTER_CLEAR`;
 export const SET_LOAD_MORE = `${namespace}/SET_LOAD_MORE`;
 export const LOAD_MORE_STATE = `${namespace}/LOAD_MORE_STATE`;
+export const ON_SEARCH = `${namespace}/ON_SEARCH`;
 
 export const getStore = () => ({
   type: GET_STORE,
@@ -37,4 +38,13 @@ export const setSearch = (payload: any) => ({
 
 export const setFilterClear = () => ({
   type: SET_FILTER_CLEAR,
+});
+
+export const onSearch = (keywords: string) => ({
+  type: ON_SEARCH,
+  payload: {
+    request: {
+      url: `/jsonstores?keywords=${keywords}`,
+    },
+  },
 });

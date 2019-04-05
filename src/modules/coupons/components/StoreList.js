@@ -4,8 +4,6 @@ import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
 
-import preloader from '../assets/preloader.svg';
-
 type StoreListProps = {
   t: string => string,
   stores: Object,

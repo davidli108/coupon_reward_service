@@ -1,23 +1,32 @@
 // @flow
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 
-import preloader from '../../coupons/assets/preloader.svg';
+import preloader from '../assets/preloader.svg';
 
-type SearchStoreItemProps = {
+type SearchBarItemsProps = {
   result: Object,
   isLoading: boolean,
+  history: Object,
 };
 
-const SearchStoreItem = ({ result, isLoading }: SearchStoreItemProps) => (
-  <SearchStoreItem.StoreWrapper>
+const SearchBarItems = ({
+  result,
+  isLoading,
+  history,
+}: SearchBarItemsProps) => (
+  <SearchBarItems.StoreWrapper>
     {!isLoading ? (
-      <SearchStoreItem.PreloaderWrapper>
+      <SearchBarItems.PreloaderWrapper>
         <img src={preloader} alt="" />
-      </SearchStoreItem.PreloaderWrapper>
+      </SearchBarItems.PreloaderWrapper>
     ) : result.length > 0 ? (
       result.map(item => (
-        <SearchStoreItem.Item key={`store_item_${item.store_id}`}>
+        <SearchBarItems.Item
+          key={`store_item_${item.store_id}`}
+          onClick={() => history.push(`coupons/${item.short_name}`)}
+        >
           <img
             src={`http://d2umvgb8hls1bt.cloudfront.net${item.image}`}
             alt={item.store_name}
@@ -26,15 +35,15 @@ const SearchStoreItem = ({ result, isLoading }: SearchStoreItemProps) => (
             <h3>{item.store_name}</h3>
             <p>{item.store_discount}</p>
           </div>
-        </SearchStoreItem.Item>
+        </SearchBarItems.Item>
       ))
     ) : (
-      <SearchStoreItem.NotFound>Nothing found</SearchStoreItem.NotFound>
+      <SearchBarItems.NotFound>Nothing found</SearchBarItems.NotFound>
     )}
-  </SearchStoreItem.StoreWrapper>
+  </SearchBarItems.StoreWrapper>
 );
 
-SearchStoreItem.StoreWrapper = styled.div`
+SearchBarItems.StoreWrapper = styled.div`
   position: absolute;
   background: ${props => props.theme.colors.white};
   z-index: 1;
@@ -47,19 +56,19 @@ SearchStoreItem.StoreWrapper = styled.div`
   border-radius: 5px;
 `;
 
-SearchStoreItem.PreloaderWrapper = styled.div`
+SearchBarItems.PreloaderWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
 `;
 
-SearchStoreItem.NotFound = styled.p`
+SearchBarItems.NotFound = styled.p`
   width: 100%;
   line-height: 50px;
   text-align: center;
 `;
 
-SearchStoreItem.Item = styled.div`
+SearchBarItems.Item = styled.div`
   display: flex;
   align-items: center;
   padding: 5px;
@@ -90,4 +99,4 @@ SearchStoreItem.Item = styled.div`
   }
 `;
 
-export default SearchStoreItem;
+export default withRouter(SearchBarItems);

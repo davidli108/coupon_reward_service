@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
-import IconSearch from '../assets/icon-search.png';
+import IconSearch from '../../store/assets/icon-search.png';
 
-import SearchStoreItem from './SearchStoreItem';
+import SearchBarItems from './SearchBarItems';
 
 type SearchBarProps = {
   onSet: Function,
@@ -56,7 +56,7 @@ const SearchBar = ({ value, onSet, result, isLoading }: SearchBarProps) => {
       {/* $FlowFixMe */}
       <div ref={setRefItemsWrapper}>
         {value && isShowItems ? (
-          <SearchStoreItem result={result} isLoading={isLoading} />
+          <SearchBarItems result={result} isLoading={isLoading} />
         ) : null}
       </div>
     </SearchBar.Wrapper>
