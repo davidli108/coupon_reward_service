@@ -46,50 +46,55 @@ const renderStarsReview = rating => {
 const PiggyExtAd = ({ stars, reviewsCount }: PiggyExtAdProps) => {
   return (
     <PiggyExtAd.Wrapper>
+      <PiggyExtAd.AddExtensionButton
+        onClick={() => {
+          window.open(
+            'https://chrome.google.com/webstore/detail/piggy-automatic-coupons-c/hfapbcheiepjppjbnkphkmegjlipojba?hl=en',
+            '_blank',
+          );
+        }}
+      >
+        Add to Chrome
+      </PiggyExtAd.AddExtensionButton>
       <PiggyExtAd.Reviews>
         <div>{renderStarsReview(stars)}</div>
         <span>{reviewsCount} reviews</span>
       </PiggyExtAd.Reviews>
-      <PiggyExtAd.AddExtensionButton>
-        Add to Chrome
-      </PiggyExtAd.AddExtensionButton>
     </PiggyExtAd.Wrapper>
   );
 };
 
 PiggyExtAd.Wrapper = styled.div`
-  display: flex;
-  flex-flow: row wrap;
-  align-items: flex-start;
-
   width: 100%;
+  margin-right: 20px;
+  display: flex;
+  flex-direction: row-reverse;
   padding-top: 25px;
 
-  ${breakpoint('xl')`
-    width: 25%;
-    max-width: 254px;
-    min-width: 160px;
-
-    flex-flow: column-reverse nowrap;
-    align-items: center;
+  ${breakpoint('md')`
+    width: 300px;
+    flex-direction: column;
   `}
 `;
 
-PiggyExtAd.Reviews = styled.div`
+PiggyExtAd.AddExtensionButton = styled.div`
+  width: 100%;
+  height: 40px;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  border: 2px solid #7ed321;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 18px;
+  color: #7ed321;
+  cursor: pointer;
+`;
 
-  padding-top: 3px;
-
-  ${breakpoint('xl')`
-    flex-flow: row nowrap;
-    align-items: center;
-    justify-content: center;
-    height: 30px;
-    width: 100%;
-    padding-top: 10px;
-  `}
+PiggyExtAd.Reviews = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
 
   > div {
     display: flex;
@@ -97,34 +102,18 @@ PiggyExtAd.Reviews = styled.div`
   }
 
   > span {
+    min-width: 80px;
     padding-top: 15px;
     color: #c2c2c2;
     font-size: 13px;
-    ${breakpoint('xl')`
+    ${breakpoint('sx')`
       padding: 0 0 0 10px;
     `}
   }
-`;
 
-PiggyExtAd.AddExtensionButton = styled.a`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  border: 2px solid #7ed321;
-  border-radius: 4px;
-
-  font-weight: bold;
-  font-size: 18px;
-  color: #7ed321;
-
-  margin-left: auto;
-  padding: 17px 13px;
-
-  cursor: pointer;
-
-  ${breakpoint('xl')`
-    width: calc(100% - 26px);
+  ${breakpoint('md')`
+    margin-top: 20px;
+    justify-content: center;
   `}
 `;
 

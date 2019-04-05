@@ -22,6 +22,7 @@ const StoreInformation = ({ t, store }: StoreInformationProps) => {
 };
 
 StoreInformation.Wrapper = styled.div`
+  margin-top: 50px;
   display: flex;
   flex-direction: column;
 

@@ -57,9 +57,18 @@ BrandHeader.Name = styled.h2`
     line-height: 46px;
     font-size: 39px;
   `}
+
+  ${breakpoint('md')`
+    width: 100%;
+
+    text-align: start;
+    line-height: 46px;
+    font-size: 30px;
+  `}
 `;
 
 BrandHeader.NoWrapFlexBox = styled.div`
+  width: 100%;
   display: flex;
   flex-flow: column nowrap;
 
@@ -80,9 +89,12 @@ BrandHeader.OffersStats = styled.div`
   width: 100%;
   padding: 15px 0 25px 0;
 
-  ${breakpoint('xl')`
-    width: 100%;
+  ${breakpoint('md')`
     max-width: 500px;
+    padding: 0 0 5px 0;
+  `}
+
+  ${breakpoint('xl')`
     padding: 0 0 5px 30px;
   `}
 
@@ -91,13 +103,9 @@ BrandHeader.OffersStats = styled.div`
     font-size: 10px;
     color: #62707b;
 
-    ${breakpoint('xl')`
+    ${breakpoint('md')`
       font-size: 16px;
     `}
-
-    &:first-child {
-      margin-left: 5px;
-    }
 
     &:last-child {
       margin-right: 5px;
@@ -107,7 +115,6 @@ BrandHeader.OffersStats = styled.div`
 
 BrandHeader.FollowStoreWrapper = styled.div`
   display: flex;
-  justify-content: center;
   align-items: center;
 
   padding: 25px 0 10px 0;

@@ -1,5 +1,5 @@
 //@flow
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withRouter } from 'react-router-dom';
@@ -11,24 +11,63 @@ import Brand from '../components/Brand';
 import Offers from '../components/Offers';
 import AdditionalInfo from '../components/AdditionalInfo';
 import StoreInformation from '../components/StoreInformation';
-import Preloader from '@components/Preloader/Preloader';
 import type { StorePageProps } from '../models/StorePage';
-import { getFetchingState } from '../StoreCouponsReducer';
+import {
+  getFetchingState,
+  getOffers,
+  getStoreSearch,
+  searchIsLoading,
+} from '../StoreCouponsReducer';
 import * as actions from '../StoreCouponsActions';
+import preloader from '../../coupons/assets/preloader.svg';
 
-const StorePage = ({ fetchStoreCoupons, match, state }: StorePageProps) => {
-  React.useEffect(() => {
+const StorePage = ({
+  fetchStoreCoupons,
+  match,
+  state,
+  offers,
+  requestSearch,
+  storeSearchResult,
+  searchIsLoading,
+}: StorePageProps) => {
+  const [searchValue, setSearchValue] = useState('');
+  const [storeName, setStoreName] = useState(match.params.storeName);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
     match.params.storeName &&
-      fetchStoreCoupons({ storeName: match.params.storeName });
+      // $FlowFixMe
+      fetchStoreCoupons(match.params.storeName).then(() => setIsLoaded(true));
+  }, []);
+
+  useEffect(() => {
+    if (match.params.storeName && match.params.storeName !== storeName) {
+      setStoreName(match.params.storeName);
+      setIsLoaded(false);
+      // $FlowFixMe
+      fetchStoreCoupons(match.params.storeName).then(() => setIsLoaded(true));
+    }
   });
 
-  return state === 'LOADED' ? (
+  const onSearchChange = e => {
+    setSearchValue(e.target.value);
+    if (e.target.value) {
+      requestSearch(e.target.value);
+    }
+  };
+
+  return isLoaded ? (
     <StorePage.Wrapper>
-      <SearchBar name="storeSearch" placeholder="Search Stores" />
+      <SearchBar
+        onSet={onSearchChange}
+        result={searchValue ? storeSearchResult : []}
+        value={searchValue}
+        isLoading={searchIsLoading}
+      />
       <Brand />
       <StorePage.DesktopContent>
         <StorePage.ColumnNoWrapFlexBox order="2">
-          <Offers />
+          <Offers offers={offers} />
         </StorePage.ColumnNoWrapFlexBox>
         <StorePage.ColumnNoWrapFlexBox order="1">
           <AdditionalInfo />
@@ -37,29 +76,28 @@ const StorePage = ({ fetchStoreCoupons, match, state }: StorePageProps) => {
       <StoreInformation />
     </StorePage.Wrapper>
   ) : (
-    <Preloader />
+    <StorePage.PreloaderWrapper>
+      <img src={preloader} alt="" />
+    </StorePage.PreloaderWrapper>
   );
 };
 
 StorePage.Wrapper = styled.div`
   display: flex;
-  flex-flow: column wrap;
 
   padding: 15px;
+  width: 95%;
+  max-width: 1500px;
+  margin: 0 auto;
 
-  ${breakpoint('xl')`
-    width: 80%;
-    margin: 0 auto;
-
-    flex-flow: row wrap;
-  `}
+  flex-flow: row wrap;
 `;
 
 StorePage.NoWrapFlexBox = styled.div`
   display: flex;
   flex-flow: column nowrap;
 
-  ${breakpoint('xl')`
+  ${breakpoint('lg')`
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: baseline;
@@ -70,7 +108,7 @@ StorePage.NoWrapFlexBox = styled.div`
 `;
 
 StorePage.NoWrapFlexBoxWithBorder = styled(StorePage.NoWrapFlexBox)`
-  ${breakpoint('xl')`
+  ${breakpoint('lg')`
       border: 1px dashed #00CBE9;
       border-radius: 5px;
       margin-left: 30px;
@@ -87,7 +125,9 @@ StorePage.NoWrapFlexBoxWithBorder = styled(StorePage.NoWrapFlexBox)`
 `;
 
 StorePage.DesktopContent = styled(StorePage.NoWrapFlexBox)`
-  ${breakpoint('xl')`
+  width: 100%;
+
+  ${breakpoint('lg')`
     > div:first-child {
       width: calc(100% - 300px);
     }
@@ -99,7 +139,7 @@ StorePage.DesktopContent = styled(StorePage.NoWrapFlexBox)`
 `;
 
 StorePage.ColumnNoWrapFlexBox = styled.div`
-  ${breakpoint('xl')`
+  ${breakpoint('lg')`
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
@@ -109,12 +149,24 @@ StorePage.ColumnNoWrapFlexBox = styled.div`
   `}
 `;
 
+StorePage.PreloaderWrapper = styled.div`
+  height: 70vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const mapStateToProps = state => ({
   state: getFetchingState(state),
+  offers: getOffers(state),
+  storeSearchResult: getStoreSearch(state),
+  searchIsLoading: searchIsLoading(state),
 });
 
 const mapDispatchToProps = {
   fetchStoreCoupons: actions.fetchStoreCoupons,
+  requestSearch: actions.requestSearch,
 };
 
 const enhance = compose(
