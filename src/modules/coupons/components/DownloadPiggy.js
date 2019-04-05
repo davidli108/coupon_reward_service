@@ -46,6 +46,7 @@ DownloadPiggy.Text = styled.p`
 `;
 
 DownloadPiggy.Arrow = styled.img`
+  padding: 0 10px 0 10px;
   margin-bottom: 5px;
   margin-left: 5px;
   opacity: 0.3;
@@ -63,7 +64,7 @@ DownloadPiggy.Arrow = styled.img`
   `}
 
   ${breakpoint('xl')`
-    transform: scale(1, -1);
+    transform: scale(1, -1) rotate(-20deg);
   `}
 `;
 

@@ -29,8 +29,8 @@ const initialState: StoresState = {
 const StoreReducer = (state: StoresState = initialState, action: Object) => {
   switch (action.type) {
     case `${GET_STORE}_SUCCESS`: {
-      const offersData = R.compose(
-        R.pathOr([], ['payload', 'data', 'offers_data']),
+      const storesData = R.compose(
+        R.pathOr([], ['payload', 'data', 'stores_data']),
       )(action);
 
       const featuredStores = R.compose(
@@ -40,10 +40,7 @@ const StoreReducer = (state: StoresState = initialState, action: Object) => {
 
       return R.compose(
         R.assoc<Object, Object>('featured', featuredStores),
-        R.assoc<Object, Object>(
-          'stores',
-          R.uniqBy(i => i.store_id, offersData),
-        ),
+        R.assoc<Object, Object>('stores', storesData),
       )(state);
     }
     case SET_FILTER: {
@@ -53,14 +50,14 @@ const StoreReducer = (state: StoresState = initialState, action: Object) => {
       return R.assoc<Object, Object>('filter', null, state);
     }
     case `${SET_LOAD_MORE}_SUCCESS`: {
-      const offersData = R.compose(
-        R.pathOr([], ['payload', 'data', 'offers_data']),
+      const storesData = R.compose(
+        R.pathOr([], ['payload', 'data', 'stores_data']),
       )(action);
+
       // $FlowFixMe
       return R.assoc<Object, Object>(
         'stores',
-        // $FlowFixMe
-        R.uniqBy(i => i.store_id, R.concat(state.stores, offersData)),
+        R.concat(state.stores, storesData),
         state,
       );
     }

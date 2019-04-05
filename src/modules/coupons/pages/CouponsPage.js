@@ -27,6 +27,7 @@ import SearchBar from '@modules/store/components/Search';
 import TodaysFeaturedCoupon from '../components/TodaysFeaturedCoupon';
 import StoreList from '../components/StoreList';
 import Content from '../components/Content';
+import preloader from '../assets/preloader.svg';
 
 type CouponsPageProps = {
   match: Object,
@@ -68,6 +69,7 @@ const CouponsPage = ({
   };
 
   const onSearch = (search, stores) => {
+    console.log('sksksk');
     if (search === '') return [];
     return R.compose(
       R.slice(0, 6),
@@ -83,12 +85,20 @@ const CouponsPage = ({
       <CouponsPage.SearchWrapper>
         <SearchBar
           onSetSearch={onSetSearch}
-          searchResult={onSearch(search, storesAll)}
+          searchResult={onSearch(search, stores)}
           search={search}
         />
       </CouponsPage.SearchWrapper>
-      {Boolean(stores.length) && <TodaysFeaturedCoupon store={stores[0]} />}
-      <StoreList stores={categories.stores} />
+      {Boolean(stores.length) ? (
+        <TodaysFeaturedCoupon store={stores[0]} />
+      ) : (
+        <img src={preloader} alt="" />
+      )}
+      {categories && categories.stores ? (
+        <StoreList stores={categories.stores} />
+      ) : (
+        <img src={preloader} alt="" />
+      )}
       <Content
         categories={categories}
         getFilteredDeals={getFilteredDeals}
@@ -104,6 +114,7 @@ const CouponsPage = ({
 
 CouponsPage.Wrapper = styled.div`
   padding: 10px;
+  padding-bottom: 50px;
   display: flex;
   flex-flow: column nowrap;
 

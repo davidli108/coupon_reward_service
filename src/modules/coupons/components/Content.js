@@ -101,8 +101,8 @@ const Content = ({
             <Content.Preloader src={preloader} alt="" />
           ) : (
             <>
-              <Coupons coupons={getFilteredDeals} />{' '}
-              <img src={preloader} alt="" />
+              <Coupons coupons={getFilteredDeals} />
+              {getFilteredDeals.length !== 0 && <img src={preloader} alt="" />}
             </>
           )}
           <Content.LoadMoreDeals onClick={onLoadMore}>
@@ -153,6 +153,10 @@ Content.CategoriesWrapper = styled.div`
 Content.CouponsWrapper = styled.div`
   display: flex;
   flex-direction: column;
+
+  img {
+    padding-right: 60px;
+  }
 `;
 
 Content.LoadMoreDeals = styled.div`
@@ -173,10 +177,11 @@ Content.LoadMoreDeals = styled.div`
 `;
 
 Content.Preloader = styled.img`
+  line-height: 21px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 200px;
-  text-align: right;
+  text-align: center;
 `;
 
 export default compose(

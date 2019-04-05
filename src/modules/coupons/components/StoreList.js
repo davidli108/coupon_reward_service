@@ -13,27 +13,23 @@ type StoreListProps = {
 
 const StoreList = ({ t, stores }: StoreListProps) => (
   <StoreList.Wrapper>
-    {stores && stores.length !== 0 ? (
-      stores.map(store => (
-        <StoreList.Item
-          key={`store_${store.store_id}`}
-          href={store.offer_link}
-          target="_blank"
-        >
-          <img
-            src={`http://d2umvgb8hls1bt.cloudfront.net${store.offer_img}`}
-            alt={store.store_name}
-          />
-          <p>
-            {store.cashback_text
-              .replace('Cash Back', t('global.cashBack'))
-              .replace('Instant Savings', t('global.instantSaving'))}
-          </p>
-        </StoreList.Item>
-      ))
-    ) : (
-      <img src={preloader} alt="" />
-    )}
+    {stores.map(store => (
+      <StoreList.Item
+        key={`store_${store.store_id}`}
+        href={store.offer_link}
+        target="_blank"
+      >
+        <img
+          src={`http://d2umvgb8hls1bt.cloudfront.net${store.offer_img}`}
+          alt={store.store_name}
+        />
+        <p>
+          {store.cashback_text
+            .replace('Cash Back', t('global.cashBack'))
+            .replace('Instant Savings', t('global.instantSaving'))}
+        </p>
+      </StoreList.Item>
+    ))}
   </StoreList.Wrapper>
 );
 

@@ -47,57 +47,38 @@ const StoreList = ({
             <img src={preloader} alt="" />
           </StoreList.PreloaderWrapper>
         ) : (
-          stores.map(
-            ({
-              store_name,
-              discount_print,
-              offer_id,
-              store_logo,
-              store_page_link,
-            }) => (
-              <StoreList.StoreItem key={`list_item_${store_name}_${offer_id}`}>
-                {/* {offer_success_print && <StoreList.StoreNew>New Store</StoreList.StoreNew>} */}
-                <StoreList.Box>
-                  <StoreList.Image
-                    src={`http://d2umvgb8hls1bt.cloudfront.net${store_logo}`}
-                    alt={store_name}
-                  />
-                  <StoreList.ContentWrap>
-                    <StoreList.Content>
-                      <StoreList.Info>
-                        <StoreList.Brand>
-                          <StoreList.BrandName>
-                            {store_name}
-                          </StoreList.BrandName>
-                          <StoreList.BranDeals>Deals</StoreList.BranDeals>
-                        </StoreList.Brand>
-                        <StoreList.Cash>
-                          {discount_print
-                            .replace('Cash Back', t('global.cashBack'))
-                            .replace(
-                              'Instant Savings',
-                              t('global.instantSaving'),
-                            )}
-                        </StoreList.Cash>
-                      </StoreList.Info>
-                      {/* {couponActive && (
+          stores.map(({ name, id, img, link }: Object) => (
+            <StoreList.StoreItem key={`list_item_${name}_${id}`}>
+              {/* {offer_success_print && <StoreList.StoreNew>New Store</StoreList.StoreNew>} */}
+              <StoreList.Box>
+                <StoreList.Image
+                  src={`http://d2umvgb8hls1bt.cloudfront.net${img}`}
+                  alt={name}
+                />
+                <StoreList.ContentWrap>
+                  <StoreList.Content>
+                    <StoreList.Info>
+                      <StoreList.Brand>
+                        <StoreList.BrandName>{name}</StoreList.BrandName>
+                        <StoreList.BranDeals>Deals</StoreList.BranDeals>
+                      </StoreList.Brand>
+                      <StoreList.Cash>
+                        {t('global.instantSaving')}
+                      </StoreList.Cash>
+                    </StoreList.Info>
+                    {/* {couponActive && (
                       <StoreList.Coupons>
                         <img src={verificationIcon} alt="verify" />
                         coupons activated
                       </StoreList.Coupons>
                     )} */}
-                    </StoreList.Content>
-                    <StoreList.Link to={store_page_link}>
-                      Visit Store
-                    </StoreList.Link>
-                  </StoreList.ContentWrap>
-                </StoreList.Box>
-                <StoreList.LinkMobile to={store_page_link}>
-                  Visit Store
-                </StoreList.LinkMobile>
-              </StoreList.StoreItem>
-            ),
-          )
+                  </StoreList.Content>
+                  <StoreList.Link to={link}>Visit Store</StoreList.Link>
+                </StoreList.ContentWrap>
+              </StoreList.Box>
+              <StoreList.LinkMobile to={link}>Visit Store</StoreList.LinkMobile>
+            </StoreList.StoreItem>
+          ))
         )}
       </StoreList.StoreContainer>
       <StoreList.LoadMoreButton onClick={onLoad}>

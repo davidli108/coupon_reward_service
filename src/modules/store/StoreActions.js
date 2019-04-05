@@ -11,7 +11,7 @@ export const getStore = () => ({
   type: GET_STORE,
   payload: {
     request: {
-      url: `/api/coupons`,
+      url: `/api/cashback-stores`,
     },
   },
 });
@@ -20,7 +20,7 @@ export const setLoadMore = (count: number) => ({
   type: SET_LOAD_MORE,
   payload: {
     request: {
-      url: `/api/coupons/${count}`,
+      url: `/api/cashback-stores/${count}`,
     },
   },
 });

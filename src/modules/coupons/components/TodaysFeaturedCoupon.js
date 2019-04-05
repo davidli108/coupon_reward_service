@@ -1,5 +1,5 @@
 //@flow
-import * as React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { IoIosHeartEmpty, IoIosHeart } from 'react-icons/io';
 import { FiShare2 } from 'react-icons/fi';
@@ -12,9 +12,11 @@ type TodaysFeaturedCouponProps = {
 };
 
 const TodaysFeaturedCoupon = ({ store }: TodaysFeaturedCouponProps) => {
-  const [isFeaturedCouponLiked, setFeaturedCouponLike] = React.useState('');
+  const [isFeaturedCouponLiked, setFeaturedCouponLike] = useState('');
   const handleFeaturedCouponLikeToggler = () =>
     setFeaturedCouponLike(!isFeaturedCouponLiked);
+
+  console.log(store);
 
   return (
     <TodaysFeaturedCoupon.Wrapper>

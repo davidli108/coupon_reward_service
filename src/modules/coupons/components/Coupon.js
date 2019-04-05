@@ -52,9 +52,7 @@ const Coupon = ({
             <span>Code</span>
           </Coupon.Discount>
         ) : (
-          <Coupon.Discount>
-            <span>Deal</span>
-          </Coupon.Discount>
+          <Coupon.DiscontDeal>Deal</Coupon.DiscontDeal>
         )}
         <Coupon.ExpDate>
           <p>{show_exp_date}</p>
@@ -183,6 +181,19 @@ Coupon.Discount = styled.p`
     text-transform: uppercase;
     font-weight: 300;
   }
+`;
+
+Coupon.DiscontDeal = styled.p`
+  height: 100px;
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  font-weight: 900;
+  line-height: 52px;
+  font-size: 44px;
+  letter-spacing: 1.375px;
+  white-space: nowrap;
+  color: #d0c000;
 `;
 
 Coupon.ExpDate = styled.div`
