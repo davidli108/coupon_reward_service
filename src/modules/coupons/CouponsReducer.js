@@ -16,7 +16,8 @@ import {
   FETCH_CATEGORIES,
   GET_COUPONS_BY_CATEGORY,
   GET_COUPONS,
-  ON_SEARCH,
+  SEARCH,
+  REQUEST_SEARCH,
 } from './CouponsActions';
 
 export const STATE_KEY = 'coupons';
@@ -36,6 +37,7 @@ const initialState: CouponsReducerProps = {
   stores: [],
   categories: {},
   deals: [],
+  searchIsLoading: false,
 };
 
 const CouponsReducer = (
@@ -82,8 +84,15 @@ const CouponsReducer = (
 
       return R.assoc<Object, Object>('stores', offersData, state);
     }
-    case `${ON_SEARCH}_SUCCESS`: {
-      return R.assoc<Object, Object>('search', action.payload.data, state);
+    case REQUEST_SEARCH: {
+      return R.assoc<Object, Object>('searchIsLoading', false, state);
+    }
+
+    case `${SEARCH}_SUCCESS`: {
+      return R.compose(
+        R.assoc<Object, Object>('search', action.payload.data),
+        R.assoc<Object, Object>('searchIsLoading', true),
+      )(state);
     }
     case SET_DEALS_FILTER: {
       return R.assoc<Object, Object>(
@@ -119,6 +128,7 @@ export const getCategories = R.path<Categories>([STATE_KEY, 'categories']);
 export const getDeals = R.path<Deal[]>([STATE_KEY, 'deals']);
 export const getDealsFilter = R.path<string>([STATE_KEY, 'dealsFilter']);
 export const getStoreSearch = R.path<string>([STATE_KEY, 'search']);
+export const searchIsLoading = R.path<string>([STATE_KEY, 'searchIsLoading']);
 
 // $FlowFixMe
 export const getStoresAll = R.compose(

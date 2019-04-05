@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
+import * as couponsActions from '@modules/coupons/CouponsActions';
 import {
   getStores,
   getCategories,
@@ -13,15 +14,8 @@ import {
   getFilteredDeals,
   getDealsFilter,
   getStoreSearch,
+  searchIsLoading,
 } from '@modules/coupons/CouponsReducer';
-import {
-  getCoupons,
-  loadMore,
-  fetchCategories,
-  getCouponsByCategory,
-  setDealsFilter,
-  onSearch,
-} from '@modules/coupons/CouponsActions';
 
 import DownloadPiggy from '../components/DownloadPiggy';
 import SearchBar from '../components/SearchBar';
@@ -43,7 +37,8 @@ type CouponsPageProps = {
   getDealsFilter: Object,
   setDealsFilter: string => void,
   storeSearchResult: Object,
-  onSearch: Function,
+  requestSearch: Function,
+  searchIsLoading: boolean,
 };
 
 const CouponsPage = ({
@@ -59,10 +54,10 @@ const CouponsPage = ({
   getDealsFilter,
   setDealsFilter,
   storeSearchResult,
-  onSearch,
+  requestSearch,
+  searchIsLoading,
 }: CouponsPageProps) => {
   const [searchValue, setSearchValue] = useState('');
-  const [isLoadingSearch, setIsLoadingSearch] = useState(false);
 
   useEffect(() => {
     if (!match.params.name) {
@@ -73,11 +68,7 @@ const CouponsPage = ({
   const onSearchChange = e => {
     setSearchValue(e.target.value);
     if (e.target.value) {
-      setIsLoadingSearch(false);
-      setTimeout(
-        onSearch(e.target.value).then(() => setIsLoadingSearch(true)),
-        1000,
-      );
+      requestSearch(e.target.value);
     }
   };
 
@@ -89,7 +80,7 @@ const CouponsPage = ({
           onSet={onSearchChange}
           result={searchValue ? storeSearchResult : []}
           value={searchValue}
-          isLoading={isLoadingSearch}
+          isLoading={searchIsLoading}
         />
       </CouponsPage.SearchWrapper>
       {Boolean(stores.length) ? (
@@ -150,15 +141,16 @@ const mapStateToProps = state => ({
   getFilteredDeals: getFilteredDeals(state),
   getDealsFilter: getDealsFilter(state),
   storeSearchResult: getStoreSearch(state),
+  searchIsLoading: searchIsLoading(state),
 });
 
 const mapDispatchToProps = {
-  getCoupons: getCoupons,
-  loadMore,
-  fetchCategories,
-  getCouponsByCategory,
-  setDealsFilter,
-  onSearch,
+  getCoupons: couponsActions.getCoupons,
+  loadMore: couponsActions.loadMore,
+  fetchCategories: couponsActions.fetchCategories,
+  getCouponsByCategory: couponsActions.getCouponsByCategory,
+  setDealsFilter: couponsActions.setDealsFilter,
+  requestSearch: couponsActions.requestSearch,
 };
 
 export default compose(

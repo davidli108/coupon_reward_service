@@ -4,7 +4,8 @@ export const GET_COUPONS = `${namespace}/GET_COUPONS`;
 export const LOAD_MORE = `${namespace}/LOAD_MORE`;
 export const FETCH_CATEGORIES = `${namespace}/FETCH_CATEGORIES`;
 export const GET_COUPONS_BY_CATEGORY = `${namespace}/GET_COUPONS_BY_CATEGORY`;
-export const ON_SEARCH = `${namespace}/ON_SEARCH`;
+export const REQUEST_SEARCH = `${namespace}/REQUEST_SEARCH`;
+export const SEARCH = `${namespace}/SEARCH`;
 export const SET_DEALS_FILTER = `${namespace}/SET_DEALS_FILTER`;
 export const SET_FILTER_TYPE = `${namespace}/SET_FILTER_TYPE`;
 
@@ -35,8 +36,13 @@ export const getCouponsByCategory = (category: string) => ({
   },
 });
 
+export const requestSearch = (payload: string) => ({
+  type: REQUEST_SEARCH,
+  payload,
+});
+
 export const onSearch = (keywords: string) => ({
-  type: ON_SEARCH,
+  type: SEARCH,
   payload: {
     request: {
       url: `/jsonstores?keywords=${keywords}`,
