@@ -27,6 +27,7 @@ const SearchBar = ({ value, onSet, result, isLoading }: SearchBarProps) => {
       refSearchBar &&
       !refItemsWrapper.contains(e.target) &&
       !refSearchBar.contains(e.target);
+
     if (isOutClick && html) {
       setIsShowItems(false);
       html.removeEventListener('mousedown', onCloseItems);
@@ -37,8 +38,6 @@ const SearchBar = ({ value, onSet, result, isLoading }: SearchBarProps) => {
     if (!isShowItems && html) {
       setIsShowItems(true);
       html.addEventListener('mousedown', onCloseItems);
-    } else {
-      setIsShowItems(false);
     }
   };
 

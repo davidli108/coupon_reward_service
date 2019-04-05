@@ -16,8 +16,6 @@ const TodaysFeaturedCoupon = ({ store }: TodaysFeaturedCouponProps) => {
   const handleFeaturedCouponLikeToggler = () =>
     setFeaturedCouponLike(!isFeaturedCouponLiked);
 
-  console.log(store);
-
   return (
     <TodaysFeaturedCoupon.Wrapper>
       <h2>Today's Featured Coupon From {store.store_name}</h2>

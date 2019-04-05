@@ -51,9 +51,11 @@ const Content = ({
 
   const onLoadMore = () => {
     if (isLoaded) {
-      setLoadCount(loadCount + 20);
       setIsLoaded(false);
-      loadMore(loadCount).then(() => setIsLoaded(true));
+      loadMore(loadCount).then(() => {
+        setIsLoaded(true);
+        setLoadCount(loadCount + 20);
+      });
     }
   };
 

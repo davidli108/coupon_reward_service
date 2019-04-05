@@ -31,32 +31,68 @@ const CategoriesMobile = ({
   onActiveCategory,
 }: CategoriesMobileProps) => {
   const [isOpen, setOpen] = useState(false);
+  const [refItemsWrapper, setRefItemsWrapper] = useState(null);
+  const [refTitle, setRefTitle] = useState(null);
+
+  const html: HTMLElement | null = document.querySelector('html');
+  const selected =
+    categories.categories && categories.stores
+      ? R.find(i => i.shortName === activeCategory)(categories.categories) ||
+        R.find(i => i.short_name === activeCategory)(categories.stores)
+      : null;
+
+  const onCloseItems: EventListener = e => {
+    const isOutClick =
+      refItemsWrapper &&
+      refTitle &&
+      !refItemsWrapper.contains(e.target) &&
+      !refTitle.contains(e.target);
+
+    if (isOutClick && html) {
+      setOpen(false);
+      html.removeEventListener('mousedown', onCloseItems);
+    }
+  };
+
+  const onOpenItems = () => {
+    if (!isOpen && html) {
+      setOpen(true);
+      html.addEventListener('mousedown', onCloseItems);
+    } else {
+      setOpen(false);
+    }
+  };
 
   return (
     <CategoriesMobile.Wrapper>
-      <CategoriesMobile.Title onClick={() => setOpen(!isOpen)}>
-        Select category...
+      <CategoriesMobile.Title onClick={() => onOpenItems()} ref={setRefTitle}>
+        {selected ? selected.name || selected.store_name : 'Select category...'}
       </CategoriesMobile.Title>
-      {isOpen && (
-        <CategoriesMobile.ItemsWrapper items={categories[1]}>
-          {categories &&
-            Object.keys(categories).map(key => (
-              <CategoriesMobile.Section key={`key_${key}`}>
-                <h2>{capitalizeOrNull(key)}</h2>
-                {categories[key].map(i => (
-                  <CategoryItem
-                    setOpen={setOpen}
-                    key={`key_${i.shortName || i.short_name}`}
-                    name={i.name || i.store_name}
-                    shortName={i.shortName || i.short_name}
-                    isActive={activeCategory === (i.shortName || i.short_name)}
-                    onActive={onActiveCategory}
-                  />
-                ))}
-              </CategoriesMobile.Section>
-            ))}
-        </CategoriesMobile.ItemsWrapper>
-      )}
+      {/* $FlowFixMe */}
+      <div ref={setRefItemsWrapper}>
+        {isOpen && (
+          <CategoriesMobile.ItemsWrapper items={categories[1]}>
+            {categories &&
+              Object.keys(categories).map(key => (
+                <CategoriesMobile.Section key={`key_${key}`}>
+                  <h2>{capitalizeOrNull(key)}</h2>
+                  {categories[key].map(i => (
+                    <CategoryItem
+                      setOpen={setOpen}
+                      key={`key_${i.shortName || i.short_name}`}
+                      name={i.name || i.store_name}
+                      shortName={i.shortName || i.short_name}
+                      isActive={
+                        activeCategory === (i.shortName || i.short_name)
+                      }
+                      onActive={onActiveCategory}
+                    />
+                  ))}
+                </CategoriesMobile.Section>
+              ))}
+          </CategoriesMobile.ItemsWrapper>
+        )}
+      </div>
       <CategoriesMobile.Triangle isOpen={isOpen} />
     </CategoriesMobile.Wrapper>
   );
