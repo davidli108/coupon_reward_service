@@ -3,6 +3,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 
+import placeholder from '@modules/coupons/assets/image-placeholder.png';
 import preloader from '../assets/preloader.svg';
 
 type SearchBarItemsProps = {
@@ -28,7 +29,7 @@ const SearchBarItems = ({
           onClick={() => history.push(`coupons/${item.short_name}`)}
         >
           <img
-            src={`http://d2umvgb8hls1bt.cloudfront.net${item.image}`}
+            src={item.image ? `http://d2umvgb8hls1bt.cloudfront.net${item.image}` : placeholder}
             alt={item.store_name}
           />
           <div>

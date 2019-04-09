@@ -7,6 +7,7 @@ import { withTranslation } from 'react-i18next';
 import CouponCode from './CouponCode';
 import SocialShare from './SocialShare';
 
+import placeholder from '@modules/coupons/assets/image-placeholder.png';
 import type { Deal as DealModel } from '../models/CouponsPage';
 
 const OfferType = {
@@ -35,7 +36,7 @@ const Coupon = ({
       <Coupon.Content>
         <Coupon.StoreLogoWrapper>
           <Coupon.StoreLogo
-            src={`http://d2umvgb8hls1bt.cloudfront.net${store_logo}`}
+            src={store_logo ? `http://d2umvgb8hls1bt.cloudfront.net${store_logo}` : placeholder}
             alt={store_name}
           />
         </Coupon.StoreLogoWrapper>

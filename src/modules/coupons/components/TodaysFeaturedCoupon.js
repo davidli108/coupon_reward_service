@@ -5,6 +5,7 @@ import { IoIosHeartEmpty, IoIosHeart } from 'react-icons/io';
 import { FiShare2 } from 'react-icons/fi';
 import breakpoint from 'styled-components-breakpoint';
 
+import placeholder from '@modules/coupons/assets/image-placeholder.png';
 import type { Store } from '../models/CouponsPage';
 
 type TodaysFeaturedCouponProps = {
@@ -22,7 +23,7 @@ const TodaysFeaturedCoupon = ({ store }: TodaysFeaturedCouponProps) => {
       <TodaysFeaturedCoupon.Content>
         <TodaysFeaturedCoupon.LogoControlsWrapper>
           <TodaysFeaturedCoupon.Logo
-            src={`http://d2umvgb8hls1bt.cloudfront.net${store.store_logo}`}
+            src={store.store_logo ? `http://d2umvgb8hls1bt.cloudfront.net${store.store_logo}` : placeholder}
             alt={store.store_name}
           />
           <TodaysFeaturedCoupon.Controls isLiked={isFeaturedCouponLiked}>
@@ -38,7 +39,7 @@ const TodaysFeaturedCoupon = ({ store }: TodaysFeaturedCouponProps) => {
         <TodaysFeaturedCoupon.OfferingWrapper>
           <TodaysFeaturedCoupon.Offering>
             <span>{store.discount} OFF</span>
-            <span>up to Instant Savings</span>
+            <span>Instant Savings</span>
           </TodaysFeaturedCoupon.Offering>
         </TodaysFeaturedCoupon.OfferingWrapper>
 

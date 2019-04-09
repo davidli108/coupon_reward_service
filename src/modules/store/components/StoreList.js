@@ -6,7 +6,8 @@ import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
 
-import preloader from '../../coupons/assets/preloader.svg';
+import preloader from '@modules/coupons/assets/preloader.svg';
+import placeholder from '@modules/coupons/assets/image-placeholder.png';
 
 // import verificationIcon from '../assets/verif.png';
 
@@ -76,7 +77,7 @@ const StoreList = ({
                 <StoreList.Box>
                   <StoreList.ImageWrapper>
                     <StoreList.Image
-                      src={`http://d2umvgb8hls1bt.cloudfront.net${img}`}
+                      src={img ? `http://d2umvgb8hls1bt.cloudfront.net${img}` : placeholder}
                       alt={name}
                     />
                   </StoreList.ImageWrapper>

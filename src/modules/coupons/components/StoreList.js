@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
 
+import placeholder from '@modules/coupons/assets/image-placeholder.png';
+
 type StoreListProps = {
   t: string => string,
   stores: Object,
@@ -18,7 +20,7 @@ const StoreList = ({ t, stores }: StoreListProps) => (
         target="_blank"
       >
         <img
-          src={`http://d2umvgb8hls1bt.cloudfront.net${store.offer_img}`}
+          src={store.offer_img ? `http://d2umvgb8hls1bt.cloudfront.net${store.offer_img}` : placeholder}
           alt={store.store_name}
         />
         <p>
@@ -33,6 +35,7 @@ const StoreList = ({ t, stores }: StoreListProps) => (
 
 StoreList.Wrapper = styled.div`
   display: flex;
+  justify-content: center;
 
   margin-top: 20px;
   overflow-x: scroll;
@@ -42,6 +45,11 @@ StoreList.Wrapper = styled.div`
   > a {
     padding: 5px;
     margin-right: 15px;
+  }
+
+  > a:last-child {
+    padding: 5px;
+    margin-right: 0;
   }
 
   ::-webkit-scrollbar {

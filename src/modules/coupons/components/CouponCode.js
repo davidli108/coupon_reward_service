@@ -22,7 +22,7 @@ const CouponCode = ({ code, link }: CouponCodeProps) => {
         }}
         isShow={!isShowCode}
       >
-        {code ? 'VIEW CCOUPON' : 'VIEW DEAL'}
+        {code ? 'VIEW COUPON' : 'VIEW DEAL'}
       </CouponCode.Button>
       <CouponCode.Code isShow={isShowCode}>{code}</CouponCode.Code>
     </CouponCode.Wrapper>

@@ -131,7 +131,7 @@ export default {
     cashBack: 'Cash back',
     instantSaving: 'Instant Savings',
     downloadPiggy:
-      "Download Pigg's Automatic Coupons at Checkout and Never Miss a Deal Again!",
+      "Download Piggy's Automatic Coupons at Checkout and Never Miss a Deal Again!",
     neverMiss: 'Never miss a coupon with our free app!',
   },
   coupons: {

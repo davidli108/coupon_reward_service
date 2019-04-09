@@ -5,6 +5,8 @@ import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
 
+import placeholder from '@modules/coupons/assets/image-placeholder.png';
+
 type FeaturedProps = {
   t: string => string,
   featured: Object,
@@ -25,7 +27,7 @@ const Featured = ({ t, featured }: FeaturedProps) => (
           {offer_img && (
             <Featured.WrapperImage>
               <Featured.Image
-                src={`http://d2umvgb8hls1bt.cloudfront.net${offer_img}`}
+                src={offer_img ? `http://d2umvgb8hls1bt.cloudfront.net${offer_img}` : placeholder}
                 alt={store_name}
               />
             </Featured.WrapperImage>
