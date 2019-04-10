@@ -3,6 +3,7 @@ import * as R from 'ramda';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
+import { withTranslation } from 'react-i18next';
 
 import CategoryItem from './CategoryItem';
 
@@ -20,12 +21,14 @@ const capitalize = R.compose(
 const capitalizeOrNull = R.unless(R.isNil, capitalize);
 
 type CategoriesMobileProps = {
+  t: Object,
   categories: Object,
   activeCategory: string,
   onActiveCategory: string => void,
 };
 
 const CategoriesMobile = ({
+  t,
   categories,
   activeCategory,
   onActiveCategory,
@@ -66,7 +69,9 @@ const CategoriesMobile = ({
   return (
     <CategoriesMobile.Wrapper>
       <CategoriesMobile.Title onClick={() => onOpenItems()} ref={setRefTitle}>
-        {selected ? selected.name || selected.store_name : 'Select category...'}
+        {selected
+          ? selected.name || selected.store_name
+          : t('categories.selectCategory')}
       </CategoriesMobile.Title>
       {/* $FlowFixMe */}
       <div ref={setRefItemsWrapper}>
@@ -185,4 +190,4 @@ CategoriesMobile.Section = styled.div`
   }
 `;
 
-export default CategoriesMobile;
+export default withTranslation()(CategoriesMobile);

@@ -2,26 +2,27 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
+import { withTranslation } from 'react-i18next';
 
 import type { BrandNeverOverpayProps } from '../models/StorePage';
 
-const BrandNeverOverpay = ({ storeName }: BrandNeverOverpayProps) => {
+const BrandNeverOverpay = ({ t, storeName }: BrandNeverOverpayProps) => {
   return (
     <>
       <BrandNeverOverpay.NeverOverpay>
-        <h2>Never Overpay Again at {storeName}</h2>
+        <h2>
+          {t('storeCoupons.neverOverlay')} {storeName}
+        </h2>
         <p>
-          Automatically add all active coupons to your order with Piggy's
-          browser extension. When you get to checkout, Piggy will find coupons
-          and cash back at {storeName} and more.
+          {t('storeCoupons.automaticalyAddAll').replace('storeName', storeName)}
         </p>
       </BrandNeverOverpay.NeverOverpay>
       <BrandNeverOverpay.Advantages>
-        <span>Automatic Coupons</span>
+        <span>{t('storeCoupons.automaticCoupons')}</span>
         <span>-</span>
-        <span>Price Check</span>
+        <span>{t('storeCoupons.priceCheck')}</span>
         <span>-</span>
-        <span>Secret Rates and Deals</span>
+        <span>{t('storeCoupons.secretRates')}</span>
       </BrandNeverOverpay.Advantages>
     </>
   );
@@ -73,4 +74,4 @@ BrandNeverOverpay.NeverOverpay = styled.div`
   }
 `;
 
-export default BrandNeverOverpay;
+export default withTranslation()(BrandNeverOverpay);

@@ -3,16 +3,19 @@ import * as R from 'ramda';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
+import { withTranslation } from 'react-i18next';
 
 import CategoryItem from '../../coupons/components/CategoryItem';
 
 type CategoriesMobileProps = {
+  t: Function,
   categories: Object,
   activeCategory: string,
   onActiveCategory: string => void,
 };
 
 const CategoriesMobile = ({
+  t,
   categories,
   activeCategory,
   onActiveCategory,
@@ -49,7 +52,9 @@ const CategoriesMobile = ({
   return (
     <CategoriesMobile.Wrapper>
       <CategoriesMobile.Title onClick={() => onOpenItems()} ref={setRefTitle}>
-        {activeCategory && selected ? selected.name : 'Select category...'}
+        {activeCategory && selected
+          ? selected.name
+          : t('categories.selectCategory')}
       </CategoriesMobile.Title>
       {/* $FlowFixMe */}
       <div ref={setRefItemsWrapper}>
@@ -162,4 +167,4 @@ CategoriesMobile.Section = styled.div`
   }
 `;
 
-export default CategoriesMobile;
+export default withTranslation()(CategoriesMobile);

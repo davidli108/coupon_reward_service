@@ -88,15 +88,18 @@ export type BrandContentProps = {
 };
 
 export type BrandHeaderProps = {
+  t: Function,
   store: Store,
   offers: Offer[],
 };
 
 export type BrandNeverOverpayProps = {
+  t: Function,
   storeName: string,
 };
 
 export type PiggyExtAdProps = {
+  t: Function,
   stars: number,
   reviewsCount: string,
 };
@@ -106,6 +109,7 @@ export type OffersProps = {
 };
 
 export type AdditionalInfoProps = {
+  t: Function,
   additionalInfo: AdditionalInfo,
 };
 

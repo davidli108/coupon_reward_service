@@ -88,7 +88,7 @@ const Content = ({
             />
             <Categories
               categories={categories.stores}
-              title="Stores"
+              title={t('header.stores')}
               activeCategory={activeCategory}
               onActiveCategory={onActiveCategory}
             />
@@ -112,7 +112,7 @@ const Content = ({
               (getFilteredDeals &&
               getFilteredDeals.length !== 0 &&
               !activeCategory
-                ? 'Load More Deals'
+                ? t('global.loadMoreDeals')
                 : '')}
           </Content.LoadMoreDeals>
         </Content.CouponsWrapper>

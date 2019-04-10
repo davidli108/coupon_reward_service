@@ -4,26 +4,35 @@ import styled from 'styled-components';
 import { IoIosHeartEmpty, IoIosHeart } from 'react-icons/io';
 import { FiShare2 } from 'react-icons/fi';
 import breakpoint from 'styled-components-breakpoint';
+import { withTranslation } from 'react-i18next';
 
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
 import type { Store } from '../models/CouponsPage';
 
 type TodaysFeaturedCouponProps = {
+  t: Function,
   store: Store,
 };
 
-const TodaysFeaturedCoupon = ({ store }: TodaysFeaturedCouponProps) => {
+const TodaysFeaturedCoupon = ({ t, store }: TodaysFeaturedCouponProps) => {
   const [isFeaturedCouponLiked, setFeaturedCouponLike] = useState('');
   const handleFeaturedCouponLikeToggler = () =>
     setFeaturedCouponLike(!isFeaturedCouponLiked);
 
   return (
     <TodaysFeaturedCoupon.Wrapper>
-      <h2>Today's Featured Coupon From {store.store_name}</h2>
+      <h2>
+        {t('coupons.todaysFeatureCoupon')}
+        {store.store_name}
+      </h2>
       <TodaysFeaturedCoupon.Content>
         <TodaysFeaturedCoupon.LogoControlsWrapper>
           <TodaysFeaturedCoupon.Logo
-            src={store.store_logo ? `http://d2umvgb8hls1bt.cloudfront.net${store.store_logo}` : placeholder}
+            src={
+              store.store_logo
+                ? `http://d2umvgb8hls1bt.cloudfront.net${store.store_logo}`
+                : placeholder
+            }
             alt={store.store_name}
           />
           <TodaysFeaturedCoupon.Controls isLiked={isFeaturedCouponLiked}>
@@ -39,7 +48,7 @@ const TodaysFeaturedCoupon = ({ store }: TodaysFeaturedCouponProps) => {
         <TodaysFeaturedCoupon.OfferingWrapper>
           <TodaysFeaturedCoupon.Offering>
             <span>{store.discount} OFF</span>
-            <span>Instant Savings</span>
+            <span>{t('cashbackStores.shopBy.instantSaving')}</span>
           </TodaysFeaturedCoupon.Offering>
         </TodaysFeaturedCoupon.OfferingWrapper>
 
@@ -48,7 +57,7 @@ const TodaysFeaturedCoupon = ({ store }: TodaysFeaturedCouponProps) => {
             {store.ref_text}
           </TodaysFeaturedCoupon.Description>
           <TodaysFeaturedCoupon.Button href={store.offer_link} target="_blank">
-            View Deal
+            {t('coupons.buttons.viewDeal')}
           </TodaysFeaturedCoupon.Button>
         </TodaysFeaturedCoupon.DescriptionButtonWrapper>
       </TodaysFeaturedCoupon.Content>
@@ -401,4 +410,4 @@ TodaysFeaturedCoupon.Button = styled.a`
   `}
 `;
 
-export default TodaysFeaturedCoupon;
+export default withTranslation()(TodaysFeaturedCoupon);

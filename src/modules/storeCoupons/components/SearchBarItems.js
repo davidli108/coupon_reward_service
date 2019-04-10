@@ -7,12 +7,14 @@ import placeholder from '@modules/coupons/assets/image-placeholder.png';
 import preloader from '../../coupons/assets/preloader.svg';
 
 type SearchStoreItemProps = {
+  t: Function,
   result: Object,
   isLoading: boolean,
   history: Object,
 };
 
 const SearchStoreItem = ({
+  t,
   history,
   result,
   isLoading,
@@ -29,7 +31,11 @@ const SearchStoreItem = ({
           onClick={() => history.push(`/coupons/${item.short_name}`)}
         >
           <img
-            src={item.image ? `http://d2umvgb8hls1bt.cloudfront.net${item.image}` : placeholder}
+            src={
+              item.image
+                ? `http://d2umvgb8hls1bt.cloudfront.net${item.image}`
+                : placeholder
+            }
             alt={item.store_name}
           />
           <div>
@@ -39,7 +45,9 @@ const SearchStoreItem = ({
         </SearchStoreItem.Item>
       ))
     ) : (
-      <SearchStoreItem.NotFound>Nothing found</SearchStoreItem.NotFound>
+      <SearchStoreItem.NotFound>
+        {t('global.nothingFound')}
+      </SearchStoreItem.NotFound>
     )}
   </SearchStoreItem.StoreWrapper>
 );

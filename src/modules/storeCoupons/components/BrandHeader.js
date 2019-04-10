@@ -4,6 +4,8 @@ import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
 import breakpoint from 'styled-components-breakpoint';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import { compose } from 'recompose';
+import { withTranslation } from 'react-i18next';
 
 import type { BrandHeaderProps } from '../models/StorePage';
 import { getStore, getOffers } from '../StoreCouponsReducer';
@@ -13,6 +15,7 @@ const getCouponsCount = offers =>
 const getDealsCount = offers => offers.filter(x => x.coupon_code === '').length;
 
 const BrandHeader = ({
+  t,
   store: { store_name, store_cashback_text },
   offers,
 }: BrandHeaderProps) => {
@@ -21,19 +24,25 @@ const BrandHeader = ({
 
   return (
     <>
-      <BrandHeader.Name>{store_name} Coupon Codes & Deals</BrandHeader.Name>
+      <BrandHeader.Name>
+        {store_name} {t('storeCoupons.codesAndDeals')}
+      </BrandHeader.Name>
       <BrandHeader.NoWrapFlexBox>
         <BrandHeader.OffersStats>
-          <span>{getCouponsCount(offers)} Coupons</span>
+          <span>
+            {getCouponsCount(offers)} {t('header.coupons')}
+          </span>
           <span>-</span>
-          <span>{getDealsCount(offers)} Deals</span>
+          <span>
+            {getDealsCount(offers)} {t('global.deals')}
+          </span>
           <span>-</span>
           <span>{store_cashback_text}</span>
         </BrandHeader.OffersStats>
         <BrandHeader.FollowStoreWrapper isStoreFollowed={isStoreFollowed}>
           <div onClick={handleStoreFollowToggler}>
             {isStoreFollowed ? <MdFavorite /> : <MdFavoriteBorder />}
-            <span>Follow Store</span>
+            <span>{t('storeCoupons.followStore')}</span>
           </div>
         </BrandHeader.FollowStoreWrapper>
       </BrandHeader.NoWrapFlexBox>
@@ -152,6 +161,7 @@ const mapStateToProps = state => ({
   offers: getOffers(state),
 });
 
-const enhance = connect(mapStateToProps);
-
-export default enhance(BrandHeader);
+export default compose(
+  connect(mapStateToProps),
+  withTranslation(),
+)(BrandHeader);

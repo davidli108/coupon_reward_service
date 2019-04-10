@@ -4,6 +4,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { MdStar, MdStarBorder, MdStarHalf } from 'react-icons/md';
+import { withTranslation } from 'react-i18next';
 
 import type { PiggyExtAdProps } from '../models/StorePage';
 
@@ -43,7 +44,7 @@ const renderStarsReview = rating => {
   );
 };
 
-const PiggyExtAd = ({ stars, reviewsCount }: PiggyExtAdProps) => {
+const PiggyExtAd = ({ t, stars, reviewsCount }: PiggyExtAdProps) => {
   return (
     <PiggyExtAd.Wrapper>
       <PiggyExtAd.AddExtensionButton
@@ -54,11 +55,13 @@ const PiggyExtAd = ({ stars, reviewsCount }: PiggyExtAdProps) => {
           );
         }}
       >
-        Add to Chrome
+        {t('global.addToChrome')}
       </PiggyExtAd.AddExtensionButton>
       <PiggyExtAd.Reviews>
         <div>{renderStarsReview(stars)}</div>
-        <span>{reviewsCount} reviews</span>
+        <span>
+          {reviewsCount} {t('global.reviews')}
+        </span>
       </PiggyExtAd.Reviews>
     </PiggyExtAd.Wrapper>
   );
@@ -117,4 +120,4 @@ PiggyExtAd.Reviews = styled.div`
   `}
 `;
 
-export default PiggyExtAd;
+export default withTranslation()(PiggyExtAd);

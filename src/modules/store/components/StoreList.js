@@ -77,7 +77,11 @@ const StoreList = ({
                 <StoreList.Box>
                   <StoreList.ImageWrapper>
                     <StoreList.Image
-                      src={img ? `http://d2umvgb8hls1bt.cloudfront.net${img}` : placeholder}
+                      src={
+                        img
+                          ? `http://d2umvgb8hls1bt.cloudfront.net${img}`
+                          : placeholder
+                      }
                       alt={name}
                     />
                   </StoreList.ImageWrapper>
@@ -86,7 +90,9 @@ const StoreList = ({
                       <StoreList.Info>
                         <StoreList.Brand>
                           <StoreList.BrandName>{name}</StoreList.BrandName>
-                          <StoreList.BranDeals>Deals</StoreList.BranDeals>
+                          <StoreList.BranDeals>
+                            {t('global.deals')}
+                          </StoreList.BranDeals>
                         </StoreList.Brand>
                         <StoreList.Cash>
                           {`${storeDiscount} ${t('global.cashBack')}`}
@@ -100,12 +106,12 @@ const StoreList = ({
                     )} */}
                     </StoreList.Content>
                     <StoreList.Link to={`/coupons/${shortName}`}>
-                      Visit Store
+                      {t('build.visitStore')}
                     </StoreList.Link>
                   </StoreList.ContentWrap>
                 </StoreList.Box>
                 <StoreList.LinkMobile to={`/coupons/${shortName}`}>
-                  Visit Store
+                  {t('build.visitStore')}
                 </StoreList.LinkMobile>
               </StoreList.StoreItem>
             ),

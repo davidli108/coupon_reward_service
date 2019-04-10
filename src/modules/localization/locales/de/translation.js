@@ -2,7 +2,7 @@
 export default {
   header: {
     coupons: 'Gutscheine',
-    stores: 'Stores/Shops/Läden/Geschäfte',
+    stores: 'Stores',
     getApp: 'Holen Sie sich die App!',
     login: 'Einloggen',
     createAccount: 'Ein Konto erstellen',
@@ -98,6 +98,7 @@ export default {
     },
   },
   categories: {
+    selectCategory: 'Select category...', // missing
     name: 'Kategorien',
     accessories: 'Zubehör',
     automotive: 'Automotive',
@@ -134,6 +135,16 @@ export default {
     downloadPiggy:
       "Laden Sie die automatischen Coupons von Piggy's bei Checkout herunter und verpassen Sie nie wieder einen Deal!",
     neverMiss: 'Verpassen Sie niemals ein Coupon mit unserer kostenlosen App!',
+    loadMoreDeals: 'Load More Deals', // missing
+    search: 'Search', // missing
+    nothingFound: 'Nothing found', // missing
+    deals: 'Deals', // missing
+    revealCoupon: 'Reveal Coupon', // missing
+    newDeal: 'New Deal', // missing
+    verifiedToday: 'Verified today · XXX uses today.', // missing
+    reviews: 'reviews', // missing
+    addToChrome: 'Add to Chrome', // missing
+    about: 'About', // missing
   },
   coupons: {
     shopBy: {
@@ -160,6 +171,23 @@ export default {
       maxCashBack:
         '- gibt den maximalen Cashback, die maximale Prämie oder den Rabatt an, den ein Benutzer verdienen kann. Einige Artikel können einen niedrigeren Cash-Back-Betrag ausweisen und einige Ausschlüsse bestehen. Nicht alle Geschäfte zahlen Cashback. Cash Back nicht mit externen Gutscheinen oder Angeboten kombinierbar. Weitere Informationen finden Sie in den Nutzungsbedingungen oder in den einzelnen Shop-Profilen.',
     },
+    constrols: {
+      allDeals: 'All Deals', // missing
+      onlyCoupons: 'Only Coupons', // missing
+      favoriteStores: 'Favorite Stores', // missing
+    },
+    type: {
+      free: 'Free', // missing
+      shiping: 'Shipping', // missing
+      coupon: 'Coupon', // missing
+      code: 'Code', // missing
+      deal: 'Deal', // missing
+    },
+    buttons: {
+      viewCoupon: 'VIEW COUPON', // missing
+      viewDeal: 'VIEW DEAL', // missing
+    },
+    todaysFeatureCoupon: "Today's Featured Coupon From", // missing
   },
   cashbackStores: {
     shopBy: {
@@ -181,10 +209,22 @@ export default {
     preferences: 'Vorlieben',
     resetPassword: 'Passwort zurücksetzen',
     testimonials: 'Referenzen',
+    browseStores: 'Browse among more than 1000 stores', // missing
   },
   storeCoupons: {
     viewLatestCoupons:
       'Sehen Sie sich die neuesten Online-Gutscheine für Build unten an! Verpassen Sie niemals einen Coupon oder Cash Back aus einem unserer 3.000 anderen Stores mit unserer kostenlosen App für mobile Apps und Browser! Alle Online-Gutscheine von Build können mit kostenlosen automatischen Rabatten kombiniert werden. Bis zu 3,0 % Cash Back! Nur von Piggy! Jeder dieser Build-Gutscheincodes und Promotion kann mit unserem automatischen Cash Back-Build kombiniert werden',
+    returnPolicy: 'Return Policy', // missing
+    shipping: 'Shipping', // missing
+    secrets: 'Secrets', // missing
+    codesAndDeals: 'Coupon Codes & Deals', // missing
+    followStore: 'Follow Store', // missing
+    neverOverlay: 'Never Overpay Again at', // missing
+    automaticalyAddAll:
+      "Automatically add all active coupons to your order with Piggy's browser extension. When you get to checkout, Piggy will find coupons and cash back at storeName and more.", // missing
+    automaticCoupons: 'Automatic Coupons', // missing
+    priceCheck: 'Price Check', // missing
+    secretRates: 'Secret Rates and Deals', // missing
   },
   build: {
     visitStore: 'Shop besuchen',
@@ -219,6 +259,9 @@ export default {
       contact: 'Kontakt',
       consumerResources: 'Verbraucherressourcen',
       referrals: 'Verweise',
+      blog: 'Blog', // missing
+      aboutUs: 'About us', // missing
+      help: 'Help', // missing
     },
     copiright: {
       menu: {

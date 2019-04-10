@@ -2,19 +2,21 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
+import { withTranslation } from 'react-i18next';
 
 import IconSearch from '../assets/icon-search.png';
 
 import SearchStoreItem from './SearchStoreItem';
 
 type SearchBarProps = {
+  t: Function,
   onSet: Function,
   result: Object,
   value: string,
   isLoading: boolean,
 };
 
-const SearchBar = ({ value, onSet, result, isLoading }: SearchBarProps) => {
+const SearchBar = ({ t, value, onSet, result, isLoading }: SearchBarProps) => {
   const [isShowItems, setIsShowItems] = useState(false);
   const [refItemsWrapper, setRefItemsWrapper] = useState(null);
   const [refSearchBar, setRefSearchBar] = useState(null);
@@ -48,13 +50,13 @@ const SearchBar = ({ value, onSet, result, isLoading }: SearchBarProps) => {
         name="search"
         onChange={e => onSet(e)}
         onClick={() => onOpenItems()}
-        placeholder="Search"
+        placeholder={t('global.search')}
       />
       <SearchBar.Icon src={IconSearch} alt="search" />
       {/* $FlowFixMe */}
       <div ref={setRefItemsWrapper}>
         {value && isShowItems ? (
-          <SearchStoreItem result={result} isLoading={isLoading} />
+          <SearchStoreItem t={t} result={result} isLoading={isLoading} />
         ) : null}
       </div>
     </SearchBar.Wrapper>
@@ -153,4 +155,4 @@ SearchBar.Item = styled.div`
   }
 `;
 
-export default SearchBar;
+export default withTranslation()(SearchBar);

@@ -2,11 +2,23 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
+import { withTranslation } from 'react-i18next';
 
 import CouponCode from './CouponCode';
-import type { Offer as OfferModel } from '../models/StorePage';
+
+type OfferProps = {
+  t: Function,
+  coupon_code: string,
+  show_exp_date: string,
+  ref_link: string,
+  discount: string,
+  discount_print: string,
+  offer_name: string,
+  offer_success_print: string,
+};
 
 const Offer = ({
+  t,
   coupon_code,
   show_exp_date,
   ref_link,
@@ -14,11 +26,13 @@ const Offer = ({
   discount_print,
   offer_name,
   offer_success_print,
-}: OfferModel) => {
+}: OfferProps) => {
   return (
     <>
       <Offer.Wrapper>
-        {offer_success_print && <Offer.NewDeal>New Deal</Offer.NewDeal>}
+        {offer_success_print && (
+          <Offer.NewDeal>{t('global.newDeal')}</Offer.NewDeal>
+        )}
         <Offer.Content>
           <Offer.Discount>
             <span>{discount}</span>
@@ -27,14 +41,14 @@ const Offer = ({
           <Offer.DescriptionWrapper>
             <Offer.Description>{offer_name}</Offer.Description>
             <Offer.AdditionalInfo>
-              <span>Verified today · XXX uses today.</span>
+              <span>{t('global.verifiedToday')}</span>
               <span>{discount_print}</span>
             </Offer.AdditionalInfo>
           </Offer.DescriptionWrapper>
         </Offer.Content>
         <Offer.Container>
           <Offer.ButtonWrapper>
-            <CouponCode code={coupon_code} link={ref_link} />
+            <CouponCode t={t} code={coupon_code} link={ref_link} />
             <Offer.ExpDate>{show_exp_date}</Offer.ExpDate>
           </Offer.ButtonWrapper>
         </Offer.Container>
@@ -210,4 +224,4 @@ Offer.RevealCouponButton = styled.div`
   color: #fff;
 `;
 
-export default Offer;
+export default withTranslation()(Offer);

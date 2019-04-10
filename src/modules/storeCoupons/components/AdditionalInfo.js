@@ -3,12 +3,14 @@ import * as React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { connect } from 'react-redux';
+import { compose } from 'recompose';
+import { withTranslation } from 'react-i18next';
 
 // import AdditionalInfoSection from './AdditionalInfoSection';
 import type { AdditionalInfoProps } from '../models/StorePage';
 import { getAdditionalInfo } from '../StoreCouponsReducer';
 
-const AdditionalInfo = ({ additionalInfo }: AdditionalInfoProps) => {
+const AdditionalInfo = ({ t, additionalInfo }: AdditionalInfoProps) => {
   return (
     <AdditionalInfo.Wrapper>
       {/* {additionalInfo.map(section => (
@@ -19,7 +21,7 @@ const AdditionalInfo = ({ additionalInfo }: AdditionalInfoProps) => {
         />
       ))} */}
       <AdditionalInfo.ContentWrapper>
-        <h2>Return Policy</h2>
+        <h2>{t('storeCoupons.returnPolicy')}</h2>
         <AdditionalInfo.Content
           dangerouslySetInnerHTML={{
             __html: additionalInfo.featured_store_returns_body,
@@ -28,7 +30,7 @@ const AdditionalInfo = ({ additionalInfo }: AdditionalInfoProps) => {
       </AdditionalInfo.ContentWrapper>
       <AdditionalInfo.Separator />
       <AdditionalInfo.ContentWrapper>
-        <h2>Shipping</h2>
+        <h2>{t('storeCoupons.shipping')}</h2>
         <AdditionalInfo.Content
           dangerouslySetInnerHTML={{
             __html: additionalInfo.featured_store_shipping_content,
@@ -37,7 +39,7 @@ const AdditionalInfo = ({ additionalInfo }: AdditionalInfoProps) => {
       </AdditionalInfo.ContentWrapper>
       <AdditionalInfo.Separator />
       <AdditionalInfo.ContentWrapper>
-        <h2>Secrets</h2>
+        <h2>{t('storeCoupons.secrets')}</h2>
         <AdditionalInfo.Content
           dangerouslySetInnerHTML={{
             __html: additionalInfo.featured_store_secrets_body,
@@ -121,6 +123,7 @@ const mapStateToProps = state => ({
   additionalInfo: getAdditionalInfo(state),
 });
 
-const enhance = connect(mapStateToProps);
-
-export default enhance(AdditionalInfo);
+export default compose(
+  connect(mapStateToProps),
+  withTranslation(),
+)(AdditionalInfo);

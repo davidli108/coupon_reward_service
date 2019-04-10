@@ -1,13 +1,15 @@
 // @flow
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { withTranslation } from 'react-i18next';
 
 type CouponCodeProps = {
+  t: Function,
   code: string,
   link: string,
 };
 
-const CouponCode = ({ code, link }: CouponCodeProps) => {
+const CouponCode = ({ t, code, link }: CouponCodeProps) => {
   const [isShowCode, setIsShowCode] = useState(false);
 
   return (
@@ -22,7 +24,7 @@ const CouponCode = ({ code, link }: CouponCodeProps) => {
         }}
         isShow={!isShowCode}
       >
-        {code ? 'VIEW COUPON' : 'VIEW DEAL'}
+        {code ? t('coupons.buttons.viewCoupon') : t('coupons.buttons.viewDeal')}
       </CouponCode.Button>
       <CouponCode.Code isShow={isShowCode}>{code}</CouponCode.Code>
     </CouponCode.Wrapper>
@@ -54,6 +56,7 @@ CouponCode.Button = styled.div`
   letter-spacing: 0.51px;
   color: #fff;
   cursor: pointer;
+  text-transform: uppercase;
 `;
 
 CouponCode.Code = styled.div`
@@ -67,4 +70,4 @@ CouponCode.Code = styled.div`
   background-color: #fefff4;
 `;
 
-export default CouponCode;
+export default withTranslation()(CouponCode);

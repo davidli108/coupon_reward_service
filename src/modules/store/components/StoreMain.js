@@ -2,6 +2,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
+import { withTranslation } from 'react-i18next';
 
 import StoreList from './StoreList';
 import Featured from './Featured';
@@ -9,6 +10,7 @@ import Featured from './Featured';
 import { type Store, type Feature } from '../models';
 
 type StoresListProps = {
+  t: Function,
   title: string,
   stores: Store[],
   featured: Feature[],
@@ -24,6 +26,7 @@ type StoresListProps = {
 };
 
 const StoreMain = ({
+  t,
   title,
   stores,
   featured,
@@ -38,7 +41,7 @@ const StoreMain = ({
   setIsLoadedMore,
 }: StoresListProps) => (
   <StoreMain.Wrapper>
-    <StoreMain.Title>Browse among more than 1000 stores</StoreMain.Title>
+    <StoreMain.Title>{t('cashbackStores.browseStores')}</StoreMain.Title>
     <Featured featured={featured} />
     <StoreList
       stores={stores}
@@ -86,4 +89,4 @@ StoreMain.Title = styled.h3`
   `}
 `;
 
-export default StoreMain;
+export default withTranslation()(StoreMain);

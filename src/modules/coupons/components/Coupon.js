@@ -36,22 +36,26 @@ const Coupon = ({
       <Coupon.Content>
         <Coupon.StoreLogoWrapper>
           <Coupon.StoreLogo
-            src={store_logo ? `http://d2umvgb8hls1bt.cloudfront.net${store_logo}` : placeholder}
+            src={
+              store_logo
+                ? `http://d2umvgb8hls1bt.cloudfront.net${store_logo}`
+                : placeholder
+            }
             alt={store_name}
           />
         </Coupon.StoreLogoWrapper>
         {offer_type === OfferType.freeShipping ? (
           <Coupon.Discount>
-            <span>Free</span>
-            <span>Shipping</span>
+            <span>{t('coupons.type.free')}</span>
+            <span>{t('coupons.type.shiping')}</span>
           </Coupon.Discount>
         ) : coupon_code ? (
           <Coupon.Discount>
-            <span>Coupon</span>
-            <span>Code</span>
+            <span>{t('coupons.type.coupon')}</span>
+            <span>{t('coupons.type.code')}</span>
           </Coupon.Discount>
         ) : (
-          <Coupon.DiscontDeal>Deal</Coupon.DiscontDeal>
+          <Coupon.DiscontDeal>{t('coupons.type.deal')}</Coupon.DiscontDeal>
         )}
         <Coupon.ExpDate>
           <p>{show_exp_date}</p>

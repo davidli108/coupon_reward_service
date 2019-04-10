@@ -1,8 +1,10 @@
 // @flow
 import React, { useState } from 'react';
+import { compose } from 'recompose';
 import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
+import { withTranslation } from 'react-i18next';
 
 import { type Store } from '../models';
 
@@ -12,6 +14,7 @@ import CategoriesMobile from './CategoriesMobile';
 //import TagList from './TagList';
 
 type StoreSidebarProps = {
+  t: Function,
   match: Object,
   history: Object,
   title: string,
@@ -29,6 +32,7 @@ type StoreSidebarProps = {
 };
 
 const StoreSidebar = ({
+  t,
   match,
   history,
   title,
@@ -71,7 +75,7 @@ const StoreSidebar = ({
       />
       <Categories
         categories={categories}
-        title="Stores"
+        title={t('header.stores')}
         activeCategory={activeCategory}
         onActiveCategory={onActiveCategory}
       />
@@ -198,4 +202,7 @@ StoreSidebar.ClearFilter = styled.button`
   `}
 `;
 
-export default withRouter(StoreSidebar);
+export default compose(
+  withRouter,
+  withTranslation(),
+)(StoreSidebar);

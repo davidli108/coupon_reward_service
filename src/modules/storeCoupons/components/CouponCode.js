@@ -3,11 +3,12 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 type CouponCodeProps = {
+  t: Function,
   code: string,
   link: string,
 };
 
-const CouponCode = ({ code, link }: CouponCodeProps) => {
+const CouponCode = ({ t, code, link }: CouponCodeProps) => {
   const [isShowCode, setIsShowCode] = useState(false);
 
   return (
@@ -22,7 +23,7 @@ const CouponCode = ({ code, link }: CouponCodeProps) => {
         }}
         isShow={!isShowCode}
       >
-        <p>{code ? 'Reveal Coupon' : 'View Deal'}</p>
+        <p>{code ? t('global.revealCoupon') : t('coupons.buttons.viewDeal')}</p>
         <CouponCode.Rectangle isShow={!!code} />
       </CouponCode.Button>
       <CouponCode.Code isShow={isShowCode}>{code}</CouponCode.Code>

@@ -103,15 +103,15 @@ const Footer = ({ t }: FooterProps) => (
         <Footer.NavLink to="/consumer-resources">
           {t('footer.menu.consumerResources')}
         </Footer.NavLink>
-        <Footer.NavLink to="/blog">Blog</Footer.NavLink>
+        <Footer.NavLink to="/blog">{t('footer.menu.blog')}</Footer.NavLink>
         <Footer.NavLink to="/cashback-apps">
           {t('footer.menu.aboutOurApp')}
         </Footer.NavLink>
-        <Footer.NavLink to="/about">About us</Footer.NavLink>
+        <Footer.NavLink to="/about">{t('footer.menu.aboutUs')}</Footer.NavLink>
         <Footer.NavLink to="/contactus">
           {t('footer.menu.contact')}
         </Footer.NavLink>
-        <Footer.NavLink to="/info">Help</Footer.NavLink>
+        <Footer.NavLink to="/info">{t('footer.menu.help')}</Footer.NavLink>
       </Footer.Navigation>
     </Footer.Container>
     <Footer.CopyrightWrapper>

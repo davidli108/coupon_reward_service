@@ -1,5 +1,4 @@
 import i18n from 'i18next';
-import languageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
 
 import translationDE from './locales/de/translation';
@@ -18,17 +17,30 @@ const resources = {
   },
 };
 
+const localeToDomain = {
+  '.com': 'en',
+  '.de': 'de',
+  '.fr': 'fr',
+};
+
+const fallbackLocale = 'en';
+
+const getLocale = () => {
+  const domain = window.location.hostname;
+  const domainExt = domain.slice(domain.lastIndexOf('.'));
+
+  return localeToDomain[domainExt] || fallbackLocale;
+};
+
 // eslint-disable-next-line import/no-named-as-default-member
-i18n
-  .use(languageDetector)
-  .use(initReactI18next)
-  .init({
-    resources,
-    fallbackLng: 'en',
-    keySeparator: '.',
-    interpolation: {
-      escapeValue: false,
-    },
-  });
+i18n.use(initReactI18next).init({
+  resources,
+  lng: getLocale(),
+  fallbackLng: fallbackLocale,
+  keySeparator: '.',
+  interpolation: {
+    escapeValue: false,
+  },
+});
 
 export default i18n;

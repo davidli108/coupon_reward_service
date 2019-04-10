@@ -1,6 +1,7 @@
 //@flow
 import * as React from 'react';
 import styled from 'styled-components';
+import { withTranslation } from 'react-i18next';
 
 import allDealsSvg from '../assets/allDeals.svg';
 import allDealsActiveSvg from '../assets/allDealsActive.svg';
@@ -12,11 +13,12 @@ import favoriteStoresSvg from '../assets/favoriteStores.svg';
 import favoriteStoresActiveSvg from '../assets/favoriteStoresActive.svg';
 
 type ControlsProps = {
+  t: Function,
   getDealsFilter: Object,
   setDealsFilter: Object,
 };
 
-const Controls = ({ getDealsFilter, setDealsFilter }: ControlsProps) => {
+const Controls = ({ t, getDealsFilter, setDealsFilter }: ControlsProps) => {
   return (
     <Controls.Wrapper>
       <Controls.Button
@@ -27,7 +29,7 @@ const Controls = ({ getDealsFilter, setDealsFilter }: ControlsProps) => {
           src={getDealsFilter === 'allDeals' ? allDealsActiveSvg : allDealsSvg}
           alt="all deals"
         />
-        <p>All Deals</p>
+        <p>{t('coupons.constrols.allDeals')}</p>
         {getDealsFilter === 'allDeals' && <Controls.Pointer />}
       </Controls.Button>
 
@@ -43,7 +45,7 @@ const Controls = ({ getDealsFilter, setDealsFilter }: ControlsProps) => {
           }
           alt="only coupons"
         />
-        <p>Only Coupons</p>
+        <p>{t('coupons.constrols.onlyCoupons')}</p>
         {getDealsFilter === 'onlyCoupons' && <Controls.Pointer />}
       </Controls.Button>
 
@@ -59,7 +61,7 @@ const Controls = ({ getDealsFilter, setDealsFilter }: ControlsProps) => {
           }
           alt="favorite stores"
         />
-        <p>Favorite Stores</p>
+        <p>{t('coupons.constrols.favoriteStores')}</p>
         {getDealsFilter === 'favoriteStores' && <Controls.Pointer />}
       </Controls.Button>
     </Controls.Wrapper>
@@ -111,4 +113,4 @@ Controls.Pointer = styled.div`
   align-self: center;
 `;
 
-export default Controls;
+export default withTranslation()(Controls);

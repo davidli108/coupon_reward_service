@@ -4,6 +4,7 @@ import { compose } from 'recompose';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
+import { withTranslation } from 'react-i18next';
 
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
@@ -30,6 +31,7 @@ import {
 } from '../StoreReducer';
 
 type StoresPageProps = {
+  t: Function,
   match: Object,
   title: string,
   stores: Store[],
@@ -52,6 +54,7 @@ type StoresPageProps = {
 };
 
 const StoresPage = ({
+  t,
   match,
   title,
   stores,
@@ -87,12 +90,11 @@ const StoresPage = ({
     <React.Fragment>
       {
         <Helmet
-          title="Stores"
+          title={t('header.stores')}
           meta={[
             {
               name: 'description',
-              content:
-                "Download Piggy's Automatic Coupons at Checkout and Never Miss a Deal Again!",
+              content: t('global.downloadPiggy'),
             },
           ]}
         />
@@ -103,7 +105,7 @@ const StoresPage = ({
           <StoresPage.Box>
             <StoresPage.Title>{title}</StoresPage.Title>
             <StoreSidebar
-              title="Stores"
+              title={t('header.stores')}
               filter={filter}
               // $FlowFixMe
               onSearch={onSearch}
@@ -259,4 +261,5 @@ export default compose(
     mapDispatchToProps,
   ),
   withRouter,
+  withTranslation(),
 )(StoresPage);

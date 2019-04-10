@@ -97,6 +97,7 @@ export default {
     },
   },
   categories: {
+    selectCategory: 'Select category...',
     name: 'Categories',
     accessories: 'Accessories',
     automotive: 'Automotive',
@@ -133,6 +134,16 @@ export default {
     downloadPiggy:
       "Download Piggy's Automatic Coupons at Checkout and Never Miss a Deal Again!",
     neverMiss: 'Never miss a coupon with our free app!',
+    loadMoreDeals: 'Load More Deals',
+    search: 'Search',
+    nothingFound: 'Nothing found',
+    deals: 'Deals',
+    revealCoupon: 'Reveal Coupon',
+    newDeal: 'New Deal',
+    verifiedToday: 'Verified today · XXX uses today.',
+    reviews: 'reviews',
+    addToChrome: 'Add to Chrome',
+    about: 'About',
   },
   coupons: {
     shopBy: {
@@ -159,6 +170,23 @@ export default {
       maxCashBack:
         '- indicates the maximum cash back, reward, or discount a user may earn. Some items may pay lower cash back and some exclusions may exist. Not all stores pay cashback. Cash back not combinable with outside coupons or offers. Please view Terms or individual store profiles for more info.',
     },
+    constrols: {
+      allDeals: 'All Deals',
+      onlyCoupons: 'Only Coupons',
+      favoriteStores: 'Favorite Stores',
+    },
+    type: {
+      free: 'Free',
+      shiping: 'Shipping',
+      coupon: 'Coupon',
+      code: 'Code',
+      deal: 'Deal',
+    },
+    buttons: {
+      viewCoupon: 'View Coupon',
+      viewDeal: 'View Deal',
+    },
+    todaysFeatureCoupon: "Today's Featured Coupon From",
   },
   cashbackStores: {
     shopBy: {
@@ -178,10 +206,22 @@ export default {
     preferences: 'Preferences',
     resetPassword: 'Reset Password',
     testimonials: 'Testimonials',
+    browseStores: 'Browse among more than 1000 stores',
   },
   storeCoupons: {
     viewLatestCoupons:
       "View the latest Online Coupons for Build below! Never miss a Build coupon or Cash Back opportunities from any of our 3,000 other stores with our Free Mobile App and Browser app! Any of Build's online coupons can be combined with Free, Automatic Rebates.Up to 3.0% Cash Back! Only from Piggy!Any of these Build coupon codes and promotions can be combined with our Automatic Cash Back at Build",
+    returnPolicy: 'Return Policy',
+    shipping: 'Shipping',
+    secrets: 'Secrets',
+    codesAndDeals: 'Coupon Codes & Deals',
+    followStore: 'Follow Store',
+    neverOverlay: 'Never Overpay Again at',
+    automaticalyAddAll:
+      "Automatically add all active coupons to your order with Piggy's browser extension. When you get to checkout, Piggy will find coupons and cash back at storeName and more.",
+    automaticCoupons: 'Automatic Coupons',
+    priceCheck: 'Price Check',
+    secretRates: 'Secret Rates and Deals',
   },
   build: {
     visitStore: 'Visit Store',
@@ -215,6 +255,9 @@ export default {
       contact: 'Contact',
       consumerResources: 'Consumer Resources',
       referrals: 'Referrals',
+      blog: 'Blog',
+      aboutUs: 'About us',
+      help: 'Help',
     },
     copiright: {
       menu: {
