@@ -100,7 +100,7 @@ export default {
     },
   },
   categories: {
-    selectCategory: 'Select category...', // missing
+    selectCategory: 'Sélectionner une catégorie',
     name: 'Catégories',
     accessories: 'Accessoires',
     automotive: 'Automobile',
@@ -138,16 +138,16 @@ export default {
       "Téléchargez les coupons automatiques de Piggy's à la caisse et ne ratez plus jamais une affaire !",
     neverMiss:
       'Ne manquez plus jamais un coupon avec notre application gratuite !',
-    loadMoreDeals: 'Load More Deals', // missing
-    search: 'Search', // missing
-    nothingFound: 'Nothing found', // missing
-    deals: 'Deals', // missing
-    revealCoupon: 'Reveal Coupon', // missing
-    newDeal: 'New Deal', // missing
-    verifiedToday: 'Verified today · XXX uses today.', // missing
-    reviews: 'reviews', // missing
-    addToChrome: 'Add to Chrome', // missing
-    about: 'About', // missing
+    loadMoreDeals: "Charger plus d'offres",
+    search: 'Rechercher',
+    nothingFound: 'Aucuns résultats',
+    deals: 'Offres',
+    revealCoupon: 'Révéler le coupon',
+    newDeal: 'Nouvelle offre',
+    verifiedToday: "Vérifié aujourd'hui",
+    reviews: 'commentaires',
+    addToChrome: 'Ajouter à Chrome',
+    about: 'À propos de',
   },
   coupons: {
     shopBy: {
@@ -175,22 +175,22 @@ export default {
         "- indique le cashback, la récompense ou le rabais maximum qu'un utilisateur peut gagner.Certains articles peuvent donner droit à un cashback moins élevée et il peut y avoir certaines exclusions.Toutes les boutiques n'offrent pas de cashback. Le cashback ne peut pas être combiné avec des coupons ou des offres extérieures. Veuillez consulter les conditions générales ou les profils individuels des boutiques pour plus d'informations.",
     },
     constrols: {
-      allDeals: 'All Deals', // missing
-      onlyCoupons: 'Only Coupons', // missing
-      favoriteStores: 'Favorite Stores', // missing
+      allDeals: 'Toutes les offres',
+      onlyCoupons: 'Coupons seulement',
+      favoriteStores: 'Boutiques préférées',
     },
     type: {
-      free: 'Free', // missing
-      shiping: 'Shipping', // missing
-      coupon: 'Coupon', // missing
-      code: 'Code', // missing
-      deal: 'Deal', // missing
+      free: 'Gratuit',
+      shiping: 'Expédition',
+      coupon: 'Coupon',
+      code: 'Code',
+      deal: 'Offre',
     },
     buttons: {
-      viewCoupon: 'VIEW COUPON', // missing
-      viewDeal: 'VIEW DEAL', // missing
+      viewCoupon: 'VOIR LE COUPON DE VUE',
+      viewDeal: "VOIR L'OFFRE",
     },
-    todaysFeatureCoupon: "Today's Featured Coupon From", // missing
+    todaysFeatureCoupon: "Coupon d'aujourd'hui par",
   },
   cashbackStores: {
     shopBy: {
@@ -212,22 +212,22 @@ export default {
     preferences: 'Préférences',
     resetPassword: 'Réinitialiser le mot de passe',
     testimonials: 'Témoignages',
-    browseStores: 'Browse among more than 1000 stores', // missing
+    browseStores: 'Parcourez plus de 1000 magasins',
   },
   storeCoupons: {
     viewLatestCoupons:
       "voir les derniers coupons en ligne pour build ci-dessous ! Ne manquez jamais un coupon de réduction ou un cashback dans l'une de nos 3 000 autres boutiques grâce à notre application gratuite pour mobile et à notre extension de navigateur ! Tous les coupons en ligne de Build peuvent être combinés avec des réductions automatiques et gratuites. Jusqu'à 3,0 % de cashback ! Chacun de ces coupons et promotions peuvent être combinés avec notre cashback automatique à l'achat d'un produit Piggy !",
-    returnPolicy: 'Return Policy', // missing
-    shipping: 'Shipping', // missing
-    secrets: 'Secrets', // missing
-    codesAndDeals: 'Coupon Codes & Deals', // missing
-    followStore: 'Follow Store', // missing
-    neverOverlay: 'Never Overpay Again at', // missing
+    returnPolicy: 'Politique de retour',
+    shipping: 'Expédition',
+    secrets: 'Secrets',
+    codesAndDeals: 'Codes de coupons et offres',
+    followStore: 'Suivre la boutique',
+    neverOverlay: 'Ne plus jamais trop payer',
     automaticalyAddAll:
-      "Automatically add all active coupons to your order with Piggy's browser extension. When you get to checkout, Piggy will find coupons and cash back at storeName and more.", // missing
-    automaticCoupons: 'Automatic Coupons', // missing
-    priceCheck: 'Price Check', // missing
-    secretRates: 'Secret Rates and Deals', // missing
+      "Ajoutez automatiquement tous les coupons actifs à votre commande avec l'extension de navigateur de Piggy. Lorsque vous passerez à la caisse, Piggy trouvera des coupons et cashback au storeName et plus encore.",
+    automaticCoupons: 'Coupons automatiques',
+    priceCheck: 'Vérifiez le prix',
+    secretRates: 'Tarifs et offres secrets',
   },
   build: {
     visitStore: 'Visitez la boutique',
@@ -264,9 +264,9 @@ export default {
       contact: 'Contact',
       consumerResources: 'Ressources pour les consommateurs',
       referrals: 'Parrainages',
-      blog: 'Blog', // missing
-      aboutUs: 'About us', // missing
-      help: 'Help', // missing
+      blog: 'Blog',
+      aboutUs: 'À propos de nous',
+      help: 'Aide',
     },
     copiright: {
       menu: {
