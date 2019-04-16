@@ -32,15 +32,17 @@ const getLocale = () => {
   return localeToDomain[domainExt] || fallbackLocale;
 };
 
-// eslint-disable-next-line import/no-named-as-default-member
-i18n.use(initReactI18next).init({
-  resources,
-  lng: getLocale(),
-  fallbackLng: fallbackLocale,
-  keySeparator: '.',
-  interpolation: {
-    escapeValue: false,
-  },
-});
+export const initializeI18n = () => {
+  // eslint-disable-next-line import/no-named-as-default-member
+  i18n.use(initReactI18next).init({
+    resources,
+    lng: getLocale(),
+    fallbackLng: fallbackLocale,
+    keySeparator: '.',
+    interpolation: {
+      escapeValue: false,
+    },
+  });
+};
 
 export default i18n;

@@ -1,10 +1,12 @@
 import React from 'react';
 import { hydrate, render } from 'react-dom';
 import Loadable from 'react-loadable';
-import './modules/localization/i18n';
 
 import AppContainer from './AppContainer';
+import { initializeI18n } from './modules/localization/i18n';
 import { unregister } from './registerServiceWorker';
+
+initializeI18n();
 
 // Unregister service worker
 unregister();
