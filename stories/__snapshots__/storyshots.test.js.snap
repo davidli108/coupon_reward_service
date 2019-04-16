@@ -1241,13 +1241,16 @@ exports[`Storyshots Components|@Store Featured 1`] = `
   >
     <a
       className="c2"
-      target="_blank"
+      href="/coupons/undefined"
+      onClick={[Function]}
     >
       Visit Store
     </a>
     <p
       className="c3"
-    />
+    >
+      
+    </p>
   </div>
 </div>
 `;
@@ -1333,7 +1336,8 @@ exports[`Storyshots Components|@Store Search 1`] = `
     className="c1"
     name="search"
     onChange={[Function]}
-    placeholder="Search"
+    onClick={[Function]}
+    placeholder="global.search"
     type="text"
   />
   <img
@@ -1341,6 +1345,7 @@ exports[`Storyshots Components|@Store Search 1`] = `
     className="c2"
     src="icon-search.png"
   />
+  <div />
 </div>
 `;
 
@@ -1350,6 +1355,8 @@ exports[`Storyshots Components|@Store SearchStoreItem 1`] = `
   background: #FFF;
   z-index: 1;
   width: 100%;
+  max-height: 50vh;
+  overflow-y: scroll;
   left: 0;
   top: 42px;
   border: 1px solid #DADDE2;
@@ -1357,40 +1364,15 @@ exports[`Storyshots Components|@Store SearchStoreItem 1`] = `
 }
 
 .c1 {
+  width: 100%;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  padding: 5px;
-  cursor: pointer;
-}
-
-.c1:hover {
-  background: #F9FAFC;
-}
-
-.c1 img {
-  width: 80px;
-  height: 80px;
-  object-fit: contain;
-  border: 1px solid #DADDE2;
-}
-
-.c1 div {
-  margin: 0 0 0 5px;
-}
-
-.c1 div h3 {
-  margin: 0 0 5px 0;
-  font-weight: bold;
-}
-
-.c1 div p {
-  font-size: 13px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 
 <div
@@ -1400,12 +1382,9 @@ exports[`Storyshots Components|@Store SearchStoreItem 1`] = `
     className="c1"
   >
     <img
-      src="http://d2umvgb8hls1bt.cloudfront.netundefined"
+      alt=""
+      src="preloader.svg"
     />
-    <div>
-      <h3 />
-      <p />
-    </div>
   </div>
 </div>
 `;
@@ -1423,7 +1402,7 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
   align-items: center;
 }
 
-.c4 {
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1472,6 +1451,10 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
 }
 
 .c3 {
+  width: 150px;
+}
+
+.c4 {
   display: block;
   width: 88px;
   height: 88px;
@@ -1479,7 +1462,7 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
   margin: 0 17px 0 0;
 }
 
-.c5 {
+.c6 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1494,7 +1477,7 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
   margin: 0 0 11px 0;
 }
 
-.c6 {
+.c7 {
   width: 100%;
   display: -webkit-box;
   display: -webkit-flex;
@@ -1506,12 +1489,12 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
   flex-direction: column;
 }
 
-.c7 {
+.c8 {
   margin: 0 30px 0 0;
   margin: 0 21px 0 0;
 }
 
-.c8 {
+.c9 {
   display: block;
   font-weight: 500;
   line-height: 23px;
@@ -1519,7 +1502,7 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
   color: #C2C2C2;
 }
 
-.c9 {
+.c10 {
   font-weight: bold;
   line-height: 21px;
   color: #374B5A;
@@ -1527,7 +1510,7 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
   margin: 5px 0 0 0;
 }
 
-.c10 {
+.c11 {
   font-weight: 500;
   line-height: 23px;
   font-size: 13px;
@@ -1535,7 +1518,7 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
   margin: 12px 0 0 0;
 }
 
-.c11 {
+.c12 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1566,11 +1549,11 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
   display: none;
 }
 
-.c11:hover {
+.c12:hover {
   background: #00B4CF;
 }
 
-.c12 {
+.c13 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1606,11 +1589,11 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
   width: 100%;
 }
 
-.c12:hover {
+.c13:hover {
   background: #00B4CF;
 }
 
-.c13 {
+.c14 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1633,12 +1616,12 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
   transition: color 205ms linear;
 }
 
-.c13:hover {
+.c14:hover {
   color: #7F7F7F;
 }
 
 @media (min-width:48em) {
-  .c4 {
+  .c5 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -1673,31 +1656,31 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
 }
 
 @media (min-width:25.8125em) {
-  .c3 {
+  .c4 {
     margin: 0 33px 0 0;
   }
 }
 
 @media (min-width:36em) {
-  .c3 {
+  .c4 {
     margin: 0 23px 0 0;
   }
 }
 
 @media (min-width:48em) {
-  .c3 {
+  .c4 {
     margin: 0 26px 0 0;
   }
 }
 
 @media (min-width:62em) {
-  .c3 {
+  .c4 {
     margin: 0 37px 0 0;
   }
 }
 
 @media (min-width:36em) {
-  .c5 {
+  .c6 {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
@@ -1708,7 +1691,7 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
 }
 
 @media (min-width:48em) {
-  .c5 {
+  .c6 {
     -webkit-align-items: flex-start;
     -webkit-box-align: flex-start;
     -ms-flex-align: flex-start;
@@ -1721,7 +1704,7 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
 }
 
 @media (min-width:62em) {
-  .c5 {
+  .c6 {
     -webkit-flex-basis: auto;
     -ms-flex-preferred-size: auto;
     flex-basis: auto;
@@ -1736,7 +1719,7 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
 }
 
 @media (min-width:25.8125em) {
-  .c6 {
+  .c7 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -1744,7 +1727,7 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
 }
 
 @media (min-width:36em) {
-  .c6 {
+  .c7 {
     margin: 0;
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
@@ -1753,7 +1736,7 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
 }
 
 @media (min-width:48em) {
-  .c6 {
+  .c7 {
     -webkit-flex-basis: auto;
     -ms-flex-preferred-size: auto;
     flex-basis: auto;
@@ -1762,7 +1745,7 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
 }
 
 @media (min-width:62em) {
-  .c6 {
+  .c7 {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
@@ -1774,7 +1757,7 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
 }
 
 @media (min-width:75em) {
-  .c6 {
+  .c7 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -1786,7 +1769,7 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
 }
 
 @media (min-width:36em) {
-  .c7 {
+  .c8 {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -1796,13 +1779,13 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
 }
 
 @media (min-width:48em) {
-  .c7 {
+  .c8 {
     margin: 0 0 2px 0;
   }
 }
 
 @media (min-width:62em) {
-  .c7 {
+  .c8 {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -1812,7 +1795,7 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
 }
 
 @media (min-width:75em) {
-  .c7 {
+  .c8 {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
@@ -1821,91 +1804,56 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
 }
 
 @media (min-width:36em) {
-  .c8 {
+  .c9 {
     margin: 0 11px 0 0;
   }
 }
 
 @media (min-width:36em) {
-  .c9 {
+  .c10 {
     font-size: 16px;
     margin: 0;
   }
 }
 
 @media (min-width:48em) {
-  .c9 {
+  .c10 {
     font-size: 16px;
   }
 }
 
 @media (min-width:62em) {
-  .c9 {
+  .c10 {
     font-size: 16px;
     margin: 0;
   }
 }
 
 @media (min-width:25.8125em) {
-  .c10 {
+  .c11 {
     margin: 28px 0 0 0;
   }
 }
 
 @media (min-width:36em) {
-  .c10 {
+  .c11 {
     margin: 0 0 5px 0;
   }
 }
 
 @media (min-width:48em) {
-  .c10 {
+  .c11 {
     margin: 0;
   }
 }
 
 @media (min-width:75em) {
-  .c10 {
+  .c11 {
     margin: 0 100px 0 auto;
   }
 }
 
 @media (min-width:25.8125em) {
-  .c11 {
-    display: block;
-    -webkit-flex-basis: auto;
-    -ms-flex-preferred-size: auto;
-    flex-basis: auto;
-    width: 100%;
-  }
-}
-
-@media (min-width:48em) {
-  .c11 {
-    -webkit-flex-basis: 242px;
-    -ms-flex-preferred-size: 242px;
-    flex-basis: 242px;
-    margin-left: auto;
-  }
-}
-
-@media (min-width:62em) {
-  .c11 {
-    -webkit-flex-basis: 188px;
-    -ms-flex-preferred-size: 188px;
-    flex-basis: 188px;
-  }
-}
-
-@media (min-width:75em) {
-  .c11 {
-    -webkit-flex-basis: 255px;
-    -ms-flex-preferred-size: 255px;
-    flex-basis: 255px;
-  }
-}
-
-@media (min-width:25.8125em) {
   .c12 {
     display: block;
     -webkit-flex-basis: auto;
@@ -1941,7 +1889,42 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
 }
 
 @media (min-width:25.8125em) {
-  .c12 {
+  .c13 {
+    display: block;
+    -webkit-flex-basis: auto;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+    width: 100%;
+  }
+}
+
+@media (min-width:48em) {
+  .c13 {
+    -webkit-flex-basis: 242px;
+    -ms-flex-preferred-size: 242px;
+    flex-basis: 242px;
+    margin-left: auto;
+  }
+}
+
+@media (min-width:62em) {
+  .c13 {
+    -webkit-flex-basis: 188px;
+    -ms-flex-preferred-size: 188px;
+    flex-basis: 188px;
+  }
+}
+
+@media (min-width:75em) {
+  .c13 {
+    -webkit-flex-basis: 255px;
+    -ms-flex-preferred-size: 255px;
+    flex-basis: 255px;
+  }
+}
+
+@media (min-width:25.8125em) {
+  .c13 {
     display: none;
   }
 }
@@ -1956,59 +1939,71 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
       <div
         className="c2"
       >
-        <img
-          className="c3"
-          src="http://d2umvgb8hls1bt.cloudfront.netundefined"
-        />
         <div
-          className="c4"
+          className="c3"
+        >
+          <img
+            alt="Target"
+            className="c4"
+            src="image-placeholder.png"
+          />
+        </div>
+        <div
+          className="c5"
         >
           <div
-            className="c5"
+            className="c6"
           >
             <div
-              className="c6"
+              className="c7"
             >
               <div
-                className="c7"
+                className="c8"
               >
                 <span
-                  className="c8"
-                />
-                <p
                   className="c9"
                 >
-                  Deals
+                  Target
+                </span>
+                <p
+                  className="c10"
+                >
+                  global.deals
                 </p>
               </div>
               <p
-                className="c10"
-              />
+                className="c11"
+              >
+                undefined global.cashBack
+              </p>
             </div>
           </div>
           <a
-            className="c11"
-            href="/https://target.com"
+            className="c12"
+            href="/coupons/undefined"
             onClick={[Function]}
           >
-            Visit Store
+            build.visitStore
           </a>
         </div>
       </div>
       <a
-        className="c12"
-        href="/https://target.com"
+        className="c13"
+        href="/coupons/undefined"
         onClick={[Function]}
       >
-        Visit Store
+        build.visitStore
       </a>
     </div>
   </div>
   <button
-    className="c13"
+    className="c14"
     onClick={[Function]}
   >
-    Load more deals
+    <img
+      alt=""
+      src="preloader.svg"
+    />
   </button>
 </div>
 `;
@@ -2037,7 +2032,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
   align-items: center;
 }
 
-.c7 {
+.c8 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2086,6 +2081,10 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 }
 
 .c6 {
+  width: 150px;
+}
+
+.c7 {
   display: block;
   width: 88px;
   height: 88px;
@@ -2093,7 +2092,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
   margin: 0 17px 0 0;
 }
 
-.c8 {
+.c9 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2108,7 +2107,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
   margin: 0 0 11px 0;
 }
 
-.c9 {
+.c10 {
   width: 100%;
   display: -webkit-box;
   display: -webkit-flex;
@@ -2120,12 +2119,12 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
   flex-direction: column;
 }
 
-.c10 {
+.c11 {
   margin: 0 30px 0 0;
   margin: 0 21px 0 0;
 }
 
-.c11 {
+.c12 {
   display: block;
   font-weight: 500;
   line-height: 23px;
@@ -2133,7 +2132,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
   color: #C2C2C2;
 }
 
-.c12 {
+.c13 {
   font-weight: bold;
   line-height: 21px;
   color: #374B5A;
@@ -2141,7 +2140,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
   margin: 5px 0 0 0;
 }
 
-.c13 {
+.c14 {
   font-weight: 500;
   line-height: 23px;
   font-size: 13px;
@@ -2149,7 +2148,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
   margin: 12px 0 0 0;
 }
 
-.c14 {
+.c15 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2180,11 +2179,11 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
   display: none;
 }
 
-.c14:hover {
+.c15:hover {
   background: #00B4CF;
 }
 
-.c15 {
+.c16 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2220,11 +2219,11 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
   width: 100%;
 }
 
-.c15:hover {
+.c16:hover {
   background: #00B4CF;
 }
 
-.c16 {
+.c17 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2247,7 +2246,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
   transition: color 205ms linear;
 }
 
-.c16:hover {
+.c17:hover {
   color: #7F7F7F;
 }
 
@@ -2301,7 +2300,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 }
 
 @media (min-width:48em) {
-  .c7 {
+  .c8 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -2336,31 +2335,31 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 }
 
 @media (min-width:25.8125em) {
-  .c6 {
+  .c7 {
     margin: 0 33px 0 0;
   }
 }
 
 @media (min-width:36em) {
-  .c6 {
+  .c7 {
     margin: 0 23px 0 0;
   }
 }
 
 @media (min-width:48em) {
-  .c6 {
+  .c7 {
     margin: 0 26px 0 0;
   }
 }
 
 @media (min-width:62em) {
-  .c6 {
+  .c7 {
     margin: 0 37px 0 0;
   }
 }
 
 @media (min-width:36em) {
-  .c8 {
+  .c9 {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
@@ -2371,7 +2370,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 }
 
 @media (min-width:48em) {
-  .c8 {
+  .c9 {
     -webkit-align-items: flex-start;
     -webkit-box-align: flex-start;
     -ms-flex-align: flex-start;
@@ -2384,7 +2383,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 }
 
 @media (min-width:62em) {
-  .c8 {
+  .c9 {
     -webkit-flex-basis: auto;
     -ms-flex-preferred-size: auto;
     flex-basis: auto;
@@ -2399,7 +2398,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 }
 
 @media (min-width:25.8125em) {
-  .c9 {
+  .c10 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -2407,7 +2406,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 }
 
 @media (min-width:36em) {
-  .c9 {
+  .c10 {
     margin: 0;
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
@@ -2416,7 +2415,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 }
 
 @media (min-width:48em) {
-  .c9 {
+  .c10 {
     -webkit-flex-basis: auto;
     -ms-flex-preferred-size: auto;
     flex-basis: auto;
@@ -2425,7 +2424,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 }
 
 @media (min-width:62em) {
-  .c9 {
+  .c10 {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
@@ -2437,7 +2436,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 }
 
 @media (min-width:75em) {
-  .c9 {
+  .c10 {
     -webkit-flex-direction: row;
     -ms-flex-direction: row;
     flex-direction: row;
@@ -2449,7 +2448,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 }
 
 @media (min-width:36em) {
-  .c10 {
+  .c11 {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -2459,13 +2458,13 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 }
 
 @media (min-width:48em) {
-  .c10 {
+  .c11 {
     margin: 0 0 2px 0;
   }
 }
 
 @media (min-width:62em) {
-  .c10 {
+  .c11 {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -2475,7 +2474,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 }
 
 @media (min-width:75em) {
-  .c10 {
+  .c11 {
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
@@ -2484,91 +2483,56 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 }
 
 @media (min-width:36em) {
-  .c11 {
+  .c12 {
     margin: 0 11px 0 0;
   }
 }
 
 @media (min-width:36em) {
-  .c12 {
+  .c13 {
     font-size: 16px;
     margin: 0;
   }
 }
 
 @media (min-width:48em) {
-  .c12 {
+  .c13 {
     font-size: 16px;
   }
 }
 
 @media (min-width:62em) {
-  .c12 {
+  .c13 {
     font-size: 16px;
     margin: 0;
   }
 }
 
 @media (min-width:25.8125em) {
-  .c13 {
+  .c14 {
     margin: 28px 0 0 0;
   }
 }
 
 @media (min-width:36em) {
-  .c13 {
+  .c14 {
     margin: 0 0 5px 0;
   }
 }
 
 @media (min-width:48em) {
-  .c13 {
+  .c14 {
     margin: 0;
   }
 }
 
 @media (min-width:75em) {
-  .c13 {
+  .c14 {
     margin: 0 100px 0 auto;
   }
 }
 
 @media (min-width:25.8125em) {
-  .c14 {
-    display: block;
-    -webkit-flex-basis: auto;
-    -ms-flex-preferred-size: auto;
-    flex-basis: auto;
-    width: 100%;
-  }
-}
-
-@media (min-width:48em) {
-  .c14 {
-    -webkit-flex-basis: 242px;
-    -ms-flex-preferred-size: 242px;
-    flex-basis: 242px;
-    margin-left: auto;
-  }
-}
-
-@media (min-width:62em) {
-  .c14 {
-    -webkit-flex-basis: 188px;
-    -ms-flex-preferred-size: 188px;
-    flex-basis: 188px;
-  }
-}
-
-@media (min-width:75em) {
-  .c14 {
-    -webkit-flex-basis: 255px;
-    -ms-flex-preferred-size: 255px;
-    flex-basis: 255px;
-  }
-}
-
-@media (min-width:25.8125em) {
   .c15 {
     display: block;
     -webkit-flex-basis: auto;
@@ -2604,7 +2568,42 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 }
 
 @media (min-width:25.8125em) {
-  .c15 {
+  .c16 {
+    display: block;
+    -webkit-flex-basis: auto;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+    width: 100%;
+  }
+}
+
+@media (min-width:48em) {
+  .c16 {
+    -webkit-flex-basis: 242px;
+    -ms-flex-preferred-size: 242px;
+    flex-basis: 242px;
+    margin-left: auto;
+  }
+}
+
+@media (min-width:62em) {
+  .c16 {
+    -webkit-flex-basis: 188px;
+    -ms-flex-preferred-size: 188px;
+    flex-basis: 188px;
+  }
+}
+
+@media (min-width:75em) {
+  .c16 {
+    -webkit-flex-basis: 255px;
+    -ms-flex-preferred-size: 255px;
+    flex-basis: 255px;
+  }
+}
+
+@media (min-width:25.8125em) {
+  .c16 {
     display: none;
   }
 }
@@ -2628,7 +2627,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
   <h3
     className="c1"
   >
-    Browse among more than 1000 stores
+    cashbackStores.browseStores
   </h3>
   <div
     className="c2"
@@ -2643,59 +2642,71 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
         <div
           className="c5"
         >
-          <img
-            className="c6"
-            src="http://d2umvgb8hls1bt.cloudfront.netundefined"
-          />
           <div
-            className="c7"
+            className="c6"
+          >
+            <img
+              alt="Target"
+              className="c7"
+              src="image-placeholder.png"
+            />
+          </div>
+          <div
+            className="c8"
           >
             <div
-              className="c8"
+              className="c9"
             >
               <div
-                className="c9"
+                className="c10"
               >
                 <div
-                  className="c10"
+                  className="c11"
                 >
                   <span
-                    className="c11"
-                  />
-                  <p
                     className="c12"
                   >
-                    Deals
+                    Target
+                  </span>
+                  <p
+                    className="c13"
+                  >
+                    global.deals
                   </p>
                 </div>
                 <p
-                  className="c13"
-                />
+                  className="c14"
+                >
+                  undefined global.cashBack
+                </p>
               </div>
             </div>
             <a
-              className="c14"
-              href=""
+              className="c15"
+              href="/coupons/undefined"
               onClick={[Function]}
             >
-              Visit Store
+              build.visitStore
             </a>
           </div>
         </div>
         <a
-          className="c15"
-          href=""
+          className="c16"
+          href="/coupons/undefined"
           onClick={[Function]}
         >
-          Visit Store
+          build.visitStore
         </a>
       </div>
     </div>
     <button
-      className="c16"
+      className="c17"
       onClick={[Function]}
     >
-      Load more deals
+      <img
+        alt=""
+        src="preloader.svg"
+      />
     </button>
   </div>
 </div>
@@ -2757,26 +2768,7 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
   padding: 0 28px 0 0;
 }
 
-.c6 {
-  padding: 25px 0 0 0;
-  position: absolute;
-  left: -1px;
-  top: 44px;
-  width: 100%;
-  background: #FFF;
-  border: 0.5px solid #DADDE2;
-  box-shadow: 0 12px 22px rgba(0,0,0,0.2);
-  border-top: none;
-  border-radius: 5px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  padding: 13px 0 32px;
-  opacity: 0;
-  z-index: -1;
-  pointer-events: none;
-}
-
-.c7 {
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2789,28 +2781,71 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  border-radius: 3px;
-  padding: 5px 0;
-  margin: 0;
-  font-size: 13px;
-  color: #C2C2C2;
   cursor: pointer;
-  padding: 5px 25px;
+  padding: 5px;
+  background: white;
 }
 
-.c7:hover {
-  background: #F9FAFC;
+.c5:hover {
+  background: #eee;
+}
+
+.c5:hover > p {
+  color: rgba(0,0,0,0.7);
+}
+
+.c6 {
+  font-weight: 500;
+  line-height: 32px;
+  font-size: 13px;
+  color: #c2c2c2;
+}
+
+.c4 {
+  display: none;
+}
+
+.c7 {
+  position: relative;
+  border: 1px solid #dadde2;
+  border-radius: 5px;
+  margin-top: 20px;
+  cursor: pointer;
 }
 
 .c8 {
-  display: block;
-  width: 50px;
-  text-align: center;
-  padding: 3px 0;
-  border: 2px solid #D4D4D4;
-  border-radius: 7px;
-  font-size: 13px;
-  color: #C2C2C2;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  font-weight: bold;
+  line-height: 21px;
+  font-size: 18px;
+  -webkit-letter-spacing: 0.45px;
+  -moz-letter-spacing: 0.45px;
+  -ms-letter-spacing: 0.45px;
+  letter-spacing: 0.45px;
+  color: #899197;
+  padding: 10px 20px;
+}
+
+.c9 {
+  position: absolute;
+  right: 0;
+  top: 18px;
+  width: 11px;
+  height: 8px;
+  background: #b1b1b1;
+  -webkit-clip-path: polygon(50% 0%,0% 100%,100% 100%);
+  clip-path: polygon(50% 0%,0% 100%,100% 100%);
+  margin-right: 20px;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+  border-radius: 1px;
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 
 .c0 {
@@ -2822,45 +2857,6 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
   -webkit-flex-basis: auto;
   -ms-flex-preferred-size: auto;
   flex-basis: auto;
-}
-
-.c4 {
-  background: #FFF;
-  position: relative;
-  margin: 0;
-  border: 0.5px solid #DADDE2;
-  border-radius: 5px;
-  padding: 12px 25px;
-}
-
-.c5 {
-  line-height: 21px;
-  font-size: 18px;
-  font-weight: bold;
-  -webkit-letter-spacing: 0.45px;
-  -moz-letter-spacing: 0.45px;
-  -ms-letter-spacing: 0.45px;
-  letter-spacing: 0.45px;
-  color: #899197;
-  position: relative;
-  box-sizing: border-box;
-  border-radius: 5px;
-}
-
-.c5::before {
-  position: absolute;
-  content: '';
-  right: 0;
-  top: 28%;
-  border-radius: 10px;
-  -webkit-transition: -webkit-transform 250ms linear;
-  -webkit-transition: transform 250ms linear;
-  transition: transform 250ms linear;
-  width: 0;
-  height: 0;
-  border-top: 11px solid #B1B1B1;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
 }
 
 @media (min-width:36em) {
@@ -2882,29 +2878,34 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
 }
 
 @media (min-width:36em) {
-  .c6 {
-    display: block;
-    position: static;
-    box-shadow: none;
-    border: none;
-    opacity: 1;
-    z-index: 1;
-    pointer-events: initial;
+  .c4 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-flow: column nowrap;
+    -ms-flex-flow: column nowrap;
+    flex-flow: column nowrap;
+    padding-bottom: 30px;
+  }
+
+  .c4 > h2 {
+    font-weight: bold;
+    line-height: 24px;
+    font-size: 20px;
+    -webkit-letter-spacing: 0.5px;
+    -moz-letter-spacing: 0.5px;
+    -ms-letter-spacing: 0.5px;
+    letter-spacing: 0.5px;
+    color: #899197;
+    margin: 10px 0;
+    padding: 5px;
   }
 }
 
 @media (min-width:36em) {
   .c7 {
-    padding: 5px 0;
-  }
-}
-
-@media (min-width:36em) {
-  .c0 {
-    -webkit-flex-basis: 321px;
-    -ms-flex-preferred-size: 321px;
-    flex-basis: 321px;
-    padding: 0 30px 0 0;
+    display: none;
   }
 }
 
@@ -2916,35 +2917,20 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
   }
 }
 
+@media (min-width:36em) {
+  .c0 {
+    -webkit-flex-basis: 321px;
+    -ms-flex-preferred-size: 321px;
+    flex-basis: 321px;
+    padding: 0 10px 0 0;
+  }
+}
+
 @media (min-width:62em) {
   .c0 {
     -webkit-flex-basis: 261px;
     -ms-flex-preferred-size: 261px;
     flex-basis: 261px;
-  }
-}
-
-@media (min-width:36em) {
-  .c4 {
-    margin: 0 0 25px 0;
-    border: none;
-    border-radius: 0;
-    padding: 0;
-    box-shadow: none;
-  }
-}
-
-@media (min-width:36em) {
-  .c5 {
-    pointer-events: none;
-    position: relative;
-    border: none;
-    box-sizing: border-box;
-    border-radius: 0;
-  }
-
-  .c5::before {
-    display: none;
   }
 }
 
@@ -2958,7 +2944,8 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
       className="c2"
       name="search"
       onChange={[Function]}
-      placeholder="Search"
+      onClick={[Function]}
+      placeholder="global.search"
       type="text"
     />
     <img
@@ -2966,54 +2953,44 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
       className="c3"
       src="icon-search.png"
     />
+    <div />
   </div>
   <div
     className="c4"
   >
-    <h3
+    <h2>
+      header.stores
+    </h2>
+    <div
       className="c5"
       onClick={[Function]}
-    />
-    <ul
-      className="c6"
     >
-      <li
-        className="c7"
-        onClick={[Function]}
-      >
-        Accessories
-         
-        <span
-          className="c8"
-        >
-          0
-        </span>
-      </li>
-      <li
-        className="c7"
-        onClick={[Function]}
-      >
-        Beauty
-         
-        <span
-          className="c8"
-        >
-          0
-        </span>
-      </li>
-      <li
-        className="c7"
-        onClick={[Function]}
-      >
-        Clothing
-         
-        <span
-          className="c8"
-        >
-          0
-        </span>
-      </li>
-    </ul>
+      <p
+        className="c6"
+      />
+    </div>
+    <div
+      className="c5"
+      onClick={[Function]}
+    >
+      <p
+        className="c6"
+      />
+    </div>
+  </div>
+  <div
+    className="c7"
+  >
+    <p
+      className="c8"
+      onClick={[Function]}
+    >
+      categories.selectCategory
+    </p>
+    <div />
+    <div
+      className="c9"
+    />
   </div>
 </div>
 `;

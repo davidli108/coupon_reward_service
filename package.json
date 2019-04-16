@@ -11,7 +11,7 @@
     "serve": "NODE_ENV=production node ./server/index.js",
     "analyze": "node scripts/analyze.js",
     "test": "node scripts/test.js --env=jsdom",
-    "test-once": "CI=true node scripts/test.js --env=jsdom --forceExit --coverage",
+    "test:ci": "CI=true node scripts/test.js --env=jsdom --coverage",
     "flow": "flow",
     "lint": "npm run lint:js && npm run flow && npm run lint:css && npm run lint:last-commit",
     "lint:js": "NODE_ENV=development eslint src",
