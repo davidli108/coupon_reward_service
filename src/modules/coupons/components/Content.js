@@ -12,6 +12,7 @@ import Categories from './Categories';
 import Coupons from '../components/Coupons';
 
 import preloader from '../assets/preloader.svg';
+import CategoriesLoader from '../components/loaders/CategoriesLoader';
 
 type ContentProps = {
   t: string => string,
@@ -99,7 +100,9 @@ const Content = ({
             />
           </Content.CategoriesWrapper>
         ) : (
-          <img src={preloader} alt="" />
+          <Content.CategoriesWrapper>
+            <CategoriesLoader />
+          </Content.CategoriesWrapper>
         )}
         <Content.CouponsWrapper>
           {isLoaded ? (

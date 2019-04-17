@@ -22,7 +22,7 @@ import SearchBar from '../components/SearchBar';
 import TodaysFeaturedCoupon from '../components/TodaysFeaturedCoupon';
 import StoreList from '../components/StoreList';
 import Content from '../components/Content';
-import preloader from '../assets/preloader.svg';
+import FeatureCouponLoader from '../components/loaders/FeatureCouponLoader';
 
 type CouponsPageProps = {
   match: Object,
@@ -88,13 +88,12 @@ const CouponsPage = ({
       {Boolean(stores.length) ? (
         <TodaysFeaturedCoupon store={stores[0]} />
       ) : (
-        <img src={preloader} alt="" />
+        <FeatureCouponLoader />
       )}
-      {categories && categories.stores ? (
-        <StoreList stores={categories.stores} />
-      ) : (
-        <img src={preloader} alt="" />
-      )}
+      <StoreList
+        stores={categories.stores}
+        loaded={!!categories && !!categories.stores}
+      />
       <Content
         categories={categories}
         getFilteredDeals={getFilteredDeals}

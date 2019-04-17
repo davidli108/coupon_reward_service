@@ -1974,7 +1974,7 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
               <p
                 className="c11"
               >
-                undefined global.cashBack
+                undefined
               </p>
             </div>
           </div>
@@ -2677,7 +2677,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
                 <p
                   className="c14"
                 >
-                  undefined global.cashBack
+                  undefined
                 </p>
               </div>
             </div>
@@ -2768,7 +2768,7 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
   padding: 0 28px 0 0;
 }
 
-.c5 {
+.c6 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2786,15 +2786,15 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
   background: white;
 }
 
-.c5:hover {
+.c6:hover {
   background: #eee;
 }
 
-.c5:hover > p {
+.c6:hover > p {
   color: rgba(0,0,0,0.7);
 }
 
-.c6 {
+.c7 {
   font-weight: 500;
   line-height: 32px;
   font-size: 13px;
@@ -2805,7 +2805,11 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
   display: none;
 }
 
-.c7 {
+.c5 {
+  color: #899197;
+}
+
+.c8 {
   position: relative;
   border: 1px solid #dadde2;
   border-radius: 5px;
@@ -2813,7 +2817,7 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
   cursor: pointer;
 }
 
-.c8 {
+.c9 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2829,7 +2833,7 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
   padding: 10px 20px;
 }
 
-.c9 {
+.c10 {
   position: absolute;
   right: 0;
   top: 18px;
@@ -2904,7 +2908,7 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
 }
 
 @media (min-width:36em) {
-  .c7 {
+  .c8 {
     display: none;
   }
 }
@@ -2959,37 +2963,43 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
     className="c4"
   >
     <h2>
-      header.stores
+      <a
+        className="c5"
+        href="/cashback-stores"
+        onClick={[Function]}
+      >
+        header.stores
+      </a>
     </h2>
     <div
-      className="c5"
+      className="c6"
       onClick={[Function]}
     >
       <p
-        className="c6"
+        className="c7"
       />
     </div>
     <div
-      className="c5"
+      className="c6"
       onClick={[Function]}
     >
       <p
-        className="c6"
+        className="c7"
       />
     </div>
   </div>
   <div
-    className="c7"
+    className="c8"
   >
     <p
-      className="c8"
+      className="c9"
       onClick={[Function]}
     >
       categories.selectCategory
     </p>
     <div />
     <div
-      className="c9"
+      className="c10"
     />
   </div>
 </div>

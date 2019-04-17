@@ -5,37 +5,44 @@ import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
 
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
+import StoreListLoader from './loaders/StoreListLoader';
 
 type StoreListProps = {
   t: string => string,
   stores: Object,
+  loaded: boolean,
 };
 
-const StoreList = ({ t, stores }: StoreListProps) => (
-  <StoreList.Wrapper>
-    {stores.map(store => (
-      <StoreList.Item
-        key={`store_${store.store_id}`}
-        href={store.offer_link}
-        target="_blank"
-      >
-        <img
-          src={
-            store.offer_img
-              ? `http://d2umvgb8hls1bt.cloudfront.net${store.offer_img}`
-              : placeholder
-          }
-          alt={store.store_name}
-        />
-        <p>
-          {store.cashback_text
-            .replace('Cash Back', t('global.cashBack'))
-            .replace('Instant Savings', t('global.instantSaving'))}
-        </p>
-      </StoreList.Item>
-    ))}
-  </StoreList.Wrapper>
-);
+const StoreList = ({ t, stores, loaded }: StoreListProps) => {
+  if (loaded) {
+    return (
+      <StoreList.Wrapper>
+        {stores.map(store => (
+          <StoreList.Item
+            key={`store_${store.store_id}`}
+            href={store.offer_link}
+            target="_blank"
+          >
+            <img
+              src={
+                store.offer_img
+                  ? `http://d2umvgb8hls1bt.cloudfront.net${store.offer_img}`
+                  : placeholder
+              }
+              alt={store.store_name}
+            />
+            <p>
+              {store.cashback_text
+                .replace('Cash Back', t('global.cashBack'))
+                .replace('Instant Savings', t('global.instantSaving'))}
+            </p>
+          </StoreList.Item>
+        ))}
+      </StoreList.Wrapper>
+    );
+  }
+  return <StoreListLoader />;
+};
 
 StoreList.Wrapper = styled.div`
   display: flex;
