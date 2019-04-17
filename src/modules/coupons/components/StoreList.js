@@ -20,7 +20,11 @@ const StoreList = ({ t, stores }: StoreListProps) => (
         target="_blank"
       >
         <img
-          src={store.offer_img ? `http://d2umvgb8hls1bt.cloudfront.net${store.offer_img}` : placeholder}
+          src={
+            store.offer_img
+              ? `http://d2umvgb8hls1bt.cloudfront.net${store.offer_img}`
+              : placeholder
+          }
           alt={store.store_name}
         />
         <p>

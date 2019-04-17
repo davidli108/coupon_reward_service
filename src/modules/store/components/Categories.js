@@ -1,5 +1,6 @@
 // @flow
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
@@ -19,7 +20,9 @@ const Categories = ({
   onActiveCategory,
 }: CategoriesProps) => (
   <Categories.Wrapper>
-    <h2>{title}</h2>
+    <h2>
+      <Categories.Link to="/cashback-stores">{title}</Categories.Link>
+    </h2>
     {categories &&
       categories.map(category => (
         <CategoryItem
@@ -53,6 +56,10 @@ Categories.Wrapper = styled.div`
       padding: 5px;
     }
   `}
+`;
+
+Categories.Link = styled(Link)`
+  color: #899197;
 `;
 
 export default Categories;

@@ -135,6 +135,7 @@ export default {
       "Download Piggy's Automatic Coupons at Checkout and Never Miss a Deal Again!",
     neverMiss: 'Never miss a coupon with our free app!',
     loadMoreDeals: 'Load More Deals',
+    loadMoreStores: 'Load More Stores',
     search: 'Search',
     nothingFound: 'Nothing found',
     deals: 'Deals',

@@ -39,6 +39,7 @@ type CouponsPageProps = {
   storeSearchResult: Object,
   requestSearch: Function,
   searchIsLoading: boolean,
+  resetCoupons: Function,
 };
 
 const CouponsPage = ({
@@ -56,6 +57,7 @@ const CouponsPage = ({
   storeSearchResult,
   requestSearch,
   searchIsLoading,
+  resetCoupons,
 }: CouponsPageProps) => {
   const [searchValue, setSearchValue] = useState('');
 
@@ -101,6 +103,7 @@ const CouponsPage = ({
         getCouponsByCategory={getCouponsByCategory}
         getDealsFilter={getDealsFilter}
         setDealsFilter={setDealsFilter}
+        resetCoupons={resetCoupons}
       />
     </CouponsPage.Wrapper>
   );
@@ -151,6 +154,7 @@ const mapDispatchToProps = {
   getCouponsByCategory: couponsActions.getCouponsByCategory,
   setDealsFilter: couponsActions.setDealsFilter,
   requestSearch: couponsActions.requestSearch,
+  resetCoupons: couponsActions.resetCoupons,
 };
 
 export default compose(

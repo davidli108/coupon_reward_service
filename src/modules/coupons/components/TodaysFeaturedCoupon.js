@@ -22,8 +22,7 @@ const TodaysFeaturedCoupon = ({ t, store }: TodaysFeaturedCouponProps) => {
   return (
     <TodaysFeaturedCoupon.Wrapper>
       <h2>
-        {t('coupons.todaysFeatureCoupon')}
-        {store.store_name}
+        {t('coupons.todaysFeatureCoupon')} {store.store_name}
       </h2>
       <TodaysFeaturedCoupon.Content>
         <TodaysFeaturedCoupon.LogoControlsWrapper>
@@ -54,7 +53,7 @@ const TodaysFeaturedCoupon = ({ t, store }: TodaysFeaturedCouponProps) => {
 
         <TodaysFeaturedCoupon.DescriptionButtonWrapper>
           <TodaysFeaturedCoupon.Description>
-            {store.ref_text}
+            {store.offer_text_short}
           </TodaysFeaturedCoupon.Description>
           <TodaysFeaturedCoupon.Button href={store.offer_link} target="_blank">
             {t('coupons.buttons.viewDeal')}

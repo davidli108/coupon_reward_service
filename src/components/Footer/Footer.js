@@ -15,18 +15,7 @@ type FooterProps = {
 
 const Footer = ({ t }: FooterProps) => (
   <Footer.Wrapper>
-    <Footer.Strip>
-      <div>
-        <p>{t('footer.stopMissingOut')}</p>
-        <Footer.StripLink
-          href="https://chrome.google.com/webstore/detail/piggy-automatic-coupons-c/hfapbcheiepjppjbnkphkmegjlipojba?hl=en"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          {t('footer.getTheApp')}
-        </Footer.StripLink>
-      </div>
-    </Footer.Strip>
+    <Footer.Strip />
     <Footer.Container>
       <div>
         <Footer.Logo src={logo} />

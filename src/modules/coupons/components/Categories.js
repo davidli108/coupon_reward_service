@@ -1,11 +1,13 @@
 // @flow
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
 import CategoryItem from './CategoryItem';
 
 type CategoriesProps = {
+  type: string,
   title: string,
   categories: Object,
   activeCategory: ?string,
@@ -13,17 +15,26 @@ type CategoriesProps = {
 };
 
 const Categories = ({
+  type,
   title,
   categories,
   activeCategory,
   onActiveCategory,
 }: CategoriesProps) => (
   <Categories.Wrapper>
-    <h2>{title}</h2>
+    <h2>
+      <Categories.Link
+        to={type === 'categories' ? '/coupons' : '/cashback-stores'}
+        onClick={() => onActiveCategory('')}
+      >
+        {title}
+      </Categories.Link>
+    </h2>
     {categories &&
       categories.map(category => (
         <CategoryItem
           key={`key_${category.shortName || category.short_name}`}
+          type={type}
           name={category.name || category.store_name}
           shortName={category.shortName || category.short_name}
           isActive={
@@ -55,6 +66,10 @@ Categories.Wrapper = styled.div`
       padding: 5px;
     }
   `}
+`;
+
+Categories.Link = styled(Link)`
+  color: #899197;
 `;
 
 export default Categories;

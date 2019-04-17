@@ -59,13 +59,6 @@ const Header = ({ t }) => {
       link: '/cashback-stores',
     },
     {
-      bgColor: '#3ab7d1',
-      hoverBgColor: '#ef65a0',
-      title: t('header.getApp'),
-      redirect:
-        'https://chrome.google.com/webstore/detail/piggy-automatic-coupons-c/hfapbcheiepjppjbnkphkmegjlipojba?hl=en',
-    },
-    {
       bgColor: '#34a6bf',
       hoverBgColor: '#29899e',
       title: t('header.login'),

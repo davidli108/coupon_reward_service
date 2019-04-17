@@ -27,7 +27,11 @@ const Featured = ({ t, featured }: FeaturedProps) => (
           {offer_img && (
             <Featured.WrapperImage>
               <Featured.Image
-                src={offer_img ? `http://d2umvgb8hls1bt.cloudfront.net${offer_img}` : placeholder}
+                src={
+                  offer_img
+                    ? `http://d2umvgb8hls1bt.cloudfront.net${offer_img}`
+                    : placeholder
+                }
                 alt={store_name}
               />
             </Featured.WrapperImage>

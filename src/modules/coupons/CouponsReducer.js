@@ -18,6 +18,7 @@ import {
   GET_COUPONS,
   SEARCH,
   REQUEST_SEARCH,
+  RESET_COUPONS,
 } from './CouponsActions';
 
 export const STATE_KEY = 'coupons';
@@ -66,6 +67,9 @@ const CouponsReducer = (
       );
 
       return R.assoc<Object, Object>('stores', offersData, state);
+    }
+    case RESET_COUPONS: {
+      return R.assoc<Object, Object>('stores', [], state);
     }
     case `${FETCH_CATEGORIES}_SUCCESS`: {
       const data = {

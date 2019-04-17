@@ -24,6 +24,7 @@ type ContentProps = {
   getCouponsByCategory: string => Promise<number>,
   getDealsFilter: Object,
   setDealsFilter: Object,
+  resetCoupons: Function,
 };
 
 const Content = ({
@@ -37,6 +38,7 @@ const Content = ({
   getCouponsByCategory,
   getDealsFilter,
   setDealsFilter,
+  resetCoupons,
 }: ContentProps) => {
   const [loadCount, setLoadCount] = useState(20);
   const [isLoaded, setIsLoaded] = useState(true);
@@ -60,6 +62,7 @@ const Content = ({
   };
 
   const onActiveCategory = shortName => {
+    resetCoupons();
     history.push('/coupons/category/' + shortName);
     setActiveCategory(shortName);
     setIsLoaded(false);
@@ -81,12 +84,14 @@ const Content = ({
         {isLoadedCategories ? (
           <Content.CategoriesWrapper>
             <Categories
+              type="categories"
               categories={categories.categories}
               title={t('categories.name')}
               activeCategory={activeCategory}
               onActiveCategory={onActiveCategory}
             />
             <Categories
+              type="stores"
               categories={categories.stores}
               title={t('header.stores')}
               activeCategory={activeCategory}

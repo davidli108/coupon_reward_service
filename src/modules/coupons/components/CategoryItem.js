@@ -1,5 +1,6 @@
 // @flow
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import { withTranslation } from 'react-i18next';
 
@@ -64,7 +65,9 @@ const getLocalTitle = (name, t) => {
 
 type CategoryItemProps = {
   t: string => string,
+  history: Object,
   setOpen?: boolean => void,
+  type: string,
   name: string,
   shortName: string,
   isActive: boolean,
@@ -73,7 +76,9 @@ type CategoryItemProps = {
 
 const CategoryItem = ({
   t,
+  history,
   setOpen,
+  type,
   name,
   shortName,
   isActive,
@@ -82,9 +87,13 @@ const CategoryItem = ({
   <CategoryItem.Wrapper
     isActive={isActive}
     onClick={() => {
-      onActive(shortName);
-      if (setOpen) {
-        setOpen(false);
+      if (type === 'categories') {
+        onActive(shortName);
+        if (setOpen) {
+          setOpen(false);
+        }
+      } else {
+        history.push(`/coupons/${shortName}`);
       }
     }}
   >
@@ -131,4 +140,4 @@ CategoryItem.Value = styled.div`
   color: #c2c2c2;
 `;
 
-export default withTranslation()(CategoryItem);
+export default withRouter(withTranslation()(CategoryItem));

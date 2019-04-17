@@ -71,7 +71,7 @@ const StoreList = ({
           </StoreList.PreloaderWrapper>
         ) : (
           stores.map(
-            ({ name, id, img, link, storeDiscount, shortName }: Object) => (
+            ({ name, id, img, link, cashback_save, shortName }: Object) => (
               <StoreList.StoreItem key={`list_item_${name}_${id}`}>
                 {/* {offer_success_print && <StoreList.StoreNew>New Store</StoreList.StoreNew>} */}
                 <StoreList.Box>
@@ -94,9 +94,7 @@ const StoreList = ({
                             {t('global.deals')}
                           </StoreList.BranDeals>
                         </StoreList.Brand>
-                        <StoreList.Cash>
-                          {`${storeDiscount} ${t('global.cashBack')}`}
-                        </StoreList.Cash>
+                        <StoreList.Cash>{`${cashback_save}`}</StoreList.Cash>
                       </StoreList.Info>
                       {/* {couponActive && (
                       <StoreList.Coupons>
@@ -121,7 +119,7 @@ const StoreList = ({
       <StoreList.LoadMoreButton onClick={onLoad}>
         {isLoadedStores ? (
           stores.length !== 0 && storesCount > stores.length ? (
-            'Load more deals'
+            t('global.loadMoreStores')
           ) : (
             ''
           )

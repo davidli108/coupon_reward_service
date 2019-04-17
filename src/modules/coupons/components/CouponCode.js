@@ -7,9 +7,10 @@ type CouponCodeProps = {
   t: Function,
   code: string,
   link: string,
+  refLink: string,
 };
 
-const CouponCode = ({ t, code, link }: CouponCodeProps) => {
+const CouponCode = ({ t, code, link, refLink }: CouponCodeProps) => {
   const [isShowCode, setIsShowCode] = useState(false);
 
   return (
@@ -26,7 +27,9 @@ const CouponCode = ({ t, code, link }: CouponCodeProps) => {
       >
         {code ? t('coupons.buttons.viewCoupon') : t('coupons.buttons.viewDeal')}
       </CouponCode.Button>
-      <CouponCode.Code isShow={isShowCode}>{code}</CouponCode.Code>
+      <CouponCode.Code href={refLink} target="_blank" isShow={isShowCode}>
+        {code}
+      </CouponCode.Code>
     </CouponCode.Wrapper>
   );
 };
@@ -59,7 +62,7 @@ CouponCode.Button = styled.div`
   text-transform: uppercase;
 `;
 
-CouponCode.Code = styled.div`
+CouponCode.Code = styled.a`
   display: ${props => (props.isShow ? 'flex' : 'none')};
   width: 100%;
   height: 46px;
@@ -68,6 +71,7 @@ CouponCode.Code = styled.div`
   align-items: center;
   border: 2px dashed gray;
   background-color: #fefff4;
+  color: black;
 `;
 
 export default withTranslation()(CouponCode);

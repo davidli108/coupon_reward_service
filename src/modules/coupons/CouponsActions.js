@@ -8,6 +8,7 @@ export const REQUEST_SEARCH = `${namespace}/REQUEST_SEARCH`;
 export const SEARCH = `${namespace}/SEARCH`;
 export const SET_DEALS_FILTER = `${namespace}/SET_DEALS_FILTER`;
 export const SET_FILTER_TYPE = `${namespace}/SET_FILTER_TYPE`;
+export const RESET_COUPONS = `${namespace}/RESET_COUPONS`;
 
 export const getCoupons = () => ({
   type: GET_COUPONS,
@@ -16,6 +17,10 @@ export const getCoupons = () => ({
       url: '/api/coupons',
     },
   },
+});
+
+export const resetCoupons = () => ({
+  type: RESET_COUPONS,
 });
 
 export const loadMore = (count: number) => ({
