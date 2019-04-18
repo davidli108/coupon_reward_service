@@ -211,7 +211,7 @@ export default {
   },
   storeCoupons: {
     viewLatestCoupons:
-      "View the latest Online Coupons for Build below! Never miss a Build coupon or Cash Back opportunities from any of our 3,000 other stores with our Free Mobile App and Browser app! Any of Build's online coupons can be combined with Free, Automatic Rebates.Up to 3.0% Cash Back! Only from Piggy!Any of these Build coupon codes and promotions can be combined with our Automatic Cash Back at Build",
+      'View the latest Online Coupons for storeName below! Never miss a storeName coupon or Cash Back opportunities from any of our 3,000 other stores with our Free Mobile App and Browser app! Any of storeName online coupons can be combined with Free, Automatic Rebates.Up to 3.0% Cash Back! Only from Piggy!Any of these storeName coupon codes and promotions can be combined with our Automatic Cash Back at storeName',
     returnPolicy: 'Return Policy',
     shipping: 'Shipping',
     secrets: 'Secrets',

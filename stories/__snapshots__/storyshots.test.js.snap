@@ -1942,11 +1942,17 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
         <div
           className="c3"
         >
-          <img
-            alt="Target"
-            className="c4"
-            src="image-placeholder.png"
-          />
+          <a
+            href="/store/undefined"
+            onClick={[Function]}
+          >
+            <img
+              alt="Target"
+              className="c4"
+              onError={[Function]}
+              src="image-placeholder.png"
+            />
+          </a>
         </div>
         <div
           className="c5"
@@ -1980,7 +1986,7 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
           </div>
           <a
             className="c12"
-            href="/coupons/undefined"
+            href="/store/undefined"
             onClick={[Function]}
           >
             build.visitStore
@@ -1989,7 +1995,7 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
       </div>
       <a
         className="c13"
-        href="/coupons/undefined"
+        href="/store/undefined"
         onClick={[Function]}
       >
         build.visitStore
@@ -2645,11 +2651,17 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
           <div
             className="c6"
           >
-            <img
-              alt="Target"
-              className="c7"
-              src="image-placeholder.png"
-            />
+            <a
+              href="/store/undefined"
+              onClick={[Function]}
+            >
+              <img
+                alt="Target"
+                className="c7"
+                onError={[Function]}
+                src="image-placeholder.png"
+              />
+            </a>
           </div>
           <div
             className="c8"
@@ -2683,7 +2695,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
             </div>
             <a
               className="c15"
-              href="/coupons/undefined"
+              href="/store/undefined"
               onClick={[Function]}
             >
               build.visitStore
@@ -2692,7 +2704,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
         </div>
         <a
           className="c16"
-          href="/coupons/undefined"
+          href="/store/undefined"
           onClick={[Function]}
         >
           build.visitStore
@@ -2768,48 +2780,16 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
   padding: 0 28px 0 0;
 }
 
-.c6 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  cursor: pointer;
-  padding: 5px;
-  background: white;
-}
-
-.c6:hover {
-  background: #eee;
-}
-
-.c6:hover > p {
-  color: rgba(0,0,0,0.7);
-}
-
-.c7 {
-  font-weight: 500;
-  line-height: 32px;
-  font-size: 13px;
-  color: #c2c2c2;
+.c5 {
+  height: 800px;
+  margin-top: 10px;
 }
 
 .c4 {
   display: none;
 }
 
-.c5 {
-  color: #899197;
-}
-
-.c8 {
+.c6 {
   position: relative;
   border: 1px solid #dadde2;
   border-radius: 5px;
@@ -2817,7 +2797,7 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
   cursor: pointer;
 }
 
-.c9 {
+.c7 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2833,7 +2813,7 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
   padding: 10px 20px;
 }
 
-.c10 {
+.c8 {
   position: absolute;
   right: 0;
   top: 18px;
@@ -2853,9 +2833,6 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
 }
 
 .c0 {
-  -webkit-flex-basis: 261px;
-  -ms-flex-preferred-size: 261px;
-  flex-basis: 261px;
   padding: 0 30px 0 0;
   padding: 0 0 0 0;
   -webkit-flex-basis: auto;
@@ -2908,7 +2885,7 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
 }
 
 @media (min-width:36em) {
-  .c8 {
+  .c6 {
     display: none;
   }
 }
@@ -2962,44 +2939,220 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
   <div
     className="c4"
   >
-    <h2>
-      <a
-        className="c5"
-        href="/cashback-stores"
-        onClick={[Function]}
-      >
-        header.stores
-      </a>
-    </h2>
-    <div
-      className="c6"
-      onClick={[Function]}
+    <svg
+      aria-labelledby="Loading interface..."
+      className="c5"
+      preserveAspectRatio="none"
+      role="img"
+      style={Object {}}
+      viewBox="0 0 400 0"
     >
-      <p
-        className="c7"
+      <title>
+        Loading interface...
+      </title>
+      <rect
+        clipPath="url(#0wyybhy3gurj)"
+        height={0}
+        style={
+          Object {
+            "fill": "url(#uikhyucngch)",
+          }
+        }
+        width={400}
+        x="0"
+        y="0"
       />
-    </div>
-    <div
-      className="c6"
-      onClick={[Function]}
-    >
-      <p
-        className="c7"
-      />
-    </div>
+      <defs>
+        <clipPath
+          id="0wyybhy3gurj"
+        >
+          <rect
+            height="60"
+            rx="4"
+            ry="2"
+            width="200"
+            x="0"
+            y="0"
+          />
+          <rect
+            height="60"
+            rx="1"
+            ry="1"
+            width="400"
+            x="0"
+            y="70"
+          />
+          <rect
+            height="60"
+            rx="1"
+            ry="1"
+            width="400"
+            x="0"
+            y="140"
+          />
+          <rect
+            height="60"
+            rx="1"
+            ry="1"
+            width="400"
+            x="0"
+            y="210"
+          />
+          <rect
+            height="60"
+            rx="1"
+            ry="1"
+            width="400"
+            x="0"
+            y="280"
+          />
+          <rect
+            height="60"
+            rx="1"
+            ry="1"
+            width="400"
+            x="0"
+            y="350"
+          />
+          <rect
+            height="60"
+            rx="1"
+            ry="1"
+            width="400"
+            x="0"
+            y="420"
+          />
+          <rect
+            height="60"
+            rx="1"
+            ry="1"
+            width="400"
+            x="0"
+            y="490"
+          />
+          <rect
+            height="60"
+            rx="1"
+            ry="1"
+            width="400"
+            x="0"
+            y="560"
+          />
+          <rect
+            height="60"
+            rx="1"
+            ry="1"
+            width="400"
+            x="0"
+            y="630"
+          />
+          <rect
+            height="60"
+            rx="1"
+            ry="1"
+            width="400"
+            x="0"
+            y="700"
+          />
+          <rect
+            height="60"
+            rx="1"
+            ry="1"
+            width="400"
+            x="0"
+            y="770"
+          />
+          <rect
+            height="60"
+            rx="1"
+            ry="1"
+            width="400"
+            x="0"
+            y="840"
+          />
+          <rect
+            height="60"
+            rx="1"
+            ry="1"
+            width="400"
+            x="0"
+            y="910"
+          />
+          <rect
+            height="60"
+            rx="1"
+            ry="1"
+            width="400"
+            x="0"
+            y="980"
+          />
+          <rect
+            height="60"
+            rx="1"
+            ry="1"
+            width="400"
+            x="0"
+            y="1050"
+          />
+        </clipPath>
+        <linearGradient
+          id="uikhyucngch"
+        >
+          <stop
+            offset="0%"
+            stopColor="#f0f0f0"
+            stopOpacity={1}
+          >
+            <animate
+              attributeName="offset"
+              dur="2s"
+              keyTimes="0; 0.25; 1"
+              repeatCount="indefinite"
+              values="-2; -2; 1"
+            />
+          </stop>
+          <stop
+            offset="50%"
+            stopColor="#e0e0e0"
+            stopOpacity={1}
+          >
+            <animate
+              attributeName="offset"
+              dur="2s"
+              keyTimes="0; 0.25; 1"
+              repeatCount="indefinite"
+              values="-1; -1; 2"
+            />
+          </stop>
+          <stop
+            offset="100%"
+            stopColor="#f0f0f0"
+            stopOpacity={1}
+          >
+            <animate
+              attributeName="offset"
+              dur="2s"
+              keyTimes="0; 0.25; 1"
+              repeatCount="indefinite"
+              values="0; 0; 3"
+            />
+          </stop>
+        </linearGradient>
+      </defs>
+    </svg>
   </div>
   <div
-    className="c8"
+    className="c6"
   >
     <p
-      className="c9"
+      className="c7"
       onClick={[Function]}
     >
       categories.selectCategory
     </p>
     <div />
     <div
-      className="c10"
+      className="c8"
     />
   </div>
 </div>

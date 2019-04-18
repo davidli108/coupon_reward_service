@@ -214,7 +214,7 @@ export default {
   },
   storeCoupons: {
     viewLatestCoupons:
-      'Sehen Sie sich die neuesten Online-Gutscheine für Build unten an! Verpassen Sie niemals einen Coupon oder Cash Back aus einem unserer 3.000 anderen Stores mit unserer kostenlosen App für mobile Apps und Browser! Alle Online-Gutscheine von Build können mit kostenlosen automatischen Rabatten kombiniert werden. Bis zu 3,0 % Cash Back! Nur von Piggy! Jeder dieser Build-Gutscheincodes und Promotion kann mit unserem automatischen Cash Back-Build kombiniert werden',
+      'Sehen Sie sich die neuesten Online-Gutscheine für storeName unten an! Verpassen Sie niemals einen Coupon oder Cash Back aus einem unserer 3.000 anderen Stores mit unserer kostenlosen App für mobile Apps und Browser! Alle Online-Gutscheine von storeName können mit kostenlosen automatischen Rabatten kombiniert werden. Bis zu 3,0 % Cash Back! Nur von Piggy! Jeder dieser storeName-Gutscheincodes und Promotion kann mit unserem automatischen Cash Back-storeName kombiniert werden',
     returnPolicy: 'Rückgaberecht',
     shipping: 'Lieferung',
     secrets: 'Geheimnis',
