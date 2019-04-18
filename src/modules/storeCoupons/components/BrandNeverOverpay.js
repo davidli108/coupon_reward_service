@@ -8,23 +8,14 @@ import type { BrandNeverOverpayProps } from '../models/StorePage';
 
 const BrandNeverOverpay = ({ t, storeName }: BrandNeverOverpayProps) => {
   return (
-    <>
-      <BrandNeverOverpay.NeverOverpay>
-        <h2>
-          {t('storeCoupons.neverOverlay')} {storeName}
-        </h2>
-        <p>
-          {t('storeCoupons.automaticalyAddAll').replace('storeName', storeName)}
-        </p>
-      </BrandNeverOverpay.NeverOverpay>
-      <BrandNeverOverpay.Advantages>
-        <span>{t('storeCoupons.automaticCoupons')}</span>
-        <span>-</span>
-        <span>{t('storeCoupons.priceCheck')}</span>
-        <span>-</span>
-        <span>{t('storeCoupons.secretRates')}</span>
-      </BrandNeverOverpay.Advantages>
-    </>
+    <BrandNeverOverpay.NeverOverpay>
+      <h2>
+        {t('storeCoupons.neverOverlay')} {storeName}
+      </h2>
+      <p>
+        {t('storeCoupons.automaticalyAddAll').replace('storeName', storeName)}
+      </p>
+    </BrandNeverOverpay.NeverOverpay>
   );
 };
 

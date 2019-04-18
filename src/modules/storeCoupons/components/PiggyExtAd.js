@@ -8,6 +8,7 @@ import { withTranslation } from 'react-i18next';
 
 import type { PiggyExtAdProps } from '../models/StorePage';
 
+// eslint-disable-next-line no-unused-vars
 const renderStarsReview = rating => {
   const fullStarsCount = R.repeat('full', Math.floor(rating));
   const halfStarsCount = R.repeat('half', Math.ceil(rating % 1));
@@ -57,12 +58,14 @@ const PiggyExtAd = ({ t, stars, reviewsCount }: PiggyExtAdProps) => {
       >
         {t('global.addToChrome')}
       </PiggyExtAd.AddExtensionButton>
+      {/*
       <PiggyExtAd.Reviews>
         <div>{renderStarsReview(stars)}</div>
         <span>
           {reviewsCount} {t('global.reviews')}
         </span>
       </PiggyExtAd.Reviews>
+      */}
     </PiggyExtAd.Wrapper>
   );
 };

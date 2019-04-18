@@ -26,7 +26,9 @@ const CouponCode = ({ t, code, link }: CouponCodeProps) => {
         <p>{code ? t('global.revealCoupon') : t('coupons.buttons.viewDeal')}</p>
         <CouponCode.Rectangle isShow={!!code} />
       </CouponCode.Button>
-      <CouponCode.Code isShow={isShowCode}>{code}</CouponCode.Code>
+      <CouponCode.Code href={link} target="_blank" isShow={isShowCode}>
+        {code}
+      </CouponCode.Code>
     </CouponCode.Wrapper>
   );
 };
@@ -58,14 +60,16 @@ CouponCode.Button = styled.div`
   }
 `;
 
-CouponCode.Code = styled.div`
+CouponCode.Code = styled.a`
   display: ${props => (props.isShow ? 'flex' : 'none')};
   width: 100%;
-  height: 45px;
+  height: 41px;
   margin-bottom: 10px;
   justify-content: center;
   align-items: center;
-  background-color: #f1f1f1;
+  border: 2px dashed gray;
+  background-color: #fefff4;
+  color: black;
 `;
 
 CouponCode.Rectangle = styled.div`

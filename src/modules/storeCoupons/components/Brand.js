@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 
 import BrandHeader from './BrandHeader';
 import BrandContent from './BrandContent';
+import placeholder from '@modules/coupons/assets/image-placeholder.png';
 
 import type { BrandProps } from '../models/StorePage';
 
@@ -19,7 +20,15 @@ const Brand = ({
       <Brand.Wrapper>
         <Brand.BrandImageWrapper>
           <img
-            src={`http://33499c7a.ngrok.io/${store_logo_image_path}`}
+            src={
+              store_logo_image_path
+                ? `http://33499c7a.ngrok.io/${store_logo_image_path}`
+                : placeholder
+            }
+            onError={e => {
+              e.target.onerror = null;
+              e.target.src = placeholder;
+            }}
             alt="brand-logo"
           />
         </Brand.BrandImageWrapper>

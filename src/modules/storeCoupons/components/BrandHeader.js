@@ -1,5 +1,6 @@
 //@flow
 import * as React from 'react';
+// eslint-disable-next-line no-unused-vars
 import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
 import breakpoint from 'styled-components-breakpoint';
 import styled from 'styled-components';
@@ -20,6 +21,7 @@ const BrandHeader = ({
   offers,
 }: BrandHeaderProps) => {
   const [isStoreFollowed, setStoreFollowed] = React.useState(false);
+  // eslint-disable-next-line no-unused-vars
   const handleStoreFollowToggler = () => setStoreFollowed(!isStoreFollowed);
 
   return (
@@ -39,12 +41,14 @@ const BrandHeader = ({
           <span>-</span>
           <span>{store_cashback_text}</span>
         </BrandHeader.OffersStats>
+        {/*
         <BrandHeader.FollowStoreWrapper isStoreFollowed={isStoreFollowed}>
           <div onClick={handleStoreFollowToggler}>
             {isStoreFollowed ? <MdFavorite /> : <MdFavoriteBorder />}
             <span>{t('storeCoupons.followStore')}</span>
           </div>
         </BrandHeader.FollowStoreWrapper>
+        */}
       </BrandHeader.NoWrapFlexBox>
     </>
   );

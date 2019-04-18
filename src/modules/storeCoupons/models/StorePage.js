@@ -111,6 +111,7 @@ export type OffersProps = {
 export type AdditionalInfoProps = {
   t: Function,
   additionalInfo: AdditionalInfo,
+  store: Object,
 };
 
 export type AdditionaInfoSectionProps = {

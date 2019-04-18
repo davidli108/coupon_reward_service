@@ -8,9 +8,9 @@ import { withTranslation } from 'react-i18next';
 
 // import AdditionalInfoSection from './AdditionalInfoSection';
 import type { AdditionalInfoProps } from '../models/StorePage';
-import { getAdditionalInfo } from '../StoreCouponsReducer';
+import { getAdditionalInfo, getStore } from '../StoreCouponsReducer';
 
-const AdditionalInfo = ({ t, additionalInfo }: AdditionalInfoProps) => {
+const AdditionalInfo = ({ t, additionalInfo, store }: AdditionalInfoProps) => {
   return (
     <AdditionalInfo.Wrapper>
       {/* {additionalInfo.map(section => (
@@ -20,7 +20,9 @@ const AdditionalInfo = ({ t, additionalInfo }: AdditionalInfoProps) => {
           content={section.content || ''}
         />
       ))} */}
-      <AdditionalInfo.ContentWrapper>
+      <AdditionalInfo.ContentWrapper
+        isShow={additionalInfo.featured_store_returns_body}
+      >
         <h2>{t('storeCoupons.returnPolicy')}</h2>
         <AdditionalInfo.Content
           dangerouslySetInnerHTML={{
@@ -28,8 +30,12 @@ const AdditionalInfo = ({ t, additionalInfo }: AdditionalInfoProps) => {
           }}
         />
       </AdditionalInfo.ContentWrapper>
-      <AdditionalInfo.Separator />
-      <AdditionalInfo.ContentWrapper>
+      <AdditionalInfo.Separator
+        isShow={additionalInfo.featured_store_returns_body}
+      />
+      <AdditionalInfo.ContentWrapper
+        isShow={additionalInfo.featured_store_shipping_content}
+      >
         <h2>{t('storeCoupons.shipping')}</h2>
         <AdditionalInfo.Content
           dangerouslySetInnerHTML={{
@@ -37,14 +43,29 @@ const AdditionalInfo = ({ t, additionalInfo }: AdditionalInfoProps) => {
           }}
         />
       </AdditionalInfo.ContentWrapper>
-      <AdditionalInfo.Separator />
-      <AdditionalInfo.ContentWrapper>
+      <AdditionalInfo.Separator
+        isShow={additionalInfo.featured_store_shipping_content}
+      />
+      <AdditionalInfo.ContentWrapper
+        isShow={additionalInfo.featured_store_secrets_body}
+      >
         <h2>{t('storeCoupons.secrets')}</h2>
         <AdditionalInfo.Content
           dangerouslySetInnerHTML={{
             __html: additionalInfo.featured_store_secrets_body,
           }}
         />
+      </AdditionalInfo.ContentWrapper>
+      <AdditionalInfo.Separator isShow={store.store_description} />
+      <AdditionalInfo.ContentWrapper isShow={store.store_description}>
+        <h2>{store.store_name}</h2>
+        <AdditionalInfo.Content>
+          <p
+            dangerouslySetInnerHTML={{
+              __html: store.store_description,
+            }}
+          />
+        </AdditionalInfo.Content>
       </AdditionalInfo.ContentWrapper>
     </AdditionalInfo.Wrapper>
   );
@@ -55,6 +76,8 @@ AdditionalInfo.Wrapper = styled.div`
   flex-direction: column;
   padding: 15px;
   margin-top: 50px;
+  color: #899197;
+  line-height: 20px;
 
   h2 {
     margin-bottom: 10px;
@@ -65,7 +88,7 @@ AdditionalInfo.Wrapper = styled.div`
   h2,
   h5,
   p {
-    color: #899197;
+    color: #899197 !important;
     line-height: 20px;
   }
 
@@ -99,6 +122,7 @@ AdditionalInfo.Separator = styled.div`
   ${breakpoint('lg')`
     width: 60%;
     margin-bottom: 30px;
+    display: ${props => (props.isShow ? 'flex' : 'none')};
     border-bottom: 2px solid #e3e6e9;
   `}
 `;
@@ -108,6 +132,8 @@ AdditionalInfo.ContentWrapper = styled.div`
   flex-grow: 1;
   margin-left: 15px;
   margin-right: 15px;
+  display: ${props => (props.isShow ? 'flex' : 'none')};
+  flex-direction: column;
 
   ${breakpoint('sm')`
     width: 33%;
@@ -121,6 +147,7 @@ AdditionalInfo.ContentWrapper = styled.div`
 
 const mapStateToProps = state => ({
   additionalInfo: getAdditionalInfo(state),
+  store: getStore(state),
 });
 
 export default compose(

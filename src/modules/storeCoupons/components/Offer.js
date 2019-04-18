@@ -5,6 +5,7 @@ import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
 
 import CouponCode from './CouponCode';
+import placeholder from '@modules/coupons/assets/image-placeholder.png';
 
 type OfferProps = {
   t: Function,
@@ -15,6 +16,7 @@ type OfferProps = {
   discount_print: string,
   offer_name: string,
   offer_success_print: string,
+  store_logo: string,
 };
 
 const Offer = ({
@@ -26,22 +28,38 @@ const Offer = ({
   discount_print,
   offer_name,
   offer_success_print,
+  store_logo,
 }: OfferProps) => {
   return (
     <>
       <Offer.Wrapper>
         {offer_success_print && (
-          <Offer.NewDeal>{t('global.newDeal')}</Offer.NewDeal>
+          <Offer.NewDeal>{offer_success_print}</Offer.NewDeal>
         )}
         <Offer.Content>
+          {/*
           <Offer.Discount>
             <span>{discount}</span>
             <span>Off</span>
           </Offer.Discount>
+           */}
+          <Offer.Image>
+            <img
+              src={
+                store_logo
+                  ? `http://33499c7a.ngrok.io/${store_logo}`
+                  : placeholder
+              }
+              onError={e => {
+                e.target.onerror = null;
+                e.target.src = placeholder;
+              }}
+              alt="brand-logo"
+            />
+          </Offer.Image>
           <Offer.DescriptionWrapper>
             <Offer.Description>{offer_name}</Offer.Description>
             <Offer.AdditionalInfo>
-              <span>{t('global.verifiedToday')}</span>
               <span>{discount_print}</span>
             </Offer.AdditionalInfo>
           </Offer.DescriptionWrapper>
@@ -104,6 +122,21 @@ Offer.Discount = styled.div`
     font-weight: bold;
     line-height: 46px;
     font-size: 39px;
+  }
+`;
+
+Offer.Image = styled.div`
+  width: 110px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+
+  img {
+    max-width: 100px;
+    max-height: 70px;
+    height: auto;
   }
 `;
 
