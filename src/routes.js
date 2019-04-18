@@ -44,14 +44,10 @@ export default (
     <Switch>
       <Route exact path="/" component={HomePage} />
       <Route exact path="/cashback-stores" component={StoresPage} />
-      <Route
-        exact
-        path="/cashback-stores/category/:name"
-        component={StoresPage}
-      />
-      <Route exact path="/coupons/:storeName" component={StorePage} />
+      <Route exact path="/cashback-stores/:name" component={StoresPage} />
+      <Route exact path="/store/:storeName" component={StorePage} />
       <Route exact path="/coupons" component={CouponsPage} />
-      <Route exact path="/coupons/category/:name" component={CouponsPage} />
+      <Route exact path="/coupons/:name" component={CouponsPage} />
 
       {/* Catch all routes */}
       <Route component={NotFoundPage} />
