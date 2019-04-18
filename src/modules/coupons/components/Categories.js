@@ -15,34 +15,31 @@ type CategoriesProps = {
 };
 
 const Categories = ({
-  type,
   title,
   categories,
   activeCategory,
   onActiveCategory,
 }: CategoriesProps) => (
   <Categories.Wrapper>
-    <h2>
-      <Categories.Link
-        to={type === 'categories' ? '/coupons' : '/cashback-stores'}
-        onClick={() => onActiveCategory('')}
-      >
-        {title}
-      </Categories.Link>
-    </h2>
+    <h2>{title}</h2>
     {categories &&
-      categories.map(category => (
-        <CategoryItem
-          key={`key_${category.shortName || category.short_name}`}
-          type={type}
-          name={category.name || category.store_name}
-          shortName={category.shortName || category.short_name}
-          isActive={
-            activeCategory === (category.shortName || category.short_name)
-          }
-          onActive={onActiveCategory}
-        />
-      ))}
+      categories
+        .filter(category =>
+          ['Canada', 'Party Supplies', 'Music & Instruments', 'Jewelry'].every(
+            i => i !== category.name,
+          ),
+        )
+        .map(category => (
+          <CategoryItem
+            key={`key_${category.shortName || category.short_name}`}
+            name={category.name || category.store_name}
+            shortName={category.shortName || category.short_name}
+            isActive={
+              activeCategory === (category.shortName || category.short_name)
+            }
+            onActive={onActiveCategory}
+          />
+        ))}
   </Categories.Wrapper>
 );
 

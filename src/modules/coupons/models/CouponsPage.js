@@ -17,6 +17,8 @@ export type Store = {
   ref_text: string,
   randomStore: Object,
   offer_text_short: string,
+  offer_name: string,
+  store_page_link: string,
 };
 
 export type Category = {
@@ -49,6 +51,7 @@ export type Deal = {
   offer_type: string,
   coupon_code: string,
   ref_link: string,
+  store_page_link: string,
 };
 
 export type featuredStore = {

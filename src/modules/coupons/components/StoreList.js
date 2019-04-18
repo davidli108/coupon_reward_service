@@ -29,6 +29,10 @@ const StoreList = ({ t, stores, loaded }: StoreListProps) => {
                   ? `http://d2umvgb8hls1bt.cloudfront.net${store.offer_img}`
                   : placeholder
               }
+              onError={e => {
+                e.target.onerror = null;
+                e.target.src = placeholder;
+              }}
               alt={store.store_name}
             />
             <p>

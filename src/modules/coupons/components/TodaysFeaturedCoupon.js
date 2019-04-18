@@ -1,5 +1,6 @@
 //@flow
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { IoIosHeartEmpty, IoIosHeart } from 'react-icons/io';
 import { FiShare2 } from 'react-icons/fi';
@@ -26,14 +27,20 @@ const TodaysFeaturedCoupon = ({ t, store }: TodaysFeaturedCouponProps) => {
       </h2>
       <TodaysFeaturedCoupon.Content>
         <TodaysFeaturedCoupon.LogoControlsWrapper>
-          <TodaysFeaturedCoupon.Logo
-            src={
-              store.store_logo
-                ? `http://d2umvgb8hls1bt.cloudfront.net${store.store_logo}`
-                : placeholder
-            }
-            alt={store.store_name}
-          />
+          <Link to={store.store_page_link.replace('coupons', 'store')}>
+            <TodaysFeaturedCoupon.Logo
+              src={
+                store.store_logo
+                  ? `http://d2umvgb8hls1bt.cloudfront.net${store.store_logo}`
+                  : placeholder
+              }
+              onError={e => {
+                e.target.onerror = null;
+                e.target.src = placeholder;
+              }}
+              alt={store.store_name}
+            />
+          </Link>
           <TodaysFeaturedCoupon.Controls isLiked={isFeaturedCouponLiked}>
             {isFeaturedCouponLiked ? (
               <IoIosHeart onClick={handleFeaturedCouponLikeToggler} />
@@ -53,7 +60,7 @@ const TodaysFeaturedCoupon = ({ t, store }: TodaysFeaturedCouponProps) => {
 
         <TodaysFeaturedCoupon.DescriptionButtonWrapper>
           <TodaysFeaturedCoupon.Description>
-            {store.offer_text_short}
+            {store.offer_name}
           </TodaysFeaturedCoupon.Description>
           <TodaysFeaturedCoupon.Button href={store.offer_link} target="_blank">
             {t('coupons.buttons.viewDeal')}

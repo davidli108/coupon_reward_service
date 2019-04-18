@@ -1,5 +1,6 @@
 //@flow
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
@@ -27,6 +28,7 @@ const Coupon = ({
   ref_text,
   ref_link,
   coupon_code,
+  store_page_link,
 }: DealModel) => {
   return (
     <Coupon.Wrapper>
@@ -36,14 +38,20 @@ const Coupon = ({
       </Coupon.BorderWrapper>
       <Coupon.Content>
         <Coupon.StoreLogoWrapper>
-          <Coupon.StoreLogo
-            src={
-              store_logo
-                ? `http://d2umvgb8hls1bt.cloudfront.net${store_logo}`
-                : placeholder
-            }
-            alt={store_name}
-          />
+          <Link to={store_page_link.replace('coupons', 'store')}>
+            <Coupon.StoreLogo
+              src={
+                store_logo
+                  ? `http://d2umvgb8hls1bt.cloudfront.net${store_logo}`
+                  : placeholder
+              }
+              onError={e => {
+                e.target.onerror = null;
+                e.target.src = placeholder;
+              }}
+              alt={store_name}
+            />
+          </Link>
         </Coupon.StoreLogoWrapper>
         {offer_type === OfferType.freeShipping ? (
           <Coupon.Discount>

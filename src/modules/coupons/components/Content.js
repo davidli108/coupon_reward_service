@@ -11,8 +11,8 @@ import CategoriesMobile from './CategoriesMobile';
 import Categories from './Categories';
 import Coupons from '../components/Coupons';
 
-import preloader from '../assets/preloader.svg';
 import CategoriesLoader from '../components/loaders/CategoriesLoader';
+import CouponLoader from '../components/loaders/CouponLoader';
 
 type ContentProps = {
   t: string => string,
@@ -26,6 +26,7 @@ type ContentProps = {
   getDealsFilter: Object,
   setDealsFilter: Object,
   resetCoupons: Function,
+  offersCount: number,
 };
 
 const Content = ({
@@ -40,6 +41,7 @@ const Content = ({
   getDealsFilter,
   setDealsFilter,
   resetCoupons,
+  offersCount,
 }: ContentProps) => {
   const [loadCount, setLoadCount] = useState(20);
   const [isLoaded, setIsLoaded] = useState(true);
@@ -55,7 +57,9 @@ const Content = ({
   const onLoadMore = () => {
     if (isLoaded) {
       setIsLoaded(false);
-      loadMore(loadCount).then(() => {
+      loadMore(
+        match.params.name ? `${match.params.name}/${loadCount}` : loadCount,
+      ).then(() => {
         setIsLoaded(true);
         setLoadCount(loadCount + 20);
       });
@@ -64,10 +68,19 @@ const Content = ({
 
   const onActiveCategory = shortName => {
     resetCoupons();
-    history.push('/coupons/category/' + shortName);
-    setActiveCategory(shortName);
-    setIsLoaded(false);
-    getCouponsByCategory(shortName).then(() => setIsLoaded(true));
+    if (match.params.name !== shortName) {
+      history.push('/coupons/' + shortName);
+      setActiveCategory(shortName);
+      setIsLoaded(false);
+      getCouponsByCategory(shortName).then(() => setIsLoaded(true));
+      setLoadCount(20);
+    } else {
+      history.push('/coupons/');
+      setActiveCategory('');
+      setIsLoaded(false);
+      getCouponsByCategory('').then(() => setIsLoaded(true));
+      setLoadCount(20);
+    }
   };
 
   return (
@@ -108,20 +121,26 @@ const Content = ({
           {isLoaded ? (
             <Coupons coupons={getFilteredDeals} />
           ) : activeCategory ? (
-            <Content.Preloader src={preloader} alt="" />
+            <Content.Coupons>
+              {Array.apply(null, Array(20)).map(() => (
+                <CouponLoader />
+              ))}
+            </Content.Coupons>
           ) : (
             <>
-              <Coupons coupons={getFilteredDeals} />
-              {getFilteredDeals.length !== 0 && <img src={preloader} alt="" />}
+              <Coupons
+                coupons={getFilteredDeals}
+                isLoad={getFilteredDeals.length !== 0}
+              />
             </>
           )}
           <Content.LoadMoreDeals onClick={onLoadMore}>
             {isLoaded &&
-              (getFilteredDeals &&
-              getFilteredDeals.length !== 0 &&
-              !activeCategory
-                ? t('global.loadMoreDeals')
-                : '')}
+            getFilteredDeals &&
+            getFilteredDeals.length !== 0 &&
+            offersCount > getFilteredDeals.length
+              ? t('global.loadMoreDeals')
+              : ''}
           </Content.LoadMoreDeals>
         </Content.CouponsWrapper>
       </Content.Grid>
@@ -167,6 +186,34 @@ Content.CouponsWrapper = styled.div`
   img {
     padding-right: 60px;
   }
+`;
+
+Content.Coupons = styled.div`
+  min-height: 400px;
+  display: flex;
+  flex-flow: column nowrap;
+
+  ${breakpoint('sx')`
+    flex-flow: row wrap;
+    justify-content: flex-start;
+
+    > div {
+      width: calc(50% - 16px);
+      margin-right: 16px;
+    }
+  `}
+
+  ${breakpoint('lg')`
+    > div {
+      width: calc(50% - 30px);
+    }
+  `}
+
+  ${breakpoint('xl')`
+    > div {
+      width: calc(33% - 30px);
+    }
+  `}
 `;
 
 Content.LoadMoreDeals = styled.div`

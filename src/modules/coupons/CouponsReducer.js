@@ -39,6 +39,7 @@ const initialState: CouponsReducerProps = {
   categories: {},
   deals: [],
   searchIsLoading: false,
+  offersCount: 0,
 };
 
 const CouponsReducer = (
@@ -66,7 +67,16 @@ const CouponsReducer = (
         action,
       );
 
-      return R.assoc<Object, Object>('stores', offersData, state);
+      const offersCount = R.pathOr(
+        0,
+        ['payload', 'data', 'offers_count'],
+        action,
+      );
+
+      return R.compose(
+        R.assoc<Object, Object>('stores', offersData),
+        R.assoc<Object, Object>('offersCount', offersCount),
+      )(state);
     }
     case RESET_COUPONS: {
       return R.assoc<Object, Object>('stores', [], state);
@@ -86,7 +96,16 @@ const CouponsReducer = (
         action,
       );
 
-      return R.assoc<Object, Object>('stores', offersData, state);
+      const offersCount = R.pathOr(
+        0,
+        ['payload', 'data', 'offers_count'],
+        action,
+      );
+
+      return R.compose(
+        R.assoc<Object, Object>('stores', offersData),
+        R.assoc<Object, Object>('offersCount', offersCount),
+      )(state);
     }
     case REQUEST_SEARCH: {
       return R.assoc<Object, Object>('searchIsLoading', false, state);
@@ -148,6 +167,8 @@ export const getCategoryFilter = R.path<string>([
 ]);
 
 export const getStoresFilter = R.path<string>([STATE_KEY, 'storesFilter']);
+
+export const getOffersCount = R.path<string>([STATE_KEY, 'offersCount']);
 
 export const getFilteredDeals = (state: Object) => {
   if (state.coupons.dealsFilter === 'allDeals') {

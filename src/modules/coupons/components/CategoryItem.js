@@ -67,7 +67,6 @@ type CategoryItemProps = {
   t: string => string,
   history: Object,
   setOpen?: boolean => void,
-  type: string,
   name: string,
   shortName: string,
   isActive: boolean,
@@ -78,7 +77,6 @@ const CategoryItem = ({
   t,
   history,
   setOpen,
-  type,
   name,
   shortName,
   isActive,
@@ -87,13 +85,9 @@ const CategoryItem = ({
   <CategoryItem.Wrapper
     isActive={isActive}
     onClick={() => {
-      if (type === 'categories') {
-        onActive(shortName);
-        if (setOpen) {
-          setOpen(false);
-        }
-      } else {
-        history.push(`/coupons/${shortName}`);
+      onActive(shortName);
+      if (setOpen) {
+        setOpen(false);
       }
     }}
   >
