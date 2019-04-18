@@ -18,7 +18,7 @@ import {
   getOffersCount,
 } from '@modules/coupons/CouponsReducer';
 
-import DownloadPiggy from '../components/DownloadPiggy';
+// import DownloadPiggy from '../components/DownloadPiggy';
 import SearchBar from '../components/SearchBar';
 import TodaysFeaturedCoupon from '../components/TodaysFeaturedCoupon';
 import StoreList from '../components/StoreList';
@@ -79,7 +79,7 @@ const CouponsPage = ({
 
   return (
     <CouponsPage.Wrapper>
-      <DownloadPiggy />
+      {/* <DownloadPiggy /> */}
       <CouponsPage.SearchWrapper>
         <SearchBar
           onSet={onSearchChange}
