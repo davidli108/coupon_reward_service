@@ -47,7 +47,7 @@ const Offer = ({
             <img
               src={
                 store_logo
-                  ? `http://33499c7a.ngrok.io/${store_logo}`
+                  ? `http://d2umvgb8hls1bt.cloudfront.net${store_logo}`
                   : placeholder
               }
               onError={e => {

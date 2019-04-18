@@ -22,7 +22,7 @@ const Brand = ({
           <img
             src={
               store_logo_image_path
-                ? `http://33499c7a.ngrok.io/${store_logo_image_path}`
+                ? `http://d2umvgb8hls1bt.cloudfront.net${store_logo_image_path}`
                 : placeholder
             }
             onError={e => {
