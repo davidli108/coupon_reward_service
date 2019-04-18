@@ -2781,15 +2781,43 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
 }
 
 .c5 {
-  height: 800px;
-  margin-top: 10px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 5px;
+  background: white;
+}
+
+.c5:hover {
+  background: #eee;
+}
+
+.c5:hover > p {
+  color: rgba(0,0,0,0.7);
+}
+
+.c6 {
+  font-weight: 500;
+  line-height: 32px;
+  font-size: 13px;
+  color: #c2c2c2;
 }
 
 .c4 {
   display: none;
 }
 
-.c6 {
+.c7 {
   position: relative;
   border: 1px solid #dadde2;
   border-radius: 5px;
@@ -2797,7 +2825,7 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
   cursor: pointer;
 }
 
-.c7 {
+.c8 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2813,7 +2841,7 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
   padding: 10px 20px;
 }
 
-.c8 {
+.c9 {
   position: absolute;
   right: 0;
   top: 18px;
@@ -2885,7 +2913,7 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
 }
 
 @media (min-width:36em) {
-  .c6 {
+  .c7 {
     display: none;
   }
 }
@@ -2939,220 +2967,38 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
   <div
     className="c4"
   >
-    <svg
-      aria-labelledby="Loading interface..."
+    <h2>
+      header.stores
+    </h2>
+    <div
       className="c5"
-      preserveAspectRatio="none"
-      role="img"
-      style={Object {}}
-      viewBox="0 0 400 0"
+      onClick={[Function]}
     >
-      <title>
-        Loading interface...
-      </title>
-      <rect
-        clipPath="url(#0wyybhy3gurj)"
-        height={0}
-        style={
-          Object {
-            "fill": "url(#uikhyucngch)",
-          }
-        }
-        width={400}
-        x="0"
-        y="0"
+      <p
+        className="c6"
       />
-      <defs>
-        <clipPath
-          id="0wyybhy3gurj"
-        >
-          <rect
-            height="60"
-            rx="4"
-            ry="2"
-            width="200"
-            x="0"
-            y="0"
-          />
-          <rect
-            height="60"
-            rx="1"
-            ry="1"
-            width="400"
-            x="0"
-            y="70"
-          />
-          <rect
-            height="60"
-            rx="1"
-            ry="1"
-            width="400"
-            x="0"
-            y="140"
-          />
-          <rect
-            height="60"
-            rx="1"
-            ry="1"
-            width="400"
-            x="0"
-            y="210"
-          />
-          <rect
-            height="60"
-            rx="1"
-            ry="1"
-            width="400"
-            x="0"
-            y="280"
-          />
-          <rect
-            height="60"
-            rx="1"
-            ry="1"
-            width="400"
-            x="0"
-            y="350"
-          />
-          <rect
-            height="60"
-            rx="1"
-            ry="1"
-            width="400"
-            x="0"
-            y="420"
-          />
-          <rect
-            height="60"
-            rx="1"
-            ry="1"
-            width="400"
-            x="0"
-            y="490"
-          />
-          <rect
-            height="60"
-            rx="1"
-            ry="1"
-            width="400"
-            x="0"
-            y="560"
-          />
-          <rect
-            height="60"
-            rx="1"
-            ry="1"
-            width="400"
-            x="0"
-            y="630"
-          />
-          <rect
-            height="60"
-            rx="1"
-            ry="1"
-            width="400"
-            x="0"
-            y="700"
-          />
-          <rect
-            height="60"
-            rx="1"
-            ry="1"
-            width="400"
-            x="0"
-            y="770"
-          />
-          <rect
-            height="60"
-            rx="1"
-            ry="1"
-            width="400"
-            x="0"
-            y="840"
-          />
-          <rect
-            height="60"
-            rx="1"
-            ry="1"
-            width="400"
-            x="0"
-            y="910"
-          />
-          <rect
-            height="60"
-            rx="1"
-            ry="1"
-            width="400"
-            x="0"
-            y="980"
-          />
-          <rect
-            height="60"
-            rx="1"
-            ry="1"
-            width="400"
-            x="0"
-            y="1050"
-          />
-        </clipPath>
-        <linearGradient
-          id="uikhyucngch"
-        >
-          <stop
-            offset="0%"
-            stopColor="#f0f0f0"
-            stopOpacity={1}
-          >
-            <animate
-              attributeName="offset"
-              dur="2s"
-              keyTimes="0; 0.25; 1"
-              repeatCount="indefinite"
-              values="-2; -2; 1"
-            />
-          </stop>
-          <stop
-            offset="50%"
-            stopColor="#e0e0e0"
-            stopOpacity={1}
-          >
-            <animate
-              attributeName="offset"
-              dur="2s"
-              keyTimes="0; 0.25; 1"
-              repeatCount="indefinite"
-              values="-1; -1; 2"
-            />
-          </stop>
-          <stop
-            offset="100%"
-            stopColor="#f0f0f0"
-            stopOpacity={1}
-          >
-            <animate
-              attributeName="offset"
-              dur="2s"
-              keyTimes="0; 0.25; 1"
-              repeatCount="indefinite"
-              values="0; 0; 3"
-            />
-          </stop>
-        </linearGradient>
-      </defs>
-    </svg>
+    </div>
+    <div
+      className="c5"
+      onClick={[Function]}
+    >
+      <p
+        className="c6"
+      />
+    </div>
   </div>
   <div
-    className="c6"
+    className="c7"
   >
     <p
-      className="c7"
+      className="c8"
       onClick={[Function]}
     >
       categories.selectCategory
     </p>
     <div />
     <div
-      className="c8"
+      className="c9"
     />
   </div>
 </div>

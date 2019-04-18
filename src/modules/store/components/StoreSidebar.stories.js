@@ -13,6 +13,8 @@ storiesOf('Components|@Store', module)
   .addDecorator(StyledComponentsDecorator)
   .add('StoreSidebar', () => (
     <StoreSidebar
+      searchIsLoading={false}
+      isLoadedCategories
       categories={[
         {
           title: 'Clothing',
