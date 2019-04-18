@@ -29,6 +29,7 @@ type StoreSidebarProps = {
   categories: Object,
   getStore: Function,
   setIsLoadedStores: boolean => void,
+  isLoadedCategories: boolean,
 };
 
 const StoreSidebar = ({
@@ -47,6 +48,7 @@ const StoreSidebar = ({
   categories,
   getStore,
   setIsLoadedStores,
+  isLoadedCategories,
 }: StoreSidebarProps) => {
   const [searchValue, setSearchValue] = useState('');
   const [activeCategory, setActiveCategory] = useState(match.params.name);
@@ -59,10 +61,17 @@ const StoreSidebar = ({
   };
 
   const onActiveCategory = shortName => {
-    history.push('/cashback-stores/category/' + shortName);
-    setActiveCategory(shortName);
-    setIsLoadedStores(false);
-    getStore(shortName).then(() => setIsLoadedStores(true));
+    if (match.params.name !== shortName) {
+      history.push('/cashback-stores/' + shortName);
+      setActiveCategory(shortName);
+      setIsLoadedStores(false);
+      getStore(shortName).then(() => setIsLoadedStores(true));
+    } else {
+      history.push('/cashback-stores/');
+      setActiveCategory('');
+      setIsLoadedStores(false);
+      getStore('').then(() => setIsLoadedStores(true));
+    }
   };
 
   return (
@@ -78,6 +87,7 @@ const StoreSidebar = ({
         title={t('header.stores')}
         activeCategory={activeCategory}
         onActiveCategory={onActiveCategory}
+        isLoaded={isLoadedCategories}
       />
       <CategoriesMobile
         categories={categories}
@@ -95,7 +105,6 @@ StoreSidebar.defaultProps = {
 };
 
 StoreSidebar.Wrapper = styled.div`
-  flex-basis: 261px;
   padding: 0 30px 0 0;
 
   ${breakpoint('xs')`

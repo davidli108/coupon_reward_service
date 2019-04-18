@@ -76,14 +76,20 @@ const StoreList = ({
                 {/* {offer_success_print && <StoreList.StoreNew>New Store</StoreList.StoreNew>} */}
                 <StoreList.Box>
                   <StoreList.ImageWrapper>
-                    <StoreList.Image
-                      src={
-                        img
-                          ? `http://d2umvgb8hls1bt.cloudfront.net${img}`
-                          : placeholder
-                      }
-                      alt={name}
-                    />
+                    <Link to={`/store/${shortName}`}>
+                      <StoreList.Image
+                        src={
+                          img
+                            ? `http://d2umvgb8hls1bt.cloudfront.net${img}`
+                            : placeholder
+                        }
+                        onError={e => {
+                          e.target.onerror = null;
+                          e.target.src = placeholder;
+                        }}
+                        alt={name}
+                      />
+                    </Link>
                   </StoreList.ImageWrapper>
                   <StoreList.ContentWrap>
                     <StoreList.Content>
@@ -103,12 +109,12 @@ const StoreList = ({
                       </StoreList.Coupons>
                     )} */}
                     </StoreList.Content>
-                    <StoreList.Link to={`/coupons/${shortName}`}>
+                    <StoreList.Link to={`/store/${shortName}`}>
                       {t('build.visitStore')}
                     </StoreList.Link>
                   </StoreList.ContentWrap>
                 </StoreList.Box>
-                <StoreList.LinkMobile to={`/coupons/${shortName}`}>
+                <StoreList.LinkMobile to={`/store/${shortName}`}>
                   {t('build.visitStore')}
                 </StoreList.LinkMobile>
               </StoreList.StoreItem>

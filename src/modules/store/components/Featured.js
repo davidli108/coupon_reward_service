@@ -32,6 +32,10 @@ const Featured = ({ t, featured }: FeaturedProps) => (
                     ? `http://d2umvgb8hls1bt.cloudfront.net${offer_img}`
                     : placeholder
                 }
+                onError={e => {
+                  e.target.onerror = null;
+                  e.target.src = placeholder;
+                }}
                 alt={store_name}
               />
             </Featured.WrapperImage>

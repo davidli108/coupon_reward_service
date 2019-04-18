@@ -5,12 +5,14 @@ import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
 import CategoryItem from '../../coupons/components/CategoryItem';
+import CategoriesLoader from './loaders/CategoriesLoader';
 
 type CategoriesProps = {
   title: string,
   categories: Object,
   activeCategory: ?string,
   onActiveCategory: string => void,
+  isLoaded: boolean,
 };
 
 const Categories = ({
@@ -18,21 +20,25 @@ const Categories = ({
   categories,
   activeCategory,
   onActiveCategory,
+  isLoaded,
 }: CategoriesProps) => (
   <Categories.Wrapper>
-    <h2>
-      <Categories.Link to="/cashback-stores">{title}</Categories.Link>
-    </h2>
-    {categories &&
-      categories.map(category => (
-        <CategoryItem
-          key={`key_${category.shortName}`}
-          name={category.name}
-          shortName={category.shortName}
-          isActive={activeCategory === category.shortName}
-          onActive={onActiveCategory}
-        />
-      ))}
+    {isLoaded && categories ? (
+      <>
+        <h2>{title}</h2>
+        {categories.map(category => (
+          <CategoryItem
+            key={`key_${category.shortName}`}
+            name={category.name}
+            shortName={category.shortName}
+            isActive={activeCategory === category.shortName}
+            onActive={onActiveCategory}
+          />
+        ))}
+      </>
+    ) : (
+      <CategoriesLoader />
+    )}
   </Categories.Wrapper>
 );
 

@@ -11,7 +11,7 @@ import breakpoint from 'styled-components-breakpoint';
 
 import StoreSidebar from '../components/StoreSidebar';
 import StoreMain from '../components/StoreMain';
-import preloader from '../../coupons/assets/preloader.svg';
+import StoreContentLoader from '../components/loaders/StoreContentLoader';
 
 import { type Store, type Feature } from '../models';
 
@@ -76,9 +76,10 @@ const StoresPage = ({
 }: StoresPageProps) => {
   const [isLoadedStores, setIsLoadedStores] = useState(false);
   const [isLoadedMore, setIsLoadedMore] = useState(true);
+  const [isLoadedCategories, setIsLoadedCategories] = useState(false);
 
   useEffect(() => {
-    getCategories();
+    getCategories().then(() => setIsLoadedCategories(true));
     setIsLoadedStores(false);
     onGetStore(match.params.name || '').then(() => setIsLoadedStores(true));
   }, []);
@@ -117,6 +118,7 @@ const StoresPage = ({
               categories={categories}
               getStore={onGetStore}
               setIsLoadedStores={setIsLoadedStores}
+              isLoadedCategories={isLoadedCategories}
             />
             {!isLoadedMore || isLoadedStores ? (
               <StoreMain
@@ -135,9 +137,7 @@ const StoresPage = ({
                 setIsLoadedMore={setIsLoadedMore}
               />
             ) : (
-              <StoresPage.PreloaderWrapper>
-                <img src={preloader} alt="" />
-              </StoresPage.PreloaderWrapper>
+              <StoreContentLoader />
             )}
           </StoresPage.Box>
         </StoresPage.Container>

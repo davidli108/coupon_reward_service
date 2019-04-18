@@ -36,6 +36,10 @@ const SearchStoreItem = ({
                 ? `http://d2umvgb8hls1bt.cloudfront.net${item.image}`
                 : placeholder
             }
+            onError={e => {
+              e.target.onerror = null;
+              e.target.src = placeholder;
+            }}
             alt={item.store_name}
           />
           <div>
