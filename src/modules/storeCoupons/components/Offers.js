@@ -1,13 +1,87 @@
 //@flow
-import * as React from 'react';
-
+import React, { useState } from 'react';
 import Offer from './Offer';
 import type { OffersProps } from '../models/StorePage';
+import styled from 'styled-components';
+import breakpoint from 'styled-components-breakpoint';
+import { withTranslation } from 'react-i18next';
+import OffersLoader from '../components/loaders/OffersLoader';
 
-const Offers = ({ offers }: OffersProps) => {
-  return offers.map<React.Node>(x => (
-    <Offer key={`offer_${x.offer_id}`} {...x} />
-  ));
+const Offers = ({
+  t,
+  offers,
+  offersCount,
+  fetchStoreCoupons,
+  storeName,
+  store,
+}: OffersProps) => {
+  const [pages, setPages] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(true);
+
+  const onLoadMore = () => {
+    if (isLoaded) {
+      setIsLoaded(false);
+      fetchStoreCoupons(storeName, pages + 20).then(() => {
+        setIsLoaded(true);
+        setPages(pages + 20);
+      });
+    }
+  };
+
+  return (
+    <>
+      {offersCount === 0 && (
+        <Offers.NoData>
+          No Coupons or Deals Found for {store.store_name}. Take a look at our
+          top offers and deals below.
+        </Offers.NoData>
+      )}
+      {offers.map(x => (
+        <Offer key={`offer_${x.offer_id}`} {...x} />
+      ))}
+      {!isLoaded && Array.apply(null, Array(3)).map(() => <OffersLoader />)}
+      {offersCount > offers.length && isLoaded && (
+        <Offers.LoadMoreDeals onClick={onLoadMore}>
+          {t('global.loadMoreDeals')}
+        </Offers.LoadMoreDeals>
+      )}
+    </>
+  );
 };
 
-export default Offers;
+Offers.LoadMoreDeals = styled.p`
+  width: 100%;
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  line-height: 21px;
+  font-size: 18px;
+  letter-spacing: 0.45px;
+  color: #adb8c0;
+  cursor: pointer;
+
+  ${breakpoint('lg')`
+    width: 95%;
+  `}
+`;
+
+Offers.NoData = styled.p`
+  width: 100%;
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  line-height: 21px;
+  font-size: 18px;
+  letter-spacing: 0.45px;
+  color: #adb8c0;
+
+  ${breakpoint('lg')`
+    width: 95%;
+  `}
+`;
+
+export default withTranslation()(Offers);

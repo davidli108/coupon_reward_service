@@ -17,6 +17,8 @@ import {
   getOffers,
   getStoreSearch,
   searchIsLoading,
+  getCountOffers,
+  getStore,
 } from '../StoreCouponsReducer';
 import * as actions from '../StoreCouponsActions';
 import AdditionalInfoLoader from '../components/loaders/AdditionalInfoLoader';
@@ -30,6 +32,9 @@ const StorePage = ({
   requestSearch,
   storeSearchResult,
   searchIsLoading,
+  fetchStoreCouponsByPagination,
+  offersCount,
+  store,
 }: StorePageProps) => {
   const [searchValue, setSearchValue] = useState('');
   const [storeName, setStoreName] = useState(match.params.storeName);
@@ -67,9 +72,15 @@ const StorePage = ({
       />
       <Brand isLoaded={isLoaded} />
       <StorePage.DesktopContent>
-        <StorePage.ColumnNoWrapFlexBox order="2">
+        <StorePage.ColumnNoWrapFlexBox order="2" style={{ marginBottom: 50 }}>
           {isLoaded ? (
-            <Offers offers={offers} />
+            <Offers
+              offers={offers}
+              offersCount={offersCount}
+              fetchStoreCoupons={fetchStoreCouponsByPagination}
+              storeName={match.params.storeName}
+              store={store}
+            />
           ) : (
             Array.apply(null, Array(3)).map(() => <OffersLoader />)
           )}
@@ -158,11 +169,14 @@ const mapStateToProps = state => ({
   offers: getOffers(state),
   storeSearchResult: getStoreSearch(state),
   searchIsLoading: searchIsLoading(state),
+  offersCount: getCountOffers(state),
+  store: getStore(state),
 });
 
 const mapDispatchToProps = {
   fetchStoreCoupons: actions.fetchStoreCoupons,
   requestSearch: actions.requestSearch,
+  fetchStoreCouponsByPagination: actions.fetchStoreCouponsByPagination,
 };
 
 const enhance = compose(

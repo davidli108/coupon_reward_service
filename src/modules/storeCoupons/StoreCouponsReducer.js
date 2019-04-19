@@ -5,6 +5,7 @@ import {
   FETCH_STORE_COUPONS,
   SEARCH,
   REQUEST_SEARCH,
+  FETCH_STORE_COUPONS_BY_PAGINATION,
 } from './StoreCouponsActions';
 
 export const STATE_KEY = 'storeCoupons';
@@ -25,6 +26,7 @@ const initialState = {
   },
   additionalInfo: [],
   searchIsLoading: false,
+  count: 0,
 };
 
 const StoreCouponsReducer = (
@@ -36,7 +38,13 @@ const StoreCouponsReducer = (
       return R.assoc<Object, Object>('fetchingState', 'FETCHING')(state);
     }
     case `${FETCH_STORE_COUPONS}_SUCCESS`: {
-      const offers = R.pathOr([], ['payload', 'data', 'offers_data'])(action);
+      const count: number = R.pathOr(0, ['payload', 'data', 'offers_count'])(
+        action,
+      );
+      const offers =
+        count > 0
+          ? R.pathOr([], ['payload', 'data', 'offers_data'])(action)
+          : [];
 
       const store = R.compose(
         R.fromPairs,
@@ -62,6 +70,22 @@ const StoreCouponsReducer = (
         offers,
         store,
         additionalInfo,
+        count,
+      };
+
+      return R.assoc<Object, Object>('fetchingState', 'LOADED')(newState);
+    }
+    case `${FETCH_STORE_COUPONS_BY_PAGINATION}_SUCCESS`: {
+      const offersData = R.pathOr([], ['payload', 'data', 'offers_data'])(
+        action,
+      );
+
+      // $FlowFixMe
+      const offers = R.concat(state.offers, offersData);
+
+      const newState = {
+        ...state,
+        offers,
       };
 
       return R.assoc<Object, Object>('fetchingState', 'LOADED')(newState);
@@ -93,5 +117,6 @@ export const getAdditionalInfo = R.path<Object[]>([
 export const getFetchingState = R.path<string>([STATE_KEY, 'fetchingState']);
 export const getStoreSearch = R.path<string>([STATE_KEY, 'search']);
 export const searchIsLoading = R.path<string>([STATE_KEY, 'searchIsLoading']);
+export const getCountOffers = R.path<string>([STATE_KEY, 'count']);
 
 export default StoreCouponsReducer;

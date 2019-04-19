@@ -75,6 +75,8 @@ export type StorePageProps = {
   requestSearch: Function,
   storeSearchResult: Object,
   searchIsLoading: boolean,
+  fetchStoreCouponsByPagination: Function,
+  offersCount: number,
 };
 
 export type BrandProps = {
@@ -106,7 +108,12 @@ export type PiggyExtAdProps = {
 };
 
 export type OffersProps = {
+  t: Function,
   offers: Offer[],
+  offersCount: number,
+  fetchStoreCoupons: Function,
+  storeName: string,
+  store: Object,
 };
 
 export type AdditionalInfoProps = {
