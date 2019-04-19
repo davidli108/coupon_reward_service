@@ -39,7 +39,8 @@ const BrandImageLoader = () => (
 
 BrandImageLoader.Wrapper = styled(ContentLoader)`
   width: 95%;
-  margin-top: 100px;
+  margin-top: 20px;
+  margin-left: 10px;
 `;
 
 export default BrandImageLoader;
