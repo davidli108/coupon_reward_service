@@ -12,6 +12,7 @@ initializeI18n();
 unregister();
 
 const mountEl = document.getElementById('root');
+mountEl.innerHTML = '';
 
 if (mountEl.hasChildNodes() === true) {
   Loadable.preloadReady().then(() => {
