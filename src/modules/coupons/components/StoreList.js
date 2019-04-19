@@ -45,7 +45,13 @@ const StoreList = ({ t, stores, loaded }: StoreListProps) => {
       </StoreList.Wrapper>
     );
   }
-  return <StoreListLoader />;
+  return (
+    <StoreList.Wrapper>
+      {Array.apply(null, Array(5)).map(() => (
+        <StoreListLoader />
+      ))}
+    </StoreList.Wrapper>
+  );
 };
 
 StoreList.Wrapper = styled.div`
