@@ -118,6 +118,11 @@ const Content = ({
           </Content.CategoriesWrapper>
         )}
         <Content.CouponsWrapper>
+          {getDealsFilter === 'favoriteStores' && (
+            <Content.AuthLablel>
+              Login/register to make a list of your favourite stores and deals
+            </Content.AuthLablel>
+          )}
           {isLoaded ? (
             <Coupons coupons={getFilteredDeals} />
           ) : activeCategory ? (
@@ -158,6 +163,13 @@ Content.Grid = styled.div`
       width: calc(100% - 247px) !important;
     }
   `}
+`;
+
+Content.AuthLablel = styled.p`
+  margin-top: 100px;
+  margin-left: 80px;
+  font-size: 25px;
+  color: #adb8c0;
 `;
 
 Content.CategoriesWrapper = styled.div`
