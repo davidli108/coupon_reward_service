@@ -1,7 +1,6 @@
 // @flow
 import ContentLoader from 'react-content-loader';
 import styled from 'styled-components';
-import breakpoint from 'styled-components-breakpoint';
 import React from 'react';
 
 const OffersLoader = () => (

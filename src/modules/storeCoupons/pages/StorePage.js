@@ -10,7 +10,7 @@ import SearchBar from '../components/SearchBar';
 import Brand from '../components/Brand';
 import Offers from '../components/Offers';
 import AdditionalInfo from '../components/AdditionalInfo';
-import StoreInformation from '../components/StoreInformation';
+//import StoreInformation from '../components/StoreInformation';
 import type { StorePageProps } from '../models/StorePage';
 import {
   getFetchingState,

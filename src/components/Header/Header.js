@@ -1,5 +1,6 @@
 //@flow
 import * as React from 'react';
+import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
@@ -11,6 +12,7 @@ import ResetPasswordModal from '../../modules/auth/components/ResetPasswordModal
 import BurgerButton from './BurgerButton';
 import HeaderItem from './HeaderItem';
 import logo from './logo.svg';
+import LanguageItem from './LanguageItem';
 
 const modal = {
   modalSignIn: 'modalSignIn',
@@ -41,32 +43,41 @@ const renderHeaderItems = (items: Array<renderHeaderItemsProps>) =>
     </HeaderItem>
   ));
 
-const Header = ({ t }) => {
+type HeaderProps = {
+  t: Function,
+  location: Object,
+};
+
+const Header = ({ t, location }: HeaderProps) => {
   const [isOpen, setOpen] = React.useState(false);
   const [currentModal, setCurrentModal] = React.useState(null);
 
   const items = [
     {
-      bgColor: '#40c8e5',
-      hoverBgColor: '#34a6bf',
+      bgColor:
+        location.pathname.indexOf('/coupons') + 1 ? '#03b6d1' : '#40c8e5',
+      hoverBgColor: '#02a6bf',
       title: t('header.coupons'),
       link: '/coupons',
     },
     {
-      bgColor: '#40c8e5',
-      hoverBgColor: '#34a6bf',
+      bgColor:
+        location.pathname.indexOf('/cashback-stores') + 1
+          ? '#03b6d1'
+          : '#40c8e5',
+      hoverBgColor: '#02a6bf',
       title: t('header.stores'),
       link: '/cashback-stores',
     },
     {
-      bgColor: '#34a6bf',
-      hoverBgColor: '#29899e',
+      bgColor: '#02a6bf',
+      hoverBgColor: '#02a6bf',
       title: t('header.login'),
       onClick: () => setCurrentModal(modal.modalSignIn),
     },
     {
-      bgColor: '#34a6bf',
-      hoverBgColor: '#29899e',
+      bgColor: '#02a6bf',
+      hoverBgColor: '#02a6bf',
       title: t('header.createAccount'),
       onClick: () => setCurrentModal(modal.modalSignUp),
     },
@@ -76,7 +87,14 @@ const Header = ({ t }) => {
       <HeaderItem link="/">
         <Header.Logo src={logo} />
       </HeaderItem>
-      <Header.Controls>{renderHeaderItems(items)}</Header.Controls>
+      <Header.Controls>
+        <LanguageItem
+          bgColor="#40c8e5"
+          hoverBgColor="#03b6d1"
+          title="Language"
+        />
+        {renderHeaderItems(items)}
+      </Header.Controls>
       <Header.BurgerButtonWrapper>
         <BurgerButton isOpen={isOpen} onClick={() => setOpen(!isOpen)} />
       </Header.BurgerButtonWrapper>
@@ -221,4 +239,4 @@ Header.SlidingMenu = styled.div`
   `}
 `;
 
-export default withTranslation()(Header);
+export default withRouter(withTranslation()(Header));
