@@ -19,7 +19,8 @@ import {
   searchIsLoading,
 } from '../StoreCouponsReducer';
 import * as actions from '../StoreCouponsActions';
-import preloader from '../../coupons/assets/preloader.svg';
+import AdditionalInfoLoader from '../components/loaders/AdditionalInfoLoader';
+import OffersLoader from '../components/loaders/OffersLoader';
 
 const StorePage = ({
   fetchStoreCoupons,
@@ -56,7 +57,7 @@ const StorePage = ({
     }
   };
 
-  return isLoaded ? (
+  return (
     <StorePage.Wrapper>
       <SearchBar
         onSet={onSearchChange}
@@ -64,21 +65,21 @@ const StorePage = ({
         value={searchValue}
         isLoading={searchIsLoading}
       />
-      <Brand />
+      <Brand isLoaded={isLoaded} />
       <StorePage.DesktopContent>
         <StorePage.ColumnNoWrapFlexBox order="2">
-          <Offers offers={offers} />
+          {isLoaded ? (
+            <Offers offers={offers} />
+          ) : (
+            Array.apply(null, Array(3)).map(() => <OffersLoader />)
+          )}
         </StorePage.ColumnNoWrapFlexBox>
         <StorePage.ColumnNoWrapFlexBox order="1">
-          <AdditionalInfo />
+          {isLoaded ? <AdditionalInfo /> : <AdditionalInfoLoader />}
         </StorePage.ColumnNoWrapFlexBox>
       </StorePage.DesktopContent>
-      <StoreInformation />
+      {/*{isLoaded && <StoreInformation />}*/}
     </StorePage.Wrapper>
-  ) : (
-    <StorePage.PreloaderWrapper>
-      <img src={preloader} alt="" />
-    </StorePage.PreloaderWrapper>
   );
 };
 
@@ -100,7 +101,6 @@ StorePage.NoWrapFlexBox = styled.div`
   ${breakpoint('lg')`
     flex-flow: row nowrap;
     justify-content: space-between;
-    align-items: baseline;
 
     width: 100%;
     padding: 10px 0;
@@ -113,8 +113,6 @@ StorePage.NoWrapFlexBoxWithBorder = styled(StorePage.NoWrapFlexBox)`
       border-radius: 5px;
       margin-left: 30px;
       padding: 8px 20px;
-
-      align-items: center;
 
       height: auto;
 
@@ -142,8 +140,6 @@ StorePage.ColumnNoWrapFlexBox = styled.div`
   ${breakpoint('lg')`
     display: flex;
     flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
     order: ${({ order }) => order};
     width: 100%;
   `}

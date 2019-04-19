@@ -14,11 +14,8 @@ const StoreInformation = ({ t, store }: StoreInformationProps) => {
     <StoreInformation.Wrapper>
       <StoreInformationSection
         key={`store_${store.store_id}`}
-        title={t('global.about')}
-        body={t('storeCoupons.viewLatestCoupons').replace(
-          /storeName/g,
-          store.store_name,
-        )}
+        title={store.store_name}
+        body={store.store_description}
       />
     </StoreInformation.Wrapper>
   );

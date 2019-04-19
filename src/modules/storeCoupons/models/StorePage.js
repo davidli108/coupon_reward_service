@@ -79,6 +79,7 @@ export type StorePageProps = {
 
 export type BrandProps = {
   store: Store,
+  isLoaded: boolean,
 };
 
 export type BrandContentProps = {

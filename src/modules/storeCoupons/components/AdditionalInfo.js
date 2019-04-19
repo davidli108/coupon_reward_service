@@ -56,7 +56,9 @@ const AdditionalInfo = ({ t, additionalInfo, store }: AdditionalInfoProps) => {
           }}
         />
       </AdditionalInfo.ContentWrapper>
-      <AdditionalInfo.Separator isShow={store.store_description} />
+      <AdditionalInfo.Separator
+        isShow={additionalInfo.featured_store_secrets_body}
+      />
       <AdditionalInfo.ContentWrapper isShow={store.store_description}>
         <h2>{store.store_name}</h2>
         <AdditionalInfo.Content>

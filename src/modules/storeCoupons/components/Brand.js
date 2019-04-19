@@ -7,6 +7,8 @@ import { connect } from 'react-redux';
 import BrandHeader from './BrandHeader';
 import BrandContent from './BrandContent';
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
+import BrandImageLoader from './loaders/BrandImageLoader';
+import BrandXlLoader from './loaders/BrandXlLoader';
 
 import type { BrandProps } from '../models/StorePage';
 
@@ -14,35 +16,46 @@ import { getStore } from '../StoreCouponsReducer';
 
 const Brand = ({
   store: { store_logo_image_path, store_name },
+  isLoaded,
 }: BrandProps) => {
   return (
     <>
       <Brand.Wrapper>
-        <Brand.BrandImageWrapper>
-          <img
-            src={
-              store_logo_image_path
-                ? `http://d2umvgb8hls1bt.cloudfront.net${store_logo_image_path}`
-                : placeholder
-            }
-            onError={e => {
-              e.target.onerror = null;
-              e.target.src = placeholder;
-            }}
-            alt="brand-logo"
-          />
-        </Brand.BrandImageWrapper>
+        {isLoaded ? (
+          <Brand.BrandImageWrapper>
+            <img
+              src={
+                store_logo_image_path
+                  ? `http://d2umvgb8hls1bt.cloudfront.net${store_logo_image_path}`
+                  : placeholder
+              }
+              onError={e => {
+                e.target.onerror = null;
+                e.target.src = placeholder;
+              }}
+              alt="brand-logo"
+            />
+          </Brand.BrandImageWrapper>
+        ) : (
+          <BrandImageLoader />
+        )}
         <Brand.WrapFlexBox>
-          <BrandHeader />
-          <Brand.XlWrapper>
-            <Brand.NoWrapFlexBoxWithBorder>
-              <BrandContent
-                storeName={store_name}
-                stars={4.5}
-                reviewsCount={'1000'}
-              />
-            </Brand.NoWrapFlexBoxWithBorder>
-          </Brand.XlWrapper>
+          {isLoaded ? (
+            <>
+              <BrandHeader />
+              <Brand.XlWrapper>
+                <Brand.NoWrapFlexBoxWithBorder>
+                  <BrandContent
+                    storeName={store_name}
+                    stars={4.5}
+                    reviewsCount={'1000'}
+                  />
+                </Brand.NoWrapFlexBoxWithBorder>
+              </Brand.XlWrapper>
+            </>
+          ) : (
+            <BrandXlLoader />
+          )}
         </Brand.WrapFlexBox>
       </Brand.Wrapper>
       <Brand.MdWrapper>
@@ -137,6 +150,7 @@ Brand.XlWrapper = styled.div`
     display: flex;
   `}
 `;
+
 Brand.MdWrapper = styled.div`
   margin-top: 30px;
   display: flex;
