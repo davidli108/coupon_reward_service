@@ -22,10 +22,10 @@ const Coupons = ({ coupons, isLoad }: CouponsProps) => {
               {...coupon}
             />
           ))}
-          {isLoad && Array.apply(null, Array(20)).map(() => <CouponLoader />)}
+          {isLoad && Array.apply(null, Array(20)).map((_, ind) => <CouponLoader key={`cl1_${ind}`} />)}
         </>
       ) : coupons ? (
-        Array.apply(null, Array(20)).map(() => <CouponLoader />)
+        Array.apply(null, Array(20)).map((_, ind) => <CouponLoader key={`cl2_${ind}`} />)
       ) : (
         ''
       )}

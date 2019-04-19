@@ -39,7 +39,7 @@ const Offers = ({
       {offers.map(x => (
         <Offer key={`offer_${x.offer_id}`} {...x} />
       ))}
-      {!isLoaded && Array.apply(null, Array(3)).map(() => <OffersLoader />)}
+      {!isLoaded && Array.apply(null, Array(3)).map((_, ind) => <OffersLoader key={ind} />)}
       {offersCount > offers.length && isLoaded && (
         <Offers.LoadMoreDeals onClick={onLoadMore}>
           {t('global.loadMoreDeals')}

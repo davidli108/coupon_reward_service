@@ -45,10 +45,11 @@ const StoreList = ({ t, stores, loaded }: StoreListProps) => {
       </StoreList.Wrapper>
     );
   }
+
   return (
     <StoreList.Wrapper>
-      {Array.apply(null, Array(5)).map(() => (
-        <StoreListLoader />
+      {Array.apply(null, Array(5)).map((_, ind) => (
+        <StoreListLoader key={ind} />
       ))}
     </StoreList.Wrapper>
   );

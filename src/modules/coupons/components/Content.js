@@ -51,7 +51,9 @@ const Content = ({
   useEffect(() => {
     fetchCategories().then(() => setIsLoadedCategories(true));
     setIsLoaded(false);
-    getCouponsByCategory(match.params.name).then(() => setIsLoaded(true));
+    if (match.params.name) {
+      getCouponsByCategory(match.params.name).then(() => setIsLoaded(true));
+    }
   }, []);
 
   const onLoadMore = () => {
