@@ -25,15 +25,15 @@ const HeaderItemMyAccount = ({
 
   const items = [
     {
-      title: 'English',
+      title: 'US',
       onClick: () => i18n.changeLanguage('en'),
     },
     {
-      title: 'French',
+      title: 'FR',
       onClick: () => i18n.changeLanguage('fr'),
     },
     {
-      title: 'Deutsch',
+      title: 'DE',
       onClick: () => i18n.changeLanguage('de'),
     },
   ];

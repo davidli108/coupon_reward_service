@@ -3,12 +3,12 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { IoIosHeartEmpty, IoIosHeart } from 'react-icons/io';
-import { FiShare2 } from 'react-icons/fi';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
 
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
 import type { Store } from '../models/CouponsPage';
+import SocialShareFeatured from './SocialShareFeatured';
 
 type TodaysFeaturedCouponProps = {
   t: Function,
@@ -47,7 +47,10 @@ const TodaysFeaturedCoupon = ({ t, store }: TodaysFeaturedCouponProps) => {
             ) : (
               <IoIosHeartEmpty onClick={handleFeaturedCouponLikeToggler} />
             )}
-            <FiShare2 />
+            <SocialShareFeatured
+              text={store.ref_text}
+              link={store.offer_link}
+            />
           </TodaysFeaturedCoupon.Controls>
         </TodaysFeaturedCoupon.LogoControlsWrapper>
 
