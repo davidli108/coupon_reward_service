@@ -19,27 +19,27 @@ const StoreContentLoader = () => (
 
     <StoreContentLoader.ThreeRect
       x="0"
-      y="100"
+      y="110"
       rx="1"
       ry="1"
-      width="400"
-      height="330"
+      width={window.screen.width * 0.4}
+      height="340"
     />
     <StoreContentLoader.ThreeRect
-      x={window.screen.width * 0.33}
-      y="100"
+      x={window.screen.width * 0.35}
+      y="110"
       rx="1"
       ry="1"
-      width="400"
-      height="330"
+      width={window.screen.width * 0.4}
+      height="340"
     />
     <StoreContentLoader.ThreeRect
-      x={window.screen.width * 0.66}
-      y="100"
+      x={window.screen.width * 0.7}
+      y="110"
       rx="1"
       ry="1"
-      width="400"
-      height="330"
+      width={window.screen.width * 0.4}
+      height="340"
     />
 
     <rect
@@ -47,7 +47,7 @@ const StoreContentLoader = () => (
       y="500"
       rx="4"
       ry="2"
-      width={window.screen.width * 0.96}
+      width={window.screen.width}
       height="200"
     />
     <rect
@@ -55,7 +55,7 @@ const StoreContentLoader = () => (
       y="710"
       rx="4"
       ry="2"
-      width={window.screen.width * 0.96}
+      width={window.screen.width}
       height="200"
     />
     <rect
@@ -63,7 +63,7 @@ const StoreContentLoader = () => (
       y="920"
       rx="4"
       ry="2"
-      width={window.screen.width * 0.96}
+      width={window.screen.width}
       height="200"
     />
   </StoreContentLoader.Wrapper>
@@ -72,10 +72,11 @@ const StoreContentLoader = () => (
 StoreContentLoader.Wrapper = styled(ContentLoader)`
   width: 100%;
   height: 800px;
+  flex-basis: 850px;
 `;
 
 StoreContentLoader.ThreeRect = styled.rect`
-  width: 30%;
+  width: 31%;
 `;
 
 export default StoreContentLoader;

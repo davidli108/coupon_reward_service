@@ -25,8 +25,8 @@ const CategoriesLoader = () => (
 );
 
 CategoriesLoader.Wrapper = styled(ContentLoader)`
+  width: 100%;
   height: 800px;
-  margin-top: 10px;
 `;
 
 export default CategoriesLoader;
