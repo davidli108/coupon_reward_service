@@ -82,7 +82,9 @@ const StorePage = ({
               store={store}
             />
           ) : (
-            Array.apply(null, Array(3)).map((_, ind) => <OffersLoader key={ind} />)
+            Array.apply(null, Array(3)).map((_, ind) => (
+              <OffersLoader key={ind} />
+            ))
           )}
         </StorePage.ColumnNoWrapFlexBox>
         <StorePage.ColumnNoWrapFlexBox order="1">

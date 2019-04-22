@@ -6,6 +6,7 @@ import styled from 'styled-components';
 type HeaderItemProps = {
   bgColor?: string,
   children: React.Node,
+  direct: boolean,
   hoverBgColor?: string,
   link?: string,
   redirect?: string,
@@ -15,6 +16,7 @@ type HeaderItemProps = {
 const HeaderItem = ({
   bgColor,
   children,
+  direct,
   hoverBgColor,
   link,
   redirect,
@@ -25,7 +27,11 @@ const HeaderItem = ({
     hoverBgColor={hoverBgColor}
     onClick={onClick}
   >
-    {redirect && (
+    {direct && redirect && (
+      <HeaderItem.Link href={redirect}>{children}</HeaderItem.Link>
+    )}
+
+    {redirect && !direct && (
       <HeaderItem.Link href={redirect} target="_blank">
         {children}
       </HeaderItem.Link>
@@ -33,9 +39,15 @@ const HeaderItem = ({
 
     {link && <HeaderItem.NavLink to={link}>{children}</HeaderItem.NavLink>}
 
-    {!link && !redirect && <HeaderItem.Link>{children}</HeaderItem.Link>}
+    {!link && !redirect && !direct && (
+      <HeaderItem.Link>{children}</HeaderItem.Link>
+    )}
   </HeaderItem.Wrapper>
 );
+
+HeaderItem.defaultProps = {
+  direct: false,
+};
 
 HeaderItem.NavLink = styled(NavLink)`
   display: flex;

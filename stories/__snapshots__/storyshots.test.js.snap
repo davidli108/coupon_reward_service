@@ -1241,7 +1241,7 @@ exports[`Storyshots Components|@Store Featured 1`] = `
   >
     <a
       className="c2"
-      href="/coupons/undefined"
+      href="/store/undefined"
       onClick={[Function]}
     >
       Visit Store

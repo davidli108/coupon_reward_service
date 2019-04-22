@@ -50,8 +50,8 @@ const Content = ({
 
   useEffect(() => {
     fetchCategories().then(() => setIsLoadedCategories(true));
-    setIsLoaded(false);
     if (match.params.name) {
+      setIsLoaded(false);
       getCouponsByCategory(match.params.name).then(() => setIsLoaded(true));
     }
   }, []);
@@ -126,20 +126,24 @@ const Content = ({
             </Content.AuthLablel>
           )}
           {isLoaded ? (
-            <Coupons coupons={getFilteredDeals} />
+            offersCount !== 0 ? (
+              <Coupons coupons={getFilteredDeals} />
+            ) : (
+              <Content.NoData>No Coupons Found</Content.NoData>
+            )
           ) : activeCategory ? (
             <Content.Coupons>
               {Array.apply(null, Array(20)).map(() => (
                 <CouponLoader />
               ))}
             </Content.Coupons>
+          ) : offersCount !== 0 ? (
+            <Coupons
+              coupons={getFilteredDeals}
+              isLoad={getFilteredDeals.length !== 0}
+            />
           ) : (
-            <>
-              <Coupons
-                coupons={getFilteredDeals}
-                isLoad={getFilteredDeals.length !== 0}
-              />
-            </>
+            <Content.NoData>No Coupons Found</Content.NoData>
           )}
           <Content.LoadMoreDeals onClick={onLoadMore}>
             {isLoaded &&
@@ -253,6 +257,24 @@ Content.Preloader = styled.img`
   margin-right: auto;
   margin-top: 200px;
   text-align: center;
+`;
+
+Content.NoData = styled.div`
+  width: 100%;
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  line-height: 21px;
+  font-size: 25px;
+  letter-spacing: 0.45px;
+  color: #adb8c0;
+  cursor: pointer;
+
+  ${breakpoint('lg')`
+    width: 95%;
+  `}
 `;
 
 export default compose(

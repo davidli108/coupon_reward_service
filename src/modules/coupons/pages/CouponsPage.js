@@ -89,7 +89,11 @@ const CouponsPage = ({
         />
       </CouponsPage.SearchWrapper>
       {Boolean(stores.length) ? (
-        <TodaysFeaturedCoupon store={stores[0]} />
+        offersCount !== 0 ? (
+          <TodaysFeaturedCoupon store={stores[0]} />
+        ) : (
+          <CouponsPage.NoData>No Featured Coupons Found</CouponsPage.NoData>
+        )
       ) : (
         <FeatureCouponLoader />
       )}
@@ -137,6 +141,22 @@ CouponsPage.SearchWrapper = styled.div`
     > div {
       width: 100%;
     }
+  `}
+`;
+
+CouponsPage.NoData = styled.p`
+  width: 100%;
+  line-height: 250px;
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  letter-spacing: 0.45px;
+  color: #adb8c0;
+
+  ${breakpoint('lg')`
+    width: 95%;
   `}
 `;
 

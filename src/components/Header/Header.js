@@ -84,7 +84,7 @@ const Header = ({ t, location }: HeaderProps) => {
   ];
   return (
     <Header.Wrapper>
-      <HeaderItem link="/">
+      <HeaderItem redirect="/" direct>
         <Header.Logo src={logo} />
       </HeaderItem>
       <Header.Controls>
