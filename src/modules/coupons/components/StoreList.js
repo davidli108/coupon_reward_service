@@ -57,7 +57,6 @@ const StoreList = ({ t, stores, loaded }: StoreListProps) => {
 
 StoreList.Wrapper = styled.div`
   display: flex;
-  justify-content: center;
 
   margin-top: 20px;
   overflow-x: scroll;
@@ -78,6 +77,10 @@ StoreList.Wrapper = styled.div`
     height: 0;
   }
 
+  ${breakpoint('md')`
+    justify-content: center;
+  `}
+
   ${breakpoint('xl')`
     overflow-x: scroll;
     margin-bottom: 25px;
@@ -85,6 +88,7 @@ StoreList.Wrapper = styled.div`
 `;
 
 StoreList.Item = styled.a`
+  min-width: 120px;
   display: flex;
   flex-flow: column nowrap;
   box-sizing: border-box;
