@@ -6,8 +6,8 @@ import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
 
-import preloader from '@modules/coupons/assets/preloader.svg';
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
+import LoadMoreLoader from './loaders/LoadMoreLoader';
 
 // import verificationIcon from '../assets/verif.png';
 
@@ -65,11 +65,7 @@ const StoreList = ({
   return (
     <div>
       <StoreList.StoreContainer>
-        {stores.length === 0 ? (
-          <StoreList.PreloaderWrapper>
-            <img src={preloader} alt="" />
-          </StoreList.PreloaderWrapper>
-        ) : (
+        {stores.length !== 0 &&
           stores.map(
             ({ name, id, img, link, cashback_save, shortName }: Object) => (
               <StoreList.StoreItem key={`list_item_${name}_${id}`}>
@@ -119,18 +115,17 @@ const StoreList = ({
                 </StoreList.LinkMobile>
               </StoreList.StoreItem>
             ),
-          )
-        )}
+          )}
       </StoreList.StoreContainer>
       <StoreList.LoadMoreButton onClick={onLoad}>
         {isLoadedStores ? (
           stores.length !== 0 && storesCount > stores.length ? (
-            t('global.loadMoreStores')
+            <p>{t('global.loadMoreStores')}</p>
           ) : (
             ''
           )
         ) : (
-          <img src={preloader} alt="" />
+          <LoadMoreLoader />
         )}
       </StoreList.LoadMoreButton>
     </div>
@@ -163,7 +158,7 @@ StoreList.ContentWrap = styled.div`
 `;
 
 StoreList.StoreContainer = styled.div`
-  margin: 0 0 50px 0;
+  margin: 0;
 `;
 
 StoreList.PreloaderWrapper = styled.div`
@@ -494,10 +489,10 @@ StoreList.LinkMobile = styled(StoreList.Link)`
 `;
 
 StoreList.LoadMoreButton = styled.button`
+  width: 100%;
   display: flex;
-  margin: 0 auto;
+  justify-content: center;
   font-weight: bold;
-  line-height: 21px;
   font-size: 18px;
   text-align: center;
   letter-spacing: 0.45px;
@@ -508,6 +503,10 @@ StoreList.LoadMoreButton = styled.button`
   cursor: pointer;
 
   transition: color 205ms linear;
+
+  p {
+    line-height: 80px;
+  }
 
   &:hover {
     color: ${props => props.theme.colors.grayDark};

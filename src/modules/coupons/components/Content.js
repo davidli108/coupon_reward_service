@@ -62,6 +62,11 @@ const Content = ({
       setIsLoaded(false);
       getCouponsByCategory('').then(() => setIsLoaded(true));
       setLoadCount(20);
+    } else if (match.params.name && activeCategory !== match.params.name) {
+      setActiveCategory(match.params.name);
+      setIsLoaded(false);
+      getCouponsByCategory(match.params.name).then(() => setIsLoaded(true));
+      setLoadCount(20);
     }
   });
 

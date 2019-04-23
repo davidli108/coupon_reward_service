@@ -66,6 +66,10 @@ const StoreSidebar = ({
       setActiveCategory('');
       setIsLoadedStores(false);
       getStore('').then(() => setIsLoadedStores(true));
+    } else if (match.params.name && match.params.name !== activeCategory) {
+      setActiveCategory(match.params.name);
+      setIsLoadedStores(false);
+      getStore(match.params.name).then(() => setIsLoadedStores(true));
     }
   });
 
