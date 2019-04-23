@@ -2,7 +2,7 @@
 export default {
   header: {
     coupons: 'Gutscheine',
-    stores: 'Stores',
+    stores: 'Shops',
     getApp: 'Holen Sie sich die App!',
     login: 'Einloggen',
     createAccount: 'Ein Konto erstellen',
@@ -123,8 +123,8 @@ export default {
     pets: 'Haustiere',
     services: 'Dienstleistungen',
     shoes: 'Schuhe',
-    sportsFitness: 'Sport & Fitness',
-    toysGames: 'Spielzeug & Spiele',
+    sportsFitness: 'Sport & Fitness', // missing
+    toysGames: 'Spielzeug',
     travel: 'Reise',
   },
   global: {

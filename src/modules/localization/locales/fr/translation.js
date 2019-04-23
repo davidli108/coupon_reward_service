@@ -126,7 +126,7 @@ export default {
     services: 'Services',
     shoes: 'Chaussures',
     sportsFitness: 'Sports & Fitness',
-    toysGames: 'Jouets & Jeux',
+    toysGames: 'Jouets',
     travel: 'Voyage',
   },
   global: {

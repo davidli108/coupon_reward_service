@@ -45,13 +45,15 @@ const renderStarsReview = rating => {
   );
 };
 
-const PiggyExtAd = ({ t, stars, reviewsCount }: PiggyExtAdProps) => {
+const PiggyExtAd = ({ t, i18n, stars, reviewsCount }: PiggyExtAdProps) => {
   return (
     <PiggyExtAd.Wrapper>
       <PiggyExtAd.AddExtensionButton
         onClick={() => {
           window.open(
-            'https://chrome.google.com/webstore/detail/piggy-automatic-coupons-c/hfapbcheiepjppjbnkphkmegjlipojba?hl=en',
+            `https://chrome.google.com/webstore/detail/piggy-automatic-coupons-c/hfapbcheiepjppjbnkphkmegjlipojba?hl=${
+              i18n.language
+            }`,
             '_blank',
           );
         }}

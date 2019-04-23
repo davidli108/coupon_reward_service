@@ -96,7 +96,6 @@ const StoreList = ({
                             {t('global.deals')}
                           </StoreList.BranDeals>
                         </StoreList.Brand>
-                        <StoreList.Cash>{`${cashback_save}`}</StoreList.Cash>
                       </StoreList.Info>
                       {/* {couponActive && (
                       <StoreList.Coupons>

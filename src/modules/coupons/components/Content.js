@@ -246,21 +246,29 @@ Content.Coupons = styled.div`
   `}
 `;
 
-Content.LoadMoreDeals = styled.div`
+Content.LoadMoreDeals = styled.button`
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
   font-weight: bold;
-  line-height: 21px;
   font-size: 18px;
+  text-align: center;
   letter-spacing: 0.45px;
-  color: #adb8c0;
+  color: ${props => props.theme.colors.whiteDark};
+  background: transparent;
+  border: none;
+  outline: none;
   cursor: pointer;
 
-  ${breakpoint('lg')`
-    width: 95%;
-  `}
+  transition: color 205ms linear;
+
+  p {
+    line-height: 80px;
+  }
+
+  &:hover {
+    color: ${props => props.theme.colors.grayDark};
+  }
 `;
 
 Content.Preloader = styled.img`

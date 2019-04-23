@@ -14,16 +14,23 @@ import favoriteStoresActiveSvg from '../assets/favoriteStoresActive.svg';
 
 type ControlsProps = {
   t: Function,
+  i18n: Object,
   getDealsFilter: Object,
   setDealsFilter: Object,
 };
 
-const Controls = ({ t, getDealsFilter, setDealsFilter }: ControlsProps) => {
+const Controls = ({
+  t,
+  i18n,
+  getDealsFilter,
+  setDealsFilter,
+}: ControlsProps) => {
   return (
     <Controls.Wrapper>
       <Controls.Button
         isActive={getDealsFilter === 'allDeals'}
         onClick={() => setDealsFilter('allDeals')}
+        lng={i18n.language}
       >
         <img
           src={getDealsFilter === 'allDeals' ? allDealsActiveSvg : allDealsSvg}
@@ -36,6 +43,7 @@ const Controls = ({ t, getDealsFilter, setDealsFilter }: ControlsProps) => {
       <Controls.Button
         isActive={getDealsFilter === 'onlyCoupons'}
         onClick={() => setDealsFilter('onlyCoupons')}
+        lng={i18n.language}
       >
         <img
           src={
@@ -52,6 +60,7 @@ const Controls = ({ t, getDealsFilter, setDealsFilter }: ControlsProps) => {
       <Controls.Button
         isActive={getDealsFilter === 'favoriteStores'}
         onClick={() => setDealsFilter('favoriteStores')}
+        lng={i18n.language}
       >
         <img
           src={
@@ -80,7 +89,7 @@ Controls.Button = styled.div`
   display: flex;
   flex-flow: column nowrap;
 
-  width: 80px;
+  width: ${props => (props.lng === 'fr' ? '110px' : '80px')};
   margin-right: 25px;
 
   white-space: nowrap;

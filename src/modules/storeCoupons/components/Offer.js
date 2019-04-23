@@ -11,7 +11,7 @@ type OfferProps = {
   t: Function,
   coupon_code: string,
   show_exp_date: string,
-  ref_link: string,
+  offer_link: string,
   discount: string,
   discount_print: string,
   offer_name: string,
@@ -23,7 +23,7 @@ const Offer = ({
   t,
   coupon_code,
   show_exp_date,
-  ref_link,
+  offer_link,
   discount,
   discount_print,
   offer_name,
@@ -66,7 +66,7 @@ const Offer = ({
         </Offer.Content>
         <Offer.Container>
           <Offer.ButtonWrapper>
-            <CouponCode t={t} code={coupon_code} link={ref_link} />
+            <CouponCode t={t} code={coupon_code} link={offer_link} />
             <Offer.ExpDate>{show_exp_date}</Offer.ExpDate>
           </Offer.ButtonWrapper>
         </Offer.Container>

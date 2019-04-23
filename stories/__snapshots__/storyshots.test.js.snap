@@ -1244,7 +1244,7 @@ exports[`Storyshots Components|@Store Featured 1`] = `
       href="/store/undefined"
       onClick={[Function]}
     >
-      Visit Store
+      build.visitStore
     </a>
     <p
       className="c3"
@@ -1390,14 +1390,6 @@ exports[`Storyshots Components|@Store SearchStoreItem 1`] = `
 `;
 
 exports[`Storyshots Components|@Store StoreList 1`] = `
-.c15 {
-  width: 100%;
-  height: 800px;
-  -webkit-flex-basis: 850px;
-  -ms-flex-preferred-size: 850px;
-  flex-basis: 850px;
-}
-
 .c2 {
   width: 100%;
   display: -webkit-box;
@@ -1519,14 +1511,6 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
 }
 
 .c11 {
-  font-weight: 500;
-  line-height: 23px;
-  font-size: 13px;
-  color: #374B5A;
-  margin: 12px 0 0 0;
-}
-
-.c12 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1557,11 +1541,11 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
   display: none;
 }
 
-.c12:hover {
+.c11:hover {
   background: #00B4CF;
 }
 
-.c13 {
+.c12 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1597,11 +1581,11 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
   width: 100%;
 }
 
-.c13:hover {
+.c12:hover {
   background: #00B4CF;
 }
 
-.c14 {
+.c13 {
   width: 100%;
   display: -webkit-box;
   display: -webkit-flex;
@@ -1627,11 +1611,11 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
   transition: color 205ms linear;
 }
 
-.c14 p {
+.c13 p {
   line-height: 80px;
 }
 
-.c14:hover {
+.c13:hover {
   color: #7F7F7F;
 }
 
@@ -1846,25 +1830,36 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
 
 @media (min-width:25.8125em) {
   .c11 {
-    margin: 28px 0 0 0;
-  }
-}
-
-@media (min-width:36em) {
-  .c11 {
-    margin: 0 0 5px 0;
+    display: block;
+    -webkit-flex-basis: auto;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+    width: 100%;
   }
 }
 
 @media (min-width:48em) {
   .c11 {
-    margin: 0;
+    -webkit-flex-basis: 242px;
+    -ms-flex-preferred-size: 242px;
+    flex-basis: 242px;
+    margin-left: auto;
+  }
+}
+
+@media (min-width:62em) {
+  .c11 {
+    -webkit-flex-basis: 188px;
+    -ms-flex-preferred-size: 188px;
+    flex-basis: 188px;
   }
 }
 
 @media (min-width:75em) {
   .c11 {
-    margin: 0 100px 0 auto;
+    -webkit-flex-basis: 255px;
+    -ms-flex-preferred-size: 255px;
+    flex-basis: 255px;
   }
 }
 
@@ -1904,42 +1899,7 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
 }
 
 @media (min-width:25.8125em) {
-  .c13 {
-    display: block;
-    -webkit-flex-basis: auto;
-    -ms-flex-preferred-size: auto;
-    flex-basis: auto;
-    width: 100%;
-  }
-}
-
-@media (min-width:48em) {
-  .c13 {
-    -webkit-flex-basis: 242px;
-    -ms-flex-preferred-size: 242px;
-    flex-basis: 242px;
-    margin-left: auto;
-  }
-}
-
-@media (min-width:62em) {
-  .c13 {
-    -webkit-flex-basis: 188px;
-    -ms-flex-preferred-size: 188px;
-    flex-basis: 188px;
-  }
-}
-
-@media (min-width:75em) {
-  .c13 {
-    -webkit-flex-basis: 255px;
-    -ms-flex-preferred-size: 255px;
-    flex-basis: 255px;
-  }
-}
-
-@media (min-width:25.8125em) {
-  .c13 {
+  .c12 {
     display: none;
   }
 }
@@ -1992,15 +1952,10 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
                   global.deals
                 </p>
               </div>
-              <p
-                className="c11"
-              >
-                undefined
-              </p>
             </div>
           </div>
           <a
-            className="c12"
+            className="c11"
             href="/store/undefined"
             onClick={[Function]}
           >
@@ -2009,7 +1964,7 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
         </div>
       </div>
       <a
-        className="c13"
+        className="c12"
         href="/store/undefined"
         onClick={[Function]}
       >
@@ -2018,106 +1973,10 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
     </div>
   </div>
   <button
-    className="c14"
+    className="c13"
     onClick={[Function]}
   >
-    <svg
-      aria-labelledby="Loading interface..."
-      className="c15"
-      preserveAspectRatio="none"
-      role="img"
-      style={Object {}}
-      viewBox="0 0 0 0"
-    >
-      <title>
-        Loading interface...
-      </title>
-      <rect
-        clipPath="url(#s9ylfl55h2l)"
-        height={0}
-        style={
-          Object {
-            "fill": "url(#qkuc43atpzq)",
-          }
-        }
-        width={0}
-        x="0"
-        y="0"
-      />
-      <defs>
-        <clipPath
-          id="s9ylfl55h2l"
-        >
-          <rect
-            height="200"
-            rx="4"
-            ry="2"
-            width={0}
-            x="0"
-            y="10"
-          />
-          <rect
-            height="200"
-            rx="4"
-            ry="2"
-            width={0}
-            x="0"
-            y="220"
-          />
-          <rect
-            height="200"
-            rx="4"
-            ry="2"
-            width={0}
-            x="0"
-            y="430"
-          />
-        </clipPath>
-        <linearGradient
-          id="qkuc43atpzq"
-        >
-          <stop
-            offset="0%"
-            stopColor="#f0f0f0"
-            stopOpacity={1}
-          >
-            <animate
-              attributeName="offset"
-              dur="2s"
-              keyTimes="0; 0.25; 1"
-              repeatCount="indefinite"
-              values="-2; -2; 1"
-            />
-          </stop>
-          <stop
-            offset="50%"
-            stopColor="#e0e0e0"
-            stopOpacity={1}
-          >
-            <animate
-              attributeName="offset"
-              dur="2s"
-              keyTimes="0; 0.25; 1"
-              repeatCount="indefinite"
-              values="-1; -1; 2"
-            />
-          </stop>
-          <stop
-            offset="100%"
-            stopColor="#f0f0f0"
-            stopOpacity={1}
-          >
-            <animate
-              attributeName="offset"
-              dur="2s"
-              keyTimes="0; 0.25; 1"
-              repeatCount="indefinite"
-              values="0; 0; 3"
-            />
-          </stop>
-        </linearGradient>
-      </defs>
-    </svg>
+    
   </button>
 </div>
 `;
@@ -2132,14 +1991,6 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-}
-
-.c18 {
-  width: 100%;
-  height: 800px;
-  -webkit-flex-basis: 850px;
-  -ms-flex-preferred-size: 850px;
-  flex-basis: 850px;
 }
 
 .c5 {
@@ -2263,14 +2114,6 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 }
 
 .c14 {
-  font-weight: 500;
-  line-height: 23px;
-  font-size: 13px;
-  color: #374B5A;
-  margin: 12px 0 0 0;
-}
-
-.c15 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2301,11 +2144,11 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
   display: none;
 }
 
-.c15:hover {
+.c14:hover {
   background: #00B4CF;
 }
 
-.c16 {
+.c15 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2341,11 +2184,11 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
   width: 100%;
 }
 
-.c16:hover {
+.c15:hover {
   background: #00B4CF;
 }
 
-.c17 {
+.c16 {
   width: 100%;
   display: -webkit-box;
   display: -webkit-flex;
@@ -2371,11 +2214,11 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
   transition: color 205ms linear;
 }
 
-.c17 p {
+.c16 p {
   line-height: 80px;
 }
 
-.c17:hover {
+.c16:hover {
   color: #7F7F7F;
 }
 
@@ -2639,25 +2482,36 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 
 @media (min-width:25.8125em) {
   .c14 {
-    margin: 28px 0 0 0;
-  }
-}
-
-@media (min-width:36em) {
-  .c14 {
-    margin: 0 0 5px 0;
+    display: block;
+    -webkit-flex-basis: auto;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+    width: 100%;
   }
 }
 
 @media (min-width:48em) {
   .c14 {
-    margin: 0;
+    -webkit-flex-basis: 242px;
+    -ms-flex-preferred-size: 242px;
+    flex-basis: 242px;
+    margin-left: auto;
+  }
+}
+
+@media (min-width:62em) {
+  .c14 {
+    -webkit-flex-basis: 188px;
+    -ms-flex-preferred-size: 188px;
+    flex-basis: 188px;
   }
 }
 
 @media (min-width:75em) {
   .c14 {
-    margin: 0 100px 0 auto;
+    -webkit-flex-basis: 255px;
+    -ms-flex-preferred-size: 255px;
+    flex-basis: 255px;
   }
 }
 
@@ -2697,42 +2551,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 }
 
 @media (min-width:25.8125em) {
-  .c16 {
-    display: block;
-    -webkit-flex-basis: auto;
-    -ms-flex-preferred-size: auto;
-    flex-basis: auto;
-    width: 100%;
-  }
-}
-
-@media (min-width:48em) {
-  .c16 {
-    -webkit-flex-basis: 242px;
-    -ms-flex-preferred-size: 242px;
-    flex-basis: 242px;
-    margin-left: auto;
-  }
-}
-
-@media (min-width:62em) {
-  .c16 {
-    -webkit-flex-basis: 188px;
-    -ms-flex-preferred-size: 188px;
-    flex-basis: 188px;
-  }
-}
-
-@media (min-width:75em) {
-  .c16 {
-    -webkit-flex-basis: 255px;
-    -ms-flex-preferred-size: 255px;
-    flex-basis: 255px;
-  }
-}
-
-@media (min-width:25.8125em) {
-  .c16 {
+  .c15 {
     display: none;
   }
 }
@@ -2809,15 +2628,10 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
                     global.deals
                   </p>
                 </div>
-                <p
-                  className="c14"
-                >
-                  undefined
-                </p>
               </div>
             </div>
             <a
-              className="c15"
+              className="c14"
               href="/store/undefined"
               onClick={[Function]}
             >
@@ -2826,7 +2640,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
           </div>
         </div>
         <a
-          className="c16"
+          className="c15"
           href="/store/undefined"
           onClick={[Function]}
         >
@@ -2835,106 +2649,10 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
       </div>
     </div>
     <button
-      className="c17"
+      className="c16"
       onClick={[Function]}
     >
-      <svg
-        aria-labelledby="Loading interface..."
-        className="c18"
-        preserveAspectRatio="none"
-        role="img"
-        style={Object {}}
-        viewBox="0 0 0 0"
-      >
-        <title>
-          Loading interface...
-        </title>
-        <rect
-          clipPath="url(#qj573pn3npl)"
-          height={0}
-          style={
-            Object {
-              "fill": "url(#amjptqj6qgh)",
-            }
-          }
-          width={0}
-          x="0"
-          y="0"
-        />
-        <defs>
-          <clipPath
-            id="qj573pn3npl"
-          >
-            <rect
-              height="200"
-              rx="4"
-              ry="2"
-              width={0}
-              x="0"
-              y="10"
-            />
-            <rect
-              height="200"
-              rx="4"
-              ry="2"
-              width={0}
-              x="0"
-              y="220"
-            />
-            <rect
-              height="200"
-              rx="4"
-              ry="2"
-              width={0}
-              x="0"
-              y="430"
-            />
-          </clipPath>
-          <linearGradient
-            id="amjptqj6qgh"
-          >
-            <stop
-              offset="0%"
-              stopColor="#f0f0f0"
-              stopOpacity={1}
-            >
-              <animate
-                attributeName="offset"
-                dur="2s"
-                keyTimes="0; 0.25; 1"
-                repeatCount="indefinite"
-                values="-2; -2; 1"
-              />
-            </stop>
-            <stop
-              offset="50%"
-              stopColor="#e0e0e0"
-              stopOpacity={1}
-            >
-              <animate
-                attributeName="offset"
-                dur="2s"
-                keyTimes="0; 0.25; 1"
-                repeatCount="indefinite"
-                values="-1; -1; 2"
-              />
-            </stop>
-            <stop
-              offset="100%"
-              stopColor="#f0f0f0"
-              stopOpacity={1}
-            >
-              <animate
-                attributeName="offset"
-                dur="2s"
-                keyTimes="0; 0.25; 1"
-                repeatCount="indefinite"
-                values="0; 0; 3"
-              />
-            </stop>
-          </linearGradient>
-        </defs>
-      </svg>
+      
     </button>
   </div>
 </div>

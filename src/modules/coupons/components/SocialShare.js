@@ -12,9 +12,10 @@ import facebookConfig from '@config/FacebookConfig';
 type SocialShareProps = {
   text: string,
   link: string,
+  t: Function,
 };
 
-const SocialShare = ({ text, link }: SocialShareProps) => {
+const SocialShare = ({ text, link, t }: SocialShareProps) => {
   const [isShowSocial, setIsShowSocial] = useState(false);
 
   const logo = 'https://d26fg97ql61k4.cloudfront.net/build/img/piggy/logo.svg';
@@ -29,7 +30,7 @@ const SocialShare = ({ text, link }: SocialShareProps) => {
     <SocialShare.Wrapper>
       <SocialShare.Button onClick={() => setIsShowSocial(!isShowSocial)}>
         <FiShare2 />
-        <p>Share</p>
+        <p>{t('coupons.shopBy.share')}</p>
       </SocialShare.Button>
       <SocialShare.SocialsWrapper isShow={isShowSocial}>
         <SocialShare.Social href={facebookLink} target="_blank">

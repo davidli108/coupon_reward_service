@@ -103,6 +103,7 @@ export type BrandNeverOverpayProps = {
 
 export type PiggyExtAdProps = {
   t: Function,
+  i18n: Object,
   stars: number,
   reviewsCount: string,
 };

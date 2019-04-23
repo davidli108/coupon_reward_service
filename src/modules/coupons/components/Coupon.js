@@ -76,7 +76,7 @@ const Coupon = ({
             .replace('Cash Back', t('global.cashBack'))
             .replace('Instant Savings', t('global.instantSaving'))}
         </Coupon.CashbackPercent>
-        <SocialShare text={ref_text} link={offer_link} />
+        <SocialShare text={ref_text} link={offer_link} t={t} />
       </Coupon.Content>
     </Coupon.Wrapper>
   );

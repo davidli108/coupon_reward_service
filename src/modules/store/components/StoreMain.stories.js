@@ -13,6 +13,7 @@ storiesOf('Components|@Store', module)
   .addDecorator(StyledComponentsDecorator)
   .add('StoreMain', () => (
     <StoreMain
+      isLoadedStores
       stores={[
         {
           name: 'Target',

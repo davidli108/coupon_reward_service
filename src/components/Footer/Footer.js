@@ -1,6 +1,5 @@
 //@flow
 import * as React from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { MdAndroid, MdLaptop } from 'react-icons/md';
@@ -11,9 +10,10 @@ import logo from '../Header/logo.svg';
 
 type FooterProps = {
   t: Function,
+  i18n: Object,
 };
 
-const Footer = ({ t }: FooterProps) => (
+const Footer = ({ t, i18n }: FooterProps) => (
   <Footer.Wrapper>
     <Footer.Strip />
     <Footer.Container>
@@ -40,6 +40,7 @@ const Footer = ({ t }: FooterProps) => (
           href="https://play.google.com/store/apps/details?id=com.piggy.coupons"
           target="_blank"
           style={{ order: '2' }}
+          lng={i18n.language}
         >
           <div>
             <MdAndroid
@@ -52,6 +53,7 @@ const Footer = ({ t }: FooterProps) => (
           href="https://itunes.apple.com/us/app/coupons-cashback-piggy/id1176303802?ls=1&mt=8"
           target="_blank"
           style={{ order: '3' }}
+          lng={i18n.language}
         >
           <div>
             <IoLogoApple
@@ -61,9 +63,12 @@ const Footer = ({ t }: FooterProps) => (
           <p>{t('footer.downloadButtons.ios')}</p>
         </Footer.DownloadAppLink>
         <Footer.DownloadAppLink
-          href="https://chrome.google.com/webstore/detail/piggy-automatic-coupons-c/hfapbcheiepjppjbnkphkmegjlipojba?hl=en"
+          href={`https://chrome.google.com/webstore/detail/piggy-automatic-coupons-c/hfapbcheiepjppjbnkphkmegjlipojba?hl=${
+            i18n.language
+          }`}
           target="_blank"
           style={{ order: '1' }}
+          lng={i18n.language}
         >
           <div>
             <MdLaptop
@@ -177,7 +182,7 @@ Footer.DownloadAppLink = styled.a`
 
   > p {
     font-size: 16px;
-    width: 90px;
+    width: ${props => (props.lng === 'de' ? '110px' : '90px')};
     color: white;
     letter-spacing: 0.3px;
     padding-right: 10px;
@@ -362,7 +367,7 @@ Footer.CopyrightWrapper = styled.div`
   }
 `;
 
-Footer.CopyrightLink = styled(Link)`
+Footer.CopyrightLink = styled.a`
   width: fit-content;
   font-size: 14px;
   color: white;
