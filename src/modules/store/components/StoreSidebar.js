@@ -30,6 +30,7 @@ type StoreSidebarProps = {
   getStore: Function,
   setIsLoadedStores: boolean => void,
   isLoadedCategories: boolean,
+  setIsLoadedCategories: boolean => void,
 };
 
 const StoreSidebar = ({
@@ -49,6 +50,7 @@ const StoreSidebar = ({
   getStore,
   setIsLoadedStores,
   isLoadedCategories,
+  setIsLoadedCategories,
 }: StoreSidebarProps) => {
   const [searchValue, setSearchValue] = useState('');
   const [activeCategory, setActiveCategory] = useState(match.params.name);
@@ -59,6 +61,16 @@ const StoreSidebar = ({
       onSearch(e.target.value);
     }
   };
+
+  useEffect(() => {
+    if (setIsLoadedStores) {
+      setIsLoadedStores(false);
+      getStore(match.params.name || '').then(() => {
+        setIsLoadedStores(true);
+        setIsLoadedCategories(true);
+      });
+    }
+  }, []);
 
   useEffect(() => {
     if (!match.params.name && activeCategory) {

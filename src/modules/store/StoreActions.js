@@ -49,15 +49,6 @@ export const onSearch = (keywords: string) => ({
   },
 });
 
-export const getCategories = () => ({
-  type: GET_CATEGORIES,
-  payload: {
-    request: {
-      url: `/api/cashback-stores`,
-    },
-  },
-});
-
 export const setFilterClear = () => ({
   type: SET_FILTER_CLEAR,
 });

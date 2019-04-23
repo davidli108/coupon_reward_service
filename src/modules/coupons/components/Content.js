@@ -12,7 +12,6 @@ import Categories from './Categories';
 import Coupons from '../components/Coupons';
 
 import CategoriesLoader from '../components/loaders/CategoriesLoader';
-import CouponLoader from '../components/loaders/CouponLoader';
 
 type ContentProps = {
   t: string => string,
@@ -49,11 +48,11 @@ const Content = ({
   const [activeCategory, setActiveCategory] = useState(match.params.name);
 
   useEffect(() => {
-    fetchCategories().then(() => setIsLoadedCategories(true));
-    if (match.params.name) {
-      setIsLoaded(false);
-      getCouponsByCategory(match.params.name).then(() => setIsLoaded(true));
-    }
+    setIsLoaded(false);
+    getCouponsByCategory(match.params.name || '').then(() => {
+      setIsLoaded(true);
+      setIsLoadedCategories(true);
+    });
   }, []);
 
   useEffect(() => {

@@ -1,5 +1,5 @@
 //@flow
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { compose } from 'recompose';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -33,7 +33,6 @@ type CouponsPageProps = {
   getFilteredDeals: () => Object,
   getCoupons: () => Promise<number>,
   loadMore: number => Promise<number>,
-  fetchCategories: () => Promise<number>,
   getCouponsByCategory: string => Promise<number>,
   getDealsFilter: Object,
   setDealsFilter: string => void,
@@ -63,12 +62,6 @@ const CouponsPage = ({
   offersCount,
 }: CouponsPageProps) => {
   const [searchValue, setSearchValue] = useState('');
-
-  useEffect(() => {
-    if (!match.params.name) {
-      getCoupons();
-    }
-  }, []);
 
   const onSearchChange = e => {
     setSearchValue(e.target.value);
@@ -105,7 +98,6 @@ const CouponsPage = ({
         categories={categories}
         getFilteredDeals={getFilteredDeals}
         loadMore={loadMore}
-        fetchCategories={fetchCategories}
         getCouponsByCategory={getCouponsByCategory}
         getDealsFilter={getDealsFilter}
         setDealsFilter={setDealsFilter}
@@ -174,7 +166,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   getCoupons: couponsActions.getCoupons,
   loadMore: couponsActions.loadMore,
-  fetchCategories: couponsActions.fetchCategories,
   getCouponsByCategory: couponsActions.getCouponsByCategory,
   setDealsFilter: couponsActions.setDealsFilter,
   requestSearch: couponsActions.requestSearch,

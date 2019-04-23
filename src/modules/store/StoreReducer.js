@@ -10,7 +10,6 @@ import {
   LOAD_MORE_STATE,
   SEARCH,
   REQUEST_SEARCH,
-  GET_CATEGORIES,
 } from './StoreActions';
 
 export const STATE_KEY = 'store';
@@ -51,10 +50,17 @@ const StoreReducer = (state: StoresState = initialState, action: Object) => {
         R.pathOr([], ['payload', 'data', 'stores_count']),
       )(action);
 
+      const categories = R.pathOr(
+        [],
+        ['payload', 'data', 'categories'],
+        action,
+      );
+
       return R.compose(
         R.assoc<Object, Object>('featured', featuredStores),
         R.assoc<Object, Object>('stores', storesData),
         R.assoc<Object, Object>('storesCount', count),
+        R.assoc<Object, Object>('categories', categories),
       )(state);
     }
     case SET_FILTER: {
@@ -77,11 +83,6 @@ const StoreReducer = (state: StoresState = initialState, action: Object) => {
     }
     case REQUEST_SEARCH: {
       return R.assoc<Object, Object>('searchIsLoading', false, state);
-    }
-    case `${GET_CATEGORIES}_SUCCESS`: {
-      const data = R.pathOr([], ['payload', 'data', 'categories'], action);
-
-      return R.assoc<Object, Object>('categories', data, state);
     }
     case `${SEARCH}_SUCCESS`: {
       return R.compose(

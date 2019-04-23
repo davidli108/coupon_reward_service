@@ -13,7 +13,6 @@ import {
   LOAD_MORE,
   SET_DEALS_FILTER,
   SET_FILTER_TYPE,
-  FETCH_CATEGORIES,
   GET_COUPONS_BY_CATEGORY,
   GET_COUPONS,
   SEARCH,
@@ -81,14 +80,6 @@ const CouponsReducer = (
     case RESET_COUPONS: {
       return R.assoc<Object, Object>('stores', [], state);
     }
-    case `${FETCH_CATEGORIES}_SUCCESS`: {
-      const data = {
-        categories: R.pathOr([], ['payload', 'data', 'categories'], action),
-        stores: R.pathOr([], ['payload', 'data', 'featured_stores'], action),
-      };
-
-      return R.assoc<Object, Object>('categories', data, state);
-    }
     case `${GET_COUPONS_BY_CATEGORY}_SUCCESS`: {
       const offersData = R.pathOr(
         [],
@@ -102,9 +93,15 @@ const CouponsReducer = (
         action,
       );
 
+      const categories = {
+        categories: R.pathOr([], ['payload', 'data', 'categories'], action),
+        stores: R.pathOr([], ['payload', 'data', 'featured_stores'], action),
+      };
+
       return R.compose(
         R.assoc<Object, Object>('stores', offersData),
         R.assoc<Object, Object>('offersCount', offersCount),
+        R.assoc<Object, Object>('categories', categories),
       )(state);
     }
     case REQUEST_SEARCH: {

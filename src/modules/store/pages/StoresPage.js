@@ -1,5 +1,5 @@
 // @flow
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { compose } from 'recompose';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -49,7 +49,6 @@ type StoresPageProps = {
   onSearch: Function,
   searchIsLoading: boolean,
   categories: Object,
-  getCategories: Function,
   storesCount: number,
 };
 
@@ -71,21 +70,11 @@ const StoresPage = ({
   onSearch,
   searchIsLoading,
   categories,
-  getCategories,
   storesCount,
 }: StoresPageProps) => {
   const [isLoadedStores, setIsLoadedStores] = useState(false);
   const [isLoadedMore, setIsLoadedMore] = useState(true);
   const [isLoadedCategories, setIsLoadedCategories] = useState(false);
-
-  useEffect(() => {
-    getCategories().then(() => setIsLoadedCategories(true));
-    setIsLoadedStores(false);
-    onGetStore(match.params.name || '').then(() => setIsLoadedStores(true));
-  }, []);
-
-  // const onFilterFeatured = stores =>
-  //   R.filter(({ isFeatured }) => isFeatured === true, stores);
 
   return (
     <React.Fragment>
@@ -119,12 +108,12 @@ const StoresPage = ({
               getStore={onGetStore}
               setIsLoadedStores={setIsLoadedStores}
               isLoadedCategories={isLoadedCategories}
+              setIsLoadedCategories={setIsLoadedCategories}
             />
             {!isLoadedMore || isLoadedStores ? (
               <StoreMain
                 title={title}
                 stores={stores}
-                // featured={onFilterFeatured(featured)}
                 featured={featured}
                 onLoadMore={onLoadMore}
                 loadState={loadState}
@@ -252,7 +241,6 @@ const mapDispatchToProps = {
   onSetFilterClear: storeActions.setFilterClear,
   onGetStore: storeActions.getStores,
   onSearch: storeActions.requestSearch,
-  getCategories: storeActions.getCategories,
 };
 
 export default compose(

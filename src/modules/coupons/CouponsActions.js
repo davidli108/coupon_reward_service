@@ -55,15 +55,6 @@ export const onSearch = (keywords: string) => ({
   },
 });
 
-export const fetchCategories = () => ({
-  type: FETCH_CATEGORIES,
-  payload: {
-    request: {
-      url: '/api/coupons',
-    },
-  },
-});
-
 export const setDealsFilter = (payload: string) => ({
   type: SET_DEALS_FILTER,
   payload,

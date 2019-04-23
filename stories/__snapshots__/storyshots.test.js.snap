@@ -1390,6 +1390,14 @@ exports[`Storyshots Components|@Store SearchStoreItem 1`] = `
 `;
 
 exports[`Storyshots Components|@Store StoreList 1`] = `
+.c15 {
+  width: 100%;
+  height: 800px;
+  -webkit-flex-basis: 850px;
+  -ms-flex-preferred-size: 850px;
+  flex-basis: 850px;
+}
+
 .c2 {
   width: 100%;
   display: -webkit-box;
@@ -1418,7 +1426,7 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
 }
 
 .c0 {
-  margin: 0 0 50px 0;
+  margin: 0;
 }
 
 .c1 {
@@ -1594,13 +1602,16 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
 }
 
 .c14 {
+  width: 100%;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  margin: 0 auto;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   font-weight: bold;
-  line-height: 21px;
   font-size: 18px;
   text-align: center;
   -webkit-letter-spacing: 0.45px;
@@ -1614,6 +1625,10 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
   cursor: pointer;
   -webkit-transition: color 205ms linear;
   transition: color 205ms linear;
+}
+
+.c14 p {
+  line-height: 80px;
 }
 
 .c14:hover {
@@ -2006,10 +2021,103 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
     className="c14"
     onClick={[Function]}
   >
-    <img
-      alt=""
-      src="preloader.svg"
-    />
+    <svg
+      aria-labelledby="Loading interface..."
+      className="c15"
+      preserveAspectRatio="none"
+      role="img"
+      style={Object {}}
+      viewBox="0 0 0 0"
+    >
+      <title>
+        Loading interface...
+      </title>
+      <rect
+        clipPath="url(#s9ylfl55h2l)"
+        height={0}
+        style={
+          Object {
+            "fill": "url(#qkuc43atpzq)",
+          }
+        }
+        width={0}
+        x="0"
+        y="0"
+      />
+      <defs>
+        <clipPath
+          id="s9ylfl55h2l"
+        >
+          <rect
+            height="200"
+            rx="4"
+            ry="2"
+            width={0}
+            x="0"
+            y="10"
+          />
+          <rect
+            height="200"
+            rx="4"
+            ry="2"
+            width={0}
+            x="0"
+            y="220"
+          />
+          <rect
+            height="200"
+            rx="4"
+            ry="2"
+            width={0}
+            x="0"
+            y="430"
+          />
+        </clipPath>
+        <linearGradient
+          id="qkuc43atpzq"
+        >
+          <stop
+            offset="0%"
+            stopColor="#f0f0f0"
+            stopOpacity={1}
+          >
+            <animate
+              attributeName="offset"
+              dur="2s"
+              keyTimes="0; 0.25; 1"
+              repeatCount="indefinite"
+              values="-2; -2; 1"
+            />
+          </stop>
+          <stop
+            offset="50%"
+            stopColor="#e0e0e0"
+            stopOpacity={1}
+          >
+            <animate
+              attributeName="offset"
+              dur="2s"
+              keyTimes="0; 0.25; 1"
+              repeatCount="indefinite"
+              values="-1; -1; 2"
+            />
+          </stop>
+          <stop
+            offset="100%"
+            stopColor="#f0f0f0"
+            stopOpacity={1}
+          >
+            <animate
+              attributeName="offset"
+              dur="2s"
+              keyTimes="0; 0.25; 1"
+              repeatCount="indefinite"
+              values="0; 0; 3"
+            />
+          </stop>
+        </linearGradient>
+      </defs>
+    </svg>
   </button>
 </div>
 `;
@@ -2024,6 +2132,14 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
+}
+
+.c18 {
+  width: 100%;
+  height: 800px;
+  -webkit-flex-basis: 850px;
+  -ms-flex-preferred-size: 850px;
+  flex-basis: 850px;
 }
 
 .c5 {
@@ -2054,7 +2170,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 }
 
 .c3 {
-  margin: 0 0 50px 0;
+  margin: 0;
 }
 
 .c4 {
@@ -2230,13 +2346,16 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 }
 
 .c17 {
+  width: 100%;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  margin: 0 auto;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   font-weight: bold;
-  line-height: 21px;
   font-size: 18px;
   text-align: center;
   -webkit-letter-spacing: 0.45px;
@@ -2250,6 +2369,10 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
   cursor: pointer;
   -webkit-transition: color 205ms linear;
   transition: color 205ms linear;
+}
+
+.c17 p {
+  line-height: 80px;
 }
 
 .c17:hover {
@@ -2715,10 +2838,103 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
       className="c17"
       onClick={[Function]}
     >
-      <img
-        alt=""
-        src="preloader.svg"
-      />
+      <svg
+        aria-labelledby="Loading interface..."
+        className="c18"
+        preserveAspectRatio="none"
+        role="img"
+        style={Object {}}
+        viewBox="0 0 0 0"
+      >
+        <title>
+          Loading interface...
+        </title>
+        <rect
+          clipPath="url(#qj573pn3npl)"
+          height={0}
+          style={
+            Object {
+              "fill": "url(#amjptqj6qgh)",
+            }
+          }
+          width={0}
+          x="0"
+          y="0"
+        />
+        <defs>
+          <clipPath
+            id="qj573pn3npl"
+          >
+            <rect
+              height="200"
+              rx="4"
+              ry="2"
+              width={0}
+              x="0"
+              y="10"
+            />
+            <rect
+              height="200"
+              rx="4"
+              ry="2"
+              width={0}
+              x="0"
+              y="220"
+            />
+            <rect
+              height="200"
+              rx="4"
+              ry="2"
+              width={0}
+              x="0"
+              y="430"
+            />
+          </clipPath>
+          <linearGradient
+            id="amjptqj6qgh"
+          >
+            <stop
+              offset="0%"
+              stopColor="#f0f0f0"
+              stopOpacity={1}
+            >
+              <animate
+                attributeName="offset"
+                dur="2s"
+                keyTimes="0; 0.25; 1"
+                repeatCount="indefinite"
+                values="-2; -2; 1"
+              />
+            </stop>
+            <stop
+              offset="50%"
+              stopColor="#e0e0e0"
+              stopOpacity={1}
+            >
+              <animate
+                attributeName="offset"
+                dur="2s"
+                keyTimes="0; 0.25; 1"
+                repeatCount="indefinite"
+                values="-1; -1; 2"
+              />
+            </stop>
+            <stop
+              offset="100%"
+              stopColor="#f0f0f0"
+              stopOpacity={1}
+            >
+              <animate
+                attributeName="offset"
+                dur="2s"
+                keyTimes="0; 0.25; 1"
+                repeatCount="indefinite"
+                values="0; 0; 3"
+              />
+            </stop>
+          </linearGradient>
+        </defs>
+      </svg>
     </button>
   </div>
 </div>
