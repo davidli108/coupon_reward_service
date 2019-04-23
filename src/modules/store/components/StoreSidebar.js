@@ -1,5 +1,5 @@
 // @flow
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { compose } from 'recompose';
 import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
@@ -59,6 +59,15 @@ const StoreSidebar = ({
       onSearch(e.target.value);
     }
   };
+
+  useEffect(() => {
+    if (!match.params.name && activeCategory) {
+      history.push('/cashback-stores/');
+      setActiveCategory('');
+      setIsLoadedStores(false);
+      getStore('').then(() => setIsLoadedStores(true));
+    }
+  });
 
   const onActiveCategory = shortName => {
     if (match.params.name !== shortName) {

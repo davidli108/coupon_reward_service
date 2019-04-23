@@ -56,6 +56,15 @@ const Content = ({
     }
   }, []);
 
+  useEffect(() => {
+    if (!match.params.name && activeCategory) {
+      setActiveCategory('');
+      setIsLoaded(false);
+      getCouponsByCategory('').then(() => setIsLoaded(true));
+      setLoadCount(20);
+    }
+  });
+
   const onLoadMore = () => {
     if (isLoaded) {
       setIsLoaded(false);
@@ -132,11 +141,10 @@ const Content = ({
               <Content.NoData>No Coupons Found</Content.NoData>
             )
           ) : activeCategory ? (
-            <Content.Coupons>
-              {Array.apply(null, Array(20)).map(() => (
-                <CouponLoader />
-              ))}
-            </Content.Coupons>
+            <Coupons
+              coupons={getFilteredDeals}
+              isLoad={getFilteredDeals.length !== 0}
+            />
           ) : offersCount !== 0 ? (
             <Coupons
               coupons={getFilteredDeals}
