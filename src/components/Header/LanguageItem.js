@@ -29,6 +29,10 @@ const HeaderItemMyAccount = ({
       onClick: () => i18n.changeLanguage('en'),
     },
     {
+      title: 'GB',
+      onClick: () => i18n.changeLanguage('gb'),
+    },
+    {
       title: 'FR',
       onClick: () => i18n.changeLanguage('fr'),
     },

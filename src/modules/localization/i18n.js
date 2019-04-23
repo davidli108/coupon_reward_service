@@ -4,6 +4,7 @@ import { initReactI18next } from 'react-i18next';
 import translationDE from './locales/de/translation';
 import translationEN from './locales/en/translation';
 import translationFR from './locales/fr/translation';
+import translationGB from './locales/gb/translation';
 
 const resources = {
   de: {
@@ -15,12 +16,16 @@ const resources = {
   fr: {
     translation: translationFR,
   },
+  gb: {
+    translation: translationGB,
+  },
 };
 
 const localeToDomain = {
   '.com': 'en',
   '.de': 'de',
   '.fr': 'fr',
+  '.co.uk': 'gb',
 };
 
 const fallbackLocale = 'en';
