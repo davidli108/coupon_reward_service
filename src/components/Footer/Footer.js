@@ -74,51 +74,53 @@ const Footer = ({ t }: FooterProps) => (
         </Footer.DownloadAppLink>
       </Footer.DownloadAppLinksWrapper>
       <Footer.Navigation>
-        <Footer.NavLink to="/howtoinstall">
+        <Footer.NavLink href="/howtoinstall">
           {t('footer.menu.howToInstall')}
         </Footer.NavLink>
-        <Footer.NavLink to="/about-cashback">
+        <Footer.NavLink href="/about-cashback">
           {t('footer.menu.aboutCashBack')}
         </Footer.NavLink>
-        <Footer.NavLink to="/account/referrals">
+        <Footer.NavLink href="/account/referrals">
           {t('footer.menu.referrals')}
         </Footer.NavLink>
-        <Footer.NavLink to="/careers">
+        <Footer.NavLink href="/careers">
           {t('footer.menu.careers')}
         </Footer.NavLink>
-        <Footer.NavLink to="/howtoremove">
+        <Footer.NavLink href="/howtoremove">
           {t('footer.menu.howToUninstall')}
         </Footer.NavLink>
-        <Footer.NavLink to="/consumer-resources">
+        <Footer.NavLink href="/consumer-resources">
           {t('footer.menu.consumerResources')}
         </Footer.NavLink>
-        <Footer.NavLink to="/blog">{t('footer.menu.blog')}</Footer.NavLink>
-        <Footer.NavLink to="/cashback-apps">
+        <Footer.NavLink href="/blog">{t('footer.menu.blog')}</Footer.NavLink>
+        <Footer.NavLink href="/cashback-apps">
           {t('footer.menu.aboutOurApp')}
         </Footer.NavLink>
-        <Footer.NavLink to="/about">{t('footer.menu.aboutUs')}</Footer.NavLink>
-        <Footer.NavLink to="/contactus">
+        <Footer.NavLink href="/about">
+          {t('footer.menu.aboutUs')}
+        </Footer.NavLink>
+        <Footer.NavLink href="/contactus">
           {t('footer.menu.contact')}
         </Footer.NavLink>
-        <Footer.NavLink to="/info">{t('footer.menu.help')}</Footer.NavLink>
+        <Footer.NavLink href="/info">{t('footer.menu.help')}</Footer.NavLink>
       </Footer.Navigation>
     </Footer.Container>
     <Footer.CopyrightWrapper>
       <div>
         <div>
-          <Footer.CopyrightLink to="/terms">
+          <Footer.CopyrightLink href="/terms">
             {t('footer.copiright.menu.termsOfUse')}
           </Footer.CopyrightLink>
-          <Footer.CopyrightLink to="/sitemap">
+          <Footer.CopyrightLink href="/sitemap">
             {t('footer.copiright.menu.sitemap')}
           </Footer.CopyrightLink>
-          <Footer.CopyrightLink to="/eula">
+          <Footer.CopyrightLink href="/eula">
             {t('footer.copiright.menu.eula')}
           </Footer.CopyrightLink>
-          <Footer.CopyrightLink to="/privacy">
+          <Footer.CopyrightLink href="/privacy">
             {t('footer.copiright.menu.privacyPolicy')}
           </Footer.CopyrightLink>
-          <Footer.CopyrightLink to="/unsubscribe">
+          <Footer.CopyrightLink href="/unsubscribe">
             {t('footer.copiright.menu.unsubscribe')}
           </Footer.CopyrightLink>
         </div>
@@ -299,7 +301,7 @@ Footer.Navigation = styled.div`
   `}
 `;
 
-Footer.NavLink = styled(Link)`
+Footer.NavLink = styled.a`
   color: white;
   width: fit-content;
   padding: 12.5px 0;
