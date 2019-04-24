@@ -12,7 +12,6 @@ import ResetPasswordModal from '../../modules/auth/components/ResetPasswordModal
 import BurgerButton from './BurgerButton';
 import HeaderItem from './HeaderItem';
 import logo from './logo.svg';
-import LanguageItem from './LanguageItem';
 
 const modal = {
   modalSignIn: 'modalSignIn',
@@ -87,14 +86,7 @@ const Header = ({ t, location }: HeaderProps) => {
       <HeaderItem redirect="/" direct>
         <Header.Logo src={logo} />
       </HeaderItem>
-      <Header.Controls>
-        <LanguageItem
-          bgColor="#40c8e5"
-          hoverBgColor="#03b6d1"
-          title="Language"
-        />
-        {renderHeaderItems(items)}
-      </Header.Controls>
+      <Header.Controls>{renderHeaderItems(items)}</Header.Controls>
       <Header.BurgerButtonWrapper>
         <BurgerButton isOpen={isOpen} onClick={() => setOpen(!isOpen)} />
       </Header.BurgerButtonWrapper>
