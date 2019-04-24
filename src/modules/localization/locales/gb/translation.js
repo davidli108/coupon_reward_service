@@ -46,7 +46,7 @@ export default {
       or: 'or',
       emailAddress: 'Email Address',
       password: 'Password',
-      button: 'Login with EMail',
+      button: 'Login with Email',
       forgotPassword: 'Forgot Password?',
       footer: {
         text: 'Not a Member?',
