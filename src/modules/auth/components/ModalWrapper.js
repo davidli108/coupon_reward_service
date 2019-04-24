@@ -113,7 +113,7 @@ ModalWrapper.Content = styled.div`
     `}
 
     ${breakpoint('sx')`
-      margin: 1rem 0;
+      margin: 1rem auto;
     `}
   }
 

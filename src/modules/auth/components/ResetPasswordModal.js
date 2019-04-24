@@ -54,8 +54,8 @@ const ResetPasswordModal = ({
             <button>{submitLabel}</button>
           </ResetPasswordModal.Form>
           <ModalFooter
-            footerText={t('auth.footer.text')}
-            textButton={t('auth.footer.button')}
+            footerText={t('auth.forgotPassword.footer.text')}
+            textButton={t('auth.forgotPassword.footer.button')}
             onRoutModal={onRoutModal}
           />
         </div>

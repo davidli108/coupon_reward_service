@@ -25,19 +25,19 @@ ModalSocial.LinkFacebook = styled.a`
   display: block;
   width: 100%;
   background-color: ${props => props.theme.colors.blueFacebook};
-  padding: 1rem;
-  border-radius: 10000px;
+  padding: 1rem 0;
+  border-radius: 100px;
   text-align: center;
   color: ${props => props.theme.colors.white};
   outline: none;
   cursor: pointer;
 
   ${breakpoint('xs')`
-    padding: .5rem;
+    padding: .5rem 0;
   `}
 
   ${breakpoint('sx')`
-    padding: 1rem;
+    padding: 1rem 0;
   `}
 
   img {
