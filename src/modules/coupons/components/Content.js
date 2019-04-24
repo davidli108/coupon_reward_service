@@ -247,7 +247,7 @@ Content.Coupons = styled.div`
 `;
 
 Content.LoadMoreDeals = styled.button`
-  width: 100%;
+  width: 95%;
   display: flex;
   justify-content: center;
   font-weight: bold;
