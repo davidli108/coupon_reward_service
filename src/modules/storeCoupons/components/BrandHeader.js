@@ -19,6 +19,7 @@ const BrandHeader = ({
   t,
   store: { store_name, store_cashback_text },
   offers,
+  offersCount,
 }: BrandHeaderProps) => {
   const [isStoreFollowed, setStoreFollowed] = React.useState(false);
   // eslint-disable-next-line no-unused-vars
@@ -30,17 +31,25 @@ const BrandHeader = ({
         {store_name} {t('storeCoupons.codesAndDeals')}
       </BrandHeader.Name>
       <BrandHeader.NoWrapFlexBox>
-        <BrandHeader.OffersStats>
-          <span>
-            {getCouponsCount(offers)} {t('header.coupons')}
-          </span>
-          <span>-</span>
-          <span>
-            {getDealsCount(offers)} {t('global.deals')}
-          </span>
-          <span>-</span>
-          <span>{store_cashback_text}</span>
-        </BrandHeader.OffersStats>
+        {offersCount !== 0 && (
+          <BrandHeader.OffersStats>
+            <span>
+              {getCouponsCount(offers)}{' '}
+              {getCouponsCount(offers) === 1
+                ? t('coupons.type.coupon')
+                : t('header.coupons')}
+            </span>
+            <span>-</span>
+            <span>
+              {getDealsCount(offers)}{' '}
+              {getDealsCount(offers) === 1
+                ? t('coupons.type.deal')
+                : t('global.deals')}
+            </span>
+            <span>-</span>
+            <span>{store_cashback_text}</span>
+          </BrandHeader.OffersStats>
+        )}
         {/*
         <BrandHeader.FollowStoreWrapper isStoreFollowed={isStoreFollowed}>
           <div onClick={handleStoreFollowToggler}>

@@ -17,6 +17,7 @@ import { getStore } from '../StoreCouponsReducer';
 const Brand = ({
   store: { store_logo_image_path, store_name },
   isLoaded,
+  offersCount,
 }: BrandProps) => {
   return (
     <>
@@ -42,7 +43,7 @@ const Brand = ({
         <Brand.WrapFlexBox>
           {isLoaded ? (
             <>
-              <BrandHeader />
+              <BrandHeader offersCount={offersCount} />
               <Brand.XlWrapper>
                 <Brand.NoWrapFlexBoxWithBorder>
                   <BrandContent

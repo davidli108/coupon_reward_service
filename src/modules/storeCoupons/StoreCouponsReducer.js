@@ -41,10 +41,7 @@ const StoreCouponsReducer = (
       const count: number = R.pathOr(0, ['payload', 'data', 'offers_count'])(
         action,
       );
-      const offers =
-        count > 0
-          ? R.pathOr([], ['payload', 'data', 'offers_data'])(action)
-          : [];
+      const offers = R.pathOr([], ['payload', 'data', 'offers_data'])(action);
 
       const store = R.compose(
         R.fromPairs,

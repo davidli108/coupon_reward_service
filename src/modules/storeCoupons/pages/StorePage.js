@@ -70,7 +70,7 @@ const StorePage = ({
         value={searchValue}
         isLoading={searchIsLoading}
       />
-      <Brand isLoaded={isLoaded} />
+      <Brand isLoaded={isLoaded} offersCount={offersCount} />
       <StorePage.DesktopContent>
         <StorePage.ColumnNoWrapFlexBox order="2" style={{ marginBottom: 50 }}>
           {isLoaded ? (

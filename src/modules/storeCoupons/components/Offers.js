@@ -79,6 +79,7 @@ Offers.LoadMoreDeals = styled.button`
 Offers.NoData = styled.p`
   width: 100%;
   margin-top: 50px;
+  margin-bottom: 40px;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -1511,6 +1511,14 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
 }
 
 .c11 {
+  font-weight: 500;
+  line-height: 23px;
+  font-size: 13px;
+  color: #374B5A;
+  margin: 12px 0 0 0;
+}
+
+.c12 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1541,11 +1549,11 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
   display: none;
 }
 
-.c11:hover {
+.c12:hover {
   background: #00B4CF;
 }
 
-.c12 {
+.c13 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1581,11 +1589,11 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
   width: 100%;
 }
 
-.c12:hover {
+.c13:hover {
   background: #00B4CF;
 }
 
-.c13 {
+.c14 {
   width: 100%;
   display: -webkit-box;
   display: -webkit-flex;
@@ -1611,11 +1619,11 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
   transition: color 205ms linear;
 }
 
-.c13 p {
+.c14 p {
   line-height: 80px;
 }
 
-.c13:hover {
+.c14:hover {
   color: #7F7F7F;
 }
 
@@ -1830,36 +1838,25 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
 
 @media (min-width:25.8125em) {
   .c11 {
-    display: block;
-    -webkit-flex-basis: auto;
-    -ms-flex-preferred-size: auto;
-    flex-basis: auto;
-    width: 100%;
+    margin: 28px 0 0 0;
+  }
+}
+
+@media (min-width:36em) {
+  .c11 {
+    margin: 0 0 5px 0;
   }
 }
 
 @media (min-width:48em) {
   .c11 {
-    -webkit-flex-basis: 242px;
-    -ms-flex-preferred-size: 242px;
-    flex-basis: 242px;
-    margin-left: auto;
-  }
-}
-
-@media (min-width:62em) {
-  .c11 {
-    -webkit-flex-basis: 188px;
-    -ms-flex-preferred-size: 188px;
-    flex-basis: 188px;
+    margin: 0;
   }
 }
 
 @media (min-width:75em) {
   .c11 {
-    -webkit-flex-basis: 255px;
-    -ms-flex-preferred-size: 255px;
-    flex-basis: 255px;
+    margin: 0 100px 0 auto;
   }
 }
 
@@ -1899,7 +1896,42 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
 }
 
 @media (min-width:25.8125em) {
-  .c12 {
+  .c13 {
+    display: block;
+    -webkit-flex-basis: auto;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+    width: 100%;
+  }
+}
+
+@media (min-width:48em) {
+  .c13 {
+    -webkit-flex-basis: 242px;
+    -ms-flex-preferred-size: 242px;
+    flex-basis: 242px;
+    margin-left: auto;
+  }
+}
+
+@media (min-width:62em) {
+  .c13 {
+    -webkit-flex-basis: 188px;
+    -ms-flex-preferred-size: 188px;
+    flex-basis: 188px;
+  }
+}
+
+@media (min-width:75em) {
+  .c13 {
+    -webkit-flex-basis: 255px;
+    -ms-flex-preferred-size: 255px;
+    flex-basis: 255px;
+  }
+}
+
+@media (min-width:25.8125em) {
+  .c13 {
     display: none;
   }
 }
@@ -1952,10 +1984,15 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
                   global.deals
                 </p>
               </div>
+              <p
+                className="c11"
+              >
+                undefined
+              </p>
             </div>
           </div>
           <a
-            className="c11"
+            className="c12"
             href="/store/undefined"
             onClick={[Function]}
           >
@@ -1964,7 +2001,7 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
         </div>
       </div>
       <a
-        className="c12"
+        className="c13"
         href="/store/undefined"
         onClick={[Function]}
       >
@@ -1973,7 +2010,7 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
     </div>
   </div>
   <button
-    className="c13"
+    className="c14"
     onClick={[Function]}
   >
     
@@ -2114,6 +2151,14 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 }
 
 .c14 {
+  font-weight: 500;
+  line-height: 23px;
+  font-size: 13px;
+  color: #374B5A;
+  margin: 12px 0 0 0;
+}
+
+.c15 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2144,11 +2189,11 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
   display: none;
 }
 
-.c14:hover {
+.c15:hover {
   background: #00B4CF;
 }
 
-.c15 {
+.c16 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2184,11 +2229,11 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
   width: 100%;
 }
 
-.c15:hover {
+.c16:hover {
   background: #00B4CF;
 }
 
-.c16 {
+.c17 {
   width: 100%;
   display: -webkit-box;
   display: -webkit-flex;
@@ -2214,11 +2259,11 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
   transition: color 205ms linear;
 }
 
-.c16 p {
+.c17 p {
   line-height: 80px;
 }
 
-.c16:hover {
+.c17:hover {
   color: #7F7F7F;
 }
 
@@ -2482,36 +2527,25 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 
 @media (min-width:25.8125em) {
   .c14 {
-    display: block;
-    -webkit-flex-basis: auto;
-    -ms-flex-preferred-size: auto;
-    flex-basis: auto;
-    width: 100%;
+    margin: 28px 0 0 0;
+  }
+}
+
+@media (min-width:36em) {
+  .c14 {
+    margin: 0 0 5px 0;
   }
 }
 
 @media (min-width:48em) {
   .c14 {
-    -webkit-flex-basis: 242px;
-    -ms-flex-preferred-size: 242px;
-    flex-basis: 242px;
-    margin-left: auto;
-  }
-}
-
-@media (min-width:62em) {
-  .c14 {
-    -webkit-flex-basis: 188px;
-    -ms-flex-preferred-size: 188px;
-    flex-basis: 188px;
+    margin: 0;
   }
 }
 
 @media (min-width:75em) {
   .c14 {
-    -webkit-flex-basis: 255px;
-    -ms-flex-preferred-size: 255px;
-    flex-basis: 255px;
+    margin: 0 100px 0 auto;
   }
 }
 
@@ -2551,7 +2585,42 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 }
 
 @media (min-width:25.8125em) {
-  .c15 {
+  .c16 {
+    display: block;
+    -webkit-flex-basis: auto;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+    width: 100%;
+  }
+}
+
+@media (min-width:48em) {
+  .c16 {
+    -webkit-flex-basis: 242px;
+    -ms-flex-preferred-size: 242px;
+    flex-basis: 242px;
+    margin-left: auto;
+  }
+}
+
+@media (min-width:62em) {
+  .c16 {
+    -webkit-flex-basis: 188px;
+    -ms-flex-preferred-size: 188px;
+    flex-basis: 188px;
+  }
+}
+
+@media (min-width:75em) {
+  .c16 {
+    -webkit-flex-basis: 255px;
+    -ms-flex-preferred-size: 255px;
+    flex-basis: 255px;
+  }
+}
+
+@media (min-width:25.8125em) {
+  .c16 {
     display: none;
   }
 }
@@ -2628,10 +2697,15 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
                     global.deals
                   </p>
                 </div>
+                <p
+                  className="c14"
+                >
+                  undefined
+                </p>
               </div>
             </div>
             <a
-              className="c14"
+              className="c15"
               href="/store/undefined"
               onClick={[Function]}
             >
@@ -2640,7 +2714,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
           </div>
         </div>
         <a
-          className="c15"
+          className="c16"
           href="/store/undefined"
           onClick={[Function]}
         >
@@ -2649,7 +2723,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
       </div>
     </div>
     <button
-      className="c16"
+      className="c17"
       onClick={[Function]}
     >
       

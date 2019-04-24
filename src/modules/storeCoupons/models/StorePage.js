@@ -82,6 +82,7 @@ export type StorePageProps = {
 export type BrandProps = {
   store: Store,
   isLoaded: boolean,
+  offersCount: number,
 };
 
 export type BrandContentProps = {
@@ -94,6 +95,7 @@ export type BrandHeaderProps = {
   t: Function,
   store: Store,
   offers: Offer[],
+  offersCount: number,
 };
 
 export type BrandNeverOverpayProps = {
