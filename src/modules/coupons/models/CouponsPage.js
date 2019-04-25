@@ -50,7 +50,6 @@ export type Deal = {
   ref_text: string,
   offer_type: string,
   coupon_code: string,
-  ref_link: string,
   store_page_link: string,
 };
 

@@ -26,7 +26,6 @@ import Content from '../components/Content';
 import FeatureCouponLoader from '../components/loaders/FeatureCouponLoader';
 
 type CouponsPageProps = {
-  match: Object,
   categories: Object,
   stores: Object,
   storesAll: Object,
@@ -44,7 +43,6 @@ type CouponsPageProps = {
 };
 
 const CouponsPage = ({
-  match,
   categories,
   stores,
   storesAll,

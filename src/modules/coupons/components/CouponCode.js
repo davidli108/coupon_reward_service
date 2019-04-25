@@ -7,10 +7,9 @@ type CouponCodeProps = {
   t: Function,
   code: string,
   link: string,
-  refLink: string,
 };
 
-const CouponCode = ({ t, code, link, refLink }: CouponCodeProps) => {
+const CouponCode = ({ t, code, link }: CouponCodeProps) => {
   const [isShowCode, setIsShowCode] = useState(false);
 
   return (
@@ -27,7 +26,7 @@ const CouponCode = ({ t, code, link, refLink }: CouponCodeProps) => {
       >
         {code ? t('coupons.buttons.viewCoupon') : t('coupons.buttons.viewDeal')}
       </CouponCode.Button>
-      <CouponCode.Code href={refLink} target="_blank" isShow={isShowCode}>
+      <CouponCode.Code href={link} target="_blank" isShow={isShowCode}>
         {code}
       </CouponCode.Code>
     </CouponCode.Wrapper>

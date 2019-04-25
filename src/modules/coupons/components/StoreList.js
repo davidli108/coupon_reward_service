@@ -21,7 +21,7 @@ const StoreList = ({ t, stores, loaded }: StoreListProps) => {
         {stores.map(store => (
           <StoreList.Item
             key={`store_${store.store_id}`}
-            to={`/store/${store.short_name}`}
+            to={`/coupons/${store.short_name}`}
           >
             <img
               src={

@@ -70,7 +70,7 @@ const Coupon = ({
           <p>{show_exp_date}</p>
         </Coupon.ExpDate>
         <Coupon.OfferText>{ref_text}</Coupon.OfferText>
-        <CouponCode code={coupon_code} link={offer_link} refLink={ref_link} />
+        <CouponCode code={coupon_code} link={offer_link} />
         <Coupon.CashbackPercent>
           {discount_print
             .replace('Cash Back', t('global.cashBack'))
