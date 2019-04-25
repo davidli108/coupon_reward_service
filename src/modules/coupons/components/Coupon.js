@@ -38,7 +38,7 @@ const Coupon = ({
       </Coupon.BorderWrapper>
       <Coupon.Content>
         <Coupon.StoreLogoWrapper>
-          <Link to={store_page_link.replace('coupons', 'store')}>
+          <Link to={store_page_link}>
             <Coupon.StoreLogo
               src={
                 store_logo
