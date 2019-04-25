@@ -72,7 +72,7 @@ const StoreList = ({
                 {/* {offer_success_print && <StoreList.StoreNew>New Store</StoreList.StoreNew>} */}
                 <StoreList.Box>
                   <StoreList.ImageWrapper>
-                    <Link to={`/store/${shortName}`}>
+                    <Link to={`/coupons/${shortName}`}>
                       <StoreList.Image
                         src={
                           img
@@ -105,12 +105,12 @@ const StoreList = ({
                       </StoreList.Coupons>
                     )} */}
                     </StoreList.Content>
-                    <StoreList.Link to={`/store/${shortName}`}>
+                    <StoreList.Link to={`/coupons/${shortName}`}>
                       {t('build.visitStore')}
                     </StoreList.Link>
                   </StoreList.ContentWrap>
                 </StoreList.Box>
-                <StoreList.LinkMobile to={`/store/${shortName}`}>
+                <StoreList.LinkMobile to={`/coupons/${shortName}`}>
                   {t('build.visitStore')}
                 </StoreList.LinkMobile>
               </StoreList.StoreItem>

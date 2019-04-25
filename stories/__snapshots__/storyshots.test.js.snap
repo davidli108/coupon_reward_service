@@ -1241,7 +1241,7 @@ exports[`Storyshots Components|@Store Featured 1`] = `
   >
     <a
       className="c2"
-      href="/store/undefined"
+      href="/coupons/undefined"
       onClick={[Function]}
     >
       build.visitStore
@@ -1950,7 +1950,7 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
           className="c3"
         >
           <a
-            href="/store/undefined"
+            href="/coupons/undefined"
             onClick={[Function]}
           >
             <img
@@ -1993,7 +1993,7 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
           </div>
           <a
             className="c12"
-            href="/store/undefined"
+            href="/coupons/undefined"
             onClick={[Function]}
           >
             build.visitStore
@@ -2002,7 +2002,7 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
       </div>
       <a
         className="c13"
-        href="/store/undefined"
+        href="/coupons/undefined"
         onClick={[Function]}
       >
         build.visitStore
@@ -2663,7 +2663,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
             className="c6"
           >
             <a
-              href="/store/undefined"
+              href="/coupons/undefined"
               onClick={[Function]}
             >
               <img
@@ -2706,7 +2706,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
             </div>
             <a
               className="c15"
-              href="/store/undefined"
+              href="/coupons/undefined"
               onClick={[Function]}
             >
               build.visitStore
@@ -2715,7 +2715,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
         </div>
         <a
           className="c16"
-          href="/store/undefined"
+          href="/coupons/undefined"
           onClick={[Function]}
         >
           build.visitStore

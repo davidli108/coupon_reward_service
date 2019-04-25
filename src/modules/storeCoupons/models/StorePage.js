@@ -52,7 +52,6 @@ export type Offer = {
   offer_success: number,
   offer_success_print: string,
   show_exp_date: string,
-  ref_link: string,
   ref_text: string,
   facebook_link: string,
   twitter_link: string,

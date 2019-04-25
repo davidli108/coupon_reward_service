@@ -31,25 +31,27 @@ const BrandHeader = ({
         {store_name} {t('storeCoupons.codesAndDeals')}
       </BrandHeader.Name>
       <BrandHeader.NoWrapFlexBox>
-        {offersCount !== 0 && (
-          <BrandHeader.OffersStats>
-            <span>
-              {getCouponsCount(offers)}{' '}
-              {getCouponsCount(offers) === 1
-                ? t('coupons.type.coupon')
-                : t('header.coupons')}
-            </span>
-            <span>-</span>
-            <span>
-              {getDealsCount(offers)}{' '}
-              {getDealsCount(offers) === 1
-                ? t('coupons.type.deal')
-                : t('global.deals')}
-            </span>
-            <span>-</span>
-            <span>{store_cashback_text}</span>
-          </BrandHeader.OffersStats>
-        )}
+        <BrandHeader.OffersStats>
+          {offersCount !== 0 && (
+            <>
+              <span>
+                {getCouponsCount(offers)}{' '}
+                {getCouponsCount(offers) === 1
+                  ? t('coupons.type.coupon')
+                  : t('header.coupons')}
+              </span>
+              <span>-</span>
+              <span>
+                {getDealsCount(offers)}{' '}
+                {getDealsCount(offers) === 1
+                  ? t('coupons.type.deal')
+                  : t('global.deals')}
+              </span>
+              <span>-</span>
+            </>
+          )}
+          <span>{store_cashback_text}</span>
+        </BrandHeader.OffersStats>
         {/*
         <BrandHeader.FollowStoreWrapper isStoreFollowed={isStoreFollowed}>
           <div onClick={handleStoreFollowToggler}>

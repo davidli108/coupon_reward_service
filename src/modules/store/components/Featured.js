@@ -40,7 +40,7 @@ const Featured = ({ t, featured }: FeaturedProps) => (
               />
             </Featured.WrapperImage>
           )}
-          <Featured.Link to={`/store/${short_name}`}>
+          <Featured.Link to={`/coupons/${short_name}`}>
             {t('build.visitStore')}
           </Featured.Link>
           <Featured.Cash>

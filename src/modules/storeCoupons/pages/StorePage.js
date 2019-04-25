@@ -37,21 +37,21 @@ const StorePage = ({
   store,
 }: StorePageProps) => {
   const [searchValue, setSearchValue] = useState('');
-  const [storeName, setStoreName] = useState(match.params.storeName);
+  const [storeName, setStoreName] = useState(match.params.name);
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    match.params.storeName &&
+    match.params.name &&
       // $FlowFixMe
-      fetchStoreCoupons(match.params.storeName).then(() => setIsLoaded(true));
+      fetchStoreCoupons(match.params.name).then(() => setIsLoaded(true));
   }, []);
 
   useEffect(() => {
-    if (match.params.storeName && match.params.storeName !== storeName) {
-      setStoreName(match.params.storeName);
+    if (match.params.name && match.params.name !== storeName) {
+      setStoreName(match.params.name);
       setIsLoaded(false);
       // $FlowFixMe
-      fetchStoreCoupons(match.params.storeName).then(() => setIsLoaded(true));
+      fetchStoreCoupons(match.params.name).then(() => setIsLoaded(true));
     }
   });
 
@@ -78,7 +78,7 @@ const StorePage = ({
               offers={offers}
               offersCount={offersCount}
               fetchStoreCoupons={fetchStoreCouponsByPagination}
-              storeName={match.params.storeName}
+              storeName={match.params.name}
               store={store}
             />
           ) : (

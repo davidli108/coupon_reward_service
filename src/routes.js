@@ -26,15 +26,15 @@ const StoresPage = Loadable({
   loading: () => <Preloader />,
 });
 
-const StorePage = Loadable({
-  loader: () =>
-    import('@modules/storeCoupons/pages/StorePage' /* webpackChunkName: "StorePage" */),
-  loading: () => <Preloader />,
-});
-
 const CouponsPage = Loadable({
   loader: () =>
     import('@modules/coupons/pages/CouponsPage.js' /* webpackChunkName: "CouponsPage" */),
+  loading: () => <Preloader />,
+});
+
+const SplitterPage = Loadable({
+  loader: () =>
+    import('@modules/coupons/pages/SplitterPage.js' /* webpackChunkName: "SplitterPage" */),
   loading: () => <Preloader />,
 });
 
@@ -45,9 +45,8 @@ export default (
       <Route exact path="/" component={HomePage} />
       <Route exact path="/cashback-stores" component={StoresPage} />
       <Route exact path="/cashback-stores/:name" component={StoresPage} />
-      <Route exact path="/store/:storeName" component={StorePage} />
       <Route exact path="/coupons" component={CouponsPage} />
-      <Route exact path="/coupons/:name" component={CouponsPage} />
+      <Route exact path="/coupons/:name" component={SplitterPage} />
 
       {/* Catch all routes */}
       <Route component={NotFoundPage} />

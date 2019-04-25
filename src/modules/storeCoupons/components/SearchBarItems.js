@@ -28,7 +28,7 @@ const SearchStoreItem = ({
       result.map(item => (
         <SearchStoreItem.Item
           key={`store_item_${item.store_id}`}
-          onClick={() => history.push(`/store/${item.short_name}`)}
+          onClick={() => history.push(`/coupons/${item.short_name}`)}
         >
           <img
             src={
