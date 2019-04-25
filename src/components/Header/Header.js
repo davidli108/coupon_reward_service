@@ -8,6 +8,7 @@ import { withTranslation } from 'react-i18next';
 import SignInModal from '../../modules/auth/components/SignInModal';
 import SignUpModal from '../../modules/auth/components/SignUpModal';
 import ResetPasswordModal from '../../modules/auth/components/ResetPasswordModal';
+import { isCouponCategory } from '@config/CategoriesConfig';
 
 import BurgerButton from './BurgerButton';
 import HeaderItem from './HeaderItem';
@@ -51,10 +52,21 @@ const Header = ({ t, location }: HeaderProps) => {
   const [isOpen, setOpen] = React.useState(false);
   const [currentModal, setCurrentModal] = React.useState(null);
 
+  const isActiveCoupons = () => {
+    const isCouponsLocation = location.pathname.indexOf('/coupons') + 1;
+    const param = location.pathname.slice(9) || '';
+
+    if (isCouponsLocation && !param) {
+      return true;
+    } else if (isCouponsLocation && isCouponCategory(param)) {
+      return true;
+    }
+    return false;
+  };
+
   const items = [
     {
-      bgColor:
-        location.pathname.indexOf('/coupons') + 1 ? '#03b6d1' : '#40c8e5',
+      bgColor: isActiveCoupons() ? '#03b6d1' : '#40c8e5',
       hoverBgColor: '#02a6bf',
       title: t('header.coupons'),
       link: '/coupons',
@@ -70,13 +82,13 @@ const Header = ({ t, location }: HeaderProps) => {
     },
     {
       bgColor: '#02a6bf',
-      hoverBgColor: '#02a6bf',
+      hoverBgColor: '#01899e',
       title: t('header.login'),
       onClick: () => setCurrentModal(modal.modalSignIn),
     },
     {
       bgColor: '#02a6bf',
-      hoverBgColor: '#02a6bf',
+      hoverBgColor: '#01899e',
       title: t('header.createAccount'),
       onClick: () => setCurrentModal(modal.modalSignUp),
     },
@@ -135,6 +147,9 @@ const Header = ({ t, location }: HeaderProps) => {
 };
 
 Header.Wrapper = styled.header`
+  font-family: Roboto, Arial, sans-serif;
+  letter-spacing: 0.3px;
+  font-weight: 400;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -142,6 +157,7 @@ Header.Wrapper = styled.header`
   width: 100%;
   height: 100px;
   z-index: 5;
+  border-bottom: 1px solid #32b2c5;
 `;
 
 Header.Overlay = styled.div`
@@ -161,7 +177,6 @@ Header.Overlay = styled.div`
 Header.Logo = styled.img`
   height: 70px;
   width: 210px;
-  padding-left: 15px;
 `;
 
 Header.BurgerButtonWrapper = styled.div`

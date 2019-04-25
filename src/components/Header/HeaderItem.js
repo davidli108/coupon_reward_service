@@ -28,13 +28,7 @@ const HeaderItem = ({
     onClick={onClick}
   >
     {direct && redirect && (
-      <HeaderItem.Link href={redirect}>{children}</HeaderItem.Link>
-    )}
-
-    {redirect && !direct && (
-      <HeaderItem.Link href={redirect} target="_blank">
-        {children}
-      </HeaderItem.Link>
+      <HeaderItem.LogoLink href={redirect}>{children}</HeaderItem.LogoLink>
     )}
 
     {link && <HeaderItem.NavLink to={link}>{children}</HeaderItem.NavLink>}
@@ -55,11 +49,14 @@ HeaderItem.NavLink = styled(NavLink)`
 
   width: 100%;
   height: 100%;
-  padding: 0 15px;
+  padding: 0 23px;
+  letter-spacing: 0.6px;
+  font-weight: 500;
+  line-height: 25px;
 
   color: white;
-  font-size: 20px;
-  font-family: Roboto, sans-serif;
+  font-size: 19.5px;
+  font-family: Roboto, Arial, sans-serif;
 
   cursor: pointer;
 `;
@@ -71,19 +68,29 @@ HeaderItem.Link = styled.a`
 
   width: 100%;
   height: 100%;
-  padding: 0 15px;
+  padding: 0 23px;
+  letter-spacing: 0.6px;
+  font-weight: 500;
+  line-height: 25px;
 
   color: white;
-  font-size: 20px;
-  font-family: Roboto, sans-serif;
+  font-size: 19.5px;
+  font-family: Roboto, Arial, sans-serif;
 
   cursor: pointer;
 `;
 
+HeaderItem.LogoLink = styled.a`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 15px;
+`;
+
 HeaderItem.Wrapper = styled.div`
   height: 100%;
-
-  font-weight: bold;
   background: ${({ bgColor }) => bgColor || '#40c8e5'};
 
   &:hover {
