@@ -27,7 +27,7 @@ const TodaysFeaturedCoupon = ({ t, store }: TodaysFeaturedCouponProps) => {
       </h2>
       <TodaysFeaturedCoupon.Content>
         <TodaysFeaturedCoupon.LogoControlsWrapper>
-          <Link to={store.store_page_link.replace('coupons', 'store')}>
+          <Link to={store.store_page_link}>
             <TodaysFeaturedCoupon.Logo
               src={
                 store.store_logo

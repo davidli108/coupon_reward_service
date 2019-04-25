@@ -1,4 +1,4 @@
-//@flow
+// @flow
 import * as React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
@@ -15,62 +15,60 @@ import type { BrandProps } from '../models/StorePage';
 import { getStore } from '../StoreCouponsReducer';
 
 const Brand = ({
-  store: { store_logo_image_path, store_name },
+  store: { store_logo_image_path, store_name, store_info_link },
   isLoaded,
   offersCount,
-}: BrandProps) => {
-  return (
-    <>
-      <Brand.Wrapper>
-        {isLoaded ? (
-          <Brand.BrandImageWrapper>
-            <img
-              src={
-                store_logo_image_path
-                  ? `http://d2umvgb8hls1bt.cloudfront.net${store_logo_image_path}`
-                  : placeholder
-              }
-              onError={e => {
-                e.target.onerror = null;
-                e.target.src = placeholder;
-              }}
-              alt="brand-logo"
-            />
-          </Brand.BrandImageWrapper>
-        ) : (
-          <BrandImageLoader />
-        )}
-        <Brand.WrapFlexBox>
-          {isLoaded ? (
-            <>
-              <BrandHeader offersCount={offersCount} />
-              <Brand.XlWrapper>
-                <Brand.NoWrapFlexBoxWithBorder>
-                  <BrandContent
-                    storeName={store_name}
-                    stars={4.5}
-                    reviewsCount={'1000'}
-                  />
-                </Brand.NoWrapFlexBoxWithBorder>
-              </Brand.XlWrapper>
-            </>
-          ) : (
-            <BrandXlLoader />
-          )}
-        </Brand.WrapFlexBox>
-      </Brand.Wrapper>
-      <Brand.MdWrapper>
-        <Brand.NoWrapFlexBoxWithBorder>
-          <BrandContent
-            storeName={store_name}
-            stars={4.5}
-            reviewsCount={'1000'}
+}: BrandProps) => (
+  <>
+    <Brand.Wrapper>
+      {isLoaded ? (
+        <Brand.BrandImageWrapper href={store_info_link} target="_blank">
+          <img
+            src={
+              store_logo_image_path
+                ? `http://d2umvgb8hls1bt.cloudfront.net${store_logo_image_path}`
+                : placeholder
+            }
+            onError={e => {
+              e.target.onerror = null;
+              e.target.src = placeholder;
+            }}
+            alt="brand-logo"
           />
-        </Brand.NoWrapFlexBoxWithBorder>
-      </Brand.MdWrapper>
-    </>
-  );
-};
+        </Brand.BrandImageWrapper>
+      ) : (
+        <BrandImageLoader />
+      )}
+      <Brand.WrapFlexBox>
+        {isLoaded ? (
+          <>
+            <BrandHeader offersCount={offersCount} />
+            <Brand.XlWrapper>
+              <Brand.NoWrapFlexBoxWithBorder>
+                <BrandContent
+                  storeName={store_name}
+                  stars={4.5}
+                  reviewsCount={'1000'}
+                />
+              </Brand.NoWrapFlexBoxWithBorder>
+            </Brand.XlWrapper>
+          </>
+        ) : (
+          <BrandXlLoader />
+        )}
+      </Brand.WrapFlexBox>
+    </Brand.Wrapper>
+    <Brand.MdWrapper>
+      <Brand.NoWrapFlexBoxWithBorder>
+        <BrandContent
+          storeName={store_name}
+          stars={4.5}
+          reviewsCount={'1000'}
+        />
+      </Brand.NoWrapFlexBoxWithBorder>
+    </Brand.MdWrapper>
+  </>
+);
 
 Brand.Wrapper = styled.div`
   display: flex;
@@ -84,7 +82,7 @@ Brand.Wrapper = styled.div`
   padding-top: 15px;
 `;
 
-Brand.BrandImageWrapper = styled.div`
+Brand.BrandImageWrapper = styled.a`
   margin-right: 30px;
   display: flex;
   justify-content: center;

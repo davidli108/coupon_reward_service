@@ -48,7 +48,7 @@ const StoreCouponsReducer = (
         R.filter(
           ([key, value]) =>
             R.match(
-              /stores?_(id|name|description|cashback_text|logo_image_path|sale_count|code_count)/g,
+              /stores?_(id|name|description|cashback_text|logo_image_path|sale_count|code_count|info_link)/g,
             )(key).length !== 0,
         ),
         R.toPairs,

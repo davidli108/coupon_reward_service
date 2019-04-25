@@ -1,6 +1,5 @@
 //@flow
 import React from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
@@ -21,7 +20,8 @@ const StoreList = ({ t, stores, loaded }: StoreListProps) => {
         {stores.map(store => (
           <StoreList.Item
             key={`store_${store.store_id}`}
-            to={`/coupons/${store.short_name}`}
+            href={store.offer_link}
+            target="_blank"
           >
             <img
               src={
@@ -87,7 +87,7 @@ StoreList.Wrapper = styled.div`
   `}
 `;
 
-StoreList.Item = styled(Link)`
+StoreList.Item = styled.a`
   min-width: 120px;
   display: flex;
   flex-flow: column nowrap;
