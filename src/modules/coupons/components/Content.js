@@ -145,20 +145,24 @@ const Content = ({
             offersCount !== 0 ? (
               <Coupons coupons={getFilteredDeals} />
             ) : (
-              <Content.NoData>No Coupons Found</Content.NoData>
+              getDealsFilter !== 'favoriteStores' && (
+                <Content.NoData>No Coupons Found</Content.NoData>
+              )
             )
           ) : activeCategory ? (
             <Coupons
               coupons={getFilteredDeals}
-              isLoad={getFilteredDeals.length !== 0}
+              isLoad={getFilteredDeals && getFilteredDeals.length !== 0}
             />
           ) : offersCount !== 0 ? (
             <Coupons
               coupons={getFilteredDeals}
-              isLoad={getFilteredDeals.length !== 0}
+              isLoad={getFilteredDeals && getFilteredDeals.length !== 0}
             />
           ) : (
-            <Content.NoData>No Coupons Found</Content.NoData>
+            getDealsFilter !== 'favoriteStores' && (
+              <Content.NoData>No Coupons Found</Content.NoData>
+            )
           )}
           <Content.LoadMoreDeals onClick={onLoadMore}>
             {isLoaded &&

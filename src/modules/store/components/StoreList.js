@@ -76,7 +76,7 @@ const StoreList = ({
                       <StoreList.Image
                         src={
                           img
-                            ? `http://d2umvgb8hls1bt.cloudfront.net${img}`
+                            ? `https://d2umvgb8hls1bt.cloudfront.net${img}`
                             : placeholder
                         }
                         onError={e => {

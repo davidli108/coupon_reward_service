@@ -29,7 +29,7 @@ const Featured = ({ t, featured }: FeaturedProps) => (
               <Featured.Image
                 src={
                   offer_img
-                    ? `http://d2umvgb8hls1bt.cloudfront.net${offer_img}`
+                    ? `https://d2umvgb8hls1bt.cloudfront.net${offer_img}`
                     : placeholder
                 }
                 onError={e => {

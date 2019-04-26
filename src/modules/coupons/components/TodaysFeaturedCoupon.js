@@ -31,7 +31,7 @@ const TodaysFeaturedCoupon = ({ t, store }: TodaysFeaturedCouponProps) => {
             <TodaysFeaturedCoupon.Logo
               src={
                 store.store_logo
-                  ? `http://d2umvgb8hls1bt.cloudfront.net${store.store_logo}`
+                  ? `https://d2umvgb8hls1bt.cloudfront.net${store.store_logo}`
                   : placeholder
               }
               onError={e => {

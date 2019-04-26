@@ -33,7 +33,7 @@ const SearchBarItems = ({
           <img
             src={
               item.image
-                ? `http://d2umvgb8hls1bt.cloudfront.net${item.image}`
+                ? `https://d2umvgb8hls1bt.cloudfront.net${item.image}`
                 : placeholder
             }
             onError={e => {

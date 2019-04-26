@@ -26,7 +26,7 @@ const StoreList = ({ t, stores, loaded }: StoreListProps) => {
             <img
               src={
                 store.offer_img
-                  ? `http://d2umvgb8hls1bt.cloudfront.net${store.offer_img}`
+                  ? `https://d2umvgb8hls1bt.cloudfront.net${store.offer_img}`
                   : placeholder
               }
               onError={e => {
