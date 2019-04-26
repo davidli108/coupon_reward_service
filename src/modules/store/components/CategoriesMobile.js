@@ -25,7 +25,7 @@ const CategoriesMobile = ({
   const [refTitle, setRefTitle] = useState(null);
 
   const html: HTMLElement | null = document.querySelector('html');
-  const selected = R.find(i => i.shortName === activeCategory)(categories);
+  const selected = R.find(i => i.short_name === activeCategory)(categories);
 
   const onCloseItems: EventListener = e => {
     const isOutClick =
@@ -64,11 +64,13 @@ const CategoriesMobile = ({
               {categories.map(category => (
                 <CategoryItem
                   setOpen={setOpen}
-                  key={`key_${category.shortName}`}
+                  key={`key_${category.short_name}`}
                   name={category.name}
-                  shortName={category.shortName}
-                  isActive={activeCategory === category.shortName}
+                  shortName={category.short_name}
+                  count={category.offers_count}
+                  isActive={activeCategory === category.short_name}
                   onActive={onActiveCategory}
+                  isCounter={true}
                 />
               ))}
             </CategoriesMobile.Section>

@@ -28,11 +28,13 @@ const Categories = ({
         <h2>{title}</h2>
         {categories.map(category => (
           <CategoryItem
-            key={`key_${category.shortName}`}
+            key={`key_${category.short_name}`}
             name={category.name}
-            shortName={category.shortName}
-            isActive={activeCategory === category.shortName}
+            shortName={category.short_name}
+            count={category.offers_count}
+            isActive={activeCategory === category.short_name}
             onActive={onActiveCategory}
+            isCounter={true}
           />
         ))}
       </>

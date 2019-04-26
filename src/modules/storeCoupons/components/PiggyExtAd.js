@@ -60,14 +60,12 @@ const PiggyExtAd = ({ t, i18n, stars, reviewsCount }: PiggyExtAdProps) => {
       >
         {t('global.addToChrome')}
       </PiggyExtAd.AddExtensionButton>
-      {/*
       <PiggyExtAd.Reviews>
         <div>{renderStarsReview(stars)}</div>
         <span>
           {reviewsCount} {t('global.reviews')}
         </span>
       </PiggyExtAd.Reviews>
-      */}
     </PiggyExtAd.Wrapper>
   );
 };

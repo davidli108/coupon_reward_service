@@ -23,23 +23,17 @@ const Categories = ({
   <Categories.Wrapper>
     <h2>{title}</h2>
     {categories &&
-      categories
-        .filter(category =>
-          ['Canada', 'Party Supplies', 'Music & Instruments', 'Jewelry'].every(
-            i => i !== category.name,
-          ),
-        )
-        .map(category => (
-          <CategoryItem
-            key={`key_${category.shortName || category.short_name}`}
-            name={category.name || category.store_name}
-            shortName={category.shortName || category.short_name}
-            isActive={
-              activeCategory === (category.shortName || category.short_name)
-            }
-            onActive={onActiveCategory}
-          />
-        ))}
+      categories.map(category => (
+        <CategoryItem
+          key={`key_${category.short_name}`}
+          name={category.name || category.store_name}
+          shortName={category.short_name}
+          count={category.offers_count}
+          isActive={activeCategory === category.short_name}
+          onActive={onActiveCategory}
+          isCounter={title !== 'Stores'}
+        />
+      ))}
   </Categories.Wrapper>
 );
 

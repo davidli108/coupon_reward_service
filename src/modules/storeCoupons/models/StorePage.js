@@ -30,7 +30,7 @@ export type Store = {
   store_logo_image_path: string,
   stores_sale_count: string,
   stores_code_count: string,
-  store_info_link: string;
+  store_info_link: string,
 };
 
 export type Offer = {
@@ -77,12 +77,14 @@ export type StorePageProps = {
   searchIsLoading: boolean,
   fetchStoreCouponsByPagination: Function,
   offersCount: number,
+  reviews: string,
 };
 
 export type BrandProps = {
   store: Store,
   isLoaded: boolean,
   offersCount: number,
+  reviews: string,
 };
 
 export type BrandContentProps = {

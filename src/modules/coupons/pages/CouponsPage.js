@@ -60,6 +60,7 @@ const CouponsPage = ({
   offersCount,
 }: CouponsPageProps) => {
   const [searchValue, setSearchValue] = useState('');
+  const [isLoaded, setIsLoaded] = useState(true);
 
   const onSearchChange = e => {
     setSearchValue(e.target.value);
@@ -79,8 +80,8 @@ const CouponsPage = ({
           isLoading={searchIsLoading}
         />
       </CouponsPage.SearchWrapper>
-      {Boolean(stores.length) ? (
-        offersCount !== 0 ? (
+      {isLoaded ? (
+        offersCount !== 0 && Boolean(stores.length) ? (
           <TodaysFeaturedCoupon store={stores[0]} />
         ) : (
           <CouponsPage.NoData>No Featured Coupons Found</CouponsPage.NoData>
@@ -101,6 +102,8 @@ const CouponsPage = ({
         setDealsFilter={setDealsFilter}
         resetCoupons={resetCoupons}
         offersCount={offersCount}
+        isLoaded={isLoaded}
+        setIsLoaded={setIsLoaded}
       />
     </CouponsPage.Wrapper>
   );

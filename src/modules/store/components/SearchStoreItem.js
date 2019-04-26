@@ -22,7 +22,7 @@ const SearchStoreItem = ({
   <SearchStoreItem.StoreWrapper>
     {!isLoading ? (
       <SearchStoreItem.PreloaderWrapper>
-        <img src={preloader} alt="" />
+        <img src={preloader} alt="preloader" />
       </SearchStoreItem.PreloaderWrapper>
     ) : result.length > 0 ? (
       result.map(item => (

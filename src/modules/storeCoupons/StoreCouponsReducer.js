@@ -27,6 +27,7 @@ const initialState = {
   additionalInfo: [],
   searchIsLoading: false,
   count: 0,
+  reviews: 0,
 };
 
 const StoreCouponsReducer = (
@@ -55,6 +56,8 @@ const StoreCouponsReducer = (
         R.path(['payload', 'data']),
       )(action);
 
+      const reviews = R.pathOr(0, ['payload', 'data', 'cws_reviews'])(action);
+
       const additionalInfo = R.compose(
         R.fromPairs,
         R.filter(([key, value]) => R.match(/body|content$/g)(key).length !== 0),
@@ -68,6 +71,7 @@ const StoreCouponsReducer = (
         store,
         additionalInfo,
         count,
+        reviews,
       };
 
       return R.assoc<Object, Object>('fetchingState', 'LOADED')(newState);
@@ -115,5 +119,6 @@ export const getFetchingState = R.path<string>([STATE_KEY, 'fetchingState']);
 export const getStoreSearch = R.path<string>([STATE_KEY, 'search']);
 export const searchIsLoading = R.path<string>([STATE_KEY, 'searchIsLoading']);
 export const getCountOffers = R.path<string>([STATE_KEY, 'count']);
+export const getReviews = R.path<string>([STATE_KEY, 'reviews']);
 
 export default StoreCouponsReducer;

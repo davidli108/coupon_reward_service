@@ -17,6 +17,7 @@ type OfferProps = {
   offer_name: string,
   offer_success_print: string,
   store_logo: string,
+  store_name: string,
 };
 
 const Offer = ({
@@ -29,6 +30,7 @@ const Offer = ({
   offer_name,
   offer_success_print,
   store_logo,
+  store_name,
 }: OfferProps) => {
   return (
     <>
@@ -54,7 +56,7 @@ const Offer = ({
                 e.target.onerror = null;
                 e.target.src = placeholder;
               }}
-              alt="brand-logo"
+              alt={store_name}
             />
           </Offer.Image>
           <Offer.DescriptionWrapper>

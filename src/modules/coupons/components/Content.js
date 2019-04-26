@@ -26,6 +26,8 @@ type ContentProps = {
   setDealsFilter: Object,
   resetCoupons: Function,
   offersCount: number,
+  isLoaded: boolean,
+  setIsLoaded: boolean => void,
 };
 
 const Content = ({
@@ -41,9 +43,10 @@ const Content = ({
   setDealsFilter,
   resetCoupons,
   offersCount,
+  isLoaded,
+  setIsLoaded,
 }: ContentProps) => {
   const [loadCount, setLoadCount] = useState(20);
-  const [isLoaded, setIsLoaded] = useState(true);
   const [isLoadedCategories, setIsLoadedCategories] = useState(false);
   const [activeCategory, setActiveCategory] = useState(match.params.name);
 

@@ -69,8 +69,10 @@ type CategoryItemProps = {
   setOpen?: boolean => void,
   name: string,
   shortName: string,
+  count: number,
   isActive: boolean,
   onActive: string => void,
+  isCounter: boolean,
 };
 
 const CategoryItem = ({
@@ -79,8 +81,10 @@ const CategoryItem = ({
   setOpen,
   name,
   shortName,
+  count,
   isActive,
   onActive,
+  isCounter,
 }: CategoryItemProps) => (
   <CategoryItem.Wrapper
     isActive={isActive}
@@ -92,7 +96,7 @@ const CategoryItem = ({
     }}
   >
     <CategoryItem.Title>{getLocalTitle(name, t)}</CategoryItem.Title>
-    {/*<CategoryItem.Value>0</CategoryItem.Value>*/}
+    {isCounter && <CategoryItem.Value>{count}</CategoryItem.Value>}
   </CategoryItem.Wrapper>
 );
 

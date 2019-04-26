@@ -19,6 +19,7 @@ import {
   searchIsLoading,
   getCountOffers,
   getStore,
+  getReviews,
 } from '../StoreCouponsReducer';
 import * as actions from '../StoreCouponsActions';
 import AdditionalInfoLoader from '../components/loaders/AdditionalInfoLoader';
@@ -35,6 +36,7 @@ const StorePage = ({
   fetchStoreCouponsByPagination,
   offersCount,
   store,
+  reviews,
 }: StorePageProps) => {
   const [searchValue, setSearchValue] = useState('');
   const [storeName, setStoreName] = useState(match.params.name);
@@ -70,7 +72,7 @@ const StorePage = ({
         value={searchValue}
         isLoading={searchIsLoading}
       />
-      <Brand isLoaded={isLoaded} offersCount={offersCount} />
+      <Brand isLoaded={isLoaded} offersCount={offersCount} reviews={reviews} />
       <StorePage.DesktopContent>
         <StorePage.ColumnNoWrapFlexBox order="2" style={{ marginBottom: 50 }}>
           {isLoaded ? (
@@ -173,6 +175,7 @@ const mapStateToProps = state => ({
   searchIsLoading: searchIsLoading(state),
   offersCount: getCountOffers(state),
   store: getStore(state),
+  reviews: getReviews(state),
 });
 
 const mapDispatchToProps = {

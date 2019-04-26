@@ -17,7 +17,7 @@ const DownloadPiggy = ({ t }: DownloadPiggyProps) => {
     <DownloadPiggy.Wrapper isShow={isShow}>
       <DownloadPiggy.Close onClick={() => setIsShow(false)} />
       <DownloadPiggy.Text>{t('global.downloadPiggy')}</DownloadPiggy.Text>
-      <DownloadPiggy.Arrow src={ArrowIcon} alt="" />
+      <DownloadPiggy.Arrow src={ArrowIcon} alt="arrow" />
     </DownloadPiggy.Wrapper>
   );
 };

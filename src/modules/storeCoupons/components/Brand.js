@@ -18,6 +18,7 @@ const Brand = ({
   store: { store_logo_image_path, store_name, store_info_link },
   isLoaded,
   offersCount,
+  reviews,
 }: BrandProps) => (
   <>
     <Brand.Wrapper>
@@ -33,7 +34,7 @@ const Brand = ({
               e.target.onerror = null;
               e.target.src = placeholder;
             }}
-            alt="brand-logo"
+            alt={store_name}
           />
         </Brand.BrandImageWrapper>
       ) : (
@@ -48,7 +49,7 @@ const Brand = ({
                 <BrandContent
                   storeName={store_name}
                   stars={4.5}
-                  reviewsCount={'1000'}
+                  reviewsCount={reviews}
                 />
               </Brand.NoWrapFlexBoxWithBorder>
             </Brand.XlWrapper>
@@ -63,7 +64,7 @@ const Brand = ({
         <BrandContent
           storeName={store_name}
           stars={4.5}
-          reviewsCount={'1000'}
+          reviewsCount={reviews}
         />
       </Brand.NoWrapFlexBoxWithBorder>
     </Brand.MdWrapper>

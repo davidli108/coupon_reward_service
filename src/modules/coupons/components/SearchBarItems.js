@@ -22,7 +22,7 @@ const SearchBarItems = ({
   <SearchBarItems.StoreWrapper>
     {!isLoading ? (
       <SearchBarItems.PreloaderWrapper>
-        <img src={preloader} alt="" />
+        <img src={preloader} alt="preloader" />
       </SearchBarItems.PreloaderWrapper>
     ) : result.length > 0 ? (
       result.map(item => (
