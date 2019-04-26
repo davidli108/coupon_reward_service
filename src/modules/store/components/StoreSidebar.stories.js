@@ -19,12 +19,12 @@ storiesOf('Components|@Store', module)
         {
           title: 'Clothing',
           number: 100,
-          shortName: 'clothing',
+          short_name: 'clothing',
         },
         {
           title: 'Cars',
           number: 81,
-          shortName: 'cars',
+          short_name: 'cars',
         },
       ]}
       onSetFilter={() => {}}
