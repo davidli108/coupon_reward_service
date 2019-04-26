@@ -28,6 +28,7 @@ type ContentProps = {
   offersCount: number,
   isLoaded: boolean,
   setIsLoaded: boolean => void,
+  getAllDeals: Object,
 };
 
 const Content = ({
@@ -45,6 +46,7 @@ const Content = ({
   offersCount,
   isLoaded,
   setIsLoaded,
+  getAllDeals,
 }: ContentProps) => {
   const [loadCount, setLoadCount] = useState(20);
   const [isLoadedCategories, setIsLoadedCategories] = useState(false);
@@ -164,13 +166,18 @@ const Content = ({
               <Content.NoData>No Coupons Found</Content.NoData>
             )
           )}
-          <Content.LoadMoreDeals onClick={onLoadMore}>
-            {isLoaded &&
-            getFilteredDeals &&
-            getFilteredDeals.length !== 0 &&
-            offersCount > getFilteredDeals.length
-              ? t('global.loadMoreDeals')
-              : ''}
+          <Content.LoadMoreDeals
+            onClick={onLoadMore}
+            isShow={
+              isLoaded &&
+              getFilteredDeals &&
+              getFilteredDeals.length !== 0 &&
+              getAllDeals &&
+              getAllDeals.length !== 0 &&
+              offersCount > getAllDeals.length
+            }
+          >
+            {t('global.loadMoreDeals')}
           </Content.LoadMoreDeals>
         </Content.CouponsWrapper>
       </Content.Grid>
@@ -255,7 +262,7 @@ Content.Coupons = styled.div`
 
 Content.LoadMoreDeals = styled.button`
   width: 95%;
-  display: flex;
+  display: ${props => (props.isShow ? 'flex' : 'none')};
   justify-content: center;
   font-weight: bold;
   font-size: 18px;

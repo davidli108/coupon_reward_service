@@ -16,6 +16,7 @@ import {
   getStoreSearch,
   searchIsLoading,
   getOffersCount,
+  getCoupons,
 } from '@modules/coupons/CouponsReducer';
 
 // import DownloadPiggy from '../components/DownloadPiggy';
@@ -40,6 +41,7 @@ type CouponsPageProps = {
   searchIsLoading: boolean,
   resetCoupons: Function,
   offersCount: number,
+  getAllDeals: Object,
 };
 
 const CouponsPage = ({
@@ -58,6 +60,7 @@ const CouponsPage = ({
   searchIsLoading,
   resetCoupons,
   offersCount,
+  getAllDeals,
 }: CouponsPageProps) => {
   const [searchValue, setSearchValue] = useState('');
   const [isLoaded, setIsLoaded] = useState(true);
@@ -104,6 +107,7 @@ const CouponsPage = ({
         offersCount={offersCount}
         isLoaded={isLoaded}
         setIsLoaded={setIsLoaded}
+        getAllDeals={getAllDeals}
       />
     </CouponsPage.Wrapper>
   );
@@ -162,6 +166,7 @@ const mapStateToProps = state => ({
   storeSearchResult: getStoreSearch(state),
   searchIsLoading: searchIsLoading(state),
   offersCount: getOffersCount(state),
+  getAllDeals: getCoupons(state),
 });
 
 const mapDispatchToProps = {
