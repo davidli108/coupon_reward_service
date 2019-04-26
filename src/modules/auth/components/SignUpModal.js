@@ -80,7 +80,7 @@ const SignUpModal = ({
 SignUpModal.Or = styled.div`
   position: relative;
   font-size: 1.5rem;
-  font-weight: 900;
+  font-weight: 400;
   padding: 2rem;
 
   ${breakpoint('xs')`
@@ -149,7 +149,7 @@ SignUpModal.PreFooter = styled.span`
   display: block;
   text-align: center;
   margin-top: 2rem;
-  font-size: 0.7rem;
+  font-size: 14px;
 
   ${breakpoint('xs')`
     margin-top: 1rem;

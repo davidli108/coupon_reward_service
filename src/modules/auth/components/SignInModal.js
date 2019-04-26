@@ -89,7 +89,7 @@ const SignInModal = ({
 SignInModal.Or = styled.div`
   position: relative;
   font-size: 1.5rem;
-  font-weight: 900;
+  font-weight: 400;
   padding: 2rem;
 
   ${breakpoint('xs')`
@@ -174,6 +174,7 @@ SignInModal.PreFooter = styled.span`
     cursor: pointer;
     background: transparent;
     outline: none;
+    font-size: 14px;
 
     &:hover {
       text-decoration: underline;
