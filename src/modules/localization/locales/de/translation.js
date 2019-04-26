@@ -105,7 +105,7 @@ export default {
     baby: 'Baby',
     beauty: 'Beauty',
     booksMedia: 'Bücher & Medien',
-    officeBuiness: 'Büro & Geschäft',
+    officeBusiness: 'Büro & Geschäft',
     canada: 'Kanada',
     cellphones: 'Handys',
     clothing: 'Kleidung',

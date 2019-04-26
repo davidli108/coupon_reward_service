@@ -17,7 +17,7 @@ const getLocalTitle = (name, t) => {
     case 'Books & Media':
       return t('categories.booksMedia');
     case 'Office & Business':
-      return t('categories.officeBuiness');
+      return t('categories.officeBusiness');
     case 'Canada':
       return t('categories.canada');
     case 'Cell Phones':
@@ -96,7 +96,7 @@ const CategoryItem = ({
     }}
   >
     <CategoryItem.Title>{getLocalTitle(name, t)}</CategoryItem.Title>
-    {isCounter && <CategoryItem.Value>{count}</CategoryItem.Value>}
+    {isCounter && count > 0 && <CategoryItem.Value>{count}</CategoryItem.Value>}
   </CategoryItem.Wrapper>
 );
 
