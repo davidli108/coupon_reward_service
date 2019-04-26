@@ -9,7 +9,19 @@ const axiosClient = axios.create({
   responseType: 'json',
 });
 
-const axiosMiddlewareOptions = {};
+const axiosMiddlewareOptions = {
+    interceptors: {
+      request: [
+        (_, req) => {
+          // Set X-Referrer header for locale resolution on API side
+          req.headers['X-Referrer'] = window.location.hostname;
+
+          return req;
+        },
+      ],
+    },
+  };
+;
 
 const axiosMiddleware = axiosMiddlewareFactory(
   axiosClient,
