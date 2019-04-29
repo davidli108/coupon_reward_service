@@ -5,7 +5,8 @@ export default {
     stores: 'Stores',
     getApp: 'Get the App!',
     login: 'Login',
-    createAccount: 'Create an Account',
+    createAccount: 'Create An Account',
+    myAccount: 'My Account',
   },
   auth: {
     social: {

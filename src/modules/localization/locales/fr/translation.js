@@ -6,6 +6,7 @@ export default {
     getApp: "Obtenez l'application !",
     login: 'Connexion',
     createAccount: 'Créer un compte',
+    myAccount: 'Mon compte',
   },
   auth: {
     social: {
@@ -73,6 +74,8 @@ export default {
       messages: {
         emailNotExist:
           "L'adresse email est inexistante dans notre base de données.",
+        sendPassword:
+          "Votre mot de passe a été envoyé. S'il vous plaît vérifier votre email et connexion",
       },
       mail: {
         message: {

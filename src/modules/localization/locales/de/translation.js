@@ -6,6 +6,7 @@ export default {
     getApp: 'Holen Sie sich die App!',
     login: 'Einloggen',
     createAccount: 'Ein Konto erstellen',
+    myAccount: 'Mein Konto', // missing
   },
   auth: {
     social: {
@@ -71,6 +72,8 @@ export default {
       },
       messages: {
         emailNotExist: 'E-Mail-Adresse existiert nicht in unserer Datenbank.',
+        sendPassword:
+          'Dein Passwort wurde gesendet. Bitte überprüfen Sie Ihre E-Mail und melden Sie sich an',
       },
       mail: {
         message: {
@@ -123,7 +126,7 @@ export default {
     pets: 'Haustiere',
     services: 'Dienstleistungen',
     shoes: 'Schuhe',
-    sportsFitness: 'Sport & Fitness', // missing
+    sportsFitness: 'Sport & Fitness',
     toysGames: 'Spielzeug',
     travel: 'Reise',
   },
