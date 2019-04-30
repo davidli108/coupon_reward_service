@@ -1,9 +1,14 @@
 //@flow
 import * as React from 'react';
+import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { compose } from 'recompose';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
+
+import { isAuth } from '@modules/auth/AuthReducer';
+import * as actions from '@modules/auth/AuthActions';
 
 import SignInModal from '../../modules/auth/components/SignInModal';
 import SignUpModal from '../../modules/auth/components/SignUpModal';
@@ -12,6 +17,7 @@ import { isCouponCategory } from '@config/CategoriesConfig';
 
 import BurgerButton from './BurgerButton';
 import HeaderItem from './HeaderItem';
+import HeaderItemMyAccount from './HeaderItemMyAccount';
 import logo from './logo.svg';
 
 const modal = {
@@ -45,10 +51,12 @@ const renderHeaderItems = (items: Array<renderHeaderItemsProps>) =>
 
 type HeaderProps = {
   t: Function,
+  isAuth: boolean,
   location: Object,
+  logout: Function,
 };
 
-const Header = ({ t, location }: HeaderProps) => {
+const Header = ({ t, isAuth, location, logout }: HeaderProps) => {
   const [isOpen, setOpen] = React.useState(false);
   const [currentModal, setCurrentModal] = React.useState(null);
 
@@ -80,9 +88,12 @@ const Header = ({ t, location }: HeaderProps) => {
       title: t('header.stores'),
       link: '/cashback-stores',
     },
+  ];
+
+  const authItems = [
     {
-      bgColor: '#02a6bf',
-      hoverBgColor: '#01899e',
+      bgColor: '#34a6bf',
+      hoverBgColor: '#29899e',
       title: t('header.login'),
       onClick: () => setCurrentModal(modal.modalSignIn),
     },
@@ -93,12 +104,25 @@ const Header = ({ t, location }: HeaderProps) => {
       onClick: () => setCurrentModal(modal.modalSignUp),
     },
   ];
+
   return (
     <Header.Wrapper>
       <HeaderItem redirect="/" direct>
         <Header.Logo src={logo} />
       </HeaderItem>
-      <Header.Controls>{renderHeaderItems(items)}</Header.Controls>
+      <Header.Controls>
+        {renderHeaderItems(items)}
+        {isAuth ? (
+          <HeaderItemMyAccount
+            bgColor="#34a6bf"
+            hoverBgColor="#29899e"
+            title={t('header.myAccount')}
+            logout={logout}
+          />
+        ) : (
+          renderHeaderItems(authItems)
+        )}
+      </Header.Controls>
       <Header.BurgerButtonWrapper>
         <BurgerButton isOpen={isOpen} onClick={() => setOpen(!isOpen)} />
       </Header.BurgerButtonWrapper>
@@ -246,4 +270,19 @@ Header.SlidingMenu = styled.div`
   `}
 `;
 
-export default withRouter(withTranslation()(Header));
+const mapStateToProps = state => ({
+  isAuth: isAuth(state),
+});
+
+const mapDispatchToProps = {
+  logout: actions.logout,
+};
+
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  ),
+  withRouter,
+  withTranslation(),
+)(Header);
