@@ -13,15 +13,18 @@ import StoreReducer, {
 import CouponsReducer, {
   STATE_KEY as COUPONS_STATE_KEY,
 } from '@modules/coupons/CouponsReducer';
-
 import StoreCouponsReducer, {
   STATE_KEY as STORE_COUPONS_STATE_KEY,
 } from '@modules/storeCoupons/StoreCouponsReducer';
+import AuthReducer, {
+  STATE_KEY as AUTH_STATE_KEY,
+} from '@modules/auth/AuthReducer';
 
 const persist = R.curry(persistReducer)(ReduxPersist.storeConfig);
 
 // $FlowFixMe
 export default history =>
+  // $FlowFixMe
   R.compose(
     persist,
     combineReducers,
@@ -29,4 +32,5 @@ export default history =>
     R.assoc(STORE_STATE_KEY, StoreReducer),
     R.assoc(COUPONS_STATE_KEY, CouponsReducer),
     R.assoc(STORE_COUPONS_STATE_KEY, StoreCouponsReducer),
+    R.assoc(AUTH_STATE_KEY, AuthReducer),
   )({});
