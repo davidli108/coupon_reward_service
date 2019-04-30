@@ -38,6 +38,12 @@ const SplitterPage = Loadable({
   loading: () => <Preloader />,
 });
 
+const NotAuthorizedPage = Loadable({
+  loader: () =>
+    import('@modules/auth/pages/NotAuthorizedPage.js' /* webpackChunkName: "NotAuthorizedPage" */),
+  loading: () => <Preloader />,
+});
+
 export default (
   <div style={{ overflow: 'hidden' }}>
     <Header />
@@ -47,6 +53,7 @@ export default (
       <Route exact path="/cashback-stores/:name" component={StoresPage} />
       <Route exact path="/coupons" component={CouponsPage} />
       <Route exact path="/coupons/:name" component={SplitterPage} />
+      <Route exact path="/auth/not-authorized" component={NotAuthorizedPage} />
 
       {/* Catch all routes */}
       <Route component={NotFoundPage} />
