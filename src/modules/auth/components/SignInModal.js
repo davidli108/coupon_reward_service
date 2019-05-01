@@ -1,16 +1,24 @@
 // @flow
+import * as R from 'ramda';
 import React, { useState } from 'react';
+import { compose } from 'recompose';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
 
+import ErrorMessage from './ErrorMessage';
 import ModalWrapper from './ModalWrapper';
 import ModalSocial from './ModalSocial';
 import ModalInput from './ModalInput';
 import ModalFooter from './ModalFooter';
 
+import * as actions from '../AuthActions';
+
 type SignInModalProps = {
   t: string => string,
+  history: Object,
   title: string,
   subTitle: string,
   submitLabel: string,
@@ -18,10 +26,13 @@ type SignInModalProps = {
   closeModal: Function,
   onRoutModal: Function,
   onRoutModalReset: Function,
+  signIn: FormData => Promise<Object>,
+  fetchUser: () => Promise<Object>,
 };
 
 const SignInModal = ({
   t,
+  history,
   title,
   subTitle,
   submitLabel,
@@ -29,15 +40,42 @@ const SignInModal = ({
   closeModal,
   onRoutModal,
   onRoutModalReset,
+  signIn,
+  fetchUser,
 }: SignInModalProps) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isError, setError] = useState(false);
 
-  const handleFormSubmit = e => {
+  React.useEffect(() => {
+    fetchUser();
+  }, []);
+
+  const handleFormSubmit = async e => {
     e.preventDefault();
-    console.log({ email, password });
-    setEmail('');
-    setPassword('');
+
+    const payload = new FormData();
+    payload.append('email', email);
+    payload.append('password', password);
+
+    const response = await signIn(payload);
+
+    if (R.equals(R.path(['payload', 'data'])(response), null)) {
+      setError(true);
+    } else {
+      fetchUser().then(res => {
+        if (res.payload) {
+          setError(false);
+          setEmail('');
+          setPassword('');
+          closeModal();
+          localStorage.setItem('auth', res.payload.data.auth);
+          history.push('/');
+        } else {
+          setError(true);
+        }
+      });
+    }
   };
 
   return (
@@ -51,6 +89,9 @@ const SignInModal = ({
       <SignInModal.Or>
         <span>{t('auth.signIn.or')}</span>
       </SignInModal.Or>
+      {isError && (
+        <ErrorMessage>{t('auth.signUp.messages.errorTryAgain')}</ErrorMessage>
+      )}
       <div>
         <SignInModal.Form onSubmit={handleFormSubmit}>
           <ModalInput
@@ -182,4 +223,18 @@ SignInModal.PreFooter = styled.span`
   }
 `;
 
-export default withTranslation()(SignInModal);
+const mapDispatchToProps = {
+  signIn: actions.signIn,
+  fetchUser: actions.fetchUser,
+};
+
+const enhance = compose(
+  connect(
+    null,
+    mapDispatchToProps,
+  ),
+  withTranslation(),
+  withRouter,
+);
+
+export default enhance(SignInModal);
