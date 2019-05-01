@@ -1,13 +1,23 @@
 // @flow
+import * as R from 'ramda';
 import React, { useState } from 'react';
+import { compose } from 'recompose';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
 
+import ErrorMessage from './ErrorMessage';
+import HintMessage from './HintMessage';
 import ModalWrapper from './ModalWrapper';
 import ModalSocial from './ModalSocial';
 import ModalInput from './ModalInput';
 import ModalFooter from './ModalFooter';
+import preloader from '../../coupons/assets/preloader.svg';
+
+import * as actions from '../AuthActions';
+import { getUserID, getUserPW } from '../AuthReducer';
 
 type SignUpModalProps = {
   t: string => string,
@@ -18,6 +28,12 @@ type SignUpModalProps = {
   isActive: boolean,
   closeModal: Function,
   onRoutModal: Function,
+  signUp: Function,
+  fetchUser: Function,
+  insertPassword: Function,
+  userID: number,
+  userPW: string,
+  history: Object,
 };
 
 const SignUpModal = ({
@@ -29,13 +45,74 @@ const SignUpModal = ({
   isActive,
   closeModal,
   onRoutModal,
+  signUp,
+  userID,
+  userPW,
+  insertPassword,
+  history,
+  fetchUser,
 }: SignUpModalProps) => {
   const [email, setEmail] = useState('');
+  const [emailErrorMessage, setEmailErrorMessage] = useState('');
+  const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
+  const [stage, setStage] = useState(1);
+  const [isReq, setIsReq] = useState(false);
 
-  const handleFormSubmit = e => {
+  const [password, setPassword] = useState({
+    password: '',
+    confirmPassword: '',
+  });
+
+  const handleFormSubmit = async e => {
     e.preventDefault();
-    console.log({ email });
-    setEmail('');
+
+    if (stage === 1) {
+      const formData = new FormData();
+      formData.append('email', email);
+
+      setIsReq(true);
+      const response = await signUp(formData);
+      if (response) setIsReq(false);
+
+      if (R.path(['payload', 'data', 'user_pw'])(response) === 0) {
+        setEmailErrorMessage(t('auth.signUp.messages.existAccount'));
+      } else {
+        setEmailErrorMessage('');
+        setStage(2);
+      }
+    }
+
+    if (stage === 2) {
+      if (password.password !== password.confirmPassword) {
+        return setPasswordErrorMessage(
+          t('auth.signUp.messages.passwordNotMatch'),
+        );
+      }
+
+      if (password.password.length < 8) {
+        return setPasswordErrorMessage(t('auth.signUp.messages.shortPassword'));
+      }
+
+      setPasswordErrorMessage('');
+
+      const formData = new FormData();
+      formData.append('newpass1', password.password);
+      formData.append('newpass2', password.confirmPassword);
+      formData.append('user_id', String(userID));
+      formData.append('user_pw', userPW);
+
+      insertPassword(formData).then(() => {
+        fetchUser().then(res => {
+          localStorage.setItem('auth', res.payload.data.auth);
+          closeModal();
+          history.push('/welcome');
+        });
+      });
+    }
+  };
+
+  const handlePasswordChange = e => {
+    setPassword({ ...password, [e.target.name]: e.target.value });
   };
 
   return (
@@ -50,17 +127,47 @@ const SignUpModal = ({
         <SignUpModal.Or>
           <span>{t('auth.signUp.or')}</span>
         </SignUpModal.Or>
+        {emailErrorMessage && <HintMessage>{emailErrorMessage}</HintMessage>}
+        {passwordErrorMessage && (
+          <ErrorMessage>{passwordErrorMessage}</ErrorMessage>
+        )}
         <div>
           <SignUpModal.Form onSubmit={handleFormSubmit}>
-            <ModalInput
-              name="email"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-              type="email"
-              placeholder={t('auth.signUp.emailAddress')}
-              required
-            />
-            <button>{submitLabel}</button>
+            {stage === 1 && (
+              <ModalInput
+                name="email"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                type="email"
+                placeholder={t('auth.signUp.emailAddress')}
+                required
+              />
+            )}
+            {stage === 2 && (
+              <div style={{ width: '100%' }}>
+                <ModalInput
+                  name="password"
+                  value={password.password}
+                  onChange={handlePasswordChange}
+                  type="password"
+                  placeholder={t('auth.signUp.password')}
+                  required
+                />
+                <ModalInput
+                  name="confirmPassword"
+                  value={password.confirmPassword}
+                  onChange={handlePasswordChange}
+                  type="password"
+                  placeholder={t('auth.signUp.confirmPassword')}
+                  required
+                />
+              </div>
+            )}
+            {isReq ? (
+              <img src={preloader} alt="preloader" />
+            ) : (
+              <button>{submitLabel}</button>
+            )}
           </SignUpModal.Form>
           <SignUpModal.PreFooter>
             {t('auth.signUp.preFooter.label')}
@@ -118,6 +225,10 @@ SignUpModal.Form = styled.form`
   display: flex;
   flex-direction: column;
 
+  > div > input {
+    width: calc(100% - 22px);
+  }
+
   button {
     display: block;
     padding: 1rem;
@@ -174,4 +285,24 @@ SignUpModal.PreFooter = styled.span`
   }
 `;
 
-export default withTranslation()(SignUpModal);
+const mapStateToProps = state => ({
+  userID: getUserID(state),
+  userPW: getUserPW(state),
+});
+
+const mapDispatchToProps = {
+  fetchUser: actions.fetchUser,
+  insertPassword: actions.password,
+  signUp: actions.signUp,
+};
+
+const enhance = compose(
+  withRouter,
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  ),
+  withTranslation(),
+);
+
+export default enhance(SignUpModal);
