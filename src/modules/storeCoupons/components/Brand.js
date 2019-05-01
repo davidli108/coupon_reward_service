@@ -48,7 +48,7 @@ const Brand = ({
               <Brand.NoWrapFlexBoxWithBorder>
                 <BrandContent
                   storeName={store_name}
-                  stars={4.5}
+                  stars={5}
                   reviewsCount={reviews}
                 />
               </Brand.NoWrapFlexBoxWithBorder>
@@ -61,11 +61,7 @@ const Brand = ({
     </Brand.Wrapper>
     <Brand.MdWrapper>
       <Brand.NoWrapFlexBoxWithBorder>
-        <BrandContent
-          storeName={store_name}
-          stars={4.5}
-          reviewsCount={reviews}
-        />
+        <BrandContent storeName={store_name} stars={5} reviewsCount={reviews} />
       </Brand.NoWrapFlexBoxWithBorder>
     </Brand.MdWrapper>
   </>

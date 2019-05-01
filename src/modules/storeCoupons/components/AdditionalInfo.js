@@ -21,32 +21,6 @@ const AdditionalInfo = ({ t, additionalInfo, store }: AdditionalInfoProps) => {
         />
       ))} */}
       <AdditionalInfo.ContentWrapper
-        isShow={additionalInfo.featured_store_returns_body}
-      >
-        <h2>{t('storeCoupons.returnPolicy')}</h2>
-        <AdditionalInfo.Content
-          dangerouslySetInnerHTML={{
-            __html: additionalInfo.featured_store_returns_body,
-          }}
-        />
-      </AdditionalInfo.ContentWrapper>
-      <AdditionalInfo.Separator
-        isShow={additionalInfo.featured_store_returns_body}
-      />
-      <AdditionalInfo.ContentWrapper
-        isShow={additionalInfo.featured_store_shipping_content}
-      >
-        <h2>{t('storeCoupons.shipping')}</h2>
-        <AdditionalInfo.Content
-          dangerouslySetInnerHTML={{
-            __html: additionalInfo.featured_store_shipping_content,
-          }}
-        />
-      </AdditionalInfo.ContentWrapper>
-      <AdditionalInfo.Separator
-        isShow={additionalInfo.featured_store_shipping_content}
-      />
-      <AdditionalInfo.ContentWrapper
         isShow={additionalInfo.featured_store_secrets_body}
       >
         <h2>{t('storeCoupons.secrets')}</h2>
@@ -68,6 +42,30 @@ const AdditionalInfo = ({ t, additionalInfo, store }: AdditionalInfoProps) => {
             }}
           />
         </AdditionalInfo.Content>
+      </AdditionalInfo.ContentWrapper>
+      <AdditionalInfo.Separator isShow={store.store_description} />
+      <AdditionalInfo.ContentWrapper
+        isShow={additionalInfo.featured_store_returns_body}
+      >
+        <h2>{t('storeCoupons.returnPolicy')}</h2>
+        <AdditionalInfo.Content
+          dangerouslySetInnerHTML={{
+            __html: additionalInfo.featured_store_returns_body,
+          }}
+        />
+      </AdditionalInfo.ContentWrapper>
+      <AdditionalInfo.Separator
+        isShow={additionalInfo.featured_store_returns_body}
+      />
+      <AdditionalInfo.ContentWrapper
+        isShow={additionalInfo.featured_store_shipping_content}
+      >
+        <h2>{t('storeCoupons.shipping')}</h2>
+        <AdditionalInfo.Content
+          dangerouslySetInnerHTML={{
+            __html: additionalInfo.featured_store_shipping_content,
+          }}
+        />
       </AdditionalInfo.ContentWrapper>
     </AdditionalInfo.Wrapper>
   );

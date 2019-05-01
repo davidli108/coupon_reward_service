@@ -103,7 +103,7 @@ StorePage.Wrapper = styled.div`
 
   padding: 15px;
   width: 95%;
-  max-width: 1500px;
+  max-width: 1140px;
   margin: 0 auto;
 
   flex-flow: row wrap;
