@@ -120,7 +120,7 @@ CouponsPage.Wrapper = styled.div`
   flex-flow: column nowrap;
 
   ${breakpoint('xl')`
-    width: 80%;
+    width: 1140px;
     margin: 0 auto;
   `}
 `;

@@ -75,6 +75,7 @@ SocialShare.SocialsWrapper = styled.div`
 
   img {
     padding-right: 0 !important;
+    width: 30px !important;
   }
 `;
 

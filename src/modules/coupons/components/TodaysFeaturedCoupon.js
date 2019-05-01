@@ -121,7 +121,7 @@ TodaysFeaturedCoupon.Content = styled.div`
   `}
 
   ${breakpoint('md')`
-    height: 235px;
+    height: 180px;
     flex-flow: column wrap;
     justify-content: flex-end;
     padding: 20px 48px 30px 48px;
@@ -135,6 +135,7 @@ TodaysFeaturedCoupon.Content = styled.div`
     flex-flow: row nowrap;
     justify-content: center;
     align-items: center;
+    margin: 0 10px;
 
     padding: 0;
 
@@ -145,7 +146,8 @@ TodaysFeaturedCoupon.Content = styled.div`
 
   ${breakpoint('xl')`
     justify-content: space-between;
-    padding: 0 67px;
+    padding: 0 30px;
+    margin: 0 10px;
 
     > div {
       width: calc(33% - 20px) !important;
@@ -160,12 +162,12 @@ TodaysFeaturedCoupon.LogoControlsWrapper = styled.div`
   margin: 8px 20px 0 0;
 
   > div {
-    width: 180px;
+    width: 200px;
+    margin: 0 0 0 20px;
   }
 
   ${breakpoint('sx')`
     width: 100%;
-    align-items: center;
     justify-content: center;
     margin: 0 0 20px 0;
   `}
@@ -177,8 +179,9 @@ TodaysFeaturedCoupon.LogoControlsWrapper = styled.div`
     margin: 0 100px 0 0;
 
     img {
-      width: 100%;
+      width: 50%;
       height: auto;
+      margin-left: 20%;
     }
   `}
 
@@ -205,7 +208,6 @@ TodaysFeaturedCoupon.Logo = styled.img`
   ${breakpoint('md')`
     order: 0;
     height: 48px;
-    margin: 50px 0;
   `}
 
   ${breakpoint('lg')`
@@ -239,9 +241,12 @@ TodaysFeaturedCoupon.Controls = styled.div`
     align-items: center;
     justify-content: flex-end;
     margin-right: 0;
+    position: absolute;
+    right: 20px;
   `}
 
   ${breakpoint('md')`
+    position: relative;
     justify-content: center;
   `}
 
@@ -254,7 +259,6 @@ TodaysFeaturedCoupon.Controls = styled.div`
 TodaysFeaturedCoupon.OfferingWrapper = styled.div`
   display: flex;
   flex-flow: row wrap;
-  margin-top: 30px;
 
   width: calc(50% - 20px);
 
@@ -270,6 +274,7 @@ TodaysFeaturedCoupon.OfferingWrapper = styled.div`
 TodaysFeaturedCoupon.Offering = styled.div`
   display: flex;
   flex-flow: column nowrap;
+  justify-content: center;
 
   > span {
     white-space: nowrap;
@@ -332,13 +337,11 @@ TodaysFeaturedCoupon.Offering = styled.div`
 
 TodaysFeaturedCoupon.DescriptionButtonWrapper = styled.div`
   display: flex;
+  align-items: center;
   flex-flow: row wrap;
-
-  margin-top: 20px;
 
   > * {
     width: 100%;
-    margin-bottom: 20px;
   }
 
   ${breakpoint('md')`
@@ -356,6 +359,10 @@ TodaysFeaturedCoupon.DescriptionButtonWrapper = styled.div`
 
     flex: 2 1 50%;
   `}
+
+  p {
+    margin: 10px 0;
+  }
 `;
 
 TodaysFeaturedCoupon.Description = styled.p`

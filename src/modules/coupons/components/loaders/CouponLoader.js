@@ -13,33 +13,20 @@ const CouponLoader = () => (
 CouponLoader.Wrapper = styled(ContentLoader)`
   width: 100%;
   height: 550px;
-  margin-top: 20px;
-  margin-right: 15px;
+  margin: 10px 0;
 
   ${breakpoint('sx')`
-    width: 46%;
+    width: 45%;
+    margin: 10px 9px;
   `}
 
-  ${breakpoint('sm')`
+  ${breakpoint('lg')`
     width: 47%;
   `}
 
   ${breakpoint('xl')`
-    width: 30%;
+    width: 31%;
   `}
 `;
-
-/*
-
-const breakpoints = {
-  xs: 0,
-  sx: 413,
-  sm: 576,
-  md: 768,
-  lg: 992,
-  xl: 1200,
-};
-
-*/
 
 export default CouponLoader;

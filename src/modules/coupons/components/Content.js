@@ -261,7 +261,6 @@ Content.Coupons = styled.div`
 `;
 
 Content.LoadMoreDeals = styled.button`
-  width: 95%;
   display: ${props => (props.isShow ? 'flex' : 'none')};
   justify-content: center;
   font-weight: bold;

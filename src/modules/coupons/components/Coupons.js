@@ -47,26 +47,29 @@ Coupons.Wrapper = styled.div`
   min-height: 400px;
   display: flex;
   flex-flow: column nowrap;
+  margin: 0 5px;
 
   ${breakpoint('sx')`
     flex-flow: row wrap;
     justify-content: flex-start;
 
     > div {
-      width: calc(50% - 16px);
-      margin-right: 16px;
+      width: 45%;
+      margin: 10px 9px;
     }
   `}
 
   ${breakpoint('lg')`
     > div {
-      width: calc(50% - 30px);
+      width: 47%;
+      margin: 10px 9px;
     }
   `}
 
   ${breakpoint('xl')`
     > div {
-      width: calc(33% - 30px);
+      width: 31%;
+      margin: 10px 9px;
     }
   `}
 `;

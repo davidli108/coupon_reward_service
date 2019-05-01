@@ -226,6 +226,26 @@ Coupon.Discount = styled.p`
     text-transform: uppercase;
     font-weight: 300;
   }
+
+  ${breakpoint('sx')`
+    > span:first-child {
+      font-size: 34px;
+    }
+
+    > span:last-child {
+      font-size: 35px;
+    }
+  `}
+
+  ${breakpoint('md')`
+    > span:first-child {
+      font-size: 44px;
+    }
+
+    > span:last-child {
+      font-size: 45px;
+    }
+  `}
 `;
 
 Coupon.DiscontDeal = styled.p`

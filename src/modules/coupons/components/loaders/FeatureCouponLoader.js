@@ -11,7 +11,7 @@ const FeatureCouponLoader = () => (
 
 FeatureCouponLoader.Wrapper = styled(ContentLoader)`
   width: 100%;
-  height: 250px;
+  height: 180px;
   margin-top: 33px;
   margin-left: auto;
   margin-right: auto;
