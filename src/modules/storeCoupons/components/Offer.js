@@ -1,5 +1,5 @@
 //@flow
-import * as React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
@@ -53,6 +53,8 @@ const Offer = ({
   store_page_link,
   isThisStore,
 }: OfferProps) => {
+  const [randomColor] = useState(Math.floor(Math.random() * 7));
+
   return (
     <>
       <Offer.Wrapper>
@@ -77,13 +79,12 @@ const Offer = ({
               />
             </Offer.Image>
           ) : (
-            <Offer.Discount
-              color={discountColors[Math.floor(Math.random() * 7)]}
-            >
+            <Offer.Discount color={discountColors[randomColor]}>
               <span>
-                {Number.parseFloat(discount_amt).toFixed()}
-                {discount_type === '1' && '$'}
-                {discount_type === '2' && '%'}
+                {discount_type === '1' &&
+                  `$${Number.parseFloat(discount_amt).toFixed()}`}
+                {discount_type === '2' &&
+                  `${Number.parseFloat(discount_amt).toFixed()}%`}
               </span>
               <span>Off</span>
             </Offer.Discount>

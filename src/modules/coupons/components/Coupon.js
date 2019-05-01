@@ -1,5 +1,5 @@
 //@flow
-import * as React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
@@ -44,6 +44,8 @@ const Coupon = ({
   twitter_link,
   pinterest_link,
 }: DealModel) => {
+  const [randomColor] = useState(Math.floor(Math.random() * 7));
+
   return (
     <Coupon.Wrapper>
       <Coupon.BorderWrapper>
@@ -82,13 +84,12 @@ const Coupon = ({
             <Coupon.DiscontDeal>{t('coupons.type.deal')}</Coupon.DiscontDeal>
           )
         ) : (
-          <Coupon.Discount
-            color={discountColors[Math.floor(Math.random() * 7)]}
-          >
+          <Coupon.Discount color={discountColors[randomColor]}>
             <span>
-              {Number.parseFloat(discount_amt).toFixed()}
-              {discount_type === '1' && '$'}
-              {discount_type === '2' && '%'}
+              {discount_type === '1' &&
+                `$${Number.parseFloat(discount_amt).toFixed()}`}
+              {discount_type === '2' &&
+                `${Number.parseFloat(discount_amt).toFixed()}%`}
             </span>
             <span>OFF</span>
           </Coupon.Discount>
