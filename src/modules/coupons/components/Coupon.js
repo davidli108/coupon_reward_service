@@ -16,10 +16,22 @@ const OfferType = {
   freeShipping: 'free-shipping',
 };
 
+const discountColors = [
+  '#d0c000',
+  '#ff7b82',
+  '#aa85cd',
+  '#43b0cb',
+  '#61d84e',
+  '#979797',
+  '#eca83a',
+];
+
 const Coupon = ({
   t,
   discount,
   discount_print,
+  discount_amt,
+  discount_type,
   offer_type,
   offer_link,
   show_exp_date,
@@ -55,18 +67,31 @@ const Coupon = ({
             />
           </Link>
         </Coupon.StoreLogoWrapper>
-        {offer_type === OfferType.freeShipping ? (
-          <Coupon.Discount>
-            <span>{t('coupons.type.free')}</span>
-            <span>{t('coupons.type.shiping')}</span>
-          </Coupon.Discount>
-        ) : coupon_code ? (
-          <Coupon.Discount>
-            <span>{t('coupons.type.coupon')}</span>
-            <span>{t('coupons.type.code')}</span>
-          </Coupon.Discount>
+        {discount_amt === '0.00' ? (
+          offer_type === OfferType.freeShipping ? (
+            <Coupon.Discount>
+              <span>{t('coupons.type.free')}</span>
+              <span>{t('coupons.type.shiping')}</span>
+            </Coupon.Discount>
+          ) : coupon_code ? (
+            <Coupon.Discount>
+              <span>{t('coupons.type.coupon')}</span>
+              <span>{t('coupons.type.code')}</span>
+            </Coupon.Discount>
+          ) : (
+            <Coupon.DiscontDeal>{t('coupons.type.deal')}</Coupon.DiscontDeal>
+          )
         ) : (
-          <Coupon.DiscontDeal>{t('coupons.type.deal')}</Coupon.DiscontDeal>
+          <Coupon.Discount
+            color={discountColors[Math.floor(Math.random() * 7)]}
+          >
+            <span>
+              {Number.parseFloat(discount_amt).toFixed()}
+              {discount_type === '1' && '$'}
+              {discount_type === '2' && '%'}
+            </span>
+            <span>OFF</span>
+          </Coupon.Discount>
         )}
         <Coupon.ExpDate>
           <p>{show_exp_date}</p>
@@ -183,7 +208,7 @@ Coupon.Discount = styled.p`
   text-align: center;
 
   white-space: nowrap;
-  color: #d0c000;
+  color: ${props => props.color || '#d0c000'};
 
   margin-top: 40px;
 
