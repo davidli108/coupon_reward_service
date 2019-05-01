@@ -9,11 +9,11 @@ import facebookIcon from '../assets/facebookIcon.png';
 
 const ModalSocial = ({ t }) => (
   <div>
-    <ModalSocial.LinkFacebook href="https://www.joinpiggy.com/fb">
+    <ModalSocial.LinkFacebook href="/fb">
       <img src={facebookIcon} alt="facebook" />
       {t('auth.social.loginFacebook')}
     </ModalSocial.LinkFacebook>
-    <ModalSocial.LinkGoogle href="https://www.joinpiggy.com/google/signin">
+    <ModalSocial.LinkGoogle href="/google/signin">
       <img src={googleIcon} alt="google" />
       {t('auth.social.loginGoogle')}
     </ModalSocial.LinkGoogle>

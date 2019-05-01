@@ -11,7 +11,7 @@ export const fetchUser = () => ({
   type: FETCH_USER,
   payload: {
     request: {
-      url: 'https://www.joinpiggy.com/account/getUser',
+      url: '/account/getUser',
       method: 'GET',
       headers: {
         Accept: '*/*',
@@ -25,7 +25,7 @@ export const signIn = (payload: FormData) => ({
   type: SIGN_IN,
   payload: {
     request: {
-      url: 'https://www.joinpiggy.com/loginAjax',
+      url: '/loginAjax',
       method: 'POST',
       data: payload,
       headers: {
@@ -41,7 +41,7 @@ export const signUp = (payload: FormData) => ({
   type: SIGN_UP,
   payload: {
     request: {
-      url: 'https://www.joinpiggy.com/signupAjax',
+      url: '/signupAjax',
       method: 'POST',
       data: payload,
     },
@@ -52,7 +52,7 @@ export const password = (payload: FormData) => ({
   type: PASSWORD,
   payload: {
     request: {
-      url: 'https://www.joinpiggy.com/passwordAjax',
+      url: '/passwordAjax',
       method: 'POST',
       data: payload,
     },
@@ -63,7 +63,7 @@ export const resetPassword = (payload: FormData) => ({
   type: PASSWORD_RESET,
   payload: {
     request: {
-      url: 'https://www.joinpiggy.com/getpasswordAjax',
+      url: '/getpasswordAjax',
       method: 'POST',
       data: payload,
     },
@@ -74,7 +74,7 @@ export const logout = () => ({
   type: LOGOUT,
   payload: {
     request: {
-      url: 'https://www.joinpiggy.com/logout',
+      url: '/logout',
     },
   },
 });

@@ -150,7 +150,7 @@ const Header = ({ t, isAuth, location, logout }: HeaderProps) => {
           title={t('auth.signUp.title')}
           subTitle={t('auth.signUp.subTitle')}
           submitLabel={t('auth.signUp.button')}
-          linkTerms="https://www.joinpiggy.com/terms"
+          linkTerms="/terms"
           isActive={true}
           onRoutModal={() => setCurrentModal(modal.modalSignIn)}
           closeModal={setCurrentModal.bind(null)}
