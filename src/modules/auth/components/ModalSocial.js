@@ -23,7 +23,6 @@ const ModalSocial = ({ t }) => (
 ModalSocial.LinkFacebook = styled.a`
   position: relative;
   display: block;
-  width: 100%;
   background-color: ${props => props.theme.colors.blueFacebook};
   padding: 1rem 0;
   border-radius: 100px;

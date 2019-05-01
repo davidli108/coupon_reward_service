@@ -1,12 +1,18 @@
 // @flow
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { compose } from 'recompose';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
 
+import SuccessMessage from './SuccessMessage';
+import ErrorMessage from './ErrorMessage';
 import ModalWrapper from './ModalWrapper';
 import ModalInput from './ModalInput';
 import ModalFooter from './ModalFooter';
+
+import * as actions from '../AuthActions';
 
 type ResetPasswordModalProps = {
   t: string => string,
@@ -16,6 +22,7 @@ type ResetPasswordModalProps = {
   isActive: boolean,
   closeModal: Function,
   onRoutModal: Function,
+  resetPassword: FormData => Promise<Object>,
 };
 
 const ResetPasswordModal = ({
@@ -26,12 +33,25 @@ const ResetPasswordModal = ({
   isActive,
   closeModal,
   onRoutModal,
+  resetPassword,
 }: ResetPasswordModalProps) => {
   const [email, setEmail] = useState('');
-  const handleFormSubmit = e => {
+  const [emailErrorMessage, setEmailErrorMessage] = useState('');
+  const [stage, setStage] = useState(1);
+
+  const handleFormSubmit = async e => {
     e.preventDefault();
-    console.log({ email });
-    setEmail('');
+
+    const formData = new FormData();
+    formData.append('email', email);
+
+    await resetPassword(formData);
+    // if (R.path(['payload', 'data'])(response).includes('Invalid')) {
+    // return setEmailErrorMessage('Email address doesn\'t exist in our database.');
+    // }
+
+    setEmailErrorMessage('');
+    setStage(2);
   };
   return (
     isActive && (
@@ -41,24 +61,43 @@ const ResetPasswordModal = ({
         isActive={isActive}
         closeModal={closeModal}
       >
-        <div>
-          <ResetPasswordModal.Form onSubmit={handleFormSubmit}>
-            <ModalInput
-              name="email"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-              type="email"
-              placeholder={t('auth.forgotPassword.emailAddress')}
-              required
+        {stage === 1 && (
+          <div>
+            {emailErrorMessage && (
+              <ErrorMessage>{emailErrorMessage}</ErrorMessage>
+            )}
+            <ResetPasswordModal.Form onSubmit={handleFormSubmit}>
+              <ModalInput
+                name="email"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                type="email"
+                placeholder={t('auth.forgotPassword.emailAddress')}
+                required
+              />
+              <button>{submitLabel}</button>
+
+              <ModalFooter
+                footerText={t('auth.footer.text')}
+                textButton={t('auth.footer.button')}
+                onRoutModal={onRoutModal}
+              />
+              <button>{submitLabel}</button>
+            </ResetPasswordModal.Form>
+            <ModalFooter
+              footerText={t('auth.forgotPassword.footer.text')}
+              textButton={t('auth.forgotPassword.footer.button')}
+              onRoutModal={onRoutModal}
             />
-            <button>{submitLabel}</button>
-          </ResetPasswordModal.Form>
-          <ModalFooter
-            footerText={t('auth.forgotPassword.footer.text')}
-            textButton={t('auth.forgotPassword.footer.button')}
-            onRoutModal={onRoutModal}
-          />
-        </div>
+          </div>
+        )}
+        {stage === 2 && (
+          <div>
+            <SuccessMessage>
+              {t('auth.forgotPassword.messages.sendPassword')}
+            </SuccessMessage>
+          </div>
+        )}
       </ModalWrapper>
     )
   );
@@ -95,4 +134,16 @@ ResetPasswordModal.Form = styled.form`
   }
 `;
 
-export default withTranslation()(ResetPasswordModal);
+const mapDispatchToProps = {
+  resetPassword: actions.resetPassword,
+};
+
+const enhance = compose(
+  connect(
+    null,
+    mapDispatchToProps,
+  ),
+  withTranslation(),
+);
+
+export default enhance(ResetPasswordModal);
