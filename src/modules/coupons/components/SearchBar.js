@@ -52,6 +52,7 @@ const SearchBar = ({ t, value, onSet, result, isLoading }: SearchBarProps) => {
         onChange={e => onSet(e)}
         onClick={() => onOpenItems()}
         placeholder={t('global.search')}
+        pattern="[a-zA-Z0-9-]"
       />
       <SearchBar.Icon src={IconSearch} alt="search" />
       {/* $FlowFixMe */}

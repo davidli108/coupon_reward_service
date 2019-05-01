@@ -24,7 +24,7 @@ const SearchBarItems = ({
       <SearchBarItems.PreloaderWrapper>
         <img src={preloader} alt="preloader" />
       </SearchBarItems.PreloaderWrapper>
-    ) : result.length > 0 ? (
+    ) : result && result.length > 0 ? (
       result.map(item => (
         <SearchBarItems.Item
           key={`store_item_${item.store_id}`}

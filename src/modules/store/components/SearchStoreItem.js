@@ -24,7 +24,7 @@ const SearchStoreItem = ({
       <SearchStoreItem.PreloaderWrapper>
         <img src={preloader} alt="preloader" />
       </SearchStoreItem.PreloaderWrapper>
-    ) : result.length > 0 ? (
+    ) : result && result.length > 0 ? (
       result.map(item => (
         <SearchStoreItem.Item
           key={`store_item_${item.store_id}`}
