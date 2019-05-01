@@ -148,6 +148,7 @@ StoresPage.PreloaderWrapper = styled.div`
 
 StoresPage.Wrapper = styled.section`
   position: relative;
+  margin: 0 auto;
 
   ${breakpoint('xs')`
     padding: 21px 0 75px 0;
@@ -166,6 +167,7 @@ StoresPage.Wrapper = styled.section`
   `}
 
   ${breakpoint('xl')`
+    width: 1140px;
     padding: 57px 0 75px 0;
   `}
 `;
