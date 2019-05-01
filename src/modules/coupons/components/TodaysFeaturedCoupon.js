@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { IoIosHeartEmpty, IoIosHeart } from 'react-icons/io';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
+import moment from 'moment';
 
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
 import type { Store } from '../models/CouponsPage';
@@ -38,7 +39,9 @@ const TodaysFeaturedCoupon = ({ t, store }: TodaysFeaturedCouponProps) => {
                 e.target.onerror = null;
                 e.target.src = placeholder;
               }}
-              alt={store.store_name}
+              alt={`${store.store_name || ''} Coupon Codes ${moment().format(
+                'MMMM',
+              )} | ${moment().format('YYYY')}`}
             />
           </Link>
           <TodaysFeaturedCoupon.Controls isLiked={isFeaturedCouponLiked}>

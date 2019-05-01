@@ -1,10 +1,13 @@
 //@flow
+/* eslint-disable max-len */
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet';
 import { compose } from 'recompose';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
+import moment from 'moment';
 
 import * as couponsActions from '@modules/coupons/CouponsActions';
 import {
@@ -27,6 +30,7 @@ import Content from '../components/Content';
 import FeatureCouponLoader from '../components/loaders/FeatureCouponLoader';
 
 type CouponsPageProps = {
+  match: Object,
   categories: Object,
   stores: Object,
   storesAll: Object,
@@ -45,6 +49,7 @@ type CouponsPageProps = {
 };
 
 const CouponsPage = ({
+  match,
   categories,
   stores,
   storesAll,
@@ -74,6 +79,18 @@ const CouponsPage = ({
 
   return (
     <CouponsPage.Wrapper>
+      <Helmet
+        title={`Automate Your Coupons, Savings and Cashback - ${moment().format(
+          'MMMM',
+        )} ${moment().format('YYYY')} - Piggy`}
+        meta={[
+          {
+            name: 'description',
+            content: `Join Piggy’s quest to never overpay for anything online ever again. Piggy automatically finds and applies the internet's best coupon codes & cashback in cart.`,
+          },
+        ]}
+      />
+
       {/* <DownloadPiggy /> */}
       <CouponsPage.SearchWrapper>
         <SearchBar

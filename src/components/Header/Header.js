@@ -108,7 +108,7 @@ const Header = ({ t, isAuth, location, logout }: HeaderProps) => {
   return (
     <Header.Wrapper>
       <HeaderItem redirect="/" direct>
-        <Header.Logo src={logo} />
+        <Header.Logo src={logo} alt="Join Piggy Logo" />
       </HeaderItem>
       <Header.Controls>
         {renderHeaderItems(items)}
@@ -128,7 +128,7 @@ const Header = ({ t, isAuth, location, logout }: HeaderProps) => {
       </Header.BurgerButtonWrapper>
       <Header.SlidingMenu isOpen={isOpen}>
         <div>
-          <Header.Logo src={logo} />
+          <Header.Logo src={logo} alt="Join Piggy Logo" />
           {renderHeaderItems(items)}
         </div>
       </Header.SlidingMenu>
@@ -201,6 +201,7 @@ Header.Overlay = styled.div`
 Header.Logo = styled.img`
   height: 70px;
   width: 210px;
+  cursor: pointer;
 `;
 
 Header.BurgerButtonWrapper = styled.div`

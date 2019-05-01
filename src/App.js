@@ -11,11 +11,25 @@ import favicon from './assets/favicon.ico';
 
 const { theme, GlobalStyle } = getTheme('base');
 
+const metaKeywords = [
+  'coupon codes',
+  'code',
+  'discounts',
+  'deals',
+  'coupons',
+  'promotional',
+  'promo',
+  'promotion',
+  'savings',
+  'cashback',
+];
+
 const App = () => (
   <ThemeProvider theme={theme}>
     <div>
-      <Helmet titleTemplate="Piggy | %s" defaultTitle="Piggy">
+      <Helmet titleTemplate="%s" defaultTitle="Piggy">
         <link rel="icon" type="image/png" href={favicon} sizes="16x16" />
+        <meta name="keywords" content={metaKeywords} />
       </Helmet>
       <GlobalStyle />
       <ScrollToTop>{routes}</ScrollToTop>

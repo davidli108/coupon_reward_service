@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
+import moment from 'moment';
 
 import CouponCode from './CouponCode';
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
@@ -74,7 +75,9 @@ const Offer = ({
                   e.target.onerror = null;
                   e.target.src = placeholder;
                 }}
-                alt={store_name}
+                alt={`${store_name || ''} Coupon Codes ${moment().format(
+                  'MMMM',
+                )} | ${moment().format('YYYY')}`}
                 onClick={() => !isThisStore && history.push(store_page_link)}
               />
             </Offer.Image>

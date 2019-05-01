@@ -3,6 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
+import moment from 'moment';
 
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
 import StoreListLoader from './loaders/StoreListLoader';
@@ -33,7 +34,9 @@ const StoreList = ({ t, stores, loaded }: StoreListProps) => {
                 e.target.onerror = null;
                 e.target.src = placeholder;
               }}
-              alt={store.store_name}
+              alt={`${store.store_name || ''} Coupon Codes ${moment().format(
+                'MMMM',
+              )} | ${moment().format('YYYY')}`}
             />
             <p>
               {store.cashback_text

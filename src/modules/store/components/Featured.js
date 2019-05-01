@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
+import moment from 'moment';
 
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
 
@@ -36,7 +37,9 @@ const Featured = ({ t, featured }: FeaturedProps) => (
                   e.target.onerror = null;
                   e.target.src = placeholder;
                 }}
-                alt={store_name}
+                alt={`${store_name || ''} Coupon Codes ${moment().format(
+                  'MMMM',
+                )} | ${moment().format('YYYY')}`}
               />
             </Featured.WrapperImage>
           )}

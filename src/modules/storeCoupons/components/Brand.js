@@ -3,6 +3,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { connect } from 'react-redux';
+import moment from 'moment';
 
 import BrandHeader from './BrandHeader';
 import BrandContent from './BrandContent';
@@ -34,7 +35,9 @@ const Brand = ({
               e.target.onerror = null;
               e.target.src = placeholder;
             }}
-            alt={store_name}
+            alt={`${store_name || ''} Coupon Codes ${moment().format(
+              'MMMM',
+            )} | ${moment().format('YYYY')}`}
           />
         </Brand.BrandImageWrapper>
       ) : (

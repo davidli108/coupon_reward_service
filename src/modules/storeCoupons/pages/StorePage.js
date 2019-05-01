@@ -1,10 +1,12 @@
 //@flow
 import React, { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
+import moment from 'moment';
 
 import SearchBar from '../components/SearchBar';
 import Brand from '../components/Brand';
@@ -67,6 +69,28 @@ const StorePage = ({
 
   return (
     <StorePage.Wrapper>
+      <Helmet
+        title={`Top Online ${
+          store.store_name
+        } Coupons, Promo Codes and Cashback - ${moment().format(
+          'MMMM',
+        )} ${moment().format('YYYY')} - Piggy`}
+        meta={[
+          {
+            name: 'description',
+            content: `Never overpay again with the latest ${
+              store.store_name
+            } coupons and promotional codes automatically applied at checkout. Plus ${
+              store.store_cashback_text
+            } today when you use Piggy to shop ${store.store_name}`,
+          },
+          {
+            name: 'keywords',
+            content: `${store.store_name}`,
+          },
+        ]}
+      />
+
       <SearchBar
         onSet={onSearchChange}
         result={searchValue ? storeSearchResult : []}

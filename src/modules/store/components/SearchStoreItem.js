@@ -2,6 +2,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
+import moment from 'moment';
 
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
 import preloader from '../../coupons/assets/preloader.svg';
@@ -40,7 +41,9 @@ const SearchStoreItem = ({
               e.target.onerror = null;
               e.target.src = placeholder;
             }}
-            alt={item.store_name}
+            alt={`${item.store_name || ''} Coupon Codes ${moment().format(
+              'MMMM',
+            )} | ${moment().format('YYYY')}`}
           />
           <div>
             <h3>{item.store_name}</h3>

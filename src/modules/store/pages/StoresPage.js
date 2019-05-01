@@ -1,10 +1,12 @@
 // @flow
+/* eslint-disable max-len */
 import React, { useState } from 'react';
 import { compose } from 'recompose';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { withTranslation } from 'react-i18next';
+import moment from 'moment';
 
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
@@ -78,17 +80,17 @@ const StoresPage = ({
 
   return (
     <React.Fragment>
-      {
-        <Helmet
-          title={t('header.stores')}
-          meta={[
-            {
-              name: 'description',
-              content: t('global.downloadPiggy'),
-            },
-          ]}
-        />
-      }
+      <Helmet
+        title={`Automate Your Coupons, Savings and Cashback - ${moment().format(
+          'MMMM',
+        )} ${moment().format('YYYY')} - Piggy`}
+        meta={[
+          {
+            name: 'description',
+            content: `Join Piggy’s quest to never overpay for anything online ever again. Piggy automatically finds and applies the internet's best coupon codes & cashback in cart.`,
+          },
+        ]}
+      />
 
       <StoresPage.Wrapper>
         <StoresPage.Container>
