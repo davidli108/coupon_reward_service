@@ -47,10 +47,6 @@ const SignInModal = ({
   const [password, setPassword] = useState('');
   const [isError, setError] = useState(false);
 
-  React.useEffect(() => {
-    fetchUser();
-  }, []);
-
   const handleFormSubmit = async e => {
     e.preventDefault();
 
