@@ -37,7 +37,11 @@ const Offers = ({
         </Offers.NoData>
       )}
       {offers.map(x => (
-        <Offer key={`offer_${x.offer_id}`} {...x} />
+        <Offer
+          key={`offer_${x.offer_id}`}
+          {...x}
+          isThisStore={offersCount !== 0}
+        />
       ))}
       {!isLoaded &&
         Array.apply(null, Array(3)).map((_, ind) => <OffersLoader key={ind} />)}

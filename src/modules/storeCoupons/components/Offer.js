@@ -3,34 +3,55 @@ import * as React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
+import { withRouter } from 'react-router-dom';
 
 import CouponCode from './CouponCode';
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
 
+const discountColors = [
+  '#d0c000',
+  '#ff7b82',
+  '#aa85cd',
+  '#43b0cb',
+  '#61d84e',
+  '#979797',
+  '#eca83a',
+];
+
 type OfferProps = {
   t: Function,
+  history: Object,
   coupon_code: string,
   show_exp_date: string,
   offer_link: string,
   discount: string,
   discount_print: string,
+  discount_type: string,
+  discount_amt: string,
   offer_name: string,
   offer_success_print: string,
   store_logo: string,
   store_name: string,
+  isThisStore: boolean,
+  store_page_link: string,
 };
 
 const Offer = ({
   t,
+  history,
   coupon_code,
   show_exp_date,
   offer_link,
   discount,
   discount_print,
+  discount_type,
+  discount_amt,
   offer_name,
   offer_success_print,
   store_logo,
   store_name,
+  store_page_link,
+  isThisStore,
 }: OfferProps) => {
   return (
     <>
@@ -39,26 +60,34 @@ const Offer = ({
           <Offer.NewDeal>{offer_success_print}</Offer.NewDeal>
         )}
         <Offer.Content>
-          {/*
-          <Offer.Discount>
-            <span>{discount}</span>
-            <span>Off</span>
-          </Offer.Discount>
-           */}
-          <Offer.Image>
-            <img
-              src={
-                store_logo
-                  ? `https://d2umvgb8hls1bt.cloudfront.net${store_logo}`
-                  : placeholder
-              }
-              onError={e => {
-                e.target.onerror = null;
-                e.target.src = placeholder;
-              }}
-              alt={store_name}
-            />
-          </Offer.Image>
+          {!isThisStore || discount_amt === '0.00' ? (
+            <Offer.Image>
+              <img
+                src={
+                  store_logo
+                    ? `https://d2umvgb8hls1bt.cloudfront.net${store_logo}`
+                    : placeholder
+                }
+                onError={e => {
+                  e.target.onerror = null;
+                  e.target.src = placeholder;
+                }}
+                alt={store_name}
+                onClick={() => !isThisStore && history.push(store_page_link)}
+              />
+            </Offer.Image>
+          ) : (
+            <Offer.Discount
+              color={discountColors[Math.floor(Math.random() * 7)]}
+            >
+              <span>
+                {Number.parseFloat(discount_amt).toFixed()}
+                {discount_type === '1' && '$'}
+                {discount_type === '2' && '%'}
+              </span>
+              <span>Off</span>
+            </Offer.Discount>
+          )}
           <Offer.DescriptionWrapper>
             <Offer.Description>{offer_name}</Offer.Description>
             <Offer.AdditionalInfo>
@@ -110,6 +139,7 @@ Offer.NewDeal = styled.div`
 Offer.Discount = styled.div`
   width: 70px;
   display: flex;
+  color: ${props => props.color || '#d0c000'};
 
   ${breakpoint('md')`
     flex-flow: column nowrap;
@@ -120,7 +150,6 @@ Offer.Discount = styled.div`
   `}
 
   > span {
-    color: #7ed321;
     font-weight: bold;
     line-height: 46px;
     font-size: 39px;
@@ -136,9 +165,9 @@ Offer.Image = styled.div`
   align-content: center;
 
   img {
-    max-width: 100px;
-    max-height: 70px;
+    width: 90px;
     height: auto;
+    cursor: pointer;
   }
 `;
 
@@ -259,4 +288,4 @@ Offer.RevealCouponButton = styled.div`
   color: #fff;
 `;
 
-export default withTranslation()(Offer);
+export default withRouter(withTranslation()(Offer));
