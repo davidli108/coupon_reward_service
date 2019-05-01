@@ -8,6 +8,7 @@ import { getTheme } from '@theme';
 import routes from './routes';
 
 import favicon from './assets/favicon.ico';
+import logo from '@components/Header/logo.svg';
 
 const { theme, GlobalStyle } = getTheme('base');
 
@@ -30,6 +31,7 @@ const App = () => (
       <Helmet titleTemplate="%s" defaultTitle="Piggy">
         <link rel="icon" type="image/png" href={favicon} sizes="16x16" />
         <meta name="keywords" content={metaKeywords} />
+        <meta name="og:image" content={logo} />
       </Helmet>
       <GlobalStyle />
       <ScrollToTop>{routes}</ScrollToTop>
