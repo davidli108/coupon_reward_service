@@ -214,6 +214,12 @@ export default {
     resetPassword: 'Passwort zurücksetzen',
     testimonials: 'Referenzen',
     browseStores: 'Stöbern Sie mehr als 1000 Shops',
+    addSaving: 'Sparen hinzufügen',
+    instantlyApplyAll:
+      'Alle Gutscheine und Cashbacks sofort mit der App von Piggy anwenden',
+    activateSavings: 'Einsparungen aktivieren',
+    limitedOffer: 'Limitiertes Angebot',
+    piggyBonus: 'Piggy Bonus',
   },
   storeCoupons: {
     viewLatestCoupons:

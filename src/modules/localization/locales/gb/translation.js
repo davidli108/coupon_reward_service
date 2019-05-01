@@ -209,6 +209,12 @@ export default {
     resetPassword: 'Reset Password',
     testimonials: 'Testimonials',
     browseStores: 'Browse among more than 1000 stores',
+    addSaving: 'Add savings',
+    instantlyApplyAll:
+      'Instantly apply all coupons and cashback with Piggy’s app.',
+    activateSavings: 'Activate Savings',
+    limitedOffer: 'Limited Offer',
+    piggyBonus: 'Piggy Bonus',
   },
   storeCoupons: {
     viewLatestCoupons:

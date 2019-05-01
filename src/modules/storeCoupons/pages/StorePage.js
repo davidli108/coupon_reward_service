@@ -24,6 +24,7 @@ import {
 import * as actions from '../StoreCouponsActions';
 import AdditionalInfoLoader from '../components/loaders/AdditionalInfoLoader';
 import OffersLoader from '../components/loaders/OffersLoader';
+import AddSaving from '../components/AddSaving';
 
 const StorePage = ({
   fetchStoreCoupons,
@@ -88,6 +89,7 @@ const StorePage = ({
               <OffersLoader key={ind} />
             ))
           )}
+          <AddSaving />
         </StorePage.ColumnNoWrapFlexBox>
         <StorePage.ColumnNoWrapFlexBox order="1">
           {isLoaded ? <AdditionalInfo /> : <AdditionalInfoLoader />}

@@ -217,6 +217,12 @@ export default {
     resetPassword: 'Réinitialiser le mot de passe',
     testimonials: 'Témoignages',
     browseStores: 'Parcourez plus de 1000 magasins',
+    addSaving: 'Ajouter des économies',
+    instantlyApplyAll:
+      "Appliquez instantanément tous les coupons et les remises en argent avec l'application Piggy’s.",
+    activateSavings: "Activer l'épargne",
+    limitedOffer: 'Offre limitée',
+    piggyBonus: 'Bonus Piggy',
   },
   storeCoupons: {
     viewLatestCoupons:
