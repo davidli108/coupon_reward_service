@@ -1337,6 +1337,7 @@ exports[`Storyshots Components|@Store Search 1`] = `
     name="search"
     onChange={[Function]}
     onClick={[Function]}
+    pattern="[a-zA-Z0-9-]"
     placeholder="global.search"
     type="text"
   />
@@ -2962,6 +2963,7 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
       name="search"
       onChange={[Function]}
       onClick={[Function]}
+      pattern="[a-zA-Z0-9-]"
       placeholder="global.search"
       type="text"
     />
