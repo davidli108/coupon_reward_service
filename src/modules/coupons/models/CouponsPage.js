@@ -19,6 +19,8 @@ export type Store = {
   offer_text_short: string,
   offer_name: string,
   store_page_link: string,
+  twitter_link: string,
+  pinterest_link: string,
 };
 
 export type Category = {
@@ -51,6 +53,8 @@ export type Deal = {
   offer_type: string,
   coupon_code: string,
   store_page_link: string,
+  twitter_link: string,
+  pinterest_link: string,
 };
 
 export type featuredStore = {

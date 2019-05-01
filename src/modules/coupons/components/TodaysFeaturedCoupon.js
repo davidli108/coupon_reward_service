@@ -50,6 +50,8 @@ const TodaysFeaturedCoupon = ({ t, store }: TodaysFeaturedCouponProps) => {
             <SocialShareFeatured
               text={store.ref_text}
               link={store.offer_link}
+              twitterLink={store.twitter_link}
+              pinterestLink={store.pinterest_link}
             />
           </TodaysFeaturedCoupon.Controls>
         </TodaysFeaturedCoupon.LogoControlsWrapper>

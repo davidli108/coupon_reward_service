@@ -12,18 +12,23 @@ import facebookConfig from '@config/FacebookConfig';
 type SocialShareProps = {
   text: string,
   link: string,
+  twitterLink: string,
+  pinterestLink: string,
 };
 
-const SocialShare = ({ text, link }: SocialShareProps) => {
+const SocialShare = ({
+  text,
+  link,
+  twitterLink,
+  pinterestLink,
+}: SocialShareProps) => {
   const [isShowSocial, setIsShowSocial] = useState(false);
 
-  const logo = 'https://d26fg97ql61k4.cloudfront.net/build/img/piggy/logo.svg';
+  //const logo = 'https://d26fg97ql61k4.cloudfront.net/build/img/piggy/logo.svg';
 
   const facebookLink = `https://www.facebook.com/v2.0/dialog/feed?app_id=${
     facebookConfig.app_id
   }&link=${link}&description=${link}`;
-  const twitterLink = `https://twitter.com/intent/tweet?text=${text}%40JoinPiggy%20https%3A//${link}`;
-  const pinterestLink = `http://pinterest.com/pin/create/button/?&description=${text}&url=${link}&media=${logo}`;
 
   return (
     <SocialShare.Wrapper>

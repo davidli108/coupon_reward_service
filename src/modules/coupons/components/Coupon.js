@@ -29,6 +29,8 @@ const Coupon = ({
   ref_link,
   coupon_code,
   store_page_link,
+  twitter_link,
+  pinterest_link,
 }: DealModel) => {
   return (
     <Coupon.Wrapper>
@@ -76,7 +78,13 @@ const Coupon = ({
             .replace('Cash Back', t('global.cashBack'))
             .replace('Instant Savings', t('global.instantSaving'))}
         </Coupon.CashbackPercent>
-        <SocialShare text={ref_text} link={offer_link} t={t} />
+        <SocialShare
+          text={ref_text}
+          link={offer_link}
+          t={t}
+          twitterLink={twitter_link}
+          pinterestLink={pinterest_link}
+        />
       </Coupon.Content>
     </Coupon.Wrapper>
   );
