@@ -132,7 +132,7 @@ AddSaving.Description = styled.p`
 
 AddSaving.ActivateButton = styled.a`
   margin: 10px 0;
-  padding: 13px 40px;
+  padding: 10px 40px;
   border: 2px solid #7ed321;
   box-sizing: border-box;
   border-radius: 4px;
@@ -143,7 +143,7 @@ AddSaving.ActivateButton = styled.a`
   cursor: pointer;
 
   ${breakpoint('md')`
-    padding: 13px 18px;
+    padding: 10px 18px;
     min-width: 200px;
   `}
 `;
