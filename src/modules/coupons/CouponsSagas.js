@@ -12,7 +12,7 @@ function* searchCoupons(action) {
 function* couponsSagas(): Saga<void> {
   yield all([
     // $FlowFixMe
-    debounce(300, REQUEST_SEARCH, searchCoupons),
+    debounce(500, REQUEST_SEARCH, searchCoupons),
   ]);
 }
 

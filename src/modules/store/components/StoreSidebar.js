@@ -8,7 +8,7 @@ import { withTranslation } from 'react-i18next';
 
 import { type Store } from '../models';
 
-import Search from './Search';
+import SearchBar from '@components/SearchBar/SearchBar';
 import Categories from './Categories';
 import CategoriesMobile from './CategoriesMobile';
 //import TagList from './TagList';
@@ -101,12 +101,14 @@ const StoreSidebar = ({
 
   return (
     <StoreSidebar.Wrapper>
-      <Search
-        onSet={onSearchChange}
-        result={searchResult}
-        value={searchValue}
-        isLoading={searchIsLoading}
-      />
+      <StoreSidebar.SearchWrapper>
+        <SearchBar
+          onSet={onSearchChange}
+          result={searchResult}
+          value={searchValue}
+          isLoading={searchIsLoading}
+        />
+      </StoreSidebar.SearchWrapper>
       <Categories
         categories={categories}
         title={t('header.stores')}
@@ -148,6 +150,14 @@ StoreSidebar.Wrapper = styled.div`
 
   ${breakpoint('lg')`
     flex-basis: 261px;
+  `}
+`;
+
+StoreSidebar.SearchWrapper = styled.div`
+  width: 100%;
+
+  ${breakpoint('sm')`
+    width: 80%;
   `}
 `;
 

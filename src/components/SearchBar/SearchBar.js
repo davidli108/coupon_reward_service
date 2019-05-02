@@ -2,24 +2,34 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
+import { withRouter } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 
-import IconSearch from '../../store/assets/icon-search.png';
+import IconSearch from './icon-search.png';
 
 import SearchBarItems from './SearchBarItems';
 
 type SearchBarProps = {
   t: Function,
+  history: Object,
   onSet: Function,
   result: Object,
   value: string,
   isLoading: boolean,
 };
 
-const SearchBar = ({ t, value, onSet, result, isLoading }: SearchBarProps) => {
+const SearchBar = ({
+  t,
+  history,
+  value,
+  onSet,
+  result,
+  isLoading,
+}: SearchBarProps) => {
   const [isShowItems, setIsShowItems] = useState(false);
   const [refItemsWrapper, setRefItemsWrapper] = useState(null);
   const [refSearchBar, setRefSearchBar] = useState(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const html: HTMLElement | null = document.querySelector('html');
 
@@ -43,21 +53,46 @@ const SearchBar = ({ t, value, onSet, result, isLoading }: SearchBarProps) => {
     }
   };
 
+  const onKeyUp = e => {
+    if (e.keyCode === 38) {
+      setCurrentIndex(currentIndex > 0 ? currentIndex - 1 : currentIndex);
+    }
+    if (e.keyCode === 40) {
+      setCurrentIndex(
+        currentIndex < result.length - 1 ? currentIndex + 1 : currentIndex,
+      );
+    }
+    if (e.keyCode === 13) {
+      history.push(`/coupons/${result[currentIndex].short_name}`);
+    }
+  };
+
   return (
-    <SearchBar.Wrapper ref={setRefSearchBar}>
+    <SearchBar.Wrapper ref={setRefSearchBar} onKeyUp={onKeyUp}>
       <SearchBar.Input
         type="text"
         name="search"
-        onChange={e => onSet(e)}
+        value={value}
+        onChange={e => {
+          onSet(e);
+          setCurrentIndex(0);
+        }}
         onClick={() => onOpenItems()}
         placeholder={t('global.search')}
         pattern="[a-zA-Z0-9-]"
+        autoComplete="off"
       />
       <SearchBar.Icon src={IconSearch} alt="search" />
       {/* $FlowFixMe */}
       <div ref={setRefItemsWrapper}>
         {value && isShowItems ? (
-          <SearchBarItems t={t} result={result} isLoading={isLoading} />
+          <SearchBarItems
+            t={t}
+            result={result}
+            isLoading={isLoading}
+            currentIndex={currentIndex}
+            setCurrentIndex={setCurrentIndex}
+          />
         ) : null}
       </div>
     </SearchBar.Wrapper>
@@ -74,16 +109,11 @@ SearchBar.Wrapper = styled.div`
   border-radius: 5px;
 
   ${breakpoint('xs')`
-    width: calc(100% - 2px);
     margin: 0 0 15px 0;
   `}
 
   ${breakpoint('sm')`
     margin: 0 0 33px 0;
-  `}
-
-  ${breakpoint('lg')`
-    width: 500px;
   `}
 `;
 
@@ -156,4 +186,4 @@ SearchBar.Item = styled.div`
   }
 `;
 
-export default withTranslation()(SearchBar);
+export default withRouter(withTranslation()(SearchBar));

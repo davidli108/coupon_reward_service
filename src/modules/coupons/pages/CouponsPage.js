@@ -23,7 +23,7 @@ import {
 } from '@modules/coupons/CouponsReducer';
 
 // import DownloadPiggy from '../components/DownloadPiggy';
-import SearchBar from '../components/SearchBar';
+import SearchBar from '@components/SearchBar/SearchBar';
 import TodaysFeaturedCoupon from '../components/TodaysFeaturedCoupon';
 import StoreList from '../components/StoreList';
 import Content from '../components/Content';

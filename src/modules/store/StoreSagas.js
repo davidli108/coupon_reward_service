@@ -12,7 +12,7 @@ function* searchStore(action) {
 function* storesSagas(): Saga<void> {
   yield all([
     // $FlowFixMe
-    debounce(300, REQUEST_SEARCH, searchStore),
+    debounce(500, REQUEST_SEARCH, searchStore),
   ]);
 }
 

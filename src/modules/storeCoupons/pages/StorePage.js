@@ -8,7 +8,7 @@ import { compose } from 'recompose';
 import { connect } from 'react-redux';
 import moment from 'moment';
 
-import SearchBar from '../components/SearchBar';
+import SearchBar from '@components/SearchBar/SearchBar';
 import Brand from '../components/Brand';
 import Offers from '../components/Offers';
 import AdditionalInfo from '../components/AdditionalInfo';
@@ -91,12 +91,14 @@ const StorePage = ({
         ]}
       />
 
-      <SearchBar
-        onSet={onSearchChange}
-        result={searchValue ? storeSearchResult : []}
-        value={searchValue}
-        isLoading={searchIsLoading}
-      />
+      <StorePage.SearchWrapper>
+        <SearchBar
+          onSet={onSearchChange}
+          result={searchValue ? storeSearchResult : []}
+          value={searchValue}
+          isLoading={searchIsLoading}
+        />
+      </StorePage.SearchWrapper>
       <Brand isLoaded={isLoaded} offersCount={offersCount} reviews={reviews} />
       <StorePage.DesktopContent>
         <StorePage.ColumnNoWrapFlexBox order="2" style={{ marginBottom: 50 }}>
@@ -145,6 +147,14 @@ StorePage.NoWrapFlexBox = styled.div`
 
     width: 100%;
     padding: 10px 0;
+  `}
+`;
+
+StorePage.SearchWrapper = styled.div`
+  width: 100%;
+
+  ${breakpoint('lg')`
+    width: 500px;
   `}
 `;
 
