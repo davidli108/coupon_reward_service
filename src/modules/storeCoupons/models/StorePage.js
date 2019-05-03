@@ -102,6 +102,7 @@ export type BrandHeaderProps = {
 
 export type BrandNeverOverpayProps = {
   t: Function,
+  i18n: Object,
   storeName: string,
 };
 

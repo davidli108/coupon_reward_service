@@ -108,7 +108,7 @@ PiggyExtAd.Reviews = styled.div`
   }
 
   > span {
-    min-width: 80px;
+    min-width: 100px;
     padding-top: 15px;
     color: #c2c2c2;
     font-size: 13px;
