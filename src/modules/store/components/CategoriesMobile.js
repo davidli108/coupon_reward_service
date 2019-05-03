@@ -61,6 +61,7 @@ const CategoriesMobile = ({
         {isOpen && (
           <CategoriesMobile.ItemsWrapper items={categories}>
             <CategoriesMobile.Section>
+              <h2>{t('header.stores')}</h2>
               {categories.map(category => (
                 <CategoryItem
                   setOpen={setOpen}

@@ -200,7 +200,7 @@ Featured.Cash = styled.p`
   padding: 24px 0 0;
   font-weight: 500;
   line-height: 21px;
-  font-size: 16px;
+  font-size: 15px;
   color: ${props => props.theme.colors.blackLight};
 `;
 
