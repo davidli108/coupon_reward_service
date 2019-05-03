@@ -63,11 +63,11 @@ const SearchBar = ({
       );
     }
     if (e.keyCode === 13) {
-      setIsShowItems(false);
       if (html) {
         html.removeEventListener('mousedown', onCloseItems);
       }
       if (currentIndex >= 0) {
+        setIsShowItems(false);
         history.push(`/coupons/${result[currentIndex].short_name}`);
       }
     }
