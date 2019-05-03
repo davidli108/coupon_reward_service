@@ -29,7 +29,7 @@ const SearchBar = ({
   const [isShowItems, setIsShowItems] = useState(false);
   const [refItemsWrapper, setRefItemsWrapper] = useState(null);
   const [refSearchBar, setRefSearchBar] = useState(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(-1);
 
   const html: HTMLElement | null = document.querySelector('html');
 
@@ -67,7 +67,9 @@ const SearchBar = ({
       if (html) {
         html.removeEventListener('mousedown', onCloseItems);
       }
-      history.push(`/coupons/${result[currentIndex].short_name}`);
+      if (currentIndex >= 0) {
+        history.push(`/coupons/${result[currentIndex].short_name}`);
+      }
     }
   };
 
@@ -79,7 +81,7 @@ const SearchBar = ({
         value={value}
         onChange={e => {
           onSet(e);
-          setCurrentIndex(0);
+          setCurrentIndex(-1);
         }}
         onClick={() => onOpenItems()}
         placeholder={t('global.search')}
