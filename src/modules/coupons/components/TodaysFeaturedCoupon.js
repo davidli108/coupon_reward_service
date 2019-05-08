@@ -90,6 +90,7 @@ TodaysFeaturedCoupon.Wrapper = styled.div`
     line-height: 19px;
     font-size: 16px;
     color: #374b5a;
+    text-align: center;
 
     margin-bottom: 15px;
 
@@ -162,7 +163,7 @@ TodaysFeaturedCoupon.LogoControlsWrapper = styled.div`
   display: flex;
   flex-flow: row wrap;
   width: 50%;
-  margin: 8px 20px 0 0;
+  margin: 8px 10px 0 0;
 
   > div {
     margin: 0 0 0 20px;
