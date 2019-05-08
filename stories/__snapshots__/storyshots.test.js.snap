@@ -1491,6 +1491,8 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
 
 .c14:hover {
   color: #7F7F7F;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
 }
 
 @media (min-width:48em) {
@@ -1878,12 +1880,12 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
       </a>
     </div>
   </div>
-  <button
+  <p
     className="c14"
     onClick={[Function]}
   >
     
-  </button>
+  </p>
 </div>
 `;
 
@@ -2134,6 +2136,8 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 
 .c17:hover {
   color: #7F7F7F;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
 }
 
 .c0 {
@@ -2594,12 +2598,12 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
         </a>
       </div>
     </div>
-    <button
+    <p
       className="c17"
       onClick={[Function]}
     >
       
-    </button>
+    </p>
   </div>
 </div>
 `;
