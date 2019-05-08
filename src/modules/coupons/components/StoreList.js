@@ -69,7 +69,7 @@ StoreList.Wrapper = styled.div`
 
   > a {
     padding: 5px;
-    margin-right: 15px;
+    margin-right: 30px;
   }
 
   > a:last-child {
@@ -87,7 +87,7 @@ StoreList.Wrapper = styled.div`
 `;
 
 StoreList.Item = styled.a`
-  min-width: 120px;
+  min-width: 130px;
   display: flex;
   flex-flow: column nowrap;
   box-sizing: border-box;
@@ -97,8 +97,8 @@ StoreList.Item = styled.a`
   border: 1px solid #dadde2;
   border-radius: 5px;
 
-  width: 120px;
-  height: 120px;
+  width: 130px;
+  height: 130px;
 
   > img {
     height: auto;
