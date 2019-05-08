@@ -1,8 +1,8 @@
 // @flow
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { FiShare2 } from 'react-icons/fi';
 
+import shareIcon from '../assets/ShareIcon.svg';
 import facebookIcon from '../assets/facebookIcon.svg';
 import twitterIcon from '../assets/twitterIcon.svg';
 import pinterestIcon from '../assets/pinterestIcon.svg';
@@ -35,7 +35,7 @@ const SocialShare = ({
   return (
     <SocialShare.Wrapper>
       <SocialShare.Button onClick={() => setIsShowSocial(!isShowSocial)}>
-        <FiShare2 />
+        <SocialShare.ShareIcon src={shareIcon} alt="share" />
         <p>{t('coupons.shopBy.share')}</p>
       </SocialShare.Button>
       <SocialShare.SocialsWrapper isShow={isShowSocial}>
@@ -55,28 +55,32 @@ const SocialShare = ({
 
 SocialShare.Wrapper = styled.div`
   width: 100%;
-  height: 35px;
-  padding-top: 10px;
+  line-height: 20px;
+  margin-top: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
+SocialShare.ShareIcon = styled.img`
+  padding: 0 5px !important;
+`;
+
 SocialShare.Button = styled.div`
-  margin-right: 10px;
   padding: 4px;
   display: flex;
-  color: gray;
+  color: #00cbe9;
   cursor: pointer;
-  border: 1px solid gray;
+  border-radius: 3px;
+  background-color: #f0f1f4;
+  border: 1px solid #f0f1f4;
 
   p {
     margin: 0 5px 0 5px;
   }
 
   &:hover {
-    color: black;
-    border: 1px solid black;
+    border: 1px solid #00cbe9;
   }
 `;
 
