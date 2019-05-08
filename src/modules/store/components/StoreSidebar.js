@@ -132,10 +132,8 @@ StoreSidebar.defaultProps = {
 };
 
 StoreSidebar.Wrapper = styled.div`
-  padding: 0 30px 0 0;
 
   ${breakpoint('xs')`
-    padding: 0 0 0 0;
     flex-basis: auto;
   `}
 
@@ -145,7 +143,7 @@ StoreSidebar.Wrapper = styled.div`
 
   ${breakpoint('sm')`
     flex-basis: 321px;
-    padding: 0 10px 0 0;
+    padding: 0 30px 0 0;
   `}
 
   ${breakpoint('lg')`
@@ -155,10 +153,6 @@ StoreSidebar.Wrapper = styled.div`
 
 StoreSidebar.SearchWrapper = styled.div`
   width: 100%;
-
-  ${breakpoint('sm')`
-    width: 80%;
-  `}
 `;
 
 StoreSidebar.Content = styled.div`

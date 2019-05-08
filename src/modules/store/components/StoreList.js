@@ -307,13 +307,12 @@ StoreList.Info = styled.div`
   `}
 
   ${breakpoint('lg')`
-    flex-direction: column;
+    flex-direction: row;
     margin: 0;
     flex-basis: auto;
   `}
 
   ${breakpoint('xl')`
-    flex-direction: row;
     align-items: flex-end;
   `}
 `;
@@ -402,6 +401,10 @@ StoreList.Cash = styled.p`
 
   ${breakpoint('md')`
     margin: 0;
+  `}
+
+  ${breakpoint('lg')`
+    margin: 0 100px 0 auto;
   `}
 
   ${breakpoint('xl')`
