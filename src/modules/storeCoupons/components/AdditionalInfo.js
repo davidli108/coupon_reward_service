@@ -75,7 +75,7 @@ AdditionalInfo.Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding: 15px;
-  margin-top: 50px;
+  margin-top: 10px;
   color: #899197;
   line-height: 20px;
 
