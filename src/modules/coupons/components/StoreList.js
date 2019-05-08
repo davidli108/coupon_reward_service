@@ -69,7 +69,11 @@ StoreList.Wrapper = styled.div`
 
   > a {
     padding: 5px;
-    margin-right: 30px;
+    margin-right: 26px;
+
+    ${breakpoint('sm')`
+      margin-right: 30px;
+    `}
   }
 
   > a:last-child {
@@ -87,7 +91,7 @@ StoreList.Wrapper = styled.div`
 `;
 
 StoreList.Item = styled.a`
-  min-width: 130px;
+  min-width: 117px;
   display: flex;
   flex-flow: column nowrap;
   box-sizing: border-box;
@@ -97,8 +101,8 @@ StoreList.Item = styled.a`
   border: 1px solid #dadde2;
   border-radius: 5px;
 
-  width: 130px;
-  height: 130px;
+  width: 117px;
+  height: 112px;
 
   > img {
     height: auto;
@@ -118,6 +122,11 @@ StoreList.Item = styled.a`
 
     color: #899197;
   }
+
+  ${breakpoint('sm')`
+    width: 130px;
+    height: 112px;
+  `}
 
   ${breakpoint('md')`
     width: 174px;
