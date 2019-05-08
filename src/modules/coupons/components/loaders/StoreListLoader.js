@@ -14,7 +14,6 @@ CategoriesLoader.Wrapper = styled(ContentLoader)`
   margin-right: 7px;
   margin-left: 7px;
   display: flex;
-  flex-flow: column nowrap;
   box-sizing: border-box;
 
   background: #fff;
@@ -24,8 +23,8 @@ CategoriesLoader.Wrapper = styled(ContentLoader)`
   width: 120px;
   height: 120px;
 
-  ${breakpoint('xl')`
-    width: 165px;
+  ${breakpoint('md')`
+    width: 170px;
     height: 136px;
   `}
 `;
