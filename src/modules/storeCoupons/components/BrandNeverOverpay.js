@@ -48,7 +48,8 @@ BrandNeverOverpay.Advantages = styled.div`
   max-width: 400px;
 
   ${breakpoint('xl')`
-      max-width: 400px;
+    text-align: left;
+    max-width: 430px;
   `}
 
   & > span,

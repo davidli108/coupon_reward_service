@@ -265,7 +265,7 @@ Content.Coupons = styled.div`
   `}
 `;
 
-Content.LoadMoreDeals = styled.button`
+Content.LoadMoreDeals = styled.p`
   display: ${props => (props.isShow ? 'flex' : 'none')};
   justify-content: center;
   font-weight: bold;
@@ -286,6 +286,8 @@ Content.LoadMoreDeals = styled.button`
 
   &:hover {
     color: ${props => props.theme.colors.grayDark};
+
+    text-decoration: underline;
   }
 `;
 

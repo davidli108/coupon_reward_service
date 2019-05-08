@@ -494,7 +494,7 @@ StoreList.LinkMobile = styled(StoreList.Link)`
   `}
 `;
 
-StoreList.LoadMoreButton = styled.button`
+StoreList.LoadMoreButton = styled.p`
   width: 100%;
   display: flex;
   justify-content: center;
@@ -516,6 +516,7 @@ StoreList.LoadMoreButton = styled.button`
 
   &:hover {
     color: ${props => props.theme.colors.grayDark};
+    text-decoration: underline;
   }
 `;
 

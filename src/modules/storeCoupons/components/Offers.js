@@ -54,7 +54,7 @@ const Offers = ({
   );
 };
 
-Offers.LoadMoreDeals = styled.button`
+Offers.LoadMoreDeals = styled.p`
   width: 100%;
   margin-top: 30px;
   display: flex;
@@ -77,6 +77,7 @@ Offers.LoadMoreDeals = styled.button`
 
   &:hover {
     color: ${props => props.theme.colors.grayDark};
+    text-decoration: underline;
   }
 `;
 
