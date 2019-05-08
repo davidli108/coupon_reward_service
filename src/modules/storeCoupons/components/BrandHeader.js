@@ -47,11 +47,18 @@ const BrandHeader = ({
                   ? t('coupons.type.deal')
                   : t('global.deals')}
               </span>
-              <span>-</span>
+              <BrandHeader.SmNonVisible>
+                <span>-</span>
+              </BrandHeader.SmNonVisible>
             </>
           )}
-          <span>{store_cashback_text}</span>
+          <BrandHeader.SmNonVisible>
+            <span>{store_cashback_text}</span>
+          </BrandHeader.SmNonVisible>
         </BrandHeader.OffersStats>
+        <BrandHeader.SmVisible>
+          <BrandHeader.CashBack>{store_cashback_text}</BrandHeader.CashBack>
+        </BrandHeader.SmVisible>
         {/*
         <BrandHeader.FollowStoreWrapper isStoreFollowed={isStoreFollowed}>
           <div onClick={handleStoreFollowToggler}>
@@ -69,25 +76,51 @@ BrandHeader.Name = styled.h2`
   font-size: 22px;
   font-weight: bold;
   color: #374b5a;
-
-  text-align: center;
   padding-top: 15px;
+  text-align: center;
 
   ${breakpoint('xl')`
-    padding: 0 0 0  30px;
+    text-align: left;
+  `}
+
+  ${breakpoint('xl')`
+    padding: 0;
     width: 100%;
 
-    text-align: start;
     line-height: 46px;
     font-size: 39px;
   `}
+`;
+
+BrandHeader.SmNonVisible = styled.span`
+  display: flex;
+
+  ${breakpoint('sm')`
+    display: none;
+  `}
 
   ${breakpoint('md')`
-    width: 100%;
+    display: flex;
+  `}
+`;
 
-    text-align: start;
-    line-height: 46px;
-    font-size: 30px;
+BrandHeader.SmVisible = styled.span`
+  display: none;
+
+  ${breakpoint('sm')`
+    display: flex;
+  `}
+
+  ${breakpoint('md')`
+    display: none;
+  `}
+`;
+
+BrandHeader.Br = styled.br`
+  display: flex;
+
+  ${breakpoint('md')`
+    display: none;
   `}
 `;
 
@@ -107,24 +140,31 @@ BrandHeader.NoWrapFlexBox = styled.div`
 `;
 
 BrandHeader.OffersStats = styled.div`
+  min-width: 240px;
+  width: 80%;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
 
-  width: 100%;
-  padding: 15px 0 25px 0;
+  padding: 15px 0 18px 0;
+
+  ${breakpoint('sm')`
+    width: 200px;
+    margin: 0;
+  `}
 
   ${breakpoint('md')`
+    width: 100%;
     max-width: 500px;
-    padding: 0 0 5px 0;
+    padding: 0 0 20px 0;
   `}
 
   ${breakpoint('xl')`
-    padding: 0 0 5px 30px;
+    padding: 0 0 5px 0;
   `}
 
   & > span {
-    font-weight: bold;
-    font-size: 10px;
+    font-size: 13px;
     color: #62707b;
 
     ${breakpoint('md')`
@@ -135,6 +175,15 @@ BrandHeader.OffersStats = styled.div`
       margin-right: 5px;
     }
   }
+`;
+
+BrandHeader.CashBack = styled.span`
+  font-size: 13px;
+  color: #62707b;
+
+  ${breakpoint('md')`
+    font-size: 16px;
+  `}
 `;
 
 BrandHeader.FollowStoreWrapper = styled.div`

@@ -130,7 +130,7 @@ StorePage.Wrapper = styled.div`
   display: flex;
 
   padding: 15px;
-  width: 95%;
+  width: 90%;
   max-width: 1140px;
   margin: 0 auto;
 

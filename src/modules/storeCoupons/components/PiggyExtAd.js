@@ -84,7 +84,7 @@ PiggyExtAd.Wrapper = styled.div`
 `;
 
 PiggyExtAd.AddExtensionButton = styled.div`
-  width: 100%;
+  width: 50%;
   height: 40px;
   display: flex;
   justify-content: center;
@@ -95,12 +95,18 @@ PiggyExtAd.AddExtensionButton = styled.div`
   font-size: 18px;
   color: #7ed321;
   cursor: pointer;
+
+  ${breakpoint('sm')`
+    width: 100%;
+  `}
 `;
 
 PiggyExtAd.Reviews = styled.div`
-  width: 100%;
+  width: 50%;
   display: flex;
   align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
 
   > div {
     display: flex;
@@ -112,14 +118,22 @@ PiggyExtAd.Reviews = styled.div`
     padding-top: 15px;
     color: #c2c2c2;
     font-size: 13px;
+
     ${breakpoint('sx')`
       padding: 0 0 0 10px;
     `}
   }
 
+  ${breakpoint('sm')`
+    width: 100%;
+    flex-direction: row;
+    justify-content: flex-start;
+  `}
+
   ${breakpoint('md')`
     margin-top: 20px;
     justify-content: center;
+    padding: 0 0 0 10px;
   `}
 `;
 

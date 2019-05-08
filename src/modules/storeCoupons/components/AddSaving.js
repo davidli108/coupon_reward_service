@@ -13,9 +13,6 @@ type AddSavingProps = {
 
 const AddSaving = ({ t }: AddSavingProps) => (
   <AddSaving.Wrapper>
-    <AddSaving.BonusLabel>
-      <p>{t('cashbackStores.piggyBonus')}</p>
-    </AddSaving.BonusLabel>
     <DollarImg />
     <AddSaving.InfoWrapper>
       <AddSaving.TextWrapper>
@@ -50,23 +47,6 @@ AddSaving.Wrapper = styled.div`
 
   ${breakpoint('sm')`
     flex-direction: row;
-  `}
-`;
-
-AddSaving.BonusLabel = styled.div`
-  width: 100%;
-  padding: 10px 0;
-  background-color: #f9fafc;
-
-  p {
-    color: #00cbe9;
-    font-weight: 500;
-    font-size: 15px;
-    text-align: center;
-  }
-
-  ${breakpoint('sm')`
-    display: none;
   `}
 `;
 
@@ -112,7 +92,7 @@ AddSaving.ButtonOfferWrapper = styled.div`
 
 AddSaving.AddSavingLabel = styled.p`
   line-height: 60px;
-  font-size: 40px;
+  font-size: 35px;
   font-weight: bold;
   color: #62707b;
 `;
@@ -120,7 +100,7 @@ AddSaving.AddSavingLabel = styled.p`
 AddSaving.Description = styled.p`
   width: 80%;
   line-height: 30px;
-  font-size: 18px;
+  font-size: 16px;
   text-align: center;
   color: #62707b;
 

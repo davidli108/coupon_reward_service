@@ -94,9 +94,11 @@ const Offer = ({
           )}
           <Offer.DescriptionWrapper>
             <Offer.Description>{offer_name}</Offer.Description>
-            <Offer.AdditionalInfo>
-              <span>{discount_print}</span>
-            </Offer.AdditionalInfo>
+            <Offer.SmVisible>
+              <Offer.AdditionalInfo>
+                <span>{discount_print}</span>
+              </Offer.AdditionalInfo>
+            </Offer.SmVisible>
           </Offer.DescriptionWrapper>
         </Offer.Content>
         <Offer.Container>
@@ -105,22 +107,29 @@ const Offer = ({
             <Offer.ExpDate>{show_exp_date}</Offer.ExpDate>
           </Offer.ButtonWrapper>
         </Offer.Container>
+        <Offer.SmNonVisible>
+          <Offer.AdditionalInfo>
+            <span>{discount_print}</span>
+          </Offer.AdditionalInfo>
+        </Offer.SmNonVisible>
       </Offer.Wrapper>
     </>
   );
 };
 
 Offer.Wrapper = styled.div`
-  min-width: 350px;
   position: relative;
   display: flex;
-  flex-flow: row nowrap;
-  width: calc(100% - 42px);
+  flex-flow: column nowrap;
   background: #fff;
   border: 1px solid #dadde2;
-  border-radius: 5px;
+  padding: 30px 20px 10px 20px;
   margin-top: 25px;
-  padding: 30px 20px;
+
+  ${breakpoint('sm')`
+    width: calc(100% - 42px);
+    flex-flow: row nowrap;
+  `}
 
   ${breakpoint('md')`
     width: calc(100% - 75px);
@@ -141,9 +150,14 @@ Offer.NewDeal = styled.div`
 `;
 
 Offer.Discount = styled.div`
-  width: 70px;
+  width: 110px;
   display: flex;
+  flex-flow: column nowrap;
   color: ${props => props.color || '#d0c000'};
+
+  ${breakpoint('sm')`
+    flex-flow: row nowrap;
+  `}
 
   ${breakpoint('md')`
     flex-flow: column nowrap;
@@ -157,6 +171,7 @@ Offer.Discount = styled.div`
     font-weight: bold;
     line-height: 46px;
     font-size: 39px;
+    margin: 0 auto;
   }
 `;
 
@@ -175,15 +190,40 @@ Offer.Image = styled.div`
   }
 `;
 
+Offer.SmVisible = styled.div`
+  display: none;
+
+  ${breakpoint('sm')`
+    display: flex;
+  `}
+`;
+
+Offer.SmNonVisible = styled.div`
+  display: flex;
+
+  ${breakpoint('sm')`
+    display: none;
+  `}
+`;
+
 Offer.Content = styled.div`
   display: flex;
-  flex-flow: column nowrap;
-  width: calc(50% - 10px);
-  margin-right: 10px;
+  flex-flow: row nowrap;
+  width: 100%;
+  align-items: center;
+  margin-right: 15px;
+
+  ${breakpoint('sm')`
+    width: calc(50% - 10px);
+    align-items: flex-start;
+    flex-flow: column nowrap;
+    margin: 0 30px 0 0;
+  `}
 
   ${breakpoint('md')`
     width: 100%;
     flex-flow: row nowrap;
+    margin: 0;
   `}
 `;
 
@@ -191,6 +231,12 @@ Offer.DescriptionWrapper = styled.div`
   display: flex;
   flex-flow: column nowrap;
   width: 100%;
+  margin-left: 20px;
+
+  ${breakpoint('sm')`
+    margin-left: 5px;
+  `}
+
   ${breakpoint('md')`
     align-items: justify-content;
     margin: 10px 10px 0 8%;
@@ -204,43 +250,55 @@ Offer.Description = styled.div`
   font-weight: bold;
   color: #374b5a;
 
+  ${breakpoint('sm')`
+    margin: 10px 0;
+  `}
+
   ${breakpoint('md')`
+    margin: 0;
     font-size: 18px;
     max-width: 400px;
   `}
 `;
 
 Offer.AdditionalInfo = styled.div`
-  position: absolute;
+  min-width: 120px;
   bottom: 0;
-  width: calc(100% - 40px);
+  margin: 0;
+  width: 100%;
   text-align: center;
   font-weight: bold;
-  line-height: 23px;
+  line-height: 40px;
   font-size: 13px;
-  color: #c2c2c2;
+  color: #62707b;
+
+  ${breakpoint('sm')`
+    text-align: left;
+    width: calc(100% - 40px);
+  `}
 
   ${breakpoint('md')`
-      margin-top: 15px;
-      position: static;
+    position: absolute;
+    line-height: 23px;
+    margin: 15px 0 0 0;
+    position: static;
+    width: 100%;
+
+    > span {
       width: 100%;
-      text-align: left;
-
-      > span {
-        width: 100%;
-      }
-    `}
-
-  > span:first-child {
-    margin-right: 10px;
-  }
+    }
+  `}
 `;
 
 Offer.Container = styled.div`
   display: flex;
-  justify-content: flex-end;
-  width: calc(50% - 10px);
-  margin-left: 10px;
+  justify-content: center;
+
+  ${breakpoint('sm')`
+    width: calc(50% - 10px);
+    justify-content: flex-end;
+    margin-left: 10px;
+  `}
 
   ${breakpoint('md')`
     width: 30%;
@@ -251,10 +309,9 @@ Offer.ButtonWrapper = styled.div`
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+  width: 100%;
 
-  min-width: 200px;
-
-  ${breakpoint('md')`
+  ${breakpoint('sm')`
     min-width: 200px;
   `}
 `;
@@ -276,8 +333,12 @@ Offer.ExpDate = styled.p`
   line-height: 23px;
   font-size: 13px;
   color: #c2c2c2;
-  margin-top: 15px;
+  margin-top: 10px;
   text-align: center;
+
+  ${breakpoint('sm')`
+    margin-top: 15px;
+  `}
 `;
 
 Offer.RevealCouponButton = styled.div`

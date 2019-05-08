@@ -43,8 +43,9 @@ BrandNeverOverpay.Advantages = styled.div`
   justify-content: space-between;
 
   width: 100%;
+  min-width: 320px;
+  margin: 0 auto;
   max-width: 400px;
-  padding: 0 0 25px 0;
 
   ${breakpoint('xl')`
       max-width: 400px;
@@ -66,13 +67,24 @@ BrandNeverOverpay.Advantages = styled.div`
     }
   }
 
+  a {
+    min-width: 50px;
+  }
+
   a:hover {
     color: #40c8e5;
   }
+
+  ${breakpoint('sm')`
+    text-align: left;
+    margin: 0;
+    padding: 0 0 25px 0;
+  `}
 `;
 
 BrandNeverOverpay.NeverOverpay = styled.div`
-  width: 90%;
+  width: 100%;
+  text-align: center;
 
   h2 {
     font-size: 22px;
@@ -87,6 +99,11 @@ BrandNeverOverpay.NeverOverpay = styled.div`
     color: #899197;
     line-height: 20px;
   }
+
+  ${breakpoint('sm')`
+    width: 90%;
+    text-align: left;
+  `}
 `;
 
 export default withTranslation()(BrandNeverOverpay);

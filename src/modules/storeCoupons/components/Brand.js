@@ -71,10 +71,15 @@ const Brand = ({
 );
 
 Brand.Wrapper = styled.div`
+  width: 100%;
   display: flex;
+  flex-flow: column nowrap;
+
+  ${breakpoint('sm')`
+    flex-flow: row nowrap;
+  `}
 
   ${breakpoint('lg')`
-    flex-flow: row nowrap;
     height: auto;
     width: 100%;
   `}
@@ -83,16 +88,21 @@ Brand.Wrapper = styled.div`
 `;
 
 Brand.BrandImageWrapper = styled.a`
+  width: 100%;
   margin-right: 30px;
+  padding: 25px 0;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  width: 300px;
-  height: 150px;
-
   border: 1px solid #dadde2;
   border-radius: 5px;
+
+  ${breakpoint('sm')`
+    width: 300px;
+    height: 150px;
+    padding: 0;
+  `}
 
   ${breakpoint('xl')`
     width: 270px;
@@ -151,8 +161,12 @@ Brand.XlWrapper = styled.div`
 `;
 
 Brand.MdWrapper = styled.div`
-  margin-top: 30px;
+  margin-top: 10px;
   display: flex;
+
+  ${breakpoint('sm')`
+    margin-top: 30px;
+  `}
 
   ${breakpoint('xl')`
     display: none;
@@ -163,7 +177,7 @@ Brand.WrapFlexBox = styled.div`
   display: flex;
   flex-flow: column nowrap;
 
-  ${breakpoint('lg')`
+  ${breakpoint('md')`
     flex-flow: row wrap;
     align-items: center;
 
