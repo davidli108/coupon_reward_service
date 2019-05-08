@@ -129,9 +129,10 @@ const StorePage = ({
 StorePage.Wrapper = styled.div`
   display: flex;
 
-  padding: 15px;
+  padding: 15px 0;
   width: 90%;
   max-width: 1140px;
+  min-width: 280px;
   margin: 0 auto;
 
   flex-flow: row wrap;

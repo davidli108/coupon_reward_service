@@ -94,11 +94,11 @@ const Offer = ({
           )}
           <Offer.DescriptionWrapper>
             <Offer.Description>{offer_name}</Offer.Description>
-            <Offer.SmVisible>
+            <Offer.SxVisible>
               <Offer.AdditionalInfo>
                 <span>{discount_print}</span>
               </Offer.AdditionalInfo>
-            </Offer.SmVisible>
+            </Offer.SxVisible>
           </Offer.DescriptionWrapper>
         </Offer.Content>
         <Offer.Container>
@@ -107,11 +107,11 @@ const Offer = ({
             <Offer.ExpDate>{show_exp_date}</Offer.ExpDate>
           </Offer.ButtonWrapper>
         </Offer.Container>
-        <Offer.SmNonVisible>
+        <Offer.SxNonVisible>
           <Offer.AdditionalInfo>
             <span>{discount_print}</span>
           </Offer.AdditionalInfo>
-        </Offer.SmNonVisible>
+        </Offer.SxNonVisible>
       </Offer.Wrapper>
     </>
   );
@@ -126,7 +126,7 @@ Offer.Wrapper = styled.div`
   padding: 30px 20px 10px 20px;
   margin-top: 25px;
 
-  ${breakpoint('sm')`
+  ${breakpoint('sx')`
     width: calc(100% - 42px);
     flex-flow: row nowrap;
   `}
@@ -155,7 +155,7 @@ Offer.Discount = styled.div`
   flex-flow: column nowrap;
   color: ${props => props.color || '#d0c000'};
 
-  ${breakpoint('sm')`
+  ${breakpoint('sx')`
     flex-flow: row nowrap;
   `}
 
@@ -190,18 +190,18 @@ Offer.Image = styled.div`
   }
 `;
 
-Offer.SmVisible = styled.div`
+Offer.SxVisible = styled.div`
   display: none;
 
-  ${breakpoint('sm')`
+  ${breakpoint('sx')`
     display: flex;
   `}
 `;
 
-Offer.SmNonVisible = styled.div`
+Offer.SxNonVisible = styled.div`
   display: flex;
 
-  ${breakpoint('sm')`
+  ${breakpoint('sx')`
     display: none;
   `}
 `;
@@ -213,7 +213,7 @@ Offer.Content = styled.div`
   align-items: center;
   margin-right: 15px;
 
-  ${breakpoint('sm')`
+  ${breakpoint('sx')`
     width: calc(50% - 10px);
     align-items: flex-start;
     flex-flow: column nowrap;
@@ -233,7 +233,7 @@ Offer.DescriptionWrapper = styled.div`
   width: 100%;
   margin-left: 20px;
 
-  ${breakpoint('sm')`
+  ${breakpoint('sx')`
     margin-left: 5px;
   `}
 
@@ -250,7 +250,7 @@ Offer.Description = styled.div`
   font-weight: bold;
   color: #374b5a;
 
-  ${breakpoint('sm')`
+  ${breakpoint('sx')`
     margin: 10px 0;
   `}
 
@@ -272,7 +272,7 @@ Offer.AdditionalInfo = styled.div`
   font-size: 13px;
   color: #62707b;
 
-  ${breakpoint('sm')`
+  ${breakpoint('sx')`
     text-align: left;
     width: calc(100% - 40px);
   `}
@@ -294,7 +294,7 @@ Offer.Container = styled.div`
   display: flex;
   justify-content: center;
 
-  ${breakpoint('sm')`
+  ${breakpoint('sx')`
     width: calc(50% - 10px);
     justify-content: flex-end;
     margin-left: 10px;
@@ -310,8 +310,14 @@ Offer.ButtonWrapper = styled.div`
   flex-flow: column nowrap;
   align-items: center;
   width: 100%;
+  min-width: 150px;
+  margin-top: 10px;
 
-  ${breakpoint('sm')`
+  ${breakpoint('sx')`
+    margin-top: 0;
+  `}
+
+  ${breakpoint('md')`
     min-width: 200px;
   `}
 `;
@@ -336,7 +342,7 @@ Offer.ExpDate = styled.p`
   margin-top: 10px;
   text-align: center;
 
-  ${breakpoint('sm')`
+  ${breakpoint('sx')`
     margin-top: 15px;
   `}
 `;

@@ -13,6 +13,9 @@ type AddSavingProps = {
 
 const AddSaving = ({ t }: AddSavingProps) => (
   <AddSaving.Wrapper>
+    <AddSaving.BonusLabel>
+      <p>{t('cashbackStores.piggyBonus')}</p>
+    </AddSaving.BonusLabel>
     <DollarImg />
     <AddSaving.InfoWrapper>
       <AddSaving.TextWrapper>
@@ -45,8 +48,25 @@ AddSaving.Wrapper = styled.div`
   border: 1px dashed #adb8c0;
   border-radius: 5px;
 
-  ${breakpoint('sm')`
+  ${breakpoint('sx')`
     flex-direction: row;
+  `}
+`;
+
+AddSaving.BonusLabel = styled.div`
+  width: 100%;
+  padding: 10px 0;
+  background-color: #f9fafc;
+
+  p {
+    color: #00cbe9;
+    font-weight: 500;
+    font-size: 15px;
+    text-align: center;
+  }
+
+  ${breakpoint('sx')`
+    display: none;
   `}
 `;
 
@@ -56,7 +76,7 @@ AddSaving.InfoWrapper = styled.div`
   flex-direction: column;
   align-items: center;
 
-  ${breakpoint('sm')`
+  ${breakpoint('sx')`
     width: 250px;
     margin: 20px 30px 20px auto;
   `}
@@ -74,17 +94,23 @@ AddSaving.TextWrapper = styled.div`
   flex-direction: column;
   align-items: center;
 
-  ${breakpoint('md')`
+  ${breakpoint('sx')`
+    align-items: flex-start;
+  `}
+
+  ${breakpoint('sm')`
     align-items: flex-start;
   `}
 `;
 
 AddSaving.ButtonOfferWrapper = styled.div`
+  min-width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 
   ${breakpoint('md')`
+    min-width: auto;
     margin-left: auto;
     padding-right: 30px;
   `}
@@ -92,9 +118,13 @@ AddSaving.ButtonOfferWrapper = styled.div`
 
 AddSaving.AddSavingLabel = styled.p`
   line-height: 60px;
-  font-size: 35px;
+  font-size: 32px;
   font-weight: bold;
   color: #62707b;
+
+  ${breakpoint('sm')`
+    font-size: 35px;
+  `}
 `;
 
 AddSaving.Description = styled.p`
@@ -104,15 +134,16 @@ AddSaving.Description = styled.p`
   text-align: center;
   color: #62707b;
 
-  ${breakpoint('sm')`
+  ${breakpoint('sx')`
     width: 100%;
     text-align: left;
   `}
 `;
 
 AddSaving.ActivateButton = styled.a`
+  min-width: 90%;
   margin: 10px 0;
-  padding: 10px 40px;
+  padding: 10px 0;
   border: 2px solid #7ed321;
   box-sizing: border-box;
   border-radius: 4px;
@@ -121,6 +152,15 @@ AddSaving.ActivateButton = styled.a`
   font-size: 20px;
   font-weight: 500;
   cursor: pointer;
+  text-align: center;
+
+  ${breakpoint('sx')`
+    min-width: 100%;
+  `}
+
+  ${breakpoint('sm')`
+    padding: 10px 40px;
+  `}
 
   ${breakpoint('md')`
     padding: 10px 18px;

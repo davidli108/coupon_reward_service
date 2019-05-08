@@ -75,8 +75,12 @@ Brand.Wrapper = styled.div`
   display: flex;
   flex-flow: column nowrap;
 
-  ${breakpoint('sm')`
+  ${breakpoint('sx')`
     flex-flow: row nowrap;
+
+    a {
+      padding: 0 15px;
+    }
   `}
 
   ${breakpoint('lg')`
@@ -98,7 +102,7 @@ Brand.BrandImageWrapper = styled.a`
   border: 1px solid #dadde2;
   border-radius: 5px;
 
-  ${breakpoint('sm')`
+  ${breakpoint('sx')`
     width: 300px;
     height: 150px;
     padding: 0;

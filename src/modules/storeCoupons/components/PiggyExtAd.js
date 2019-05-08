@@ -115,12 +115,14 @@ PiggyExtAd.Reviews = styled.div`
 
   > span {
     min-width: 100px;
-    padding-top: 15px;
+    padding-top: 0;
     color: #c2c2c2;
     font-size: 13px;
+    text-align: center;
 
     ${breakpoint('sx')`
       padding: 0 0 0 10px;
+      text-align: left;
     `}
   }
 

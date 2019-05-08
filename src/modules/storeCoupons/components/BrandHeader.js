@@ -79,7 +79,7 @@ BrandHeader.Name = styled.h2`
   padding-top: 15px;
   text-align: center;
 
-  ${breakpoint('xl')`
+  ${breakpoint('sx')`
     text-align: left;
   `}
 
@@ -95,7 +95,7 @@ BrandHeader.Name = styled.h2`
 BrandHeader.SmNonVisible = styled.span`
   display: flex;
 
-  ${breakpoint('sm')`
+  ${breakpoint('sx')`
     display: none;
   `}
 
@@ -107,7 +107,7 @@ BrandHeader.SmNonVisible = styled.span`
 BrandHeader.SmVisible = styled.span`
   display: none;
 
-  ${breakpoint('sm')`
+  ${breakpoint('sx')`
     display: flex;
   `}
 
@@ -140,7 +140,7 @@ BrandHeader.NoWrapFlexBox = styled.div`
 `;
 
 BrandHeader.OffersStats = styled.div`
-  min-width: 240px;
+  min-width: 200px;
   width: 80%;
   margin: 0 auto;
   display: flex;
@@ -148,7 +148,7 @@ BrandHeader.OffersStats = styled.div`
 
   padding: 15px 0 18px 0;
 
-  ${breakpoint('sm')`
+  ${breakpoint('sx')`
     width: 200px;
     margin: 0;
   `}
@@ -164,8 +164,12 @@ BrandHeader.OffersStats = styled.div`
   `}
 
   & > span {
-    font-size: 13px;
+    font-size: 11px;
     color: #62707b;
+
+    ${breakpoint('sx')`
+      font-size: 13px;
+    `}
 
     ${breakpoint('md')`
       font-size: 16px;
