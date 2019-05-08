@@ -2,7 +2,7 @@
 export default {
   header: {
     coupons: 'Gutscheine',
-    stores: 'Shops',
+    stores: 'Geschäfte',
     getApp: 'Holen Sie sich die App!',
     login: 'Einloggen',
     createAccount: 'Ein Konto erstellen',
@@ -237,7 +237,7 @@ export default {
     secretRates: 'Geheime Tarife und Angebote',
   },
   build: {
-    visitStore: 'Shop besuchen',
+    visitStore: 'Laden besuchen',
     addToFavorites: 'Zu den Favoriten hinzufügen',
     freeShiping: 'Kostenloser Versand',
     freeShipingOver49:
