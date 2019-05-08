@@ -127,10 +127,10 @@ TodaysFeaturedCoupon.Content = styled.div`
     height: 180px;
     flex-flow: column wrap;
     justify-content: flex-end;
-    padding: 20px 48px 30px 48px;
+    padding: 20px 18px 30px 18px;
 
     > div {
-      width: 50%;
+      width: 55%;
     }
   `}
 
@@ -165,7 +165,6 @@ TodaysFeaturedCoupon.LogoControlsWrapper = styled.div`
   margin: 8px 20px 0 0;
 
   > div {
-    width: 200px;
     margin: 0 0 0 20px;
   }
 
@@ -179,12 +178,17 @@ TodaysFeaturedCoupon.LogoControlsWrapper = styled.div`
     flex-flow: column nowrap;
     justify-content: center;
     width: fit-content !important;
-    margin: 0 100px 0 0;
+    margin: 0 auto;
 
     img {
-      width: 50%;
+      width: 130px;
       height: auto;
-      margin-left: 20%;
+      margin: 0 auto;
+    }
+
+    a {
+      width: 200px;
+      text-align: center;
     }
   `}
 
@@ -194,6 +198,17 @@ TodaysFeaturedCoupon.LogoControlsWrapper = styled.div`
     align-items: center;
 
     margin: 0 30px 0 0;
+
+    img {
+      width: 80%;
+      height: auto;
+      margin-left: 20%;
+    }
+
+    a {
+      width: 50%;
+      margin-right: 5%;
+    }
   `}
 `;
 
@@ -225,6 +240,7 @@ TodaysFeaturedCoupon.Controls = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  right: 20px;
 
   color: #adb8c0;
 
@@ -251,6 +267,7 @@ TodaysFeaturedCoupon.Controls = styled.div`
   ${breakpoint('md')`
     position: relative;
     justify-content: center;
+    right: 0;
   `}
 
   ${breakpoint('lg')`

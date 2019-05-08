@@ -62,6 +62,7 @@ StoreList.Wrapper = styled.div`
   display: flex;
 
   margin-top: 20px;
+  justify-content: space-between;
   overflow-x: scroll;
 
   height: 140px;
@@ -80,12 +81,7 @@ StoreList.Wrapper = styled.div`
     height: 0;
   }
 
-  ${breakpoint('md')`
-    justify-content: center;
-  `}
-
-  ${breakpoint('xl')`
-    overflow-x: scroll;
+  ${breakpoint('lg')`
     margin: 25px 10px 0 10px;
   `}
 `;
@@ -123,7 +119,7 @@ StoreList.Item = styled.a`
     color: #899197;
   }
 
-  ${breakpoint('xl')`
+  ${breakpoint('md')`
     width: 174px;
     height: 136px;
   `}

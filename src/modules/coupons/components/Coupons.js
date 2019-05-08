@@ -44,32 +44,43 @@ Coupons.defaultProps = {
 };
 
 Coupons.Wrapper = styled.div`
+  width: 100%;
   min-height: 400px;
   display: flex;
   flex-flow: column nowrap;
-  margin: 0 5px;
+
+  > div {
+    width: 100%;
+  }
 
   ${breakpoint('sx')`
     flex-flow: row wrap;
     justify-content: flex-start;
 
     > div {
-      width: 45%;
-      margin: 10px 9px;
+      width: 47%;
+      margin: 10px 1.3% 10px 0;
+    }
+  `}
+
+  ${breakpoint('md')`
+    > div {
+      width: 47%;
+      margin: 10px 0 10px 2.2%;
     }
   `}
 
   ${breakpoint('lg')`
     > div {
       width: 47%;
-      margin: 10px 9px;
+      margin: 10px 0 10px 1.8%;
     }
   `}
 
   ${breakpoint('xl')`
     > div {
       width: 31%;
-      margin: 10px 9px;
+      margin: 10px 0 10px 13px;
     }
   `}
 `;

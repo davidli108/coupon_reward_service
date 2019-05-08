@@ -144,7 +144,7 @@ CouponsPage.Wrapper = styled.div`
 
 CouponsPage.SearchWrapper = styled.div`
   width: inherit;
-  margin-top: 50px;
+  margin-top: 10px;
 
   ${breakpoint('md')`
     width: 80%;

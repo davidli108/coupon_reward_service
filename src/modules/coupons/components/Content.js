@@ -186,10 +186,15 @@ const Content = ({
 };
 
 Content.Grid = styled.div`
+  ${breakpoint('sx')`
+    width: 105%;
+  `}
+
   ${breakpoint('md')`
     display: flex;
     justify-content: space-between;
     width: 100%;
+    margin: 0 10px;
 
     > div:last-child {
       width: calc(100% - 247px) !important;

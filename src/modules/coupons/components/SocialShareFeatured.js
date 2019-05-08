@@ -70,7 +70,7 @@ SocialShare.Button = styled.div`
 `;
 
 SocialShare.SocialsWrapper = styled.div`
-  width: 100px;
+  width: ${props => (props.isShow ? '100px' : 'auto')};
   display: ${props => (props.isShow ? 'flex' : 'none')};
 
   img {

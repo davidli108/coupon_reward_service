@@ -126,7 +126,7 @@ Coupon.Wrapper = styled.div`
   position: relative;
 
   width: 100%;
-  max-height: 550px;
+  max-height: 590px;
 
   margin: 20px auto;
   overflow: hidden;
@@ -287,7 +287,7 @@ Coupon.OfferText = styled.p`
   text-overflow: ellipsis;
   overflow-y: hidden;
   height: 60px;
-  margin: 10px 0;
+  margin: 30px 0;
   color: #b1b1b1;
   text-align: center;
   font-size: 16px;
