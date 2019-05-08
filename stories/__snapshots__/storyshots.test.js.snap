@@ -1619,9 +1619,9 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
 
 @media (min-width:62em) {
   .c7 {
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
     margin: 0;
     -webkit-flex-basis: auto;
     -ms-flex-preferred-size: auto;
@@ -1631,9 +1631,6 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
 
 @media (min-width:75em) {
   .c7 {
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
     -webkit-align-items: flex-end;
     -webkit-box-align: flex-end;
     -ms-flex-align: flex-end;
@@ -1717,6 +1714,12 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
 @media (min-width:48em) {
   .c11 {
     margin: 0;
+  }
+}
+
+@media (min-width:62em) {
+  .c11 {
+    margin: 0 100px 0 auto;
   }
 }
 
@@ -2308,9 +2311,9 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 
 @media (min-width:62em) {
   .c10 {
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
     margin: 0;
     -webkit-flex-basis: auto;
     -ms-flex-preferred-size: auto;
@@ -2320,9 +2323,6 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 
 @media (min-width:75em) {
   .c10 {
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
     -webkit-align-items: flex-end;
     -webkit-box-align: flex-end;
     -ms-flex-align: flex-end;
@@ -2406,6 +2406,12 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 @media (min-width:48em) {
   .c14 {
     margin: 0;
+  }
+}
+
+@media (min-width:62em) {
+  .c14 {
+    margin: 0 100px 0 auto;
   }
 }
 
@@ -2734,8 +2740,6 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
 }
 
 .c0 {
-  padding: 0 30px 0 0;
-  padding: 0 0 0 0;
   -webkit-flex-basis: auto;
   -ms-flex-preferred-size: auto;
   flex-basis: auto;
@@ -2802,7 +2806,7 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
     -webkit-flex-basis: 321px;
     -ms-flex-preferred-size: 321px;
     flex-basis: 321px;
-    padding: 0 10px 0 0;
+    padding: 0 30px 0 0;
   }
 }
 
@@ -2811,12 +2815,6 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
     -webkit-flex-basis: 261px;
     -ms-flex-preferred-size: 261px;
     flex-basis: 261px;
-  }
-}
-
-@media (min-width:36em) {
-  .c1 {
-    width: 80%;
   }
 }
 
