@@ -103,13 +103,18 @@ Brand.BrandImageWrapper = styled.a`
   border-radius: 5px;
 
   ${breakpoint('sx')`
-    width: 300px;
-    height: 150px;
+    width: 250px;
+    height: 100%;
     padding: 0;
   `}
 
+  ${breakpoint('md')`
+    width: 300px;
+    height: 150px;
+  `}
+
   ${breakpoint('xl')`
-    width: 270px;
+    width: 250px;
     height: 280px;
   `}
 

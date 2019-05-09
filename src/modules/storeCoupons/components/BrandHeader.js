@@ -59,14 +59,12 @@ const BrandHeader = ({
         <BrandHeader.SmVisible>
           <BrandHeader.CashBack>{store_cashback_text}</BrandHeader.CashBack>
         </BrandHeader.SmVisible>
-        {/*
         <BrandHeader.FollowStoreWrapper isStoreFollowed={isStoreFollowed}>
           <div onClick={handleStoreFollowToggler}>
             {isStoreFollowed ? <MdFavorite /> : <MdFavoriteBorder />}
             <span>{t('storeCoupons.followStore')}</span>
           </div>
         </BrandHeader.FollowStoreWrapper>
-        */}
       </BrandHeader.NoWrapFlexBox>
     </>
   );
@@ -194,7 +192,18 @@ BrandHeader.FollowStoreWrapper = styled.div`
   display: flex;
   align-items: center;
 
-  padding: 25px 0 10px 0;
+  padding: 0 0 10px 0;
+  margin: 0 auto;
+
+  ${breakpoint('sx')`
+    padding: 25px 0 10px 0;
+    margin: auto 0;
+  `}
+
+  ${breakpoint('md')`
+    padding: 0;
+    margin: auto 0;
+  `}
 
   ${breakpoint('xl')`
     padding: 0 0 0 30px;
