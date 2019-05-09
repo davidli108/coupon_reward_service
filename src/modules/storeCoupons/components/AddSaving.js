@@ -9,9 +9,10 @@ import ClockIcon from './assets/ClockIcon';
 
 type AddSavingProps = {
   t: Function,
+  i18n: Object,
 };
 
-const AddSaving = ({ t }: AddSavingProps) => (
+const AddSaving = ({ t, i18n }: AddSavingProps) => (
   <AddSaving.Wrapper>
     <AddSaving.BonusLabel>
       <p>{t('cashbackStores.piggyBonus')}</p>
@@ -27,7 +28,13 @@ const AddSaving = ({ t }: AddSavingProps) => (
         </AddSaving.Description>
       </AddSaving.TextWrapper>
       <AddSaving.ButtonOfferWrapper>
-        <AddSaving.ActivateButton>
+        <AddSaving.ActivateButton
+          href={`https://chrome.google.com/webstore/detail/piggy-automatic-coupons-c/hfapbcheiepjppjbnkphkmegjlipojba?hl=${
+            i18n.language
+          }`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           {t('cashbackStores.activateSavings')}
         </AddSaving.ActivateButton>
         <AddSaving.LimitedOffer>
