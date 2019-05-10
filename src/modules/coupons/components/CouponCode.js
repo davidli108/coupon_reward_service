@@ -51,14 +51,13 @@ CouponCode.Button = styled.div`
     inset 0px -1px 5px rgba(0, 0, 0, 0.0584805),
     inset 0px -2px 0px rgba(255, 255, 255, 0.213315);
   border-radius: 4px;
-  font-weight: bold;
+  font-weight: 500;
   line-height: 20px;
   font-size: 17px;
   text-align: center;
   letter-spacing: 0.51px;
   color: #fff;
   cursor: pointer;
-  text-transform: uppercase;
 `;
 
 CouponCode.Code = styled.a`

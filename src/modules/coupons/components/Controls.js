@@ -79,6 +79,7 @@ const Controls = ({
 
 Controls.Wrapper = styled.div`
   display: flex;
+  margin-bottom: 10px;
   justify-content: center;
   align-items: baseline;
 
