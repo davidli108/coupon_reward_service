@@ -150,6 +150,7 @@ StoresPage.PreloaderWrapper = styled.div`
 
 StoresPage.Wrapper = styled.section`
   position: relative;
+  min-width: 310px;
   margin: 0 auto;
 
   ${breakpoint('xs')`
@@ -193,12 +194,11 @@ StoresPage.Title = styled.h3`
   text-align: center;
   line-height: 29px;
   font-weight: bold;
-  font-size: 25px;
+  font-size: 16px;
   color: ${props => props.theme.colors.blackLight};
 
   ${breakpoint('xs')`
     display: block;
-    font-size: 17px;
     padding: 0;
   `}
 
