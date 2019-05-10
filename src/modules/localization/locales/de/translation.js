@@ -188,8 +188,8 @@ export default {
       deal: 'Angebote',
     },
     buttons: {
-      viewCoupon: 'GUTSCHEIN ANZEIGEN ',
-      viewDeal: 'ANGEBOTE ANZEIGEN',
+      viewCoupon: 'Gutschein anzeigen',
+      viewDeal: 'Angebot anzeigen',
     },
     todaysFeatureCoupon: 'Heutige Gutschein von',
     noCouponsFound: 'Keine Gutscheine gefunden',

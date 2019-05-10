@@ -191,8 +191,8 @@ export default {
       deal: 'Offre',
     },
     buttons: {
-      viewCoupon: 'VOIR LE COUPON DE VUE',
-      viewDeal: "VOIR L'OFFRE",
+      viewCoupon: 'Voir le coupon',
+      viewDeal: "Voir l'offre",
     },
     todaysFeatureCoupon: "Coupon d'aujourd'hui par",
     noCouponsFound: 'Aucun coupon trouvé',
