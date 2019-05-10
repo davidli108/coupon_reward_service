@@ -189,6 +189,10 @@ export default {
       viewDeal: 'View Deal',
     },
     todaysFeatureCoupon: "Today's Featured Coupon From",
+    noCouponsFound: 'No Coupons Found',
+    noFeaturedCouponsFound: 'No Featured Coupons Found',
+    loginRegisterLabel:
+      'Login/register to make a list of your favourite stores and deals',
   },
   cashbackStores: {
     shopBy: {

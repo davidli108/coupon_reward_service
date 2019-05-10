@@ -192,6 +192,10 @@ export default {
       viewDeal: 'ANGEBOTE ANZEIGEN',
     },
     todaysFeatureCoupon: 'Heutige Gutschein von',
+    noCouponsFound: 'Keine Gutscheine gefunden',
+    noFeaturedCouponsFound: 'Keine vorgestellten Gutscheine gefunden',
+    loginRegisterLabel:
+      'Anmelden / Registrieren, um eine Liste Ihrer bevorzugten Geschäfte und Angebote zu erstellen',
   },
   cashbackStores: {
     shopBy: {

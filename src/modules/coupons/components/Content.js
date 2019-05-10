@@ -140,7 +140,7 @@ const Content = ({
         <Content.CouponsWrapper>
           {getDealsFilter === 'favoriteStores' && (
             <Content.AuthLablel>
-              Login/register to make a list of your favourite stores and deals
+              {t('coupons.loginRegisterLabel')}
             </Content.AuthLablel>
           )}
           {isLoaded ? (
@@ -148,7 +148,7 @@ const Content = ({
               <Coupons coupons={getFilteredDeals} />
             ) : (
               getDealsFilter !== 'favoriteStores' && (
-                <Content.NoData>No Coupons Found</Content.NoData>
+                <Content.NoData>{t('coupons.noCouponsFound')}</Content.NoData>
               )
             )
           ) : activeCategory ? (
@@ -163,7 +163,7 @@ const Content = ({
             />
           ) : (
             getDealsFilter !== 'favoriteStores' && (
-              <Content.NoData>No Coupons Found</Content.NoData>
+              <Content.NoData>{t('coupons.noCouponsFound')}</Content.NoData>
             )
           )}
           <Content.LoadMoreDeals

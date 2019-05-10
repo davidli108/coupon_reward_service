@@ -5,6 +5,7 @@ import { Helmet } from 'react-helmet';
 import { compose } from 'recompose';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { withTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import moment from 'moment';
@@ -30,6 +31,7 @@ import Content from '../components/Content';
 import FeatureCouponLoader from '../components/loaders/FeatureCouponLoader';
 
 type CouponsPageProps = {
+  t: Function,
   match: Object,
   categories: Object,
   stores: Object,
@@ -49,6 +51,7 @@ type CouponsPageProps = {
 };
 
 const CouponsPage = ({
+  t,
   match,
   categories,
   stores,
@@ -104,7 +107,9 @@ const CouponsPage = ({
         offersCount !== 0 && Boolean(stores.length) ? (
           <TodaysFeaturedCoupon store={stores[0]} />
         ) : (
-          <CouponsPage.NoData>No Featured Coupons Found</CouponsPage.NoData>
+          <CouponsPage.NoData>
+            {t('coupons.noFeaturedCouponsFound')}
+          </CouponsPage.NoData>
         )
       ) : (
         <FeatureCouponLoader />
@@ -201,4 +206,5 @@ export default compose(
     mapDispatchToProps,
   ),
   withRouter,
+  withTranslation(),
 )(CouponsPage);

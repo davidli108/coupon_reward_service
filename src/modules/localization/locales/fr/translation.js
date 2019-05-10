@@ -195,6 +195,10 @@ export default {
       viewDeal: "VOIR L'OFFRE",
     },
     todaysFeatureCoupon: "Coupon d'aujourd'hui par",
+    noCouponsFound: 'Aucun coupon trouvé',
+    noFeaturedCouponsFound: 'Aucun coupon en vedette trouvé',
+    loginRegisterLabel:
+      'Connectez-vous / enregistrez-vous pour faire une liste de vos boutiques préférées',
   },
   cashbackStores: {
     shopBy: {
