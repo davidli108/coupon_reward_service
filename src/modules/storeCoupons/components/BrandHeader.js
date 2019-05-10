@@ -191,8 +191,6 @@ BrandHeader.CashBack = styled.span`
 BrandHeader.FollowStoreWrapper = styled.div`
   display: flex;
   align-items: center;
-
-  padding: 0 0 10px 0;
   margin: 0 auto;
 
   ${breakpoint('sx')`

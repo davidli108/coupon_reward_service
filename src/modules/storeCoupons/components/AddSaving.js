@@ -120,14 +120,21 @@ AddSaving.ButtonOfferWrapper = styled.div`
     min-width: auto;
     margin-left: auto;
     padding-right: 30px;
+    padding-left: 20px;
   `}
 `;
 
 AddSaving.AddSavingLabel = styled.p`
-  line-height: 60px;
+  line-height: 40px;
   font-size: 32px;
   font-weight: bold;
   color: #62707b;
+  text-align: center;
+  min-width: 200px;
+
+  ${breakpoint('sx')`
+    text-align: left;
+  `}
 
   ${breakpoint('sm')`
     font-size: 35px;
@@ -136,7 +143,7 @@ AddSaving.AddSavingLabel = styled.p`
 
 AddSaving.Description = styled.p`
   width: 80%;
-  line-height: 30px;
+  line-height: 20px;
   font-size: 16px;
   text-align: center;
   color: #62707b;

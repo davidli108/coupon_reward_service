@@ -3,24 +3,37 @@ import * as React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
+import { MdKeyboardArrowUp } from 'react-icons/md';
 
 import type { BrandNeverOverpayProps } from '../models/StorePage';
 
 const BrandNeverOverpay = ({ t, i18n, storeName }: BrandNeverOverpayProps) => {
+  const [isCovered, setCovered] = React.useState(true);
+  const handleCoveredToggler = () => setCovered(!isCovered);
+
   const addChromeLink = `https://chrome.google.com/webstore/detail/piggy-automatic-coupons-c/hfapbcheiepjppjbnkphkmegjlipojba?hl=${
     i18n.language
   }`;
 
   return (
     <>
-      <BrandNeverOverpay.NeverOverpay>
-        <h2>
-          {t('storeCoupons.neverOverlay')} {storeName}
-        </h2>
-        <p>
-          {t('storeCoupons.automaticalyAddAll').replace('storeName', storeName)}
-        </p>
-      </BrandNeverOverpay.NeverOverpay>
+      <BrandNeverOverpay.Cover>
+        <BrandNeverOverpay.NeverOverpay isCovered={isCovered}>
+          <h2>
+            {t('storeCoupons.neverOverlay')} {storeName}
+          </h2>
+          <p>
+            {t('storeCoupons.automaticalyAddAll').replace(
+              'storeName',
+              storeName,
+            )}
+          </p>
+        </BrandNeverOverpay.NeverOverpay>
+        <span onClick={handleCoveredToggler}>
+          {isCovered ? 'See More' : <MdKeyboardArrowUp />}
+        </span>
+      </BrandNeverOverpay.Cover>
+
       <BrandNeverOverpay.Advantages>
         <a href={addChromeLink} target="_blank" rel="noopener noreferrer">
           Automatic Coupons
@@ -37,6 +50,27 @@ const BrandNeverOverpay = ({ t, i18n, storeName }: BrandNeverOverpayProps) => {
     </>
   );
 };
+
+BrandNeverOverpay.Cover = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  > span {
+    ${breakpoint('sx')`
+      display: none;
+    `}
+
+    text-align: center;
+    font-weight: bold;
+    line-height: 20px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    font-size: 13px;
+    color: #899197;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+`;
 
 BrandNeverOverpay.Advantages = styled.div`
   display: flex;
@@ -74,6 +108,7 @@ BrandNeverOverpay.Advantages = styled.div`
 
   a {
     min-width: 50px;
+    padding: 0 !important;
   }
 
   a:hover {
@@ -87,28 +122,71 @@ BrandNeverOverpay.Advantages = styled.div`
   `}
 `;
 
-BrandNeverOverpay.NeverOverpay = styled.div`
-  width: 100%;
-  text-align: center;
+BrandNeverOverpay.NeverOverpay = styled.section`
+  display: flex;
+  flex-direction: column;
 
-  h2 {
+  width: 100%;
+  height: ${({ isCovered }) => (isCovered ? '87px' : 'auto')};
+
+  overflow: hidden;
+
+  ${breakpoint('sx')`
+    height: auto;
+  `}
+
+  > h2 {
+    position: relative;
+    text-align: center;
     font-size: 22px;
-    font-weight: 700;
+    font-weight: bold;
     color: #374b5a;
+    ${breakpoint('xl')`
+      text-align: start;
+    `}
+
+    padding-top: 15px;
+
+    ${({ isCovered }) =>
+      isCovered
+        ? `
+      &:after {
+        content: '';
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 55px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.496207) 0%, #fff 100%);
+      }
+    `
+        : ''}
+
+    &::after {
+      ${breakpoint('sx')`
+        display: none;
+      `}
+    }
+
+    ${breakpoint('sx')`
+      text-align: left;
+    `}
   }
 
-  p {
-    padding: 15px 0;
+  > p {
+    padding: 15px;
     font-weight: 500;
     font-size: 13px;
     color: #899197;
     line-height: 20px;
-  }
+    text-align: center;
 
-  ${breakpoint('sx')`
-    width: 90%;
-    text-align: left;
-  `}
+    ${breakpoint('sx')`
+      max-width: 600px;
+      padding: 15px 0;
+      text-align: left;
+    `}
+  }
 `;
 
 export default withTranslation()(BrandNeverOverpay);

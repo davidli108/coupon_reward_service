@@ -211,7 +211,7 @@ Offer.Content = styled.div`
   flex-flow: row nowrap;
   width: 100%;
   align-items: center;
-  margin-right: 15px;
+  padding-right: 20px;
 
   ${breakpoint('sx')`
     width: calc(50% - 10px);
@@ -310,20 +310,29 @@ Offer.ButtonWrapper = styled.div`
   flex-flow: column nowrap;
   align-items: center;
   width: 100%;
-  min-width: 150px;
+  min-width: 100%;
   margin-top: 10px;
 
   ${breakpoint('sx')`
     margin-top: 0;
   `}
 
-  ${breakpoint('md')`
-    min-width: 200px;
+  ${breakpoint('sm')`
+    width: 160px;
+  `}
+
+  ${breakpoint('lg')`
+    width: 150px;
+  `}
+
+  ${breakpoint('xs')`
+    width: 190px;
   `}
 `;
 
 Offer.ViewDealButton = styled.a`
   width: 100%;
+  height: 45px;
   padding: 15px;
   background: #00cbe9;
   border-radius: 4px;
