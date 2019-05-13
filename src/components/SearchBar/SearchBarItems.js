@@ -14,6 +14,7 @@ type SearchBarItemsProps = {
   history: Object,
   currentIndex: number,
   setCurrentIndex: number => void,
+  setIsShowItems: boolean => void,
 };
 
 const SearchBarItems = ({
@@ -23,6 +24,7 @@ const SearchBarItems = ({
   history,
   currentIndex,
   setCurrentIndex,
+  setIsShowItems,
 }: SearchBarItemsProps) => {
   const [refItem, setRefItem] = useState(null);
 
@@ -31,6 +33,11 @@ const SearchBarItems = ({
       refItem.focus();
     }
   });
+
+  const onClickItem = shortName => {
+    setIsShowItems(false);
+    history.push(`/coupons/${shortName}`);
+  };
 
   return (
     <SearchBarItems.StoreWrapper onKeyDown={e => e.preventDefault()}>
@@ -42,7 +49,7 @@ const SearchBarItems = ({
         result.map((item, index) => (
           <SearchBarItems.Item
             key={`store_item_${item.store_id}`}
-            onClick={() => history.push(`/coupons/${item.short_name}`)}
+            onClick={() => onClickItem(item.short_name)}
             isFocus={index === currentIndex}
             onMouseOver={() => setCurrentIndex(index)}
             tabIndex={index === currentIndex ? 1 : -1}

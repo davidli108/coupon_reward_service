@@ -98,6 +98,7 @@ const SearchBar = ({
             isLoading={isLoading}
             currentIndex={currentIndex}
             setCurrentIndex={setCurrentIndex}
+            setIsShowItems={setIsShowItems}
           />
         ) : null}
       </div>
