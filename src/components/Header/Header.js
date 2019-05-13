@@ -78,6 +78,7 @@ const Header = ({ t, isAuth, location, logout }: HeaderProps) => {
       hoverBgColor: '#02a6bf',
       title: t('header.coupons'),
       link: '/coupons',
+      onClick: () => setOpen(false),
     },
     {
       bgColor:
@@ -87,6 +88,7 @@ const Header = ({ t, isAuth, location, logout }: HeaderProps) => {
       hoverBgColor: '#02a6bf',
       title: t('header.stores'),
       link: '/cashback-stores',
+      onClick: () => setOpen(false),
     },
   ];
 
