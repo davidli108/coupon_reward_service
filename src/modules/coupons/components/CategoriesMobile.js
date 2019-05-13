@@ -173,7 +173,7 @@ CategoriesMobile.Section = styled.div`
   flex-flow: column nowrap;
   margin: 7px 0;
 
-  > div {
+  div {
     padding: 7px 20px;
   }
 

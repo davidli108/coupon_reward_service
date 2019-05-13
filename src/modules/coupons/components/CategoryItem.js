@@ -101,9 +101,6 @@ const CategoryItem = ({
 );
 
 CategoryItem.Wrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   cursor: pointer;
   padding: 5px;
   background: ${({ isActive }) => (isActive ? '#f5f5f5' : 'white')};
