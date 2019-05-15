@@ -7,6 +7,7 @@ import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import { withTranslation } from 'react-i18next';
 
 import SearchBar from '@components/SearchBar/SearchBar';
 import Brand from '../components/Brand';
@@ -29,6 +30,7 @@ import OffersLoader from '../components/loaders/OffersLoader';
 import AddSaving from '../components/AddSaving';
 
 const StorePage = ({
+  t,
   fetchStoreCoupons,
   match,
   state,
@@ -70,11 +72,10 @@ const StorePage = ({
   return (
     <StorePage.Wrapper>
       <Helmet
-        title={`Top Online ${
-          store.store_name
-        } Coupons, Promo Codes and Cashback - ${moment().format(
-          'MMMM',
-        )} ${moment().format('YYYY')} - Piggy`}
+        title={t('titles.storeCoupons')
+          .replace('storeName', storeName)
+          .replace('%mmmm', moment().format('MMMM'))
+          .replace('%yyyy', moment().format('YYYY'))}
         meta={[
           {
             name: 'description',
@@ -223,6 +224,7 @@ const mapDispatchToProps = {
 
 const enhance = compose(
   withRouter,
+  withTranslation(),
   connect(
     mapStateToProps,
     mapDispatchToProps,

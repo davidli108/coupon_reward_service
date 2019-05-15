@@ -83,9 +83,9 @@ const CouponsPage = ({
   return (
     <CouponsPage.Wrapper>
       <Helmet
-        title={`Automate Your Coupons, Savings and Cashback - ${moment().format(
-          'MMMM',
-        )} ${moment().format('YYYY')} - Piggy`}
+        title={t('titles.coupons')
+          .replace('%mmmm', moment().format('MMMM'))
+          .replace('%yyyy', moment().format('YYYY'))}
         meta={[
           {
             name: 'description',
