@@ -249,7 +249,7 @@ export default {
     priceCheck: 'Vérifiez le prix',
     secretRates: 'Tarifs et offres secrets',
     noCouponsAndDeal:
-      "Aucun coupons ou offre trouvé pour storeName. Jetez un coup d'œil à nos meilleures offres et offres ci-dessous.",
+      "Aucun Coupons ou Offre trouvé pour storeName. Jetez un coup d'œil à nos meilleures offres et offres ci-dessous.",
   },
   build: {
     visitStore: 'Visitez la boutique',

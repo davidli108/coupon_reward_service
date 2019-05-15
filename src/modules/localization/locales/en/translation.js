@@ -241,7 +241,7 @@ export default {
     priceCheck: 'Price Check',
     secretRates: 'Secret Rates and Deals',
     noCouponsAndDeal:
-      'No coupons or deals found for storeName. Take a look at our top offers and deals below.',
+      'No Coupons or Deals found for storeName. Take a look at our top offers and deals below.',
   },
   build: {
     visitStore: 'Visit Store',
