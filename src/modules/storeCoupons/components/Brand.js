@@ -15,27 +15,25 @@ import type { BrandProps } from '../models/StorePage';
 
 import { getStore } from '../StoreCouponsReducer';
 
-const Brand = ({
-  store: { store_logo_image_path, store_name, store_info_link },
-  isLoaded,
-  offersCount,
-  reviews,
-}: BrandProps) => (
+const Brand = ({ store, isLoaded, offersCount, reviews }: BrandProps) => (
   <>
+    {console.log(store)}
     <Brand.Wrapper>
       {isLoaded ? (
-        <Brand.BrandImageWrapper href={store_info_link} target="_blank">
+        <Brand.BrandImageWrapper href={store.store_info_link} target="_blank">
           <img
             src={
-              store_logo_image_path
-                ? `https://d2umvgb8hls1bt.cloudfront.net${store_logo_image_path}`
+              store.store_logo_image_path
+                ? `https://d2umvgb8hls1bt.cloudfront.net${
+                    store.store_logo_image_path
+                  }`
                 : placeholder
             }
             onError={e => {
               e.target.onerror = null;
               e.target.src = placeholder;
             }}
-            alt={`${store_name || ''} Coupon Codes ${moment().format(
+            alt={`${store.store_name || ''} Coupon Codes ${moment().format(
               'MMMM',
             )} | ${moment().format('YYYY')}`}
           />
@@ -50,7 +48,7 @@ const Brand = ({
             <Brand.XlWrapper>
               <Brand.NoWrapFlexBoxWithBorder>
                 <BrandContent
-                  storeName={store_name}
+                  storeName={store.store_name}
                   stars={5}
                   reviewsCount={reviews}
                 />
@@ -64,7 +62,11 @@ const Brand = ({
     </Brand.Wrapper>
     <Brand.MdWrapper>
       <Brand.NoWrapFlexBoxWithBorder>
-        <BrandContent storeName={store_name} stars={5} reviewsCount={reviews} />
+        <BrandContent
+          storeName={store.store_name}
+          stars={5}
+          reviewsCount={reviews}
+        />
       </Brand.NoWrapFlexBoxWithBorder>
     </Brand.MdWrapper>
   </>

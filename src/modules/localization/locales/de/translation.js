@@ -289,4 +289,7 @@ export default {
       allRightReserved: 'alle Rechte vorbehalten',
     },
   },
+  templates: {
+    upToCashback: 'Bis zu %s Cash Back',
+  },
 };

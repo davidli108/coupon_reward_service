@@ -46,12 +46,6 @@ const StoreCouponsReducer = (
 
       const store = R.compose(
         R.fromPairs,
-        R.filter(
-          ([key, value]) =>
-            R.match(
-              /stores?_(id|name|description|cashback_text|logo_image_path|sale_count|code_count|info_link)/g,
-            )(key).length !== 0,
-        ),
         R.toPairs,
         R.path(['payload', 'data']),
       )(action);

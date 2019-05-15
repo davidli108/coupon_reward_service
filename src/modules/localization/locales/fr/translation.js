@@ -294,4 +294,7 @@ export default {
       allRightReserved: 'Tous droits réservés',
     },
   },
+  templates: {
+    upToCashback: "Jusqu'à %s de remise en argent",
+  },
 };

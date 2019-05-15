@@ -283,4 +283,7 @@ export default {
       allRightReserved: 'All Rights Reserved',
     },
   },
+  templates: {
+    upToCashback: 'Up to %s Cash Back',
+  },
 };

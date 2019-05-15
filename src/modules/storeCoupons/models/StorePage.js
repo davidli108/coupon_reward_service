@@ -31,6 +31,7 @@ export type Store = {
   stores_sale_count: string,
   stores_code_count: string,
   store_info_link: string,
+  store_discount: string,
 };
 
 export type Offer = {

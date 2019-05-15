@@ -15,12 +15,7 @@ const getCouponsCount = offers =>
   offers.filter(x => x.coupon_code !== '').length;
 const getDealsCount = offers => offers.filter(x => x.coupon_code === '').length;
 
-const BrandHeader = ({
-  t,
-  store: { store_name, store_cashback_text },
-  offers,
-  offersCount,
-}: BrandHeaderProps) => {
+const BrandHeader = ({ t, store, offers, offersCount }: BrandHeaderProps) => {
   const [isStoreFollowed, setStoreFollowed] = React.useState(false);
   // eslint-disable-next-line no-unused-vars
   const handleStoreFollowToggler = () => setStoreFollowed(!isStoreFollowed);
@@ -28,7 +23,7 @@ const BrandHeader = ({
   return (
     <>
       <BrandHeader.Name>
-        {store_name} {t('storeCoupons.codesAndDeals')}
+        {store.store_name} {t('storeCoupons.codesAndDeals')}
       </BrandHeader.Name>
       <BrandHeader.NoWrapFlexBox>
         <BrandHeader.OffersStats>
@@ -53,11 +48,15 @@ const BrandHeader = ({
             </>
           )}
           <BrandHeader.SmNonVisible>
-            <span>{store_cashback_text}</span>
+            <span>
+              {t('templates.upToCashback').replace('%s', store.store_discount)}
+            </span>
           </BrandHeader.SmNonVisible>
         </BrandHeader.OffersStats>
         <BrandHeader.SmVisible>
-          <BrandHeader.CashBack>{store_cashback_text}</BrandHeader.CashBack>
+          <BrandHeader.CashBack>
+            {t('templates.upToCashback').replace('%s', store.store_discount)}
+          </BrandHeader.CashBack>
         </BrandHeader.SmVisible>
         <BrandHeader.FollowStoreWrapper isStoreFollowed={isStoreFollowed}>
           <div onClick={handleStoreFollowToggler}>
