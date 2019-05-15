@@ -16,7 +16,7 @@ const getLocalTitle = (name, t) => {
       return t('categories.beauty');
     case 'Books & Media':
       return t('categories.booksMedia');
-    case 'Office & Business':
+    case 'Business & Office':
       return t('categories.officeBusiness');
     case 'Canada':
       return t('categories.canada');
@@ -30,7 +30,7 @@ const getLocalTitle = (name, t) => {
       return t('categories.departmentStores');
     case 'Electronics':
       return t('categories.electronics');
-    case 'Dining and Entertainment':
+    case 'Food & Entertainment':
       return t('categories.diningEntertainment');
     case 'Gifts & Flowers':
       return t('categories.giftFlowers');
