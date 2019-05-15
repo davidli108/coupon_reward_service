@@ -66,6 +66,7 @@ export type SearchBarProps = {
 };
 
 export type StorePageProps = {
+  t: Function,
   store: Store,
   offers: Offer[],
   extension: Extension,

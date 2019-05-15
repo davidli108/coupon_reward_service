@@ -42,6 +42,7 @@ export type Categories = {
 
 export type Deal = {
   t: string => string,
+  i18n: Object,
   store_logo: string,
   discount: number,
   discount_print: string,

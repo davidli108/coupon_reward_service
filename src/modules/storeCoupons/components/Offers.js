@@ -32,8 +32,10 @@ const Offers = ({
     <>
       {offersCount === 0 && (
         <Offers.NoData>
-          No Coupons or Deals Found for {store.store_name}. Take a look at our
-          top offers and deals below.
+          {t('storeCoupons.noCouponsAndDeal').replace(
+            'storeName',
+            store.store_name,
+          )}
         </Offers.NoData>
       )}
       {offers.map(x => (

@@ -36,15 +36,15 @@ const BrandNeverOverpay = ({ t, i18n, storeName }: BrandNeverOverpayProps) => {
 
       <BrandNeverOverpay.Advantages>
         <a href={addChromeLink} target="_blank" rel="noopener noreferrer">
-          Automatic Coupons
+          {t('storeCoupons.automaticCoupons')}
         </a>
         <span>-</span>
         <a href={addChromeLink} target="_blank" rel="noopener noreferrer">
-          Price Check
+          {t('storeCoupons.priceCheck')}
         </a>
         <span>-</span>
         <a href={addChromeLink} target="_blank" rel="noopener noreferrer">
-          Secret Rates and Deals
+          {t('storeCoupons.secretRates')}
         </a>
       </BrandNeverOverpay.Advantages>
     </>
