@@ -164,7 +164,7 @@ const SignUpModal = ({
               </div>
             )}
             {isReq ? (
-              <img src={preloader} alt="preloader" />
+              <img src={preloader} alt="" />
             ) : (
               <button>{submitLabel}</button>
             )}

@@ -193,7 +193,6 @@ Offer.Image = styled.div`
   img {
     width: 90px;
     height: auto;
-    cursor: pointer;
   }
 `;
 

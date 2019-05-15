@@ -17,7 +17,6 @@ import { getStore } from '../StoreCouponsReducer';
 
 const Brand = ({ store, isLoaded, offersCount, reviews }: BrandProps) => (
   <>
-    {console.log(store)}
     <Brand.Wrapper>
       {isLoaded ? (
         <Brand.BrandImageWrapper href={store.store_info_link} target="_blank">

@@ -494,7 +494,7 @@ StoreList.LinkMobile = styled(StoreList.Link)`
   `}
 `;
 
-StoreList.LoadMoreButton = styled.p`
+StoreList.LoadMoreButton = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
