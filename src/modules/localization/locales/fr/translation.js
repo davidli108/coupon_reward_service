@@ -1,5 +1,11 @@
 /* eslint-disable max-len */
 export default {
+  titles: {
+    coupons:
+      'Automate Your Coupons, Savings and Cashback - %mmmm %yyyy - Piggy',
+    storeCoupons:
+      'Top des bons de réduction, codes promo et remises en ligne de storeName en ligne - %mmmm %yyyy - Piggy',
+  },
   header: {
     coupons: 'Coupons',
     stores: 'Boutiques',
@@ -242,6 +248,8 @@ export default {
     automaticCoupons: 'Coupons automatiques',
     priceCheck: 'Vérifiez le prix',
     secretRates: 'Tarifs et offres secrets',
+    noCouponsAndDeal:
+      "Aucun coupons ou offre trouvé pour storeName. Jetez un coup d'œil à nos meilleures offres et offres ci-dessous.",
   },
   build: {
     visitStore: 'Visitez la boutique',

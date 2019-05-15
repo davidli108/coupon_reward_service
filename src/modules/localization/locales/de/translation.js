@@ -1,12 +1,18 @@
 /* eslint-disable max-len */
 export default {
+  titles: {
+    coupons:
+      'Automatisieren Sie Ihre Gutscheine, Einsparungen und Cashback - %mmmm %yyyy - Piggy',
+    storeCoupons:
+      'Top Online storeName Gutscheine, Gutscheincodes und Cashback - %mmmm %yyyy - Piggy',
+  },
   header: {
     coupons: 'Gutscheine',
     stores: 'Geschäfte',
     getApp: 'Holen Sie sich die App!',
     login: 'Einloggen',
     createAccount: 'Ein Konto erstellen',
-    myAccount: 'Mein Konto', // missing
+    myAccount: 'Mein Konto',
   },
   auth: {
     social: {
@@ -239,6 +245,8 @@ export default {
     automaticCoupons: 'Automatische Gutscheine ',
     priceCheck: 'Preischeck',
     secretRates: 'Geheime Tarife und Angebote',
+    noCouponsAndDeal:
+      'Für storeName wurden keine Gutscheine oder Angebote gefunden. Werfen Sie einen Blick auf unsere Top-Angebote und Deals.',
   },
   build: {
     visitStore: 'Laden besuchen',
