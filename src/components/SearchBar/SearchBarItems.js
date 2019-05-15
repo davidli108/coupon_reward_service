@@ -43,7 +43,7 @@ const SearchBarItems = ({
     <SearchBarItems.StoreWrapper onKeyDown={e => e.preventDefault()}>
       {!isLoading ? (
         <SearchBarItems.PreloaderWrapper>
-          <img src={preloader} alt="preloader" />
+          <img src={preloader} alt="" />
         </SearchBarItems.PreloaderWrapper>
       ) : result && result.length > 0 ? (
         result.map((item, index) => (

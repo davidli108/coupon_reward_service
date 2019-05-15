@@ -42,6 +42,7 @@ const SearchBar = ({
 
     if (isOutClick && html) {
       setIsShowItems(false);
+      setCurrentIndex(-1);
       html.removeEventListener('mousedown', onCloseItems);
     }
   };
@@ -49,6 +50,7 @@ const SearchBar = ({
   const onOpenItems = () => {
     if (!isShowItems && html) {
       setIsShowItems(true);
+      setCurrentIndex(-1);
       html.addEventListener('mousedown', onCloseItems);
     }
   };
@@ -68,6 +70,7 @@ const SearchBar = ({
       }
       if (currentIndex >= 0) {
         setIsShowItems(false);
+        setCurrentIndex(-1);
         history.push(`/coupons/${result[currentIndex].short_name}`);
       }
     }
@@ -135,6 +138,7 @@ SearchBar.Input = styled.input`
   font-size: 16px;
   letter-spacing: 0.571428px;
   outline: none;
+  box-shadow: none !important;
 
   &::placeholder {
     color: ${props => props.theme.colors.whiteDark};
