@@ -21,6 +21,7 @@ const discountColors = [
 
 type OfferProps = {
   t: Function,
+  i18n: Object,
   history: Object,
   coupon_code: string,
   show_exp_date: string,
@@ -39,6 +40,7 @@ type OfferProps = {
 
 const Offer = ({
   t,
+  i18n,
   history,
   coupon_code,
   show_exp_date,
@@ -104,7 +106,12 @@ const Offer = ({
         <Offer.Container>
           <Offer.ButtonWrapper>
             <CouponCode t={t} code={coupon_code} link={offer_link} />
-            <Offer.ExpDate>{show_exp_date}</Offer.ExpDate>
+            <Offer.ExpDate>
+              Exp.{' '}
+              {moment(show_exp_date.slice(3)).format(
+                i18n.language === 'en' ? 'MM/DD/YYYY' : 'DD/MM/YYYY',
+              )}
+            </Offer.ExpDate>
           </Offer.ButtonWrapper>
         </Offer.Container>
         <Offer.SxNonVisible>

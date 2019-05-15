@@ -29,6 +29,7 @@ const discountColors = [
 
 const Coupon = ({
   t,
+  i18n,
   discount,
   discount_print,
   discount_amt,
@@ -98,7 +99,12 @@ const Coupon = ({
           </Coupon.Discount>
         )}
         <Coupon.ExpDate>
-          <p>{show_exp_date}</p>
+          <p>
+            Exp.{' '}
+            {moment(show_exp_date.slice(3)).format(
+              i18n.language === 'en' ? 'MM/DD/YYYY' : 'DD/MM/YYYY',
+            )}
+          </p>
         </Coupon.ExpDate>
         <Coupon.OfferText>{ref_text}</Coupon.OfferText>
         <CouponCode code={coupon_code} link={offer_link} />
