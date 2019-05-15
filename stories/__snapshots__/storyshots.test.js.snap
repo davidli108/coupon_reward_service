@@ -1880,12 +1880,12 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
       </a>
     </div>
   </div>
-  <p
+  <div
     className="c14"
     onClick={[Function]}
   >
     
-  </p>
+  </div>
 </div>
 `;
 
@@ -2598,12 +2598,12 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
         </a>
       </div>
     </div>
-    <p
+    <div
       className="c17"
       onClick={[Function]}
     >
       
-    </p>
+    </div>
   </div>
 </div>
 `;
@@ -2640,6 +2640,7 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
   -ms-letter-spacing: 0.571428px;
   letter-spacing: 0.571428px;
   outline: none;
+  box-shadow: none !important;
 }
 
 .c3::-webkit-input-placeholder {
