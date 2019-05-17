@@ -184,14 +184,14 @@ export default {
       maxCashBack:
         '- gibt den maximalen Cashback, die maximale Prämie oder den Rabatt an, den ein Benutzer verdienen kann. Einige Artikel können einen niedrigeren Cash-Back-Betrag ausweisen und einige Ausschlüsse bestehen. Nicht alle Geschäfte zahlen Cashback. Cash Back nicht mit externen Gutscheinen oder Angeboten kombinierbar. Weitere Informationen finden Sie in den Nutzungsbedingungen oder in den einzelnen Shop-Profilen.',
     },
-    constrols: {
+    controls: {
       allDeals: 'All Angebote',
       onlyCoupons: 'Nur Gutscheine',
       favoriteStores: 'Lieblingsshops',
     },
     type: {
       free: 'Frei',
-      shiping: 'Lieferung',
+      shipping: 'Lieferung',
       coupon: 'Gutschein',
       code: 'Code',
       deal: 'Angebote',
@@ -210,7 +210,7 @@ export default {
     shopBy: {
       couponSales: 'Gutschein & Verkauf',
       browseByStore: 'Nach Geschäft durchsuchen',
-      viewSalse: 'Verkaufs- und Gutscheincodes anzeigen',
+      viewSales: 'Verkaufs- und Gutscheincodes anzeigen',
       instantSaving: 'Sofortige Einsparungen',
       shopNow: 'Jetzt einkaufen',
       browseStore:
@@ -243,7 +243,7 @@ export default {
     codesAndDeals: 'Gutschein Code & Angebote',
     followStore: 'Shops folgen',
     neverOverlay: 'Nie wieder zu viel bezahlen',
-    automaticalyAddAll:
+    automaticallyAddAll:
       'Alle aktiven Gutscheine automatisch zur ihrem Bestellung mit Piggy´s  Browser-  Erweiterung hinzugfügt. Wenn Sie zur Kasse gehen, wird Piggy Gutscheine und Cashback bei storeName und viel mehr',
     automaticCoupons: 'Automatische Gutscheine ',
     priceCheck: 'Preischeck',
@@ -254,8 +254,8 @@ export default {
   build: {
     visitStore: 'Laden besuchen',
     addToFavorites: 'Zu den Favoriten hinzufügen',
-    freeShiping: 'Kostenloser Versand',
-    freeShipingOver49:
+    freeShipping: 'Kostenloser Versand',
+    freeShippingOver49:
       'KOSTENLOSER Versand Standard Bodenversand für Bestellungen über 49 € !',
     shopBuild: 'Shop Build mit 3,0 % Cash Back',
     returnPolicy: 'Rücknahmegarantie',
@@ -288,7 +288,7 @@ export default {
       aboutUs: 'Über uns',
       help: 'Helfe',
     },
-    copiright: {
+    copyright: {
       menu: {
         termsOfUse: 'Nutzungsbedingungen',
         privacyPolicy: 'Datenschutzerklärung',

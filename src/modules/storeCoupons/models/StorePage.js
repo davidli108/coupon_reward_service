@@ -130,7 +130,7 @@ export type AdditionalInfoProps = {
   store: Object,
 };
 
-export type AdditionaInfoSectionProps = {
+export type AdditionalInfoSectionProps = {
   title: string,
   content: Content[],
 };

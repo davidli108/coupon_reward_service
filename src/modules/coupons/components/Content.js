@@ -139,9 +139,9 @@ const Content = ({
         )}
         <Content.CouponsWrapper>
           {getDealsFilter === 'favoriteStores' && (
-            <Content.AuthLablel>
+            <Content.AuthLabel>
               {t('coupons.loginRegisterLabel')}
-            </Content.AuthLablel>
+            </Content.AuthLabel>
           )}
           {isLoaded ? (
             offersCount !== 0 ? (
@@ -202,7 +202,7 @@ Content.Grid = styled.div`
   `}
 `;
 
-Content.AuthLablel = styled.p`
+Content.AuthLabel = styled.p`
   margin-top: 100px;
   margin-left: 80px;
   font-size: 25px;

@@ -36,7 +36,7 @@ const Controls = ({
           src={getDealsFilter === 'allDeals' ? allDealsActiveSvg : allDealsSvg}
           alt="all deals"
         />
-        <p>{t('coupons.constrols.allDeals')}</p>
+        <p>{t('coupons.controls.allDeals')}</p>
         {getDealsFilter === 'allDeals' && <Controls.Pointer />}
       </Controls.Button>
 
@@ -53,7 +53,7 @@ const Controls = ({
           }
           alt="only coupons"
         />
-        <p>{t('coupons.constrols.onlyCoupons')}</p>
+        <p>{t('coupons.controls.onlyCoupons')}</p>
         {getDealsFilter === 'onlyCoupons' && <Controls.Pointer />}
       </Controls.Button>
 
@@ -70,7 +70,7 @@ const Controls = ({
           }
           alt="favorite stores"
         />
-        <p>{t('coupons.constrols.favoriteStores')}</p>
+        <p>{t('coupons.controls.favoriteStores')}</p>
         {getDealsFilter === 'favoriteStores' && <Controls.Pointer />}
       </Controls.Button>
     </Controls.Wrapper>

@@ -187,14 +187,14 @@ export default {
       maxCashBack:
         "- indique le cashback, la récompense ou le rabais maximum qu'un utilisateur peut gagner.Certains articles peuvent donner droit à un cashback moins élevée et il peut y avoir certaines exclusions.Toutes les boutiques n'offrent pas de cashback. Le cashback ne peut pas être combiné avec des coupons ou des offres extérieures. Veuillez consulter les conditions générales ou les profils individuels des boutiques pour plus d'informations.",
     },
-    constrols: {
+    controls: {
       allDeals: 'Toutes les offres',
       onlyCoupons: 'Coupons seulement',
       favoriteStores: 'Boutiques préférées',
     },
     type: {
       free: 'Gratuit',
-      shiping: 'Expédition',
+      shipping: 'Expédition',
       coupon: 'Coupon',
       code: 'Code',
       deal: 'Offre',
@@ -213,7 +213,7 @@ export default {
     shopBy: {
       couponSales: 'Coupon & Ventes',
       browseByStore: 'Voir par boutique',
-      viewSalse: 'Voir les promotions et les codes promo',
+      viewSales: 'Voir les promotions et les codes promo',
       instantSaving: 'Économies instantanées',
       shopNow: 'Ajouter aux favoris',
       browseStore:
@@ -246,7 +246,7 @@ export default {
     codesAndDeals: 'Codes de coupons et offres',
     followStore: 'Suivre la boutique',
     neverOverlay: 'Ne plus jamais trop payer',
-    automaticalyAddAll:
+    automaticallyAddAll:
       "Ajoutez automatiquement tous les coupons actifs à votre commande avec l'extension de navigateur de Piggy. Lorsque vous passerez à la caisse, Piggy trouvera des coupons et cashback au storeName et plus encore.",
     automaticCoupons: 'Coupons automatiques',
     priceCheck: 'Vérifiez le prix',
@@ -257,8 +257,8 @@ export default {
   build: {
     visitStore: 'Visitez la boutique',
     addToFavorites: 'Ajouter aux favoris',
-    freeShiping: 'Livraison gratuite',
-    freeShipingOver49:
+    freeShipping: 'Livraison gratuite',
+    freeShippingOver49:
       'Livraison standarde par voie terrestre gratuite  pour les commandes de plus de 49€ !',
     shopBuild:
       "Shop Build avec 3.0% de cashback (shop build doesn't have any meaning in french)",
@@ -293,7 +293,7 @@ export default {
       aboutUs: 'À propos de nous',
       help: 'Aide',
     },
-    copiright: {
+    copyright: {
       menu: {
         termsOfUse: "Conditions d'utilisation",
         privacyPolicy: 'Politique de confidentialité',

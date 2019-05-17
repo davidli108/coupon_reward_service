@@ -114,24 +114,24 @@ const Footer = ({ t, i18n }: FooterProps) => (
       <div>
         <div>
           <Footer.CopyrightLink href="/terms">
-            {t('footer.copiright.menu.termsOfUse')}
+            {t('footer.copyright.menu.termsOfUse')}
           </Footer.CopyrightLink>
           <Footer.CopyrightLink href="/sitemap">
-            {t('footer.copiright.menu.sitemap')}
+            {t('footer.copyright.menu.sitemap')}
           </Footer.CopyrightLink>
           <Footer.CopyrightLink href="/eula">
-            {t('footer.copiright.menu.eula')}
+            {t('footer.copyright.menu.eula')}
           </Footer.CopyrightLink>
           <Footer.CopyrightLink href="/privacy">
-            {t('footer.copiright.menu.privacyPolicy')}
+            {t('footer.copyright.menu.privacyPolicy')}
           </Footer.CopyrightLink>
           <Footer.CopyrightLink href="/unsubscribe">
-            {t('footer.copiright.menu.unsubscribe')}
+            {t('footer.copyright.menu.unsubscribe')}
           </Footer.CopyrightLink>
         </div>
         <p>
-          {t('footer.copiright.text')} © {new Date().getFullYear()}{' '}
-          {t('footer.copiright.allRightReserved')}
+          {t('footer.copyright.text')} © {new Date().getFullYear()}{' '}
+          {t('footer.copyright.allRightReserved')}
         </p>
       </div>
     </Footer.CopyrightWrapper>

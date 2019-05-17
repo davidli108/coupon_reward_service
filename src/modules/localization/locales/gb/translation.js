@@ -181,14 +181,14 @@ export default {
       maxCashBack:
         '- indicates the maximum cash back, reward, or discount a user may earn. Some items may pay lower cash back and some exclusions may exist. Not all stores pay cashback. Cash back not combinable with outside coupons or offers. Please view Terms or individual store profiles for more info.',
     },
-    constrols: {
+    controls: {
       allDeals: 'All Deals',
       onlyCoupons: 'Only Coupons',
       favoriteStores: 'Favorite Stores',
     },
     type: {
       free: 'Free',
-      shiping: 'Shipping',
+      shipping: 'Shipping',
       coupon: 'Coupon',
       code: 'Code',
       deal: 'Deal',
@@ -207,7 +207,7 @@ export default {
     shopBy: {
       couponSales: 'Coupon & Sales',
       browseByStore: 'Browse by Store',
-      viewSalse: 'View sales and coupon codes',
+      viewSales: 'View sales and coupon codes',
       instantSaving: 'Instant Savings',
       shopNow: 'Shop Now',
       browseStore: 'Browse Store Coupons and Popular Cash Back Stores',
@@ -238,7 +238,7 @@ export default {
     codesAndDeals: 'Coupon Codes & Deals',
     followStore: 'Follow Store',
     neverOverlay: 'Never Overpay Again at',
-    automaticalyAddAll:
+    automaticallyAddAll:
       "Automatically add all active coupons to your order with Piggy's browser extension. When you get to checkout, Piggy will find coupons and cash back at storeName and more.",
     automaticCoupons: 'Automatic Coupons',
     priceCheck: 'Price Check',
@@ -249,8 +249,8 @@ export default {
   build: {
     visitStore: 'Visit Store',
     addToFavorites: 'Add to favorites',
-    freeShiping: 'Free Shipping',
-    freeShipingOver49:
+    freeShipping: 'Free Shipping',
+    freeShippingOver49:
       'FREE Shipping Standard Ground Shipping on Orders over $49!',
     shopBuild: 'Shop Build with 3.0% Cash Back',
     returnPolicy: 'Return Policy',
@@ -282,7 +282,7 @@ export default {
       aboutUs: 'About us',
       help: 'Help',
     },
-    copiright: {
+    copyright: {
       menu: {
         termsOfUse: 'Terms of Use',
         privacyPolicy: 'Privacy Policy',

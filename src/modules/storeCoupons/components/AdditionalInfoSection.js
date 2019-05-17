@@ -4,12 +4,12 @@ import styled from 'styled-components';
 
 import AdditionalInfoContent from './AdditionalInfoContent';
 
-import type { AdditionaInfoSectionProps } from '../models/StorePage';
+import type { AdditionalInfoSectionProps } from '../models/StorePage';
 
 const AdditionalInfoSection = ({
   title,
   content,
-}: AdditionaInfoSectionProps) => {
+}: AdditionalInfoSectionProps) => {
   return (
     <AdditionalInfoSection.Wrapper>
       <h2>{title}</h2>

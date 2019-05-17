@@ -23,7 +23,7 @@ const BrandNeverOverpay = ({ t, i18n, storeName }: BrandNeverOverpayProps) => {
             {t('storeCoupons.neverOverlay')} {storeName}
           </h2>
           <p>
-            {t('storeCoupons.automaticalyAddAll').replace(
+            {t('storeCoupons.automaticallyAddAll').replace(
               'storeName',
               storeName,
             )}

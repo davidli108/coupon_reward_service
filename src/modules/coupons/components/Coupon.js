@@ -77,7 +77,7 @@ const Coupon = ({
           offer_type === OfferType.freeShipping ? (
             <Coupon.Discount>
               <span>{t('coupons.type.free')}</span>
-              <span>{t('coupons.type.shiping')}</span>
+              <span>{t('coupons.type.shipping')}</span>
             </Coupon.Discount>
           ) : coupon_code ? (
             <Coupon.Discount>
@@ -85,7 +85,7 @@ const Coupon = ({
               <span>{t('coupons.type.code')}</span>
             </Coupon.Discount>
           ) : (
-            <Coupon.DiscontDeal>{t('coupons.type.deal')}</Coupon.DiscontDeal>
+            <Coupon.DiscountDeal>{t('coupons.type.deal')}</Coupon.DiscountDeal>
           )
         ) : (
           <Coupon.Discount color={discountColors[randomColor]}>
@@ -258,7 +258,7 @@ Coupon.Discount = styled.p`
   `}
 `;
 
-Coupon.DiscontDeal = styled.p`
+Coupon.DiscountDeal = styled.p`
   height: 100px;
   margin-top: 40px;
   display: flex;
