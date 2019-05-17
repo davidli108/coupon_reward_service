@@ -1,6 +1,6 @@
 # Piggy Web
 
-Piggy Web appliication.
+Piggy Web application.
 
 ## Run In Docker
 
