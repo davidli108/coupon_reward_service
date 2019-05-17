@@ -7,8 +7,8 @@ import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
 
-import { isAuth } from '@modules/auth/AuthReducer';
 import * as actions from '@modules/auth/AuthActions';
+import { isAuth } from '@modules/auth/AuthReducer';
 
 import SignInModal from '../../modules/auth/components/SignInModal';
 import SignUpModal from '../../modules/auth/components/SignUpModal';

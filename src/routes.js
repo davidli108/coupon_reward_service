@@ -9,38 +9,50 @@ import Preloader from '@components/Preloader/Preloader';
 
 const HomePage = Loadable({
   loader: () =>
-    import('@modules/landing/pages/HomePage' /* webpackChunkName: "HomePage" */),
+    import(
+      '@modules/landing/pages/HomePage' /* webpackChunkName: "HomePage" */
+    ),
   loading: () => <Preloader />,
 });
 
 const NotFoundPage = Loadable({
   loader: () =>
-    import('@modules/landing/pages/NotFoundPage' /* webpackChunkName: "NotFoundPage" */),
+    import(
+      '@modules/landing/pages/NotFoundPage' /* webpackChunkName: "NotFoundPage" */
+    ),
   loading: () => <Preloader />,
 });
 
 const StoresPage = Loadable({
   loader: () =>
-    import(//$FlowFixMe
-    '@modules/store/pages/StoresPage.js' /* webpackChunkName: "StoresPage" */),
+    import(
+      //$FlowFixMe
+      '@modules/store/pages/StoresPage.js' /* webpackChunkName: "StoresPage" */
+    ),
   loading: () => <Preloader />,
 });
 
 const CouponsPage = Loadable({
   loader: () =>
-    import('@modules/coupons/pages/CouponsPage.js' /* webpackChunkName: "CouponsPage" */),
+    import(
+      '@modules/coupons/pages/CouponsPage.js' /* webpackChunkName: "CouponsPage" */
+    ),
   loading: () => <Preloader />,
 });
 
 const SplitterPage = Loadable({
   loader: () =>
-    import('@modules/coupons/pages/SplitterPage.js' /* webpackChunkName: "SplitterPage" */),
+    import(
+      '@modules/coupons/pages/SplitterPage.js' /* webpackChunkName: "SplitterPage" */
+    ),
   loading: () => <Preloader />,
 });
 
 const NotAuthorizedPage = Loadable({
   loader: () =>
-    import('@modules/auth/pages/NotAuthorizedPage.js' /* webpackChunkName: "NotAuthorizedPage" */),
+    import(
+      '@modules/auth/pages/NotAuthorizedPage.js' /* webpackChunkName: "NotAuthorizedPage" */
+    ),
   loading: () => <Preloader />,
 });
 

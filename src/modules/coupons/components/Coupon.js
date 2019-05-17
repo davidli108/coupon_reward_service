@@ -101,7 +101,7 @@ const Coupon = ({
         <Coupon.ExpDate>
           <p>
             Exp.{' '}
-            {moment(show_exp_date.slice(3)).format(
+            {moment(show_exp_date.slice(5), 'MM/DD/YYYY').format(
               i18n.language === 'en' ? 'MM/DD/YYYY' : 'DD/MM/YYYY',
             )}
           </p>
