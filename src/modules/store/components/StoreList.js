@@ -18,9 +18,6 @@ type StoreListProps = {
   t: string => string,
   match: Object,
   stores: Store[],
-  storesAll: Store[],
-  loadState: number,
-  loadToState: number,
   onLoadMore: Function,
   storesCount: number,
   isLoadedStores: boolean,
@@ -34,9 +31,6 @@ const StoreList = ({
   match,
   stores,
   onLoadMore,
-  loadState,
-  loadToState,
-  storesAll,
   storesCount,
   isLoadedStores,
   setIsLoadedStores,
@@ -135,9 +129,134 @@ const StoreList = ({
   );
 };
 
+type FavoriteStoreListProps = {
+  t: string => string,
+  match: Object,
+  stores: Store[],
+  onLoadMore: Function,
+  storesCount: number,
+  isLoadedStores: boolean,
+  setIsLoadedStores: boolean => void,
+  isLoadedMore: boolean,
+  setIsLoadedMore: boolean => void,
+};
+
+export const FavoriteStoreList = compose(
+  withTranslation(),
+  withRouter,
+)(
+  ({
+    t,
+    match,
+    stores,
+    onLoadMore,
+    storesCount,
+    isLoadedStores,
+    setIsLoadedStores,
+    isLoadedMore,
+    setIsLoadedMore,
+  }: FavoriteStoreListProps) => {
+    const [loadCount, setLoadCount] = useState(20);
+
+    useEffect(() => {
+      if (stores.length <= 20) {
+        setLoadCount(20);
+      }
+    });
+
+    const onLoad = () => {
+      if (isLoadedStores) {
+        setIsLoadedStores(false);
+        setIsLoadedMore(false);
+        onLoadMore(match.params.name, loadCount).then(() => {
+          setIsLoadedStores(true);
+          setIsLoadedMore(true);
+          setLoadCount(loadCount + 20);
+        });
+      }
+    };
+
+    return (
+      <div>
+        <StoreList.StoreContainer>
+          {stores.length !== 0 &&
+            stores.map(
+              ({
+                name,
+                store_id,
+                offer_img,
+                link,
+                cashback_text,
+                short_name,
+                store_name,
+              }: Object) => (
+                <StoreList.StoreItem
+                  key={`list_item_${store_name}_${store_id}`}
+                >
+                  <StoreList.Box>
+                    <StoreList.ImageWrapper>
+                      <Link to={`/coupons/${short_name}`}>
+                        <StoreList.Image
+                          src={
+                            offer_img
+                              ? `https://d2umvgb8hls1bt.cloudfront.net${offer_img}`
+                              : placeholder
+                          }
+                          onError={e => {
+                            e.target.onerror = null;
+                            e.target.src = placeholder;
+                          }}
+                          alt={`${store_name ||
+                            ''} Coupon Codes ${moment().format(
+                            'MMMM',
+                          )} | ${moment().format('YYYY')}`}
+                        />
+                      </Link>
+                    </StoreList.ImageWrapper>
+                    <StoreList.ContentWrap>
+                      <StoreList.Content>
+                        <StoreList.Info>
+                          <StoreList.Brand>
+                            <StoreList.BrandName>
+                              {store_name}
+                            </StoreList.BrandName>
+                            <StoreList.BranDeals>
+                              {t('global.deals')}
+                            </StoreList.BranDeals>
+                          </StoreList.Brand>
+                          <StoreList.Cash>{`${cashback_text}`}</StoreList.Cash>
+                        </StoreList.Info>
+                      </StoreList.Content>
+                      <StoreList.Link to={`/coupons/${short_name}`}>
+                        {t('build.visitStore')}
+                      </StoreList.Link>
+                    </StoreList.ContentWrap>
+                  </StoreList.Box>
+                  <StoreList.LinkMobile to={`/coupons/${short_name}`}>
+                    {t('build.visitStore')}
+                  </StoreList.LinkMobile>
+                </StoreList.StoreItem>
+              ),
+            )}
+        </StoreList.StoreContainer>
+        <StoreList.LoadMoreButton onClick={onLoad}>
+          {isLoadedStores ? (
+            stores.length !== 0 && storesCount > stores.length ? (
+              <p>{t('global.loadMoreStores')}</p>
+            ) : (
+              ''
+            )
+          ) : (
+            <LoadMoreLoader />
+          )}
+        </StoreList.LoadMoreButton>
+      </div>
+    );
+  },
+);
+
 StoreList.defaultProps = {
   stores: [],
-  storesAll: [],
 };
 
 StoreList.Box = styled.div`

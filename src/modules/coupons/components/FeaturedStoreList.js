@@ -8,18 +8,18 @@ import moment from 'moment';
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
 import StoreListLoader from './loaders/StoreListLoader';
 
-type StoreListProps = {
+type FeaturedStoreListProps = {
   t: string => string,
   stores: Object,
   loaded: boolean,
 };
 
-const StoreList = ({ t, stores, loaded }: StoreListProps) => {
+const FeaturedStoreList = ({ t, stores, loaded }: FeaturedStoreListProps) => {
   if (loaded) {
     return (
-      <StoreList.Wrapper>
+      <FeaturedStoreList.Wrapper>
         {stores.map(store => (
-          <StoreList.Item
+          <FeaturedStoreList.Item
             key={`store_${store.store_id}`}
             href={store.offer_link}
             target="_blank"
@@ -43,22 +43,22 @@ const StoreList = ({ t, stores, loaded }: StoreListProps) => {
                 .replace('Cash Back', t('global.cashBack'))
                 .replace('Instant Savings', t('global.instantSaving'))}
             </p>
-          </StoreList.Item>
+          </FeaturedStoreList.Item>
         ))}
-      </StoreList.Wrapper>
+      </FeaturedStoreList.Wrapper>
     );
   }
 
   return (
-    <StoreList.Wrapper>
+    <FeaturedStoreList.Wrapper>
       {Array.apply(null, Array(5)).map((_, ind) => (
         <StoreListLoader key={ind} />
       ))}
-    </StoreList.Wrapper>
+    </FeaturedStoreList.Wrapper>
   );
 };
 
-StoreList.Wrapper = styled.div`
+FeaturedStoreList.Wrapper = styled.div`
   display: flex;
 
   margin-top: 20px;
@@ -90,7 +90,7 @@ StoreList.Wrapper = styled.div`
   `}
 `;
 
-StoreList.Item = styled.a`
+FeaturedStoreList.Item = styled.a`
   min-width: 117px;
   display: flex;
   flex-flow: column nowrap;
@@ -134,4 +134,4 @@ StoreList.Item = styled.a`
   `}
 `;
 
-export default withTranslation()(StoreList);
+export default withTranslation()(FeaturedStoreList);
