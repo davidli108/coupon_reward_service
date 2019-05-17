@@ -8,7 +8,7 @@ const HomePage = () => (
       <title>Dashboard</title>
     </Helmet>
 
-    <h2>Piggy Home page</h2>
+    <h2 style={{ padding: '50px 50px 200px' }}>Welcome to Piggy!</h2>
   </div>
 );
 
