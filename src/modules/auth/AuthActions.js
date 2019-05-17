@@ -1,4 +1,4 @@
-//@flow
+// @flow
 const namespace = 'AUTHENTICATION';
 export const SIGN_IN = `${namespace}/SIGN_IN`;
 export const SIGN_UP = `${namespace}/SIGN_UP`;

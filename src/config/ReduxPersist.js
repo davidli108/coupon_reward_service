@@ -7,7 +7,7 @@ const REDUX_PERSIST = {
   storeConfig: {
     storage,
     key: 'primary',
-    whitelist: [],
+    whitelist: ['auth'],
   },
 };
 

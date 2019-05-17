@@ -1,4 +1,4 @@
-//@flow
+// @flow
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -8,7 +8,7 @@ import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
 
 import * as actions from '@modules/auth/AuthActions';
-import { isAuth } from '@modules/auth/AuthReducer';
+import { getIsAuthenticated } from '@modules/auth/AuthReducer';
 
 import SignInModal from '../../modules/auth/components/SignInModal';
 import SignUpModal from '../../modules/auth/components/SignUpModal';
@@ -51,12 +51,12 @@ const renderHeaderItems = (items: Array<renderHeaderItemsProps>) =>
 
 type HeaderProps = {
   t: Function,
-  isAuth: boolean,
+  getIsAuthenticated: boolean,
   location: Object,
   logout: Function,
 };
 
-const Header = ({ t, isAuth, location, logout }: HeaderProps) => {
+const Header = ({ t, getIsAuthenticated, location, logout }: HeaderProps) => {
   const [isOpen, setOpen] = React.useState(false);
   const [currentModal, setCurrentModal] = React.useState(null);
 
@@ -114,7 +114,7 @@ const Header = ({ t, isAuth, location, logout }: HeaderProps) => {
       </HeaderItem>
       <Header.Controls>
         {renderHeaderItems(items)}
-        {isAuth ? (
+        {getIsAuthenticated ? (
           <HeaderItemMyAccount
             bgColor="#34a6bf"
             hoverBgColor="#29899e"
@@ -274,7 +274,7 @@ Header.SlidingMenu = styled.div`
 `;
 
 const mapStateToProps = state => ({
-  isAuth: isAuth(state),
+  getIsAuthenticated: getIsAuthenticated(state),
 });
 
 const mapDispatchToProps = {
