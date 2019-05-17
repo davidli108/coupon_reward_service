@@ -1,19 +1,21 @@
 //@flow
 import React, { useState } from 'react';
+import { withTranslation } from 'react-i18next';
+import { IoMdArrowDropdown } from 'react-icons/io';
 import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
-
-import { IoMdArrowDropdown } from 'react-icons/io';
 
 type HeaderItemMyAccountProps = {
   history: Object,
   bgColor?: string,
   hoverBgColor?: string,
+  t: any,
   title: string,
   logout: Function,
 };
 
 const HeaderItemMyAccount = ({
+  t,
   history,
   bgColor,
   hoverBgColor,
@@ -21,29 +23,6 @@ const HeaderItemMyAccount = ({
   logout,
 }: HeaderItemMyAccountProps) => {
   const [isDrop, setIsDrop] = useState(false);
-
-  /*
-  const items = [
-    {
-      title: 'Earnings',
-      onClick: () =>
-        window.location('https://www.joinpiggy.com/account/earnings'),
-    },
-    {
-      title: 'Invite Friends',
-      onClick: () => window.open('https://www.joinpiggy.com/account/referrals'),
-    },
-    {
-      title: 'Settings',
-      onClick: () =>
-        window.open('https://www.joinpiggy.com/account/preferences'),
-    },
-    {
-      title: 'Sign out',
-      onClick: () => logout(),
-    },
-  ];
-  */
 
   return (
     <HeaderItemMyAccount.Wrapper
@@ -56,24 +35,25 @@ const HeaderItemMyAccount = ({
         <IoMdArrowDropdown />
       </p>
       <HeaderItemMyAccount.DropdownWrapper isShow={isDrop}>
-        {/*items.map(i => (
-          <HeaderItemMyAccount.DropdownItem
-            key={`key_${i.title}`}
-            onClick={() => {
-              i.onClick();
-              setIsDrop(false);
-            }}
-          >
-            {i.title}
-          </HeaderItemMyAccount.DropdownItem>
-        ))*/}
+        <HeaderItemMyAccount.DropdownItem href="/account/earnings">
+          {t('coupons.earnings')}
+        </HeaderItemMyAccount.DropdownItem>
+
+        <HeaderItemMyAccount.DropdownItem href="/account/referrals">
+          {t('header.inviteFriends')}
+        </HeaderItemMyAccount.DropdownItem>
+
+        <HeaderItemMyAccount.DropdownItem href="/account/preferences">
+          {t('header.settings')}
+        </HeaderItemMyAccount.DropdownItem>
+
         <HeaderItemMyAccount.DropdownItem
           onClick={() => {
             logout();
             setIsDrop(false);
           }}
         >
-          Sign out
+          {t('header.signOut')}
         </HeaderItemMyAccount.DropdownItem>
       </HeaderItemMyAccount.DropdownWrapper>
     </HeaderItemMyAccount.Wrapper>
@@ -82,7 +62,7 @@ const HeaderItemMyAccount = ({
 
 HeaderItemMyAccount.Wrapper = styled.div`
   height: 100%;
-
+  z-index: 5;
   font-weight: bold;
   background: ${({ bgColor }) => bgColor || '#40c8e5'};
 
@@ -115,11 +95,13 @@ HeaderItemMyAccount.DropdownWrapper = styled.div`
   background-color: white;
 `;
 
-HeaderItemMyAccount.DropdownItem = styled.div`
+HeaderItemMyAccount.DropdownItem = styled.a`
+  display: block;
   padding: 15px 0 15px 10px;
   font-size: 20px;
   font-weight: 500;
   cursor: pointer;
+  color: black;
 
   &:hover {
     background-color: #29899e;
@@ -127,4 +109,4 @@ HeaderItemMyAccount.DropdownItem = styled.div`
   }
 `;
 
-export default withRouter(HeaderItemMyAccount);
+export default withRouter(withTranslation()(HeaderItemMyAccount));
