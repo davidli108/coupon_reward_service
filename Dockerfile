@@ -1,4 +1,4 @@
-FROM node:10.15-alpine
+FROM node:12.2-alpine
 
 ENV PROJECT_WORKDIR=/project
 ENV NODE_ENV production
