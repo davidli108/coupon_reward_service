@@ -37,7 +37,6 @@ const AuthReducer = (
     }
     case `${SIGN_IN}_SUCCESS`: {
       const userId = R.pathOr(null, ['payload', 'data'], action);
-      console.log('userId', userId);
 
       if (!userId) {
         return state;

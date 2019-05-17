@@ -1,4 +1,4 @@
-//@flow
+// @flow
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';

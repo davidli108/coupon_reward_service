@@ -1,4 +1,4 @@
-//@flow
+// @flow
 
 export type Content = {
   title?: string,
@@ -93,13 +93,6 @@ export type BrandContentProps = {
   storeName: string,
   stars: number,
   reviewsCount: string,
-};
-
-export type BrandHeaderProps = {
-  t: Function,
-  store: Store,
-  offers: Offer[],
-  offersCount: number,
 };
 
 export type BrandNeverOverpayProps = {

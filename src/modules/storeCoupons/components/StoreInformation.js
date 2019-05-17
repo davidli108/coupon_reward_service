@@ -1,4 +1,4 @@
-//@flow
+// @flow
 import * as React from 'react';
 import { compose } from 'recompose';
 import styled from 'styled-components';

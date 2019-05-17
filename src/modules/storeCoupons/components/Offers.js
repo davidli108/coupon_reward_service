@@ -1,4 +1,4 @@
-//@flow
+// @flow
 import React, { useState } from 'react';
 import Offer from './Offer';
 import type { OffersProps } from '../models/StorePage';

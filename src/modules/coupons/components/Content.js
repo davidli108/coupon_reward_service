@@ -1,4 +1,4 @@
-//@flow
+// @flow
 import React, { useState, useEffect } from 'react';
 import { compose } from 'recompose';
 import { withRouter } from 'react-router-dom';

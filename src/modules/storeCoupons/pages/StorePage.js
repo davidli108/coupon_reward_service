@@ -1,4 +1,4 @@
-//@flow
+// @flow
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components';

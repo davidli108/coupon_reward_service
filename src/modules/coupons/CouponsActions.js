@@ -1,4 +1,4 @@
-//@flow
+// @flow
 export const namespace = 'COUPONS';
 export const GET_COUPONS = `${namespace}/GET_COUPONS`;
 export const LOAD_MORE = `${namespace}/LOAD_MORE`;

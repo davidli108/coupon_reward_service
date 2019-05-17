@@ -65,7 +65,6 @@ const SignInModal = ({
           setEmail('');
           setPassword('');
           closeModal();
-          localStorage.setItem('auth', res.payload.data.auth);
           history.push('/');
         } else {
           setError(true);

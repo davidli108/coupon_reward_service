@@ -1,4 +1,4 @@
-//@flow
+// @flow
 export type FeaturedCoupon = {
   storeName: string,
   highestCashbackPercent?: ?number,
@@ -21,6 +21,7 @@ export type Store = {
   offer_text_short: string,
   offer_name: string,
   store_page_link: string,
+  store_id: any,
   twitter_link: string,
   pinterest_link: string,
 };

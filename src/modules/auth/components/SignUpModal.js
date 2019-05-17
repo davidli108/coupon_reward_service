@@ -103,7 +103,6 @@ const SignUpModal = ({
 
       insertPassword(formData).then(() => {
         fetchUser().then(res => {
-          localStorage.setItem('auth', res.payload.data.auth);
           closeModal();
           history.push('/welcome');
         });

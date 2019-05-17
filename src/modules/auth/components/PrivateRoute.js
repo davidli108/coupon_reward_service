@@ -3,27 +3,27 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Route } from 'react-router-dom';
 
-import { isAuth } from '../AuthReducer';
+import { getIsAuthenticated } from '../AuthReducer';
 
 type PrivateRouteProps = {
   component: any,
-  isAuth: boolean,
+  getIsAuthenticated: boolean,
 };
 
 const PrivateRoute = ({
   component: Component,
-  isAuth,
+  getIsAuthenticated,
   ...rest
 }: PrivateRouteProps) => (
   <Route
     {...rest}
     render={props =>
-      isAuth ? (
+      getIsAuthenticated ? (
         <Component {...props} />
       ) : (
         <Redirect
           to={{
-            pathname: isAuth ? '/' : '/auth/not-authorized',
+            pathname: getIsAuthenticated ? '/' : '/auth/not-authorized',
             state: { from: props.location },
           }}
         />
@@ -33,11 +33,11 @@ const PrivateRoute = ({
 );
 
 PrivateRoute.defaultProps = {
-  isAuth: false,
+  getIsAuthenticated: false,
 };
 
 const mapStateToProps = state => ({
-  isAuth: isAuth(state),
+  getIsAuthenticated: getIsAuthenticated(state),
 });
 
 export default connect(mapStateToProps)(PrivateRoute);

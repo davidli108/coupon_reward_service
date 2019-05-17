@@ -1,4 +1,4 @@
-//@flow
+// @flow
 import React, { useState } from 'react';
 import { withTranslation } from 'react-i18next';
 import { IoMdArrowDropdown } from 'react-icons/io';

@@ -1,4 +1,4 @@
-//@flow
+// @flow
 /* eslint-disable max-len */
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
@@ -22,6 +22,8 @@ import {
   getOffersCount,
   getCoupons,
 } from '@modules/coupons/CouponsReducer';
+import * as favoritesActions from '@modules/favorites/FavoritesActions';
+import { getFavoritesMap } from '@modules/favorites/FavoritesReducer';
 
 // import DownloadPiggy from '../components/DownloadPiggy';
 import SearchBar from '@components/SearchBar/SearchBar';
@@ -48,6 +50,9 @@ type CouponsPageProps = {
   resetCoupons: Function,
   offersCount: number,
   getAllDeals: Object,
+  favorites: any,
+  addFavorite: any,
+  removeFavorite: any,
 };
 
 const CouponsPage = ({
@@ -69,6 +74,9 @@ const CouponsPage = ({
   resetCoupons,
   offersCount,
   getAllDeals,
+  favorites,
+  addFavorite,
+  removeFavorite,
 }: CouponsPageProps) => {
   const [searchValue, setSearchValue] = useState('');
   const [isLoaded, setIsLoaded] = useState(true);
@@ -105,7 +113,12 @@ const CouponsPage = ({
       </CouponsPage.SearchWrapper>
       {isLoaded ? (
         offersCount !== 0 && Boolean(stores.length) ? (
-          <TodaysFeaturedCoupon store={stores[0]} />
+          <TodaysFeaturedCoupon
+            store={stores[0]}
+            favorites={favorites}
+            addFavorite={addFavorite}
+            removeFavorite={removeFavorite}
+          />
         ) : (
           <CouponsPage.NoData>
             {t('coupons.noFeaturedCouponsFound')}
@@ -189,6 +202,7 @@ const mapStateToProps = state => ({
   searchIsLoading: searchIsLoading(state),
   offersCount: getOffersCount(state),
   getAllDeals: getCoupons(state),
+  favorites: getFavoritesMap(state),
 });
 
 const mapDispatchToProps = {
@@ -198,6 +212,8 @@ const mapDispatchToProps = {
   setDealsFilter: couponsActions.setDealsFilter,
   requestSearch: couponsActions.requestSearch,
   resetCoupons: couponsActions.resetCoupons,
+  addFavorite: favoritesActions.addFavorite,
+  removeFavorite: favoritesActions.removeFavorite,
 };
 
 export default compose(

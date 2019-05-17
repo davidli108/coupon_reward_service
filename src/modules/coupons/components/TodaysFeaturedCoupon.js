@@ -1,5 +1,5 @@
-//@flow
-import React, { useState } from 'react';
+// @flow
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { IoIosHeartEmpty, IoIosHeart } from 'react-icons/io';
@@ -8,18 +8,33 @@ import { withTranslation } from 'react-i18next';
 import moment from 'moment';
 
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
+
 import type { Store } from '../models/CouponsPage';
 import SocialShareFeatured from './SocialShareFeatured';
 
 type TodaysFeaturedCouponProps = {
   t: Function,
   store: Store,
+  favorites: any,
+  addFavorite: any,
+  removeFavorite: any,
 };
 
-const TodaysFeaturedCoupon = ({ t, store }: TodaysFeaturedCouponProps) => {
-  const [isFeaturedCouponLiked, setFeaturedCouponLike] = useState('');
-  const handleFeaturedCouponLikeToggler = () =>
-    setFeaturedCouponLike(!isFeaturedCouponLiked);
+const TodaysFeaturedCoupon = ({
+  t,
+  store,
+  favorites,
+  addFavorite,
+  removeFavorite,
+}: TodaysFeaturedCouponProps) => {
+  const isFavorite = Boolean(favorites[store.store_id]);
+  const toggleFavoriteStore = () => {
+    if (!isFavorite) {
+      addFavorite(store.store_id);
+    } else {
+      removeFavorite(store.store_id);
+    }
+  };
 
   return (
     <TodaysFeaturedCoupon.Wrapper>
@@ -44,11 +59,11 @@ const TodaysFeaturedCoupon = ({ t, store }: TodaysFeaturedCouponProps) => {
               )} | ${moment().format('YYYY')}`}
             />
           </Link>
-          <TodaysFeaturedCoupon.Controls isLiked={isFeaturedCouponLiked}>
-            {isFeaturedCouponLiked ? (
-              <IoIosHeart onClick={handleFeaturedCouponLikeToggler} />
+          <TodaysFeaturedCoupon.Controls isLiked={isFavorite}>
+            {isFavorite ? (
+              <IoIosHeart style={{ cursor: 'pointer' }} onClick={toggleFavoriteStore} />
             ) : (
-              <IoIosHeartEmpty onClick={handleFeaturedCouponLikeToggler} />
+              <IoIosHeartEmpty style={{ cursor: 'pointer' }} onClick={toggleFavoriteStore} />
             )}
             <SocialShareFeatured
               text={store.ref_text}

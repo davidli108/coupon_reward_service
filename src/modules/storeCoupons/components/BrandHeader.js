@@ -1,24 +1,50 @@
-//@flow
+// @flow
+import * as R from 'ramda';
 import * as React from 'react';
-// eslint-disable-next-line no-unused-vars
+// eslint-disable-next-line no-unused-vars, import/no-unresolved
 import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
-import breakpoint from 'styled-components-breakpoint';
-import styled from 'styled-components';
+import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
-import { withTranslation } from 'react-i18next';
+import styled from 'styled-components';
+import breakpoint from 'styled-components-breakpoint';
 
-import type { BrandHeaderProps } from '../models/StorePage';
+import * as favoritesActions from '@modules/favorites/FavoritesActions';
+import { getIsFavorite } from '@modules/favorites/FavoritesReducer';
+
 import { getStore, getOffers } from '../StoreCouponsReducer';
+
+export type BrandHeaderProps = {
+  t: Function,
+  store: any,
+  offers: any[],
+  offersCount: number,
+  isFavorite: boolean,
+  addFavorite: any,
+  removeFavorite: any,
+};
 
 const getCouponsCount = offers =>
   offers.filter(x => x.coupon_code !== '').length;
 const getDealsCount = offers => offers.filter(x => x.coupon_code === '').length;
 
-const BrandHeader = ({ t, store, offers, offersCount }: BrandHeaderProps) => {
-  const [isStoreFollowed, setStoreFollowed] = React.useState(false);
+const BrandHeader = ({
+  t,
+  store,
+  offers,
+  offersCount,
+  addFavorite,
+  removeFavorite,
+  isFavorite,
+}: BrandHeaderProps) => {
   // eslint-disable-next-line no-unused-vars
-  const handleStoreFollowToggler = () => setStoreFollowed(!isStoreFollowed);
+  const toggleFavoriteStore = () => {
+    if (!isFavorite) {
+      addFavorite(store.store_id);
+    } else {
+      removeFavorite(store.store_id);
+    }
+  };
 
   return (
     <>
@@ -58,9 +84,9 @@ const BrandHeader = ({ t, store, offers, offersCount }: BrandHeaderProps) => {
             {t('templates.upToCashback').replace('%s', store.store_discount)}
           </BrandHeader.CashBack>
         </BrandHeader.SmVisible>
-        <BrandHeader.FollowStoreWrapper isStoreFollowed={isStoreFollowed}>
-          <div onClick={handleStoreFollowToggler}>
-            {isStoreFollowed ? <MdFavorite /> : <MdFavoriteBorder />}
+        <BrandHeader.FollowStoreWrapper isFavorite={isFavorite}>
+          <div onClick={toggleFavoriteStore}>
+            {isFavorite ? <MdFavorite /> : <MdFavoriteBorder />}
             <span>{t('storeCoupons.followStore')}</span>
           </div>
         </BrandHeader.FollowStoreWrapper>
@@ -218,14 +244,13 @@ BrandHeader.FollowStoreWrapper = styled.div`
     > svg {
       width: 22px;
       height: 22px;
-      color: ${({ isStoreFollowed }) => (isStoreFollowed ? 'red' : '#d2d2d2')};
+      color: ${({ isFavorite }) => (isFavorite ? 'red' : '#d2d2d2')};
     }
 
     > span {
       padding-left: 5px;
       font-size: 14px;
-      color: ${({ isStoreFollowed }) =>
-        isStoreFollowed ? 'black' : '#b1b1b1'};
+      color: ${({ isFavorite }) => (isFavorite ? 'black' : '#b1b1b1')};
     }
   }
 `;
@@ -233,9 +258,18 @@ BrandHeader.FollowStoreWrapper = styled.div`
 const mapStateToProps = state => ({
   store: getStore(state),
   offers: getOffers(state),
+  isFavorite: getIsFavorite(state, R.propOr(null, 'store_id', getStore(state))),
 });
 
+const mapDispatchToProps = {
+  addFavorite: favoritesActions.addFavorite,
+  removeFavorite: favoritesActions.removeFavorite,
+};
+
 export default compose(
-  connect(mapStateToProps),
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  ),
   withTranslation(),
 )(BrandHeader);
