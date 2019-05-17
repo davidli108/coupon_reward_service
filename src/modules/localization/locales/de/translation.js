@@ -13,6 +13,9 @@ export default {
     login: 'Einloggen',
     createAccount: 'Ein Konto erstellen',
     myAccount: 'Mein Konto',
+    inviteFriends: 'Freunde einladen',
+    settings: 'Einstellungen',
+    signOut: 'Ausloggen',
   },
   auth: {
     social: {
