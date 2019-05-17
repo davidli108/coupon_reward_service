@@ -21,13 +21,10 @@ import { getUserID, getUserPW } from '../AuthReducer';
 
 type SignUpModalProps = {
   t: string => string,
-  title: string,
-  subTitle: string,
-  submitLabel: string,
   linkTerms: string,
   isActive: boolean,
   closeModal: Function,
-  onRoutModal: Function,
+  onRouteModal: Function,
   signUp: Function,
   fetchUser: Function,
   insertPassword: Function,
@@ -38,13 +35,10 @@ type SignUpModalProps = {
 
 const SignUpModal = ({
   t,
-  title,
-  subTitle,
-  submitLabel,
   linkTerms,
   isActive,
   closeModal,
-  onRoutModal,
+  onRouteModal,
   signUp,
   userID,
   userPW,
@@ -117,8 +111,8 @@ const SignUpModal = ({
   return (
     isActive && (
       <ModalWrapper
-        title={title}
-        subTitle={subTitle}
+        title={t('auth.signUp.title')}
+        subTitle={t('auth.signUp.subTitle')}
         isActive={isActive}
         closeModal={closeModal}
       >
@@ -165,22 +159,26 @@ const SignUpModal = ({
             {isReq ? (
               <img src={preloader} alt="" />
             ) : (
-              <button>{submitLabel}</button>
+              <button>{t('auth.signUp.button')}</button>
             )}
           </SignUpModal.Form>
           <SignUpModal.PreFooter>
             {t('auth.signUp.preFooter.label')}
-            <a href={linkTerms}>{t('auth.signUp.preFooter.terms')}</a>
+            <a href="/terms">{t('auth.signUp.preFooter.terms')}</a>
           </SignUpModal.PreFooter>
           <ModalFooter
             footerText={t('auth.signUp.footer.text')}
             textButton={t('auth.signUp.footer.button')}
-            onRoutModal={onRoutModal}
+            onRouteModal={onRouteModal}
           />
         </div>
       </ModalWrapper>
     )
   );
+};
+
+SignUpModal.defaultProps = {
+  isActive: true,
 };
 
 SignUpModal.Or = styled.div`

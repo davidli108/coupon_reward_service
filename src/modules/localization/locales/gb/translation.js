@@ -81,6 +81,8 @@ export default {
       },
       messages: {
         emailNotExist: "Email address doesn't exist in our database.",
+        sendPassword:
+          'Your password has been sent. Please check your email and log in.',
       },
       mail: {
         message: {

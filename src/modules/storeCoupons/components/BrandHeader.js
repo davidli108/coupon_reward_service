@@ -9,10 +9,20 @@ import { compose } from 'recompose';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
+import { getIsAuthenticated } from '@modules/auth/AuthReducer';
+import SignInModal from '@modules/auth/components/SignInModal';
+import SignUpModal from '@modules/auth/components/SignUpModal';
+import ResetPasswordModal from '@modules/auth/components/ResetPasswordModal';
 import * as favoritesActions from '@modules/favorites/FavoritesActions';
 import { getIsFavorite } from '@modules/favorites/FavoritesReducer';
 
 import { getStore, getOffers } from '../StoreCouponsReducer';
+
+const modal = {
+  modalSignIn: 'modalSignIn',
+  modalSignUp: 'modalSignUp',
+  modalResetPassword: 'modalResetPassword',
+};
 
 export type BrandHeaderProps = {
   t: Function,
@@ -22,6 +32,7 @@ export type BrandHeaderProps = {
   isFavorite: boolean,
   addFavorite: any,
   removeFavorite: any,
+  isAuthenticated: boolean,
 };
 
 const getCouponsCount = offers =>
@@ -36,9 +47,16 @@ const BrandHeader = ({
   addFavorite,
   removeFavorite,
   isFavorite,
+  isAuthenticated,
 }: BrandHeaderProps) => {
-  // eslint-disable-next-line no-unused-vars
+  const [currentModal, setCurrentModal] = React.useState(null);
+
   const toggleFavoriteStore = () => {
+    if (!isAuthenticated) {
+      setCurrentModal(modal.modalSignUp);
+      return;
+    }
+
     if (!isFavorite) {
       addFavorite(store.store_id);
     } else {
@@ -91,6 +109,26 @@ const BrandHeader = ({
           </div>
         </BrandHeader.FollowStoreWrapper>
       </BrandHeader.NoWrapFlexBox>
+
+      {currentModal === modal.modalSignIn && (
+        <SignInModal
+          onRouteModalReset={() => setCurrentModal(modal.modalResetPassword)}
+          onRouteModal={() => setCurrentModal(modal.modalSignUp)}
+          closeModal={setCurrentModal.bind(null)}
+        />
+      )}
+      {currentModal === modal.modalSignUp && (
+        <SignUpModal
+          onRouteModal={() => setCurrentModal(modal.modalSignIn)}
+          closeModal={setCurrentModal.bind(null)}
+        />
+      )}
+      {currentModal === modal.modalResetPassword && (
+        <ResetPasswordModal
+          onRouteModal={() => setCurrentModal(modal.modalSignUp)}
+          closeModal={setCurrentModal.bind(null)}
+        />
+      )}
     </>
   );
 };
@@ -259,6 +297,7 @@ const mapStateToProps = state => ({
   store: getStore(state),
   offers: getOffers(state),
   isFavorite: getIsFavorite(state, R.propOr(null, 'store_id', getStore(state))),
+  isAuthenticated: getIsAuthenticated(state),
 });
 
 const mapDispatchToProps = {

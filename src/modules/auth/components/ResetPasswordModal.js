@@ -16,23 +16,17 @@ import * as actions from '../AuthActions';
 
 type ResetPasswordModalProps = {
   t: string => string,
-  title: string,
-  subTitle: string,
-  submitLabel: string,
   isActive: boolean,
   closeModal: Function,
-  onRoutModal: Function,
+  onRouteModal: Function,
   resetPassword: FormData => Promise<Object>,
 };
 
 const ResetPasswordModal = ({
   t,
-  title,
-  subTitle,
-  submitLabel,
   isActive,
   closeModal,
-  onRoutModal,
+  onRouteModal,
   resetPassword,
 }: ResetPasswordModalProps) => {
   const [email, setEmail] = useState('');
@@ -56,8 +50,8 @@ const ResetPasswordModal = ({
   return (
     isActive && (
       <ModalWrapper
-        title={title}
-        subTitle={subTitle}
+        title={t('auth.forgotPassword.title')}
+        subTitle={t('auth.forgotPassword.subTitle')}
         isActive={isActive}
         closeModal={closeModal}
       >
@@ -75,19 +69,12 @@ const ResetPasswordModal = ({
                 placeholder={t('auth.forgotPassword.emailAddress')}
                 required
               />
-              <button>{submitLabel}</button>
-
-              <ModalFooter
-                footerText={t('auth.footer.text')}
-                textButton={t('auth.footer.button')}
-                onRoutModal={onRoutModal}
-              />
-              <button>{submitLabel}</button>
+              <button>{t('auth.forgotPassword.button')}</button>
             </ResetPasswordModal.Form>
             <ModalFooter
               footerText={t('auth.forgotPassword.footer.text')}
               textButton={t('auth.forgotPassword.footer.button')}
-              onRoutModal={onRoutModal}
+              onRouteModal={onRouteModal}
             />
           </div>
         )}
@@ -101,6 +88,10 @@ const ResetPasswordModal = ({
       </ModalWrapper>
     )
   );
+};
+
+ResetPasswordModal.defaultProps = {
+  isActive: true,
 };
 
 ResetPasswordModal.Form = styled.form`

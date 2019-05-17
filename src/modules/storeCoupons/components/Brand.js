@@ -79,7 +79,7 @@ Brand.Wrapper = styled.div`
   ${breakpoint('sx')`
     flex-flow: row nowrap;
 
-    a {
+    > a {
       padding: 0 15px;
     }
   `}

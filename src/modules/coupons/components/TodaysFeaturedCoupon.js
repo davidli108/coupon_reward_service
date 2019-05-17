@@ -7,10 +7,19 @@ import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
 import moment from 'moment';
 
+import SignInModal from '@modules/auth/components/SignInModal';
+import SignUpModal from '@modules/auth/components/SignUpModal';
+import ResetPasswordModal from '@modules/auth/components/ResetPasswordModal';
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
 
 import type { Store } from '../models/CouponsPage';
 import SocialShareFeatured from './SocialShareFeatured';
+
+const modal = {
+  modalSignIn: 'modalSignIn',
+  modalSignUp: 'modalSignUp',
+  modalResetPassword: 'modalResetPassword',
+};
 
 type TodaysFeaturedCouponProps = {
   t: Function,
@@ -18,6 +27,7 @@ type TodaysFeaturedCouponProps = {
   favorites: any,
   addFavorite: any,
   removeFavorite: any,
+  isAuthenticated: boolean,
 };
 
 const TodaysFeaturedCoupon = ({
@@ -26,9 +36,17 @@ const TodaysFeaturedCoupon = ({
   favorites,
   addFavorite,
   removeFavorite,
+  isAuthenticated,
 }: TodaysFeaturedCouponProps) => {
+  const [currentModal, setCurrentModal] = React.useState(null);
+
   const isFavorite = Boolean(favorites[store.store_id]);
   const toggleFavoriteStore = () => {
+    if (!isAuthenticated) {
+      setCurrentModal(modal.modalSignUp);
+      return;
+    }
+
     if (!isFavorite) {
       addFavorite(store.store_id);
     } else {
@@ -61,9 +79,15 @@ const TodaysFeaturedCoupon = ({
           </Link>
           <TodaysFeaturedCoupon.Controls isLiked={isFavorite}>
             {isFavorite ? (
-              <IoIosHeart style={{ cursor: 'pointer' }} onClick={toggleFavoriteStore} />
+              <IoIosHeart
+                style={{ cursor: 'pointer' }}
+                onClick={toggleFavoriteStore}
+              />
             ) : (
-              <IoIosHeartEmpty style={{ cursor: 'pointer' }} onClick={toggleFavoriteStore} />
+              <IoIosHeartEmpty
+                style={{ cursor: 'pointer' }}
+                onClick={toggleFavoriteStore}
+              />
             )}
             <SocialShareFeatured
               text={store.ref_text}
@@ -90,6 +114,26 @@ const TodaysFeaturedCoupon = ({
           </TodaysFeaturedCoupon.Button>
         </TodaysFeaturedCoupon.DescriptionButtonWrapper>
       </TodaysFeaturedCoupon.Content>
+
+      {currentModal === modal.modalSignIn && (
+        <SignInModal
+          onRouteModalReset={() => setCurrentModal(modal.modalResetPassword)}
+          onRouteModal={() => setCurrentModal(modal.modalSignUp)}
+          closeModal={setCurrentModal.bind(null)}
+        />
+      )}
+      {currentModal === modal.modalSignUp && (
+        <SignUpModal
+          onRouteModal={() => setCurrentModal(modal.modalSignIn)}
+          closeModal={setCurrentModal.bind(null)}
+        />
+      )}
+      {currentModal === modal.modalResetPassword && (
+        <ResetPasswordModal
+          onRouteModal={() => setCurrentModal(modal.modalSignUp)}
+          closeModal={setCurrentModal.bind(null)}
+        />
+      )}
     </TodaysFeaturedCoupon.Wrapper>
   );
 };

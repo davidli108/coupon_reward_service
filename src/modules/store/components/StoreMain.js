@@ -11,12 +11,8 @@ import { type Store, type Feature } from '../models';
 
 type StoresListProps = {
   t: Function,
-  title: string,
   stores: Store[],
   featured: Feature[],
-  storesAll: Store[],
-  loadState: number,
-  loadToState: number,
   onLoadMore: Function,
   storesCount: number,
   isLoadedStores: boolean,
@@ -27,13 +23,9 @@ type StoresListProps = {
 
 const StoreMain = ({
   t,
-  title,
   stores,
   featured,
   onLoadMore,
-  loadState,
-  loadToState,
-  storesAll,
   storesCount,
   isLoadedStores,
   setIsLoadedStores,
@@ -46,9 +38,6 @@ const StoreMain = ({
     <StoreList
       stores={stores}
       onLoadMore={onLoadMore}
-      loadState={loadState}
-      loadToState={loadToState}
-      storesAll={storesAll}
       storesCount={storesCount}
       isLoadedStores={isLoadedStores}
       setIsLoadedStores={setIsLoadedStores}
@@ -61,7 +50,6 @@ const StoreMain = ({
 StoreMain.defaultProps = {
   stores: [],
   featured: [],
-  storesAll: [],
 };
 
 StoreMain.Wrapper = styled.div`

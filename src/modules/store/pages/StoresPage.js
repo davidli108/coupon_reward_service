@@ -114,13 +114,9 @@ const StoresPage = ({
             />
             {!isLoadedMore || isLoadedStores ? (
               <StoreMain
-                title={title}
                 stores={stores}
                 featured={featured}
                 onLoadMore={onLoadMore}
-                loadState={loadState}
-                loadToState={loadToState}
-                storesAll={storesAll}
                 storesCount={storesCount}
                 isLoadedStores={isLoadedStores}
                 setIsLoadedStores={setIsLoadedStores}

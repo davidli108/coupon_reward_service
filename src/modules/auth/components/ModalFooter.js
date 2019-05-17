@@ -6,19 +6,19 @@ import breakpoint from 'styled-components-breakpoint';
 type ModalFooterProps = {
   footerText: string,
   textButton: string,
-  onRoutModal: Function,
+  onRouteModal: Function,
 };
 
 const ModalFooter = ({
   footerText,
-  onRoutModal,
+  onRouteModal,
   textButton,
 }: ModalFooterProps) => (
   <Fragment>
     <ModalFooter.Border />
     <ModalFooter.Content>
       <ModalFooter.Text>{footerText}</ModalFooter.Text>
-      <ModalFooter.Button onClick={onRoutModal}>
+      <ModalFooter.Button onClick={onRouteModal}>
         {textButton}
       </ModalFooter.Button>
     </ModalFooter.Content>

@@ -3,11 +3,7 @@ import * as R from 'ramda';
 
 import { LOGOUT } from '@modules/auth/AuthActions';
 
-import {
-  FETCH_FAVORITES,
-  ADD_FAVORITE,
-  REMOVE_FAVORITE,
-} from './FavoritesActions';
+import { FETCH_FAVORITES, REMOVE_FAVORITE } from './FavoritesActions';
 
 export const STATE_KEY = 'favorites';
 
@@ -32,13 +28,6 @@ const FavoritesReducer = (
       )(action);
 
       return R.assoc<any, any, any>('data', stores, state);
-    }
-    case `${ADD_FAVORITE}_SUCCESS`: {
-      const storeId = R.path(
-        ['meta', 'previousAction', 'payload', 'storeId'],
-        action,
-      );
-      return R.assocPath<any, any, any>(['data', storeId], {}, state);
     }
     case `${REMOVE_FAVORITE}_SUCCESS`: {
       const storeId = R.path(

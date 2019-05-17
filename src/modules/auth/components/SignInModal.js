@@ -19,13 +19,10 @@ import * as actions from '../AuthActions';
 type SignInModalProps = {
   t: string => string,
   history: Object,
-  title: string,
-  subTitle: string,
-  submitLabel: string,
   isActive: boolean,
   closeModal: Function,
-  onRoutModal: Function,
-  onRoutModalReset: Function,
+  onRouteModal: Function,
+  onRouteModalReset: Function,
   signIn: FormData => Promise<Object>,
   fetchUser: () => Promise<Object>,
 };
@@ -33,13 +30,10 @@ type SignInModalProps = {
 const SignInModal = ({
   t,
   history,
-  title,
-  subTitle,
-  submitLabel,
   isActive,
   closeModal,
-  onRoutModal,
-  onRoutModalReset,
+  onRouteModal,
+  onRouteModalReset,
   signIn,
   fetchUser,
 }: SignInModalProps) => {
@@ -75,8 +69,8 @@ const SignInModal = ({
 
   return (
     <ModalWrapper
-      title={title}
-      subTitle={subTitle}
+      title={t('auth.signIn.title')}
+      subTitle={t('auth.signIn.subTitle')}
       isActive={isActive}
       closeModal={closeModal}
     >
@@ -105,21 +99,25 @@ const SignInModal = ({
             placeholder={t('auth.signIn.password')}
             required
           />
-          <button>{submitLabel}</button>
+          <button>{t('auth.signIn.button')}</button>
         </SignInModal.Form>
         <SignInModal.PreFooter>
-          <button onClick={onRoutModalReset}>
+          <button onClick={onRouteModalReset}>
             {t('auth.signIn.forgotPassword')}
           </button>
         </SignInModal.PreFooter>
         <ModalFooter
           footerText={t('auth.signIn.footer.text')}
           textButton={t('auth.signIn.footer.button')}
-          onRoutModal={onRoutModal}
+          onRouteModal={onRouteModal}
         />
       </div>
     </ModalWrapper>
   );
+};
+
+SignInModal.defaultProps = {
+  isActive: true,
 };
 
 SignInModal.Or = styled.div`

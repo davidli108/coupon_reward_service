@@ -10,6 +10,8 @@ import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import moment from 'moment';
 
+import SearchBar from '@components/SearchBar/SearchBar';
+import { getIsAuthenticated } from '@modules/auth/AuthReducer';
 import * as couponsActions from '@modules/coupons/CouponsActions';
 import {
   getStores,
@@ -26,9 +28,8 @@ import * as favoritesActions from '@modules/favorites/FavoritesActions';
 import { getFavoritesMap } from '@modules/favorites/FavoritesReducer';
 
 // import DownloadPiggy from '../components/DownloadPiggy';
-import SearchBar from '@components/SearchBar/SearchBar';
 import TodaysFeaturedCoupon from '../components/TodaysFeaturedCoupon';
-import StoreList from '../components/StoreList';
+import FeaturedStoreList from '../components/FeaturedStoreList';
 import Content from '../components/Content';
 import FeatureCouponLoader from '../components/loaders/FeatureCouponLoader';
 
@@ -53,6 +54,7 @@ type CouponsPageProps = {
   favorites: any,
   addFavorite: any,
   removeFavorite: any,
+  isAuthenticated: boolean,
 };
 
 const CouponsPage = ({
@@ -77,6 +79,7 @@ const CouponsPage = ({
   favorites,
   addFavorite,
   removeFavorite,
+  isAuthenticated,
 }: CouponsPageProps) => {
   const [searchValue, setSearchValue] = useState('');
   const [isLoaded, setIsLoaded] = useState(true);
@@ -114,6 +117,7 @@ const CouponsPage = ({
       {isLoaded ? (
         offersCount !== 0 && Boolean(stores.length) ? (
           <TodaysFeaturedCoupon
+            isAuthenticated={isAuthenticated}
             store={stores[0]}
             favorites={favorites}
             addFavorite={addFavorite}
@@ -127,7 +131,7 @@ const CouponsPage = ({
       ) : (
         <FeatureCouponLoader />
       )}
-      <StoreList
+      <FeaturedStoreList
         stores={categories.stores}
         loaded={!!categories && !!categories.stores}
       />
@@ -143,6 +147,7 @@ const CouponsPage = ({
         isLoaded={isLoaded}
         setIsLoaded={setIsLoaded}
         getAllDeals={getAllDeals}
+        favoriteStores={Object.values(favorites)}
       />
     </CouponsPage.Wrapper>
   );
@@ -203,6 +208,7 @@ const mapStateToProps = state => ({
   offersCount: getOffersCount(state),
   getAllDeals: getCoupons(state),
   favorites: getFavoritesMap(state),
+  isAuthenticated: getIsAuthenticated(state),
 });
 
 const mapDispatchToProps = {

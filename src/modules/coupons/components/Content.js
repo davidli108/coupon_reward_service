@@ -6,6 +6,8 @@ import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
 
+import { FavoriteStoreList } from '@modules/store/components/StoreList';
+
 import Controls from './Controls';
 import CategoriesMobile from './CategoriesMobile';
 import Categories from './Categories';
@@ -29,6 +31,7 @@ type ContentProps = {
   isLoaded: boolean,
   setIsLoaded: boolean => void,
   getAllDeals: Object,
+  favoriteStores: any[],
 };
 
 const Content = ({
@@ -47,6 +50,7 @@ const Content = ({
   isLoaded,
   setIsLoaded,
   getAllDeals,
+  favoriteStores,
 }: ContentProps) => {
   const [loadCount, setLoadCount] = useState(20);
   const [isLoadedCategories, setIsLoadedCategories] = useState(false);
@@ -114,7 +118,7 @@ const Content = ({
         activeCategory={activeCategory}
         onActiveCategory={onActiveCategory}
       />
-      <Content.Grid>
+      <Content.Grid isFavoritesTab={getDealsFilter === 'favoriteStores'}>
         {isLoadedCategories ? (
           <Content.CategoriesWrapper>
             <Categories
@@ -139,10 +143,27 @@ const Content = ({
         )}
         <Content.CouponsWrapper>
           {getDealsFilter === 'favoriteStores' && (
-            <Content.AuthLabel>
-              {t('coupons.loginRegisterLabel')}
-            </Content.AuthLabel>
+            <>
+              {(favoriteStores || []).length ? (
+                <div style={{ padding: '10px 0' }}>
+                  <FavoriteStoreList
+                    stores={favoriteStores}
+                    onLoadMore={onLoadMore}
+                    storesCount={favoriteStores.length}
+                    isLoadedStores={true}
+                    setIsLoadedStores={() => null}
+                    isLoadedMore={true}
+                    setIsLoadedMore={() => null}
+                  />
+                </div>
+              ) : (
+                <Content.AuthLabel>
+                  {t('coupons.loginRegisterLabel')}
+                </Content.AuthLabel>
+              )}
+            </>
           )}
+
           {isLoaded ? (
             offersCount !== 0 ? (
               <Coupons coupons={getFilteredDeals} />
@@ -166,6 +187,7 @@ const Content = ({
               <Content.NoData>{t('coupons.noCouponsFound')}</Content.NoData>
             )
           )}
+
           <Content.LoadMoreDeals
             onClick={onLoadMore}
             isShow={
@@ -187,7 +209,7 @@ const Content = ({
 
 Content.Grid = styled.div`
   ${breakpoint('sx')`
-    width: 105%;
+    width: ${props => (props.isFavoritesTab ? '100' : '105')}%;
   `}
 
   ${breakpoint('md')`
@@ -198,6 +220,7 @@ Content.Grid = styled.div`
 
     > div:last-child {
       width: calc(100% - 247px) !important;
+      padding-right: ${props => (props.isFavoritesTab ? '10px' : '0')};
     }
   `}
 `;

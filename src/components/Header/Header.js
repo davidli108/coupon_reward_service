@@ -7,13 +7,12 @@ import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
 
+import { isCouponCategory } from '@config/CategoriesConfig';
 import * as actions from '@modules/auth/AuthActions';
 import { getIsAuthenticated } from '@modules/auth/AuthReducer';
-
-import SignInModal from '../../modules/auth/components/SignInModal';
-import SignUpModal from '../../modules/auth/components/SignUpModal';
-import ResetPasswordModal from '../../modules/auth/components/ResetPasswordModal';
-import { isCouponCategory } from '@config/CategoriesConfig';
+import SignInModal from '@modules/auth/components/SignInModal';
+import SignUpModal from '@modules/auth/components/SignUpModal';
+import ResetPasswordModal from '@modules/auth/components/ResetPasswordModal';
 
 import BurgerButton from './BurgerButton';
 import HeaderItem from './HeaderItem';
@@ -138,33 +137,20 @@ const Header = ({ t, getIsAuthenticated, location, logout }: HeaderProps) => {
 
       {currentModal === modal.modalSignIn && (
         <SignInModal
-          title={t('auth.signIn.title')}
-          subTitle={t('auth.signIn.subTitle')}
-          submitLabel={t('auth.signIn.button')}
-          isActive={true}
-          onRoutModalReset={() => setCurrentModal(modal.modalResetPassword)}
-          onRoutModal={() => setCurrentModal(modal.modalSignUp)}
+          onRouteModalReset={() => setCurrentModal(modal.modalResetPassword)}
+          onRouteModal={() => setCurrentModal(modal.modalSignUp)}
           closeModal={setCurrentModal.bind(null)}
         />
       )}
       {currentModal === modal.modalSignUp && (
         <SignUpModal
-          title={t('auth.signUp.title')}
-          subTitle={t('auth.signUp.subTitle')}
-          submitLabel={t('auth.signUp.button')}
-          linkTerms="/terms"
-          isActive={true}
-          onRoutModal={() => setCurrentModal(modal.modalSignIn)}
+          onRouteModal={() => setCurrentModal(modal.modalSignIn)}
           closeModal={setCurrentModal.bind(null)}
         />
       )}
       {currentModal === modal.modalResetPassword && (
         <ResetPasswordModal
-          title={t('auth.forgotPassword.title')}
-          subTitle={t('auth.forgotPassword.subTitle')}
-          submitLabel={t('auth.forgotPassword.button')}
-          isActive={true}
-          onRoutModal={() => setCurrentModal(modal.modalSignUp)}
+          onRouteModal={() => setCurrentModal(modal.modalSignUp)}
           closeModal={setCurrentModal.bind(null)}
         />
       )}
