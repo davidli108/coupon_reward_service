@@ -70,6 +70,7 @@ CouponCode.Code = styled.a`
   border: 2px dashed gray;
   background-color: #fefff4;
   color: black;
+  text-align: center;
 `;
 
 CouponCode.Rectangle = styled.div`
