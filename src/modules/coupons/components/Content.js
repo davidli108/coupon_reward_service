@@ -6,14 +6,24 @@ import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
 
+import SignInModal from '@modules/auth/components/SignInModal';
+import SignUpModal from '@modules/auth/components/SignUpModal';
+import ResetPasswordModal from '@modules/auth/components/ResetPasswordModal';
 import { FavoriteStoreList } from '@modules/store/components/StoreList';
 
 import Controls from './Controls';
 import CategoriesMobile from './CategoriesMobile';
 import Categories from './Categories';
+import EmptyFavoritesIcon from './EmptyFavoritesIcon';
 import Coupons from '../components/Coupons';
 
 import CategoriesLoader from '../components/loaders/CategoriesLoader';
+
+const modal = {
+  modalSignIn: 'modalSignIn',
+  modalSignUp: 'modalSignUp',
+  modalResetPassword: 'modalResetPassword',
+};
 
 type ContentProps = {
   t: string => string,
@@ -57,6 +67,7 @@ const Content = ({
   const [loadCount, setLoadCount] = useState(20);
   const [isLoadedCategories, setIsLoadedCategories] = useState(false);
   const [activeCategory, setActiveCategory] = useState(match.params.name);
+  const [currentModal, setCurrentModal] = React.useState(null);
 
   useEffect(() => {
     setIsLoaded(false);
@@ -146,7 +157,7 @@ const Content = ({
         <Content.CouponsWrapper>
           {getDealsFilter === 'favoriteStores' && (
             <>
-              {(favoriteStores || []).length ? (
+              {(favoriteStores || []).length > 0 && (
                 <div style={{ padding: '10px 0' }}>
                   <FavoriteStoreList
                     stores={favoriteStores}
@@ -158,12 +169,32 @@ const Content = ({
                     setIsLoadedMore={() => null}
                   />
                 </div>
-              ) : (
-                <Content.AuthLabel>
-                  {isAuthenticated
-                    ? t('coupons.followAnyStore')
-                    : t('coupons.loginRegisterLabel')}
-                </Content.AuthLabel>
+              )}
+
+              {(favoriteStores || []).length === 0 && isAuthenticated && (
+                <Content.FollowAnyStoreLabel>
+                  {t('coupons.followAnyStore')}
+                </Content.FollowAnyStoreLabel>
+              )}
+
+              {(favoriteStores || []).length === 0 && !isAuthenticated && (
+                <Content.AuthenticateSectionWrapper>
+                  <EmptyFavoritesIcon />
+                  <Content.AuthenticateLabel>
+                    <Content.AuthenticateControl
+                      onClick={() => setCurrentModal(modal.modalSignIn)}
+                    >
+                      {t('coupons.login')}
+                    </Content.AuthenticateControl>
+                    <span> {t('coupons.or')} </span>
+                    <Content.AuthenticateControl
+                      onClick={() => setCurrentModal(modal.modalSignUp)}
+                    >
+                      {t('coupons.register')}
+                    </Content.AuthenticateControl>
+                    <span> {t('coupons.favoriteStoresAndDeals')}</span>
+                  </Content.AuthenticateLabel>
+                </Content.AuthenticateSectionWrapper>
               )}
             </>
           )}
@@ -207,6 +238,26 @@ const Content = ({
           </Content.LoadMoreDeals>
         </Content.CouponsWrapper>
       </Content.Grid>
+
+      {currentModal === modal.modalSignIn && (
+        <SignInModal
+          onRouteModalReset={() => setCurrentModal(modal.modalResetPassword)}
+          onRouteModal={() => setCurrentModal(modal.modalSignUp)}
+          closeModal={setCurrentModal.bind(null)}
+        />
+      )}
+      {currentModal === modal.modalSignUp && (
+        <SignUpModal
+          onRouteModal={() => setCurrentModal(modal.modalSignIn)}
+          closeModal={setCurrentModal.bind(null)}
+        />
+      )}
+      {currentModal === modal.modalResetPassword && (
+        <ResetPasswordModal
+          onRouteModal={() => setCurrentModal(modal.modalSignUp)}
+          closeModal={setCurrentModal.bind(null)}
+        />
+      )}
     </div>
   );
 };
@@ -229,7 +280,7 @@ Content.Grid = styled.div`
   `}
 `;
 
-Content.AuthLabel = styled.p`
+Content.FollowAnyStoreLabel = styled.p`
   margin-top: 100px;
   margin-left: 80px;
   font-size: 25px;
@@ -342,6 +393,50 @@ Content.NoData = styled.div`
   ${breakpoint('lg')`
     width: 95%;
   `}
+`;
+
+Content.AuthenticateSectionWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px 40px;
+  background: #fafbfc;
+  border: 1px solid #dadde2;
+  border-radius: 5px;
+  margin-top: 30px;
+
+  ${breakpoint('sx')`
+    padding: 35px 40px;
+    margin-top: 40px;
+  `}
+
+  ${breakpoint('md')`
+    padding: 50px 40px;
+    margin-top: 10px;
+  `}
+
+  ${breakpoint('lg')`
+    padding: 62px 40px;
+  `}
+
+  ${breakpoint('xl')`
+    padding: 76px 40px;
+  `}
+`;
+
+Content.AuthenticateLabel = styled.p`
+  margin-top: 13px;
+  color: #899197;
+  font-size: 16px;
+  letter-spacing: 0.3px;
+  text-align: center;
+  line-height: 150%;
+`;
+
+Content.AuthenticateControl = styled.span`
+  color: #7ed321;
+  text-decoration-line: underline;
+  cursor: pointer;
 `;
 
 export default compose(

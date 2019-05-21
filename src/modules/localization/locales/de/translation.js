@@ -203,8 +203,11 @@ export default {
     todaysFeatureCoupon: 'Heutige Gutschein von',
     noCouponsFound: 'Keine Gutscheine gefunden',
     noFeaturedCouponsFound: 'Keine vorgestellten Gutscheine gefunden',
-    loginRegisterLabel:
-      'Anmelden / Registrieren, um eine Liste Ihrer bevorzugten Geschäfte und Angebote zu erstellen',
+    login: 'Anmeldung',
+    register: 'Registrieren',
+    or: 'oder',
+    favoriteStoresAndDeals:
+      'um eine Liste Ihrer Lieblingsgeschäfte und -geschäfte zu erstellen.',
     followAnyStore:
       "Besuchen Sie eine Store-Seite und klicken Sie auf 'Store folgen', um sie Ihrer Liste hinzuzufügen",
   },
