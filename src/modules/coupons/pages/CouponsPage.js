@@ -148,6 +148,7 @@ const CouponsPage = ({
         setIsLoaded={setIsLoaded}
         getAllDeals={getAllDeals}
         favoriteStores={Object.values(favorites)}
+        isAuthenticated={isAuthenticated}
       />
     </CouponsPage.Wrapper>
   );

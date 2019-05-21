@@ -32,6 +32,7 @@ type ContentProps = {
   setIsLoaded: boolean => void,
   getAllDeals: Object,
   favoriteStores: any[],
+  isAuthenticated: boolean,
 };
 
 const Content = ({
@@ -51,6 +52,7 @@ const Content = ({
   setIsLoaded,
   getAllDeals,
   favoriteStores,
+  isAuthenticated,
 }: ContentProps) => {
   const [loadCount, setLoadCount] = useState(20);
   const [isLoadedCategories, setIsLoadedCategories] = useState(false);
@@ -158,7 +160,9 @@ const Content = ({
                 </div>
               ) : (
                 <Content.AuthLabel>
-                  {t('coupons.loginRegisterLabel')}
+                  {isAuthenticated
+                    ? t('coupons.followAnyStore')
+                    : t('coupons.loginRegisterLabel')}
                 </Content.AuthLabel>
               )}
             </>
