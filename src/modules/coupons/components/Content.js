@@ -412,7 +412,7 @@ Content.AuthenticateSectionWrapper = styled.div`
 
   ${breakpoint('md')`
     padding: 50px 40px;
-    margin-top: 10px;
+    margin-top: 20px;
   `}
 
   ${breakpoint('lg')`
