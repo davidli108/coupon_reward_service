@@ -205,6 +205,8 @@ export default {
     noFeaturedCouponsFound: 'Keine vorgestellten Gutscheine gefunden',
     loginRegisterLabel:
       'Anmelden / Registrieren, um eine Liste Ihrer bevorzugten Geschäfte und Angebote zu erstellen',
+    followAnyStore:
+      "Besuchen Sie eine Store-Seite und klicken Sie auf 'Store folgen', um sie Ihrer Liste hinzuzufügen",
   },
   cashbackStores: {
     shopBy: {

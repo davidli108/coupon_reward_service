@@ -208,6 +208,8 @@ export default {
     noFeaturedCouponsFound: 'Aucun coupon en vedette trouvé',
     loginRegisterLabel:
       'Connectez-vous / enregistrez-vous pour faire une liste de vos boutiques préférées',
+    followAnyStore:
+      "Visitez n'importe quelle page de magasin et cliquez sur 'Suivre le magasin' pour ajouter à votre liste",
   },
   cashbackStores: {
     shopBy: {

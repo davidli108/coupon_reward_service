@@ -204,6 +204,8 @@ export default {
     noFeaturedCouponsFound: 'No Featured Coupons Found',
     loginRegisterLabel:
       'Login/register to make a list of your favourite stores and deals',
+    followAnyStore:
+      "Visit any store page and click 'Follow Store' to add to your list",
   },
   cashbackStores: {
     shopBy: {
