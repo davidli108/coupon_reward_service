@@ -216,6 +216,12 @@ TodaysFeaturedCoupon.Content = styled.div`
       width: calc(33% - 20px) !important;
     }
   `}
+
+  @media (min-width: 768px) and (max-width: 991px) {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding: 34px 48px;
+  }
 `;
 
 TodaysFeaturedCoupon.LogoControlsWrapper = styled.div`
@@ -270,6 +276,14 @@ TodaysFeaturedCoupon.LogoControlsWrapper = styled.div`
       margin-right: 5%;
     }
   `}
+
+  @media (min-width: 768px) and (max-width: 991px) {
+    grid-row-start: span 2;
+    justify-content: flex-start;
+    margin: 0;
+    padding: 30px 0 30px 30px;
+    display: flex;
+  }
 `;
 
 TodaysFeaturedCoupon.Logo = styled.img`
@@ -316,6 +330,10 @@ TodaysFeaturedCoupon.Controls = styled.div`
     color: ${({ isLiked }) => (isLiked ? 'red' : '#adb8c0')};
   }
 
+  @media (min-width: 768px) and (max-width: 991px) {
+    margin: 30px 0 0 0;
+  }
+
   ${breakpoint('sx')`
     align-items: center;
     justify-content: flex-end;
@@ -349,6 +367,10 @@ TodaysFeaturedCoupon.OfferingWrapper = styled.div`
   ${breakpoint('xl')`
     width: fit-content;
   `}
+
+  @media (min-width: 768px) and (max-width: 991px) {
+    width: 100% !important;
+  }
 `;
 
 TodaysFeaturedCoupon.Offering = styled.div`
@@ -422,6 +444,10 @@ TodaysFeaturedCoupon.DescriptionButtonWrapper = styled.div`
 
   > * {
     width: 100%;
+  }
+
+  @media (min-width: 768px) and (max-width: 991px) {
+    width: 100% !important;
   }
 
   ${breakpoint('md')`
