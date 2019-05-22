@@ -92,14 +92,12 @@ const BrandHeader = ({
             </>
           )}
           <BrandHeader.SmNonVisible>
-            <span>
-              {t('templates.upToCashback').replace('%s', store.store_discount)}
-            </span>
+            <span>{store.store_cashback_text}</span>
           </BrandHeader.SmNonVisible>
         </BrandHeader.OffersStats>
         <BrandHeader.SmVisible>
           <BrandHeader.CashBack>
-            {t('templates.upToCashback').replace('%s', store.store_discount)}
+            {store.store_cashback_text}
           </BrandHeader.CashBack>
         </BrandHeader.SmVisible>
         <BrandHeader.FollowStoreWrapper isFavorite={isFavorite}>
