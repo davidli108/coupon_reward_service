@@ -59,7 +59,6 @@ const SignInModal = ({
           setEmail('');
           setPassword('');
           closeModal();
-          history.push('/');
         } else {
           setError(true);
         }

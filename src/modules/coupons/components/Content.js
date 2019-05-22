@@ -106,7 +106,7 @@ const Content = ({
   const onActiveCategory = shortName => {
     resetCoupons();
     if (match.params.name !== shortName) {
-      history.push('/coupons/' + shortName);
+      history.push(`/coupons/${shortName}`);
       setActiveCategory(shortName);
       setIsLoaded(false);
       getCouponsByCategory(shortName).then(() => setIsLoaded(true));

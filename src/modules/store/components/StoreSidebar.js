@@ -87,7 +87,7 @@ const StoreSidebar = ({
 
   const onActiveCategory = shortName => {
     if (match.params.name !== shortName) {
-      history.push('/cashback-stores/' + shortName);
+      history.push(`/cashback-stores/${shortName}`);
       setActiveCategory(shortName);
       setIsLoadedStores(false);
       getStore(shortName).then(() => setIsLoadedStores(true));

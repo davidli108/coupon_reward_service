@@ -1,7 +1,7 @@
 // @flow
 import * as R from 'ramda';
 
-import { SIGN_IN, FETCH_USER, SIGN_UP, LOGOUT } from './AuthActions';
+import { PASSWORD, SIGN_IN, FETCH_USER, SIGN_UP, LOGOUT } from './AuthActions';
 
 const initialState = {
   isAuthenticated: false,
@@ -52,6 +52,9 @@ const AuthReducer = (
       }
 
       return R.merge(initialState, { isAuthenticated: true, ...data });
+    }
+    case `${PASSWORD}_SUCCESS`: {
+      return R.merge(state, { isAuthenticated: true });
     }
     case LOGOUT: {
       return initialState;

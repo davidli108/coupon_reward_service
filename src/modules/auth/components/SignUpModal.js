@@ -98,7 +98,6 @@ const SignUpModal = ({
       insertPassword(formData).then(() => {
         fetchUser().then(res => {
           closeModal();
-          history.push('/welcome');
         });
       });
     }
@@ -164,7 +163,10 @@ const SignUpModal = ({
           </SignUpModal.Form>
           <SignUpModal.PreFooter>
             {t('auth.signUp.preFooter.label')}
-            <a href="/terms">{t('auth.signUp.preFooter.terms')}</a>
+            <span> </span>
+            <a href="/terms" style={{ display: 'inline-block' }}>
+              {t('auth.signUp.preFooter.terms')}
+            </a>
           </SignUpModal.PreFooter>
           <ModalFooter
             footerText={t('auth.signUp.footer.text')}
