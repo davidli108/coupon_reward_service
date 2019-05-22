@@ -1,0 +1,2998 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots @Overview|@Patterns Color 1`] = `
+.c0 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 150px;
+  width: 200px;
+  padding: 20px;
+  margin: 10px;
+  box-sizing: border-box;
+  color: #000;
+  background: #FFF;
+  border: solid 1px #bdbbb9;
+  border-radius: 2px;
+  font-family: Roboto,sans-serif;
+  cursor: pointer;
+}
+
+.c0:hover label {
+  opacity: 1;
+}
+
+.c4 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 150px;
+  width: 200px;
+  padding: 20px;
+  margin: 10px;
+  box-sizing: border-box;
+  color: #000;
+  background: #ADB8C0;
+  border: solid 1px #bdbbb9;
+  border-radius: 2px;
+  font-family: Roboto,sans-serif;
+  cursor: pointer;
+}
+
+.c4:hover label {
+  opacity: 1;
+}
+
+.c5 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 150px;
+  width: 200px;
+  padding: 20px;
+  margin: 10px;
+  box-sizing: border-box;
+  color: #000;
+  background: #DADDE2;
+  border: solid 1px #bdbbb9;
+  border-radius: 2px;
+  font-family: Roboto,sans-serif;
+  cursor: pointer;
+}
+
+.c5:hover label {
+  opacity: 1;
+}
+
+.c6 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 150px;
+  width: 200px;
+  padding: 20px;
+  margin: 10px;
+  box-sizing: border-box;
+  color: #000;
+  background: #F9FAFC;
+  border: solid 1px #bdbbb9;
+  border-radius: 2px;
+  font-family: Roboto,sans-serif;
+  cursor: pointer;
+}
+
+.c6:hover label {
+  opacity: 1;
+}
+
+.c7 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 150px;
+  width: 200px;
+  padding: 20px;
+  margin: 10px;
+  box-sizing: border-box;
+  color: #fff;
+  background: #000;
+  border: solid 1px #bdbbb9;
+  border-radius: 2px;
+  font-family: Roboto,sans-serif;
+  cursor: pointer;
+}
+
+.c7:hover label {
+  opacity: 1;
+}
+
+.c8 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 150px;
+  width: 200px;
+  padding: 20px;
+  margin: 10px;
+  box-sizing: border-box;
+  color: #fff;
+  background: #434343;
+  border: solid 1px #bdbbb9;
+  border-radius: 2px;
+  font-family: Roboto,sans-serif;
+  cursor: pointer;
+}
+
+.c8:hover label {
+  opacity: 1;
+}
+
+.c9 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 150px;
+  width: 200px;
+  padding: 20px;
+  margin: 10px;
+  box-sizing: border-box;
+  color: #fff;
+  background: #374B5A;
+  border: solid 1px #bdbbb9;
+  border-radius: 2px;
+  font-family: Roboto,sans-serif;
+  cursor: pointer;
+}
+
+.c9:hover label {
+  opacity: 1;
+}
+
+.c10 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 150px;
+  width: 200px;
+  padding: 20px;
+  margin: 10px;
+  box-sizing: border-box;
+  color: #fff;
+  background: rgba(0,0,0,0.2);
+  border: solid 1px #bdbbb9;
+  border-radius: 2px;
+  font-family: Roboto,sans-serif;
+  cursor: pointer;
+}
+
+.c10:hover label {
+  opacity: 1;
+}
+
+.c11 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 150px;
+  width: 200px;
+  padding: 20px;
+  margin: 10px;
+  box-sizing: border-box;
+  color: #fff;
+  background: rgba(0,0,0,0.5);
+  border: solid 1px #bdbbb9;
+  border-radius: 2px;
+  font-family: Roboto,sans-serif;
+  cursor: pointer;
+}
+
+.c11:hover label {
+  opacity: 1;
+}
+
+.c12 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 150px;
+  width: 200px;
+  padding: 20px;
+  margin: 10px;
+  box-sizing: border-box;
+  color: #000;
+  background: #899197;
+  border: solid 1px #bdbbb9;
+  border-radius: 2px;
+  font-family: Roboto,sans-serif;
+  cursor: pointer;
+}
+
+.c12:hover label {
+  opacity: 1;
+}
+
+.c13 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 150px;
+  width: 200px;
+  padding: 20px;
+  margin: 10px;
+  box-sizing: border-box;
+  color: #fff;
+  background: #3b5998;
+  border: solid 1px #bdbbb9;
+  border-radius: 2px;
+  font-family: Roboto,sans-serif;
+  cursor: pointer;
+}
+
+.c13:hover label {
+  opacity: 1;
+}
+
+.c14 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 150px;
+  width: 200px;
+  padding: 20px;
+  margin: 10px;
+  box-sizing: border-box;
+  color: #000;
+  background: #00CBE9;
+  border: solid 1px #bdbbb9;
+  border-radius: 2px;
+  font-family: Roboto,sans-serif;
+  cursor: pointer;
+}
+
+.c14:hover label {
+  opacity: 1;
+}
+
+.c15 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 150px;
+  width: 200px;
+  padding: 20px;
+  margin: 10px;
+  box-sizing: border-box;
+  color: #000;
+  background: #00B4CF;
+  border: solid 1px #bdbbb9;
+  border-radius: 2px;
+  font-family: Roboto,sans-serif;
+  cursor: pointer;
+}
+
+.c15:hover label {
+  opacity: 1;
+}
+
+.c16 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 150px;
+  width: 200px;
+  padding: 20px;
+  margin: 10px;
+  box-sizing: border-box;
+  color: #000;
+  background: #337ab7;
+  border: solid 1px #bdbbb9;
+  border-radius: 2px;
+  font-family: Roboto,sans-serif;
+  cursor: pointer;
+}
+
+.c16:hover label {
+  opacity: 1;
+}
+
+.c17 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 150px;
+  width: 200px;
+  padding: 20px;
+  margin: 10px;
+  box-sizing: border-box;
+  color: #000;
+  background: #D4D4D4;
+  border: solid 1px #bdbbb9;
+  border-radius: 2px;
+  font-family: Roboto,sans-serif;
+  cursor: pointer;
+}
+
+.c17:hover label {
+  opacity: 1;
+}
+
+.c18 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 150px;
+  width: 200px;
+  padding: 20px;
+  margin: 10px;
+  box-sizing: border-box;
+  color: #000;
+  background: #C2C2C2;
+  border: solid 1px #bdbbb9;
+  border-radius: 2px;
+  font-family: Roboto,sans-serif;
+  cursor: pointer;
+}
+
+.c18:hover label {
+  opacity: 1;
+}
+
+.c19 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 150px;
+  width: 200px;
+  padding: 20px;
+  margin: 10px;
+  box-sizing: border-box;
+  color: #000;
+  background: #7F7F7F;
+  border: solid 1px #bdbbb9;
+  border-radius: 2px;
+  font-family: Roboto,sans-serif;
+  cursor: pointer;
+}
+
+.c19:hover label {
+  opacity: 1;
+}
+
+.c20 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 150px;
+  width: 200px;
+  padding: 20px;
+  margin: 10px;
+  box-sizing: border-box;
+  color: #000;
+  background: #B1B1B1;
+  border: solid 1px #bdbbb9;
+  border-radius: 2px;
+  font-family: Roboto,sans-serif;
+  cursor: pointer;
+}
+
+.c20:hover label {
+  opacity: 1;
+}
+
+.c21 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 150px;
+  width: 200px;
+  padding: 20px;
+  margin: 10px;
+  box-sizing: border-box;
+  color: #000;
+  background: #ef65a0;
+  border: solid 1px #bdbbb9;
+  border-radius: 2px;
+  font-family: Roboto,sans-serif;
+  cursor: pointer;
+}
+
+.c21:hover label {
+  opacity: 1;
+}
+
+.c22 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 150px;
+  width: 200px;
+  padding: 20px;
+  margin: 10px;
+  box-sizing: border-box;
+  color: #000;
+  background: #ee5797;
+  border: solid 1px #bdbbb9;
+  border-radius: 2px;
+  font-family: Roboto,sans-serif;
+  cursor: pointer;
+}
+
+.c22:hover label {
+  opacity: 1;
+}
+
+.c1 {
+  margin: 0 0 10px;
+  font-weight: bold;
+}
+
+.c2 {
+  margin: 0;
+}
+
+.c3 {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  opacity: 0;
+  -webkit-transition: 0.3s all;
+  transition: 0.3s all;
+}
+
+<div>
+  <h2
+    style={
+      Object {
+        "fontFamily": "Roboto",
+        "margin": "20px 10px",
+      }
+    }
+  >
+    Color
+  </h2>
+  <div
+    style={
+      Object {
+        "display": "flex",
+        "flexWrap": "wrap",
+      }
+    }
+  >
+    <div
+      className="c0"
+      color="#FFF"
+      data-clipboard-text="\${props => props.theme.colors.white}"
+    >
+      <p
+        className="c1"
+      >
+        White
+      </p>
+      <p
+        className="c2"
+      >
+        #FFF
+      </p>
+      <label
+        className="c3"
+      >
+        Copy
+      </label>
+    </div>
+    <div
+      className="c4"
+      color="#ADB8C0"
+      data-clipboard-text="\${props => props.theme.colors.whiteDark}"
+    >
+      <p
+        className="c1"
+      >
+        WhiteDark
+      </p>
+      <p
+        className="c2"
+      >
+        #ADB8C0
+      </p>
+      <label
+        className="c3"
+      >
+        Copy
+      </label>
+    </div>
+    <div
+      className="c5"
+      color="#DADDE2"
+      data-clipboard-text="\${props => props.theme.colors.whiteLight}"
+    >
+      <p
+        className="c1"
+      >
+        WhiteLight
+      </p>
+      <p
+        className="c2"
+      >
+        #DADDE2
+      </p>
+      <label
+        className="c3"
+      >
+        Copy
+      </label>
+    </div>
+    <div
+      className="c6"
+      color="#F9FAFC"
+      data-clipboard-text="\${props => props.theme.colors.whiteExLight}"
+    >
+      <p
+        className="c1"
+      >
+        WhiteExLight
+      </p>
+      <p
+        className="c2"
+      >
+        #F9FAFC
+      </p>
+      <label
+        className="c3"
+      >
+        Copy
+      </label>
+    </div>
+    <div
+      className="c7"
+      color="#000"
+      data-clipboard-text="\${props => props.theme.colors.black}"
+    >
+      <p
+        className="c1"
+      >
+        Black
+      </p>
+      <p
+        className="c2"
+      >
+        #000
+      </p>
+      <label
+        className="c3"
+      >
+        Copy
+      </label>
+    </div>
+    <div
+      className="c8"
+      color="#434343"
+      data-clipboard-text="\${props => props.theme.colors.blackGray}"
+    >
+      <p
+        className="c1"
+      >
+        BlackGray
+      </p>
+      <p
+        className="c2"
+      >
+        #434343
+      </p>
+      <label
+        className="c3"
+      >
+        Copy
+      </label>
+    </div>
+    <div
+      className="c9"
+      color="#374B5A"
+      data-clipboard-text="\${props => props.theme.colors.blackLight}"
+    >
+      <p
+        className="c1"
+      >
+        BlackLight
+      </p>
+      <p
+        className="c2"
+      >
+        #374B5A
+      </p>
+      <label
+        className="c3"
+      >
+        Copy
+      </label>
+    </div>
+    <div
+      className="c10"
+      color="rgba(0, 0, 0, 0.2)"
+      data-clipboard-text="\${props => props.theme.colors.blackAlpha}"
+    >
+      <p
+        className="c1"
+      >
+        BlackAlpha
+      </p>
+      <p
+        className="c2"
+      >
+        rgba(0, 0, 0, 0.2)
+      </p>
+      <label
+        className="c3"
+      >
+        Copy
+      </label>
+    </div>
+    <div
+      className="c11"
+      color="rgba(0, 0, 0, 0.5)"
+      data-clipboard-text="\${props => props.theme.colors.blackAlphaDark}"
+    >
+      <p
+        className="c1"
+      >
+        BlackAlphaDark
+      </p>
+      <p
+        className="c2"
+      >
+        rgba(0, 0, 0, 0.5)
+      </p>
+      <label
+        className="c3"
+      >
+        Copy
+      </label>
+    </div>
+    <div
+      className="c12"
+      color="#899197"
+      data-clipboard-text="\${props => props.theme.colors.blackExLight}"
+    >
+      <p
+        className="c1"
+      >
+        BlackExLight
+      </p>
+      <p
+        className="c2"
+      >
+        #899197
+      </p>
+      <label
+        className="c3"
+      >
+        Copy
+      </label>
+    </div>
+    <div
+      className="c13"
+      color="#3b5998"
+      data-clipboard-text="\${props => props.theme.colors.blueFacebook}"
+    >
+      <p
+        className="c1"
+      >
+        BlueFacebook
+      </p>
+      <p
+        className="c2"
+      >
+        #3b5998
+      </p>
+      <label
+        className="c3"
+      >
+        Copy
+      </label>
+    </div>
+    <div
+      className="c14"
+      color="#00CBE9"
+      data-clipboard-text="\${props => props.theme.colors.blue}"
+    >
+      <p
+        className="c1"
+      >
+        Blue
+      </p>
+      <p
+        className="c2"
+      >
+        #00CBE9
+      </p>
+      <label
+        className="c3"
+      >
+        Copy
+      </label>
+    </div>
+    <div
+      className="c15"
+      color="#00B4CF"
+      data-clipboard-text="\${props => props.theme.colors.blueDark}"
+    >
+      <p
+        className="c1"
+      >
+        BlueDark
+      </p>
+      <p
+        className="c2"
+      >
+        #00B4CF
+      </p>
+      <label
+        className="c3"
+      >
+        Copy
+      </label>
+    </div>
+    <div
+      className="c16"
+      color="#337ab7"
+      data-clipboard-text="\${props => props.theme.colors.blueExDark}"
+    >
+      <p
+        className="c1"
+      >
+        BlueExDark
+      </p>
+      <p
+        className="c2"
+      >
+        #337ab7
+      </p>
+      <label
+        className="c3"
+      >
+        Copy
+      </label>
+    </div>
+    <div
+      className="c17"
+      color="#D4D4D4"
+      data-clipboard-text="\${props => props.theme.colors.gray}"
+    >
+      <p
+        className="c1"
+      >
+        Gray
+      </p>
+      <p
+        className="c2"
+      >
+        #D4D4D4
+      </p>
+      <label
+        className="c3"
+      >
+        Copy
+      </label>
+    </div>
+    <div
+      className="c18"
+      color="#C2C2C2"
+      data-clipboard-text="\${props => props.theme.colors.grayLight}"
+    >
+      <p
+        className="c1"
+      >
+        GrayLight
+      </p>
+      <p
+        className="c2"
+      >
+        #C2C2C2
+      </p>
+      <label
+        className="c3"
+      >
+        Copy
+      </label>
+    </div>
+    <div
+      className="c19"
+      color="#7F7F7F"
+      data-clipboard-text="\${props => props.theme.colors.grayDark}"
+    >
+      <p
+        className="c1"
+      >
+        GrayDark
+      </p>
+      <p
+        className="c2"
+      >
+        #7F7F7F
+      </p>
+      <label
+        className="c3"
+      >
+        Copy
+      </label>
+    </div>
+    <div
+      className="c20"
+      color="#B1B1B1"
+      data-clipboard-text="\${props => props.theme.colors.grayTintsDark}"
+    >
+      <p
+        className="c1"
+      >
+        GrayTintsDark
+      </p>
+      <p
+        className="c2"
+      >
+        #B1B1B1
+      </p>
+      <label
+        className="c3"
+      >
+        Copy
+      </label>
+    </div>
+    <div
+      className="c21"
+      color="#ef65a0"
+      data-clipboard-text="\${props => props.theme.colors.pink}"
+    >
+      <p
+        className="c1"
+      >
+        Ping
+      </p>
+      <p
+        className="c2"
+      >
+        #ef65a0
+      </p>
+      <label
+        className="c3"
+      >
+        Copy
+      </label>
+    </div>
+    <div
+      className="c22"
+      color="#ee5797"
+      data-clipboard-text="\${props => props.theme.colors.pinkDark}"
+    >
+      <p
+        className="c1"
+      >
+        PinkDark
+      </p>
+      <p
+        className="c2"
+      >
+        #ee5797
+      </p>
+      <label
+        className="c3"
+      >
+        Copy
+      </label>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Components|@Store Featured 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 11px 0;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-basis: 33.33%;
+  -ms-flex-preferred-size: 33.33%;
+  flex-basis: 33.33%;
+  padding: 10px 32px 18px;
+  border: 1px solid #DADDE2;
+  border-radius: 5px;
+  -webkit-flex-basis: 100%;
+  -ms-flex-preferred-size: 100%;
+  flex-basis: 100%;
+  margin: 0 0 15px 0;
+  padding: 10px 28px 18px;
+}
+
+.c1:nth-child(2) {
+  margin: 0 30px;
+}
+
+.c1:nth-child(2) {
+  margin: 0;
+}
+
+.c1:nth-child(3) {
+  display: none;
+}
+
+.c2 {
+  display: block;
+  width: 100%;
+  padding: 9px 0;
+  background: #00CBE9;
+  border: 1px solid #00B4CF;
+  border-radius: 4px;
+  font-weight: bold;
+  line-height: 20px;
+  font-size: 17px;
+  text-align: center;
+  -webkit-letter-spacing: 0.51px;
+  -moz-letter-spacing: 0.51px;
+  -ms-letter-spacing: 0.51px;
+  letter-spacing: 0.51px;
+  color: #FFF;
+  cursor: pointer;
+  -webkit-transition: background 205ms linear;
+  transition: background 205ms linear;
+}
+
+.c2:hover {
+  background: #00B4CF;
+}
+
+.c3 {
+  padding: 24px 0 0;
+  font-weight: 500;
+  line-height: 21px;
+  font-size: 15px;
+  color: #374B5A;
+}
+
+@media (min-width:25.8125em) {
+  .c0 {
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    font-size: 22px;
+    padding: 28px 0 20px;
+  }
+}
+
+@media (min-width:36em) {
+  .c0 {
+    padding: 33px 0;
+  }
+}
+
+@media (min-width:48em) {
+  .c0 {
+    padding: 28px 0 20px;
+  }
+}
+
+@media (min-width:62em) {
+  .c0 {
+    padding: 37px 0;
+  }
+}
+
+@media (min-width:75em) {
+  .c0 {
+    padding: 37px 0 33px;
+  }
+}
+
+@media (min-width:25.8125em) {
+  .c1 {
+    margin: 0;
+    padding: 10px 28px 18px;
+  }
+
+  .c1:nth-child(2) {
+    margin: 0 0 0 30px;
+  }
+}
+
+@media (min-width:36em) {
+  .c1 {
+    padding: 10px 14px 18px;
+  }
+
+  .c1:nth-child(2) {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+
+  .c1:nth-child(3) {
+    display: none;
+  }
+
+  .c1:nth-child(2) {
+    margin: 0 0 0 30px;
+  }
+}
+
+@media (min-width:48em) {
+  .c1 {
+    padding: 10px 32px 18px;
+  }
+}
+
+@media (min-width:62em) {
+  .c1:nth-child(2) {
+    margin: 0 30px;
+  }
+
+  .c1:nth-child(3) {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <a
+      className="c2"
+      href="/coupons/undefined"
+      onClick={[Function]}
+    >
+      build.visitStore
+    </a>
+    <p
+      className="c3"
+    >
+      
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Components|@Store StoreList 1`] = `
+.c2 {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c5 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 100%;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c0 {
+  margin: 0;
+}
+
+.c1 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border: 1px solid #DADDE2;
+  border-bottom: none;
+  padding: 30px 28px 30px 28px;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c1:first-child {
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+
+.c1:last-child {
+  border-bottom: 1px solid #DADDE2;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.c3 {
+  width: 150px;
+}
+
+.c4 {
+  display: block;
+  width: 88px;
+  height: 88px;
+  object-fit: contain;
+  margin: 0 17px 0 0;
+}
+
+.c6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-basis: 100%;
+  -ms-flex-preferred-size: 100%;
+  flex-basis: 100%;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  margin: 0 0 11px 0;
+}
+
+.c7 {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0 0 11px 0;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c8 {
+  margin: 0 30px 0 0;
+  margin: 0 21px 0 0;
+}
+
+.c9 {
+  display: block;
+  font-weight: 500;
+  line-height: 23px;
+  font-size: 13px;
+  color: #C2C2C2;
+}
+
+.c10 {
+  font-weight: bold;
+  line-height: 21px;
+  color: #374B5A;
+  font-size: 13px;
+  margin: 5px 0 0 0;
+}
+
+.c11 {
+  font-weight: 500;
+  line-height: 23px;
+  font-size: 13px;
+  color: #374B5A;
+  margin: 12px 0 0 0;
+}
+
+.c12 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-basis: 184px;
+  -ms-flex-preferred-size: 184px;
+  flex-basis: 184px;
+  padding: 9px 0;
+  font-weight: bold;
+  background: #00CBE9;
+  border: 1px solid #00B4CF;
+  border-radius: 4px;
+  line-height: 20px;
+  font-size: 17px;
+  text-align: center;
+  -webkit-letter-spacing: 0.51px;
+  -moz-letter-spacing: 0.51px;
+  -ms-letter-spacing: 0.51px;
+  letter-spacing: 0.51px;
+  color: #FFF;
+  cursor: pointer;
+  -webkit-transition: background 205ms linear;
+  transition: background 205ms linear;
+  display: none;
+}
+
+.c12:hover {
+  background: #00B4CF;
+}
+
+.c13 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-basis: 184px;
+  -ms-flex-preferred-size: 184px;
+  flex-basis: 184px;
+  padding: 9px 0;
+  font-weight: bold;
+  background: #00CBE9;
+  border: 1px solid #00B4CF;
+  border-radius: 4px;
+  line-height: 20px;
+  font-size: 17px;
+  text-align: center;
+  -webkit-letter-spacing: 0.51px;
+  -moz-letter-spacing: 0.51px;
+  -ms-letter-spacing: 0.51px;
+  letter-spacing: 0.51px;
+  color: #FFF;
+  cursor: pointer;
+  -webkit-transition: background 205ms linear;
+  transition: background 205ms linear;
+  display: none;
+  display: block;
+  -webkit-flex-basis: auto;
+  -ms-flex-preferred-size: auto;
+  flex-basis: auto;
+  width: 100%;
+}
+
+.c13:hover {
+  background: #00B4CF;
+}
+
+.c14 {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  -webkit-letter-spacing: 0.45px;
+  -moz-letter-spacing: 0.45px;
+  -ms-letter-spacing: 0.45px;
+  letter-spacing: 0.45px;
+  color: #ADB8C0;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  -webkit-transition: color 205ms linear;
+  transition: color 205ms linear;
+}
+
+.c14 p {
+  line-height: 80px;
+}
+
+.c14:hover {
+  color: #7F7F7F;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+@media (min-width:48em) {
+  .c5 {
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+}
+
+@media (min-width:25.8125em) {
+  .c1 {
+    padding: 30px 28px 30px 35px;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+}
+
+@media (min-width:36em) {
+  .c1 {
+    padding: 10px 7px 10px 10px;
+  }
+}
+
+@media (min-width:48em) {
+  .c1 {
+    padding: 23px 24px 23px 18px;
+  }
+}
+
+@media (min-width:62em) {
+  .c1 {
+    padding: 23px 42px 23px 35px;
+  }
+}
+
+@media (min-width:25.8125em) {
+  .c4 {
+    margin: 0 33px 0 0;
+  }
+}
+
+@media (min-width:36em) {
+  .c4 {
+    margin: 0 23px 0 0;
+  }
+}
+
+@media (min-width:48em) {
+  .c4 {
+    margin: 0 26px 0 0;
+  }
+}
+
+@media (min-width:62em) {
+  .c4 {
+    margin: 0 37px 0 0;
+  }
+}
+
+@media (min-width:36em) {
+  .c6 {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-flex-basis: auto;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+  }
+}
+
+@media (min-width:48em) {
+  .c6 {
+    -webkit-align-items: flex-start;
+    -webkit-box-align: flex-start;
+    -ms-flex-align: flex-start;
+    align-items: flex-start;
+    -webkit-flex-basis: 100%;
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+    margin: 0;
+  }
+}
+
+@media (min-width:62em) {
+  .c6 {
+    -webkit-flex-basis: auto;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-align-items: flex-end;
+    -webkit-box-align: flex-end;
+    -ms-flex-align: flex-end;
+    align-items: flex-end;
+  }
+}
+
+@media (min-width:25.8125em) {
+  .c7 {
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+}
+
+@media (min-width:36em) {
+  .c7 {
+    margin: 0;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+}
+
+@media (min-width:48em) {
+  .c7 {
+    -webkit-flex-basis: auto;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+    margin: 0 0 5px 0;
+  }
+}
+
+@media (min-width:62em) {
+  .c7 {
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    margin: 0;
+    -webkit-flex-basis: auto;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+  }
+}
+
+@media (min-width:75em) {
+  .c7 {
+    -webkit-align-items: flex-end;
+    -webkit-box-align: flex-end;
+    -ms-flex-align: flex-end;
+    align-items: flex-end;
+  }
+}
+
+@media (min-width:36em) {
+  .c8 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    margin: 0 0 5px 0;
+  }
+}
+
+@media (min-width:48em) {
+  .c8 {
+    margin: 0 0 2px 0;
+  }
+}
+
+@media (min-width:62em) {
+  .c8 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    margin: 0 30px 14px 0;
+  }
+}
+
+@media (min-width:75em) {
+  .c8 {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    margin: 0 30px 0 0;
+  }
+}
+
+@media (min-width:36em) {
+  .c9 {
+    margin: 0 11px 0 0;
+  }
+}
+
+@media (min-width:36em) {
+  .c10 {
+    font-size: 16px;
+    margin: 0;
+  }
+}
+
+@media (min-width:48em) {
+  .c10 {
+    font-size: 16px;
+  }
+}
+
+@media (min-width:62em) {
+  .c10 {
+    font-size: 16px;
+    margin: 0;
+  }
+}
+
+@media (min-width:25.8125em) {
+  .c11 {
+    margin: 28px 0 0 0;
+  }
+}
+
+@media (min-width:36em) {
+  .c11 {
+    margin: 0 0 5px 0;
+  }
+}
+
+@media (min-width:48em) {
+  .c11 {
+    margin: 0;
+  }
+}
+
+@media (min-width:62em) {
+  .c11 {
+    margin: 0 100px 0 auto;
+  }
+}
+
+@media (min-width:75em) {
+  .c11 {
+    margin: 0 100px 0 auto;
+  }
+}
+
+@media (min-width:25.8125em) {
+  .c12 {
+    display: block;
+    -webkit-flex-basis: auto;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+    width: 100%;
+  }
+}
+
+@media (min-width:48em) {
+  .c12 {
+    -webkit-flex-basis: 242px;
+    -ms-flex-preferred-size: 242px;
+    flex-basis: 242px;
+    margin-left: auto;
+  }
+}
+
+@media (min-width:62em) {
+  .c12 {
+    -webkit-flex-basis: 188px;
+    -ms-flex-preferred-size: 188px;
+    flex-basis: 188px;
+  }
+}
+
+@media (min-width:75em) {
+  .c12 {
+    -webkit-flex-basis: 255px;
+    -ms-flex-preferred-size: 255px;
+    flex-basis: 255px;
+  }
+}
+
+@media (min-width:25.8125em) {
+  .c13 {
+    display: block;
+    -webkit-flex-basis: auto;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+    width: 100%;
+  }
+}
+
+@media (min-width:48em) {
+  .c13 {
+    -webkit-flex-basis: 242px;
+    -ms-flex-preferred-size: 242px;
+    flex-basis: 242px;
+    margin-left: auto;
+  }
+}
+
+@media (min-width:62em) {
+  .c13 {
+    -webkit-flex-basis: 188px;
+    -ms-flex-preferred-size: 188px;
+    flex-basis: 188px;
+  }
+}
+
+@media (min-width:75em) {
+  .c13 {
+    -webkit-flex-basis: 255px;
+    -ms-flex-preferred-size: 255px;
+    flex-basis: 255px;
+  }
+}
+
+@media (min-width:25.8125em) {
+  .c13 {
+    display: none;
+  }
+}
+
+<div>
+  <div
+    className="c0"
+  >
+    <div
+      className="c1"
+    >
+      <div
+        className="c2"
+      >
+        <div
+          className="c3"
+        >
+          <a
+            href="/coupons/undefined"
+            onClick={[Function]}
+          >
+            <img
+              alt="Target Coupon Codes May | 2019"
+              className="c4"
+              onError={[Function]}
+              src="image-placeholder.png"
+            />
+          </a>
+        </div>
+        <div
+          className="c5"
+        >
+          <div
+            className="c6"
+          >
+            <div
+              className="c7"
+            >
+              <div
+                className="c8"
+              >
+                <span
+                  className="c9"
+                >
+                  Target
+                </span>
+                <p
+                  className="c10"
+                >
+                  global.deals
+                </p>
+              </div>
+              <p
+                className="c11"
+              >
+                undefined
+              </p>
+            </div>
+          </div>
+          <a
+            className="c12"
+            href="/coupons/undefined"
+            onClick={[Function]}
+          >
+            build.visitStore
+          </a>
+        </div>
+      </div>
+      <a
+        className="c13"
+        href="/coupons/undefined"
+        onClick={[Function]}
+      >
+        build.visitStore
+      </a>
+    </div>
+  </div>
+  <div
+    className="c14"
+    onClick={[Function]}
+  >
+    
+  </div>
+</div>
+`;
+
+exports[`Storyshots Components|@Store StoreMain 1`] = `
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 11px 0;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c5 {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c8 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 100%;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c3 {
+  margin: 0;
+}
+
+.c4 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border: 1px solid #DADDE2;
+  border-bottom: none;
+  padding: 30px 28px 30px 28px;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c4:first-child {
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+
+.c4:last-child {
+  border-bottom: 1px solid #DADDE2;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.c6 {
+  width: 150px;
+}
+
+.c7 {
+  display: block;
+  width: 88px;
+  height: 88px;
+  object-fit: contain;
+  margin: 0 17px 0 0;
+}
+
+.c9 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-basis: 100%;
+  -ms-flex-preferred-size: 100%;
+  flex-basis: 100%;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  margin: 0 0 11px 0;
+}
+
+.c10 {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0 0 11px 0;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c11 {
+  margin: 0 30px 0 0;
+  margin: 0 21px 0 0;
+}
+
+.c12 {
+  display: block;
+  font-weight: 500;
+  line-height: 23px;
+  font-size: 13px;
+  color: #C2C2C2;
+}
+
+.c13 {
+  font-weight: bold;
+  line-height: 21px;
+  color: #374B5A;
+  font-size: 13px;
+  margin: 5px 0 0 0;
+}
+
+.c14 {
+  font-weight: 500;
+  line-height: 23px;
+  font-size: 13px;
+  color: #374B5A;
+  margin: 12px 0 0 0;
+}
+
+.c15 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-basis: 184px;
+  -ms-flex-preferred-size: 184px;
+  flex-basis: 184px;
+  padding: 9px 0;
+  font-weight: bold;
+  background: #00CBE9;
+  border: 1px solid #00B4CF;
+  border-radius: 4px;
+  line-height: 20px;
+  font-size: 17px;
+  text-align: center;
+  -webkit-letter-spacing: 0.51px;
+  -moz-letter-spacing: 0.51px;
+  -ms-letter-spacing: 0.51px;
+  letter-spacing: 0.51px;
+  color: #FFF;
+  cursor: pointer;
+  -webkit-transition: background 205ms linear;
+  transition: background 205ms linear;
+  display: none;
+}
+
+.c15:hover {
+  background: #00B4CF;
+}
+
+.c16 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-basis: 184px;
+  -ms-flex-preferred-size: 184px;
+  flex-basis: 184px;
+  padding: 9px 0;
+  font-weight: bold;
+  background: #00CBE9;
+  border: 1px solid #00B4CF;
+  border-radius: 4px;
+  line-height: 20px;
+  font-size: 17px;
+  text-align: center;
+  -webkit-letter-spacing: 0.51px;
+  -moz-letter-spacing: 0.51px;
+  -ms-letter-spacing: 0.51px;
+  letter-spacing: 0.51px;
+  color: #FFF;
+  cursor: pointer;
+  -webkit-transition: background 205ms linear;
+  transition: background 205ms linear;
+  display: none;
+  display: block;
+  -webkit-flex-basis: auto;
+  -ms-flex-preferred-size: auto;
+  flex-basis: auto;
+  width: 100%;
+}
+
+.c16:hover {
+  background: #00B4CF;
+}
+
+.c17 {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  -webkit-letter-spacing: 0.45px;
+  -moz-letter-spacing: 0.45px;
+  -ms-letter-spacing: 0.45px;
+  letter-spacing: 0.45px;
+  color: #ADB8C0;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  -webkit-transition: color 205ms linear;
+  transition: color 205ms linear;
+}
+
+.c17 p {
+  line-height: 80px;
+}
+
+.c17:hover {
+  color: #7F7F7F;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.c0 {
+  -webkit-flex-basis: 850px;
+  -ms-flex-preferred-size: 850px;
+  flex-basis: 850px;
+}
+
+.c1 {
+  padding: 7px 0 0 0;
+  line-height: 29px;
+  font-weight: bold;
+  font-size: 25px;
+  color: #374B5A;
+  display: none;
+}
+
+@media (min-width:25.8125em) {
+  .c2 {
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    font-size: 22px;
+    padding: 28px 0 20px;
+  }
+}
+
+@media (min-width:36em) {
+  .c2 {
+    padding: 33px 0;
+  }
+}
+
+@media (min-width:48em) {
+  .c2 {
+    padding: 28px 0 20px;
+  }
+}
+
+@media (min-width:62em) {
+  .c2 {
+    padding: 37px 0;
+  }
+}
+
+@media (min-width:75em) {
+  .c2 {
+    padding: 37px 0 33px;
+  }
+}
+
+@media (min-width:48em) {
+  .c8 {
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+}
+
+@media (min-width:25.8125em) {
+  .c4 {
+    padding: 30px 28px 30px 35px;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+}
+
+@media (min-width:36em) {
+  .c4 {
+    padding: 10px 7px 10px 10px;
+  }
+}
+
+@media (min-width:48em) {
+  .c4 {
+    padding: 23px 24px 23px 18px;
+  }
+}
+
+@media (min-width:62em) {
+  .c4 {
+    padding: 23px 42px 23px 35px;
+  }
+}
+
+@media (min-width:25.8125em) {
+  .c7 {
+    margin: 0 33px 0 0;
+  }
+}
+
+@media (min-width:36em) {
+  .c7 {
+    margin: 0 23px 0 0;
+  }
+}
+
+@media (min-width:48em) {
+  .c7 {
+    margin: 0 26px 0 0;
+  }
+}
+
+@media (min-width:62em) {
+  .c7 {
+    margin: 0 37px 0 0;
+  }
+}
+
+@media (min-width:36em) {
+  .c9 {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-flex-basis: auto;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+  }
+}
+
+@media (min-width:48em) {
+  .c9 {
+    -webkit-align-items: flex-start;
+    -webkit-box-align: flex-start;
+    -ms-flex-align: flex-start;
+    align-items: flex-start;
+    -webkit-flex-basis: 100%;
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+    margin: 0;
+  }
+}
+
+@media (min-width:62em) {
+  .c9 {
+    -webkit-flex-basis: auto;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-align-items: flex-end;
+    -webkit-box-align: flex-end;
+    -ms-flex-align: flex-end;
+    align-items: flex-end;
+  }
+}
+
+@media (min-width:25.8125em) {
+  .c10 {
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+}
+
+@media (min-width:36em) {
+  .c10 {
+    margin: 0;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+}
+
+@media (min-width:48em) {
+  .c10 {
+    -webkit-flex-basis: auto;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+    margin: 0 0 5px 0;
+  }
+}
+
+@media (min-width:62em) {
+  .c10 {
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    margin: 0;
+    -webkit-flex-basis: auto;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+  }
+}
+
+@media (min-width:75em) {
+  .c10 {
+    -webkit-align-items: flex-end;
+    -webkit-box-align: flex-end;
+    -ms-flex-align: flex-end;
+    align-items: flex-end;
+  }
+}
+
+@media (min-width:36em) {
+  .c11 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    margin: 0 0 5px 0;
+  }
+}
+
+@media (min-width:48em) {
+  .c11 {
+    margin: 0 0 2px 0;
+  }
+}
+
+@media (min-width:62em) {
+  .c11 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    margin: 0 30px 14px 0;
+  }
+}
+
+@media (min-width:75em) {
+  .c11 {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    margin: 0 30px 0 0;
+  }
+}
+
+@media (min-width:36em) {
+  .c12 {
+    margin: 0 11px 0 0;
+  }
+}
+
+@media (min-width:36em) {
+  .c13 {
+    font-size: 16px;
+    margin: 0;
+  }
+}
+
+@media (min-width:48em) {
+  .c13 {
+    font-size: 16px;
+  }
+}
+
+@media (min-width:62em) {
+  .c13 {
+    font-size: 16px;
+    margin: 0;
+  }
+}
+
+@media (min-width:25.8125em) {
+  .c14 {
+    margin: 28px 0 0 0;
+  }
+}
+
+@media (min-width:36em) {
+  .c14 {
+    margin: 0 0 5px 0;
+  }
+}
+
+@media (min-width:48em) {
+  .c14 {
+    margin: 0;
+  }
+}
+
+@media (min-width:62em) {
+  .c14 {
+    margin: 0 100px 0 auto;
+  }
+}
+
+@media (min-width:75em) {
+  .c14 {
+    margin: 0 100px 0 auto;
+  }
+}
+
+@media (min-width:25.8125em) {
+  .c15 {
+    display: block;
+    -webkit-flex-basis: auto;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+    width: 100%;
+  }
+}
+
+@media (min-width:48em) {
+  .c15 {
+    -webkit-flex-basis: 242px;
+    -ms-flex-preferred-size: 242px;
+    flex-basis: 242px;
+    margin-left: auto;
+  }
+}
+
+@media (min-width:62em) {
+  .c15 {
+    -webkit-flex-basis: 188px;
+    -ms-flex-preferred-size: 188px;
+    flex-basis: 188px;
+  }
+}
+
+@media (min-width:75em) {
+  .c15 {
+    -webkit-flex-basis: 255px;
+    -ms-flex-preferred-size: 255px;
+    flex-basis: 255px;
+  }
+}
+
+@media (min-width:25.8125em) {
+  .c16 {
+    display: block;
+    -webkit-flex-basis: auto;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+    width: 100%;
+  }
+}
+
+@media (min-width:48em) {
+  .c16 {
+    -webkit-flex-basis: 242px;
+    -ms-flex-preferred-size: 242px;
+    flex-basis: 242px;
+    margin-left: auto;
+  }
+}
+
+@media (min-width:62em) {
+  .c16 {
+    -webkit-flex-basis: 188px;
+    -ms-flex-preferred-size: 188px;
+    flex-basis: 188px;
+  }
+}
+
+@media (min-width:75em) {
+  .c16 {
+    -webkit-flex-basis: 255px;
+    -ms-flex-preferred-size: 255px;
+    flex-basis: 255px;
+  }
+}
+
+@media (min-width:25.8125em) {
+  .c16 {
+    display: none;
+  }
+}
+
+@media (min-width:36em) {
+  .c1 {
+    display: block;
+    font-size: 19px;
+  }
+}
+
+@media (min-width:36em) {
+  .c1 {
+    font-size: 25px;
+  }
+}
+
+<div
+  className="c0"
+>
+  <h3
+    className="c1"
+  >
+    cashbackStores.browseStores
+  </h3>
+  <div
+    className="c2"
+  />
+  <div>
+    <div
+      className="c3"
+    >
+      <div
+        className="c4"
+      >
+        <div
+          className="c5"
+        >
+          <div
+            className="c6"
+          >
+            <a
+              href="/coupons/undefined"
+              onClick={[Function]}
+            >
+              <img
+                alt="Target Coupon Codes May | 2019"
+                className="c7"
+                onError={[Function]}
+                src="image-placeholder.png"
+              />
+            </a>
+          </div>
+          <div
+            className="c8"
+          >
+            <div
+              className="c9"
+            >
+              <div
+                className="c10"
+              >
+                <div
+                  className="c11"
+                >
+                  <span
+                    className="c12"
+                  >
+                    Target
+                  </span>
+                  <p
+                    className="c13"
+                  >
+                    global.deals
+                  </p>
+                </div>
+                <p
+                  className="c14"
+                >
+                  undefined
+                </p>
+              </div>
+            </div>
+            <a
+              className="c15"
+              href="/coupons/undefined"
+              onClick={[Function]}
+            >
+              build.visitStore
+            </a>
+          </div>
+        </div>
+        <a
+          className="c16"
+          href="/coupons/undefined"
+          onClick={[Function]}
+        >
+          build.visitStore
+        </a>
+      </div>
+    </div>
+    <div
+      className="c17"
+      onClick={[Function]}
+    >
+      
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Components|@Store StoreSidebar 1`] = `
+.c2 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 100%;
+  border: 1px solid #DADDE2;
+  margin: 0 0 33px 0;
+  border-radius: 5px;
+  margin: 0 0 15px 0;
+}
+
+.c3 {
+  display: block;
+  border: none;
+  width: 100%;
+  padding: 11px 10px 11px 20px;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  line-height: 19px;
+  font-size: 16px;
+  -webkit-letter-spacing: 0.571428px;
+  -moz-letter-spacing: 0.571428px;
+  -ms-letter-spacing: 0.571428px;
+  letter-spacing: 0.571428px;
+  outline: none;
+  box-shadow: none !important;
+}
+
+.c3::-webkit-input-placeholder {
+  color: #ADB8C0;
+}
+
+.c3::-moz-placeholder {
+  color: #ADB8C0;
+}
+
+.c3:-ms-input-placeholder {
+  color: #ADB8C0;
+}
+
+.c3::placeholder {
+  color: #ADB8C0;
+}
+
+.c4 {
+  display: block;
+  padding: 0 28px 0 0;
+}
+
+.c6 {
+  cursor: pointer;
+  padding: 5px;
+  background: white;
+}
+
+.c6:hover {
+  background: #eee;
+}
+
+.c6:hover > p {
+  color: rgba(0,0,0,0.7);
+}
+
+.c7 {
+  font-weight: 500;
+  line-height: 32px;
+  font-size: 13px;
+  color: #c2c2c2;
+}
+
+.c5 {
+  display: none;
+}
+
+.c8 {
+  position: relative;
+  border: 1px solid #dadde2;
+  border-radius: 5px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.c9 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  font-weight: bold;
+  line-height: 21px;
+  font-size: 18px;
+  -webkit-letter-spacing: 0.45px;
+  -moz-letter-spacing: 0.45px;
+  -ms-letter-spacing: 0.45px;
+  letter-spacing: 0.45px;
+  color: #899197;
+  padding: 10px 20px;
+}
+
+.c10 {
+  position: absolute;
+  right: 0;
+  top: 18px;
+  width: 11px;
+  height: 8px;
+  background: #b1b1b1;
+  -webkit-clip-path: polygon(50% 0%,0% 100%,100% 100%);
+  clip-path: polygon(50% 0%,0% 100%,100% 100%);
+  margin-right: 20px;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+  border-radius: 1px;
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+.c0 {
+  -webkit-flex-basis: auto;
+  -ms-flex-preferred-size: auto;
+  flex-basis: auto;
+}
+
+.c1 {
+  width: 100%;
+}
+
+@media (min-width:36em) {
+  .c2 {
+    margin: 0 0 33px 0;
+  }
+}
+
+@media (min-width:36em) {
+  .c4 {
+    padding: 0 20px 0 0;
+  }
+}
+
+@media (min-width:36em) {
+  .c5 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-flow: column nowrap;
+    -ms-flex-flow: column nowrap;
+    flex-flow: column nowrap;
+    padding-bottom: 30px;
+  }
+
+  .c5 > h2 {
+    font-weight: bold;
+    line-height: 24px;
+    font-size: 20px;
+    -webkit-letter-spacing: 0.5px;
+    -moz-letter-spacing: 0.5px;
+    -ms-letter-spacing: 0.5px;
+    letter-spacing: 0.5px;
+    color: #899197;
+    margin: 10px 0;
+    padding: 5px;
+  }
+}
+
+@media (min-width:36em) {
+  .c8 {
+    display: none;
+  }
+}
+
+@media (min-width:48em) {
+  .c0 {
+    -webkit-flex-basis: 390px;
+    -ms-flex-preferred-size: 390px;
+    flex-basis: 390px;
+  }
+}
+
+@media (min-width:36em) {
+  .c0 {
+    -webkit-flex-basis: 321px;
+    -ms-flex-preferred-size: 321px;
+    flex-basis: 321px;
+    padding: 0 30px 0 0;
+  }
+}
+
+@media (min-width:62em) {
+  .c0 {
+    -webkit-flex-basis: 261px;
+    -ms-flex-preferred-size: 261px;
+    flex-basis: 261px;
+  }
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <div
+      className="c2"
+      onKeyUp={[Function]}
+    >
+      <input
+        autoComplete="off"
+        className="c3"
+        name="search"
+        onChange={[Function]}
+        onClick={[Function]}
+        pattern="[a-zA-Z0-9-]"
+        placeholder="global.search"
+        type="text"
+        value=""
+      />
+      <img
+        alt="search"
+        className="c4"
+        src="icon-search.png"
+      />
+      <div />
+    </div>
+  </div>
+  <div
+    className="c5"
+  >
+    <h2>
+      header.stores
+    </h2>
+    <div
+      className="c6"
+      onClick={[Function]}
+    >
+      <p
+        className="c7"
+      />
+    </div>
+    <div
+      className="c6"
+      onClick={[Function]}
+    >
+      <p
+        className="c7"
+      />
+    </div>
+  </div>
+  <div
+    className="c8"
+  >
+    <p
+      className="c9"
+      onClick={[Function]}
+    >
+      categories.selectCategory
+    </p>
+    <div />
+    <div
+      className="c10"
+    />
+  </div>
+</div>
+`;
+
+exports[`Storyshots Components|@Store TagList 1`] = `
+.c0 {
+  padding: 25px 0 0 0;
+  position: absolute;
+  left: -1px;
+  top: 44px;
+  width: 100%;
+  background: #FFF;
+  border: 0.5px solid #DADDE2;
+  box-shadow: 0 12px 22px rgba(0,0,0,0.2);
+  border-top: none;
+  border-radius: 5px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  padding: 13px 0 32px;
+  opacity: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-radius: 3px;
+  padding: 5px 0;
+  margin: 0;
+  font-size: 13px;
+  color: #C2C2C2;
+  cursor: pointer;
+  padding: 5px 25px;
+}
+
+.c1:hover {
+  background: #F9FAFC;
+}
+
+.c2 {
+  display: block;
+  width: 50px;
+  text-align: center;
+  padding: 3px 0;
+  border: 2px solid #D4D4D4;
+  border-radius: 7px;
+  font-size: 13px;
+  color: #C2C2C2;
+}
+
+@media (min-width:36em) {
+  .c0 {
+    display: block;
+    position: static;
+    box-shadow: none;
+    border: none;
+    opacity: 1;
+    z-index: 1;
+    pointer-events: initial;
+  }
+}
+
+@media (min-width:36em) {
+  .c1 {
+    padding: 5px 0;
+  }
+}
+
+<ul
+  className="c0"
+>
+  <li
+    className="c1"
+    onClick={[Function]}
+  >
+    Accessories
+     
+    <span
+      className="c2"
+    >
+      0
+    </span>
+  </li>
+  <li
+    className="c1"
+    onClick={[Function]}
+  >
+    Beauty
+     
+    <span
+      className="c2"
+    >
+      0
+    </span>
+  </li>
+  <li
+    className="c1"
+    onClick={[Function]}
+  >
+    Clothing
+     
+    <span
+      className="c2"
+    >
+      0
+    </span>
+  </li>
+</ul>
+`;

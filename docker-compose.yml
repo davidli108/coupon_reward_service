@@ -1,0 +1,28 @@
+version: '2'
+services:
+  client:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: yarn start:dev
+    environment:
+      REACT_APP_API_URL: https://api.joinpiggy.com
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/project
+      - /project/node_modules
+      - /project/build
+    image: piggy/piggy-web
+
+  storybook:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: yarn storybook
+    ports:
+      - 6006:6006
+    volumes:
+      - .:/project
+      - /project/node_modules
+      - /project/build
