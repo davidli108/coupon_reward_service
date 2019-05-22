@@ -278,6 +278,12 @@ Content.Grid = styled.div`
       padding-right: ${props => (props.isFavoritesTab ? '10px' : '0')};
     }
   `}
+
+  ${breakpoint('lg')`
+    > div:last-child {
+      margin-right: ${props => (props.isFavoritesTab ? '10px' : '0')};
+    }
+  `}
 `;
 
 Content.FollowAnyStoreLabel = styled.p`

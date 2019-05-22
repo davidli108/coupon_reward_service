@@ -1,5 +1,6 @@
 // @flow
 import * as React from 'react';
+import breakpoint from 'styled-components-breakpoint';
 import styled from 'styled-components';
 import { withTranslation } from 'react-i18next';
 
@@ -82,8 +83,11 @@ Controls.Wrapper = styled.div`
   margin-bottom: 10px;
   justify-content: center;
   align-items: baseline;
-
   width: 100%;
+
+  ${breakpoint('md')`
+    margin-top: 15px;
+  `}
 `;
 
 Controls.Button = styled.div`
