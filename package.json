@@ -40,6 +40,7 @@
     "morgan": "^1.9.1",
     "numeral": "^2.0.6",
     "omit-deep": "^0.3.0",
+    "parse-domain": "^2.1.7",
     "polished": "^3.3.2",
     "qs": "^6.6.0",
     "query-string": "^6.5.0",
