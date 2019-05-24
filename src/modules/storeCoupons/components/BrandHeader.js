@@ -15,6 +15,10 @@ import SignUpModal from '@modules/auth/components/SignUpModal';
 import ResetPasswordModal from '@modules/auth/components/ResetPasswordModal';
 import * as favoritesActions from '@modules/favorites/FavoritesActions';
 import { getIsFavorite } from '@modules/favorites/FavoritesReducer';
+import {
+  getLocaleConfig,
+  redirectToEnOrigin,
+} from '@modules/localization/i18n';
 
 import { getStore, getOffers } from '../StoreCouponsReducer';
 
@@ -50,8 +54,16 @@ const BrandHeader = ({
   isAuthenticated,
 }: BrandHeaderProps) => {
   const [currentModal, setCurrentModal] = React.useState(null);
+  const localeConfig = getLocaleConfig();
 
   const toggleFavoriteStore = () => {
+    if (
+      !localeConfig.isAuthenticationAvailable ||
+      !localeConfig.isFollowStoreAvailable
+    ) {
+      return redirectToEnOrigin();
+    }
+
     if (!isAuthenticated) {
       setCurrentModal(modal.modalSignUp);
       return;
