@@ -7,6 +7,7 @@ import { withTranslation } from 'react-i18next';
 import moment from 'moment';
 
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
+import AppConfig from '@config/AppConfig';
 
 type FeaturedProps = {
   t: string => string,
@@ -29,9 +30,7 @@ const Featured = ({ t, featured }: FeaturedProps) => (
             <Featured.WrapperImage>
               <Featured.Image
                 src={
-                  offer_img
-                    ? `https://d2umvgb8hls1bt.cloudfront.net${offer_img}`
-                    : placeholder
+                  offer_img ? `${AppConfig.cloudUrl}${offer_img}` : placeholder
                 }
                 onError={e => {
                   e.target.onerror = null;

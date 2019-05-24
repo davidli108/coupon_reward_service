@@ -2,34 +2,67 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { withTranslation } from 'react-i18next';
+import ModalActivateCoupons from '../components/ModalActivateCoupons';
 
 type CouponCodeProps = {
   t: Function,
   code: string,
   link: string,
+  store: string,
+  logo: string,
 };
 
-const CouponCode = ({ t, code, link }: CouponCodeProps) => {
+const CouponCode = ({ t, code, link, store, logo }: CouponCodeProps) => {
   const [isShowCode, setIsShowCode] = useState(false);
+  const [showActivateModal, setShowActivateModal] = useState(false);
+  const [modalMounted, setModalMounted] = useState(false);
+
+  const toggleActivateModal = () => {
+    if (modalMounted === true) {
+      setShowActivateModal(!showActivateModal);
+      setTimeout(() => {
+        setModalMounted(!modalMounted);
+      }, 300);
+    } else {
+      setModalMounted(!modalMounted);
+      setTimeout(() => {
+        setShowActivateModal(!showActivateModal);
+      });
+    }
+  };
+
+  const handleClick = () => {
+    if (code) {
+      toggleActivateModal();
+      setIsShowCode(true);
+    } else {
+      window.open(link, '_blank');
+    }
+  };
 
   return (
-    <CouponCode.Wrapper>
-      <CouponCode.Button
-        onClick={() => {
-          if (code) {
-            setIsShowCode(true);
-          } else {
-            window.open(link, '_blank');
-          }
-        }}
-        isShow={!isShowCode}
-      >
-        {code ? t('coupons.buttons.viewCoupon') : t('coupons.buttons.viewDeal')}
-      </CouponCode.Button>
-      <CouponCode.Code href={link} target="_blank" isShow={isShowCode}>
-        {code}
-      </CouponCode.Code>
-    </CouponCode.Wrapper>
+    <>
+      <CouponCode.Wrapper>
+        <CouponCode.Button onClick={handleClick} isShow={!isShowCode}>
+          {code
+            ? t('coupons.buttons.viewCoupon')
+            : t('coupons.buttons.viewDeal')}
+        </CouponCode.Button>
+        <CouponCode.Code href={link} target="_blank" isShow={isShowCode}>
+          {code}
+        </CouponCode.Code>
+      </CouponCode.Wrapper>
+
+      {modalMounted && (
+        <ModalActivateCoupons
+          isActive={showActivateModal}
+          closeModal={toggleActivateModal}
+          title={store}
+          logo={logo}
+          subTitle={'test'}
+        />
+      )}
+    </>
   );
 };
 

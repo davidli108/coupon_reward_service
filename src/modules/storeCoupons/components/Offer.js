@@ -8,6 +8,7 @@ import moment from 'moment';
 
 import CouponCode from './CouponCode';
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
+import AppConfig from '@config/AppConfig';
 
 const discountColors = [
   '#d0c000',
@@ -70,7 +71,7 @@ const Offer = ({
               <img
                 src={
                   store_logo
-                    ? `https://d2umvgb8hls1bt.cloudfront.net${store_logo}`
+                    ? `${AppConfig.cloudUrl}${store_logo}`
                     : placeholder
                 }
                 onError={e => {

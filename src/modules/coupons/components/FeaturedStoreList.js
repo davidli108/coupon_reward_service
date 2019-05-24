@@ -7,6 +7,7 @@ import moment from 'moment';
 
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
 import StoreListLoader from './loaders/StoreListLoader';
+import AppConfig from '@config/AppConfig';
 
 type FeaturedStoreListProps = {
   t: string => string,
@@ -27,7 +28,7 @@ const FeaturedStoreList = ({ t, stores, loaded }: FeaturedStoreListProps) => {
             <img
               src={
                 store.offer_img
-                  ? `https://d2umvgb8hls1bt.cloudfront.net${store.offer_img}`
+                  ? `${AppConfig.cloudUrl}${store.offer_img}`
                   : placeholder
               }
               onError={e => {
