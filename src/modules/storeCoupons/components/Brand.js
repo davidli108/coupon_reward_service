@@ -14,6 +14,7 @@ import BrandXlLoader from './loaders/BrandXlLoader';
 import type { BrandProps } from '../models/StorePage';
 
 import { getStore } from '../StoreCouponsReducer';
+import AppConfig from '@config/AppConfig';
 
 const Brand = ({ store, isLoaded, offersCount, reviews }: BrandProps) => (
   <>
@@ -23,9 +24,7 @@ const Brand = ({ store, isLoaded, offersCount, reviews }: BrandProps) => (
           <img
             src={
               store.store_logo_image_path
-                ? `https://d2umvgb8hls1bt.cloudfront.net${
-                    store.store_logo_image_path
-                  }`
+                ? `${AppConfig.cloudUrl}${store.store_logo_image_path}`
                 : placeholder
             }
             onError={e => {
