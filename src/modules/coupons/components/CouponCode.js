@@ -15,8 +15,7 @@ type CouponCodeProps = {
   getIsAuthenticated: boolean,
 };
 
-const isChrome =
-  !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
+const isChrome = !!window.chrome;
 
 const CouponCode = ({
   t,

@@ -7,25 +7,31 @@ type InstallOverlayProps = {
   isActive: boolean,
 };
 
-const InstallOverlay = ({ isActive }: InstallOverlayProps) => (
-  <InstallOverlay.Wrapper isActive={isActive}>
-    <InstallOverlay.Container
-      top={navigator.platform === 'Win32' ? '160px' : '100px'}
-    >
-      <img src={leftRoundArrow} alt="Add to Chrome" />
+const InstallOverlay = ({ isActive }: InstallOverlayProps) => {
+  const headerHeight = window.outerHeight - window.innerHeight + 'px';
+  const top =
+    navigator.platform === 'Win32'
+      ? `calc(260px - ${headerHeight})`
+      : `calc(210px - ${headerHeight})`;
 
-      <InstallOverlay.Step>
-        <h3>Step 1</h3>
-        <p>Click the "Add to Chrome" Button</p>
-      </InstallOverlay.Step>
+  return (
+    <InstallOverlay.Wrapper isActive={isActive}>
+      <InstallOverlay.Container top={top}>
+        <img src={leftRoundArrow} alt="Add to Chrome" />
 
-      <InstallOverlay.Step>
-        <h3>Step 2</h3>
-        <p>Then click "Add extension"</p>
-      </InstallOverlay.Step>
-    </InstallOverlay.Container>
-  </InstallOverlay.Wrapper>
-);
+        <InstallOverlay.Step>
+          <h3>Step 1</h3>
+          <p>Click the "Add to Chrome" Button</p>
+        </InstallOverlay.Step>
+
+        <InstallOverlay.Step>
+          <h3>Step 2</h3>
+          <p>Then click "Add extension"</p>
+        </InstallOverlay.Step>
+      </InstallOverlay.Container>
+    </InstallOverlay.Wrapper>
+  );
+};
 
 export default InstallOverlay;
 
