@@ -3,8 +3,8 @@ import React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { MdClose } from 'react-icons/md';
-import piggy from '../assets/piggy.svg';
-import icon from '../assets/piggy-icon.svg';
+import piggy from './piggy.svg';
+import icon from './piggy-icon.svg';
 
 type ModalActivateCouponsProps = {
   title: string,
@@ -22,26 +22,30 @@ const ModalActivateCoupons = ({
   closeModal,
   logo,
   callback,
-}: ModalActivateCouponsProps) => (
-  <ModalActivateCoupons.Wrapper isActive={isActive}>
-    <ModalActivateCoupons.Overlay onClick={closeModal} isActive={isActive} />
-    <ModalActivateCoupons.Container isActive={isActive}>
-      <ModalActivateCoupons.Content>
-        <MdClose onClick={closeModal} />
-        <ModalActivateCoupons.Icon src={icon} />
-        <h2>NEVER OVERPAY AGAIN AT</h2>
-        <ModalActivateCoupons.Store src={logo} alt={title} />
-        <div>
-          Save time and money with automatic coupons. Piggy appears at checkout
-          and automatically applies the best discount.
-        </div>
-        <p>We find the {title} coupons, you just shop!</p>
-        <button onClick={callback}>Activate Coupons Now</button>
-        <ModalActivateCoupons.Piggy src={piggy} />
-      </ModalActivateCoupons.Content>
-    </ModalActivateCoupons.Container>
-  </ModalActivateCoupons.Wrapper>
-);
+}: ModalActivateCouponsProps) => {
+  return (
+    <ModalActivateCoupons.Wrapper isActive={isActive}>
+      <ModalActivateCoupons.Overlay onClick={closeModal} isActive={isActive} />
+      <ModalActivateCoupons.Container isActive={isActive}>
+        <ModalActivateCoupons.Content>
+          <MdClose onClick={closeModal} />
+          <ModalActivateCoupons.Icon src={icon} />
+          <h2>NEVER OVERPAY AGAIN AT</h2>
+          <ModalActivateCoupons.Store>
+            <img src={logo} alt={title} />
+          </ModalActivateCoupons.Store>
+          <div>
+            Save time and money with automatic coupons. Piggy appears at
+            checkout and automatically applies the best discount.
+          </div>
+          <p>We find the {title} coupons, you just shop!</p>
+          <button onClick={callback}>Activate Coupons Now</button>
+          <ModalActivateCoupons.Piggy src={piggy} />
+        </ModalActivateCoupons.Content>
+      </ModalActivateCoupons.Container>
+    </ModalActivateCoupons.Wrapper>
+  );
+};
 
 ModalActivateCoupons.Wrapper = styled.div`
   position: fixed;
@@ -104,12 +108,21 @@ ModalActivateCoupons.Container = styled.div`
   `}
 `;
 
-ModalActivateCoupons.Store = styled.img`
-  display: block;
-  margin: 0 auto 47px;
+ModalActivateCoupons.Store = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 50px !important;
   width: 160px;
-  height: auto;
+  height: 30px;
   padding: 0 !important;
+
+  > img {
+    padding: 0 !important;
+    display: block;
+    max-width: 160px;
+    max-height: 130px;
+  }
 `;
 
 ModalActivateCoupons.Content = styled.div`
@@ -160,10 +173,12 @@ ModalActivateCoupons.Content = styled.div`
   }
 
   > h2 {
-    padding: 0 0 46px;
+    padding: 0 0 50px;
     font-size: 35px;
     font-weight: bold;
     text-align: center;
+    position: relative;
+    z-index: 1;
     color: ${props => props.theme.colors.blackLight};
 
     ${breakpoint('xs')`
@@ -180,7 +195,7 @@ ModalActivateCoupons.Content = styled.div`
   }
 
   > p {
-    padding: 0 100px;
+    padding: 0 70px;
     font-weight: bold;
     font-size: 17px;
     line-height: 26px;

@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
-import leftRoundArrow from '../assets/leftRoundArrow.svg';
+import leftRoundArrow from './leftRoundArrow.svg';
 
 type InstallOverlayProps = {
   isActive: boolean,

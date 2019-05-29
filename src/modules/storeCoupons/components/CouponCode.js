@@ -1,35 +1,169 @@
 // @flow
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import ModalActivateCoupons from '@components/ModalActivateCoupons/ModalActivateCoupons';
+import InstallOverlay from '@components/InstallOverlay/InstallOverlay';
+import axios from 'axios';
+import Cookie from 'js-cookie';
+import moment from 'moment';
 
 type CouponCodeProps = {
   t: Function,
   code: string,
   link: string,
+  store: string,
+  logo: string,
+  getIsAuthenticated: boolean,
 };
 
-const CouponCode = ({ t, code, link }: CouponCodeProps) => {
-  const [isShowCode, setIsShowCode] = useState(false);
+const isChrome = !!window.chrome;
 
-  return (
-    <CouponCode.Wrapper>
-      <CouponCode.Button
-        onClick={() => {
+const CouponCode = ({
+  t,
+  code,
+  link,
+  store,
+  logo,
+  getIsAuthenticated,
+}: CouponCodeProps) => {
+  const [isShowCode, setIsShowCode] = useState(false);
+  const [showActivateModal, setShowActivateModal] = useState(false);
+  const [modalMounted, setModalMounted] = useState(false);
+  const [isInstallActive, setIsInstallActive] = useState(false);
+
+  const toggleActivateModal = () => {
+    if (modalMounted === true) {
+      setShowActivateModal(!showActivateModal);
+      setTimeout(() => {
+        setModalMounted(!modalMounted);
+        Cookie.set('installProcessed', true, {
+          expires: moment()
+            .add(1, 'days')
+            .toDate(),
+        });
+
+        if (!isInstallActive && !isShowCode && code) {
+          setIsShowCode(true);
+        } else {
+          window.open(link, '_blank');
+        }
+      }, 300);
+    } else {
+      setModalMounted(!modalMounted);
+      setTimeout(() => {
+        setShowActivateModal(!showActivateModal);
+      });
+    }
+  };
+
+  const handleClick = () => {
+    const installProcessed = Cookie.get('installProcessed');
+
+    getExtension().then(
+      response => {
+        if (response.data.version) {
           if (code) {
             setIsShowCode(true);
           } else {
             window.open(link, '_blank');
           }
-        }}
-        isShow={!isShowCode}
-      >
-        <p>{code ? t('global.revealCoupon') : t('coupons.buttons.viewDeal')}</p>
-        <CouponCode.Rectangle isShow={!!code} />
-      </CouponCode.Button>
-      <CouponCode.Code href={link} target="_blank" isShow={isShowCode}>
-        {code}
-      </CouponCode.Code>
-    </CouponCode.Wrapper>
+        }
+      },
+      () => {
+        if (code && !isShowCode) {
+          if (getIsAuthenticated) {
+            setIsShowCode(true);
+          } else {
+            if (isChrome && !installProcessed) {
+              toggleActivateModal();
+            } else {
+              setIsShowCode(true);
+              Cookie.set('installProcessed', true, {
+                expires: moment()
+                  .add(1, 'days')
+                  .toDate(),
+              });
+            }
+          }
+        } else {
+          if (isChrome && !installProcessed && !getIsAuthenticated) {
+            toggleActivateModal();
+          } else {
+            window.open(link, '_blank');
+          }
+        }
+      },
+    );
+  };
+
+  const getExtension = () => {
+    return axios.get(
+      'chrome-extension://hfapbcheiepjppjbnkphkmegjlipojba/manifest.json',
+    );
+  };
+
+  const modalCallback = () => {
+    const left = window.screenX;
+    const top = 0;
+
+    const popup = window.open(
+      'https://chrome.google.com/webstore/detail/piggy-automatic-coupons-c/hfapbcheiepjppjbnkphkmegjlipojba?hl=en',
+      'extensionWindow',
+      `toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,width=1100,height=700,left=${left},top=${top}`,
+    );
+
+    setIsInstallActive(true);
+    setShowActivateModal(false);
+    setModalMounted(false);
+
+    const focusInterval = setInterval(() => {
+      popup.focus();
+
+      if (popup.closed) {
+        clearInterval(focusInterval);
+        setIsInstallActive(false);
+        Cookie.set('installProcessed', true, {
+          expires: moment()
+            .add(1, 'days')
+            .toDate(),
+        });
+
+        if (!isShowCode && code) {
+          setIsShowCode(true);
+        } else {
+          window.open(link, '_blank');
+        }
+      }
+    }, 100);
+  };
+
+  return (
+    <>
+      <CouponCode.Wrapper>
+        <CouponCode.Button onClick={handleClick} isShow={!isShowCode}>
+          <p>
+            {code ? t('global.revealCoupon') : t('coupons.buttons.viewDeal')}
+          </p>
+          <CouponCode.Rectangle isShow={!!code} />
+        </CouponCode.Button>
+        <CouponCode.Code href={link} target="_blank" isShow={isShowCode}>
+          {code}
+        </CouponCode.Code>
+      </CouponCode.Wrapper>
+
+      {modalMounted && (
+        <ModalActivateCoupons
+          isActive={showActivateModal}
+          closeModal={toggleActivateModal}
+          callback={modalCallback}
+          title={store}
+          logo={logo}
+          subTitle={'test'}
+        />
+      )}
+
+      {isInstallActive && <InstallOverlay isActive={isInstallActive} />}
+    </>
   );
 };
 

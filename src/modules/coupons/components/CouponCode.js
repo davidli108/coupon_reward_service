@@ -2,9 +2,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { withTranslation } from 'react-i18next';
-import ModalActivateCoupons from '../components/ModalActivateCoupons';
-import InstallOverlay from '../components/InstallOverlay';
+import ModalActivateCoupons from '@components/ModalActivateCoupons/ModalActivateCoupons';
+import InstallOverlay from '@components/InstallOverlay/InstallOverlay';
 import axios from 'axios';
+import Cookie from 'js-cookie';
+import moment from 'moment';
 
 type CouponCodeProps = {
   t: Function,
@@ -35,9 +37,16 @@ const CouponCode = ({
       setShowActivateModal(!showActivateModal);
       setTimeout(() => {
         setModalMounted(!modalMounted);
+        Cookie.set('installProcessed', true, {
+          expires: moment()
+            .add(1, 'days')
+            .toDate(),
+        });
 
-        if (!isInstallActive) {
+        if (!isInstallActive && !isShowCode && code) {
           setIsShowCode(true);
+        } else {
+          window.open(link, '_blank');
         }
       }, 300);
     } else {
@@ -48,13 +57,9 @@ const CouponCode = ({
     }
   };
 
-  const getExtension = () => {
-    return axios.get(
-      'chrome-extension://hfapbcheiepjppjbnkphkmegjlipojba/manifest.json',
-    );
-  };
-
   const handleClick = () => {
+    const installProcessed = Cookie.get('installProcessed');
+
     getExtension().then(
       response => {
         if (response.data.version) {
@@ -66,20 +71,35 @@ const CouponCode = ({
         }
       },
       () => {
-        if (code) {
+        if (code && !isShowCode) {
           if (getIsAuthenticated) {
             setIsShowCode(true);
           } else {
-            if (isChrome) {
+            if (isChrome && !installProcessed) {
               toggleActivateModal();
             } else {
               setIsShowCode(true);
+              Cookie.set('installProcessed', true, {
+                expires: moment()
+                  .add(1, 'days')
+                  .toDate(),
+              });
             }
           }
         } else {
-          window.open(link, '_blank');
+          if (isChrome && !installProcessed && !getIsAuthenticated) {
+            toggleActivateModal();
+          } else {
+            window.open(link, '_blank');
+          }
         }
       },
+    );
+  };
+
+  const getExtension = () => {
+    return axios.get(
+      'chrome-extension://hfapbcheiepjppjbnkphkmegjlipojba/manifest.json',
     );
   };
 
@@ -103,7 +123,17 @@ const CouponCode = ({
       if (popup.closed) {
         clearInterval(focusInterval);
         setIsInstallActive(false);
-        setIsShowCode(true);
+        Cookie.set('installProcessed', true, {
+          expires: moment()
+            .add(1, 'days')
+            .toDate(),
+        });
+
+        if (!isShowCode && code) {
+          setIsShowCode(true);
+        } else {
+          window.open(link, '_blank');
+        }
       }
     }, 100);
   };
@@ -116,7 +146,7 @@ const CouponCode = ({
             ? t('coupons.buttons.viewCoupon')
             : t('coupons.buttons.viewDeal')}
         </CouponCode.Button>
-        <CouponCode.Code href={link} target="_blank" isShow={isShowCode}>
+        <CouponCode.Code onClick={handleClick} isShow={isShowCode}>
           {code}
         </CouponCode.Code>
       </CouponCode.Wrapper>
@@ -164,8 +194,9 @@ CouponCode.Button = styled.div`
   cursor: pointer;
 `;
 
-CouponCode.Code = styled.a`
+CouponCode.Code = styled.div`
   display: ${props => (props.isShow ? 'flex' : 'none')};
+  cursor: pointer;
   width: 100%;
   height: 46px;
   margin-bottom: 10px;
