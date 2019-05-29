@@ -8,6 +8,7 @@ export const colorScheme = {
   whiteExLight: { value: '#F9FAFC', name: 'WhiteExLight' },
   black: { value: '#000', name: 'Black' },
   blackGray: { value: '#434343', name: 'BlackGray' },
+  darkGray: { value: '#62707B', name: 'DarkGray' },
   blackLight: { value: '#374B5A', name: 'BlackLight' },
   blackAlpha: { value: 'rgba(0, 0, 0, 0.2)', name: 'BlackAlpha' },
   blackAlphaDark: { value: 'rgba(0, 0, 0, 0.5)', name: 'BlackAlphaDark' },
@@ -21,7 +22,9 @@ export const colorScheme = {
   grayDark: { value: '#7F7F7F', name: 'GrayDark' },
   grayTintsDark: { value: '#B1B1B1', name: 'GrayTintsDark' },
   pink: { value: '#ef65a0', name: 'Ping' },
+  pinkLight: { value: '#F76171', name: 'PinkLight' },
   pinkDark: { value: '#ee5797', name: 'PinkDark' },
+  modalOverlayBg: { value: 'rgba(70, 73, 77, .93)', name: 'ModalOverlayBg' },
 };
 export const getColor = (colorKey: string) =>
   R.path([colorKey, 'value'], colorScheme);

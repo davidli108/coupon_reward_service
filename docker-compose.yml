@@ -7,6 +7,7 @@ services:
     command: yarn start:dev
     environment:
       REACT_APP_API_URL: https://api.joinpiggy.com
+      REACT_APP_CLOUD_URL: https://d2umvgb8hls1bt.cloudfront.net
     ports:
       - 3000:3000
     volumes:

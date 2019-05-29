@@ -6,6 +6,7 @@ import moment from 'moment';
 
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
 import preloader from './preloader.svg';
+import AppConfig from '@config/AppConfig';
 
 type SearchBarItemsProps = {
   t: Function,
@@ -57,9 +58,7 @@ const SearchBarItems = ({
           >
             <img
               src={
-                item.image
-                  ? `https://d2umvgb8hls1bt.cloudfront.net${item.image}`
-                  : placeholder
+                item.image ? `${AppConfig.cloudUrl}${item.image}` : placeholder
               }
               onError={e => {
                 e.target.onerror = null;

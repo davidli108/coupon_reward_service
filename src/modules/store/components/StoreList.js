@@ -9,6 +9,7 @@ import moment from 'moment';
 
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
 import LoadMoreLoader from './loaders/LoadMoreLoader';
+import AppConfig from '@config/AppConfig';
 
 // import verificationIcon from '../assets/verif.png';
 
@@ -69,11 +70,7 @@ const StoreList = ({
                   <StoreList.ImageWrapper>
                     <Link to={`/coupons/${shortName}`}>
                       <StoreList.Image
-                        src={
-                          img
-                            ? `https://d2umvgb8hls1bt.cloudfront.net${img}`
-                            : placeholder
-                        }
+                        src={img ? `${AppConfig.cloudUrl}${img}` : placeholder}
                         onError={e => {
                           e.target.onerror = null;
                           e.target.src = placeholder;
@@ -199,7 +196,7 @@ export const FavoriteStoreList = compose(
                         <StoreList.Image
                           src={
                             offer_img
-                              ? `https://d2umvgb8hls1bt.cloudfront.net${offer_img}`
+                              ? `${AppConfig.cloudUrl}${offer_img}`
                               : placeholder
                           }
                           onError={e => {
