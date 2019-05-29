@@ -11,6 +11,7 @@ import SocialShare from './SocialShare';
 
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
 import type { Deal as DealModel } from '../models/CouponsPage';
+import AppConfig from '@config/AppConfig';
 
 const OfferType = {
   discount: 'discount',
@@ -59,9 +60,7 @@ const Coupon = ({
           <Link to={store_page_link}>
             <Coupon.StoreLogo
               src={
-                store_logo
-                  ? `https://d2umvgb8hls1bt.cloudfront.net${store_logo}`
-                  : placeholder
+                store_logo ? `${AppConfig.cloudUrl}${store_logo}` : placeholder
               }
               onError={e => {
                 e.target.onerror = null;
@@ -107,7 +106,12 @@ const Coupon = ({
           </p>
         </Coupon.ExpDate>
         <Coupon.OfferText>{ref_text}</Coupon.OfferText>
-        <CouponCode code={coupon_code} link={offer_link} />
+        <CouponCode
+          store={store_name}
+          logo={store_logo ? `${AppConfig.cloudUrl}${store_logo}` : placeholder}
+          code={coupon_code}
+          link={offer_link}
+        />
         <Coupon.CashbackPercent>
           {discount_print
             .replace('Cash Back', t('global.cashBack'))
