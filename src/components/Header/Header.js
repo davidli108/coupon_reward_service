@@ -13,6 +13,7 @@ import { getIsAuthenticated } from '@modules/auth/AuthReducer';
 import SignInModal from '@modules/auth/components/SignInModal';
 import SignUpModal from '@modules/auth/components/SignUpModal';
 import ResetPasswordModal from '@modules/auth/components/ResetPasswordModal';
+import { getLocaleConfig } from '@modules/localization/i18n';
 
 import BurgerButton from './BurgerButton';
 import HeaderItem from './HeaderItem';
@@ -50,14 +51,16 @@ const renderHeaderItems = (items: Array<renderHeaderItemsProps>) =>
 
 type HeaderProps = {
   t: Function,
-  getIsAuthenticated: boolean,
+  isAuthenticated: boolean,
   location: Object,
   logout: Function,
 };
 
-const Header = ({ t, getIsAuthenticated, location, logout }: HeaderProps) => {
+const Header = ({ t, isAuthenticated, location, logout }: HeaderProps) => {
   const [isOpen, setOpen] = React.useState(false);
   const [currentModal, setCurrentModal] = React.useState(null);
+
+  const localeConfig = getLocaleConfig();
 
   const isActiveCoupons = () => {
     const isCouponsLocation = location.pathname.indexOf('/coupons') + 1;
@@ -113,16 +116,17 @@ const Header = ({ t, getIsAuthenticated, location, logout }: HeaderProps) => {
       </HeaderItem>
       <Header.Controls>
         {renderHeaderItems(items)}
-        {getIsAuthenticated ? (
+        {localeConfig.isAuthenticationAvailable && isAuthenticated && (
           <HeaderItemMyAccount
             bgColor="#34a6bf"
             hoverBgColor="#29899e"
             title={t('header.myAccount')}
             logout={logout}
           />
-        ) : (
-          renderHeaderItems(authItems)
         )}
+        {localeConfig.isAuthenticationAvailable &&
+          !isAuthenticated &&
+          renderHeaderItems(authItems)}
       </Header.Controls>
       <Header.BurgerButtonWrapper>
         <BurgerButton isOpen={isOpen} onClick={() => setOpen(!isOpen)} />
@@ -260,7 +264,7 @@ Header.SlidingMenu = styled.div`
 `;
 
 const mapStateToProps = state => ({
-  getIsAuthenticated: getIsAuthenticated(state),
+  isAuthenticated: getIsAuthenticated(state),
 });
 
 const mapDispatchToProps = {

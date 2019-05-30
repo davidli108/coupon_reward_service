@@ -11,6 +11,10 @@ import SignInModal from '@modules/auth/components/SignInModal';
 import SignUpModal from '@modules/auth/components/SignUpModal';
 import ResetPasswordModal from '@modules/auth/components/ResetPasswordModal';
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
+import {
+  getLocaleConfig,
+  redirectToEnOrigin,
+} from '@modules/localization/i18n';
 
 import type { Store } from '../models/CouponsPage';
 import SocialShareFeatured from './SocialShareFeatured';
@@ -39,9 +43,17 @@ const TodaysFeaturedCoupon = ({
   isAuthenticated,
 }: TodaysFeaturedCouponProps) => {
   const [currentModal, setCurrentModal] = React.useState(null);
+  const localeConfig = getLocaleConfig();
 
   const isFavorite = Boolean(favorites[store.store_id]);
   const toggleFavoriteStore = () => {
+    if (
+      !localeConfig.isAuthenticationAvailable ||
+      !localeConfig.isFollowStoreAvailable
+    ) {
+      return redirectToEnOrigin();
+    }
+
     if (!isAuthenticated) {
       setCurrentModal(modal.modalSignUp);
       return;

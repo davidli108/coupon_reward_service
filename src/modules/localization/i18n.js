@@ -1,4 +1,6 @@
 import i18n from 'i18next';
+import parseDomain from 'parse-domain';
+import * as R from 'ramda';
 import { initReactI18next } from 'react-i18next';
 
 import translationDE from './locales/de/translation';
@@ -21,20 +23,59 @@ const resources = {
   },
 };
 
-const localeToDomain = {
-  '.com': 'en',
-  '.de': 'de',
-  '.fr': 'fr',
-  '.co.uk': 'gb',
+const Locale = {
+  en: 'en',
+  de: 'de',
+  fr: 'fr',
+  gb: 'gb',
 };
 
-const fallbackLocale = 'en';
+const localeToDomain = {
+  com: Locale.en,
+  de: Locale.de,
+  fr: Locale.fr,
+  'co.uk': Locale.gb,
+};
 
-const getLocale = () => {
+const fallbackLocale = Locale.en;
+
+export const getDomainAttrs = () => {
   const domain = window.location.hostname;
-  const domainExt = domain.slice(domain.lastIndexOf('.'));
+  const protocol = window.location.protocol;
 
-  return localeToDomain[domainExt] || fallbackLocale;
+  const parsedDomain = parseDomain(domain);
+  const tld = R.propOr(null, 'tld', parsedDomain);
+  const enDomain = domain.replace(tld, 'com');
+  const enOrigin = `${protocol}//${enDomain}`;
+
+  return {
+    domain,
+    protocol,
+    tld,
+    enDomain,
+    enOrigin,
+  };
+};
+
+export const redirectToEnOrigin = () => {
+  const domainAttrs = getDomainAttrs();
+  window.location.href = domainAttrs.enOrigin;
+};
+
+export const getLocale = () => {
+  const domainAttrs = getDomainAttrs();
+  return localeToDomain[domainAttrs.tld] || fallbackLocale;
+};
+
+export const getLocaleConfig = () => {
+  const locale = getLocale();
+
+  return {
+    // TODO: enable authentication on all domains after feature support added
+    isAuthenticationAvailable: locale === Locale.en,
+    // TODO: enable follow store on all domains after feature support added
+    isFollowStoreAvailable: locale === Locale.en,
+  };
 };
 
 export const initializeI18n = () => {
