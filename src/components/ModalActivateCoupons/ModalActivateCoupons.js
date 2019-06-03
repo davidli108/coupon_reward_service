@@ -12,6 +12,8 @@ import { getIsAuthenticated } from '@modules/auth/AuthReducer';
 import InstallOverlay from '@components/InstallOverlay/InstallOverlay';
 import AppConfig from '@config/AppConfig';
 import axios from 'axios';
+import { compose } from 'recompose';
+import { withTranslation } from 'react-i18next';
 
 type ModalActivateCouponsProps = {
   title: string,
@@ -25,6 +27,7 @@ type ModalActivateCouponsProps = {
 const isChrome = !!window.chrome;
 
 const ModalActivateCoupons = ({
+  t,
   title,
   subTitle,
   isActive,
@@ -85,16 +88,15 @@ const ModalActivateCoupons = ({
             <ModalActivateCoupons.Content>
               <MdClose onClick={callback} />
               <ModalActivateCoupons.Icon src={icon} />
-              <h2>NEVER OVERPAY AGAIN AT</h2>
+              <h2>{t('coupons.activateModal.title')}</h2>
               <ModalActivateCoupons.Store>
                 <img src={logo} alt={title} />
               </ModalActivateCoupons.Store>
-              <div>
-                Save time and money with automatic coupons. Piggy appears at
-                checkout and automatically applies the best discount.
-              </div>
-              <p>We find the {title} coupons, you just shop!</p>
-              <button onClick={handleClick}>Activate Coupons Now</button>
+              <div>{t('coupons.activateModal.content')}</div>
+              <p>{t('coupons.activateModal.couponAbout', { title })}</p>
+              <button onClick={handleClick}>
+                {t('coupons.activateModal.button')}
+              </button>
               <ModalActivateCoupons.Piggy src={piggy} />
             </ModalActivateCoupons.Content>
           </ModalActivateCoupons.Container>
@@ -308,7 +310,10 @@ const mapStateToProps = state => ({
   isAuthenticated: getIsAuthenticated(state),
 });
 
-export default connect(
-  mapStateToProps,
-  null,
+export default compose(
+  connect(
+    mapStateToProps,
+    null,
+  ),
+  withTranslation(),
 )(ModalActivateCoupons);

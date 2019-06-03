@@ -209,6 +209,19 @@ export default {
       'to make a list of your favourite stores and deals.',
     followAnyStore:
       "Visit any store page and click 'Follow Store' to add to your list",
+    activateModal: {
+      title: 'NEVER OVERPAY AGAIN AT',
+      content: `Save time and money with automatic coupons. Piggy appears at
+                checkout and automatically applies the best discount.`,
+      couponAbout: 'We find the {{title}} coupons, you just shop!',
+      button: 'Activate Coupons Now',
+    },
+    installExtension: {
+      action: 'Add to Chrome',
+      step: 'Step {{step}}',
+      step1text: 'Click the "Add to Chrome" Button',
+      step2text: 'Then click "Add extension"',
+    },
   },
   cashbackStores: {
     shopBy: {

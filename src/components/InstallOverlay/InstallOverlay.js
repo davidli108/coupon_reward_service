@@ -5,6 +5,7 @@ import leftRoundArrow from './leftRoundArrow.svg';
 import Cookie from 'js-cookie';
 import moment from 'moment';
 import AppConfig from '@config/AppConfig';
+import { withTranslation } from 'react-i18next';
 
 type InstallOverlayProps = {
   isActive: boolean,
@@ -17,7 +18,7 @@ const top =
     ? `calc(260px - ${headerHeight})`
     : `calc(210px - ${headerHeight})`;
 
-const InstallOverlay = ({ isActive, callback }: InstallOverlayProps) => {
+const InstallOverlay = ({ t, isActive, callback }: InstallOverlayProps) => {
   const windowProps = {
     toolbar: 'no',
     location: 'no',
@@ -69,23 +70,20 @@ const InstallOverlay = ({ isActive, callback }: InstallOverlayProps) => {
   return (
     <InstallOverlay.Wrapper isActive={isActive}>
       <InstallOverlay.Container top={top}>
-        <img src={leftRoundArrow} alt="Add to Chrome" />
-
+        <img src={leftRoundArrow} alt={t('coupons.installExtension.action')} />
         <InstallOverlay.Step>
-          <h3>Step 1</h3>
-          <p>Click the "Add to Chrome" Button</p>
+          <h3>{t('coupons.installExtension.step', { step: '1' })}</h3>
+          <p>{t('coupons.installExtension.step1text')}</p>
         </InstallOverlay.Step>
 
         <InstallOverlay.Step>
-          <h3>Step 2</h3>
-          <p>Then click "Add extension"</p>
+          <h3>{t('coupons.installExtension.step', { step: '2' })}</h3>
+          <p>{t('coupons.installExtension.step2text')}</p>
         </InstallOverlay.Step>
       </InstallOverlay.Container>
     </InstallOverlay.Wrapper>
   );
 };
-
-export default InstallOverlay;
 
 InstallOverlay.Wrapper = styled.div`
   position: fixed;
@@ -128,3 +126,5 @@ InstallOverlay.Step = styled.div`
     font-size: 24px;
   }
 `;
+
+export default withTranslation()(InstallOverlay);
