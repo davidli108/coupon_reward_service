@@ -1,18 +1,70 @@
 // @flow
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import leftRoundArrow from './leftRoundArrow.svg';
+import Cookie from 'js-cookie';
+import moment from 'moment';
+import AppConfig from '@config/AppConfig';
 
 type InstallOverlayProps = {
   isActive: boolean,
+  callback: Function,
 };
 
-const InstallOverlay = ({ isActive }: InstallOverlayProps) => {
-  const headerHeight = window.outerHeight - window.innerHeight + 'px';
-  const top =
-    navigator.platform === 'Win32'
-      ? `calc(260px - ${headerHeight})`
-      : `calc(210px - ${headerHeight})`;
+const headerHeight = window.outerHeight - window.innerHeight + 'px';
+const top =
+  navigator.platform === 'Win32'
+    ? `calc(260px - ${headerHeight})`
+    : `calc(210px - ${headerHeight})`;
+
+const InstallOverlay = ({ isActive, callback }: InstallOverlayProps) => {
+  const windowProps = {
+    toolbar: 'no',
+    location: 'no',
+    directories: 'no',
+    status: 'no',
+    menubar: 'no',
+    scrollbars: 'no',
+    resizable: 'no',
+    width: '1100',
+    height: '700',
+    left: window.screenX,
+    top: 0,
+  };
+
+  const parsedWindowProps = () => {
+    const data = [];
+    Object.keys(windowProps).forEach(key => {
+      data.push(`${key}=${windowProps[key]}`);
+    });
+
+    return data.join(',');
+  };
+
+  useEffect(() => {
+    if (isActive) {
+      const popup = window.open(
+        AppConfig.extension.url,
+        'extensionWindow',
+        parsedWindowProps(),
+      );
+
+      const focusInterval = setInterval(() => {
+        popup.focus();
+
+        if (popup.closed) {
+          clearInterval(focusInterval);
+          Cookie.set('installProcessed', true, {
+            expires: moment()
+              .add(1, 'days')
+              .toDate(),
+          });
+
+          callback();
+        }
+      }, 100);
+    }
+  }, [isActive]);
 
   return (
     <InstallOverlay.Wrapper isActive={isActive}>

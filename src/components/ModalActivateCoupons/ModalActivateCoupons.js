@@ -1,49 +1,112 @@
 // @flow
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { MdClose } from 'react-icons/md';
 import piggy from './piggy.svg';
 import icon from './piggy-icon.svg';
+import Cookie from 'js-cookie';
+import moment from 'moment';
+import { connect } from 'react-redux';
+import { getIsAuthenticated } from '@modules/auth/AuthReducer';
+import InstallOverlay from '@components/InstallOverlay/InstallOverlay';
+import AppConfig from '@config/AppConfig';
+import axios from 'axios';
 
 type ModalActivateCouponsProps = {
   title: string,
   subTitle: string,
   isActive: boolean,
-  closeModal: Function,
   logo: string,
   callback: Function,
+  isAuthenticated: boolean,
 };
+
+const isChrome = !!window.chrome;
 
 const ModalActivateCoupons = ({
   title,
   subTitle,
   isActive,
-  closeModal,
   logo,
   callback,
+  isAuthenticated,
 }: ModalActivateCouponsProps) => {
+  const [showActivateModal, setShowActivateModal] = useState(false);
+  const [showInstallOverlay, setInstallOverlay] = useState(false);
+
+  const getExtension = () => axios.get(AppConfig.extension.chrome);
+
+  useEffect(() => {
+    if (
+      isActive &&
+      isChrome &&
+      !isAuthenticated &&
+      !showInstallOverlay &&
+      !Boolean(Cookie.get('installProcessed'))
+    ) {
+      getExtension().then(
+        () => {
+          callback();
+        },
+        () => {
+          setShowActivateModal(isActive);
+          Cookie.set('installProcessed', true, {
+            expires: moment()
+              .add(1, 'days')
+              .toDate(),
+          });
+        },
+      );
+    } else {
+      callback();
+    }
+  }, [isActive]);
+
+  const handleClick = () => {
+    setShowActivateModal(false);
+    setInstallOverlay(true);
+  };
+
+  const installCallback = () => {
+    setInstallOverlay(false);
+    callback();
+  };
+
   return (
-    <ModalActivateCoupons.Wrapper isActive={isActive}>
-      <ModalActivateCoupons.Overlay onClick={closeModal} isActive={isActive} />
-      <ModalActivateCoupons.Container isActive={isActive}>
-        <ModalActivateCoupons.Content>
-          <MdClose onClick={closeModal} />
-          <ModalActivateCoupons.Icon src={icon} />
-          <h2>NEVER OVERPAY AGAIN AT</h2>
-          <ModalActivateCoupons.Store>
-            <img src={logo} alt={title} />
-          </ModalActivateCoupons.Store>
-          <div>
-            Save time and money with automatic coupons. Piggy appears at
-            checkout and automatically applies the best discount.
-          </div>
-          <p>We find the {title} coupons, you just shop!</p>
-          <button onClick={callback}>Activate Coupons Now</button>
-          <ModalActivateCoupons.Piggy src={piggy} />
-        </ModalActivateCoupons.Content>
-      </ModalActivateCoupons.Container>
-    </ModalActivateCoupons.Wrapper>
+    <>
+      {showActivateModal && (
+        <ModalActivateCoupons.Wrapper isActive={showActivateModal}>
+          <ModalActivateCoupons.Overlay
+            onClick={callback}
+            isActive={isActive}
+          />
+          <ModalActivateCoupons.Container isActive={isActive}>
+            <ModalActivateCoupons.Content>
+              <MdClose onClick={callback} />
+              <ModalActivateCoupons.Icon src={icon} />
+              <h2>NEVER OVERPAY AGAIN AT</h2>
+              <ModalActivateCoupons.Store>
+                <img src={logo} alt={title} />
+              </ModalActivateCoupons.Store>
+              <div>
+                Save time and money with automatic coupons. Piggy appears at
+                checkout and automatically applies the best discount.
+              </div>
+              <p>We find the {title} coupons, you just shop!</p>
+              <button onClick={handleClick}>Activate Coupons Now</button>
+              <ModalActivateCoupons.Piggy src={piggy} />
+            </ModalActivateCoupons.Content>
+          </ModalActivateCoupons.Container>
+        </ModalActivateCoupons.Wrapper>
+      )}
+      {showInstallOverlay && (
+        <InstallOverlay
+          isActive={showInstallOverlay}
+          callback={installCallback}
+        />
+      )}
+    </>
   );
 };
 
@@ -241,4 +304,11 @@ ModalActivateCoupons.Content = styled.div`
   }
 `;
 
-export default ModalActivateCoupons;
+const mapStateToProps = state => ({
+  isAuthenticated: getIsAuthenticated(state),
+});
+
+export default connect(
+  mapStateToProps,
+  null,
+)(ModalActivateCoupons);
