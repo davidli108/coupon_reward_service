@@ -218,7 +218,8 @@ export default {
     },
     installExtension: {
       action: 'Add to Chrome',
-      step: 'Step {{step}}',
+      step1: 'Step 1',
+      step2: 'Step 2',
       step1text: 'Click the "Add to Chrome" Button',
       step2text: 'Then click "Add extension"',
     },

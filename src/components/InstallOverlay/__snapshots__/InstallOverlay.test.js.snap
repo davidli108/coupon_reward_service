@@ -15,7 +15,7 @@ exports[`renders correctly 1`] = `
       className="InstallOverlay__Step-sc-10gjagm-2 bYzkZP"
     >
       <h3>
-        coupons.installExtension.step
+        coupons.installExtension.step1
       </h3>
       <p>
         coupons.installExtension.step1text
@@ -25,7 +25,7 @@ exports[`renders correctly 1`] = `
       className="InstallOverlay__Step-sc-10gjagm-2 bYzkZP"
     >
       <h3>
-        coupons.installExtension.step
+        coupons.installExtension.step2
       </h3>
       <p>
         coupons.installExtension.step2text

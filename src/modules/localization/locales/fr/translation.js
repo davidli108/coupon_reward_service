@@ -214,17 +214,18 @@ export default {
     followAnyStore:
       "Visitez n'importe quelle page de magasin et cliquez sur 'Suivre le magasin' pour ajouter à votre liste",
     activateModal: {
-      title: 'NEVER OVERPAY AGAIN AT',
-      content: `Save time and money with automatic coupons. Piggy appears at
-                checkout and automatically applies the best discount.`,
-      couponAbout: 'We find the {{title}} coupons, you just shop!',
-      button: 'Activate Coupons Now',
+      title: 'Ne payez plus jamais trop cher',
+      content: `Gagnez du temps et de l’argent avec vos bons automatiques. Piggy apparaît quand vous passez à la caisse et met en place automatiquement la meilleure réduction pour vous.`,
+      couponAbout:
+        'Nous trouvons les {{title}} bons de réduction et vous faites tout simplement vos achats !',
+      button: 'Activez les coupons',
     },
     installExtension: {
-      action: 'Add to Chrome',
-      step: 'Step {{step}}',
-      step1text: 'Click the "Add to Chrome" Button',
-      step2text: 'Then click "Add extension"',
+      action: 'Ajouter à Chrome',
+      step1: '1ère étape',
+      step2: '2e étape',
+      step1text: 'Cliquez sur "Ajouter à Chrome"',
+      step2text: 'Ensuite, cliquez sur "ajouter une extension"',
     },
   },
   cashbackStores: {
