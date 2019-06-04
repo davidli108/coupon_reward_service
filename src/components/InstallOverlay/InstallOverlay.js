@@ -27,10 +27,10 @@ const InstallOverlay = ({ t, isActive, callback }: InstallOverlayProps) => {
     menubar: 'no',
     scrollbars: 'no',
     resizable: 'no',
-    width: '1100',
-    height: '700',
+    width: '900',
+    height: '600',
     left: window.screenX,
-    top: 0,
+    top: window.screenTop,
   };
 
   const parsedWindowProps = () => {
@@ -98,7 +98,7 @@ InstallOverlay.Wrapper = styled.div`
 
 InstallOverlay.Container = styled.div`
   position: absolute;
-  left: 1130px;
+  left: 930px;
   top: ${({ top }) => top};
   width: 320px;
 

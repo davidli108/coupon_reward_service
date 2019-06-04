@@ -14,6 +14,7 @@ import AppConfig from '@config/AppConfig';
 import axios from 'axios';
 import { compose } from 'recompose';
 import { withTranslation } from 'react-i18next';
+import { Helmet } from 'react-helmet';
 
 type ModalActivateCouponsProps = {
   title: string,
@@ -36,6 +37,7 @@ const ModalActivateCoupons = ({
   isAuthenticated,
 }: ModalActivateCouponsProps) => {
   const [showActivateModal, setShowActivateModal] = useState(false);
+  const [modalMounted, setModalMounted] = useState(false);
   const [showInstallOverlay, setInstallOverlay] = useState(false);
 
   const getExtension = () => axios.get(AppConfig.extension.chrome);
@@ -53,7 +55,10 @@ const ModalActivateCoupons = ({
           callback();
         },
         () => {
-          setShowActivateModal(isActive);
+          setModalMounted(true);
+          setTimeout(() => {
+            setShowActivateModal(isActive);
+          });
           Cookie.set('installProcessed', true, {
             expires: moment()
               .add(1, 'days')
@@ -68,7 +73,10 @@ const ModalActivateCoupons = ({
 
   const handleClick = () => {
     setShowActivateModal(false);
-    setInstallOverlay(true);
+    setTimeout(() => {
+      setModalMounted(false);
+      setInstallOverlay(true);
+    }, 300);
   };
 
   const installCallback = () => {
@@ -76,17 +84,28 @@ const ModalActivateCoupons = ({
     callback();
   };
 
+  const dismissModal = () => {
+    setShowActivateModal(false);
+    setTimeout(() => {
+      setModalMounted(false);
+      callback();
+    }, 300);
+  };
+
   return (
     <>
-      {showActivateModal && (
+      <Helmet>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
+      {modalMounted && (
         <ModalActivateCoupons.Wrapper isActive={showActivateModal}>
           <ModalActivateCoupons.Overlay
-            onClick={callback}
-            isActive={isActive}
+            onClick={dismissModal}
+            isActive={showActivateModal}
           />
-          <ModalActivateCoupons.Container isActive={isActive}>
+          <ModalActivateCoupons.Container isActive={showActivateModal}>
             <ModalActivateCoupons.Content>
-              <MdClose onClick={callback} />
+              <MdClose onClick={dismissModal} />
               <ModalActivateCoupons.Icon src={icon} />
               <h2>{t('coupons.activateModal.title')}</h2>
               <ModalActivateCoupons.Store>
