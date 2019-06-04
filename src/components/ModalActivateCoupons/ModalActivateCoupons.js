@@ -19,7 +19,6 @@ import { Helmet } from 'react-helmet';
 type ModalActivateCouponsProps = {
   t: Function,
   title: string,
-  subTitle: string,
   isActive: boolean,
   logo: string,
   callback: Function,
@@ -31,7 +30,6 @@ const isChrome = !!window.chrome;
 const ModalActivateCoupons = ({
   t,
   title,
-  subTitle,
   isActive,
   logo,
   callback,

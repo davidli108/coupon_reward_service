@@ -1,11 +1,12 @@
 // @flow
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { IoIosHeartEmpty, IoIosHeart } from 'react-icons/io';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
 import moment from 'moment';
+import ModalActivateCoupons from '@components/ModalActivateCoupons/ModalActivateCoupons';
 
 import SignInModal from '@modules/auth/components/SignInModal';
 import SignUpModal from '@modules/auth/components/SignUpModal';
@@ -39,7 +40,8 @@ const TodaysFeaturedCoupon = ({
   removeFavorite,
   isAuthenticated,
 }: TodaysFeaturedCouponProps) => {
-  const [currentModal, setCurrentModal] = React.useState(null);
+  const [currentModal, setCurrentModal] = useState(null);
+  const [showActivateModal, setShowActivateModal] = useState(false);
 
   const isFavorite = Boolean(favorites[store.store_id]);
   const toggleFavoriteStore = () => {
@@ -53,6 +55,15 @@ const TodaysFeaturedCoupon = ({
     } else {
       removeFavorite(store.store_id);
     }
+  };
+
+  const handleClick = () => {
+    setShowActivateModal(true);
+  };
+
+  const modalCallback = () => {
+    setShowActivateModal(false);
+    window.open(store.offer_link, '_blank');
   };
 
   return (
@@ -110,7 +121,7 @@ const TodaysFeaturedCoupon = ({
           <TodaysFeaturedCoupon.Description>
             {store.offer_name}
           </TodaysFeaturedCoupon.Description>
-          <TodaysFeaturedCoupon.Button href={store.offer_link} target="_blank">
+          <TodaysFeaturedCoupon.Button onClick={handleClick}>
             {t('coupons.buttons.viewDeal')}
           </TodaysFeaturedCoupon.Button>
         </TodaysFeaturedCoupon.DescriptionButtonWrapper>
@@ -133,6 +144,15 @@ const TodaysFeaturedCoupon = ({
         <ResetPasswordModal
           onRouteModal={() => setCurrentModal(modal.modalSignUp)}
           closeModal={setCurrentModal.bind(null)}
+        />
+      )}
+
+      {showActivateModal && (
+        <ModalActivateCoupons
+          isActive={showActivateModal}
+          callback={modalCallback}
+          title={store.store_name}
+          logo={store.store_logo}
         />
       )}
     </TodaysFeaturedCoupon.Wrapper>
@@ -496,7 +516,7 @@ TodaysFeaturedCoupon.Description = styled.p`
   `}
 `;
 
-TodaysFeaturedCoupon.Button = styled.a`
+TodaysFeaturedCoupon.Button = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -521,6 +541,10 @@ TodaysFeaturedCoupon.Button = styled.a`
 
   :hover {
     background: #00b4cf;
+  }
+
+  :focus {
+    outline: none;
   }
 
   ${breakpoint('md')`

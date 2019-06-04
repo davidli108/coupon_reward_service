@@ -48,7 +48,6 @@ const CouponCode = ({ t, code, link, store, logo }: CouponCodeProps) => {
           callback={modalCallback}
           title={store}
           logo={logo}
-          subTitle={'test'}
         />
       )}
     </>
