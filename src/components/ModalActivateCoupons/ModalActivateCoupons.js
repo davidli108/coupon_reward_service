@@ -15,6 +15,7 @@ import axios from 'axios';
 import { compose } from 'recompose';
 import { withTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet';
+import { isMobile } from 'react-device-detect';
 
 type ModalActivateCouponsProps = {
   t: Function,
@@ -45,6 +46,7 @@ const ModalActivateCoupons = ({
     if (
       isActive &&
       isChrome &&
+      !isMobile &&
       !isAuthenticated &&
       !showInstallOverlay &&
       !Boolean(Cookie.get('installProcessed'))

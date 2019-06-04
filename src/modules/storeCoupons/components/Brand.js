@@ -16,7 +16,13 @@ import type { BrandProps } from '../models/StorePage';
 import { getStore } from '../StoreCouponsReducer';
 import AppConfig from '@config/AppConfig';
 
-const Brand = ({ store, isLoaded, offersCount, reviews }: BrandProps) => (
+const Brand = ({
+  store,
+  isLoaded,
+  offersCount,
+  reviews,
+  extensionActive,
+}: BrandProps) => (
   <>
     <Brand.Wrapper>
       {isLoaded ? (
@@ -43,30 +49,34 @@ const Brand = ({ store, isLoaded, offersCount, reviews }: BrandProps) => (
         {isLoaded ? (
           <>
             <BrandHeader offersCount={offersCount} />
-            <Brand.XlWrapper>
-              <Brand.NoWrapFlexBoxWithBorder>
-                <BrandContent
-                  storeName={store.store_name}
-                  stars={5}
-                  reviewsCount={reviews}
-                />
-              </Brand.NoWrapFlexBoxWithBorder>
-            </Brand.XlWrapper>
+            {!extensionActive && (
+              <Brand.XlWrapper>
+                <Brand.NoWrapFlexBoxWithBorder>
+                  <BrandContent
+                    storeName={store.store_name}
+                    stars={5}
+                    reviewsCount={reviews}
+                  />
+                </Brand.NoWrapFlexBoxWithBorder>
+              </Brand.XlWrapper>
+            )}
           </>
         ) : (
           <BrandXlLoader />
         )}
       </Brand.WrapFlexBox>
     </Brand.Wrapper>
-    <Brand.MdWrapper>
-      <Brand.NoWrapFlexBoxWithBorder>
-        <BrandContent
-          storeName={store.store_name}
-          stars={5}
-          reviewsCount={reviews}
-        />
-      </Brand.NoWrapFlexBoxWithBorder>
-    </Brand.MdWrapper>
+    {!extensionActive && (
+      <Brand.MdWrapper>
+        <Brand.NoWrapFlexBoxWithBorder>
+          <BrandContent
+            storeName={store.store_name}
+            stars={5}
+            reviewsCount={reviews}
+          />
+        </Brand.NoWrapFlexBoxWithBorder>
+      </Brand.MdWrapper>
+    )}
   </>
 );
 
@@ -185,6 +195,10 @@ Brand.MdWrapper = styled.div`
 Brand.WrapFlexBox = styled.div`
   display: flex;
   flex-flow: column nowrap;
+
+  ${breakpoint('xl')`
+    display: block;
+  `}
 
   ${breakpoint('md')`
     flex-flow: row wrap;
