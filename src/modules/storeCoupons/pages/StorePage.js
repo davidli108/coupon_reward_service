@@ -139,7 +139,7 @@ const StorePage = ({
               <OffersLoader key={ind} />
             ))
           )}
-          <AddSaving />
+          {!extensionActive && <AddSaving />}
         </StorePage.ColumnNoWrapFlexBox>
         <StorePage.ColumnNoWrapFlexBox order="1">
           {isLoaded ? <AdditionalInfo /> : <AdditionalInfoLoader />}
