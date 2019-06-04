@@ -17,6 +17,7 @@ import { withTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet';
 
 type ModalActivateCouponsProps = {
+  t: Function,
   title: string,
   subTitle: string,
   isActive: boolean,

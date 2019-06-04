@@ -8,6 +8,7 @@ import AppConfig from '@config/AppConfig';
 import { withTranslation } from 'react-i18next';
 
 type InstallOverlayProps = {
+  t: Function,
   isActive: boolean,
   callback: Function,
 };
