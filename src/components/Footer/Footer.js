@@ -7,136 +7,122 @@ import { IoLogoApple } from 'react-icons/io';
 import { withTranslation } from 'react-i18next';
 
 import logo from '../Header/logo.svg';
+import FooterLink from './FooterLink/FooterLink';
 
 type FooterProps = {
   t: Function,
   i18n: Object,
 };
 
-const Footer = ({ t, i18n }: FooterProps) => (
-  <Footer.Wrapper>
-    <Footer.Strip />
-    <Footer.Container>
-      <div>
-        <Footer.Logo src={logo} />
-        <Footer.Socials>
-          <Footer.SocialLink
-            href="https://www.facebook.com/joinpiggy/"
-            target="_blank"
-            style={{ marginRight: '25px' }}
-          >
-            Facebook
-          </Footer.SocialLink>
-          <Footer.SocialLink
-            href="https://twitter.com/JoinPiggy"
-            target="_blank"
-          >
-            Twitter
-          </Footer.SocialLink>
-        </Footer.Socials>
-      </div>
-      <Footer.DownloadAppLinksWrapper>
-        <Footer.DownloadAppLink
-          href="https://play.google.com/store/apps/details?id=com.piggy.coupons"
-          target="_blank"
-          style={{ order: '2' }}
-          lng={i18n.language}
-        >
-          <div>
-            <MdAndroid
-              style={{ height: '22px', width: '22px', color: '#00b2cc' }}
-            />
-          </div>
-          <p>{t('footer.downloadButtons.android')}</p>
-        </Footer.DownloadAppLink>
-        <Footer.DownloadAppLink
-          href="https://itunes.apple.com/us/app/coupons-cashback-piggy/id1176303802?ls=1&mt=8"
-          target="_blank"
-          style={{ order: '3' }}
-          lng={i18n.language}
-        >
-          <div>
-            <IoLogoApple
-              style={{ height: '30px', width: '30px', color: '#00b2cc' }}
-            />
-          </div>
-          <p>{t('footer.downloadButtons.ios')}</p>
-        </Footer.DownloadAppLink>
-        <Footer.DownloadAppLink
-          href={`https://chrome.google.com/webstore/detail/piggy-automatic-coupons-c/hfapbcheiepjppjbnkphkmegjlipojba?hl=${
-            i18n.language
-          }`}
-          target="_blank"
-          style={{ order: '1' }}
-          lng={i18n.language}
-        >
-          <div>
-            <MdLaptop
-              style={{ height: '22px', width: '22px', color: '#00b2cc' }}
-            />
-          </div>
-          <p>{t('footer.downloadButtons.desktop')}</p>
-        </Footer.DownloadAppLink>
-      </Footer.DownloadAppLinksWrapper>
-      <Footer.Navigation>
-        <Footer.NavLink href="/howtoinstall">
-          {t('footer.menu.howToInstall')}
-        </Footer.NavLink>
-        <Footer.NavLink href="/about-cashback">
-          {t('footer.menu.aboutCashBack')}
-        </Footer.NavLink>
-        <Footer.NavLink href="/account/referrals">
-          {t('footer.menu.referrals')}
-        </Footer.NavLink>
-        <Footer.NavLink href="/careers">
-          {t('footer.menu.careers')}
-        </Footer.NavLink>
-        <Footer.NavLink href="/howtoremove">
-          {t('footer.menu.howToUninstall')}
-        </Footer.NavLink>
-        <Footer.NavLink href="/consumer-resources">
-          {t('footer.menu.consumerResources')}
-        </Footer.NavLink>
-        <Footer.NavLink href="/blog">{t('footer.menu.blog')}</Footer.NavLink>
-        <Footer.NavLink href="/cashback-apps">
-          {t('footer.menu.aboutOurApp')}
-        </Footer.NavLink>
-        <Footer.NavLink href="/about">
-          {t('footer.menu.aboutUs')}
-        </Footer.NavLink>
-        <Footer.NavLink href="/contactus">
-          {t('footer.menu.contact')}
-        </Footer.NavLink>
-        <Footer.NavLink href="/info">{t('footer.menu.help')}</Footer.NavLink>
-      </Footer.Navigation>
-    </Footer.Container>
-    <Footer.CopyrightWrapper>
-      <div>
+const Footer = ({ t, i18n }: FooterProps) => {
+  const footerLinks = [
+    { url: '/howtoinstall', text: t('footer.menu.howToInstall') },
+    { url: '/blog', text: t('footer.menu.blog') },
+    { url: '/about-cashback', text: t('footer.menu.aboutCashBack') },
+    { url: '/cashback-apps', text: t('footer.menu.aboutOurApp') },
+    { url: '/account/referrals', text: t('footer.menu.referrals') },
+    { url: '/careers', text: t('footer.menu.careers') },
+    { url: '/contactus', text: t('footer.menu.contact') },
+    { url: '/howtoremove', text: t('footer.menu.howToUninstall') },
+    { url: '/info', text: t('footer.menu.help') },
+    { url: '/consumer-resources', text: t('footer.menu.consumerResources') },
+  ];
+
+  const copyrightLinks = [
+    { url: '/terms', text: t('footer.copyright.menu.termsOfUse') },
+    { url: '/privacy', text: t('footer.copyright.menu.privacyPolicy') },
+    { url: '/sitemap', text: t('footer.copyright.menu.sitemap') },
+    { url: '/unsubscribe', text: t('footer.copyright.menu.unsubscribe') },
+    { url: '/eula', text: t('footer.copyright.menu.eula') },
+  ];
+
+  return (
+    <Footer.Wrapper>
+      <Footer.Strip />
+      <Footer.Container>
         <div>
-          <Footer.CopyrightLink href="/terms">
-            {t('footer.copyright.menu.termsOfUse')}
-          </Footer.CopyrightLink>
-          <Footer.CopyrightLink href="/sitemap">
-            {t('footer.copyright.menu.sitemap')}
-          </Footer.CopyrightLink>
-          <Footer.CopyrightLink href="/eula">
-            {t('footer.copyright.menu.eula')}
-          </Footer.CopyrightLink>
-          <Footer.CopyrightLink href="/privacy">
-            {t('footer.copyright.menu.privacyPolicy')}
-          </Footer.CopyrightLink>
-          <Footer.CopyrightLink href="/unsubscribe">
-            {t('footer.copyright.menu.unsubscribe')}
-          </Footer.CopyrightLink>
+          <Footer.Logo src={logo} />
+          <Footer.Socials>
+            <Footer.SocialLink
+              href="https://www.facebook.com/joinpiggy/"
+              target="_blank"
+              style={{ marginRight: '25px' }}
+            >
+              Facebook
+            </Footer.SocialLink>
+            <Footer.SocialLink
+              href="https://twitter.com/JoinPiggy"
+              target="_blank"
+            >
+              Twitter
+            </Footer.SocialLink>
+          </Footer.Socials>
         </div>
-        <p>
-          {t('footer.copyright.text')} © {new Date().getFullYear()}{' '}
-          {t('footer.copyright.allRightReserved')}
-        </p>
-      </div>
-    </Footer.CopyrightWrapper>
-  </Footer.Wrapper>
-);
+        <Footer.DownloadAppLinksWrapper>
+          <Footer.DownloadAppLink
+            href="https://play.google.com/store/apps/details?id=com.piggy.coupons"
+            target="_blank"
+            style={{ order: '2' }}
+            lng={i18n.language}
+          >
+            <div>
+              <MdAndroid
+                style={{ height: '22px', width: '22px', color: '#00b2cc' }}
+              />
+            </div>
+            <p>{t('footer.downloadButtons.android')}</p>
+          </Footer.DownloadAppLink>
+          <Footer.DownloadAppLink
+            href="https://itunes.apple.com/us/app/coupons-cashback-piggy/id1176303802?ls=1&mt=8"
+            target="_blank"
+            style={{ order: '3' }}
+            lng={i18n.language}
+          >
+            <div>
+              <IoLogoApple
+                style={{ height: '30px', width: '30px', color: '#00b2cc' }}
+              />
+            </div>
+            <p>{t('footer.downloadButtons.ios')}</p>
+          </Footer.DownloadAppLink>
+          <Footer.DownloadAppLink
+            href={`https://chrome.google.com/webstore/detail/piggy-automatic-coupons-c/hfapbcheiepjppjbnkphkmegjlipojba?hl=${
+              i18n.language
+            }`}
+            target="_blank"
+            style={{ order: '1' }}
+            lng={i18n.language}
+          >
+            <div>
+              <MdLaptop
+                style={{ height: '22px', width: '22px', color: '#00b2cc' }}
+              />
+            </div>
+            <p>{t('footer.downloadButtons.desktop')}</p>
+          </Footer.DownloadAppLink>
+        </Footer.DownloadAppLinksWrapper>
+        <Footer.Navigation>
+          {footerLinks.map((link: any, key) => (
+            <FooterLink key={key} url={link.url} text={link.text} />
+          ))}
+        </Footer.Navigation>
+      </Footer.Container>
+      <Footer.CopyrightWrapper>
+        <div>
+          <Footer.CopyrightLinks>
+            {copyrightLinks.map((link: any, key) => (
+              <FooterLink key={key} url={link.url} text={link.text} />
+            ))}
+          </Footer.CopyrightLinks>
+          <p>
+            {t('footer.copyright.text')} © {new Date().getFullYear()}{' '}
+            {t('footer.copyright.allRightReserved')}
+          </p>
+        </div>
+      </Footer.CopyrightWrapper>
+    </Footer.Wrapper>
+  );
+};
 
 Footer.Wrapper = styled.footer`
   background: #40c8e5;
@@ -193,7 +179,8 @@ Footer.Container = styled.div`
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
-  margin: 20px auto 0 auto;
+  margin: 0 auto;
+  padding: 2rem 0;
   width: 100%;
   max-width: 1170px;
 
@@ -206,7 +193,7 @@ Footer.Container = styled.div`
   `}
 
   > * {
-    padding: 10px 20px;
+    padding: 0 20px;
   }
 `;
 
@@ -261,7 +248,6 @@ Footer.StripLink = styled.a`
 Footer.Logo = styled.img`
   height: 95px;
   width: 225px;
-  padding-left: 15px;
 `;
 
 Footer.Socials = styled.div`
@@ -282,7 +268,7 @@ Footer.SocialLink = styled.a`
 Footer.DownloadAppLinksWrapper = styled.div`
   display: flex;
   width: 100%;
-  align-items: center;
+  padding: 2rem 0 0;
   justify-content: center;
   flex-direction: column;
 
@@ -303,21 +289,13 @@ Footer.DownloadAppLinksWrapper = styled.div`
   }
 `;
 
-Footer.Navigation = styled.div`
+Footer.Navigation = styled.ul`
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: row wrap;
   width: 100%;
-  margin: 30px 0;
-
-  ${breakpoint('sm')`
-    height: 170px;
-    flex-flow: column wrap;
-    margin: 30px 0;
-  `}
-
-  ${breakpoint('lg')`
-    height: 150px;
-  `}
+  margin: 3rem 0 1rem;
+  padding: 0 20px;
+  list-style: none;
 `;
 
 Footer.NavLink = styled.a`
@@ -342,6 +320,8 @@ Footer.CopyrightWrapper = styled.div`
     align-items: space-between;
     text-align: center;
     margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
 
     ${breakpoint('md')`
       flex-direction: row;
@@ -382,20 +362,65 @@ Footer.CopyrightWrapper = styled.div`
   }
 `;
 
-Footer.CopyrightLink = styled.a`
-  width: fit-content;
+Footer.CopyrightLinks = styled.ul`
+  display: flex;
   font-size: 14px;
   color: white;
-  padding: 15px 15px;
+  padding: 1.5rem 0;
   cursor: pointer;
 
-  ${breakpoint('md')`
-    padding: 0 10px;
+  > li {
+    flex: 0;
+    max-width: none;
+    white-space: nowrap;
+    padding: 0;
+
+    ::after {
+      content: '/';
+      display: inline-block;
+      margin: 0 .5rem;
+      color: inherit;
+    }
+
+    :last-child {
+      ::after {
+        display: none;
+      }
+    }
+  }
+
+  ${breakpoint('xs')`
+    flex-flow: row wrap;
+
+    > li {
+      flex: 1 0 100%;
+      max-width: 100%;
+      padding: .75rem 0;
+
+      :after {
+        display: none;
+      }
+    }
   `}
 
-  &:hover {
-    text-decoration: underline;
-  }
+  ${breakpoint('sm')`
+    > li {
+      flex: 1 0 50%;
+      max-width: 50%;
+    }
+  `}
+
+  ${breakpoint('sm')`
+    > li {
+      flex: 0;
+      max-width: none;
+      padding: 0;
+      
+      :after {
+        display: inline;
+      }
+    }
+  `}
 `;
 
 export default withTranslation()(Footer);

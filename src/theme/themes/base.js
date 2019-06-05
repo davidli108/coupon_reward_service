@@ -9,6 +9,10 @@ import fonts from '../patterns/fonts';
 export const GlobalStyle = createGlobalStyle`
   ${reset}
 
+  html {
+    -webkit-font-smoothing: antialiased;
+  }
+
   body {
     font-family : ${props => props.theme.fonts.roboto};
   }
