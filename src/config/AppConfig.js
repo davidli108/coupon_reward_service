@@ -7,4 +7,14 @@ export default {
     'https://d2umvgb8hls1bt.cloudfront.net',
     process.env.REACT_APP_CLOUD_URL,
   ),
+  extension: {
+    chrome: R.defaultTo(
+      'chrome-extension://hfapbcheiepjppjbnkphkmegjlipojba/manifest.json',
+      process.env.REACT_APP_EXTENSION_CHROME,
+    ),
+    url: R.defaultTo(
+      'https://chrome.google.com/webstore/detail/piggy-automatic-coupons-c/hfapbcheiepjppjbnkphkmegjlipojba',
+      process.env.REACT_APP_EXTENSION_URL,
+    ),
+  },
 };

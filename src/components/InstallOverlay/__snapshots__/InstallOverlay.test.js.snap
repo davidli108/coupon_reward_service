@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="InstallOverlay__Wrapper-sc-10gjagm-0 cxFTog"
+>
+  <div
+    className="InstallOverlay__Container-sc-10gjagm-1 cWQicq"
+  >
+    <img
+      alt="coupons.installExtension.action"
+      src="leftRoundArrow.svg"
+    />
+    <div
+      className="InstallOverlay__Step-sc-10gjagm-2 bYzkZP"
+    >
+      <h3>
+        coupons.installExtension.step1
+      </h3>
+      <p>
+        coupons.installExtension.step1text
+      </p>
+    </div>
+    <div
+      className="InstallOverlay__Step-sc-10gjagm-2 bYzkZP"
+    >
+      <h3>
+        coupons.installExtension.step2
+      </h3>
+      <p>
+        coupons.installExtension.step2text
+      </p>
+    </div>
+  </div>
+</div>
+`;
