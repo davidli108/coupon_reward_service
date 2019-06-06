@@ -184,7 +184,7 @@ CouponsPage.SearchWrapper = styled.div`
 
 CouponsPage.NoData = styled.p`
   width: 100%;
-  line-height: 250px;
+  line-height: 228px;
   font-size: 25px;
   display: flex;
   justify-content: center;

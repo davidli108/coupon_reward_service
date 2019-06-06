@@ -274,7 +274,7 @@ Content.Grid = styled.div`
     margin: 0 10px;
 
     > div:last-child {
-      width: calc(100% - 247px) !important;
+      width: calc(100% - 220px) !important;
       padding-right: ${props => (props.isFavoritesTab ? '10px' : '0')};
     }
   `}
@@ -297,8 +297,8 @@ Content.CategoriesWrapper = styled.div`
   display: none;
 
   ${breakpoint('md')`
-    width: 217px;
-    margin-right: 30px;
+    width: 215px;
+    margin-right: 5px;
     display: flex;
     flex-flow: column nowrap;
 

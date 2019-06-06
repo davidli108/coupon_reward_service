@@ -241,7 +241,8 @@ TodaysFeaturedCoupon.Content = styled.div`
   @media (min-width: 768px) and (max-width: 991px) {
     display: grid;
     grid-template-columns: 50% 50%;
-    padding: 34px 48px;
+    padding: 15px 30px;
+    height: auto;
   }
 `;
 
