@@ -9,6 +9,10 @@ import { withTranslation } from 'react-i18next';
 import SignInModal from '@modules/auth/components/SignInModal';
 import SignUpModal from '@modules/auth/components/SignUpModal';
 import ResetPasswordModal from '@modules/auth/components/ResetPasswordModal';
+import {
+  getLocaleConfig,
+  redirectToEnOrigin,
+} from '@modules/localization/i18n';
 import { FavoriteStoreList } from '@modules/store/components/StoreList';
 
 import Controls from './Controls';
@@ -68,6 +72,8 @@ const Content = ({
   const [isLoadedCategories, setIsLoadedCategories] = useState(false);
   const [activeCategory, setActiveCategory] = useState(match.params.name);
   const [currentModal, setCurrentModal] = React.useState(null);
+
+  const localeConfig = getLocaleConfig();
 
   useEffect(() => {
     setIsLoaded(false);
@@ -171,29 +177,42 @@ const Content = ({
                 </div>
               )}
 
-              {(favoriteStores || []).length === 0 && isAuthenticated && (
-                <Content.FollowAnyStoreLabel>
-                  {t('coupons.followAnyStore')}
-                </Content.FollowAnyStoreLabel>
-              )}
-
-              {(favoriteStores || []).length === 0 && !isAuthenticated && (
+              {(favoriteStores || []).length === 0 && (
                 <Content.AuthenticateSectionWrapper>
                   <EmptyFavoritesIcon />
-                  <Content.AuthenticateLabel>
-                    <Content.AuthenticateControl
-                      onClick={() => setCurrentModal(modal.modalSignIn)}
-                    >
-                      {t('coupons.login')}
-                    </Content.AuthenticateControl>
-                    <span> {t('coupons.or')} </span>
-                    <Content.AuthenticateControl
-                      onClick={() => setCurrentModal(modal.modalSignUp)}
-                    >
-                      {t('coupons.register')}
-                    </Content.AuthenticateControl>
-                    <span> {t('coupons.favoriteStoresAndDeals')}</span>
-                  </Content.AuthenticateLabel>
+
+                  {isAuthenticated ? (
+                    <Content.AuthenticateLabel>
+                      {t('coupons.followAnyStore')}
+                    </Content.AuthenticateLabel>
+                  ) : (
+                    <Content.AuthenticateLabel>
+                      <Content.AuthenticateControl
+                        onClick={() => {
+                          if (localeConfig.isAuthenticationAvailable) {
+                            setCurrentModal(modal.modalSignIn);
+                          } else {
+                            redirectToEnOrigin();
+                          }
+                        }}
+                      >
+                        {t('coupons.login')}
+                      </Content.AuthenticateControl>
+                      <span> {t('coupons.or')} </span>
+                      <Content.AuthenticateControl
+                        onClick={() => {
+                          if (localeConfig.isAuthenticationAvailable) {
+                            setCurrentModal(modal.modalSignUp);
+                          } else {
+                            redirectToEnOrigin();
+                          }
+                        }}
+                      >
+                        {t('coupons.register')}
+                      </Content.AuthenticateControl>
+                      <span> {t('coupons.favoriteStoresAndDeals')}</span>
+                    </Content.AuthenticateLabel>
+                  )}
                 </Content.AuthenticateSectionWrapper>
               )}
             </>
