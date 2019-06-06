@@ -1,10 +1,11 @@
 // @flow
 import * as R from 'ramda';
+import Cookie from 'js-cookie';
 
 import { PASSWORD, SIGN_IN, FETCH_USER, SIGN_UP, LOGOUT } from './AuthActions';
 
 const initialState = {
-  isAuthenticated: false,
+  isAuthenticated: Boolean(Cookie.get('cf')),
   auth: '',
   app_key: '',
   fb_id: '',

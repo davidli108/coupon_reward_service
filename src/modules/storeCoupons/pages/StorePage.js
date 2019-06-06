@@ -28,6 +28,8 @@ import * as actions from '../StoreCouponsActions';
 import AdditionalInfoLoader from '../components/loaders/AdditionalInfoLoader';
 import OffersLoader from '../components/loaders/OffersLoader';
 import AddSaving from '../components/AddSaving';
+import axios from 'axios';
+import AppConfig from '@config/AppConfig';
 
 const StorePage = ({
   t,
@@ -46,11 +48,23 @@ const StorePage = ({
   const [searchValue, setSearchValue] = useState('');
   const [storeName, setStoreName] = useState(match.params.name);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [extensionActive, setExtensionActive] = useState(false);
+
+  const getExtension = () => axios.get(AppConfig.extension.chrome);
 
   useEffect(() => {
     match.params.name &&
       // $FlowFixMe
       fetchStoreCoupons(match.params.name).then(() => setIsLoaded(true));
+
+    getExtension().then(
+      () => {
+        setExtensionActive(true);
+      },
+      () => {
+        setExtensionActive(false);
+      },
+    );
   }, []);
 
   useEffect(() => {
@@ -100,9 +114,18 @@ const StorePage = ({
           isLoading={searchIsLoading}
         />
       </StorePage.SearchWrapper>
-      <Brand isLoaded={isLoaded} offersCount={offersCount} reviews={reviews} />
+      <Brand
+        isLoaded={isLoaded}
+        extensionActive={isLoaded && extensionActive}
+        offersCount={offersCount}
+        reviews={reviews}
+      />
       <StorePage.DesktopContent>
-        <StorePage.ColumnNoWrapFlexBox order="2" style={{ marginBottom: 50 }}>
+        <StorePage.ColumnNoWrapFlexBox
+          order="2"
+          extensionActive={isLoaded && extensionActive}
+          style={{ marginBottom: 50 }}
+        >
           {isLoaded ? (
             <Offers
               offers={offers}
@@ -116,7 +139,7 @@ const StorePage = ({
               <OffersLoader key={ind} />
             ))
           )}
-          <AddSaving />
+          {!extensionActive && <AddSaving />}
         </StorePage.ColumnNoWrapFlexBox>
         <StorePage.ColumnNoWrapFlexBox order="1">
           {isLoaded ? <AdditionalInfo /> : <AdditionalInfoLoader />}
@@ -190,6 +213,10 @@ StorePage.DesktopContent = styled(StorePage.NoWrapFlexBox)`
 `;
 
 StorePage.ColumnNoWrapFlexBox = styled.div`
+  ${breakpoint('xl')`
+    margin-top: ${({ extensionActive }) => (extensionActive ? '-200px' : '')}
+  `}
+
   ${breakpoint('lg')`
     display: flex;
     flex-flow: column nowrap;

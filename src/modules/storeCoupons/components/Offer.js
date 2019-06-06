@@ -8,6 +8,7 @@ import moment from 'moment';
 
 import CouponCode from './CouponCode';
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
+import AppConfig from '@config/AppConfig';
 
 const discountColors = [
   '#d0c000',
@@ -70,7 +71,7 @@ const Offer = ({
               <img
                 src={
                   store_logo
-                    ? `https://d2umvgb8hls1bt.cloudfront.net${store_logo}`
+                    ? `${AppConfig.cloudUrl}${store_logo}`
                     : placeholder
                 }
                 onError={e => {
@@ -105,7 +106,15 @@ const Offer = ({
         </Offer.Content>
         <Offer.Container>
           <Offer.ButtonWrapper>
-            <CouponCode t={t} code={coupon_code} link={offer_link} />
+            <CouponCode
+              t={t}
+              code={coupon_code}
+              link={offer_link}
+              store={store_name}
+              logo={
+                store_logo ? `${AppConfig.cloudUrl}${store_logo}` : placeholder
+              }
+            />
             <Offer.ExpDate>
               Exp.{' '}
               {moment(show_exp_date.slice(5), 'MM/DD/YYYY').format(

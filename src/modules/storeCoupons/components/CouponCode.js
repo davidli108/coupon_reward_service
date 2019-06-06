@@ -1,35 +1,56 @@
 // @flow
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import ModalActivateCoupons from '@components/ModalActivateCoupons/ModalActivateCoupons';
 
 type CouponCodeProps = {
   t: Function,
   code: string,
   link: string,
+  store: string,
+  logo: string,
 };
 
-const CouponCode = ({ t, code, link }: CouponCodeProps) => {
+const CouponCode = ({ t, code, link, store, logo }: CouponCodeProps) => {
   const [isShowCode, setIsShowCode] = useState(false);
+  const [showActivateModal, setShowActivateModal] = useState(false);
+
+  const handleClick = () => {
+    setShowActivateModal(true);
+  };
+
+  const modalCallback = () => {
+    setShowActivateModal(false);
+    if (code && !isShowCode) {
+      setIsShowCode(true);
+    } else {
+      window.open(link, '_blank');
+    }
+  };
 
   return (
-    <CouponCode.Wrapper>
-      <CouponCode.Button
-        onClick={() => {
-          if (code) {
-            setIsShowCode(true);
-          } else {
-            window.open(link, '_blank');
-          }
-        }}
-        isShow={!isShowCode}
-      >
-        <p>{code ? t('global.revealCoupon') : t('coupons.buttons.viewDeal')}</p>
-        <CouponCode.Rectangle isShow={!!code} />
-      </CouponCode.Button>
-      <CouponCode.Code href={link} target="_blank" isShow={isShowCode}>
-        {code}
-      </CouponCode.Code>
-    </CouponCode.Wrapper>
+    <>
+      <CouponCode.Wrapper>
+        <CouponCode.Button onClick={handleClick} isShow={!isShowCode}>
+          <p>
+            {code ? t('global.revealCoupon') : t('coupons.buttons.viewDeal')}
+          </p>
+          <CouponCode.Rectangle isShow={!!code} />
+        </CouponCode.Button>
+        <CouponCode.Code href={link} target="_blank" isShow={isShowCode}>
+          {code}
+        </CouponCode.Code>
+      </CouponCode.Wrapper>
+
+      {showActivateModal && (
+        <ModalActivateCoupons
+          isActive={showActivateModal}
+          callback={modalCallback}
+          title={store}
+          logo={logo}
+        />
+      )}
+    </>
   );
 };
 

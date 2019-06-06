@@ -7,6 +7,9 @@ services:
     command: yarn start:dev
     environment:
       REACT_APP_API_URL: https://api.joinpiggy.com
+      REACT_APP_CLOUD_URL: https://d2umvgb8hls1bt.cloudfront.net
+      REACT_APP_EXTENSION_URL: https://chrome.google.com/webstore/detail/piggy-automatic-coupons-c/hfapbcheiepjppjbnkphkmegjlipojba
+      REACT_APP_EXTENSION_CHROME: chrome-extension://hfapbcheiepjppjbnkphkmegjlipojba/manifest.json
     ports:
       - 3000:3000
     volumes:

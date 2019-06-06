@@ -2,34 +2,55 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { withTranslation } from 'react-i18next';
+import ModalActivateCoupons from '@components/ModalActivateCoupons/ModalActivateCoupons';
 
 type CouponCodeProps = {
   t: Function,
   code: string,
   link: string,
+  store: string,
+  logo: string,
 };
 
-const CouponCode = ({ t, code, link }: CouponCodeProps) => {
+const CouponCode = ({ t, code, link, store, logo }: CouponCodeProps) => {
   const [isShowCode, setIsShowCode] = useState(false);
+  const [showActivateModal, setShowActivateModal] = useState(false);
+
+  const handleClick = () => {
+    setShowActivateModal(true);
+  };
+
+  const modalCallback = () => {
+    setShowActivateModal(false);
+    if (code && !isShowCode) {
+      setIsShowCode(true);
+    } else {
+      window.open(link, '_blank');
+    }
+  };
 
   return (
-    <CouponCode.Wrapper>
-      <CouponCode.Button
-        onClick={() => {
-          if (code) {
-            setIsShowCode(true);
-          } else {
-            window.open(link, '_blank');
-          }
-        }}
-        isShow={!isShowCode}
-      >
-        {code ? t('coupons.buttons.viewCoupon') : t('coupons.buttons.viewDeal')}
-      </CouponCode.Button>
-      <CouponCode.Code href={link} target="_blank" isShow={isShowCode}>
-        {code}
-      </CouponCode.Code>
-    </CouponCode.Wrapper>
+    <>
+      <CouponCode.Wrapper>
+        <CouponCode.Button onClick={handleClick} isShow={!isShowCode}>
+          {code
+            ? t('coupons.buttons.viewCoupon')
+            : t('coupons.buttons.viewDeal')}
+        </CouponCode.Button>
+        <CouponCode.Code onClick={handleClick} isShow={isShowCode}>
+          {code}
+        </CouponCode.Code>
+      </CouponCode.Wrapper>
+
+      {showActivateModal && (
+        <ModalActivateCoupons
+          isActive={showActivateModal}
+          callback={modalCallback}
+          title={store}
+          logo={logo}
+        />
+      )}
+    </>
   );
 };
 
@@ -60,8 +81,9 @@ CouponCode.Button = styled.div`
   cursor: pointer;
 `;
 
-CouponCode.Code = styled.a`
+CouponCode.Code = styled.div`
   display: ${props => (props.isShow ? 'flex' : 'none')};
+  cursor: pointer;
   width: 100%;
   height: 46px;
   margin-bottom: 10px;

@@ -87,6 +87,7 @@ export type BrandProps = {
   isLoaded: boolean,
   offersCount: number,
   reviews: string,
+  extensionActive?: boolean,
 };
 
 export type BrandContentProps = {
