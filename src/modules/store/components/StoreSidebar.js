@@ -5,7 +5,6 @@ import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
-
 import { type Store } from '../models';
 
 import SearchBar from '@components/SearchBar/SearchBar';
@@ -31,6 +30,7 @@ type StoreSidebarProps = {
   setIsLoadedStores: boolean => void,
   isLoadedCategories: boolean,
   setIsLoadedCategories: boolean => void,
+  getFilteredList: any,
 };
 
 const StoreSidebar = ({
@@ -51,15 +51,13 @@ const StoreSidebar = ({
   setIsLoadedStores,
   isLoadedCategories,
   setIsLoadedCategories,
+  getFilteredList,
 }: StoreSidebarProps) => {
   const [searchValue, setSearchValue] = useState('');
   const [activeCategory, setActiveCategory] = useState(match.params.name);
 
   const onSearchChange = e => {
     setSearchValue(e.target.value);
-    if (e.target.value) {
-      onSearch(e.target.value);
-    }
   };
 
   useEffect(() => {
@@ -104,9 +102,8 @@ const StoreSidebar = ({
       <StoreSidebar.SearchWrapper>
         <SearchBar
           onSet={onSearchChange}
-          result={searchResult}
+          result={searchValue ? getFilteredList(searchValue) : []}
           value={searchValue}
-          isLoading={searchIsLoading}
         />
       </StoreSidebar.SearchWrapper>
       <Categories
