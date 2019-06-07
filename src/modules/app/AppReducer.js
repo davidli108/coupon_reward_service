@@ -28,9 +28,7 @@ const AppReducer = (state: AppReducerProps = initialState, action: Object) => {
 export const STATE_KEY = 'app';
 
 export const getStoresList = R.path<string>([STATE_KEY, 'stores']);
-export const getFilteredList = (state: AppReducerProps) => (
-  keyword: string,
-) => {
+export const getFilteredList = (state: any) => (keyword: string) => {
   const regex = new RegExp('\\b' + keyword, 'gi');
   return state.app.stores
     .filter(store => regex.test(store.store_name))
