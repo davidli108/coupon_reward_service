@@ -105,7 +105,7 @@ const Header = ({
       getStores();
     } else {
       try {
-        const stores = JSON.parse(localStorage.getItem('stores'));
+        const stores = JSON.parse(localStorage.getItem('stores')) || '';
         setStoresList(stores);
       } catch {
         getStores();

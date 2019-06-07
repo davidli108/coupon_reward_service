@@ -22,7 +22,7 @@ export const getStoresList = () => ({
   },
 });
 
-export const setStoresList = data => ({
+export const setStoresList = (data: any) => ({
   type: SET_STORES_LIST,
   data: data,
 });
