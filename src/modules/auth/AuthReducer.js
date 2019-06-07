@@ -5,7 +5,7 @@ import Cookie from 'js-cookie';
 import { PASSWORD, SIGN_IN, FETCH_USER, SIGN_UP, LOGOUT } from './AuthActions';
 
 const initialState = {
-  isAuthenticated: Boolean(Cookie.get('cf')),
+  isAuthenticated: false,
   auth: '',
   app_key: '',
   fb_id: '',
@@ -40,7 +40,7 @@ const AuthReducer = (
       const userId = R.pathOr(null, ['payload', 'data'], action);
 
       if (!userId) {
-        return state;
+        return { ...state, isAuthenticated: Boolean(Cookie.get('cf')) };
       }
 
       return R.merge(state, { isAuthenticated: true, user_id: userId });

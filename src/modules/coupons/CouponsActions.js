@@ -50,7 +50,7 @@ export const onSearch = (keywords: string) => ({
   type: SEARCH,
   payload: {
     request: {
-      url: `/jsonstores?keywords=${keywords}`,
+      url: `/jsonstores?keywords=${keywords}&limit=1`,
     },
   },
 });

@@ -4,6 +4,7 @@ import { withTranslation } from 'react-i18next';
 import { IoMdArrowDropdown } from 'react-icons/io';
 import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
+import Cookie from 'js-cookie';
 
 type HeaderItemMyAccountProps = {
   history: Object,
@@ -23,6 +24,11 @@ const HeaderItemMyAccount = ({
   logout,
 }: HeaderItemMyAccountProps) => {
   const [isDrop, setIsDrop] = useState(false);
+  const doLogout = () => {
+    Cookie.remove('cf');
+    logout();
+    setIsDrop(false);
+  };
 
   return (
     <HeaderItemMyAccount.Wrapper
@@ -47,12 +53,7 @@ const HeaderItemMyAccount = ({
           {t('header.settings')}
         </HeaderItemMyAccount.DropdownItem>
 
-        <HeaderItemMyAccount.DropdownItem
-          onClick={() => {
-            logout();
-            setIsDrop(false);
-          }}
-        >
+        <HeaderItemMyAccount.DropdownItem onClick={doLogout}>
           {t('header.signOut')}
         </HeaderItemMyAccount.DropdownItem>
       </HeaderItemMyAccount.DropdownWrapper>

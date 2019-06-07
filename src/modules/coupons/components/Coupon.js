@@ -5,6 +5,9 @@ import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
 import moment from 'moment';
+import { connect } from 'react-redux';
+import { compose } from 'recompose';
+import { getIsAuthenticated } from '@modules/auth/AuthReducer';
 
 import CouponCode from './CouponCode';
 import SocialShare from './SocialShare';
@@ -46,6 +49,7 @@ const Coupon = ({
   store_page_link,
   twitter_link,
   pinterest_link,
+  isAuthenticated,
 }: DealModel) => {
   const [randomColor] = useState(Math.floor(Math.random() * 7));
 
@@ -107,6 +111,7 @@ const Coupon = ({
         </Coupon.ExpDate>
         <Coupon.OfferText>{ref_text}</Coupon.OfferText>
         <CouponCode
+          isAuthenticated={isAuthenticated}
           store={store_name}
           logo={store_logo ? `${AppConfig.cloudUrl}${store_logo}` : placeholder}
           code={coupon_code}
@@ -311,4 +316,16 @@ Coupon.CashbackPercent = styled.div`
   color: #b1b1b1;
 `;
 
-export default withTranslation()(Coupon);
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: getIsAuthenticated(state),
+  };
+};
+
+export default compose(
+  connect(
+    mapStateToProps,
+    null,
+  ),
+  withTranslation(),
+)(Coupon);

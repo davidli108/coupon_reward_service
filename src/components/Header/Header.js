@@ -1,5 +1,5 @@
 // @flow
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
@@ -19,6 +19,8 @@ import BurgerButton from './BurgerButton';
 import HeaderItem from './HeaderItem';
 import HeaderItemMyAccount from './HeaderItemMyAccount';
 import logo from './logo.svg';
+
+import Cookie from 'js-cookie';
 
 const modal = {
   modalSignIn: 'modalSignIn',
@@ -54,11 +56,19 @@ type HeaderProps = {
   isAuthenticated: boolean,
   location: Object,
   logout: Function,
+  signInCf: Function,
 };
 
-const Header = ({ t, isAuthenticated, location, logout }: HeaderProps) => {
-  const [isOpen, setOpen] = React.useState(false);
-  const [currentModal, setCurrentModal] = React.useState(null);
+const Header = ({
+  t,
+  isAuthenticated,
+  location,
+  logout,
+  signInCf,
+}: HeaderProps) => {
+  const [isOpen, setOpen] = useState(false);
+  const [currentModal, setCurrentModal] = useState(null);
+  const [cfProcessed, setCfProcessed] = useState(false);
 
   const localeConfig = getLocaleConfig();
 
@@ -73,6 +83,13 @@ const Header = ({ t, isAuthenticated, location, logout }: HeaderProps) => {
     }
     return false;
   };
+
+  useEffect(() => {
+    if (!cfProcessed && Cookie.get('cf')) {
+      setCfProcessed(true);
+      signInCf();
+    }
+  }, []);
 
   const items = [
     {
@@ -269,6 +286,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   logout: actions.logout,
+  signInCf: actions.signInCf,
 };
 
 export default compose(
