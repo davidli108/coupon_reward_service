@@ -37,13 +37,7 @@ const AuthReducer = (
       return R.merge(state, R.path(['payload', 'data'], action));
     }
     case `${SIGN_IN}_SUCCESS`: {
-      const userId = R.pathOr(null, ['payload', 'data'], action);
-
-      if (!userId) {
-        return { ...state, isAuthenticated: Boolean(Cookie.get('cf')) };
-      }
-
-      return R.merge(state, { isAuthenticated: true, user_id: userId });
+      return { ...state, isAuthenticated: Boolean(Cookie.get('cf')) };
     }
     case `${SIGN_UP}_SUCCESS`: {
       const data = R.path(['payload', 'data'], action);

@@ -1,5 +1,4 @@
 // @flow
-import * as R from 'ramda';
 import React, { useState } from 'react';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
@@ -13,6 +12,7 @@ import ModalWrapper from './ModalWrapper';
 import ModalSocial from './ModalSocial';
 import ModalInput from './ModalInput';
 import ModalFooter from './ModalFooter';
+import Cookie from 'js-cookie';
 
 import * as actions from '../AuthActions';
 
@@ -48,21 +48,15 @@ const SignInModal = ({
     payload.append('email', email);
     payload.append('password', password);
 
-    const response = await signIn(payload);
+    await signIn(payload);
 
-    if (R.equals(R.path(['payload', 'data'])(response), null)) {
-      setError(true);
+    if (Cookie.get('cf')) {
+      setError(false);
+      setEmail('');
+      setPassword('');
+      closeModal();
     } else {
-      fetchUser().then(res => {
-        if (res.payload) {
-          setError(false);
-          setEmail('');
-          setPassword('');
-          closeModal();
-        } else {
-          setError(true);
-        }
-      });
+      setError(true);
     }
   };
 
