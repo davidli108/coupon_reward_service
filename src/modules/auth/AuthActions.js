@@ -1,4 +1,6 @@
 // @flow
+import { AUTHENTICATED } from '../app/AppActions';
+
 const namespace = 'AUTHENTICATION';
 export const SIGN_IN = `${namespace}/SIGN_IN`;
 export const SIGN_IN_SUCCESS = `${namespace}/SIGN_IN_SUCCESS`;
@@ -69,6 +71,10 @@ export const resetPassword = (payload: FormData) => ({
       data: payload,
     },
   },
+});
+
+export const authenticate = () => ({
+  type: AUTHENTICATED,
 });
 
 export const logout = () => ({

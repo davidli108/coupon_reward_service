@@ -9,7 +9,7 @@ import { withTranslation } from 'react-i18next';
 
 import { isCouponCategory } from '@config/CategoriesConfig';
 import * as actions from '@modules/auth/AuthActions';
-import { getIsAuthenticated } from '@modules/auth/AuthReducer';
+import { getIsAuthenticated, isCookieSet } from '@modules/auth/AuthReducer';
 import SignInModal from '@modules/auth/components/SignInModal';
 import SignUpModal from '@modules/auth/components/SignUpModal';
 import ResetPasswordModal from '@modules/auth/components/ResetPasswordModal';
@@ -52,18 +52,22 @@ const renderHeaderItems = (items: Array<renderHeaderItemsProps>) =>
 
 type HeaderProps = {
   t: Function,
-  isAuthenticated: boolean,
+  isCookieSet: Function,
+  isAuthenticated: Boolean,
   location: Object,
   logout: Function,
+  authenticate: Function,
   getStoresList: any => Promise<Object>,
   setStoresList: Function,
 };
 
 const Header = ({
   t,
+  isCookieSet,
   isAuthenticated,
   location,
   logout,
+  authenticate,
   getStoresList,
   setStoresList,
 }: HeaderProps) => {
@@ -83,6 +87,14 @@ const Header = ({
     }
     return false;
   };
+
+  useEffect(() => {
+    if (!isCookieSet) {
+      logout();
+    } else {
+      authenticate();
+    }
+  }, [location]);
 
   useEffect(() => {
     async function getStores() {
@@ -294,10 +306,12 @@ Header.SlidingMenu = styled.div`
 
 const mapStateToProps = state => ({
   isAuthenticated: getIsAuthenticated(state),
+  isCookieSet: isCookieSet(),
 });
 
 const mapDispatchToProps = {
   logout: actions.logout,
+  authenticate: actions.authenticate,
   getStoresList: getStoresList,
   setStoresList: setStoresList,
 };
