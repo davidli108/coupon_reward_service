@@ -4,10 +4,8 @@ import { withTranslation } from 'react-i18next';
 import { IoMdArrowDropdown } from 'react-icons/io';
 import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
-import Cookie from 'js-cookie';
 
 type HeaderItemMyAccountProps = {
-  history: Object,
   bgColor?: string,
   hoverBgColor?: string,
   t: any,
@@ -17,7 +15,6 @@ type HeaderItemMyAccountProps = {
 
 const HeaderItemMyAccount = ({
   t,
-  history,
   bgColor,
   hoverBgColor,
   title,
@@ -25,7 +22,6 @@ const HeaderItemMyAccount = ({
 }: HeaderItemMyAccountProps) => {
   const [isDrop, setIsDrop] = useState(false);
   const doLogout = () => {
-    Cookie.remove('cf');
     logout();
     setIsDrop(false);
   };

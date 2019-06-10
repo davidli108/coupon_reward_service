@@ -38,10 +38,6 @@ export const signIn = (payload: FormData) => ({
   },
 });
 
-export const signInCf = () => ({
-  type: SIGN_IN_SUCCESS,
-});
-
 export const signUp = (payload: FormData) => ({
   type: SIGN_UP,
   payload: {

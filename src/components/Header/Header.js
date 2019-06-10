@@ -21,8 +21,6 @@ import HeaderItem from './HeaderItem';
 import HeaderItemMyAccount from './HeaderItemMyAccount';
 import logo from './logo.svg';
 
-import Cookie from 'js-cookie';
-
 const modal = {
   modalSignIn: 'modalSignIn',
   modalSignUp: 'modalSignUp',
@@ -57,7 +55,6 @@ type HeaderProps = {
   isAuthenticated: boolean,
   location: Object,
   logout: Function,
-  signInCf: Function,
   getStoresList: any => Promise<Object>,
   setStoresList: Function,
 };
@@ -67,13 +64,11 @@ const Header = ({
   isAuthenticated,
   location,
   logout,
-  signInCf,
   getStoresList,
   setStoresList,
 }: HeaderProps) => {
   const [isOpen, setOpen] = useState(false);
   const [currentModal, setCurrentModal] = useState(null);
-  const [cfProcessed, setCfProcessed] = useState(false);
 
   const localeConfig = getLocaleConfig();
 
@@ -94,11 +89,6 @@ const Header = ({
       const response = await getStoresList('');
       localStorage.setItem('stores', JSON.stringify(response.payload.data));
       setStoresList(response.payload.data);
-    }
-
-    if (!cfProcessed && Cookie.get('cf')) {
-      setCfProcessed(true);
-      signInCf();
     }
 
     if (!localStorage.getItem('stores')) {
@@ -308,7 +298,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   logout: actions.logout,
-  signInCf: actions.signInCf,
   getStoresList: getStoresList,
   setStoresList: setStoresList,
 };

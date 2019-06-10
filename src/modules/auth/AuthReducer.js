@@ -3,6 +3,7 @@ import * as R from 'ramda';
 import Cookie from 'js-cookie';
 
 import { PASSWORD, SIGN_IN, FETCH_USER, SIGN_UP, LOGOUT } from './AuthActions';
+import { AUTHENTICATED } from '@modules/app/AppActions';
 
 const initialState = {
   isAuthenticated: false,
@@ -51,7 +52,11 @@ const AuthReducer = (
     case `${PASSWORD}_SUCCESS`: {
       return R.merge(state, { isAuthenticated: true });
     }
+    case AUTHENTICATED: {
+      return R.merge(state, { isAuthenticated: true });
+    }
     case LOGOUT: {
+      Cookie.remove('cf');
       return initialState;
     }
     default: {

@@ -4,7 +4,6 @@ import type { Saga } from 'redux-saga';
 import { all, fork } from 'redux-saga/effects';
 
 import appSagas from '@modules/app/AppSagas';
-import authSagas from '@modules/auth/AuthSagas';
 import couponsSagas from '@modules/coupons/CouponsSagas';
 import favoritesSagas from '@modules/favorites/FavoritesSagas';
 import storeSagas from '@modules/store/StoreSagas';
@@ -13,7 +12,6 @@ import storeCouponsSagas from '@modules/storeCoupons/StoreCouponsSagas';
 function* rootSaga(): Saga<void> {
   yield all([
     fork(appSagas),
-    fork(authSagas),
     fork(couponsSagas),
     fork(favoritesSagas),
     fork(storeSagas),
