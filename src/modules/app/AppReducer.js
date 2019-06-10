@@ -34,7 +34,10 @@ export const getFilteredList = (state: any) => (keyword: string) => {
 
   return state.app.stores
     .filter(store => regex.test(store.store_name))
-    .sort((a, b) => sort.test(b.store_name) - sort.test(a.store_name))
+    .sort(
+      (a, b) =>
+        Number(sort.test(b.store_name)) - Number(sort.test(a.store_name)),
+    )
     .slice(0, 5);
 };
 
