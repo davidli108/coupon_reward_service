@@ -30,8 +30,11 @@ export const STATE_KEY = 'app';
 export const getStoresList = R.path<string>([STATE_KEY, 'stores']);
 export const getFilteredList = (state: any) => (keyword: string) => {
   const regex = new RegExp('\\b' + keyword, 'gi');
+  const sort = new RegExp('^\\b' + keyword, 'i');
+
   return state.app.stores
     .filter(store => regex.test(store.store_name))
+    .sort((a, b) => sort.test(b.store_name) - sort.test(a.store_name))
     .slice(0, 5);
 };
 
