@@ -1,5 +1,5 @@
 // @flow
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
@@ -9,11 +9,12 @@ import { withTranslation } from 'react-i18next';
 
 import { isCouponCategory } from '@config/CategoriesConfig';
 import * as actions from '@modules/auth/AuthActions';
-import { getIsAuthenticated } from '@modules/auth/AuthReducer';
+import { getIsAuthenticated, isCookieSet } from '@modules/auth/AuthReducer';
 import SignInModal from '@modules/auth/components/SignInModal';
 import SignUpModal from '@modules/auth/components/SignUpModal';
 import ResetPasswordModal from '@modules/auth/components/ResetPasswordModal';
 import { getLocaleConfig } from '@modules/localization/i18n';
+import { getStoresList, setStoresList } from '@modules/app/AppActions';
 
 import BurgerButton from './BurgerButton';
 import HeaderItem from './HeaderItem';
@@ -51,14 +52,27 @@ const renderHeaderItems = (items: Array<renderHeaderItemsProps>) =>
 
 type HeaderProps = {
   t: Function,
-  isAuthenticated: boolean,
+  isCookieSet: Function,
+  isAuthenticated: Boolean,
   location: Object,
   logout: Function,
+  authenticate: Function,
+  getStoresList: any => Promise<Object>,
+  setStoresList: Function,
 };
 
-const Header = ({ t, isAuthenticated, location, logout }: HeaderProps) => {
-  const [isOpen, setOpen] = React.useState(false);
-  const [currentModal, setCurrentModal] = React.useState(null);
+const Header = ({
+  t,
+  isCookieSet,
+  isAuthenticated,
+  location,
+  logout,
+  authenticate,
+  getStoresList,
+  setStoresList,
+}: HeaderProps) => {
+  const [isOpen, setOpen] = useState(false);
+  const [currentModal, setCurrentModal] = useState(null);
 
   const localeConfig = getLocaleConfig();
 
@@ -73,6 +87,33 @@ const Header = ({ t, isAuthenticated, location, logout }: HeaderProps) => {
     }
     return false;
   };
+
+  useEffect(() => {
+    if (!isCookieSet) {
+      logout();
+    } else {
+      authenticate();
+    }
+  }, [location]);
+
+  useEffect(() => {
+    async function getStores() {
+      const response = await getStoresList('');
+      localStorage.setItem('stores', JSON.stringify(response.payload.data));
+      setStoresList(response.payload.data);
+    }
+
+    if (!localStorage.getItem('stores')) {
+      getStores();
+    } else {
+      try {
+        const stores = JSON.parse(localStorage.getItem('stores') || '');
+        setStoresList(stores);
+      } catch {
+        getStores();
+      }
+    }
+  }, []);
 
   const items = [
     {
@@ -265,10 +306,14 @@ Header.SlidingMenu = styled.div`
 
 const mapStateToProps = state => ({
   isAuthenticated: getIsAuthenticated(state),
+  isCookieSet: isCookieSet(),
 });
 
 const mapDispatchToProps = {
   logout: actions.logout,
+  authenticate: actions.authenticate,
+  getStoresList: getStoresList,
+  setStoresList: setStoresList,
 };
 
 export default compose(

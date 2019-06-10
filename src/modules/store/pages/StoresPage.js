@@ -18,6 +18,7 @@ import StoreContentLoader from '../components/loaders/StoreContentLoader';
 import { type Store, type Feature } from '../models';
 
 import * as storeActions from '../StoreActions';
+import { getFilteredList } from '@modules/app/AppReducer';
 
 import {
   getFilteredStores,
@@ -52,6 +53,7 @@ type StoresPageProps = {
   searchIsLoading: boolean,
   categories: Object,
   storesCount: number,
+  getFilteredList: any,
 };
 
 const StoresPage = ({
@@ -73,6 +75,7 @@ const StoresPage = ({
   searchIsLoading,
   categories,
   storesCount,
+  getFilteredList,
 }: StoresPageProps) => {
   const [isLoadedStores, setIsLoadedStores] = useState(false);
   const [isLoadedMore, setIsLoadedMore] = useState(true);
@@ -107,6 +110,7 @@ const StoresPage = ({
               onSetFilterClear={onSetFilterClear}
               searchIsLoading={searchIsLoading}
               categories={categories}
+              getFilteredList={getFilteredList}
               getStore={onGetStore}
               setIsLoadedStores={setIsLoadedStores}
               isLoadedCategories={isLoadedCategories}
@@ -233,6 +237,7 @@ const mapStateToProps = state => ({
   searchIsLoading: searchIsLoading(state),
   categories: getCategories(state),
   storesCount: getStoresCount(state),
+  getFilteredList: getFilteredList(state),
 });
 
 const mapDispatchToProps = {

@@ -1,6 +1,5 @@
 // @flow
-import * as R from 'ramda';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -13,33 +12,33 @@ import ModalWrapper from './ModalWrapper';
 import ModalSocial from './ModalSocial';
 import ModalInput from './ModalInput';
 import ModalFooter from './ModalFooter';
+import { getIsAuthenticated } from '../AuthReducer';
 
 import * as actions from '../AuthActions';
 
 type SignInModalProps = {
   t: string => string,
-  history: Object,
   isActive: boolean,
   closeModal: Function,
   onRouteModal: Function,
   onRouteModalReset: Function,
   signIn: FormData => Promise<Object>,
-  fetchUser: () => Promise<Object>,
+  isAuthenticated: boolean,
 };
 
 const SignInModal = ({
   t,
-  history,
   isActive,
   closeModal,
   onRouteModal,
   onRouteModalReset,
   signIn,
-  fetchUser,
+  isAuthenticated,
 }: SignInModalProps) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isError, setError] = useState(false);
+  const [submitHandled, setSubmitHandled] = useState(false);
 
   const handleFormSubmit = async e => {
     e.preventDefault();
@@ -47,24 +46,22 @@ const SignInModal = ({
     const payload = new FormData();
     payload.append('email', email);
     payload.append('password', password);
-
-    const response = await signIn(payload);
-
-    if (R.equals(R.path(['payload', 'data'])(response), null)) {
-      setError(true);
-    } else {
-      fetchUser().then(res => {
-        if (res.payload) {
-          setError(false);
-          setEmail('');
-          setPassword('');
-          closeModal();
-        } else {
-          setError(true);
-        }
-      });
-    }
+    await signIn(payload);
+    setSubmitHandled(true);
   };
+
+  useEffect(() => {
+    if (submitHandled) {
+      if (isAuthenticated) {
+        setError(false);
+        setEmail('');
+        setPassword('');
+        closeModal();
+      } else {
+        setError(true);
+      }
+    }
+  }, [isAuthenticated, submitHandled]);
 
   return (
     <ModalWrapper
@@ -215,14 +212,17 @@ SignInModal.PreFooter = styled.span`
   }
 `;
 
+const mapStateToProps = state => ({
+  isAuthenticated: getIsAuthenticated(state),
+});
+
 const mapDispatchToProps = {
   signIn: actions.signIn,
-  fetchUser: actions.fetchUser,
 };
 
 const enhance = compose(
   connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps,
   ),
   withTranslation(),

@@ -15,17 +15,9 @@ type SearchBarProps = {
   onSet: Function,
   result: Object,
   value: string,
-  isLoading: boolean,
 };
 
-const SearchBar = ({
-  t,
-  history,
-  value,
-  onSet,
-  result,
-  isLoading,
-}: SearchBarProps) => {
+const SearchBar = ({ t, history, value, onSet, result }: SearchBarProps) => {
   const [isShowItems, setIsShowItems] = useState(false);
   const [refItemsWrapper, setRefItemsWrapper] = useState(null);
   const [refSearchBar, setRefSearchBar] = useState(null);
@@ -98,7 +90,6 @@ const SearchBar = ({
           <SearchBarItems
             t={t}
             result={result}
-            isLoading={isLoading}
             currentIndex={currentIndex}
             setCurrentIndex={setCurrentIndex}
             setIsShowItems={setIsShowItems}

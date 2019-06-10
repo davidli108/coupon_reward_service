@@ -3,9 +3,12 @@ import * as R from 'ramda';
 import Cookie from 'js-cookie';
 
 import { PASSWORD, SIGN_IN, FETCH_USER, SIGN_UP, LOGOUT } from './AuthActions';
+import { AUTHENTICATED } from '@modules/app/AppActions';
+
+export const isCookieSet = () => Boolean(Cookie.get('cf'));
 
 const initialState = {
-  isAuthenticated: Boolean(Cookie.get('cf')),
+  isAuthenticated: false,
   auth: '',
   app_key: '',
   fb_id: '',
@@ -37,13 +40,7 @@ const AuthReducer = (
       return R.merge(state, R.path(['payload', 'data'], action));
     }
     case `${SIGN_IN}_SUCCESS`: {
-      const userId = R.pathOr(null, ['payload', 'data'], action);
-
-      if (!userId) {
-        return state;
-      }
-
-      return R.merge(state, { isAuthenticated: true, user_id: userId });
+      return { ...state, isAuthenticated: isCookieSet() };
     }
     case `${SIGN_UP}_SUCCESS`: {
       const data = R.path(['payload', 'data'], action);
@@ -52,12 +49,16 @@ const AuthReducer = (
         return state;
       }
 
-      return R.merge(initialState, { isAuthenticated: true, ...data });
+      return R.merge(initialState, { isAuthenticated: isCookieSet(), ...data });
     }
     case `${PASSWORD}_SUCCESS`: {
-      return R.merge(state, { isAuthenticated: true });
+      return R.merge(state, { isAuthenticated: isCookieSet() });
+    }
+    case AUTHENTICATED: {
+      return R.merge(state, { isAuthenticated: isCookieSet() });
     }
     case LOGOUT: {
+      Cookie.remove('cf');
       return initialState;
     }
     default: {

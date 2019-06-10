@@ -24,6 +24,7 @@ import {
   getOffersCount,
   getCoupons,
 } from '@modules/coupons/CouponsReducer';
+import { getFilteredList } from '@modules/app/AppReducer';
 import * as favoritesActions from '@modules/favorites/FavoritesActions';
 import { getFavoritesMap } from '@modules/favorites/FavoritesReducer';
 
@@ -53,6 +54,7 @@ type CouponsPageProps = {
   getAllDeals: Object,
   favorites: any,
   addFavorite: any,
+  getFilteredList: any,
   removeFavorite: any,
   isAuthenticated: boolean,
 };
@@ -78,6 +80,7 @@ const CouponsPage = ({
   getAllDeals,
   favorites,
   addFavorite,
+  getFilteredList,
   removeFavorite,
   isAuthenticated,
 }: CouponsPageProps) => {
@@ -86,9 +89,6 @@ const CouponsPage = ({
 
   const onSearchChange = e => {
     setSearchValue(e.target.value);
-    if (e.target.value) {
-      requestSearch(e.target.value);
-    }
   };
 
   return (
@@ -109,9 +109,8 @@ const CouponsPage = ({
       <CouponsPage.SearchWrapper>
         <SearchBar
           onSet={onSearchChange}
-          result={searchValue ? storeSearchResult : []}
+          result={searchValue ? getFilteredList(searchValue) : []}
           value={searchValue}
-          isLoading={searchIsLoading}
         />
       </CouponsPage.SearchWrapper>
       {isLoaded ? (
@@ -210,6 +209,7 @@ const mapStateToProps = state => ({
   getAllDeals: getCoupons(state),
   favorites: getFavoritesMap(state),
   isAuthenticated: getIsAuthenticated(state),
+  getFilteredList: getFilteredList(state),
 });
 
 const mapDispatchToProps = {

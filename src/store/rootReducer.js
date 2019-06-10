@@ -4,6 +4,9 @@ import { combineReducers } from 'redux';
 import { persistReducer } from 'redux-persist';
 
 import ReduxPersist from '@config/ReduxPersist';
+import AppReducer, {
+  STATE_KEY as APP_STATE_KEY,
+} from '@modules/app/AppReducer';
 import AuthReducer, {
   STATE_KEY as AUTH_STATE_KEY,
 } from '@modules/auth/AuthReducer';
@@ -31,6 +34,7 @@ export default history =>
   R.compose(
     persist,
     combineReducers,
+    R.assoc(APP_STATE_KEY, AppReducer),
     R.assoc(AUTH_STATE_KEY, AuthReducer),
     R.assoc(COUPONS_STATE_KEY, CouponsReducer),
     R.assoc(FAVORITES_STATE_KEY, FavoritesReducer),
