@@ -45,7 +45,6 @@ const SearchBarItems = ({
             key={`store_item_${item.store_id}`}
             onClick={() => onClickItem(item.short_name)}
             isFocus={index === currentIndex}
-            onMouseOver={() => setCurrentIndex(index)}
             tabIndex={index === currentIndex ? 1 : -1}
             ref={e => index === currentIndex && setRefItem(e)}
           >
