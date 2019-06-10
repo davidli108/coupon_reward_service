@@ -5,13 +5,11 @@ import styled from 'styled-components';
 import moment from 'moment';
 
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
-import preloader from './preloader.svg';
 import AppConfig from '@config/AppConfig';
 
 type SearchBarItemsProps = {
   t: Function,
   result: Object,
-  isLoading: boolean,
   history: Object,
   currentIndex: number,
   setCurrentIndex: number => void,
@@ -21,7 +19,6 @@ type SearchBarItemsProps = {
 const SearchBarItems = ({
   t,
   result,
-  isLoading,
   history,
   currentIndex,
   setCurrentIndex,
@@ -42,11 +39,7 @@ const SearchBarItems = ({
 
   return (
     <SearchBarItems.StoreWrapper onKeyDown={e => e.preventDefault()}>
-      {!isLoading ? (
-        <SearchBarItems.PreloaderWrapper>
-          <img src={preloader} alt="" />
-        </SearchBarItems.PreloaderWrapper>
-      ) : result && result.length > 0 ? (
+      {result && result.length > 0 ? (
         result.map((item, index) => (
           <SearchBarItems.Item
             key={`store_item_${item.store_id}`}

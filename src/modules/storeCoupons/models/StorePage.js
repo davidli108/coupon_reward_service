@@ -80,6 +80,7 @@ export type StorePageProps = {
   fetchStoreCouponsByPagination: Function,
   offersCount: number,
   reviews: string,
+  getFilteredList: any,
 };
 
 export type BrandProps = {

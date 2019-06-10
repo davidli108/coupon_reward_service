@@ -61,6 +61,7 @@ export type Deal = {
   store_page_link: string,
   twitter_link: string,
   pinterest_link: string,
+  isAuthenticated: boolean,
 };
 
 export type featuredStore = {

@@ -6,7 +6,6 @@ import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 
 type HeaderItemMyAccountProps = {
-  history: Object,
   bgColor?: string,
   hoverBgColor?: string,
   t: any,
@@ -16,13 +15,16 @@ type HeaderItemMyAccountProps = {
 
 const HeaderItemMyAccount = ({
   t,
-  history,
   bgColor,
   hoverBgColor,
   title,
   logout,
 }: HeaderItemMyAccountProps) => {
   const [isDrop, setIsDrop] = useState(false);
+  const doLogout = () => {
+    logout();
+    setIsDrop(false);
+  };
 
   return (
     <HeaderItemMyAccount.Wrapper
@@ -47,12 +49,7 @@ const HeaderItemMyAccount = ({
           {t('header.settings')}
         </HeaderItemMyAccount.DropdownItem>
 
-        <HeaderItemMyAccount.DropdownItem
-          onClick={() => {
-            logout();
-            setIsDrop(false);
-          }}
-        >
+        <HeaderItemMyAccount.DropdownItem onClick={doLogout}>
           {t('header.signOut')}
         </HeaderItemMyAccount.DropdownItem>
       </HeaderItemMyAccount.DropdownWrapper>

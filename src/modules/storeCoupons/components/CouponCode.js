@@ -1,5 +1,5 @@
 // @flow
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import ModalActivateCoupons from '@components/ModalActivateCoupons/ModalActivateCoupons';
 
@@ -9,11 +9,23 @@ type CouponCodeProps = {
   link: string,
   store: string,
   logo: string,
+  isAuthenticated: boolean,
 };
 
-const CouponCode = ({ t, code, link, store, logo }: CouponCodeProps) => {
+const CouponCode = ({
+  t,
+  code,
+  link,
+  store,
+  logo,
+  isAuthenticated,
+}: CouponCodeProps) => {
   const [isShowCode, setIsShowCode] = useState(false);
   const [showActivateModal, setShowActivateModal] = useState(false);
+
+  useEffect(() => {
+    setIsShowCode(isAuthenticated && code);
+  }, [isAuthenticated]);
 
   const handleClick = () => {
     setShowActivateModal(true);

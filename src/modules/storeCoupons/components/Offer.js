@@ -5,6 +5,8 @@ import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
 import moment from 'moment';
+import { connect } from 'react-redux';
+import { getIsAuthenticated } from '@modules/auth/AuthReducer';
 
 import CouponCode from './CouponCode';
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
@@ -37,6 +39,7 @@ type OfferProps = {
   store_name: string,
   isThisStore: boolean,
   store_page_link: string,
+  isAuthenticated: boolean,
 };
 
 const Offer = ({
@@ -56,6 +59,7 @@ const Offer = ({
   store_name,
   store_page_link,
   isThisStore,
+  isAuthenticated,
 }: OfferProps) => {
   const [randomColor] = useState(Math.floor(Math.random() * 7));
 
@@ -111,6 +115,7 @@ const Offer = ({
               code={coupon_code}
               link={offer_link}
               store={store_name}
+              isAuthenticated={isAuthenticated}
               logo={
                 store_logo ? `${AppConfig.cloudUrl}${store_logo}` : placeholder
               }
@@ -383,4 +388,11 @@ Offer.RevealCouponButton = styled.div`
   color: #fff;
 `;
 
-export default withRouter(withTranslation()(Offer));
+const mapStateToProps = state => ({
+  isAuthenticated: getIsAuthenticated(state),
+});
+
+export default connect(
+  mapStateToProps,
+  null,
+)(withRouter(withTranslation()(Offer)));
