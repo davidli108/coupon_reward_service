@@ -8,7 +8,7 @@ import { compose } from 'recompose';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { withTranslation } from 'react-i18next';
-
+import { getFilteredList } from '@modules/app/AppReducer';
 import SearchBar from '@components/SearchBar/SearchBar';
 import Brand from '../components/Brand';
 import Offers from '../components/Offers';
@@ -39,6 +39,7 @@ const StorePage = ({
   offers,
   requestSearch,
   storeSearchResult,
+  getFilteredList,
   searchIsLoading,
   fetchStoreCouponsByPagination,
   offersCount,
@@ -78,9 +79,6 @@ const StorePage = ({
 
   const onSearchChange = e => {
     setSearchValue(e.target.value);
-    if (e.target.value) {
-      requestSearch(e.target.value);
-    }
   };
 
   return (
@@ -109,7 +107,7 @@ const StorePage = ({
       <StorePage.SearchWrapper>
         <SearchBar
           onSet={onSearchChange}
-          result={searchValue ? storeSearchResult : []}
+          result={searchValue ? getFilteredList(searchValue) : []}
           value={searchValue}
           isLoading={searchIsLoading}
         />
@@ -241,6 +239,7 @@ const mapStateToProps = state => ({
   offersCount: getCountOffers(state),
   store: getStore(state),
   reviews: getReviews(state),
+  getFilteredList: getFilteredList(state),
 });
 
 const mapDispatchToProps = {
