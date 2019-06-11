@@ -14,7 +14,7 @@ import SignInModal from '@modules/auth/components/SignInModal';
 import SignUpModal from '@modules/auth/components/SignUpModal';
 import ResetPasswordModal from '@modules/auth/components/ResetPasswordModal';
 import { getLocaleConfig } from '@modules/localization/i18n';
-import { getStoresList, setStoresList } from '@modules/app/AppActions';
+import { getStoresList } from '@modules/app/AppActions';
 
 import BurgerButton from './BurgerButton';
 import HeaderItem from './HeaderItem';
@@ -58,7 +58,6 @@ type HeaderProps = {
   logout: Function,
   authenticate: Function,
   getStoresList: any => Promise<Object>,
-  setStoresList: Function,
 };
 
 const Header = ({
@@ -69,7 +68,6 @@ const Header = ({
   logout,
   authenticate,
   getStoresList,
-  setStoresList,
 }: HeaderProps) => {
   const [isOpen, setOpen] = useState(false);
   const [currentModal, setCurrentModal] = useState(null);
@@ -97,22 +95,7 @@ const Header = ({
   }, [location]);
 
   useEffect(() => {
-    async function getStores() {
-      const response = await getStoresList('');
-      localStorage.setItem('stores', JSON.stringify(response.payload.data));
-      setStoresList(response.payload.data);
-    }
-
-    if (!localStorage.getItem('stores')) {
-      getStores();
-    } else {
-      try {
-        const stores = JSON.parse(localStorage.getItem('stores') || '');
-        setStoresList(stores);
-      } catch {
-        getStores();
-      }
-    }
+    getStoresList();
   }, []);
 
   const items = [
@@ -313,7 +296,6 @@ const mapDispatchToProps = {
   logout: actions.logout,
   authenticate: actions.authenticate,
   getStoresList: getStoresList,
-  setStoresList: setStoresList,
 };
 
 export default compose(
