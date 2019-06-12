@@ -115,6 +115,7 @@ SearchBarItems.Item = styled.button`
   }
 
   img {
+    flex-shrink: 0;
     width: 80px;
     height: 80px;
     object-fit: contain;
