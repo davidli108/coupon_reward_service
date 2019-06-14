@@ -56,6 +56,7 @@ type HeaderProps = {
   isAuthenticated: Boolean,
   location: Object,
   logout: Function,
+  setLoggedOut: Function,
   authenticate: Function,
   getStoresList: any => Promise<Object>,
 };
@@ -66,6 +67,7 @@ const Header = ({
   isAuthenticated,
   location,
   logout,
+  setLoggedOut,
   authenticate,
   getStoresList,
 }: HeaderProps) => {
@@ -88,7 +90,7 @@ const Header = ({
 
   useEffect(() => {
     if (!isCookieSet) {
-      logout();
+      setLoggedOut();
     } else {
       authenticate();
     }
@@ -294,6 +296,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   logout: actions.logout,
+  setLoggedOut: actions.setLoggedOut,
   authenticate: actions.authenticate,
   getStoresList: getStoresList,
 };

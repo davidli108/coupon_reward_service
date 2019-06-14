@@ -9,6 +9,7 @@ export const FETCH_USER = `${namespace}/FETCH_USER`;
 export const PASSWORD = `${namespace}/PASSWORD`;
 export const PASSWORD_RESET = `${namespace}/PASSWORD_RESET`;
 export const LOGOUT = `${namespace}/LOGOUT`;
+export const SET_LOGGED_OUT = `${namespace}/SET_LOGGED_OUT`;
 
 export const fetchUser = () => ({
   type: FETCH_USER,
@@ -84,4 +85,8 @@ export const logout = () => ({
       url: '/logout',
     },
   },
+});
+
+export const setLoggedOut = () => ({
+  type: SET_LOGGED_OUT,
 });

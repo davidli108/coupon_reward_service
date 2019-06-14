@@ -199,6 +199,8 @@ export default {
     buttons: {
       viewCoupon: 'Gutschein anzeigen',
       viewDeal: 'Angebot anzeigen',
+      tooltip:
+        'Klicken Sie um einzukaufen. Verwenden Sie diesen Code an der Kasse, um zu sparen.',
     },
     todaysFeatureCoupon: 'Heutige Gutschein von',
     noCouponsFound: 'Keine Gutscheine gefunden',

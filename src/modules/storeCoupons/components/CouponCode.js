@@ -49,8 +49,11 @@ const CouponCode = ({
           </p>
           <CouponCode.Rectangle isShow={!!code} />
         </CouponCode.Button>
-        <CouponCode.Code href={link} target="_blank" isShow={isShowCode}>
+        <CouponCode.Code onClick={handleClick} isShow={isShowCode}>
           {code}
+          <CouponCode.Tooltip>
+            {t('coupons.buttons.tooltip')}
+          </CouponCode.Tooltip>
         </CouponCode.Code>
       </CouponCode.Wrapper>
 
@@ -104,6 +107,46 @@ CouponCode.Code = styled.a`
   background-color: #fefff4;
   color: black;
   text-align: center;
+  position: relative;
+
+  :hover {
+    > div {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+`;
+
+CouponCode.Tooltip = styled.div`
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  width: 200px;
+  box-sizing: border-box;
+  margin: 0 0 10px -100px;
+  border-radius: 5px;
+  padding: 6px 10px;
+  background-color: #000;
+  color: #fff;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 500;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate3d(0, -10px, 0);
+  transition: all 0.3s ease;
+
+  ::after {
+    content: '';
+    display: block;
+    left: 50%;
+    position: absolute;
+    top: 100%;
+    margin: 0 0 0 -5px;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #000;
+  }
 `;
 
 CouponCode.Rectangle = styled.div`
