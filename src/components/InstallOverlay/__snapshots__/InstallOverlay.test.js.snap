@@ -5,7 +5,7 @@ exports[`renders correctly 1`] = `
   className="InstallOverlay__Wrapper-sc-10gjagm-0 cxFTog"
 >
   <div
-    className="InstallOverlay__Container-sc-10gjagm-1 cWQicq"
+    className="InstallOverlay__Container-sc-10gjagm-1 hoUBAg"
   >
     <img
       alt="coupons.installExtension.action"

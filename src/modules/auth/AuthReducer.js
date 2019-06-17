@@ -2,7 +2,14 @@
 import * as R from 'ramda';
 import Cookie from 'js-cookie';
 
-import { PASSWORD, SIGN_IN, FETCH_USER, SIGN_UP, LOGOUT } from './AuthActions';
+import {
+  PASSWORD,
+  SIGN_IN,
+  FETCH_USER,
+  SIGN_UP,
+  LOGOUT,
+  SET_LOGGED_OUT,
+} from './AuthActions';
 import { AUTHENTICATED } from '@modules/app/AppActions';
 
 export const isCookieSet = () => Boolean(Cookie.get('cf'));
@@ -59,6 +66,9 @@ const AuthReducer = (
     }
     case LOGOUT: {
       Cookie.remove('cf');
+      return initialState;
+    }
+    case SET_LOGGED_OUT: {
       return initialState;
     }
     default: {

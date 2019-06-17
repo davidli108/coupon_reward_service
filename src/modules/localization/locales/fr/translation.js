@@ -202,6 +202,8 @@ export default {
     buttons: {
       viewCoupon: 'Voir le coupon',
       viewDeal: "Voir l'offre",
+      tooltip:
+        'Cliquez pour fair vos achats. Utilisez ce code lorsque vous passez en caisse pour faire des économies!',
     },
     todaysFeatureCoupon: "Coupon d'aujourd'hui par",
     noCouponsFound: 'Aucun coupon trouvé',

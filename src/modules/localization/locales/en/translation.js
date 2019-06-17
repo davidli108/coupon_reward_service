@@ -198,6 +198,7 @@ export default {
     buttons: {
       viewCoupon: 'View Coupon',
       viewDeal: 'View Deal',
+      tooltip: 'Click to shop. Use this code at checkout to save!',
     },
     todaysFeatureCoupon: "Today's Featured Coupon From",
     noCouponsFound: 'No Coupons Found',
