@@ -10,12 +10,11 @@ import moment from 'moment';
 import { connect } from 'react-redux';
 import { getIsAuthenticated } from '@modules/auth/AuthReducer';
 import InstallOverlay from '@components/InstallOverlay/InstallOverlay';
-import AppConfig from '@config/AppConfig';
-import axios from 'axios';
 import { compose } from 'recompose';
 import { withTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet';
 import { isMobile } from 'react-device-detect';
+import { getIsExtensionInstalled } from '../../modules/app/AppReducer';
 
 type ModalActivateCouponsProps = {
   t: Function,
@@ -24,6 +23,7 @@ type ModalActivateCouponsProps = {
   logo: string,
   callback: Function,
   isAuthenticated: boolean,
+  isExtensionInstalled: boolean,
 };
 
 const isChrome = !!window.chrome;
@@ -35,38 +35,31 @@ const ModalActivateCoupons = ({
   logo,
   callback,
   isAuthenticated,
+  isExtensionInstalled,
 }: ModalActivateCouponsProps) => {
   const [showActivateModal, setShowActivateModal] = useState(false);
   const [modalMounted, setModalMounted] = useState(false);
   const [showInstallOverlay, setInstallOverlay] = useState(false);
-
-  const getExtension = () => axios.get(AppConfig.extension.chrome);
 
   useEffect(() => {
     if (
       isActive &&
       isChrome &&
       !isMobile &&
+      !isExtensionInstalled &&
       !isAuthenticated &&
       !showInstallOverlay &&
       !Boolean(Cookie.get('installProcessed'))
     ) {
-      getExtension().then(
-        () => {
-          callback();
-        },
-        () => {
-          setModalMounted(true);
-          setTimeout(() => {
-            setShowActivateModal(isActive);
-          });
-          Cookie.set('installProcessed', true, {
-            expires: moment()
-              .add(1, 'days')
-              .toDate(),
-          });
-        },
-      );
+      setModalMounted(true);
+      setTimeout(() => {
+        setShowActivateModal(isActive);
+      });
+      Cookie.set('installProcessed', true, {
+        expires: moment()
+          .add(1, 'days')
+          .toDate(),
+      });
     } else {
       callback();
     }
@@ -222,14 +215,6 @@ ModalActivateCoupons.Content = styled.div`
   max-width: none;
   box-sizing: border-box;
 
-  ${breakpoint('xs')`
-
-  `}
-
-  ${breakpoint('sx')`
-
-  `}
-
   > svg {
     position: absolute;
     top: 3px;
@@ -240,7 +225,7 @@ ModalActivateCoupons.Content = styled.div`
     padding: 10px;
     box-sizing: border-box;
     color: ${props => props.theme.colors.whiteDark};
-    transition: color .3s ease;
+    transition: color 0.3s ease;
 
     &:hover {
       color: ${props => props.theme.colors.blackGray};
@@ -252,7 +237,7 @@ ModalActivateCoupons.Content = styled.div`
     font-size: 16px;
     line-height: 26px;
     text-align: center;
-    letter-spacing: .2px;
+    letter-spacing: 0.2px;
     margin: 0 auto 26px;
     color: ${props => props.theme.colors.darkGray};
   }
@@ -265,18 +250,6 @@ ModalActivateCoupons.Content = styled.div`
     position: relative;
     z-index: 1;
     color: ${props => props.theme.colors.blackLight};
-
-    ${breakpoint('xs')`
-
-    `}
-
-    ${breakpoint('sx')`
-
-    `}
-
-    ${breakpoint('xl')`
-
-    `}
   }
 
   > p {
@@ -286,16 +259,8 @@ ModalActivateCoupons.Content = styled.div`
     line-height: 26px;
     text-align: center;
     margin: 0 0 17px;
-    letter-spacing: .44;
+    letter-spacing: 0.44;
     color: ${props => props.theme.colors.blackLight};
-
-    ${breakpoint('xs')`
-      
-    `}
-
-    ${breakpoint('sx')`
-      
-    `}
   }
 
   > button {
@@ -314,7 +279,7 @@ ModalActivateCoupons.Content = styled.div`
     margin: 0 auto;
     box-shadow: 0px 10px 14px ${props => props.theme.colors.blackAlpha};
     background-color: ${props => props.theme.colors.pinkLight};
-    transition: background .3s ease;
+    transition: background 0.3s ease;
 
     &:focus {
       outline: none;
@@ -328,6 +293,7 @@ ModalActivateCoupons.Content = styled.div`
 
 const mapStateToProps = state => ({
   isAuthenticated: getIsAuthenticated(state),
+  isExtensionInstalled: getIsExtensionInstalled(state),
 });
 
 export default compose(

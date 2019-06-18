@@ -6,7 +6,6 @@ import { withTranslation } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
 import moment from 'moment';
 import { connect } from 'react-redux';
-import { getIsAuthenticated } from '@modules/auth/AuthReducer';
 
 import CouponCode from './CouponCode';
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
@@ -40,6 +39,7 @@ type OfferProps = {
   isThisStore: boolean,
   store_page_link: string,
   isAuthenticated: boolean,
+  isExtensionInstalled: boolean,
 };
 
 const Offer = ({
@@ -60,6 +60,7 @@ const Offer = ({
   store_page_link,
   isThisStore,
   isAuthenticated,
+  isExtensionInstalled,
 }: OfferProps) => {
   const [randomColor] = useState(Math.floor(Math.random() * 7));
 
@@ -116,6 +117,7 @@ const Offer = ({
               link={offer_link}
               store={store_name}
               isAuthenticated={isAuthenticated}
+              isExtensionInstalled={isExtensionInstalled}
               logo={
                 store_logo ? `${AppConfig.cloudUrl}${store_logo}` : placeholder
               }
@@ -388,8 +390,12 @@ Offer.RevealCouponButton = styled.div`
   color: #fff;
 `;
 
-const mapStateToProps = state => ({
-  isAuthenticated: getIsAuthenticated(state),
+const mapStateToProps = ({
+  app: { isExtensionInstalled },
+  auth: { isAuthenticated },
+}) => ({
+  isAuthenticated,
+  isExtensionInstalled,
 });
 
 export default connect(

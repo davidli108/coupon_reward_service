@@ -81,6 +81,7 @@ export type StorePageProps = {
   offersCount: number,
   reviews: string,
   getFilteredList: any,
+  isExtensionInstalled: boolean,
 };
 
 export type BrandProps = {

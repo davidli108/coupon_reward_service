@@ -8,6 +8,7 @@ import moment from 'moment';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import { getIsAuthenticated } from '@modules/auth/AuthReducer';
+import { getIsExtensionInstalled } from '@modules/app/AppReducer';
 
 import CouponCode from './CouponCode';
 import SocialShare from './SocialShare';
@@ -50,6 +51,7 @@ const Coupon = ({
   twitter_link,
   pinterest_link,
   isAuthenticated,
+  isExtensionInstalled,
 }: DealModel) => {
   const [randomColor] = useState(Math.floor(Math.random() * 7));
 
@@ -112,6 +114,7 @@ const Coupon = ({
         <Coupon.OfferText>{ref_text}</Coupon.OfferText>
         <CouponCode
           isAuthenticated={isAuthenticated}
+          isExtensionInstalled={isExtensionInstalled}
           store={store_name}
           logo={store_logo ? `${AppConfig.cloudUrl}${store_logo}` : placeholder}
           code={coupon_code}
@@ -319,6 +322,7 @@ Coupon.CashbackPercent = styled.div`
 const mapStateToProps = state => {
   return {
     isAuthenticated: getIsAuthenticated(state),
+    isExtensionInstalled: getIsExtensionInstalled(state),
   };
 };
 
