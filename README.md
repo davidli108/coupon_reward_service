@@ -37,5 +37,6 @@ Before pushing your work, ensure that you run all tests:
 ```
 yarn test:ci
 yarn test
+yarn lint
 ```
 Other tests can be found in `package.json`
