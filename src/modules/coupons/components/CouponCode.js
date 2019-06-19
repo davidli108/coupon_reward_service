@@ -11,6 +11,7 @@ type CouponCodeProps = {
   store: string,
   logo: string,
   isAuthenticated: boolean,
+  isExtensionInstalled: boolean,
 };
 
 const CouponCode = ({
@@ -20,13 +21,14 @@ const CouponCode = ({
   store,
   logo,
   isAuthenticated,
+  isExtensionInstalled,
 }: CouponCodeProps) => {
   const [isShowCode, setIsShowCode] = useState(false);
   const [showActivateModal, setShowActivateModal] = useState(false);
 
   useEffect(() => {
-    setIsShowCode(isAuthenticated && code);
-  }, [isAuthenticated]);
+    setIsShowCode((isAuthenticated && code) || (isExtensionInstalled && code));
+  }, [isAuthenticated, isExtensionInstalled]);
 
   const handleClick = () => {
     setShowActivateModal(true);

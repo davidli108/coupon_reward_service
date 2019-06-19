@@ -1,13 +1,19 @@
 // @flow
 import * as R from 'ramda';
-import { GET_STORES_LIST, SET_STORES_LIST } from './AppActions';
+import {
+  GET_STORES_LIST,
+  SET_STORES_LIST,
+  SET_EXTENSION_INSTALLED,
+} from './AppActions';
 
 type AppReducerProps = {
   stores: any,
+  isExtensionInstalled: boolean,
 };
 
 const initialState: AppReducerProps = {
   stores: [],
+  isExtensionInstalled: false,
 };
 
 const AppReducer = (state: AppReducerProps = initialState, action: Object) => {
@@ -18,6 +24,13 @@ const AppReducer = (state: AppReducerProps = initialState, action: Object) => {
     }
     case `${SET_STORES_LIST}`: {
       return R.assoc<Object, Object>('stores', action.data, state);
+    }
+    case SET_EXTENSION_INSTALLED: {
+      return R.assoc<Object, Object>(
+        'isExtensionInstalled',
+        action.status,
+        state,
+      );
     }
     default: {
       return state;
@@ -40,5 +53,10 @@ export const getFilteredList = (state: any) => (keyword: string) => {
     )
     .slice(0, 5);
 };
+
+export const getIsExtensionInstalled = R.path<boolean>([
+  STATE_KEY,
+  'isExtensionInstalled',
+]);
 
 export default AppReducer;

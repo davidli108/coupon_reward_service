@@ -62,6 +62,7 @@ export type Deal = {
   twitter_link: string,
   pinterest_link: string,
   isAuthenticated: boolean,
+  isExtensionInstalled: boolean,
 };
 
 export type featuredStore = {

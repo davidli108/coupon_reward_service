@@ -14,12 +14,14 @@ import SignInModal from '@modules/auth/components/SignInModal';
 import SignUpModal from '@modules/auth/components/SignUpModal';
 import ResetPasswordModal from '@modules/auth/components/ResetPasswordModal';
 import { getLocaleConfig } from '@modules/localization/i18n';
-import { getStoresList } from '@modules/app/AppActions';
+import { getStoresList, setExtensionInstalled } from '@modules/app/AppActions';
 
 import BurgerButton from './BurgerButton';
 import HeaderItem from './HeaderItem';
 import HeaderItemMyAccount from './HeaderItemMyAccount';
 import logo from './logo.svg';
+import axios from 'axios';
+import AppConfig from '@config/AppConfig';
 
 const modal = {
   modalSignIn: 'modalSignIn',
@@ -59,6 +61,7 @@ type HeaderProps = {
   setLoggedOut: Function,
   authenticate: Function,
   getStoresList: any => Promise<Object>,
+  setExtensionInstalled: Function,
 };
 
 const Header = ({
@@ -70,11 +73,13 @@ const Header = ({
   setLoggedOut,
   authenticate,
   getStoresList,
+  setExtensionInstalled,
 }: HeaderProps) => {
   const [isOpen, setOpen] = useState(false);
   const [currentModal, setCurrentModal] = useState(null);
 
   const localeConfig = getLocaleConfig();
+  const getExtension = () => axios.get(AppConfig.extension.chrome);
 
   const isActiveCoupons = () => {
     const isCouponsLocation = location.pathname.indexOf('/coupons') + 1;
@@ -88,12 +93,24 @@ const Header = ({
     return false;
   };
 
+  const checkIfExtensionIsInstalled = () => {
+    getExtension().then(
+      () => {
+        setExtensionInstalled(true);
+      },
+      () => {
+        setExtensionInstalled(false);
+      },
+    );
+  };
+
   useEffect(() => {
     if (!isCookieSet) {
       setLoggedOut();
     } else {
       authenticate();
     }
+    checkIfExtensionIsInstalled();
   }, [location]);
 
   useEffect(() => {
@@ -299,6 +316,7 @@ const mapDispatchToProps = {
   setLoggedOut: actions.setLoggedOut,
   authenticate: actions.authenticate,
   getStoresList: getStoresList,
+  setExtensionInstalled: setExtensionInstalled,
 };
 
 export default compose(

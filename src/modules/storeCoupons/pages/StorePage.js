@@ -8,7 +8,10 @@ import { compose } from 'recompose';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { withTranslation } from 'react-i18next';
-import { getFilteredList } from '@modules/app/AppReducer';
+import {
+  getFilteredList,
+  getIsExtensionInstalled,
+} from '@modules/app/AppReducer';
 import SearchBar from '@components/SearchBar/SearchBar';
 import Brand from '../components/Brand';
 import Offers from '../components/Offers';
@@ -28,8 +31,6 @@ import * as actions from '../StoreCouponsActions';
 import AdditionalInfoLoader from '../components/loaders/AdditionalInfoLoader';
 import OffersLoader from '../components/loaders/OffersLoader';
 import AddSaving from '../components/AddSaving';
-import axios from 'axios';
-import AppConfig from '@config/AppConfig';
 
 const StorePage = ({
   t,
@@ -45,27 +46,16 @@ const StorePage = ({
   offersCount,
   store,
   reviews,
+  isExtensionInstalled,
 }: StorePageProps) => {
   const [searchValue, setSearchValue] = useState('');
   const [storeName, setStoreName] = useState(match.params.name);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [extensionActive, setExtensionActive] = useState(false);
-
-  const getExtension = () => axios.get(AppConfig.extension.chrome);
 
   useEffect(() => {
     match.params.name &&
       // $FlowFixMe
       fetchStoreCoupons(match.params.name).then(() => setIsLoaded(true));
-
-    getExtension().then(
-      () => {
-        setExtensionActive(true);
-      },
-      () => {
-        setExtensionActive(false);
-      },
-    );
   }, []);
 
   useEffect(() => {
@@ -114,14 +104,14 @@ const StorePage = ({
       </StorePage.SearchWrapper>
       <Brand
         isLoaded={isLoaded}
-        extensionActive={isLoaded && extensionActive}
+        extensionActive={isLoaded && isExtensionInstalled}
         offersCount={offersCount}
         reviews={reviews}
       />
       <StorePage.DesktopContent>
         <StorePage.ColumnNoWrapFlexBox
           order="2"
-          extensionActive={isLoaded && extensionActive}
+          extensionActive={isLoaded && isExtensionInstalled}
           style={{ marginBottom: 50 }}
         >
           {isLoaded ? (
@@ -137,7 +127,7 @@ const StorePage = ({
               <OffersLoader key={ind} />
             ))
           )}
-          {!extensionActive && <AddSaving />}
+          {!isExtensionInstalled && <AddSaving />}
         </StorePage.ColumnNoWrapFlexBox>
         <StorePage.ColumnNoWrapFlexBox order="1">
           {isLoaded ? <AdditionalInfo /> : <AdditionalInfoLoader />}
@@ -240,6 +230,7 @@ const mapStateToProps = state => ({
   store: getStore(state),
   reviews: getReviews(state),
   getFilteredList: getFilteredList(state),
+  isExtensionInstalled: getIsExtensionInstalled(state),
 });
 
 const mapDispatchToProps = {
