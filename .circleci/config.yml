@@ -49,7 +49,7 @@ jobs:
           command: yarn build
       - run:
           name: Deploy build to AWS S3
-          command: aws --region $AWS_REGION s3 cp --acl public-read --recursive build s3://$AWS_S3_BUCKET
+          command: aws --region $AWS_REGION s3 cp --acl public-read --recursive build s3://s3-www-$(perl -e '$b=shift;print {"master"=>"production",stage=>"staging"}->{$b}||$b' $CIRCLE_BRANCH).joinpiggy.com
 
 workflows:
   version: 2.1
@@ -57,10 +57,11 @@ workflows:
     jobs:
       - test
       - deploy:
-          # TODO: uncomment when app goes live
-          # filters:
-          #   branches:
-          #     only:
-          #       - master
+          filters:
+             branches:
+               only:
+                 - master
+                 - stage
+                 - integration
           requires:
             - test
