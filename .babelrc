@@ -1,0 +1,15 @@
+{
+  "plugins": [
+    "babel-plugin-styled-components",
+    "react-loadable/babel"
+  ],
+  "presets": [
+    ["react-app", { "absoluteRuntime": false }],
+    "@babel/preset-flow"
+  ],
+  "env": {
+    "test": {
+      "plugins": ["require-context-hook", "babel-plugin-styled-components"]
+    }
+  }
+}
