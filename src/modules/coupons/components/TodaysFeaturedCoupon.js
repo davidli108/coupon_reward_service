@@ -158,13 +158,16 @@ const TodaysFeaturedCoupon = ({
           closeModal={setCurrentModal.bind(null)}
         />
       )}
-
       {showActivateModal && (
         <ModalActivateCoupons
           isActive={showActivateModal}
           callback={modalCallback}
           title={store.store_name}
-          logo={store.store_logo}
+          logo={
+            store.store_logo
+              ? `${AppConfig.cloudUrl}${store.store_logo}`
+              : placeholder
+          }
         />
       )}
     </TodaysFeaturedCoupon.Wrapper>
