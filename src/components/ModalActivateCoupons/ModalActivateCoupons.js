@@ -24,6 +24,7 @@ type ModalActivateCouponsProps = {
   callback: Function,
   isAuthenticated: boolean,
   isExtensionInstalled: boolean,
+  code: string,
 };
 
 const isChrome = !!window.chrome;
@@ -36,6 +37,7 @@ const ModalActivateCoupons = ({
   callback,
   isAuthenticated,
   isExtensionInstalled,
+  code,
 }: ModalActivateCouponsProps) => {
   const [showActivateModal, setShowActivateModal] = useState(false);
   const [modalMounted, setModalMounted] = useState(false);
@@ -75,7 +77,11 @@ const ModalActivateCoupons = ({
 
   const installCallback = () => {
     setInstallOverlay(false);
-    callback();
+    if (code) {
+      callback();
+    } else {
+      callback(true);
+    }
   };
 
   const dismissModal = () => {
@@ -117,6 +123,7 @@ const ModalActivateCoupons = ({
       )}
       {showInstallOverlay && (
         <InstallOverlay
+          code={code}
           isActive={showInstallOverlay}
           callback={installCallback}
         />

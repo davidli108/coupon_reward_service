@@ -24,6 +24,7 @@ export type Store = {
   store_id: any,
   twitter_link: string,
   pinterest_link: string,
+  coupon_code?: string,
 };
 
 export type Category = {

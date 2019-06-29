@@ -33,11 +33,11 @@ const CouponCode = ({
     setShowActivateModal(true);
   };
 
-  const modalCallback = () => {
+  const modalCallback = (dismiss: boolean) => {
     setShowActivateModal(false);
     if (code && !isShowCode) {
       setIsShowCode(true);
-    } else {
+    } else if (!dismiss) {
       window.open(link, '_blank');
     }
   };
@@ -65,6 +65,7 @@ const CouponCode = ({
           callback={modalCallback}
           title={store}
           logo={logo}
+          code={code}
         />
       )}
     </>
@@ -101,7 +102,7 @@ CouponCode.Button = styled.div`
 CouponCode.Code = styled.a`
   display: ${props => (props.isShow ? 'flex' : 'none')};
   width: 100%;
-  height: 41px;
+  height: 45px;
   margin-bottom: 10px;
   justify-content: center;
   align-items: center;
@@ -110,6 +111,7 @@ CouponCode.Code = styled.a`
   color: black;
   text-align: center;
   position: relative;
+  box-sizing: border-box;
 
   :hover {
     > div {
@@ -137,6 +139,7 @@ CouponCode.Tooltip = styled.div`
   opacity: 0;
   transform: translate3d(0, -10px, 0);
   transition: all 0.3s ease;
+  white-space: normal;
 
   ::after {
     content: '';
