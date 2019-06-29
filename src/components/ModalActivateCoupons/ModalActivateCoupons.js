@@ -9,11 +9,11 @@ import Cookie from 'js-cookie';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import { getIsAuthenticated } from '@modules/auth/AuthReducer';
+import InstallOverlay from '@components/InstallOverlay/InstallOverlay';
 import { compose } from 'recompose';
 import { withTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet';
 import { isMobile } from 'react-device-detect';
-import AppConfig from '@config/AppConfig';
 import { getIsExtensionInstalled } from '../../modules/app/AppReducer';
 
 type ModalActivateCouponsProps = {
@@ -39,6 +39,7 @@ const ModalActivateCoupons = ({
 }: ModalActivateCouponsProps) => {
   const [showActivateModal, setShowActivateModal] = useState(false);
   const [modalMounted, setModalMounted] = useState(false);
+  const [showInstallOverlay, setInstallOverlay] = useState(false);
 
   useEffect(() => {
     if (
@@ -47,6 +48,7 @@ const ModalActivateCoupons = ({
       !isMobile &&
       !isExtensionInstalled &&
       !isAuthenticated &&
+      !showInstallOverlay &&
       !Boolean(Cookie.get('installProcessed'))
     ) {
       setModalMounted(true);
@@ -67,9 +69,13 @@ const ModalActivateCoupons = ({
     setShowActivateModal(false);
     setTimeout(() => {
       setModalMounted(false);
-      callback();
-      window.open(AppConfig.extension.url);
+      setInstallOverlay(true);
     }, 300);
+  };
+
+  const installCallback = () => {
+    setInstallOverlay(false);
+    callback();
   };
 
   const dismissModal = () => {
@@ -108,6 +114,12 @@ const ModalActivateCoupons = ({
             </ModalActivateCoupons.Content>
           </ModalActivateCoupons.Container>
         </ModalActivateCoupons.Wrapper>
+      )}
+      {showInstallOverlay && (
+        <InstallOverlay
+          isActive={showInstallOverlay}
+          callback={installCallback}
+        />
       )}
     </>
   );
