@@ -2,7 +2,7 @@
 
 exports[`renders correctly 1`] = `
 <div
-  className="InstallOverlay__Wrapper-sc-10gjagm-0 cxFTog"
+  className="InstallOverlay__Wrapper-sc-10gjagm-0 jsefwy"
 >
   <div
     className="InstallOverlay__Container-sc-10gjagm-1 hoUBAg"
