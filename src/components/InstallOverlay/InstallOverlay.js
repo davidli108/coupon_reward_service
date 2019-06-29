@@ -25,8 +25,6 @@ const InstallOverlay = ({ t, isActive, callback }: InstallOverlayProps) => {
       const popup = window.open(AppConfig.extension.url, 'extensionWindow');
 
       const focusInterval = setInterval(() => {
-        // popup.focus();
-
         if (popup.closed) {
           clearInterval(focusInterval);
           Cookie.set('installProcessed', true, {
