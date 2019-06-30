@@ -520,7 +520,8 @@ TodaysFeaturedCoupon.DescriptionButtonWrapper = styled.div`
     margin: 0;
     height: 48px;
 
-    > div {
+    > div,
+    > a {
       margin: 0;
       height: 100%;
       padding: 13px 70px;

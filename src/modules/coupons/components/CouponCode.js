@@ -51,7 +51,7 @@ const CouponCode = ({
             ? t('coupons.buttons.viewCoupon')
             : t('coupons.buttons.viewDeal')}
         </CouponCode.Button>
-        <CouponCode.Code onClick={handleClick} isShow={isShowCode}>
+        <CouponCode.Code isShow={isShowCode} href={link} target={'_blank'}>
           {code}
           <CouponCode.Tooltip>
             {t('coupons.buttons.tooltip')}
@@ -99,7 +99,7 @@ CouponCode.Button = styled.div`
   cursor: pointer;
 `;
 
-CouponCode.Code = styled.div`
+CouponCode.Code = styled.a`
   display: ${props => (props.isShow ? 'flex' : 'none')};
   cursor: pointer;
   width: 100%;

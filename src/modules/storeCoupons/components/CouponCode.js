@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import ModalActivateCoupons from '@components/ModalActivateCoupons/ModalActivateCoupons';
+import Cookie from 'js-cookie';
+import { isMobile } from 'react-device-detect';
 
 type CouponCodeProps = {
   t: Function,
@@ -42,22 +44,41 @@ const CouponCode = ({
     }
   };
 
-  return (
-    <>
-      <CouponCode.Wrapper>
+  const renderCouponButton = () => {
+    const isChrome = !!window.chrome;
+    const isInstallProcessed = Boolean(Cookie.get('installProcessed'));
+
+    return code ? (
+      <>
         <CouponCode.Button onClick={handleClick} isShow={!isShowCode}>
-          <p>
-            {code ? t('global.revealCoupon') : t('coupons.buttons.viewDeal')}
-          </p>
+          <p>{t('global.revealCoupon')}</p>
           <CouponCode.Rectangle isShow={!!code} />
         </CouponCode.Button>
-        <CouponCode.Code onClick={handleClick} isShow={isShowCode}>
+        <CouponCode.Code isShow={isShowCode} href={link} target={'_blank'}>
           {code}
           <CouponCode.Tooltip>
             {t('coupons.buttons.tooltip')}
           </CouponCode.Tooltip>
         </CouponCode.Code>
-      </CouponCode.Wrapper>
+      </>
+    ) : isChrome &&
+      !isMobile &&
+      !isShowCode &&
+      !isAuthenticated &&
+      !isInstallProcessed ? (
+      <CouponCode.Button onClick={handleClick} isShow={!isShowCode}>
+        <p>{t('coupons.buttons.viewDeal')}</p>
+      </CouponCode.Button>
+    ) : (
+      <CouponCode.Link href={link} target={'_blank'}>
+        <p>{t('coupons.buttons.viewDeal')}</p>
+      </CouponCode.Link>
+    );
+  };
+
+  return (
+    <>
+      <CouponCode.Wrapper>{renderCouponButton()}</CouponCode.Wrapper>
 
       {showActivateModal && (
         <ModalActivateCoupons
@@ -79,6 +100,29 @@ CouponCode.Wrapper = styled.div`
 CouponCode.Button = styled.div`
   margin-bottom: 10px;
   display: ${props => (props.isShow ? 'flex' : 'none')};
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+
+  width: 100%;
+  height: 45px;
+  background: #00cbe9;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 16px;
+  text-align: center;
+  letter-spacing: 0.51px;
+  color: #fff;
+  cursor: pointer;
+
+  p {
+    width: 100%;
+  }
+`;
+
+CouponCode.Link = styled.a`
+  margin-bottom: 10px;
+  display: flex;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
