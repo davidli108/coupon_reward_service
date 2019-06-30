@@ -24,7 +24,10 @@ import {
   getOffersCount,
   getCoupons,
 } from '@modules/coupons/CouponsReducer';
-import { getFilteredList } from '@modules/app/AppReducer';
+import {
+  getFilteredList,
+  getIsExtensionInstalled,
+} from '@modules/app/AppReducer';
 import * as favoritesActions from '@modules/favorites/FavoritesActions';
 import { getFavoritesMap } from '@modules/favorites/FavoritesReducer';
 
@@ -57,6 +60,7 @@ type CouponsPageProps = {
   getFilteredList: any,
   removeFavorite: any,
   isAuthenticated: boolean,
+  isExtensionInstalled: boolean,
 };
 
 const CouponsPage = ({
@@ -83,6 +87,7 @@ const CouponsPage = ({
   getFilteredList,
   removeFavorite,
   isAuthenticated,
+  isExtensionInstalled,
 }: CouponsPageProps) => {
   const [searchValue, setSearchValue] = useState('');
   const [isLoaded, setIsLoaded] = useState(true);
@@ -117,6 +122,7 @@ const CouponsPage = ({
         offersCount !== 0 && Boolean(stores.length) ? (
           <TodaysFeaturedCoupon
             isAuthenticated={isAuthenticated}
+            isExtensionInstalled={isExtensionInstalled}
             store={stores[0]}
             favorites={favorites}
             addFavorite={addFavorite}
@@ -209,6 +215,7 @@ const mapStateToProps = state => ({
   getAllDeals: getCoupons(state),
   favorites: getFavoritesMap(state),
   isAuthenticated: getIsAuthenticated(state),
+  isExtensionInstalled: getIsExtensionInstalled(state),
   getFilteredList: getFilteredList(state),
 });
 

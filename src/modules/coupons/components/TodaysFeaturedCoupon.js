@@ -20,6 +20,7 @@ import {
 import type { Store } from '../models/CouponsPage';
 import SocialShareFeatured from './SocialShareFeatured';
 import AppConfig from '@config/AppConfig';
+import CouponCode from './CouponCode';
 
 const modal = {
   modalSignIn: 'modalSignIn',
@@ -34,6 +35,7 @@ type TodaysFeaturedCouponProps = {
   addFavorite: any,
   removeFavorite: any,
   isAuthenticated: boolean,
+  isExtensionInstalled: boolean,
 };
 
 const TodaysFeaturedCoupon = ({
@@ -43,6 +45,7 @@ const TodaysFeaturedCoupon = ({
   addFavorite,
   removeFavorite,
   isAuthenticated,
+  isExtensionInstalled,
 }: TodaysFeaturedCouponProps) => {
   const [currentModal, setCurrentModal] = React.useState(null);
   const [showActivateModal, setShowActivateModal] = useState(false);
@@ -67,10 +70,6 @@ const TodaysFeaturedCoupon = ({
     } else {
       removeFavorite(store.store_id);
     }
-  };
-
-  const handleClick = () => {
-    setShowActivateModal(true);
   };
 
   const modalCallback = () => {
@@ -133,9 +132,18 @@ const TodaysFeaturedCoupon = ({
           <TodaysFeaturedCoupon.Description>
             {store.offer_name}
           </TodaysFeaturedCoupon.Description>
-          <TodaysFeaturedCoupon.Button onClick={handleClick}>
-            {t('coupons.buttons.viewDeal')}
-          </TodaysFeaturedCoupon.Button>
+          <CouponCode
+            isAuthenticated={isAuthenticated}
+            isExtensionInstalled={isExtensionInstalled}
+            store={store.store_name}
+            logo={
+              store.store_logo
+                ? `${AppConfig.cloudUrl}${store.store_logo}`
+                : placeholder
+            }
+            code={store.coupon_code}
+            link={store.offer_link}
+          />
         </TodaysFeaturedCoupon.DescriptionButtonWrapper>
       </TodaysFeaturedCoupon.Content>
 
@@ -158,13 +166,17 @@ const TodaysFeaturedCoupon = ({
           closeModal={setCurrentModal.bind(null)}
         />
       )}
-
       {showActivateModal && (
         <ModalActivateCoupons
           isActive={showActivateModal}
           callback={modalCallback}
           title={store.store_name}
-          logo={store.store_logo}
+          coupon={store.coupon_code}
+          logo={
+            store.store_logo
+              ? `${AppConfig.cloudUrl}${store.store_logo}`
+              : placeholder
+          }
         />
       )}
     </TodaysFeaturedCoupon.Wrapper>
@@ -502,6 +514,36 @@ TodaysFeaturedCoupon.DescriptionButtonWrapper = styled.div`
 
   p {
     margin: 10px 0;
+  }
+
+  > div:nth-child(2) {
+    margin: 0;
+    height: 48px;
+
+    > div,
+    > a {
+      margin: 0;
+      height: 100%;
+      padding: 13px 70px;
+
+      :first-child:hover {
+        background: ${props => props.theme.colors.blueDark};
+      }
+    }
+
+    ${breakpoint('md')`
+      flex: 1 1 360px;
+      max-width: 360px;
+      margin: 0;
+    `}
+
+    ${breakpoint('xl')`
+      flex: 1 1 220px;
+      max-width: 220px;
+      white-space: nowrap;
+      height: 60px;
+      margin: 0 0 0 20px;
+    `}
   }
 `;
 

@@ -51,7 +51,7 @@ const CouponCode = ({
             ? t('coupons.buttons.viewCoupon')
             : t('coupons.buttons.viewDeal')}
         </CouponCode.Button>
-        <CouponCode.Code onClick={handleClick} isShow={isShowCode}>
+        <CouponCode.Code isShow={isShowCode} href={link} target={'_blank'}>
           {code}
           <CouponCode.Tooltip>
             {t('coupons.buttons.tooltip')}
@@ -65,6 +65,7 @@ const CouponCode = ({
           callback={modalCallback}
           title={store}
           logo={logo}
+          code={code}
         />
       )}
     </>
@@ -98,11 +99,11 @@ CouponCode.Button = styled.div`
   cursor: pointer;
 `;
 
-CouponCode.Code = styled.div`
+CouponCode.Code = styled.a`
   display: ${props => (props.isShow ? 'flex' : 'none')};
   cursor: pointer;
   width: 100%;
-  height: 46px;
+  height: 50px;
   margin-bottom: 10px;
   justify-content: center;
   align-items: center;
@@ -111,6 +112,7 @@ CouponCode.Code = styled.div`
   color: black;
   text-align: center;
   position: relative;
+  box-sizing: border-box;
 
   :hover {
     > div {
@@ -138,6 +140,7 @@ CouponCode.Tooltip = styled.div`
   opacity: 0;
   transform: translate3d(0, -10px, 0);
   transition: all 0.3s ease;
+  white-space: normal;
 
   ::after {
     content: '';

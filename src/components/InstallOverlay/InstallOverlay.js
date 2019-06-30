@@ -20,40 +20,11 @@ const top =
     : `calc(210px - ${headerHeight})`;
 
 const InstallOverlay = ({ t, isActive, callback }: InstallOverlayProps) => {
-  const windowProps = {
-    toolbar: 'no',
-    location: 'no',
-    directories: 'no',
-    status: 'no',
-    menubar: 'no',
-    scrollbars: 'no',
-    resizable: 'no',
-    width: window.innerWidth - 600,
-    height: window.outerHeight,
-    left: window.screenX,
-    top: window.screenTop,
-  };
-
-  const parsedWindowProps = () => {
-    const data = [];
-    Object.keys(windowProps).forEach(key => {
-      data.push(`${key}=${windowProps[key]}`);
-    });
-
-    return data.join(',');
-  };
-
   useEffect(() => {
     if (isActive) {
-      const popup = window.open(
-        AppConfig.extension.url,
-        'extensionWindow',
-        parsedWindowProps(),
-      );
+      const popup = window.open(AppConfig.extension.url, 'extensionWindow');
 
       const focusInterval = setInterval(() => {
-        popup.focus();
-
         if (popup.closed) {
           clearInterval(focusInterval);
           Cookie.set('installProcessed', true, {
@@ -69,7 +40,7 @@ const InstallOverlay = ({ t, isActive, callback }: InstallOverlayProps) => {
   }, [isActive]);
 
   return (
-    <InstallOverlay.Wrapper isActive={isActive}>
+    <InstallOverlay.Wrapper>
       <InstallOverlay.Container top={top}>
         <img src={leftRoundArrow} alt={t('coupons.installExtension.action')} />
         <InstallOverlay.Step>
@@ -87,6 +58,7 @@ const InstallOverlay = ({ t, isActive, callback }: InstallOverlayProps) => {
 };
 
 InstallOverlay.Wrapper = styled.div`
+  display: none;
   position: fixed;
   top: 0;
   left: 0;

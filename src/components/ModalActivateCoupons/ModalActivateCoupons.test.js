@@ -16,6 +16,7 @@ it('renders correctly', () => {
           isActive={true}
           logo="test"
           callback={() => {}}
+          code={123}
           isAuthenticated={true}
         />
       </Provider>,
