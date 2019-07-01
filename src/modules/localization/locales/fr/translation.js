@@ -151,6 +151,7 @@ export default {
     neverMiss:
       'Ne manquez plus jamais un coupon avec notre application gratuite !',
     loadMoreDeals: "Charger plus d'offres",
+    loadMoreCoupons: "Charger plus d'coupons",
     loadMoreStores: 'Charger plus de magasins',
     search: 'Rechercher',
     nothingFound: 'Aucuns résultats',

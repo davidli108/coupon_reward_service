@@ -81,32 +81,22 @@ const StoreList = ({
                       />
                     </Link>
                   </StoreList.ImageWrapper>
-                  <StoreList.ContentWrap>
-                    <StoreList.Content>
-                      <StoreList.Info>
-                        <StoreList.Brand>
-                          <StoreList.BrandName>{name}</StoreList.BrandName>
-                          <StoreList.BranDeals>
-                            {t('global.deals')}
-                          </StoreList.BranDeals>
-                        </StoreList.Brand>
-                        <StoreList.Cash>{`${cashback_save}`}</StoreList.Cash>
-                      </StoreList.Info>
-                      {/* {couponActive && (
-                      <StoreList.Coupons>
-                        <img src={verificationIcon} alt="verify" />
-                        coupons activated
-                      </StoreList.Coupons>
-                    )} */}
-                    </StoreList.Content>
+                  <StoreList.Info>
+                    <StoreList.Cash
+                      dangerouslySetInnerHTML={{
+                        __html: cashback_save
+                          ? cashback_save.replace(
+                              /(up to )/i,
+                              '<span>$1</span>',
+                            )
+                          : '',
+                      }}
+                    />
                     <StoreList.Link to={`/coupons/${shortName}`}>
                       {t('build.visitStore')}
                     </StoreList.Link>
-                  </StoreList.ContentWrap>
+                  </StoreList.Info>
                 </StoreList.Box>
-                <StoreList.LinkMobile to={`/coupons/${shortName}`}>
-                  {t('build.visitStore')}
-                </StoreList.LinkMobile>
               </StoreList.StoreItem>
             ),
           )}
@@ -210,28 +200,22 @@ export const FavoriteStoreList = compose(
                         />
                       </Link>
                     </StoreList.ImageWrapper>
-                    <StoreList.ContentWrap>
-                      <StoreList.Content>
-                        <StoreList.Info>
-                          <StoreList.Brand>
-                            <StoreList.BrandName>
-                              {store_name}
-                            </StoreList.BrandName>
-                            <StoreList.BranDeals>
-                              {t('global.deals')}
-                            </StoreList.BranDeals>
-                          </StoreList.Brand>
-                          <StoreList.Cash>{`${cashback_text}`}</StoreList.Cash>
-                        </StoreList.Info>
-                      </StoreList.Content>
+                    <StoreList.Info>
+                      <StoreList.Cash
+                        dangerouslySetInnerHTML={{
+                          __html: cashback_text
+                            ? cashback_text.replace(
+                                /(up to )/i,
+                                '<span>$1</span>',
+                              )
+                            : '',
+                        }}
+                      />
                       <StoreList.Link to={`/coupons/${short_name}`}>
                         {t('build.visitStore')}
                       </StoreList.Link>
-                    </StoreList.ContentWrap>
+                    </StoreList.Info>
                   </StoreList.Box>
-                  <StoreList.LinkMobile to={`/coupons/${short_name}`}>
-                    {t('build.visitStore')}
-                  </StoreList.LinkMobile>
                 </StoreList.StoreItem>
               ),
             )}
@@ -260,19 +244,14 @@ StoreList.Box = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-`;
-
-StoreList.ContentWrap = styled.div`
-  display: flex;
-  align-items: center;
-  width: 100%;
+  justify-content: space-between;
 
   ${breakpoint('xs')`
-    flex-direction: column;
+    display: block;
   `}
 
-  ${breakpoint('md')`
-    flex-direction: row;
+  ${breakpoint('sx')`
+    display: flex;
   `}
 `;
 
@@ -292,6 +271,7 @@ StoreList.StoreItem = styled.div`
   align-items: center;
   border: 1px solid ${props => props.theme.colors.whiteLight};
   border-bottom: none;
+  box-sizing: border-box;
 
   &:first-child {
     border-top-right-radius: 5px;
@@ -305,25 +285,26 @@ StoreList.StoreItem = styled.div`
   }
 
   ${breakpoint('xs')`
-    padding: 30px 28px 30px 28px;
-    flex-direction: column;
+    height: 216px;
+    padding: 0 27px;
   `}
 
   ${breakpoint('sx')`
-    padding: 30px 28px 30px 35px;
-    flex-direction: row;
-  `}
-
-  ${breakpoint('sm')`
-    padding: 10px 7px 10px 10px;
+    padding: 0 35px;
+    height: 196px;
   `}
 
   ${breakpoint('md')`
-    padding: 23px 24px 23px 18px;
+    padding: 0 27px 0 10px;
+    height: 133px;
   `}
 
   ${breakpoint('lg')`
-    padding: 23px 42px 23px 35px;
+    padding: 0 43px 0 18px;
+  `}
+
+  ${breakpoint('xl')`
+    padding: 0 62px 0 40px;
   `}
 `;
 
@@ -342,189 +323,84 @@ StoreList.StoreNew = styled.span`
 `;
 
 StoreList.ImageWrapper = styled.div`
-  width: 150px;
+  padding: 10px;
+  box-sizing: border-box;
+
+  ${breakpoint('xs')`
+    width: 88px;
+    margin: 0 auto;
+  `}
+
+  ${breakpoint('sx')`
+    width: 88px;
+    margin: 0;
+  `}
+
+  ${breakpoint('xl')`
+    width: 112px;
+  `}
 `;
 
 StoreList.Image = styled.img`
   display: block;
-  ${breakpoint('xs')`
-    width: 88px;
-    height: 88px;
-    object-fit: contain;
-    margin: 0 17px 0 0;
-  `}
-
-  ${breakpoint('sx')`
-    margin: 0 33px 0 0;
-  `}
-
-  ${breakpoint('sm')`
-    margin: 0 23px 0 0;
-  `}
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+  object-fit: contain;
 
   ${breakpoint('md')`
-    margin: 0 26px 0 0;
+   margin: 0 26px 0 0;
   `}
 
   ${breakpoint('lg')`
-    margin: 0 37px 0 0;
-  `}
-`;
-
-StoreList.Content = styled.div`
-  display: flex;
-  flex-basis: 100%;
-
-  ${breakpoint('xs')`
-    flex-direction: column;
-    width: 100%;
-    margin: 0 0 11px 0;
-  `}
-
-  ${breakpoint('sm')`
-    flex-direction: column;
-    flex-basis: auto;
-  `}
-
-  ${breakpoint('md')`
-    align-items: flex-start;
-    flex-basis: 100%;
-    margin: 0;
-  `}
-
-  ${breakpoint('lg')`
-    flex-basis: auto;
-    flex-direction: row;
-    align-items: flex-end;
+    
   `}
 `;
 
 StoreList.Info = styled.div`
-  width: 100%;
-  display: flex;
-
-  ${breakpoint('xs')`
-    margin: 0 0 11px 0;
-    flex-direction: column;
-  `}
-
-  ${breakpoint('sx')`
-    flex-direction: row;
-  `}
-
   ${breakpoint('sm')`
-    margin: 0;
-    flex-direction: column;
+    display: block;
   `}
 
   ${breakpoint('md')`
-    flex-basis: auto;
-    margin: 0 0 5px 0;
-  `}
-
-  ${breakpoint('lg')`
-    flex-direction: row;
-    margin: 0;
-    flex-basis: auto;
-  `}
-
-  ${breakpoint('xl')`
-    align-items: flex-end;
-  `}
-`;
-
-StoreList.Brand = styled.div`
-  margin: 0 30px 0 0;
-
-  ${breakpoint('xs')`
-    margin: 0 21px 0 0;
-  `}
-
-  ${breakpoint('sm')`
+    flex: 1;
+    min-width: 0;
     display: flex;
-    margin: 0 0 5px 0;
-  `}
-
-  ${breakpoint('md')`
-    margin: 0 0 2px 0;
-  `}
-
-  ${breakpoint('lg')`
-    display: flex;
-    margin: 0 30px 14px 0;
-  `}
-
-  ${breakpoint('xl')`
-    flex-direction: column;
-    margin: 0 30px 0 0;
-  `}
-`;
-
-StoreList.BrandName = styled.span`
-  display: block;
-  font-weight: 500;
-  line-height: 23px;
-  font-size: 13px;
-  color: ${props => props.theme.colors.grayLight};
-
-  ${breakpoint('sm')`
-    margin: 0 11px 0 0;
-  `}
-`;
-
-StoreList.BranDeals = styled.p`
-  font-weight: bold;
-  line-height: 21px;
-  color: ${props => props.theme.colors.blackLight};
-
-  ${breakpoint('xs')`
-    font-size: 13px;
-    margin: 5px 0 0 0;
-  `}
-
-  ${breakpoint('sm')`
-    font-size: 16px;
-    margin: 0;
-  `}
-
-  ${breakpoint('md')`
-    font-size: 16px;
-  `}
-
-  ${breakpoint('lg')`
-    font-size: 16px;
-    margin: 0;
+    align-items: center;
   `}
 `;
 
 StoreList.Cash = styled.p`
-  font-weight: 500;
-  line-height: 23px;
-  font-size: 13px;
+  font-weight: 300;
+  font-size: 20px;
+  flex: 1;
+  text-align: center;
   color: ${props => props.theme.colors.blackLight};
 
   ${breakpoint('xs')`
-    margin: 12px 0 0 0;
+    margin: 0 0 18px;
+    font-size: 17px;
+    
+    > span {
+      display: none;
+    }
   `}
 
   ${breakpoint('sx')`
-    margin: 28px 0 0 0;
-  `}
-
-  ${breakpoint('sm')`
-    margin: 0 0 5px 0;
+    margin: 0 0 16px;
+    font-size: 20px;
   `}
 
   ${breakpoint('md')`
+    font-size: 17px;
     margin: 0;
   `}
 
   ${breakpoint('lg')`
-    margin: 0 100px 0 auto;
-  `}
-
-  ${breakpoint('xl')`
-    margin: 0 100px 0 auto;
+    > span {
+      display: inline;
+    }
   `}
 `;
 
@@ -555,58 +431,47 @@ StoreList.Coupons = styled.p`
 
 StoreList.Link = styled(Link)`
   display: flex;
+  align-items: center;
   justify-content: center;
-  flex-basis: 184px;
-  padding: 9px 0;
   font-weight: bold;
   background: ${props => props.theme.colors.blue};
   border: 1px solid ${props => props.theme.colors.blueDark};
+  box-sizing: border-box;
   border-radius: 4px;
-  line-height: 20px;
   font-size: 17px;
   text-align: center;
   letter-spacing: 0.51px;
   color: ${props => props.theme.colors.white};
   cursor: pointer;
+  margin: 0 0 0 10px;
   transition: background 205ms linear;
+  box-shadow: inset 0px 1px 2px rgba(255, 255, 255, 0.5),
+    inset 0px -1px 5px rgba(0, 0, 0, 0.0584805),
+    inset 0px -2px 0px rgba(255, 255, 255, 0.213315);
 
   &:hover {
     background: ${props => props.theme.colors.blueDark};
   }
 
   ${breakpoint('xs')`
-    display: none;
+    margin: 0;
+    height: 40px;
   `}
 
   ${breakpoint('sx')`
-    display: block;
-    flex-basis: auto;
-    width: 100%;
+    width: 191px;
   `}
 
   ${breakpoint('md')`
-    flex-basis: 242px;
-    margin-left: auto;
+    width: 150px;
   `}
 
   ${breakpoint('lg')`
-    flex-basis: 188px;
+    width: 138px;
   `}
 
   ${breakpoint('xl')`
-    flex-basis: 255px;
-  `}
-`;
-
-StoreList.LinkMobile = styled(StoreList.Link)`
-  ${breakpoint('xs')`
-    display: block;
-    flex-basis: auto;
-    width: 100%;
-  `}
-
-  ${breakpoint('sx')`
-    display: none;
+    width: 184px;
   `}
 `;
 

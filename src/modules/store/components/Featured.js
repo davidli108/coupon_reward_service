@@ -16,43 +16,47 @@ type FeaturedProps = {
 
 const Featured = ({ t, featured }: FeaturedProps) => (
   <Featured.Wrapper>
-    {featured.map(
-      ({
-        store_name,
-        cashback_text,
-        offer_img,
-        store_id,
-        offer_link,
-        short_name,
-      }) => (
-        <Featured.Item key={store_id}>
-          {offer_img && (
-            <Featured.WrapperImage>
-              <Featured.Image
-                src={
-                  offer_img ? `${AppConfig.cloudUrl}${offer_img}` : placeholder
-                }
-                onError={e => {
-                  e.target.onerror = null;
-                  e.target.src = placeholder;
-                }}
-                alt={`${store_name || ''} Coupon Codes ${moment().format(
-                  'MMMM',
-                )} | ${moment().format('YYYY')}`}
-              />
-            </Featured.WrapperImage>
-          )}
-          <Featured.Link to={`/coupons/${short_name}`}>
-            {t('build.visitStore')}
-          </Featured.Link>
-          <Featured.Cash>
-            {cashback_text
-              .replace('Cash Back', t('global.cashBack'))
-              .replace('Instant Savings', t('global.instantSaving'))}
-          </Featured.Cash>
-        </Featured.Item>
-      ),
-    )}
+    <Featured.List>
+      {featured.map(
+        ({
+          store_name,
+          cashback_text,
+          offer_img,
+          store_id,
+          offer_link,
+          short_name,
+        }) => (
+          <Featured.Item key={store_id}>
+            {offer_img && (
+              <Featured.WrapperImage>
+                <Featured.Image
+                  src={
+                    offer_img
+                      ? `${AppConfig.cloudUrl}${offer_img}`
+                      : placeholder
+                  }
+                  onError={e => {
+                    e.target.onerror = null;
+                    e.target.src = placeholder;
+                  }}
+                  alt={`${store_name || ''} Coupon Codes ${moment().format(
+                    'MMMM',
+                  )} | ${moment().format('YYYY')}`}
+                />
+              </Featured.WrapperImage>
+            )}
+            <Featured.Link to={`/coupons/${short_name}`}>
+              {t('build.visitStore')}
+            </Featured.Link>
+            <Featured.Cash>
+              {cashback_text
+                .replace('Cash Back', t('global.cashBack'))
+                .replace('Instant Savings', t('global.instantSaving'))}
+            </Featured.Cash>
+          </Featured.Item>
+        ),
+      )}
+    </Featured.List>
   </Featured.Wrapper>
 );
 
@@ -62,6 +66,8 @@ Featured.defaultProps = {
 
 Featured.Wrapper = styled.div`
   display: flex;
+  overflow: hidden;
+  min-width: 0;
 
   ${breakpoint('xs')`
     padding: 11px 0;
@@ -80,90 +86,62 @@ Featured.Wrapper = styled.div`
 
   ${breakpoint('md')`
     padding: 28px 0 20px;
+    margin: 0 -30px 0 0;
   `}
 
   ${breakpoint('lg')`
     padding: 37px 0;
+    margin: 0 -30px 0 0;
   `}
 
   ${breakpoint('xl')`
     padding: 37px 0 33px;
+    margin: 0;
   `}
 `;
 
-Featured.Item = styled.div`
+Featured.List = styled.ul`
+  display: flex;
+  width: 100%;
+  overflow: auto;
+`;
+
+Featured.Item = styled.li`
+  padding: 11px 13px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex-basis: 33.33%;
-  padding: 10px 32px 18px;
   border: 1px solid ${props => props.theme.colors.whiteLight};
   border-radius: 5px;
+  box-sizing: border-box;
 
-  &:nth-child(2) {
-    margin: 0 30px;
+  :last-child {
+    margin: 0;
   }
 
   ${breakpoint('xs')`
-    flex-basis: 100%;
-    margin: 0 0 15px 0;
-    padding: 10px 28px 18px;
-
-    &:nth-child(2) {
-      margin: 0;
-    }
-
-    &:nth-child(3) {
-      display: none;
-    }
+    min-width: 129px;
+    margin: 0 9px 0 0;
   `}
 
   ${breakpoint('sx')`
-    margin: 0;
-    padding: 10px 28px 18px;
-
-    &:nth-child(2) {
-      margin: 0 0 0 30px;
-    }
-  `}
-
-  ${breakpoint('sm')`
-    padding: 10px 14px 18px;
-
-    &:nth-child(2) {
-      display: flex;
-    }
-
-    &:nth-child(3) {
-      display: none;
-    }
-
-    &:nth-child(2) {
-      margin: 0 0 0 30px;
-    }
-
-  `}
-
-  ${breakpoint('md')`
-    padding: 10px 32px 18px;
+    min-width: 144px;
   `}
 
   ${breakpoint('lg')`
-    &:nth-child(2) {
-      margin: 0 30px;
-    }
+    min-width: 158px;
+    margin: 0 27px 0 0;
+  `}
 
-    &:nth-child(3) {
-      display: flex;
-    }
+  ${breakpoint('xl')`
+    min-width: 148px;
   `}
 `;
 
 Featured.WrapperImage = styled.div`
-  margin: 0 0 10px 0;
-  height: 105px;
-  width: 105px;
+  height: 90px;
+  width: 90px;
 `;
 
 Featured.Image = styled.img`
@@ -187,7 +165,7 @@ Featured.Link = styled(Link)`
   letter-spacing: 0.51px;
   color: ${props => props.theme.colors.white};
   cursor: pointer;
-
+  margin: 0 0 21px;
   transition: background 205ms linear;
 
   &:hover {
@@ -196,11 +174,10 @@ Featured.Link = styled(Link)`
 `;
 
 Featured.Cash = styled.p`
-  padding: 24px 0 0;
   font-weight: 500;
-  line-height: 21px;
-  font-size: 15px;
-  color: ${props => props.theme.colors.blackLight};
+  line-height: 23px;
+  font-size: 13px;
+  color: ${props => props.theme.colors.blackExLight};
 `;
 
 export default withTranslation()(Featured);

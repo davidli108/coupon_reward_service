@@ -148,6 +148,7 @@ export default {
       "Laden Sie die automatischen Coupons von Piggy's bei Checkout herunter und verpassen Sie nie wieder einen Deal!",
     neverMiss: 'Verpassen Sie niemals ein Coupon mit unserer kostenlosen App!',
     loadMoreDeals: 'Lade mehr Angebote',
+    loadMoreCoupons: 'Lade mehr Gutscheine',
     loadMoreStores: 'Lade mehr Geschäfte',
     search: 'Suche',
     nothingFound: 'Nicht gefunden',

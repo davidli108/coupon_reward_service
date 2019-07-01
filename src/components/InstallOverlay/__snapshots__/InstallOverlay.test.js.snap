@@ -1,34 +1,77 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly 1`] = `
+.c0 {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1050;
+  background-color: rgba(0,0,0,0.9);
+  color: #fff;
+}
+
+.c1 {
+  position: absolute;
+  right: 200px;
+  top: calc(210px - 0px);
+  width: 320px;
+}
+
+.c1 > img {
+  display: block;
+  width: 75px;
+  height: auto;
+  position: relative;
+  margin: 0 0 17px;
+}
+
+.c2 {
+  padding: 0 0 0 36px;
+  margin: 0 0 30px;
+}
+
+.c2 h3 {
+  margin: 0 0 5px;
+  font-weight: bold;
+  font-size: 28px;
+}
+
+.c2 p {
+  margin: 0;
+  font-size: 24px;
+}
+
 <div
-  className="InstallOverlay__Wrapper-sc-10gjagm-0 jsefwy"
+  className="c0"
 >
   <div
-    className="InstallOverlay__Container-sc-10gjagm-1 hoUBAg"
+    className="c1"
   >
     <img
-      alt="coupons.installExtension.action"
+      alt="Add to Chrome"
       src="leftRoundArrow.svg"
     />
     <div
-      className="InstallOverlay__Step-sc-10gjagm-2 bYzkZP"
+      className="c2"
     >
       <h3>
-        coupons.installExtension.step1
+        Step 1
       </h3>
       <p>
-        coupons.installExtension.step1text
+        Click the "Add to Chrome" Button
       </p>
     </div>
     <div
-      className="InstallOverlay__Step-sc-10gjagm-2 bYzkZP"
+      className="c2"
     >
       <h3>
-        coupons.installExtension.step2
+        Step 2
       </h3>
       <p>
-        coupons.installExtension.step2text
+        Then click "Add extension"
       </p>
     </div>
   </div>
