@@ -212,10 +212,10 @@ export default {
       "Visit any store page and click 'Follow Store' to add to your list",
     activateModal: {
       title: 'NEVER OVERPAY AGAIN AT',
-      content: `Save time and money with automatic coupons. Piggy appears at
-                checkout and automatically applies the best discount.`,
+      content: `Save time and money with Piggy's free Google Chrome extension.
+                Piggy appears at checkout and automatically applies the best coupon.`,
       couponAbout: 'We find the {{title}} coupons, you just shop!',
-      button: 'Activate Coupons Now',
+      button: 'Continue',
     },
     installExtension: {
       action: 'Add to Chrome',
