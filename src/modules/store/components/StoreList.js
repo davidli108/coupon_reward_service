@@ -463,11 +463,7 @@ StoreList.Link = styled(Link)`
   `}
 
   ${breakpoint('md')`
-    width: 150px;
-  `}
-
-  ${breakpoint('lg')`
-    width: 138px;
+    width: 170px;
   `}
 
   ${breakpoint('xl')`

@@ -1642,13 +1642,7 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
 
 @media (min-width:48em) {
   .c7 {
-    width: 150px;
-  }
-}
-
-@media (min-width:62em) {
-  .c7 {
-    width: 138px;
+    width: 170px;
   }
 }
 
@@ -2050,13 +2044,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 
 @media (min-width:48em) {
   .c11 {
-    width: 150px;
-  }
-}
-
-@media (min-width:62em) {
-  .c11 {
-    width: 138px;
+    width: 170px;
   }
 }
 
