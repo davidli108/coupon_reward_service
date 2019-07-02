@@ -86,7 +86,7 @@ const StoreList = ({
                       dangerouslySetInnerHTML={{
                         __html: cashback_save
                           ? cashback_save.replace(
-                              /(up to )/i,
+                              /(up to |jusqu'à |bis zu )/i,
                               '<span>$1</span>',
                             )
                           : '',
@@ -205,7 +205,7 @@ export const FavoriteStoreList = compose(
                         dangerouslySetInnerHTML={{
                           __html: cashback_text
                             ? cashback_text.replace(
-                                /(up to )/i,
+                                /(up to |jusqu'à |bis zu )/i,
                                 '<span>$1</span>',
                               )
                             : '',
