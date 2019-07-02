@@ -121,12 +121,14 @@ Featured.Item = styled.li`
   }
 
   ${breakpoint('xs')`
-    min-width: 129px;
+    min-width: 140px;
+    padding: 9px;
     margin: 0 9px 0 0;
   `}
 
   ${breakpoint('sx')`
     min-width: 144px;
+    padding: 11px 9px;
   `}
 
   ${breakpoint('lg')`
