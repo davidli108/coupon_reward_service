@@ -4,6 +4,9 @@ import initStoryshots, {
 import React  from 'react';
 
 import 'jest-styled-components';
+import { initializeI18n } from '../src/modules/localization/i18n';
+
+initializeI18n();
 
 initStoryshots({
   test: snapshotWithOptions({
