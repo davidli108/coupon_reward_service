@@ -28,7 +28,7 @@ const Featured = ({ t, featured }: FeaturedProps) => (
         }) => (
           <Featured.Item key={store_id}>
             {offer_img && (
-              <Featured.WrapperImage>
+              <Featured.WrapperImage to={`/coupons/${short_name}`}>
                 <Featured.Image
                   src={
                     offer_img
@@ -139,7 +139,7 @@ Featured.Item = styled.li`
   `}
 `;
 
-Featured.WrapperImage = styled.div`
+Featured.WrapperImage = styled(Link)`
   height: 90px;
   width: 90px;
 `;
