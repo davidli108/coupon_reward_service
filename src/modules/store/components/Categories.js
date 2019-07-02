@@ -47,10 +47,9 @@ const Categories = ({
 Categories.Wrapper = styled.div`
   display: none;
 
-  ${breakpoint('sm')`
+  ${breakpoint('md')`
     display: flex;
     flex-flow: column nowrap;
-
     padding-bottom: 30px;
 
     > h2 {

@@ -129,22 +129,21 @@ StoreSidebar.defaultProps = {
 };
 
 StoreSidebar.Wrapper = styled.div`
-
-  ${breakpoint('xs')`
-    flex-basis: auto;
-  `}
+  flex-shrink: 0;
 
   ${breakpoint('md')`
-    flex-basis: 390px;
-  `}
-
-  ${breakpoint('sm')`
-    flex-basis: 321px;
-    padding: 0 30px 0 0;
+    width: 211px;
+    margin: 0 29px 0 0;
   `}
 
   ${breakpoint('lg')`
-    flex-basis: 261px;
+    width: 293px;
+    margin: 0 26px 0 0;
+  `}
+
+  ${breakpoint('xl')`
+    width: 260px;
+    margin: 0 30px 0 0;
   `}
 `;
 
@@ -231,6 +230,7 @@ StoreSidebar.ClearFilter = styled.button`
     top: 12px;
     right: 70px;
   `}
+
   ${breakpoint('sm')`
     top: 3px;
     right: 0;

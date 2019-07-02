@@ -92,7 +92,7 @@ CategoriesMobile.Wrapper = styled.div`
   margin-top: 20px;
   cursor: pointer;
 
-  ${breakpoint('sm')`
+  ${breakpoint('md')`
     display: none;
   `}
 `;

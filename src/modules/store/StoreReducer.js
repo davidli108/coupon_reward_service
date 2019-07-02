@@ -14,7 +14,7 @@ import {
 
 export const STATE_KEY = 'store';
 
-const FEATURE_ITEMS = 3;
+const FEATURE_ITEMS = 5;
 
 type StoresState = {
   filter: ?string,

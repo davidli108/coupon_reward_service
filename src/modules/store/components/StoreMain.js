@@ -53,7 +53,8 @@ StoreMain.defaultProps = {
 };
 
 StoreMain.Wrapper = styled.div`
-  flex-basis: 850px;
+  flex: 1;
+  min-width: 0;
 `;
 
 StoreMain.Title = styled.h3`
@@ -67,12 +68,8 @@ StoreMain.Title = styled.h3`
     display: none;
   `}
 
-  ${breakpoint('sm')`
+  ${breakpoint('md')`
     display: block;
-    font-size: 19px;
-  `}
-
-  ${breakpoint('sm')`
     font-size: 25px;
   `}
 `;

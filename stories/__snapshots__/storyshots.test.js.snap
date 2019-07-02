@@ -1221,6 +1221,8 @@ exports[`Storyshots Components|@Store Featured 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  overflow: hidden;
+  min-width: 0;
   padding: 11px 0;
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
@@ -1228,6 +1230,16 @@ exports[`Storyshots Components|@Store Featured 1`] = `
 }
 
 .c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  overflow: auto;
+}
+
+.c2 {
+  padding: 11px 13px;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1243,32 +1255,19 @@ exports[`Storyshots Components|@Store Featured 1`] = `
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  -webkit-flex-basis: 33.33%;
-  -ms-flex-preferred-size: 33.33%;
-  flex-basis: 33.33%;
-  padding: 10px 32px 18px;
   border: 1px solid #DADDE2;
   border-radius: 5px;
-  -webkit-flex-basis: 100%;
-  -ms-flex-preferred-size: 100%;
-  flex-basis: 100%;
-  margin: 0 0 15px 0;
-  padding: 10px 28px 18px;
+  box-sizing: border-box;
+  min-width: 140px;
+  padding: 9px;
+  margin: 0 9px 0 0;
 }
 
-.c1:nth-child(2) {
-  margin: 0 30px;
-}
-
-.c1:nth-child(2) {
+.c2:last-child {
   margin: 0;
 }
 
-.c1:nth-child(3) {
-  display: none;
-}
-
-.c2 {
+.c3 {
   display: block;
   width: 100%;
   padding: 9px 0;
@@ -1285,20 +1284,20 @@ exports[`Storyshots Components|@Store Featured 1`] = `
   letter-spacing: 0.51px;
   color: #FFF;
   cursor: pointer;
+  margin: 0 0 21px;
   -webkit-transition: background 205ms linear;
   transition: background 205ms linear;
 }
 
-.c2:hover {
+.c3:hover {
   background: #00B4CF;
 }
 
-.c3 {
-  padding: 24px 0 0;
+.c4 {
   font-weight: 500;
-  line-height: 21px;
-  font-size: 15px;
-  color: #374B5A;
+  line-height: 23px;
+  font-size: 13px;
+  color: #899197;
 }
 
 @media (min-width:25.8125em) {
@@ -1320,91 +1319,67 @@ exports[`Storyshots Components|@Store Featured 1`] = `
 @media (min-width:48em) {
   .c0 {
     padding: 28px 0 20px;
+    margin: 0 -30px 0 0;
   }
 }
 
 @media (min-width:62em) {
   .c0 {
     padding: 37px 0;
+    margin: 0 -30px 0 0;
   }
 }
 
 @media (min-width:75em) {
   .c0 {
     padding: 37px 0 33px;
+    margin: 0;
   }
 }
 
 @media (min-width:25.8125em) {
-  .c1 {
-    margin: 0;
-    padding: 10px 28px 18px;
-  }
-
-  .c1:nth-child(2) {
-    margin: 0 0 0 30px;
-  }
-}
-
-@media (min-width:36em) {
-  .c1 {
-    padding: 10px 14px 18px;
-  }
-
-  .c1:nth-child(2) {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-  }
-
-  .c1:nth-child(3) {
-    display: none;
-  }
-
-  .c1:nth-child(2) {
-    margin: 0 0 0 30px;
-  }
-}
-
-@media (min-width:48em) {
-  .c1 {
-    padding: 10px 32px 18px;
+  .c2 {
+    min-width: 144px;
+    padding: 11px 9px;
   }
 }
 
 @media (min-width:62em) {
-  .c1:nth-child(2) {
-    margin: 0 30px;
+  .c2 {
+    min-width: 158px;
+    margin: 0 27px 0 0;
   }
+}
 
-  .c1:nth-child(3) {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
+@media (min-width:75em) {
+  .c2 {
+    min-width: 148px;
   }
 }
 
 <div
   className="c0"
 >
-  <div
+  <ul
     className="c1"
   >
-    <a
+    <li
       className="c2"
-      href="/coupons/undefined"
-      onClick={[Function]}
     >
-      build.visitStore
-    </a>
-    <p
-      className="c3"
-    >
-      
-    </p>
-  </div>
+      <a
+        className="c3"
+        href="/coupons/undefined"
+        onClick={[Function]}
+      >
+        Visit Store
+      </a>
+      <p
+        className="c4"
+      >
+        
+      </p>
+    </li>
+  </ul>
 </div>
 `;
 
@@ -1419,21 +1394,11 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-}
-
-.c5 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  width: 100%;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  display: block;
 }
 
 .c0 {
@@ -1452,10 +1417,9 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
   align-items: center;
   border: 1px solid #DADDE2;
   border-bottom: none;
-  padding: 30px 28px 30px 28px;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
+  box-sizing: border-box;
+  height: 216px;
+  padding: 0 27px;
 }
 
 .c1:first-child {
@@ -1470,149 +1434,76 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
 }
 
 .c3 {
-  width: 150px;
+  padding: 10px;
+  box-sizing: border-box;
+  width: 88px;
+  margin: 0 auto;
 }
 
 .c4 {
   display: block;
-  width: 88px;
-  height: 88px;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
   object-fit: contain;
-  margin: 0 17px 0 0;
 }
 
 .c6 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-basis: 100%;
-  -ms-flex-preferred-size: 100%;
-  flex-basis: 100%;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  width: 100%;
-  margin: 0 0 11px 0;
+  font-weight: 300;
+  font-size: 20px;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  text-align: center;
+  color: #374B5A;
+  margin: 0 0 18px;
+  font-size: 17px;
+}
+
+.c6 > span {
+  display: none;
 }
 
 .c7 {
-  width: 100%;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  margin: 0 0 11px 0;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  font-weight: bold;
+  background: #00CBE9;
+  border: 1px solid #00B4CF;
+  box-sizing: border-box;
+  border-radius: 4px;
+  font-size: 17px;
+  text-align: center;
+  -webkit-letter-spacing: 0.51px;
+  -moz-letter-spacing: 0.51px;
+  -ms-letter-spacing: 0.51px;
+  letter-spacing: 0.51px;
+  color: #FFF;
+  cursor: pointer;
+  margin: 0 0 0 10px;
+  -webkit-transition: background 205ms linear;
+  transition: background 205ms linear;
+  box-shadow: inset 0px 1px 2px rgba(255,255,255,0.5),inset 0px -1px 5px rgba(0,0,0,0.0584805),inset 0px -2px 0px rgba(255,255,255,0.213315);
+  margin: 0;
+  height: 40px;
+}
+
+.c7:hover {
+  background: #00B4CF;
 }
 
 .c8 {
-  margin: 0 30px 0 0;
-  margin: 0 21px 0 0;
-}
-
-.c9 {
-  display: block;
-  font-weight: 500;
-  line-height: 23px;
-  font-size: 13px;
-  color: #C2C2C2;
-}
-
-.c10 {
-  font-weight: bold;
-  line-height: 21px;
-  color: #374B5A;
-  font-size: 13px;
-  margin: 5px 0 0 0;
-}
-
-.c11 {
-  font-weight: 500;
-  line-height: 23px;
-  font-size: 13px;
-  color: #374B5A;
-  margin: 12px 0 0 0;
-}
-
-.c12 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-flex-basis: 184px;
-  -ms-flex-preferred-size: 184px;
-  flex-basis: 184px;
-  padding: 9px 0;
-  font-weight: bold;
-  background: #00CBE9;
-  border: 1px solid #00B4CF;
-  border-radius: 4px;
-  line-height: 20px;
-  font-size: 17px;
-  text-align: center;
-  -webkit-letter-spacing: 0.51px;
-  -moz-letter-spacing: 0.51px;
-  -ms-letter-spacing: 0.51px;
-  letter-spacing: 0.51px;
-  color: #FFF;
-  cursor: pointer;
-  -webkit-transition: background 205ms linear;
-  transition: background 205ms linear;
-  display: none;
-}
-
-.c12:hover {
-  background: #00B4CF;
-}
-
-.c13 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-flex-basis: 184px;
-  -ms-flex-preferred-size: 184px;
-  flex-basis: 184px;
-  padding: 9px 0;
-  font-weight: bold;
-  background: #00CBE9;
-  border: 1px solid #00B4CF;
-  border-radius: 4px;
-  line-height: 20px;
-  font-size: 17px;
-  text-align: center;
-  -webkit-letter-spacing: 0.51px;
-  -moz-letter-spacing: 0.51px;
-  -ms-letter-spacing: 0.51px;
-  letter-spacing: 0.51px;
-  color: #FFF;
-  cursor: pointer;
-  -webkit-transition: background 205ms linear;
-  transition: background 205ms linear;
-  display: none;
-  display: block;
-  -webkit-flex-basis: auto;
-  -ms-flex-preferred-size: auto;
-  flex-basis: auto;
-  width: 100%;
-}
-
-.c13:hover {
-  background: #00B4CF;
-}
-
-.c14 {
   width: 100%;
   display: -webkit-box;
   display: -webkit-flex;
@@ -1638,60 +1529,61 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
   transition: color 205ms linear;
 }
 
-.c14 p {
+.c8 p {
   line-height: 80px;
 }
 
-.c14:hover {
+.c8:hover {
   color: #7F7F7F;
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
 
-@media (min-width:48em) {
-  .c5 {
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
+@media (min-width:25.8125em) {
+  .c2 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
   }
 }
 
 @media (min-width:25.8125em) {
   .c1 {
-    padding: 30px 28px 30px 35px;
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-  }
-}
-
-@media (min-width:36em) {
-  .c1 {
-    padding: 10px 7px 10px 10px;
+    padding: 0 35px;
+    height: 196px;
   }
 }
 
 @media (min-width:48em) {
   .c1 {
-    padding: 23px 24px 23px 18px;
+    padding: 0 27px 0 10px;
+    height: 133px;
   }
 }
 
 @media (min-width:62em) {
   .c1 {
-    padding: 23px 42px 23px 35px;
+    padding: 0 43px 0 18px;
+  }
+}
+
+@media (min-width:75em) {
+  .c1 {
+    padding: 0 62px 0 40px;
   }
 }
 
 @media (min-width:25.8125em) {
-  .c4 {
-    margin: 0 33px 0 0;
+  .c3 {
+    width: 88px;
+    margin: 0;
   }
 }
 
-@media (min-width:36em) {
-  .c4 {
-    margin: 0 23px 0 0;
+@media (min-width:75em) {
+  .c3 {
+    width: 112px;
   }
 }
 
@@ -1701,262 +1593,64 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
   }
 }
 
-@media (min-width:62em) {
-  .c4 {
-    margin: 0 37px 0 0;
-  }
-}
-
 @media (min-width:36em) {
-  .c6 {
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -webkit-flex-basis: auto;
-    -ms-flex-preferred-size: auto;
-    flex-basis: auto;
+  .c5 {
+    display: block;
   }
 }
 
 @media (min-width:48em) {
-  .c6 {
-    -webkit-align-items: flex-start;
-    -webkit-box-align: flex-start;
-    -ms-flex-align: flex-start;
-    align-items: flex-start;
-    -webkit-flex-basis: 100%;
-    -ms-flex-preferred-size: 100%;
-    flex-basis: 100%;
-    margin: 0;
-  }
-}
-
-@media (min-width:62em) {
-  .c6 {
-    -webkit-flex-basis: auto;
-    -ms-flex-preferred-size: auto;
-    flex-basis: auto;
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    -webkit-align-items: flex-end;
-    -webkit-box-align: flex-end;
-    -ms-flex-align: flex-end;
-    align-items: flex-end;
-  }
-}
-
-@media (min-width:25.8125em) {
-  .c7 {
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-  }
-}
-
-@media (min-width:36em) {
-  .c7 {
-    margin: 0;
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-  }
-}
-
-@media (min-width:48em) {
-  .c7 {
-    -webkit-flex-basis: auto;
-    -ms-flex-preferred-size: auto;
-    flex-basis: auto;
-    margin: 0 0 5px 0;
-  }
-}
-
-@media (min-width:62em) {
-  .c7 {
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    margin: 0;
-    -webkit-flex-basis: auto;
-    -ms-flex-preferred-size: auto;
-    flex-basis: auto;
-  }
-}
-
-@media (min-width:75em) {
-  .c7 {
-    -webkit-align-items: flex-end;
-    -webkit-box-align: flex-end;
-    -ms-flex-align: flex-end;
-    align-items: flex-end;
-  }
-}
-
-@media (min-width:36em) {
-  .c8 {
+  .c5 {
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    min-width: 0;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    margin: 0 0 5px 0;
-  }
-}
-
-@media (min-width:48em) {
-  .c8 {
-    margin: 0 0 2px 0;
-  }
-}
-
-@media (min-width:62em) {
-  .c8 {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    margin: 0 30px 14px 0;
-  }
-}
-
-@media (min-width:75em) {
-  .c8 {
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    margin: 0 30px 0 0;
-  }
-}
-
-@media (min-width:36em) {
-  .c9 {
-    margin: 0 11px 0 0;
-  }
-}
-
-@media (min-width:36em) {
-  .c10 {
-    font-size: 16px;
-    margin: 0;
-  }
-}
-
-@media (min-width:48em) {
-  .c10 {
-    font-size: 16px;
-  }
-}
-
-@media (min-width:62em) {
-  .c10 {
-    font-size: 16px;
-    margin: 0;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
   }
 }
 
 @media (min-width:25.8125em) {
-  .c11 {
-    margin: 28px 0 0 0;
-  }
-}
-
-@media (min-width:36em) {
-  .c11 {
-    margin: 0 0 5px 0;
+  .c6 {
+    margin: 0 0 16px;
+    font-size: 20px;
   }
 }
 
 @media (min-width:48em) {
-  .c11 {
+  .c6 {
+    font-size: 17px;
     margin: 0;
   }
 }
 
 @media (min-width:62em) {
-  .c11 {
-    margin: 0 100px 0 auto;
-  }
-}
-
-@media (min-width:75em) {
-  .c11 {
-    margin: 0 100px 0 auto;
+  .c6 > span {
+    display: inline;
   }
 }
 
 @media (min-width:25.8125em) {
-  .c12 {
-    display: block;
-    -webkit-flex-basis: auto;
-    -ms-flex-preferred-size: auto;
-    flex-basis: auto;
-    width: 100%;
+  .c7 {
+    width: 191px;
   }
 }
 
 @media (min-width:48em) {
-  .c12 {
-    -webkit-flex-basis: 242px;
-    -ms-flex-preferred-size: 242px;
-    flex-basis: 242px;
-    margin-left: auto;
-  }
-}
-
-@media (min-width:62em) {
-  .c12 {
-    -webkit-flex-basis: 188px;
-    -ms-flex-preferred-size: 188px;
-    flex-basis: 188px;
+  .c7 {
+    width: 170px;
   }
 }
 
 @media (min-width:75em) {
-  .c12 {
-    -webkit-flex-basis: 255px;
-    -ms-flex-preferred-size: 255px;
-    flex-basis: 255px;
-  }
-}
-
-@media (min-width:25.8125em) {
-  .c13 {
-    display: block;
-    -webkit-flex-basis: auto;
-    -ms-flex-preferred-size: auto;
-    flex-basis: auto;
-    width: 100%;
-  }
-}
-
-@media (min-width:48em) {
-  .c13 {
-    -webkit-flex-basis: 242px;
-    -ms-flex-preferred-size: 242px;
-    flex-basis: 242px;
-    margin-left: auto;
-  }
-}
-
-@media (min-width:62em) {
-  .c13 {
-    -webkit-flex-basis: 188px;
-    -ms-flex-preferred-size: 188px;
-    flex-basis: 188px;
-  }
-}
-
-@media (min-width:75em) {
-  .c13 {
-    -webkit-flex-basis: 255px;
-    -ms-flex-preferred-size: 255px;
-    flex-basis: 255px;
-  }
-}
-
-@media (min-width:25.8125em) {
-  .c13 {
-    display: none;
+  .c7 {
+    width: 184px;
   }
 }
 
@@ -1988,53 +1682,27 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
         <div
           className="c5"
         >
-          <div
+          <p
             className="c6"
-          >
-            <div
-              className="c7"
-            >
-              <div
-                className="c8"
-              >
-                <span
-                  className="c9"
-                >
-                  Target
-                </span>
-                <p
-                  className="c10"
-                >
-                  global.deals
-                </p>
-              </div>
-              <p
-                className="c11"
-              >
-                undefined
-              </p>
-            </div>
-          </div>
+            dangerouslySetInnerHTML={
+              Object {
+                "__html": "",
+              }
+            }
+          />
           <a
-            className="c12"
+            className="c7"
             href="/coupons/undefined"
             onClick={[Function]}
           >
-            build.visitStore
+            Visit Store
           </a>
         </div>
       </div>
-      <a
-        className="c13"
-        href="/coupons/undefined"
-        onClick={[Function]}
-      >
-        build.visitStore
-      </a>
     </div>
   </div>
   <div
-    className="c14"
+    className="c8"
     onClick={[Function]}
   >
     
@@ -2048,44 +1716,45 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  overflow: hidden;
+  min-width: 0;
   padding: 11px 0;
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
 }
 
-.c5 {
-  width: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c8 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  width: 100%;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-}
-
 .c3 {
-  margin: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  overflow: auto;
+}
+
+.c6 {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  display: block;
 }
 
 .c4 {
+  margin: 0;
+}
+
+.c5 {
   position: relative;
   display: -webkit-box;
   display: -webkit-flex;
@@ -2097,167 +1766,93 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
   align-items: center;
   border: 1px solid #DADDE2;
   border-bottom: none;
-  padding: 30px 28px 30px 28px;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
+  box-sizing: border-box;
+  height: 216px;
+  padding: 0 27px;
 }
 
-.c4:first-child {
+.c5:first-child {
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
 }
 
-.c4:last-child {
+.c5:last-child {
   border-bottom: 1px solid #DADDE2;
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
 }
 
-.c6 {
-  width: 150px;
-}
-
 .c7 {
-  display: block;
+  padding: 10px;
+  box-sizing: border-box;
   width: 88px;
-  height: 88px;
-  object-fit: contain;
-  margin: 0 17px 0 0;
+  margin: 0 auto;
 }
 
-.c9 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-basis: 100%;
-  -ms-flex-preferred-size: 100%;
-  flex-basis: 100%;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  width: 100%;
-  margin: 0 0 11px 0;
+.c8 {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+  object-fit: contain;
 }
 
 .c10 {
-  width: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  margin: 0 0 11px 0;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
+  font-weight: 300;
+  font-size: 20px;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  text-align: center;
+  color: #374B5A;
+  margin: 0 0 18px;
+  font-size: 17px;
+}
+
+.c10 > span {
+  display: none;
 }
 
 .c11 {
-  margin: 0 30px 0 0;
-  margin: 0 21px 0 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  font-weight: bold;
+  background: #00CBE9;
+  border: 1px solid #00B4CF;
+  box-sizing: border-box;
+  border-radius: 4px;
+  font-size: 17px;
+  text-align: center;
+  -webkit-letter-spacing: 0.51px;
+  -moz-letter-spacing: 0.51px;
+  -ms-letter-spacing: 0.51px;
+  letter-spacing: 0.51px;
+  color: #FFF;
+  cursor: pointer;
+  margin: 0 0 0 10px;
+  -webkit-transition: background 205ms linear;
+  transition: background 205ms linear;
+  box-shadow: inset 0px 1px 2px rgba(255,255,255,0.5),inset 0px -1px 5px rgba(0,0,0,0.0584805),inset 0px -2px 0px rgba(255,255,255,0.213315);
+  margin: 0;
+  height: 40px;
+}
+
+.c11:hover {
+  background: #00B4CF;
 }
 
 .c12 {
-  display: block;
-  font-weight: 500;
-  line-height: 23px;
-  font-size: 13px;
-  color: #C2C2C2;
-}
-
-.c13 {
-  font-weight: bold;
-  line-height: 21px;
-  color: #374B5A;
-  font-size: 13px;
-  margin: 5px 0 0 0;
-}
-
-.c14 {
-  font-weight: 500;
-  line-height: 23px;
-  font-size: 13px;
-  color: #374B5A;
-  margin: 12px 0 0 0;
-}
-
-.c15 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-flex-basis: 184px;
-  -ms-flex-preferred-size: 184px;
-  flex-basis: 184px;
-  padding: 9px 0;
-  font-weight: bold;
-  background: #00CBE9;
-  border: 1px solid #00B4CF;
-  border-radius: 4px;
-  line-height: 20px;
-  font-size: 17px;
-  text-align: center;
-  -webkit-letter-spacing: 0.51px;
-  -moz-letter-spacing: 0.51px;
-  -ms-letter-spacing: 0.51px;
-  letter-spacing: 0.51px;
-  color: #FFF;
-  cursor: pointer;
-  -webkit-transition: background 205ms linear;
-  transition: background 205ms linear;
-  display: none;
-}
-
-.c15:hover {
-  background: #00B4CF;
-}
-
-.c16 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-flex-basis: 184px;
-  -ms-flex-preferred-size: 184px;
-  flex-basis: 184px;
-  padding: 9px 0;
-  font-weight: bold;
-  background: #00CBE9;
-  border: 1px solid #00B4CF;
-  border-radius: 4px;
-  line-height: 20px;
-  font-size: 17px;
-  text-align: center;
-  -webkit-letter-spacing: 0.51px;
-  -moz-letter-spacing: 0.51px;
-  -ms-letter-spacing: 0.51px;
-  letter-spacing: 0.51px;
-  color: #FFF;
-  cursor: pointer;
-  -webkit-transition: background 205ms linear;
-  transition: background 205ms linear;
-  display: none;
-  display: block;
-  -webkit-flex-basis: auto;
-  -ms-flex-preferred-size: auto;
-  flex-basis: auto;
-  width: 100%;
-}
-
-.c16:hover {
-  background: #00B4CF;
-}
-
-.c17 {
   width: 100%;
   display: -webkit-box;
   display: -webkit-flex;
@@ -2283,20 +1878,21 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
   transition: color 205ms linear;
 }
 
-.c17 p {
+.c12 p {
   line-height: 80px;
 }
 
-.c17:hover {
+.c12:hover {
   color: #7F7F7F;
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
 
 .c0 {
-  -webkit-flex-basis: 850px;
-  -ms-flex-preferred-size: 850px;
-  flex-basis: 850px;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  min-width: 0;
 }
 
 .c1 {
@@ -2327,342 +1923,142 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 @media (min-width:48em) {
   .c2 {
     padding: 28px 0 20px;
+    margin: 0 -30px 0 0;
   }
 }
 
 @media (min-width:62em) {
   .c2 {
     padding: 37px 0;
+    margin: 0 -30px 0 0;
   }
 }
 
 @media (min-width:75em) {
   .c2 {
     padding: 37px 0 33px;
+    margin: 0;
+  }
+}
+
+@media (min-width:25.8125em) {
+  .c6 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+@media (min-width:25.8125em) {
+  .c5 {
+    padding: 0 35px;
+    height: 196px;
+  }
+}
+
+@media (min-width:48em) {
+  .c5 {
+    padding: 0 27px 0 10px;
+    height: 133px;
+  }
+}
+
+@media (min-width:62em) {
+  .c5 {
+    padding: 0 43px 0 18px;
+  }
+}
+
+@media (min-width:75em) {
+  .c5 {
+    padding: 0 62px 0 40px;
+  }
+}
+
+@media (min-width:25.8125em) {
+  .c7 {
+    width: 88px;
+    margin: 0;
+  }
+}
+
+@media (min-width:75em) {
+  .c7 {
+    width: 112px;
   }
 }
 
 @media (min-width:48em) {
   .c8 {
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-  }
-}
-
-@media (min-width:25.8125em) {
-  .c4 {
-    padding: 30px 28px 30px 35px;
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-  }
-}
-
-@media (min-width:36em) {
-  .c4 {
-    padding: 10px 7px 10px 10px;
-  }
-}
-
-@media (min-width:48em) {
-  .c4 {
-    padding: 23px 24px 23px 18px;
-  }
-}
-
-@media (min-width:62em) {
-  .c4 {
-    padding: 23px 42px 23px 35px;
-  }
-}
-
-@media (min-width:25.8125em) {
-  .c7 {
-    margin: 0 33px 0 0;
-  }
-}
-
-@media (min-width:36em) {
-  .c7 {
-    margin: 0 23px 0 0;
-  }
-}
-
-@media (min-width:48em) {
-  .c7 {
     margin: 0 26px 0 0;
   }
 }
 
-@media (min-width:62em) {
-  .c7 {
-    margin: 0 37px 0 0;
-  }
-}
-
 @media (min-width:36em) {
   .c9 {
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -webkit-flex-basis: auto;
-    -ms-flex-preferred-size: auto;
-    flex-basis: auto;
+    display: block;
   }
 }
 
 @media (min-width:48em) {
   .c9 {
-    -webkit-align-items: flex-start;
-    -webkit-box-align: flex-start;
-    -ms-flex-align: flex-start;
-    align-items: flex-start;
-    -webkit-flex-basis: 100%;
-    -ms-flex-preferred-size: 100%;
-    flex-basis: 100%;
-    margin: 0;
-  }
-}
-
-@media (min-width:62em) {
-  .c9 {
-    -webkit-flex-basis: auto;
-    -ms-flex-preferred-size: auto;
-    flex-basis: auto;
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    -webkit-align-items: flex-end;
-    -webkit-box-align: flex-end;
-    -ms-flex-align: flex-end;
-    align-items: flex-end;
-  }
-}
-
-@media (min-width:25.8125em) {
-  .c10 {
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-  }
-}
-
-@media (min-width:36em) {
-  .c10 {
-    margin: 0;
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-  }
-}
-
-@media (min-width:48em) {
-  .c10 {
-    -webkit-flex-basis: auto;
-    -ms-flex-preferred-size: auto;
-    flex-basis: auto;
-    margin: 0 0 5px 0;
-  }
-}
-
-@media (min-width:62em) {
-  .c10 {
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    margin: 0;
-    -webkit-flex-basis: auto;
-    -ms-flex-preferred-size: auto;
-    flex-basis: auto;
-  }
-}
-
-@media (min-width:75em) {
-  .c10 {
-    -webkit-align-items: flex-end;
-    -webkit-box-align: flex-end;
-    -ms-flex-align: flex-end;
-    align-items: flex-end;
-  }
-}
-
-@media (min-width:36em) {
-  .c11 {
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    min-width: 0;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    margin: 0 0 5px 0;
-  }
-}
-
-@media (min-width:48em) {
-  .c11 {
-    margin: 0 0 2px 0;
-  }
-}
-
-@media (min-width:62em) {
-  .c11 {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    margin: 0 30px 14px 0;
-  }
-}
-
-@media (min-width:75em) {
-  .c11 {
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    margin: 0 30px 0 0;
-  }
-}
-
-@media (min-width:36em) {
-  .c12 {
-    margin: 0 11px 0 0;
-  }
-}
-
-@media (min-width:36em) {
-  .c13 {
-    font-size: 16px;
-    margin: 0;
-  }
-}
-
-@media (min-width:48em) {
-  .c13 {
-    font-size: 16px;
-  }
-}
-
-@media (min-width:62em) {
-  .c13 {
-    font-size: 16px;
-    margin: 0;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
   }
 }
 
 @media (min-width:25.8125em) {
-  .c14 {
-    margin: 28px 0 0 0;
-  }
-}
-
-@media (min-width:36em) {
-  .c14 {
-    margin: 0 0 5px 0;
+  .c10 {
+    margin: 0 0 16px;
+    font-size: 20px;
   }
 }
 
 @media (min-width:48em) {
-  .c14 {
+  .c10 {
+    font-size: 17px;
     margin: 0;
   }
 }
 
 @media (min-width:62em) {
-  .c14 {
-    margin: 0 100px 0 auto;
-  }
-}
-
-@media (min-width:75em) {
-  .c14 {
-    margin: 0 100px 0 auto;
+  .c10 > span {
+    display: inline;
   }
 }
 
 @media (min-width:25.8125em) {
-  .c15 {
-    display: block;
-    -webkit-flex-basis: auto;
-    -ms-flex-preferred-size: auto;
-    flex-basis: auto;
-    width: 100%;
+  .c11 {
+    width: 191px;
   }
 }
 
 @media (min-width:48em) {
-  .c15 {
-    -webkit-flex-basis: 242px;
-    -ms-flex-preferred-size: 242px;
-    flex-basis: 242px;
-    margin-left: auto;
-  }
-}
-
-@media (min-width:62em) {
-  .c15 {
-    -webkit-flex-basis: 188px;
-    -ms-flex-preferred-size: 188px;
-    flex-basis: 188px;
+  .c11 {
+    width: 170px;
   }
 }
 
 @media (min-width:75em) {
-  .c15 {
-    -webkit-flex-basis: 255px;
-    -ms-flex-preferred-size: 255px;
-    flex-basis: 255px;
-  }
-}
-
-@media (min-width:25.8125em) {
-  .c16 {
-    display: block;
-    -webkit-flex-basis: auto;
-    -ms-flex-preferred-size: auto;
-    flex-basis: auto;
-    width: 100%;
+  .c11 {
+    width: 184px;
   }
 }
 
 @media (min-width:48em) {
-  .c16 {
-    -webkit-flex-basis: 242px;
-    -ms-flex-preferred-size: 242px;
-    flex-basis: 242px;
-    margin-left: auto;
-  }
-}
-
-@media (min-width:62em) {
-  .c16 {
-    -webkit-flex-basis: 188px;
-    -ms-flex-preferred-size: 188px;
-    flex-basis: 188px;
-  }
-}
-
-@media (min-width:75em) {
-  .c16 {
-    -webkit-flex-basis: 255px;
-    -ms-flex-preferred-size: 255px;
-    flex-basis: 255px;
-  }
-}
-
-@media (min-width:25.8125em) {
-  .c16 {
-    display: none;
-  }
-}
-
-@media (min-width:36em) {
   .c1 {
     display: block;
-    font-size: 19px;
-  }
-}
-
-@media (min-width:36em) {
-  .c1 {
     font-size: 25px;
   }
 }
@@ -2673,23 +2069,27 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
   <h3
     className="c1"
   >
-    cashbackStores.browseStores
+    Browse among more than 1000 stores
   </h3>
   <div
     className="c2"
-  />
+  >
+    <ul
+      className="c3"
+    />
+  </div>
   <div>
     <div
-      className="c3"
+      className="c4"
     >
       <div
-        className="c4"
+        className="c5"
       >
         <div
-          className="c5"
+          className="c6"
         >
           <div
-            className="c6"
+            className="c7"
           >
             <a
               href="/coupons/undefined"
@@ -2697,62 +2097,36 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
             >
               <img
                 alt="Target Coupon Codes July | 2019"
-                className="c7"
+                className="c8"
                 onError={[Function]}
                 src="image-placeholder.png"
               />
             </a>
           </div>
           <div
-            className="c8"
+            className="c9"
           >
-            <div
-              className="c9"
-            >
-              <div
-                className="c10"
-              >
-                <div
-                  className="c11"
-                >
-                  <span
-                    className="c12"
-                  >
-                    Target
-                  </span>
-                  <p
-                    className="c13"
-                  >
-                    global.deals
-                  </p>
-                </div>
-                <p
-                  className="c14"
-                >
-                  undefined
-                </p>
-              </div>
-            </div>
+            <p
+              className="c10"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "",
+                }
+              }
+            />
             <a
-              className="c15"
+              className="c11"
               href="/coupons/undefined"
               onClick={[Function]}
             >
-              build.visitStore
+              Visit Store
             </a>
           </div>
         </div>
-        <a
-          className="c16"
-          href="/coupons/undefined"
-          onClick={[Function]}
-        >
-          build.visitStore
-        </a>
       </div>
     </div>
     <div
-      className="c17"
+      className="c12"
       onClick={[Function]}
     >
       
@@ -2818,9 +2192,23 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
 }
 
 .c6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   cursor: pointer;
   padding: 5px;
   background: white;
+}
+
+.c6 > p {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
 }
 
 .c6:hover {
@@ -2886,9 +2274,9 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
 }
 
 .c0 {
-  -webkit-flex-basis: auto;
-  -ms-flex-preferred-size: auto;
-  flex-basis: auto;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
 }
 
 .c1 {
@@ -2907,7 +2295,7 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
   }
 }
 
-@media (min-width:36em) {
+@media (min-width:48em) {
   .c5 {
     display: -webkit-box;
     display: -webkit-flex;
@@ -2933,7 +2321,7 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
   }
 }
 
-@media (min-width:36em) {
+@media (min-width:48em) {
   .c8 {
     display: none;
   }
@@ -2941,26 +2329,22 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
 
 @media (min-width:48em) {
   .c0 {
-    -webkit-flex-basis: 390px;
-    -ms-flex-preferred-size: 390px;
-    flex-basis: 390px;
-  }
-}
-
-@media (min-width:36em) {
-  .c0 {
-    -webkit-flex-basis: 321px;
-    -ms-flex-preferred-size: 321px;
-    flex-basis: 321px;
-    padding: 0 30px 0 0;
+    width: 211px;
+    margin: 0 29px 0 0;
   }
 }
 
 @media (min-width:62em) {
   .c0 {
-    -webkit-flex-basis: 261px;
-    -ms-flex-preferred-size: 261px;
-    flex-basis: 261px;
+    width: 293px;
+    margin: 0 26px 0 0;
+  }
+}
+
+@media (min-width:75em) {
+  .c0 {
+    width: 260px;
+    margin: 0 30px 0 0;
   }
 }
 
@@ -2981,7 +2365,7 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
         onChange={[Function]}
         onClick={[Function]}
         pattern="[a-zA-Z0-9-]"
-        placeholder="global.search"
+        placeholder="Search"
         type="text"
         value=""
       />
@@ -2997,7 +2381,7 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
     className="c5"
   >
     <h2>
-      header.stores
+      Stores
     </h2>
     <div
       className="c6"
@@ -3023,7 +2407,7 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
       className="c9"
       onClick={[Function]}
     >
-      categories.selectCategory
+      Select category...
     </p>
     <div />
     <div

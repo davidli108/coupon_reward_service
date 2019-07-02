@@ -253,7 +253,7 @@ const Content = ({
               offersCount > getAllDeals.length
             }
           >
-            {t('global.loadMoreDeals')}
+            {t('global.loadMoreCoupons')}
           </Content.LoadMoreDeals>
         </Content.CouponsWrapper>
       </Content.Grid>
