@@ -154,39 +154,27 @@ StoresPage.Wrapper = styled.section`
   margin: 0 auto;
 
   ${breakpoint('xs')`
-    padding: 21px 0 75px 0;
-  `}
-
-  ${breakpoint('sx')`
-    padding: 25px 0 75px 0;
+    padding: 21px 15px 75px;
   `}
 
   ${breakpoint('md')`
-    padding: 36px 0 75px 0;
+    padding: 36px 30px 75px;
   `}
 
   ${breakpoint('lg')`
-    padding: 41px 0 75px 0;
+    padding: 57px 30px 75px;
   `}
 
   ${breakpoint('xl')`
     width: 1140px;
-    padding: 57px 0 75px 0;
+    padding: 57px 30px 75px;
   `}
 `;
 
 StoresPage.Container = styled.div`
-  max-width: 1141px;
+  max-width: 1140px;
   margin: 0 auto;
-  padding: 0 15px;
-
-  ${breakpoint('sm')`
-    padding: 0 40px;
-  `}
-
-  ${breakpoint('md')`
-    padding: 0 15px;
-  `}
+  padding: 0;
 `;
 
 StoresPage.Title = styled.h3`
@@ -206,7 +194,7 @@ StoresPage.Title = styled.h3`
     font-size: 22px;
   `}
 
-  ${breakpoint('sm')`
+  ${breakpoint('md')`
     display: none;
     font-size: 25px;
     padding: 7px 0 0 0;
@@ -221,7 +209,7 @@ StoresPage.Box = styled.div`
     flex-direction: column;
   `}
 
-  ${breakpoint('sm')`
+  ${breakpoint('md')`
     flex-direction: row;
   `}
 `;

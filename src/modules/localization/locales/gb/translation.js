@@ -147,6 +147,7 @@ export default {
       "Download Piggy's Automatic Coupons at Checkout and Never Miss a Deal Again!",
     neverMiss: 'Never miss a coupon with our free app!',
     loadMoreDeals: 'Load More Deals',
+    loadMoreCoupons: 'Load More Coupons',
     loadMoreStores: 'Load More Stores',
     search: 'Search',
     nothingFound: 'Nothing found',
@@ -212,10 +213,10 @@ export default {
       "Visit any store page and click 'Follow Store' to add to your list",
     activateModal: {
       title: 'NEVER OVERPAY AGAIN AT',
-      content: `Save time and money with automatic coupons. Piggy appears at
-                checkout and automatically applies the best discount.`,
+      content: `Save time and money with Piggy's free Google Chrome extension.
+                Piggy appears at checkout and automatically applies the best coupon.`,
       couponAbout: 'We find the {{title}} coupons, you just shop!',
-      button: 'Activate Coupons Now',
+      button: 'Continue',
     },
     installExtension: {
       action: 'Add to Chrome',
@@ -230,7 +231,7 @@ export default {
       couponSales: 'Coupon & Sales',
       browseByStore: 'Browse by Store',
       viewSales: 'View sales and coupon codes',
-      instantSaving: 'Instant Savings',
+      instantSaving: 'Instant Cash back',
       shopNow: 'Shop Now',
       browseStore: 'Browse Store Coupons and Popular Cash Back Stores',
       findAmazing: 'Find amazing savings, coupon and Automatic Cash Back!',

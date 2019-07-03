@@ -101,11 +101,14 @@ const CategoryItem = ({
 );
 
 CategoryItem.Wrapper = styled.div`
+  display: flex;
+  align-items: center;
   cursor: pointer;
   padding: 5px;
   background: ${({ isActive }) => (isActive ? '#f5f5f5' : 'white')};
 
   > p {
+    flex: 1;
     color: ${({ isActive }) => (isActive ? 'rgba(0, 0, 0, 0.7);' : '')};
   }
 

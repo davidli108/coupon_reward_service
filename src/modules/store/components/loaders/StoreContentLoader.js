@@ -22,23 +22,39 @@ const StoreContentLoader = () => (
       y="110"
       rx="1"
       ry="1"
-      width={window.screen.width * 0.4}
+      width={window.screen.width * 0.3}
       height="340"
     />
     <StoreContentLoader.ThreeRect
-      x={window.screen.width * 0.35}
+      x={window.screen.width * 0.205}
       y="110"
       rx="1"
       ry="1"
-      width={window.screen.width * 0.4}
+      width={window.screen.width * 0.3}
       height="340"
     />
     <StoreContentLoader.ThreeRect
-      x={window.screen.width * 0.7}
+      x={window.screen.width * 0.41}
       y="110"
       rx="1"
       ry="1"
-      width={window.screen.width * 0.4}
+      width={window.screen.width * 0.3}
+      height="340"
+    />
+    <StoreContentLoader.ThreeRect
+      x={window.screen.width * 0.615}
+      y="110"
+      rx="1"
+      ry="1"
+      width={window.screen.width * 0.3}
+      height="340"
+    />
+    <StoreContentLoader.ThreeRect
+      x={window.screen.width * 0.82}
+      y="110"
+      rx="1"
+      ry="1"
+      width={window.screen.width * 0.3}
       height="340"
     />
 
@@ -76,7 +92,7 @@ StoreContentLoader.Wrapper = styled(ContentLoader)`
 `;
 
 StoreContentLoader.ThreeRect = styled.rect`
-  width: 31%;
+  width: 18.5%;
 `;
 
 export default StoreContentLoader;
