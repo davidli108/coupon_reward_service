@@ -123,7 +123,7 @@ const CouponsPage = ({
           <TodaysFeaturedCoupon
             isAuthenticated={isAuthenticated}
             isExtensionInstalled={isExtensionInstalled}
-            store={stores[0]}
+            store={stores[6]}
             favorites={favorites}
             addFavorite={addFavorite}
             removeFavorite={removeFavorite}
