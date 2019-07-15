@@ -80,7 +80,7 @@ const TodaysFeaturedCoupon = ({
   const formatDiscountAmt = (store: Store) => {
     return store.discount_type === '2'
       ? parseFloat(store.discount_amt) + '%'
-      : '$' + store.discount_amt;
+      : store.discount_amt;
   };
 
   return (
