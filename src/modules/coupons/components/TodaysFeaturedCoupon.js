@@ -77,8 +77,10 @@ const TodaysFeaturedCoupon = ({
     window.open(store.offer_link, '_blank');
   };
 
-  const formatDiscount = discount => {
-    return parseFloat(discount) + '%';
+  const formatDiscountAmt = (store: Store) => {
+    return store.discount_type === '2'
+      ? parseFloat(store.discount_amt) + '%'
+      : '$' + store.discount_amt;
   };
 
   return (
@@ -127,7 +129,7 @@ const TodaysFeaturedCoupon = ({
 
         <TodaysFeaturedCoupon.OfferingWrapper>
           <TodaysFeaturedCoupon.Offering>
-            <span>{formatDiscount(store.discount_amt)} OFF</span>
+            <span>{formatDiscountAmt(store)} OFF</span>
             <span>
               {t('coupons.upToCashback', { discount: store.discount })}
             </span>
