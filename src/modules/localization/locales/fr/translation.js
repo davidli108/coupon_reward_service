@@ -207,6 +207,7 @@ export default {
         'Cliquez pour fair vos achats. Utilisez ce code lorsque vous passez en caisse pour faire des économies!',
     },
     todaysFeatureCoupon: "Coupon d'aujourd'hui par",
+    upToCashback: "+ jusqu'à {{discount}} de remise en argent",
     noCouponsFound: 'Aucun coupon trouvé',
     noFeaturedCouponsFound: 'Aucun coupon en vedette trouvé',
     login: "S'identifier",

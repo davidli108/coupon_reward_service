@@ -77,6 +77,10 @@ const TodaysFeaturedCoupon = ({
     window.open(store.offer_link, '_blank');
   };
 
+  const formatDiscount = discount => {
+    return parseFloat(discount) + '%';
+  };
+
   return (
     <TodaysFeaturedCoupon.Wrapper>
       <h2>
@@ -123,8 +127,10 @@ const TodaysFeaturedCoupon = ({
 
         <TodaysFeaturedCoupon.OfferingWrapper>
           <TodaysFeaturedCoupon.Offering>
-            <span>{store.discount} OFF</span>
-            <span>{t('cashbackStores.shopBy.instantSaving')}</span>
+            <span>{formatDiscount(store.discount_amt)} OFF</span>
+            <span>
+              {t('coupons.upToCashback', { discount: store.discount })}
+            </span>
           </TodaysFeaturedCoupon.Offering>
         </TodaysFeaturedCoupon.OfferingWrapper>
 
@@ -449,14 +455,12 @@ TodaysFeaturedCoupon.Offering = styled.div`
   }
 
   > span:last-child {
-    font-weight: bold;
     line-height: 15px;
     font-size: 13px;
 
     color: #374b5a;
 
     ${breakpoint('sx')`
-      font-weight: bold;
       line-height: 31px;
       font-size: 18px;
       letter-spacing: 0.45px;
@@ -554,7 +558,7 @@ TodaysFeaturedCoupon.Description = styled.p`
   text-align: center;
 
   ${breakpoint('xs')`
-    font-weight: normal;
+    font-weight: bold;
     line-height: 23px;
     font-size: 16px;
     letter-spacing: 0.4px;
