@@ -202,6 +202,7 @@ export default {
       tooltip: 'Click to shop. Use this code at checkout to save!',
     },
     todaysFeatureCoupon: "Today's Featured Coupon From",
+    upToCashback: '+ up to {{discount}} Cash Back',
     noCouponsFound: 'No Coupons Found',
     noFeaturedCouponsFound: 'No Featured Coupons Found',
     login: 'Login',

@@ -204,6 +204,7 @@ export default {
         'Klicken Sie um einzukaufen. Verwenden Sie diesen Code an der Kasse, um zu sparen.',
     },
     todaysFeatureCoupon: 'Heutige Gutschein von',
+    upToCashback: '+ bis zu {{discount}} Cash Back',
     noCouponsFound: 'Keine Gutscheine gefunden',
     noFeaturedCouponsFound: 'Keine vorgestellten Gutscheine gefunden',
     login: 'Anmeldung',
