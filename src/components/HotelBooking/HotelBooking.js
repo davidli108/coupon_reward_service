@@ -28,7 +28,7 @@ const HotelBooking = ({ isAuthenticated, toggleLogin }: HotelBookingProps) => {
   const submitForm = (e: Event) => {
     e.preventDefault();
     setIsLoading(true);
-    axios.post(`${AppConfig.apiUrl}/bookings/finds`, { code }).then(
+    axios.post(`${AppConfig.apiUrl}/bookings/find`, { code }).then(
       (response: any) => {
         if (response.success && response.data.url !== '') {
           setHasError(false);
