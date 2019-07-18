@@ -79,21 +79,29 @@ const TodaysFeaturedCoupon = ({
 
   const formatDiscountAmt = (store: Store) => {
     const domain = [
-      { name: '.co.uk', currency: '£' },
-      { name: '.com', currency: '$' },
-      { name: '.de', currency: '€' },
-      { name: '.fr', currency: '€' },
+      { name: '.co.uk', value: '£', locale: 'uk', prefix: true },
+      { name: '.com', value: '$', locale: 'en', prefix: true },
+      { name: '.de', value: '€', locale: 'de', prefix: false },
+      { name: '.fr', value: '€', locale: 'fr', prefix: false },
     ];
     const url = new URL(window.location);
-    const currency = domain.find(({ name }) => url.host.includes(name));
-    if (store.discount_type === '1') {
-      return `${currency ? currency.currency : '$'}${parseFloat(
-        store.discount_amt,
-      )} OFF`;
+    const currency = domain.find(({ name }) =>
+      new RegExp(`${name}$`).test(url.hostname),
+    );
+
+    if (!currency || store.discount_amt === '0.00') {
+      return <small>{t('global.instantSaving')}</small>;
     }
 
-    if (store.discount_amt === '0.00') {
-      return <small>{t('global.instantSaving')}</small>;
+    if (store.discount_type === '1') {
+      if (currency.prefix) {
+        return `${currency.value}${parseFloat(
+          store.discount_amt,
+        ).toLocaleString(currency.locale)} OFF`;
+      }
+      return `${parseFloat(store.discount_amt).toLocaleString(
+        currency.locale,
+      )}${currency.value} OFF`;
     }
 
     return parseFloat(store.discount_amt) + '% OFF';
