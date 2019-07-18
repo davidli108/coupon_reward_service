@@ -78,9 +78,25 @@ const TodaysFeaturedCoupon = ({
   };
 
   const formatDiscountAmt = (store: Store) => {
-    return store.discount_type === '2'
-      ? parseFloat(store.discount_amt) + '%'
-      : parseFloat(store.discount_amt);
+    const domain = [
+      { name: '.co.uk', currency: '£' },
+      { name: '.com', currency: '$' },
+      { name: '.de', currency: '€' },
+      { name: '.fr', currency: '€' },
+    ];
+    const url = new URL(window.location);
+    const currency = domain.find(({ name }) => url.host.includes(name));
+    if (store.discount_type === '1') {
+      return `${currency ? currency.currency : '$'}${parseFloat(
+        store.discount_amt,
+      )} OFF`;
+    }
+
+    if (store.discount_amt === '0.00') {
+      return <small>{t('global.instantSaving')}</small>;
+    }
+
+    return parseFloat(store.discount_amt) + '% OFF';
   };
 
   return (
@@ -129,7 +145,7 @@ const TodaysFeaturedCoupon = ({
 
         <TodaysFeaturedCoupon.OfferingWrapper>
           <TodaysFeaturedCoupon.Offering>
-            <span>{formatDiscountAmt(store)} OFF</span>
+            <span>{formatDiscountAmt(store)}</span>
             <span>
               {t('coupons.upToCashback', { discount: store.discount })}
             </span>
@@ -434,6 +450,23 @@ TodaysFeaturedCoupon.Offering = styled.div`
 
   > span {
     white-space: nowrap;
+
+    small {
+      display: block;
+      line-height: normal;
+
+      ${breakpoint('xs')`
+        font-size: 20px;
+        line-height: 32px;
+        white-space: normal;
+      `}
+
+      ${breakpoint('md')`
+        font-size: 24px;
+        line-height: 30px;
+        white-space: nowrap;
+      `}
+    }
   }
 
   > span:first-child {
