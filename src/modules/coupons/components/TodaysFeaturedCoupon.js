@@ -78,9 +78,33 @@ const TodaysFeaturedCoupon = ({
   };
 
   const formatDiscountAmt = (store: Store) => {
-    return store.discount_type === '2'
-      ? parseFloat(store.discount_amt) + '%'
-      : parseFloat(store.discount_amt);
+    const domain = [
+      { name: '.co.uk', value: '£', locale: 'en', prefix: true },
+      { name: '.com', value: '$', locale: 'en', prefix: true },
+      { name: '.de', value: '€', locale: 'de', prefix: false },
+      { name: '.fr', value: '€', locale: 'fr', prefix: false },
+    ];
+    const url = new URL(window.location);
+    const currency = domain.find(({ name }) =>
+      new RegExp(`${name}$`).test(url.hostname),
+    );
+
+    if (!currency || store.discount_amt === '0.00') {
+      return <small>{t('global.instantSaving')}</small>;
+    }
+
+    if (store.discount_type === '1') {
+      if (currency.prefix) {
+        return `${currency.value}${parseFloat(
+          store.discount_amt,
+        ).toLocaleString(currency.locale)} OFF`;
+      }
+      return `${parseFloat(store.discount_amt).toLocaleString(
+        currency.locale,
+      )}${currency.value} OFF`;
+    }
+
+    return parseFloat(store.discount_amt) + '% OFF';
   };
 
   return (
@@ -129,7 +153,7 @@ const TodaysFeaturedCoupon = ({
 
         <TodaysFeaturedCoupon.OfferingWrapper>
           <TodaysFeaturedCoupon.Offering>
-            <span>{formatDiscountAmt(store)} OFF</span>
+            <span>{formatDiscountAmt(store)}</span>
             <span>
               {t('coupons.upToCashback', { discount: store.discount })}
             </span>
@@ -434,6 +458,23 @@ TodaysFeaturedCoupon.Offering = styled.div`
 
   > span {
     white-space: nowrap;
+
+    small {
+      display: block;
+      line-height: normal;
+
+      ${breakpoint('xs')`
+        font-size: 20px;
+        line-height: 32px;
+        white-space: normal;
+      `}
+
+      ${breakpoint('md')`
+        font-size: 24px;
+        line-height: 30px;
+        white-space: nowrap;
+      `}
+    }
   }
 
   > span:first-child {
