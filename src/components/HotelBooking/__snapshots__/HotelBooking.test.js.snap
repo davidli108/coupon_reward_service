@@ -49,10 +49,10 @@ exports[`renders correctly 1`] = `
 
 .c2 p {
   color: #fff;
-  -webkit-letter-spacing: .5px;
-  -moz-letter-spacing: .5px;
-  -ms-letter-spacing: .5px;
-  letter-spacing: .5px;
+  -webkit-letter-spacing: 0.5px;
+  -moz-letter-spacing: 0.5px;
+  -ms-letter-spacing: 0.5px;
+  letter-spacing: 0.5px;
   font-weight: 500;
   margin: 10px 0 0;
   font-size: 12px;
@@ -71,10 +71,10 @@ exports[`renders correctly 1`] = `
   display: block;
   font-size: 12px;
   line-height: 17px;
-  -webkit-letter-spacing: .5px;
-  -moz-letter-spacing: .5px;
-  -ms-letter-spacing: .5px;
-  letter-spacing: .5px;
+  -webkit-letter-spacing: 0.5px;
+  -moz-letter-spacing: 0.5px;
+  -ms-letter-spacing: 0.5px;
+  letter-spacing: 0.5px;
   margin-top: 10px;
   font-weight: 500;
   color: #a94442;
@@ -85,22 +85,21 @@ exports[`renders correctly 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  background: #FBFBFB;
-  border: 1px solid #59C6E1;
+  background: #fbfbfb;
+  border: 1px solid #59c6e1;
   box-sizing: border-box;
   border-radius: 5px;
   margin: 0;
   font-weight: 400;
   font-size: 14px;
   line-height: 16px;
-  -webkit-letter-spacing: .5px;
-  -moz-letter-spacing: .5px;
-  -ms-letter-spacing: .5px;
-  letter-spacing: .5px;
+  -webkit-letter-spacing: 0.5px;
+  -moz-letter-spacing: 0.5px;
+  -ms-letter-spacing: 0.5px;
+  letter-spacing: 0.5px;
   color: #899197;
   padding: 0;
   position: relative;
-  box-sizing: border-box;
   height: 41px;
   pointer-events: auto;
 }
@@ -117,10 +116,10 @@ exports[`renders correctly 1`] = `
   font-weight: 400;
   font-size: 12px;
   line-height: 16px;
-  -webkit-letter-spacing: .5px;
-  -moz-letter-spacing: .5px;
-  -ms-letter-spacing: .5px;
-  letter-spacing: .5px;
+  -webkit-letter-spacing: 0.5px;
+  -moz-letter-spacing: 0.5px;
+  -ms-letter-spacing: 0.5px;
+  letter-spacing: 0.5px;
   color: #899197;
 }
 
@@ -281,7 +280,8 @@ exports[`renders correctly 1`] = `
     className="c2"
   >
     <p>
-      To manage your hotel booking, 
+      To manage your hotel booking,
+       
       <span
         onClick={[Function]}
       >
