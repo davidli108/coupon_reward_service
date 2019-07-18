@@ -79,7 +79,7 @@ const TodaysFeaturedCoupon = ({
 
   const formatDiscountAmt = (store: Store) => {
     const domain = [
-      { name: '.co.uk', value: '£', locale: 'uk', prefix: true },
+      { name: '.co.uk', value: '£', locale: 'en', prefix: true },
       { name: '.com', value: '$', locale: 'en', prefix: true },
       { name: '.de', value: '€', locale: 'de', prefix: false },
       { name: '.fr', value: '€', locale: 'fr', prefix: false },
