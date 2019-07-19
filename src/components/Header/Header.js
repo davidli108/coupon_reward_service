@@ -22,6 +22,7 @@ import HeaderItemMyAccount from './HeaderItemMyAccount';
 import logo from './logo.svg';
 import axios from 'axios';
 import AppConfig from '@config/AppConfig';
+import HotelBooking from '../HotelBooking/HotelBooking';
 
 const modal = {
   modalSignIn: 'modalSignIn',
@@ -54,6 +55,7 @@ const renderHeaderItems = (items: Array<renderHeaderItemsProps>) =>
 
 type HeaderProps = {
   t: Function,
+  i18n: Object,
   isCookieSet: Function,
   isAuthenticated: Boolean,
   location: Object,
@@ -66,6 +68,7 @@ type HeaderProps = {
 
 const Header = ({
   t,
+  i18n,
   isCookieSet,
   isAuthenticated,
   location,
@@ -152,12 +155,17 @@ const Header = ({
     },
   ];
 
+  const toggleLogin = () => {
+    setCurrentModal(modal.modalSignIn);
+  };
+
   return (
     <Header.Wrapper>
       <HeaderItem redirect="/" direct>
         <Header.Logo src={logo} alt="Join Piggy Logo" />
       </HeaderItem>
       <Header.Controls>
+        {i18n.language === 'en' && <HotelBooking toggleLogin={toggleLogin} />}
         {renderHeaderItems(items)}
         {localeConfig.isAuthenticationAvailable && isAuthenticated && (
           <HeaderItemMyAccount
@@ -177,6 +185,7 @@ const Header = ({
       <Header.SlidingMenu isOpen={isOpen}>
         <div>
           <Header.Logo src={logo} alt="Join Piggy Logo" />
+          {i18n.language === 'en' && <HotelBooking toggleLogin={toggleLogin} />}
           {renderHeaderItems(items)}
         </div>
       </Header.SlidingMenu>
