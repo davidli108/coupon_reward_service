@@ -274,7 +274,7 @@ exports[`renders correctly 1`] = `
     className="c1"
     onClick={[Function]}
   >
-    Hotel Booking
+    Hotel Bookings
   </button>
   <div
     className="c2"

@@ -50,7 +50,7 @@ const HotelBooking = ({ isAuthenticated, toggleLogin }: HotelBookingProps) => {
   return (
     <HotelBooking.Wrapper>
       <HotelBooking.Button isActive={isActive} onClick={toggleActive}>
-        Hotel Booking
+        Hotel Bookings
       </HotelBooking.Button>
       <HotelBooking.Popup isActive={isActive}>
         {isAuthenticated ? (
