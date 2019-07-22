@@ -77,6 +77,36 @@ const TodaysFeaturedCoupon = ({
     window.open(store.offer_link, '_blank');
   };
 
+  const formatDiscountAmt = (store: Store) => {
+    const domain = [
+      { name: '.co.uk', value: '£', locale: 'en', prefix: true },
+      { name: '.com', value: '$', locale: 'en', prefix: true },
+      { name: '.de', value: '€', locale: 'de', prefix: false },
+      { name: '.fr', value: '€', locale: 'fr', prefix: false },
+    ];
+    const url = new URL(window.location);
+    const currency = domain.find(({ name }) =>
+      new RegExp(`${name}$`).test(url.hostname),
+    );
+
+    if (!currency || store.discount_amt === '0.00') {
+      return <small>{t('global.instantSaving')}</small>;
+    }
+
+    if (store.discount_type === '1') {
+      if (currency.prefix) {
+        return `${currency.value}${parseFloat(
+          store.discount_amt,
+        ).toLocaleString(currency.locale)} OFF`;
+      }
+      return `${parseFloat(store.discount_amt).toLocaleString(
+        currency.locale,
+      )}${currency.value} OFF`;
+    }
+
+    return parseFloat(store.discount_amt) + '% OFF';
+  };
+
   return (
     <TodaysFeaturedCoupon.Wrapper>
       <h2>
@@ -123,8 +153,10 @@ const TodaysFeaturedCoupon = ({
 
         <TodaysFeaturedCoupon.OfferingWrapper>
           <TodaysFeaturedCoupon.Offering>
-            <span>{store.discount} OFF</span>
-            <span>{t('cashbackStores.shopBy.instantSaving')}</span>
+            <span>{formatDiscountAmt(store)}</span>
+            <span>
+              {t('coupons.upToCashback', { discount: store.discount })}
+            </span>
           </TodaysFeaturedCoupon.Offering>
         </TodaysFeaturedCoupon.OfferingWrapper>
 
@@ -426,6 +458,23 @@ TodaysFeaturedCoupon.Offering = styled.div`
 
   > span {
     white-space: nowrap;
+
+    small {
+      display: block;
+      line-height: normal;
+
+      ${breakpoint('xs')`
+        font-size: 20px;
+        line-height: 32px;
+        white-space: normal;
+      `}
+
+      ${breakpoint('md')`
+        font-size: 24px;
+        line-height: 30px;
+        white-space: nowrap;
+      `}
+    }
   }
 
   > span:first-child {
@@ -449,14 +498,12 @@ TodaysFeaturedCoupon.Offering = styled.div`
   }
 
   > span:last-child {
-    font-weight: bold;
     line-height: 15px;
     font-size: 13px;
 
     color: #374b5a;
 
     ${breakpoint('sx')`
-      font-weight: bold;
       line-height: 31px;
       font-size: 18px;
       letter-spacing: 0.45px;
@@ -554,7 +601,7 @@ TodaysFeaturedCoupon.Description = styled.p`
   text-align: center;
 
   ${breakpoint('xs')`
-    font-weight: normal;
+    font-weight: bold;
     line-height: 23px;
     font-size: 16px;
     letter-spacing: 0.4px;
