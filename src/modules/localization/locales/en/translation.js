@@ -261,7 +261,7 @@ export default {
     secrets: 'Secrets',
     codesAndDeals: 'Coupon Codes & Deals',
     followStore: 'Follow Store',
-    neverOverlay: 'Never Overpay Again at',
+    neverOverlay: 'Never Overpay Again',
     automaticallyAddAll:
       "Automatically add all active coupons to your order with Piggy's browser extension. When you get to checkout, Piggy will find coupons and cash back at storeName and more.",
     automaticCoupons: 'Automatic Coupons',
