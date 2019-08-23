@@ -13,6 +13,7 @@ import ModalSocial from './ModalSocial';
 import ModalInput from './ModalInput';
 import ModalFooter from './ModalFooter';
 import { getIsAuthenticated } from '../AuthReducer';
+import axios from 'axios';
 
 import * as actions from '../AuthActions';
 
@@ -40,13 +41,39 @@ const SignInModal = ({
   const [isError, setError] = useState(false);
   const [submitHandled, setSubmitHandled] = useState(false);
 
+  const locationMap = {
+    com: 'us',
+    uk: 'uk',
+    de: 'de',
+    fr: 'fr',
+  };
+  const location = document.location.host.split('.');
+  const protocol = document.location.protocol;
+  const country = locationMap[location[location.length - 1]] || 'us';
+
   const handleFormSubmit = async e => {
     e.preventDefault();
 
     const payload = new FormData();
     payload.append('email', email);
     payload.append('password', password);
-    await signIn(payload);
+    payload.append('country', country);
+    await signIn(payload).then(response => {
+      const { domains, nonce } = response.payload.data;
+      const data = new FormData();
+      data.append('nonce', nonce);
+
+      if (nonce && domains) {
+        domains.forEach(domain => {
+          axios.post(`${protocol}//${domain}/sso/signin`, data, {
+            headers: {
+              'Content-Type':
+                'application/x-www-form-urlencoded; charset=UTF-8',
+            },
+          });
+        });
+      }
+    });
     setSubmitHandled(true);
   };
 

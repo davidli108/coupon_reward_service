@@ -10,7 +10,7 @@ export default {
     coupons: 'Coupons',
     stores: 'Boutiques',
     getApp: "Obtenez l'application !",
-    login: 'Connexion',
+    login: 'Se Connecter',
     createAccount: 'Créer un compte',
     myAccount: 'Mon compte',
     inviteFriends: 'Inviter des amis',

@@ -29,13 +29,11 @@ export const signIn = (payload: FormData) => ({
   type: SIGN_IN,
   payload: {
     request: {
-      url: '/loginAjax',
+      url: '/api/signin',
       method: 'POST',
       data: payload,
       headers: {
-        Accept: '*/*',
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'x-requested-with': 'XMLHttpRequest',
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
       },
     },
   },
@@ -45,9 +43,14 @@ export const signUp = (payload: FormData) => ({
   type: SIGN_UP,
   payload: {
     request: {
-      url: '/signupAjax',
+      url: '/api/checkemailnotexists',
       method: 'POST',
       data: payload,
+      headers: {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        },
+      },
     },
   },
 });
@@ -56,9 +59,12 @@ export const password = (payload: FormData) => ({
   type: PASSWORD,
   payload: {
     request: {
-      url: '/passwordAjax',
+      url: '/api/signup',
       method: 'POST',
       data: payload,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+      },
     },
   },
 });

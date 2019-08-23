@@ -10,7 +10,7 @@ export default {
     coupons: 'Gutscheine',
     stores: 'Geschäfte',
     getApp: 'Holen Sie sich die App!',
-    login: 'Einloggen',
+    login: 'Anmelden',
     createAccount: 'Ein Konto erstellen',
     myAccount: 'Mein Konto',
     inviteFriends: 'Freunde einladen',

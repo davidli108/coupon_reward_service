@@ -9,7 +9,6 @@ import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
 
 import ErrorMessage from './ErrorMessage';
-import HintMessage from './HintMessage';
 import ModalWrapper from './ModalWrapper';
 import ModalSocial from './ModalSocial';
 import ModalInput from './ModalInput';
@@ -18,6 +17,7 @@ import preloader from '../../coupons/assets/preloader.svg';
 
 import * as actions from '../AuthActions';
 import { getUserID, getUserPW } from '../AuthReducer';
+import axios from 'axios';
 
 type SignUpModalProps = {
   t: string => string,
@@ -60,16 +60,27 @@ const SignUpModal = ({
   const handleFormSubmit = async e => {
     e.preventDefault();
 
+    const locationMap = {
+      com: 'us',
+      uk: 'uk',
+      de: 'de',
+      fr: 'fr',
+    };
+    const location = document.location.host.split('.');
+    const country = locationMap[location[location.length - 1]] || 'us';
+    const protocol = document.location.protocol;
+
     if (stage === 1) {
       const formData = new FormData();
       formData.append('email', email);
+      formData.append('country', country);
 
       setIsReq(true);
       const response = await signUp(formData);
       if (response) setIsReq(false);
 
-      if (R.path(['payload', 'data', 'user_pw'])(response) === 0) {
-        setEmailErrorMessage(t('auth.signUp.messages.existAccount'));
+      if (!R.path(['payload', 'data', 'ok'])(response)) {
+        setEmailErrorMessage(R.path(['payload', 'data', 'msg'])(response));
       } else {
         setEmailErrorMessage('');
         setStage(2);
@@ -90,12 +101,27 @@ const SignUpModal = ({
       setPasswordErrorMessage('');
 
       const formData = new FormData();
-      formData.append('newpass1', password.password);
-      formData.append('newpass2', password.confirmPassword);
-      formData.append('user_id', String(userID));
-      formData.append('user_pw', userPW);
+      formData.append('password', password.password);
+      formData.append('password2', password.confirmPassword);
+      formData.append('country', country);
+      formData.append('email', email);
 
-      insertPassword(formData).then(() => {
+      insertPassword(formData).then(response => {
+        const { domains, nonce } = response.payload.data;
+        const data = new FormData();
+        data.append('nonce', nonce);
+
+        if (nonce && domains) {
+          domains.forEach(domain => {
+            axios.post(`${protocol}//${domain}/sso/signin`, data, {
+              headers: {
+                'Content-Type':
+                  'application/x-www-form-urlencoded; charset=UTF-8',
+              },
+            });
+          });
+        }
+
         fetchUser().then(res => {
           closeModal();
         });
@@ -119,7 +145,7 @@ const SignUpModal = ({
         <SignUpModal.Or>
           <span>{t('auth.signUp.or')}</span>
         </SignUpModal.Or>
-        {emailErrorMessage && <HintMessage>{emailErrorMessage}</HintMessage>}
+        {emailErrorMessage && <ErrorMessage>{emailErrorMessage}</ErrorMessage>}
         {passwordErrorMessage && (
           <ErrorMessage>{passwordErrorMessage}</ErrorMessage>
         )}
