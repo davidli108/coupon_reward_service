@@ -59,7 +59,7 @@ const HeaderItemMyAccount = ({
 
 HeaderItemMyAccount.Wrapper = styled.div`
   height: 100%;
-  width: 165px;
+  width: fit-content;
   z-index: 5;
   font-weight: bold;
   background: ${({ bgColor }) => bgColor || '#40c8e5'};

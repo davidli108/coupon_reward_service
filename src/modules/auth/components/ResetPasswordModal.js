@@ -33,19 +33,31 @@ const ResetPasswordModal = ({
   const [emailErrorMessage, setEmailErrorMessage] = useState('');
   const [stage, setStage] = useState(1);
 
+  const locationMap = {
+    com: 'us',
+    uk: 'gb',
+    de: 'de',
+    fr: 'fr',
+  };
+  const location = document.location.host.split('.');
+  const country = locationMap[location[location.length - 1]] || 'us';
+
   const handleFormSubmit = async e => {
     e.preventDefault();
 
     const formData = new FormData();
     formData.append('email', email);
+    formData.append('country', country);
 
-    await resetPassword(formData);
-    // if (R.path(['payload', 'data'])(response).includes('Invalid')) {
-    // return setEmailErrorMessage('Email address doesn\'t exist in our database.');
-    // }
-
-    setEmailErrorMessage('');
-    setStage(2);
+    await resetPassword(formData).then(response => {
+      const { ok = false, msg } = response.payload.data;
+      if (ok) {
+        setEmailErrorMessage('');
+        setStage(2);
+      } else {
+        setEmailErrorMessage(msg);
+      }
+    });
   };
   return (
     isActive && (
@@ -60,7 +72,7 @@ const ResetPasswordModal = ({
             {emailErrorMessage && (
               <ErrorMessage>{emailErrorMessage}</ErrorMessage>
             )}
-            <ResetPasswordModal.Form onSubmit={handleFormSubmit}>
+            <ResetPasswordModal.Form onSubmit={handleFormSubmit} noValidate>
               <ModalInput
                 name="email"
                 value={email}

@@ -27,9 +27,9 @@ type SignUpModalProps = {
   onRouteModal: Function,
   signUp: Function,
   fetchUser: Function,
-  insertPassword: Function,
   userID: number,
   userPW: string,
+  checkEmailAvailable: Function,
   history: Object,
 };
 
@@ -42,7 +42,7 @@ const SignUpModal = ({
   signUp,
   userID,
   userPW,
-  insertPassword,
+  checkEmailAvailable,
   history,
   fetchUser,
 }: SignUpModalProps) => {
@@ -60,6 +60,7 @@ const SignUpModal = ({
   const handleFormSubmit = async e => {
     e.preventDefault();
 
+    setEmailErrorMessage('');
     const locationMap = {
       com: 'us',
       uk: 'uk',
@@ -76,13 +77,12 @@ const SignUpModal = ({
       formData.append('country', country);
 
       setIsReq(true);
-      const response = await signUp(formData);
+      const response = await checkEmailAvailable(formData);
       if (response) setIsReq(false);
 
       if (!R.path(['payload', 'data', 'ok'])(response)) {
         setEmailErrorMessage(R.path(['payload', 'data', 'msg'])(response));
       } else {
-        setEmailErrorMessage('');
         setStage(2);
       }
     }
@@ -106,7 +106,7 @@ const SignUpModal = ({
       formData.append('country', country);
       formData.append('email', email);
 
-      insertPassword(formData).then(response => {
+      signUp(formData).then(response => {
         const { domains, nonce } = response.payload.data;
         const data = new FormData();
         data.append('nonce', nonce);
@@ -118,6 +118,7 @@ const SignUpModal = ({
                 'Content-Type':
                   'application/x-www-form-urlencoded; charset=UTF-8',
               },
+              withCredentials: true,
             });
           });
         }
@@ -317,8 +318,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   fetchUser: actions.fetchUser,
-  insertPassword: actions.password,
   signUp: actions.signUp,
+  checkEmailAvailable: actions.checkEmailAvailable,
 };
 
 const enhance = compose(

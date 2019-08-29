@@ -57,7 +57,7 @@ type HeaderProps = {
   isCookieSet: Function,
   isAuthenticated: Boolean,
   location: Object,
-  logout: Function,
+  signOut: Function,
   setLoggedOut: Function,
   authenticate: Function,
   getStoresList: any => Promise<Object>,
@@ -69,7 +69,7 @@ const Header = ({
   isCookieSet,
   isAuthenticated,
   location,
-  logout,
+  signOut,
   setLoggedOut,
   authenticate,
   getStoresList,
@@ -102,6 +102,33 @@ const Header = ({
         setExtensionInstalled(false);
       },
     );
+  };
+
+  const protocol = document.location.protocol;
+
+  const logout = async () => {
+    await signOut().then(response => {
+      const { domains, nonce } = response.payload.data;
+      const data = new FormData();
+      data.append('nonce', nonce);
+
+      if (nonce && domains) {
+        Promise.all(
+          domains.map(domain => {
+            return axios.post(`${protocol}//${domain}/sso/signout`, data, {
+              headers: {
+                'Content-Type':
+                  'application/x-www-form-urlencoded; charset=UTF-8',
+              },
+              withCredentials: true,
+            });
+          }),
+        ).then(() => {
+          setLoggedOut();
+          document.location.href = '/';
+        });
+      }
+    });
   };
 
   useEffect(() => {
@@ -312,7 +339,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  logout: actions.logout,
+  signOut: actions.signOut,
   setLoggedOut: actions.setLoggedOut,
   authenticate: actions.authenticate,
   getStoresList: getStoresList,

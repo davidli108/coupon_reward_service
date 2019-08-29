@@ -7,14 +7,14 @@ export default {
       'Top des bons de réduction, codes promo et remises en ligne de storeName en ligne - %mmmm %yyyy - Piggy',
   },
   header: {
-    coupons: 'Coupons',
+    coupons: 'Codes promo',
     stores: 'Boutiques',
     getApp: "Obtenez l'application !",
     login: 'Se Connecter',
-    createAccount: 'Créer un compte',
-    myAccount: 'Mon compte',
+    createAccount: 'Créez un compte',
+    myAccount: 'Mon Compte',
     inviteFriends: 'Inviter des amis',
-    settings: 'Réglages',
+    settings: 'Paramètres',
     signOut: 'Déconnexion',
   },
   auth: {

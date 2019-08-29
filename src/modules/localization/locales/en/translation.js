@@ -15,7 +15,7 @@ export default {
     myAccount: 'My Account',
     inviteFriends: 'Invite Friends',
     settings: 'Settings',
-    signOut: 'Sign out',
+    signOut: 'Log out',
   },
   auth: {
     social: {
@@ -24,7 +24,7 @@ export default {
     },
     signUp: {
       title: 'Register to Get Automatic Cash Back',
-      subTitle: 'Its that easy',
+      subTitle: "It's that easy",
       or: 'or',
       emailAddress: 'Email Address',
       button: 'Join Piggy',
@@ -59,7 +59,7 @@ export default {
       button: 'Login with Email',
       forgotPassword: 'Forgot Password?',
       footer: {
-        text: 'Not a Member?',
+        text: 'Not A Member?',
         button: 'Join Piggy',
       },
       messages: {
