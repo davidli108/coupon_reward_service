@@ -62,6 +62,7 @@ HeaderItemMyAccount.Wrapper = styled.div`
   width: fit-content;
   z-index: 5;
   font-weight: bold;
+  position: relative;
   background: ${({ bgColor }) => bgColor || '#40c8e5'};
 
   p {
@@ -88,6 +89,10 @@ HeaderItemMyAccount.Wrapper = styled.div`
 HeaderItemMyAccount.DropdownWrapper = styled.div`
   display: ${props => (props.isShow ? 'flex' : 'none')};
   flex-direction: column;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  min-width: 100%;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   border-radius: 4px;
   background-color: white;
@@ -95,11 +100,12 @@ HeaderItemMyAccount.DropdownWrapper = styled.div`
 
 HeaderItemMyAccount.DropdownItem = styled.a`
   display: block;
-  padding: 15px 0 15px 10px;
+  padding: 15px 10px;
   font-size: 20px;
   font-weight: 500;
   cursor: pointer;
   color: black;
+  white-space: nowrap;
 
   &:hover {
     background-color: #29899e;
