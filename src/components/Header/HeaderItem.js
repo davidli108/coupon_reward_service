@@ -46,16 +46,17 @@ HeaderItem.defaultProps = {
 HeaderItem.NavLink = styled(NavLink)`
   display: flex;
   align-items: center;
+  box-sizing: border-box;
 
   width: 100%;
   height: 100%;
   padding: 0 23px;
   letter-spacing: 0.6px;
-  font-weight: 500;
+  font-weight: 700;
   line-height: 25px;
 
   color: white;
-  font-size: 19.5px;
+  font-size: 20px;
   font-family: Roboto, Arial, sans-serif;
 
   cursor: pointer;
@@ -70,11 +71,11 @@ HeaderItem.Link = styled.a`
   height: 100%;
   padding: 0 23px;
   letter-spacing: 0.6px;
-  font-weight: 500;
+  font-weight: 700;
   line-height: 25px;
 
   color: white;
-  font-size: 19.5px;
+  font-size: 20px;
   font-family: Roboto, Arial, sans-serif;
 
   cursor: pointer;
