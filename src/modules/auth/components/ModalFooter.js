@@ -57,6 +57,7 @@ ModalFooter.Button = styled.button`
   cursor: pointer;
   background: transparent;
   outline: none;
+  padding: 0 6px;
 
   &:hover {
     text-decoration: underline;

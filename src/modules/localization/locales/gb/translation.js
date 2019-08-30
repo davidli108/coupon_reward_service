@@ -303,7 +303,7 @@ export default {
       consumerResources: 'Consumer Resources',
       referrals: 'Referrals',
       blog: 'Blog',
-      aboutUs: 'About us',
+      aboutUs: 'About Us',
       help: 'Help',
     },
     copyright: {
@@ -313,9 +313,10 @@ export default {
         sitemap: 'Sitemap',
         unsubscribe: 'Unsubscribe',
         eula: 'EULA',
+        impressum: 'Impressum',
       },
       text: 'Copyright',
-      allRightReserved: 'All Rights Reserved',
+      allRightReserved: 'All Rights Reserved.',
     },
   },
   templates: {

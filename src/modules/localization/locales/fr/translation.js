@@ -2,7 +2,7 @@
 export default {
   titles: {
     coupons:
-      'Automate Your Coupons, Savings and Cashback - %mmmm %yyyy - Piggy',
+      'Automatisez vos coupons, vos économies et votre cashback - %mmmm %yyyy - Piggy',
     storeCoupons:
       'Top des bons de réduction, codes promo et remises en ligne de storeName en ligne - %mmmm %yyyy - Piggy',
   },
@@ -27,7 +27,7 @@ export default {
       subTitle: "C'est aussi simple que ça",
       or: 'ou',
       emailAddress: 'Adresse mail',
-      button: 'Rejoindre Piggy',
+      button: 'Rejoignez Piggy',
       preFooter: {
         label:
           "En m'inscrivant, j'accepte d'être ajouté à la liste d'envoi journalière et aux",
@@ -322,10 +322,11 @@ export default {
         privacyPolicy: 'Politique de confidentialité',
         sitemap: 'Plan du site',
         unsubscribe: 'Se désabonner',
-        eula: "ALUF (accord de licence pour l'utilisateur final)",
+        eula: 'EULA',
+        impressum: 'Impressum',
       },
       text: 'Copyright',
-      allRightReserved: 'Tous droits réservés',
+      allRightReserved: 'Tous droits réservés.',
     },
   },
   templates: {

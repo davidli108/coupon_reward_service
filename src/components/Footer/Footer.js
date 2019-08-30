@@ -15,26 +15,84 @@ type FooterProps = {
 };
 
 const Footer = ({ t, i18n }: FooterProps) => {
-  const footerLinks = [
-    { url: '/howtoinstall', text: t('footer.menu.howToInstall') },
-    { url: '/blog', text: t('footer.menu.blog') },
-    { url: '/about-cashback', text: t('footer.menu.aboutCashBack') },
-    { url: '/cashback-apps', text: t('footer.menu.aboutOurApp') },
-    { url: '/account/referrals', text: t('footer.menu.referrals') },
-    { url: '/careers', text: t('footer.menu.careers') },
-    { url: '/contactus', text: t('footer.menu.contact') },
-    { url: '/howtoremove', text: t('footer.menu.howToUninstall') },
-    { url: '/info', text: t('footer.menu.help') },
-    { url: '/consumer-resources', text: t('footer.menu.consumerResources') },
-  ];
+  const footerLinks = {
+    en: [
+      { url: '/howtoinstall', text: t('footer.menu.howToInstall') },
+      { url: '/blog', text: t('footer.menu.blog') },
+      { url: '/about-cashback', text: t('footer.menu.aboutCashBack') },
+      { url: '/cashback-apps', text: t('footer.menu.aboutOurApp') },
+      { url: '/account/referrals', text: t('footer.menu.referrals') },
+      { url: '/careers', text: t('footer.menu.careers') },
+      { url: '/contactus', text: t('footer.menu.contact') },
+      { url: '/howtoremove', text: t('footer.menu.howToUninstall') },
+      { url: '/help', text: t('footer.menu.help') },
+      { url: '/consumer-resources', text: t('footer.menu.consumerResources') },
+      { url: '/about-us', text: t('footer.menu.aboutUs') },
+    ],
+    gb: [
+      { url: '/howtoinstall', text: t('footer.menu.howToInstall') },
+      { url: '/blog', text: t('footer.menu.blog') },
+      { url: '/about-cashback', text: t('footer.menu.aboutCashBack') },
+      { url: '/cashback-apps', text: t('footer.menu.aboutOurApp') },
+      { url: '/account/referrals', text: t('footer.menu.referrals') },
+      { url: '/careers', text: t('footer.menu.careers') },
+      { url: '/contactus', text: t('footer.menu.contact') },
+      { url: '/howtoremove', text: t('footer.menu.howToUninstall') },
+      { url: '/help', text: t('footer.menu.help') },
+      { url: '/consumer-resources', text: t('footer.menu.consumerResources') },
+      { url: '/about-us', text: t('footer.menu.aboutUs') },
+    ],
+    fr: [
+      { url: '/howtoinstall', text: t('footer.menu.howToInstall') },
+      { url: '/about-cashback', text: t('footer.menu.aboutCashBack') },
+      { url: '/cashback-apps', text: t('footer.menu.aboutOurApp') },
+      { url: '/careers', text: t('footer.menu.careers') },
+      { url: '/contactus', text: t('footer.menu.contact') },
+      { url: '/howtoremove', text: t('footer.menu.howToUninstall') },
+      { url: '/help', text: t('footer.menu.help') },
+      { url: '/about-us', text: t('footer.menu.aboutUs') },
+    ],
+    de: [
+      { url: '/howtoinstall', text: t('footer.menu.howToInstall') },
+      { url: '/about-cashback', text: t('footer.menu.aboutCashBack') },
+      { url: '/cashback-apps', text: t('footer.menu.aboutOurApp') },
+      { url: '/careers', text: t('footer.menu.careers') },
+      { url: '/contactus', text: t('footer.menu.contact') },
+      { url: '/howtoremove', text: t('footer.menu.howToUninstall') },
+      { url: '/help', text: t('footer.menu.help') },
+      { url: '/about-us', text: t('footer.menu.aboutUs') },
+    ],
+  };
 
-  const copyrightLinks = [
-    { url: '/terms', text: t('footer.copyright.menu.termsOfUse') },
-    { url: '/privacy', text: t('footer.copyright.menu.privacyPolicy') },
-    { url: '/sitemap', text: t('footer.copyright.menu.sitemap') },
-    { url: '/unsubscribe', text: t('footer.copyright.menu.unsubscribe') },
-    { url: '/eula', text: t('footer.copyright.menu.eula') },
-  ];
+  const copyrightLinks = {
+    en: [
+      { url: '/terms', text: t('footer.copyright.menu.termsOfUse') },
+      { url: '/privacy', text: t('footer.copyright.menu.privacyPolicy') },
+      { url: '/sitemap', text: t('footer.copyright.menu.sitemap') },
+      { url: '/unsubscribe', text: t('footer.copyright.menu.unsubscribe') },
+      { url: '/eula', text: t('footer.copyright.menu.eula') },
+    ],
+    gb: [
+      { url: '/terms', text: t('footer.copyright.menu.termsOfUse') },
+      { url: '/privacy', text: t('footer.copyright.menu.privacyPolicy') },
+      { url: '/sitemap', text: t('footer.copyright.menu.sitemap') },
+      { url: '/unsubscribe', text: t('footer.copyright.menu.unsubscribe') },
+      { url: '/eula', text: t('footer.copyright.menu.eula') },
+    ],
+    fr: [
+      { url: '/terms', text: t('footer.copyright.menu.termsOfUse') },
+      { url: '/privacy', text: t('footer.copyright.menu.privacyPolicy') },
+      { url: '/unsubscribe', text: t('footer.copyright.menu.unsubscribe') },
+      { url: '/eula', text: t('footer.copyright.menu.eula') },
+    ],
+    de: [
+      { url: '/terms', text: t('footer.copyright.menu.termsOfUse') },
+      { url: '/privacy', text: t('footer.copyright.menu.privacyPolicy') },
+      { url: '/unsubscribe', text: t('footer.copyright.menu.unsubscribe') },
+      { url: '/eula', text: t('footer.copyright.menu.eula') },
+      { url: '/impressum', text: t('footer.copyright.menu.impressum') },
+    ],
+  };
 
   return (
     <Footer.Wrapper>
@@ -102,7 +160,7 @@ const Footer = ({ t, i18n }: FooterProps) => {
           </Footer.DownloadAppLink>
         </Footer.DownloadAppLinksWrapper>
         <Footer.Navigation>
-          {footerLinks.map((link: any, key) => (
+          {footerLinks[i18n.language].map((link: any, key) => (
             <FooterLink key={key} url={link.url} text={link.text} />
           ))}
         </Footer.Navigation>
@@ -110,7 +168,7 @@ const Footer = ({ t, i18n }: FooterProps) => {
       <Footer.CopyrightWrapper>
         <div>
           <Footer.CopyrightLinks>
-            {copyrightLinks.map((link: any, key) => (
+            {copyrightLinks[i18n.language].map((link: any, key) => (
               <FooterLink key={key} url={link.url} text={link.text} />
             ))}
           </Footer.CopyrightLinks>
@@ -271,12 +329,14 @@ Footer.DownloadAppLinksWrapper = styled.div`
   padding: 2rem 0 0;
   justify-content: center;
   flex-direction: column;
+  align-items: center;
 
   ${breakpoint('sx')`
     flex-direction: row;
   `}
 
   ${breakpoint('md')`
+    align-items: baseline;
     width: auto;
   `}
 

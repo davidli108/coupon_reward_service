@@ -50,9 +50,7 @@ export const checkEmailAvailable = (payload: FormData) => ({
       method: 'POST',
       data: payload,
       headers: {
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-        },
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
       },
     },
   },
