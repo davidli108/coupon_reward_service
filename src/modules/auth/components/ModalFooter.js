@@ -43,6 +43,7 @@ ModalFooter.Border = styled.hr`
 ModalFooter.Content = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
 `;
 
 ModalFooter.Text = styled.p`
@@ -58,6 +59,7 @@ ModalFooter.Button = styled.button`
   background: transparent;
   outline: none;
   padding: 0 6px;
+  font-size: 14px;
 
   &:hover {
     text-decoration: underline;

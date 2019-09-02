@@ -29,6 +29,7 @@ type SignUpModalProps = {
   fetchUser: Function,
   userID: number,
   userPW: string,
+  authenticate: Function,
   checkEmailAvailable: Function,
   history: Object,
 };
@@ -45,6 +46,7 @@ const SignUpModal = ({
   checkEmailAvailable,
   history,
   fetchUser,
+  authenticate,
 }: SignUpModalProps) => {
   const [email, setEmail] = useState('');
   const [emailErrorMessage, setEmailErrorMessage] = useState('');
@@ -112,20 +114,27 @@ const SignUpModal = ({
         data.append('nonce', nonce);
 
         if (nonce && domains) {
-          domains.forEach(domain => {
-            axios.post(`${protocol}//${domain}/sso/signin`, data, {
-              headers: {
-                'Content-Type':
-                  'application/x-www-form-urlencoded; charset=UTF-8',
-              },
-              withCredentials: true,
+          Promise.all(
+            domains.map(domain => {
+              return axios.post(`${protocol}//${domain}/sso/signin`, data, {
+                headers: {
+                  'Content-Type':
+                    'application/x-www-form-urlencoded; charset=UTF-8',
+                },
+                withCredentials: true,
+              });
+            }),
+          )
+            .then(() => {
+              fetchUser().then(res => {
+                closeModal();
+                authenticate();
+              });
+            })
+            .catch(error => {
+              setPasswordErrorMessage(error.message);
             });
-          });
         }
-
-        fetchUser().then(res => {
-          closeModal();
-        });
       });
     }
   };
@@ -317,6 +326,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
+  authenticate: actions.authenticate,
   fetchUser: actions.fetchUser,
   signUp: actions.signUp,
   checkEmailAvailable: actions.checkEmailAvailable,

@@ -119,8 +119,7 @@ const Header = ({
           domains.map(domain => {
             return axios.post(`${protocol}//${domain}/sso/signout`, data, {
               headers: {
-                'Content-Type':
-                  'application/x-www-form-urlencoded; charset=UTF-8',
+                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
               },
               withCredentials: true,
             });
@@ -144,8 +143,8 @@ const Header = ({
 
   useEffect(() => {
     const body = document.body;
-    if (body) body.style.overflowY = currentModal !== null ? 'hidden' : '';
-  }, [currentModal]);
+    if (body) body.style.overflowY = (currentModal !== null || isOpen) ? 'hidden' : '';
+  }, [currentModal, isOpen]);
 
   useEffect(() => {
     getStoresList();
@@ -176,13 +175,19 @@ const Header = ({
       bgColor: '#34a6bf',
       hoverBgColor: '#29899e',
       title: t('header.login'),
-      onClick: () => setCurrentModal(modal.modalSignIn),
+      onClick: () => {
+        setCurrentModal(modal.modalSignIn);
+        setOpen(false);
+      },
     },
     {
       bgColor: '#02a6bf',
       hoverBgColor: '#01899e',
       title: t('header.createAccount'),
-      onClick: () => setCurrentModal(modal.modalSignUp),
+      onClick: () => {
+        setCurrentModal(modal.modalSignUp);
+        setOpen(false);
+      },
     },
   ];
 

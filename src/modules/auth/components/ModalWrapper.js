@@ -49,6 +49,7 @@ ModalWrapper.MainContainer = styled.div`
   position: relative;
   padding: 30px 0;
   min-height: 100%;
+  box-sizing: border-box;
 `;
 
 ModalWrapper.Overlay = styled.div`
