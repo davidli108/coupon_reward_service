@@ -57,7 +57,7 @@ export default {
     },
     signIn: {
       title: 'Willkommen zurück',
-      subTitle: 'Schön Sie wieder zu sehen',
+      subTitle: 'Schön Sie wiederzusehen',
       or: 'oder',
       emailAddress: 'E-Mail Adresse',
       password: 'Passwort',
@@ -82,7 +82,7 @@ export default {
       button: 'E-Mail zum Zurücksetzen senden',
       footer: {
         text: 'Sie sind noch kein Mitglied?',
-        button: 'Piggy beitretten',
+        button: 'Piggy beitreten',
       },
       messages: {
         emailNotExist: 'E-Mail-Adresse existiert nicht in unserer Datenbank.',

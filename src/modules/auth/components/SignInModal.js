@@ -66,34 +66,41 @@ const SignInModal = ({
     payload.append('email', email);
     payload.append('password', password);
     payload.append('country', country);
-    await signIn(payload).then(response => {
-      const { ok = false, msg, domains, nonce } = response.payload.data;
-      if (ok) {
-        const data = new FormData();
-        data.append('nonce', nonce);
+    await signIn(payload)
+      .then(response => {
+        const { ok = false, msg, domains, nonce } = response.payload.data;
+        if (ok) {
+          const data = new FormData();
+          data.append('nonce', nonce);
 
-        if (nonce && domains) {
-          Promise.all(
-            domains.map(domain => {
-              return axios.post(`${protocol}//${domain}/sso/signin`, data, {
-                headers: {
-                  'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-                },
-                withCredentials: true,
-              });
-            }),
-          ).then(() => {
-            setIsReq(false);
-            authenticate();
-            setSubmitHandled(true);
-          });
+          if (nonce && domains) {
+            Promise.all(
+              domains.map(domain => {
+                return axios.post(`${protocol}//${domain}/sso/signin`, data, {
+                  headers: {
+                    'Content-Type':
+                      'application/x-www-form-urlencoded; charset=UTF-8',
+                  },
+                  withCredentials: true,
+                });
+              }),
+            ).then(() => {
+              setIsReq(false);
+              authenticate();
+              setSubmitHandled(true);
+            });
+          }
+        } else {
+          setIsReq(false);
+          setError(true);
+          setErrorMessage(msg);
         }
-      } else {
+      })
+      .catch(() => {
         setIsReq(false);
         setError(true);
-        setErrorMessage(msg);
-      }
-    });
+        setErrorMessage(t('auth.signUp.messages.errorTryAgain'));
+      });
   };
 
   useEffect(() => {

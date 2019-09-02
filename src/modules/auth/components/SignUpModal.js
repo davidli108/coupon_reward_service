@@ -82,6 +82,11 @@ const SignUpModal = ({
       const response = await checkEmailAvailable(formData);
       if (response) setIsReq(false);
 
+      if (response.error) {
+        setEmailErrorMessage(t('auth.signUp.messages.errorTryAgain'));
+        return;
+      }
+
       if (!R.path(['payload', 'data', 'ok'])(response)) {
         setEmailErrorMessage(R.path(['payload', 'data', 'msg'])(response));
       } else {
@@ -108,34 +113,40 @@ const SignUpModal = ({
       formData.append('country', country);
       formData.append('email', email);
 
-      signUp(formData).then(response => {
-        const { domains, nonce } = response.payload.data;
-        const data = new FormData();
-        data.append('nonce', nonce);
+      signUp(formData)
+        .then(response => {
+          const { domains, nonce } = response.payload.data;
+          const data = new FormData();
+          data.append('nonce', nonce);
 
-        if (nonce && domains) {
-          Promise.all(
-            domains.map(domain => {
-              return axios.post(`${protocol}//${domain}/sso/signin`, data, {
-                headers: {
-                  'Content-Type':
-                    'application/x-www-form-urlencoded; charset=UTF-8',
-                },
-                withCredentials: true,
+          if (nonce && domains) {
+            Promise.all(
+              domains.map(domain => {
+                return axios.post(`${protocol}//${domain}/sso/signin`, data, {
+                  headers: {
+                    'Content-Type':
+                      'application/x-www-form-urlencoded; charset=UTF-8',
+                  },
+                  withCredentials: true,
+                });
+              }),
+            )
+              .then(() => {
+                fetchUser().then(() => {
+                  closeModal();
+                  authenticate();
+                });
+              })
+              .catch(() => {
+                setPasswordErrorMessage(
+                  t('auth.signUp.messages.errorTryAgain'),
+                );
               });
-            }),
-          )
-            .then(() => {
-              fetchUser().then(res => {
-                closeModal();
-                authenticate();
-              });
-            })
-            .catch(error => {
-              setPasswordErrorMessage(error.message);
-            });
-        }
-      });
+          }
+        })
+        .catch(() => {
+          setPasswordErrorMessage(t('auth.signUp.messages.errorTryAgain'));
+        });
     }
   };
 
