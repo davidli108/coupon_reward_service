@@ -16,6 +16,11 @@ export default {
     inviteFriends: 'Freunde einladen',
     settings: 'Einstellungen',
     signOut: 'Abmelden',
+    updateAccount: 'Konto aktualisieren',
+    checkEarnings: 'Einnahme Überprüfen',
+    storeFavorites: 'Shop-Favoriten',
+    referralBonus: 'Empfehlungsbonus',
+    passwordReset: 'Passwort ändern',
   },
   auth: {
     social: {
@@ -77,7 +82,7 @@ export default {
       button: 'E-Mail zum Zurücksetzen senden',
       footer: {
         text: 'Sie sind noch kein Mitglied?',
-        button: 'Join Piggy',
+        button: 'Piggy beitretten',
       },
       messages: {
         emailNotExist: 'E-Mail-Adresse existiert nicht in unserer Datenbank.',

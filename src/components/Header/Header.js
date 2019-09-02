@@ -35,16 +35,18 @@ type renderHeaderItemsProps = {
   title: string,
   link?: string,
   redirect?: string,
+  direct?: boolean,
   onClick?: Function,
 };
 
 const renderHeaderItems = (items: Array<renderHeaderItemsProps>) =>
-  items.map(({ bgColor, hoverBgColor, title, link, redirect, onClick }) => (
+  items.map(({ bgColor, hoverBgColor, title, link, direct, redirect, onClick }) => (
     <HeaderItem
       bgColor={bgColor}
       hoverBgColor={hoverBgColor}
       key={title}
       link={link}
+      direct={direct}
       redirect={redirect}
       onClick={onClick}
     >
@@ -141,6 +143,11 @@ const Header = ({
   }, [location]);
 
   useEffect(() => {
+    const body = document.body;
+    if (body) body.style.overflowY = currentModal !== null ? 'hidden' : '';
+  }, [currentModal]);
+
+  useEffect(() => {
     getStoresList();
   }, []);
 
@@ -179,6 +186,58 @@ const Header = ({
     },
   ];
 
+  const mobileMyAccount = [
+    {
+      bgColor: '#40c8e5',
+      hoverBgColor: '#02a6bf',
+      title: t('header.updateAccount'),
+      redirect: '/account/update',
+      direct: true,
+    },
+    {
+      bgColor: '#40c8e5',
+      hoverBgColor: '#02a6bf',
+      title: t('header.checkEarnings'),
+      redirect: '/account/earnings',
+      direct: true,
+    },
+    {
+      bgColor: '#40c8e5',
+      hoverBgColor: '#02a6bf',
+      title: t('header.storeFavorites'),
+      redirect: '/account/earnings',
+      direct: true,
+    },
+    {
+      bgColor: '#40c8e5',
+      hoverBgColor: '#02a6bf',
+      title: t('header.referralBonus'),
+      redirect: '/account/referrals',
+      direct: true,
+    },
+    {
+      bgColor: '#40c8e5',
+      hoverBgColor: '#02a6bf',
+      title: t('header.settings'),
+      redirect: '/account/preferences',
+      direct: true,
+    },
+    {
+      bgColor: '#40c8e5',
+      hoverBgColor: '#02a6bf',
+      title: t('header.passwordReset'),
+      redirect: '/account/passwordreset',
+      direct: true,
+    },
+    {
+      bgColor: '#40c8e5',
+      hoverBgColor: '#02a6bf',
+      title: t('header.signOut'),
+      link: '/api/signout',
+      onClick: () => logout(),
+    },
+  ];
+
   return (
     <Header.Wrapper>
       <HeaderItem redirect="/" direct>
@@ -203,8 +262,14 @@ const Header = ({
       </Header.BurgerButtonWrapper>
       <Header.SlidingMenu isOpen={isOpen}>
         <div>
-          <Header.Logo src={logo} alt="Join Piggy Logo" />
+          <Header.SlidingMenuLogo src={logo} alt="Join Piggy Logo" />
           {renderHeaderItems(items)}
+          {localeConfig.isAuthenticationAvailable &&
+            isAuthenticated &&
+            renderHeaderItems(mobileMyAccount)}
+          {localeConfig.isAuthenticationAvailable &&
+            !isAuthenticated &&
+            renderHeaderItems(authItems)}
         </div>
       </Header.SlidingMenu>
       <Header.Overlay isOpen={isOpen} onClick={() => setOpen(false)} />
@@ -213,19 +278,19 @@ const Header = ({
         <SignInModal
           onRouteModalReset={() => setCurrentModal(modal.modalResetPassword)}
           onRouteModal={() => setCurrentModal(modal.modalSignUp)}
-          closeModal={setCurrentModal.bind(null)}
+          closeModal={() => setCurrentModal(null)}
         />
       )}
       {currentModal === modal.modalSignUp && (
         <SignUpModal
           onRouteModal={() => setCurrentModal(modal.modalSignIn)}
-          closeModal={setCurrentModal.bind(null)}
+          closeModal={() => setCurrentModal(null)}
         />
       )}
       {currentModal === modal.modalResetPassword && (
         <ResetPasswordModal
           onRouteModal={() => setCurrentModal(modal.modalSignUp)}
-          closeModal={setCurrentModal.bind(null)}
+          closeModal={() => setCurrentModal(null)}
         />
       )}
     </Header.Wrapper>
@@ -270,6 +335,11 @@ Header.Logo = styled.img`
   cursor: pointer;
 `;
 
+Header.SlidingMenuLogo = styled(Header.Logo)`
+  margin: 25px auto;
+  display: inline-block;
+`;
+
 Header.BurgerButtonWrapper = styled.div`
   position: absolute;
   right: 0;
@@ -311,12 +381,8 @@ Header.SlidingMenu = styled.div`
 
     > div {
       width: 100%;
-      height: 60px;
+      height: 48px;
       background: #00c8e5;
-
-      &:nth-child(4) {
-        border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-      }
 
       &:hover {
         background: none;
@@ -324,6 +390,7 @@ Header.SlidingMenu = styled.div`
 
       > a {
         font-size: 15px;
+        padding: 0;
 
         &:hover {
           color: #006f7f;

@@ -16,6 +16,11 @@ export default {
     inviteFriends: 'Invite Friends',
     settings: 'Settings',
     signOut: 'Log out',
+    updateAccount: 'Update Account',
+    checkEarnings: 'Check Earnings',
+    storeFavorites: 'Store Favorites',
+    referralBonus: 'Referral Bonus',
+    passwordReset: 'Password Reset',
   },
   auth: {
     social: {

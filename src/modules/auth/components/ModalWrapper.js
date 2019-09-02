@@ -19,27 +19,36 @@ const ModalWrapper = ({
   children,
 }: ModalWrapperProps) => (
   <ModalWrapper.Wrapper>
+    <ModalWrapper.MainContainer>
     <ModalWrapper.Overlay onClick={closeModal} />
-    <ModalWrapper.Container>
-      <ModalWrapper.Content isActive={isActive}>
-        <button type="button" onClick={closeModal}>
-          <span>×</span>
-        </button>
-        <h2>{title}</h2>
-        <p>{subTitle}</p>
-        {children}
-      </ModalWrapper.Content>
-    </ModalWrapper.Container>
+      <ModalWrapper.Container>
+        <ModalWrapper.Content isActive={isActive}>
+          <button type="button" onClick={closeModal}>
+            <span>×</span>
+          </button>
+          <h2>{title}</h2>
+          <p>{subTitle}</p>
+          {children}
+        </ModalWrapper.Content>
+      </ModalWrapper.Container>
+    </ModalWrapper.MainContainer>
   </ModalWrapper.Wrapper>
 );
 
 ModalWrapper.Wrapper = styled.div`
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   z-index: 1050;
+  overflow-y: auto;
+`;
+
+ModalWrapper.MainContainer = styled.div`
+  position: relative;
+  padding: 30px 0;
+  min-height: 100%;
 `;
 
 ModalWrapper.Overlay = styled.div`
@@ -53,14 +62,14 @@ ModalWrapper.Overlay = styled.div`
 
 ModalWrapper.Container = styled.div`
   max-width: 450px;
-  margin: 30px auto;
+  margin: 0 auto;
   ${breakpoint('xs')`
     max-width: 100%;
-    margin: 30px 0 0 0;
+    margin: 0;
   `}
   ${breakpoint('md')`
     max-width: 450px;
-    margin: 30px auto;
+    margin: 0 auto;
   `}
 `;
 

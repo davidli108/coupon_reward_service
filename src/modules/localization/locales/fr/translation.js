@@ -16,6 +16,11 @@ export default {
     inviteFriends: 'Inviter des amis',
     settings: 'Paramètres',
     signOut: 'Déconnexion',
+    updateAccount: 'Mettre le compte à jour',
+    checkEarnings: 'Vérifier vos gains',
+    storeFavorites: 'Favoris magasin',
+    referralBonus: 'Bonus de parrainage',
+    passwordReset: 'Réinitialisez votre mot de passe',
   },
   auth: {
     social: {
@@ -61,7 +66,7 @@ export default {
       forgotPassword: 'Mot de passe oublié ?',
       footer: {
         text: "Vous n'êtes pas membre?",
-        button: 'Rejoindre Piggy',
+        button: 'Rejoignez Piggy',
       },
       messages: {
         noUserExists: 'Aucun utilisateur existant avec cet email',

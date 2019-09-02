@@ -18,10 +18,6 @@ export const fetchUser = () => ({
     request: {
       url: '/account/getUser',
       method: 'GET',
-      headers: {
-        Accept: '*/*',
-        'x-requested-with': 'XMLHttpRequest',
-      },
     },
   },
 });

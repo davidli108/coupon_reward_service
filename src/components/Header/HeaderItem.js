@@ -2,6 +2,7 @@
 import * as React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import breakpoint from 'styled-components-breakpoint';
 
 type HeaderItemProps = {
   bgColor?: string,
@@ -28,7 +29,7 @@ const HeaderItem = ({
     onClick={onClick}
   >
     {direct && redirect && (
-      <HeaderItem.LogoLink href={redirect}>{children}</HeaderItem.LogoLink>
+      <HeaderItem.Link href={redirect}>{children}</HeaderItem.Link>
     )}
 
     {link && <HeaderItem.NavLink to={link}>{children}</HeaderItem.NavLink>}
@@ -52,7 +53,6 @@ HeaderItem.NavLink = styled(NavLink)`
   height: 100%;
   padding: 0 23px;
   letter-spacing: 0.6px;
-  font-weight: 700;
   line-height: 25px;
 
   color: white;
@@ -60,6 +60,10 @@ HeaderItem.NavLink = styled(NavLink)`
   font-family: Roboto, Arial, sans-serif;
 
   cursor: pointer;
+
+  ${breakpoint('lg')`
+    font-weight: 700;
+  `}
 `;
 
 HeaderItem.Link = styled.a`
@@ -71,7 +75,6 @@ HeaderItem.Link = styled.a`
   height: 100%;
   padding: 0 23px;
   letter-spacing: 0.6px;
-  font-weight: 700;
   line-height: 25px;
 
   color: white;
@@ -79,6 +82,10 @@ HeaderItem.Link = styled.a`
   font-family: Roboto, Arial, sans-serif;
 
   cursor: pointer;
+
+  ${breakpoint('lg')`
+    font-weight: 700;
+  `}
 `;
 
 HeaderItem.LogoLink = styled.a`
