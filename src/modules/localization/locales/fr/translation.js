@@ -69,10 +69,15 @@ export default {
         button: 'Rejoignez Piggy',
       },
       messages: {
+        emptyEmail: 'Veuillez entrer une adresse email valide',
         noUserExists: 'Aucun utilisateur existant avec cet email',
         incorrectPassword: 'Mot de passe incorrect',
         emailNotContainComma:
           "La partie suivie de '@' ne doit pas contenir les symboles ','.",
+        emailShouldContain: `Veuillez inclure un '@' dans l'adresse e-mail. {{email}} manque un '@'`,
+        emailShouldNotContain: `Une partie suivant '@' ne doit pas contenir le symbole '{{specialChar}}'`,
+        emailIsIncomplete: `S'il vous plaît entrer une partie suivant '@', {{email}} est incomplète`,
+        emailIsInvalid: `'.' est utilisé à une mauvaise position dans '{{emailDomain}}'.`,
         inputEmpty: 'Veuillez remplir ce champ',
       },
     },

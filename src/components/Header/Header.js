@@ -22,6 +22,7 @@ import HeaderItemMyAccount from './HeaderItemMyAccount';
 import logo from './logo.svg';
 import axios from 'axios';
 import AppConfig from '@config/AppConfig';
+import { getOrigin, isMainSite } from '@modules/auth/AuthHelper';
 
 const modal = {
   modalSignIn: 'modalSignIn',
@@ -40,19 +41,21 @@ type renderHeaderItemsProps = {
 };
 
 const renderHeaderItems = (items: Array<renderHeaderItemsProps>) =>
-  items.map(({ bgColor, hoverBgColor, title, link, direct, redirect, onClick }) => (
-    <HeaderItem
-      bgColor={bgColor}
-      hoverBgColor={hoverBgColor}
-      key={title}
-      link={link}
-      direct={direct}
-      redirect={redirect}
-      onClick={onClick}
-    >
-      {title}
-    </HeaderItem>
-  ));
+  items.map(
+    ({ bgColor, hoverBgColor, title, link, direct, redirect, onClick }) => (
+      <HeaderItem
+        bgColor={bgColor}
+        hoverBgColor={hoverBgColor}
+        key={title}
+        link={link}
+        direct={direct}
+        redirect={redirect}
+        onClick={onClick}
+      >
+        {title}
+      </HeaderItem>
+    ),
+  );
 
 type HeaderProps = {
   t: Function,
@@ -106,30 +109,10 @@ const Header = ({
     );
   };
 
-  const protocol = document.location.protocol;
-
-  const logout = async () => {
-    await signOut().then(response => {
-      const { domains, nonce } = response.payload.data;
-      const data = new FormData();
-      data.append('nonce', nonce);
-
-      if (nonce && domains) {
-        Promise.all(
-          domains.map(domain => {
-            return axios.post(`${protocol}//${domain}/sso/signout`, data, {
-              headers: {
-                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-              },
-              withCredentials: true,
-            });
-          }),
-        ).then(() => {
-          setLoggedOut();
-          document.location.href = '/';
-        });
-      }
-    });
+  const logout = () => {
+    document.location.href = `${AppConfig.apiUrl}/auth/signout${
+      !isMainSite() ? `?origin=${getOrigin()}` : ''
+    }`;
   };
 
   useEffect(() => {
@@ -143,7 +126,8 @@ const Header = ({
 
   useEffect(() => {
     const body = document.body;
-    if (body) body.style.overflowY = (currentModal !== null || isOpen) ? 'hidden' : '';
+    if (body)
+      body.style.overflowY = currentModal !== null || isOpen ? 'hidden' : '';
   }, [currentModal, isOpen]);
 
   useEffect(() => {
@@ -238,8 +222,7 @@ const Header = ({
       bgColor: '#40c8e5',
       hoverBgColor: '#02a6bf',
       title: t('header.signOut'),
-      link: '/api/signout',
-      onClick: () => logout(),
+      onClick: logout,
     },
   ];
 

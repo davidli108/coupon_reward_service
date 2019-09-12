@@ -14,12 +14,13 @@ import ModalSocial from './ModalSocial';
 import ModalInput from './ModalInput';
 import ModalFooter from './ModalFooter';
 import { getIsAuthenticated } from '../AuthReducer';
-import axios from 'axios';
+import { getOrigin, isMainSite, setAuthCookie } from '../AuthHelper';
+import { validateEmail } from '@modules/helpers/FormHelper';
 
 import * as actions from '../AuthActions';
 
 type SignInModalProps = {
-  t: string => string,
+  t: Function,
   isActive: boolean,
   closeModal: Function,
   onRouteModal: Function,
@@ -45,16 +46,7 @@ const SignInModal = ({
   const [isError, setError] = useState(false);
   const [submitHandled, setSubmitHandled] = useState(false);
   const [isReq, setIsReq] = useState(false);
-
-  const locationMap = {
-    com: 'us',
-    uk: 'gb',
-    de: 'de',
-    fr: 'fr',
-  };
-  const location = document.location.host.split('.');
-  const protocol = document.location.protocol;
-  const country = locationMap[location[location.length - 1]] || 'us';
+  const country = getOrigin();
 
   const handleFormSubmit = async e => {
     e.preventDefault();
@@ -68,27 +60,16 @@ const SignInModal = ({
     payload.append('country', country);
     await signIn(payload)
       .then(response => {
-        const { ok = false, msg, domains, nonce } = response.payload.data;
+        const { ok = false, msg, nonce } = response.payload.data;
         if (ok) {
-          const data = new FormData();
-          data.append('nonce', nonce);
-
-          if (nonce && domains) {
-            Promise.all(
-              domains.map(domain => {
-                return axios.post(`${protocol}//${domain}/sso/signin`, data, {
-                  headers: {
-                    'Content-Type':
-                      'application/x-www-form-urlencoded; charset=UTF-8',
-                  },
-                  withCredentials: true,
-                });
-              }),
-            ).then(() => {
-              setIsReq(false);
-              authenticate();
-              setSubmitHandled(true);
-            });
+          if (nonce && !isMainSite()) {
+            const redirectPath =
+              document.location.pathname + document.location.search;
+            setAuthCookie(nonce, redirectPath, country);
+          } else {
+            setIsReq(false);
+            authenticate();
+            setSubmitHandled(true);
           }
         } else {
           setIsReq(false);
@@ -101,6 +82,12 @@ const SignInModal = ({
         setError(true);
         setErrorMessage(t('auth.signUp.messages.errorTryAgain'));
       });
+  };
+
+  const onEmailChange = e => {
+    const email = e.target.value;
+    setEmail(email);
+    validateEmail(e, t);
   };
 
   useEffect(() => {
@@ -138,7 +125,9 @@ const SignInModal = ({
           <ModalInput
             name="email"
             value={email}
-            onChange={e => setEmail(e.target.value)}
+            onInvalid={onEmailChange}
+            onInput={onEmailChange}
+            onChange={onEmailChange}
             type="email"
             placeholder={t('auth.signIn.emailAddress')}
             required
@@ -146,6 +135,7 @@ const SignInModal = ({
           <ModalInput
             name="password"
             value={password}
+            onInvalid={t('auth.signIn.messages.inputEmpty')}
             onChange={e => setPassword(e.target.value)}
             type="password"
             placeholder={t('auth.signIn.password')}

@@ -1,4 +1,5 @@
 // @flow
+import * as R from 'ramda';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -16,6 +17,7 @@ import {
   getLocaleConfig,
   redirectToEnOrigin,
 } from '@modules/localization/i18n';
+import { getOrigin } from '@modules/auth/AuthHelper';
 
 import type { Store } from '../models/CouponsPage';
 import SocialShareFeatured from './SocialShareFeatured';
@@ -32,8 +34,7 @@ type TodaysFeaturedCouponProps = {
   t: Function,
   store: Store,
   favorites: any,
-  addFavorite: any,
-  removeFavorite: any,
+  requestNonce: Function,
   isAuthenticated: boolean,
   isExtensionInstalled: boolean,
 };
@@ -42,8 +43,7 @@ const TodaysFeaturedCoupon = ({
   t,
   store,
   favorites,
-  addFavorite,
-  removeFavorite,
+  requestNonce,
   isAuthenticated,
   isExtensionInstalled,
 }: TodaysFeaturedCouponProps) => {
@@ -65,11 +65,19 @@ const TodaysFeaturedCoupon = ({
       return;
     }
 
-    if (!isFavorite) {
-      addFavorite(store.store_id);
-    } else {
-      removeFavorite(store.store_id);
-    }
+    requestNonce().then(response => {
+      const data = R.path(['payload', 'data'], response);
+      if (data.nonce) {
+        const origin = getOrigin();
+        const { pathname } = document.location;
+
+        document.location.href = `${
+          AppConfig.apiUrl
+        }/account/toggle-favorite/?nonce=${data.nonce}&store_id=${
+          store.store_id
+        }&origin=${origin}&redirect=${pathname}`;
+      }
+    });
   };
 
   const modalCallback = () => {

@@ -28,7 +28,7 @@ import {
   getFilteredList,
   getIsExtensionInstalled,
 } from '@modules/app/AppReducer';
-import * as favoritesActions from '@modules/favorites/FavoritesActions';
+import * as authActions from '@modules/auth/AuthActions';
 import { getFavoritesMap } from '@modules/favorites/FavoritesReducer';
 
 // import DownloadPiggy from '../components/DownloadPiggy';
@@ -56,9 +56,8 @@ type CouponsPageProps = {
   offersCount: number,
   getAllDeals: Object,
   favorites: any,
-  addFavorite: any,
   getFilteredList: any,
-  removeFavorite: any,
+  requestNonce: Function,
   isAuthenticated: boolean,
   isExtensionInstalled: boolean,
 };
@@ -83,9 +82,8 @@ const CouponsPage = ({
   offersCount,
   getAllDeals,
   favorites,
-  addFavorite,
   getFilteredList,
-  removeFavorite,
+  requestNonce,
   isAuthenticated,
   isExtensionInstalled,
 }: CouponsPageProps) => {
@@ -125,8 +123,7 @@ const CouponsPage = ({
             isExtensionInstalled={isExtensionInstalled}
             store={stores[0]}
             favorites={favorites}
-            addFavorite={addFavorite}
-            removeFavorite={removeFavorite}
+            requestNonce={requestNonce}
           />
         ) : (
           <CouponsPage.NoData>
@@ -225,9 +222,8 @@ const mapDispatchToProps = {
   getCouponsByCategory: couponsActions.getCouponsByCategory,
   setDealsFilter: couponsActions.setDealsFilter,
   requestSearch: couponsActions.requestSearch,
+  requestNonce: authActions.requestNonce,
   resetCoupons: couponsActions.resetCoupons,
-  addFavorite: favoritesActions.addFavorite,
-  removeFavorite: favoritesActions.removeFavorite,
 };
 
 export default compose(

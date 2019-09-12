@@ -31,9 +31,28 @@ Before you commit a message you can test it in the command line like this:
 `echo "fix(store): description of a fix in the store component" | commitlint` or if you have already commited a message
 you can test your last commit by running `yarn lint:last-commit`
 
-### Push your work
+## Building for local development
+### Create .env file
+If you have no `.env` file yet on your project folder, create one with the following variables:
+```
+REACT_APP_API_URL=http://www.local.joinpiggy.com
+REACT_APP_AUTH_COOKIE_NAME=joinpiggy
+```
+### Install dependencies
+```sh
+$ yarn
+```
+### Building for production release
+```sh
+$ yarn build
+```
+### Building for development
+```sh
+$ yarn start:dev
+```
 
-Before pushing your work, ensure that you run all tests:
+## Push your changes
+Before pushing your changes, ensure that you run all tests:
 ```
 yarn test:ci
 yarn test

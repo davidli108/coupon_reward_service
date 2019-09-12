@@ -13,14 +13,16 @@ import { getIsAuthenticated } from '@modules/auth/AuthReducer';
 import SignInModal from '@modules/auth/components/SignInModal';
 import SignUpModal from '@modules/auth/components/SignUpModal';
 import ResetPasswordModal from '@modules/auth/components/ResetPasswordModal';
-import * as favoritesActions from '@modules/favorites/FavoritesActions';
+import * as authActions from '@modules/auth/AuthActions';
 import { getIsFavorite } from '@modules/favorites/FavoritesReducer';
 import {
   getLocaleConfig,
   redirectToEnOrigin,
 } from '@modules/localization/i18n';
+import { getOrigin } from '@modules/auth/AuthHelper';
 
 import { getStore, getOffers } from '../StoreCouponsReducer';
+import AppConfig from '@config/AppConfig';
 
 const modal = {
   modalSignIn: 'modalSignIn',
@@ -34,8 +36,7 @@ export type BrandHeaderProps = {
   offers: any[],
   offersCount: number,
   isFavorite: boolean,
-  addFavorite: any,
-  removeFavorite: any,
+  requestNonce: Function,
   isAuthenticated: boolean,
 };
 
@@ -48,8 +49,7 @@ const BrandHeader = ({
   store,
   offers,
   offersCount,
-  addFavorite,
-  removeFavorite,
+  requestNonce,
   isFavorite,
   isAuthenticated,
 }: BrandHeaderProps) => {
@@ -69,11 +69,19 @@ const BrandHeader = ({
       return;
     }
 
-    if (!isFavorite) {
-      addFavorite(store.store_id);
-    } else {
-      removeFavorite(store.store_id);
-    }
+    requestNonce().then(response => {
+      const data = R.path(['payload', 'data'], response);
+      if (data.nonce) {
+        const origin = getOrigin();
+        const { pathname } = document.location;
+
+        document.location.href = `${
+          AppConfig.apiUrl
+        }/account/toggle-favorite/?nonce=${data.nonce}&store_id=${
+          store.store_id
+        }&origin=${origin}&redirect=${pathname}`;
+      }
+    });
   };
 
   return (
@@ -311,8 +319,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  addFavorite: favoritesActions.addFavorite,
-  removeFavorite: favoritesActions.removeFavorite,
+  requestNonce: authActions.requestNonce,
 };
 
 export default compose(

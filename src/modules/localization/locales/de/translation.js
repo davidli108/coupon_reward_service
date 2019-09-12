@@ -68,11 +68,16 @@ export default {
         button: 'Piggy Beitreten',
       },
       messages: {
+        emptyEmail: 'Bitte geben Sie eine gültig E-Mail Adresse',
         noUserExists: 'Mit dieser E-Mail existiert kein Benutzer',
         incorrectPassword: 'Falsches Passwort',
         emailNotContainComma:
           "Ein Teil gefolgt durch '@' sollte nicht das Symbol ',' enthalten.",
-        inputEmpty: 'Bitte füllen Sie dieses Feld aus',
+        emailShouldContain: `Bitte geben Sie in der E-Mail Adresse '@' ein. {{email}} fehlt ein '@'`,
+        emailShouldNotContain: `Ein Teil, der auf '@' folgt, sollte nicht das Symbol '{{specialChar}}' enthalten.`,
+        emailIsIncomplete: `Bitte geben Sie einen Teil nach '@' ein, {{email}} ist unvollständig`,
+        emailIsInvalid: `'.' ich habe an einer falschen Position verwendet in '{{emailDomain}}'.`,
+        inputEmpty: 'Bitte dieses Feld ausfüllen',
       },
     },
     forgotPassword: {

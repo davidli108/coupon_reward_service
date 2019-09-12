@@ -13,6 +13,7 @@ import ModalInput from './ModalInput';
 import ModalFooter from './ModalFooter';
 
 import * as actions from '../AuthActions';
+import { validateEmail } from '@modules/helpers/FormHelper';
 
 type ResetPasswordModalProps = {
   t: string => string,
@@ -42,6 +43,12 @@ const ResetPasswordModal = ({
   const location = document.location.host.split('.');
   const country = locationMap[location[location.length - 1]] || 'us';
 
+  const onEmailChange = e => {
+    const email = e.target.value;
+    setEmail(email);
+    validateEmail(e, t);
+  };
+
   const handleFormSubmit = async e => {
     e.preventDefault();
 
@@ -49,15 +56,19 @@ const ResetPasswordModal = ({
     formData.append('email', email);
     formData.append('country', country);
 
-    await resetPassword(formData).then(response => {
-      const { ok = false, msg } = response.payload.data;
-      if (ok) {
-        setEmailErrorMessage('');
-        setStage(2);
-      } else {
-        setEmailErrorMessage(msg);
-      }
-    });
+    await resetPassword(formData)
+      .then(response => {
+        const { ok = false, msg } = response.payload.data;
+        if (ok) {
+          setEmailErrorMessage('');
+          setStage(2);
+        } else {
+          setEmailErrorMessage(msg);
+        }
+      })
+      .catch(() => {
+        setEmailErrorMessage(t('auth.signUp.messages.errorTryAgain'));
+      });
   };
   return (
     isActive && (
@@ -72,11 +83,13 @@ const ResetPasswordModal = ({
             {emailErrorMessage && (
               <ErrorMessage>{emailErrorMessage}</ErrorMessage>
             )}
-            <ResetPasswordModal.Form onSubmit={handleFormSubmit} noValidate>
+            <ResetPasswordModal.Form onSubmit={handleFormSubmit}>
               <ModalInput
                 name="email"
                 value={email}
-                onChange={e => setEmail(e.target.value)}
+                onInvalid={onEmailChange}
+                onInput={onEmailChange}
+                onChange={onEmailChange}
                 type="email"
                 placeholder={t('auth.forgotPassword.emailAddress')}
                 required

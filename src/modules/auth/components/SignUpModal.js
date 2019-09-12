@@ -17,10 +17,11 @@ import preloader from '../../coupons/assets/preloader.svg';
 
 import * as actions from '../AuthActions';
 import { getUserID, getUserPW } from '../AuthReducer';
-import axios from 'axios';
+import { getOrigin, isMainSite, setAuthCookie } from '../AuthHelper';
+import { validateEmail } from '@modules/helpers/FormHelper';
 
 type SignUpModalProps = {
-  t: string => string,
+  t: Function,
   linkTerms: string,
   isActive: boolean,
   closeModal: Function,
@@ -53,6 +54,7 @@ const SignUpModal = ({
   const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
   const [stage, setStage] = useState(1);
   const [isReq, setIsReq] = useState(false);
+  const country = getOrigin();
 
   const [password, setPassword] = useState({
     password: '',
@@ -63,15 +65,6 @@ const SignUpModal = ({
     e.preventDefault();
 
     setEmailErrorMessage('');
-    const locationMap = {
-      com: 'us',
-      uk: 'uk',
-      de: 'de',
-      fr: 'fr',
-    };
-    const location = document.location.host.split('.');
-    const country = locationMap[location[location.length - 1]] || 'us';
-    const protocol = document.location.protocol;
 
     if (stage === 1) {
       const formData = new FormData();
@@ -115,33 +108,21 @@ const SignUpModal = ({
 
       signUp(formData)
         .then(response => {
-          const { domains, nonce } = response.payload.data;
-          const data = new FormData();
-          data.append('nonce', nonce);
+          const { ok = false, nonce } = response.payload.data;
 
-          if (nonce && domains) {
-            Promise.all(
-              domains.map(domain => {
-                return axios.post(`${protocol}//${domain}/sso/signin`, data, {
-                  headers: {
-                    'Content-Type':
-                      'application/x-www-form-urlencoded; charset=UTF-8',
-                  },
-                  withCredentials: true,
-                });
-              }),
-            )
-              .then(() => {
-                fetchUser().then(() => {
-                  closeModal();
-                  authenticate();
-                });
-              })
-              .catch(() => {
-                setPasswordErrorMessage(
-                  t('auth.signUp.messages.errorTryAgain'),
-                );
+          if (ok) {
+            if (nonce && !isMainSite()) {
+              const redirectPath =
+                document.location.pathname + document.location.search;
+              setAuthCookie(nonce, redirectPath, country);
+            } else {
+              fetchUser().then(() => {
+                closeModal();
+                authenticate();
               });
+            }
+          } else {
+            setPasswordErrorMessage(t('auth.signUp.messages.errorTryAgain'));
           }
         })
         .catch(() => {
@@ -152,6 +133,12 @@ const SignUpModal = ({
 
   const handlePasswordChange = e => {
     setPassword({ ...password, [e.target.name]: e.target.value });
+  };
+
+  const onEmailChange = e => {
+    const email = e.target.value;
+    setEmail(email);
+    validateEmail(e, t);
   };
 
   return (
@@ -176,7 +163,9 @@ const SignUpModal = ({
               <ModalInput
                 name="email"
                 value={email}
-                onChange={e => setEmail(e.target.value)}
+                onInvalid={onEmailChange}
+                onInput={onEmailChange}
+                onChange={onEmailChange}
                 type="email"
                 placeholder={t('auth.signUp.emailAddress')}
                 required
@@ -187,6 +176,7 @@ const SignUpModal = ({
                 <ModalInput
                   name="password"
                   value={password.password}
+                  onInvalid={t('auth.signIn.messages.inputEmpty')}
                   onChange={handlePasswordChange}
                   type="password"
                   placeholder={t('auth.signUp.password')}
@@ -195,6 +185,7 @@ const SignUpModal = ({
                 <ModalInput
                   name="confirmPassword"
                   value={password.confirmPassword}
+                  onInvalid={t('auth.signIn.messages.inputEmpty')}
                   onChange={handlePasswordChange}
                   type="password"
                   placeholder={t('auth.signUp.confirmPassword')}

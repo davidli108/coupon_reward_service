@@ -10,6 +10,7 @@ export const FETCH_USER = `${namespace}/FETCH_USER`;
 export const PASSWORD_RESET = `${namespace}/PASSWORD_RESET`;
 export const LOGOUT = `${namespace}/LOGOUT`;
 export const SET_LOGGED_OUT = `${namespace}/SET_LOGGED_OUT`;
+export const REQUEST_NONCE = `${namespace}/REQUEST_NONCE`;
 
 export const fetchUser = () => ({
   type: FETCH_USER,
@@ -27,7 +28,7 @@ export const signIn = (payload: FormData) => ({
   payload: {
     client: 'base',
     request: {
-      url: '/api/signin',
+      url: '/auth/signin',
       method: 'POST',
       data: payload,
       headers: {
@@ -57,7 +58,7 @@ export const signUp = (payload: FormData) => ({
   payload: {
     client: 'base',
     request: {
-      url: '/api/signup',
+      url: '/auth/signup',
       method: 'POST',
       data: payload,
       headers: {
@@ -88,8 +89,19 @@ export const signOut = () => ({
   payload: {
     client: 'base',
     request: {
-      url: '/api/signout',
+      url: '/auth/signout',
       method: 'POST',
+    },
+  },
+});
+
+export const requestNonce = () => ({
+  type: REQUEST_NONCE,
+  payload: {
+    client: 'default',
+    request: {
+      url: '/auth/request-nonce',
+      method: 'GET',
     },
   },
 });

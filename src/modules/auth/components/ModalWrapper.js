@@ -20,7 +20,7 @@ const ModalWrapper = ({
 }: ModalWrapperProps) => (
   <ModalWrapper.Wrapper>
     <ModalWrapper.MainContainer>
-    <ModalWrapper.Overlay onClick={closeModal} />
+      <ModalWrapper.Overlay onClick={closeModal} />
       <ModalWrapper.Container>
         <ModalWrapper.Content isActive={isActive}>
           <button type="button" onClick={closeModal}>
@@ -36,7 +36,7 @@ const ModalWrapper = ({
 );
 
 ModalWrapper.Wrapper = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
