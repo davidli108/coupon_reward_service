@@ -58,7 +58,7 @@ export default {
     },
     signIn: {
       title: 'Bon retour parmi nous',
-      subTitle: 'Bon retour parmi nous',
+      subTitle: "C'est bon de vous revoir.",
       or: 'ou',
       emailAddress: 'Adresse e-mail',
       password: 'Mot de passe',
