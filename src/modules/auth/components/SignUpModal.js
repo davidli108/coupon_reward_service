@@ -9,7 +9,6 @@ import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
 
 import ErrorMessage from './ErrorMessage';
-import HintMessage from './HintMessage';
 import ModalWrapper from './ModalWrapper';
 import ModalSocial from './ModalSocial';
 import ModalInput from './ModalInput';
@@ -18,18 +17,21 @@ import preloader from '../../coupons/assets/preloader.svg';
 
 import * as actions from '../AuthActions';
 import { getUserID, getUserPW } from '../AuthReducer';
+import { getOrigin, isMainSite, setAuthCookie } from '../AuthHelper';
+import { validateEmail } from '@modules/helpers/FormHelper';
 
 type SignUpModalProps = {
-  t: string => string,
+  t: Function,
   linkTerms: string,
   isActive: boolean,
   closeModal: Function,
   onRouteModal: Function,
   signUp: Function,
   fetchUser: Function,
-  insertPassword: Function,
   userID: number,
   userPW: string,
+  authenticate: Function,
+  checkEmailAvailable: Function,
   history: Object,
 };
 
@@ -42,15 +44,17 @@ const SignUpModal = ({
   signUp,
   userID,
   userPW,
-  insertPassword,
+  checkEmailAvailable,
   history,
   fetchUser,
+  authenticate,
 }: SignUpModalProps) => {
   const [email, setEmail] = useState('');
   const [emailErrorMessage, setEmailErrorMessage] = useState('');
   const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
   const [stage, setStage] = useState(1);
   const [isReq, setIsReq] = useState(false);
+  const country = getOrigin();
 
   const [password, setPassword] = useState({
     password: '',
@@ -60,18 +64,25 @@ const SignUpModal = ({
   const handleFormSubmit = async e => {
     e.preventDefault();
 
+    setEmailErrorMessage('');
+
     if (stage === 1) {
       const formData = new FormData();
       formData.append('email', email);
+      formData.append('country', country);
 
       setIsReq(true);
-      const response = await signUp(formData);
+      const response = await checkEmailAvailable(formData);
       if (response) setIsReq(false);
 
-      if (R.path(['payload', 'data', 'user_pw'])(response) === 0) {
-        setEmailErrorMessage(t('auth.signUp.messages.existAccount'));
+      if (response.error) {
+        setEmailErrorMessage(t('auth.signUp.messages.errorTryAgain'));
+        return;
+      }
+
+      if (!R.path(['payload', 'data', 'ok'])(response)) {
+        setEmailErrorMessage(R.path(['payload', 'data', 'msg'])(response));
       } else {
-        setEmailErrorMessage('');
         setStage(2);
       }
     }
@@ -90,21 +101,44 @@ const SignUpModal = ({
       setPasswordErrorMessage('');
 
       const formData = new FormData();
-      formData.append('newpass1', password.password);
-      formData.append('newpass2', password.confirmPassword);
-      formData.append('user_id', String(userID));
-      formData.append('user_pw', userPW);
+      formData.append('password', password.password);
+      formData.append('password2', password.confirmPassword);
+      formData.append('country', country);
+      formData.append('email', email);
 
-      insertPassword(formData).then(() => {
-        fetchUser().then(res => {
-          closeModal();
+      signUp(formData)
+        .then(response => {
+          const { ok = false, nonce } = response.payload.data;
+
+          if (ok) {
+            if (nonce && !isMainSite()) {
+              const redirectPath =
+                document.location.pathname + document.location.search;
+              setAuthCookie(nonce, redirectPath, country);
+            } else {
+              fetchUser().then(() => {
+                closeModal();
+                authenticate();
+              });
+            }
+          } else {
+            setPasswordErrorMessage(t('auth.signUp.messages.errorTryAgain'));
+          }
+        })
+        .catch(() => {
+          setPasswordErrorMessage(t('auth.signUp.messages.errorTryAgain'));
         });
-      });
     }
   };
 
   const handlePasswordChange = e => {
     setPassword({ ...password, [e.target.name]: e.target.value });
+  };
+
+  const onEmailChange = e => {
+    const email = e.target.value;
+    setEmail(email);
+    validateEmail(e, t);
   };
 
   return (
@@ -119,7 +153,7 @@ const SignUpModal = ({
         <SignUpModal.Or>
           <span>{t('auth.signUp.or')}</span>
         </SignUpModal.Or>
-        {emailErrorMessage && <HintMessage>{emailErrorMessage}</HintMessage>}
+        {emailErrorMessage && <ErrorMessage>{emailErrorMessage}</ErrorMessage>}
         {passwordErrorMessage && (
           <ErrorMessage>{passwordErrorMessage}</ErrorMessage>
         )}
@@ -129,7 +163,9 @@ const SignUpModal = ({
               <ModalInput
                 name="email"
                 value={email}
-                onChange={e => setEmail(e.target.value)}
+                onInvalid={onEmailChange}
+                onInput={onEmailChange}
+                onChange={onEmailChange}
                 type="email"
                 placeholder={t('auth.signUp.emailAddress')}
                 required
@@ -140,6 +176,7 @@ const SignUpModal = ({
                 <ModalInput
                   name="password"
                   value={password.password}
+                  onInvalid={t('auth.signIn.messages.inputEmpty')}
                   onChange={handlePasswordChange}
                   type="password"
                   placeholder={t('auth.signUp.password')}
@@ -148,6 +185,7 @@ const SignUpModal = ({
                 <ModalInput
                   name="confirmPassword"
                   value={password.confirmPassword}
+                  onInvalid={t('auth.signIn.messages.inputEmpty')}
                   onChange={handlePasswordChange}
                   type="password"
                   placeholder={t('auth.signUp.confirmPassword')}
@@ -290,9 +328,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
+  authenticate: actions.authenticate,
   fetchUser: actions.fetchUser,
-  insertPassword: actions.password,
   signUp: actions.signUp,
+  checkEmailAvailable: actions.checkEmailAvailable,
 };
 
 const enhance = compose(

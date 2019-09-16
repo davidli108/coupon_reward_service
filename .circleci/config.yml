@@ -45,8 +45,24 @@ jobs:
           name: Install AWS CLI
           command: sudo apt-get -y -qq install awscli
       - run:
+          name: Create Environment Variable file
+          command: |
+            # Set Environment Variable
+            export REACT_APP_API_URL_TMP=API_URL_$CIRCLE_BRANCH
+            export REACT_APP_API_URL=${!REACT_APP_API_URL_TMP}
+            echo "Environment variable REACT_APP_API_URL is set to ${REACT_APP_API_URL}"
+
+            # Create .env file
+            touch .env
+            echo "REACT_APP_API_URL=${REACT_APP_API_URL}" > .env
+      - run:
           name: Build
-          command: yarn build
+          command: |
+            # Output created .env file
+            cat .env
+
+            # Start building
+            yarn build
       - run:
           name: Deploy build to AWS S3
           command: aws --region $AWS_REGION s3 cp --acl public-read --recursive build s3://s3-www-$(perl -e '$b=shift;print {"master"=>"production",stage=>"staging"}->{$b}||$b' $CIRCLE_BRANCH).joinpiggy.com

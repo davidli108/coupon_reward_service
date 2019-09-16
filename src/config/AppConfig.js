@@ -3,6 +3,7 @@ import * as R from 'ramda';
 
 export default {
   apiUrl: R.defaultTo(window.location.origin, process.env.REACT_APP_API_URL),
+  authCookieName: R.defaultTo('cf', process.env.REACT_APP_AUTH_COOKIE_NAME),
   cloudUrl: R.defaultTo(
     'https://d2umvgb8hls1bt.cloudfront.net',
     process.env.REACT_APP_CLOUD_URL,

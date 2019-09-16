@@ -22,6 +22,7 @@ import HeaderItemMyAccount from './HeaderItemMyAccount';
 import logo from './logo.svg';
 import axios from 'axios';
 import AppConfig from '@config/AppConfig';
+import { getOrigin, isMainSite } from '@modules/auth/AuthHelper';
 
 const modal = {
   modalSignIn: 'modalSignIn',
@@ -35,29 +36,33 @@ type renderHeaderItemsProps = {
   title: string,
   link?: string,
   redirect?: string,
+  direct?: boolean,
   onClick?: Function,
 };
 
 const renderHeaderItems = (items: Array<renderHeaderItemsProps>) =>
-  items.map(({ bgColor, hoverBgColor, title, link, redirect, onClick }) => (
-    <HeaderItem
-      bgColor={bgColor}
-      hoverBgColor={hoverBgColor}
-      key={title}
-      link={link}
-      redirect={redirect}
-      onClick={onClick}
-    >
-      {title}
-    </HeaderItem>
-  ));
+  items.map(
+    ({ bgColor, hoverBgColor, title, link, direct, redirect, onClick }) => (
+      <HeaderItem
+        bgColor={bgColor}
+        hoverBgColor={hoverBgColor}
+        key={title}
+        link={link}
+        direct={direct}
+        redirect={redirect}
+        onClick={onClick}
+      >
+        {title}
+      </HeaderItem>
+    ),
+  );
 
 type HeaderProps = {
   t: Function,
   isCookieSet: Function,
   isAuthenticated: Boolean,
   location: Object,
-  logout: Function,
+  signOut: Function,
   setLoggedOut: Function,
   authenticate: Function,
   getStoresList: any => Promise<Object>,
@@ -69,7 +74,7 @@ const Header = ({
   isCookieSet,
   isAuthenticated,
   location,
-  logout,
+  signOut,
   setLoggedOut,
   authenticate,
   getStoresList,
@@ -104,6 +109,12 @@ const Header = ({
     );
   };
 
+  const logout = () => {
+    document.location.href = `${AppConfig.apiUrl}/auth/signout${
+      !isMainSite() ? `?origin=${getOrigin()}` : ''
+    }`;
+  };
+
   useEffect(() => {
     if (!isCookieSet) {
       setLoggedOut();
@@ -112,6 +123,12 @@ const Header = ({
     }
     checkIfExtensionIsInstalled();
   }, [location]);
+
+  useEffect(() => {
+    const body = document.body;
+    if (body)
+      body.style.overflowY = currentModal !== null || isOpen ? 'hidden' : '';
+  }, [currentModal, isOpen]);
 
   useEffect(() => {
     getStoresList();
@@ -142,13 +159,70 @@ const Header = ({
       bgColor: '#34a6bf',
       hoverBgColor: '#29899e',
       title: t('header.login'),
-      onClick: () => setCurrentModal(modal.modalSignIn),
+      onClick: () => {
+        setCurrentModal(modal.modalSignIn);
+        setOpen(false);
+      },
     },
     {
       bgColor: '#02a6bf',
       hoverBgColor: '#01899e',
       title: t('header.createAccount'),
-      onClick: () => setCurrentModal(modal.modalSignUp),
+      onClick: () => {
+        setCurrentModal(modal.modalSignUp);
+        setOpen(false);
+      },
+    },
+  ];
+
+  const mobileMyAccount = [
+    {
+      bgColor: '#40c8e5',
+      hoverBgColor: '#02a6bf',
+      title: t('header.updateAccount'),
+      redirect: '/account/update',
+      direct: true,
+    },
+    {
+      bgColor: '#40c8e5',
+      hoverBgColor: '#02a6bf',
+      title: t('header.checkEarnings'),
+      redirect: '/account/earnings',
+      direct: true,
+    },
+    {
+      bgColor: '#40c8e5',
+      hoverBgColor: '#02a6bf',
+      title: t('header.storeFavorites'),
+      redirect: '/account/earnings',
+      direct: true,
+    },
+    {
+      bgColor: '#40c8e5',
+      hoverBgColor: '#02a6bf',
+      title: t('header.referralBonus'),
+      redirect: '/account/referrals',
+      direct: true,
+    },
+    {
+      bgColor: '#40c8e5',
+      hoverBgColor: '#02a6bf',
+      title: t('header.settings'),
+      redirect: '/account/preferences',
+      direct: true,
+    },
+    {
+      bgColor: '#40c8e5',
+      hoverBgColor: '#02a6bf',
+      title: t('header.passwordReset'),
+      redirect: '/account/passwordreset',
+      direct: true,
+    },
+    {
+      bgColor: '#40c8e5',
+      hoverBgColor: '#02a6bf',
+      title: t('header.signOut'),
+      onClick: logout,
     },
   ];
 
@@ -176,8 +250,14 @@ const Header = ({
       </Header.BurgerButtonWrapper>
       <Header.SlidingMenu isOpen={isOpen}>
         <div>
-          <Header.Logo src={logo} alt="Join Piggy Logo" />
+          <Header.SlidingMenuLogo src={logo} alt="Join Piggy Logo" />
           {renderHeaderItems(items)}
+          {localeConfig.isAuthenticationAvailable &&
+            isAuthenticated &&
+            renderHeaderItems(mobileMyAccount)}
+          {localeConfig.isAuthenticationAvailable &&
+            !isAuthenticated &&
+            renderHeaderItems(authItems)}
         </div>
       </Header.SlidingMenu>
       <Header.Overlay isOpen={isOpen} onClick={() => setOpen(false)} />
@@ -186,19 +266,19 @@ const Header = ({
         <SignInModal
           onRouteModalReset={() => setCurrentModal(modal.modalResetPassword)}
           onRouteModal={() => setCurrentModal(modal.modalSignUp)}
-          closeModal={setCurrentModal.bind(null)}
+          closeModal={() => setCurrentModal(null)}
         />
       )}
       {currentModal === modal.modalSignUp && (
         <SignUpModal
           onRouteModal={() => setCurrentModal(modal.modalSignIn)}
-          closeModal={setCurrentModal.bind(null)}
+          closeModal={() => setCurrentModal(null)}
         />
       )}
       {currentModal === modal.modalResetPassword && (
         <ResetPasswordModal
           onRouteModal={() => setCurrentModal(modal.modalSignUp)}
-          closeModal={setCurrentModal.bind(null)}
+          closeModal={() => setCurrentModal(null)}
         />
       )}
     </Header.Wrapper>
@@ -231,12 +311,21 @@ Header.Overlay = styled.div`
   width: 100%;
   height: 100%;
   z-index: 3;
+
+  ${breakpoint('lg')`
+    display: none;
+  `}
 `;
 
 Header.Logo = styled.img`
   height: 70px;
   width: 210px;
   cursor: pointer;
+`;
+
+Header.SlidingMenuLogo = styled(Header.Logo)`
+  margin: 25px auto;
+  display: inline-block;
 `;
 
 Header.BurgerButtonWrapper = styled.div`
@@ -280,12 +369,8 @@ Header.SlidingMenu = styled.div`
 
     > div {
       width: 100%;
-      height: 60px;
+      height: 48px;
       background: #00c8e5;
-
-      &:nth-child(4) {
-        border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-      }
 
       &:hover {
         background: none;
@@ -293,6 +378,7 @@ Header.SlidingMenu = styled.div`
 
       > a {
         font-size: 15px;
+        padding: 0;
 
         &:hover {
           color: #006f7f;
@@ -312,7 +398,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  logout: actions.logout,
+  signOut: actions.signOut,
   setLoggedOut: actions.setLoggedOut,
   authenticate: actions.authenticate,
   getStoresList: getStoresList,

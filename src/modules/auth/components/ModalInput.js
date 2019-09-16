@@ -7,26 +7,52 @@ type ModalInputProps = {
   name: string,
   type: string,
   value: string,
-  onChange: Function,
   placeholder: string,
-  required: boolean,
+  required?: boolean,
+  onChange?: Function | string,
+  onInvalid?: Function | string,
+  onInput?: Function | string,
+};
+
+const customValidity = (
+  event: Object,
+  validity?: Function | string,
+  defaultMessage: string = '',
+) => {
+  switch (typeof validity) {
+    case 'function':
+      validity(event);
+      break;
+
+    case 'string':
+      event.target.setCustomValidity(validity);
+      break;
+
+    default:
+      event.target.setCustomValidity(defaultMessage);
+  }
 };
 
 const ModalInput = ({
   name,
   value,
-  onChange,
   type,
   placeholder,
-  required,
+  required = false,
+  onChange,
+  onInvalid,
+  onInput,
 }: ModalInputProps) => (
   <ModalInput.Field
     name={name}
     type={type}
+    onInvalid={e => customValidity(e, onInvalid, 'Please fill in this field.')}
+    onInput={e => customValidity(e, onInput)}
+    onChange={e => customValidity(e, onChange)}
+    tooltipMessageOnEmptyField
     value={value}
-    onChange={onChange}
     placeholder={placeholder}
-    required
+    required={required}
   />
 );
 

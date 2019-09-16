@@ -6,6 +6,7 @@
 
 # production
 /build
+/public/.htaccess
 
 # misc
 .DS_Store

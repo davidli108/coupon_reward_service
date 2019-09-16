@@ -15,7 +15,12 @@ export default {
     myAccount: 'My Account',
     inviteFriends: 'Invite Friends',
     settings: 'Settings',
-    signOut: 'Sign out',
+    signOut: 'Log out',
+    updateAccount: 'Update Account',
+    checkEarnings: 'Check Earnings',
+    storeFavorites: 'Store Favorites',
+    referralBonus: 'Referral Bonus',
+    passwordReset: 'Password Reset',
   },
   auth: {
     social: {
@@ -24,7 +29,7 @@ export default {
     },
     signUp: {
       title: 'Register to Get Automatic Cash Back',
-      subTitle: 'Its that easy',
+      subTitle: "It's that easy",
       or: 'or',
       emailAddress: 'Email Address',
       button: 'Join Piggy',
@@ -59,14 +64,19 @@ export default {
       button: 'Login with Email',
       forgotPassword: 'Forgot Password?',
       footer: {
-        text: 'Not a Member?',
+        text: 'Not A Member?',
         button: 'Join Piggy',
       },
       messages: {
+        emptyEmail: 'Please enter a valid email address',
         noUserExists: 'No user exists with that email',
         incorrectPassword: 'Incorrect Password',
         emailNotContainComma:
           "A part followed by '@' should not contain the symbol ','.",
+        emailShouldContain: `Please include an '@' in the email address. {{email}} is missing an '@'.`,
+        emailShouldNotContain: `A part following '@' should not contain the symbol '{{specialChar}}'.`,
+        emailIsIncomplete: `Please enter a part following '@'. {{email}} is incomplete.`,
+        emailIsInvalid: `'.' is used at a wrong position in '{{emailDomain}}'.`,
         inputEmpty: 'Please fill out this field',
       },
     },
@@ -303,7 +313,7 @@ export default {
       consumerResources: 'Consumer Resources',
       referrals: 'Referrals',
       blog: 'Blog',
-      aboutUs: 'About us',
+      aboutUs: 'About Us',
       help: 'Help',
     },
     copyright: {
@@ -313,9 +323,10 @@ export default {
         sitemap: 'Sitemap',
         unsubscribe: 'Unsubscribe',
         eula: 'EULA',
+        impressum: 'Impressum',
       },
       text: 'Copyright',
-      allRightReserved: 'All Rights Reserved',
+      allRightReserved: 'All Rights Reserved.',
     },
   },
   templates: {

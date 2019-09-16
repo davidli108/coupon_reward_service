@@ -11,6 +11,7 @@ type HeaderItemMyAccountProps = {
   t: any,
   title: string,
   logout: Function,
+  i18n: Object,
 };
 
 const HeaderItemMyAccount = ({
@@ -19,6 +20,7 @@ const HeaderItemMyAccount = ({
   hoverBgColor,
   title,
   logout,
+  i18n,
 }: HeaderItemMyAccountProps) => {
   const [isDrop, setIsDrop] = useState(false);
   const doLogout = () => {
@@ -36,7 +38,10 @@ const HeaderItemMyAccount = ({
         {title}
         <IoMdArrowDropdown />
       </p>
-      <HeaderItemMyAccount.DropdownWrapper isShow={isDrop}>
+      <HeaderItemMyAccount.DropdownWrapper
+        isShow={isDrop}
+        isDe={i18n.language === 'de'}
+      >
         <HeaderItemMyAccount.DropdownItem href="/account/earnings">
           {t('coupons.earnings')}
         </HeaderItemMyAccount.DropdownItem>
@@ -59,9 +64,10 @@ const HeaderItemMyAccount = ({
 
 HeaderItemMyAccount.Wrapper = styled.div`
   height: 100%;
-  width: 165px;
+  width: fit-content;
   z-index: 5;
   font-weight: bold;
+  position: relative;
   background: ${({ bgColor }) => bgColor || '#40c8e5'};
 
   p {
@@ -88,18 +94,27 @@ HeaderItemMyAccount.Wrapper = styled.div`
 HeaderItemMyAccount.DropdownWrapper = styled.div`
   display: ${props => (props.isShow ? 'flex' : 'none')};
   flex-direction: column;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  min-width: 100%;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   border-radius: 4px;
   background-color: white;
+
+  a {
+    font-size: ${({ isDe }) => (isDe ? '16px' : '20px')};
+  }
 `;
 
 HeaderItemMyAccount.DropdownItem = styled.a`
   display: block;
-  padding: 15px 0 15px 10px;
+  padding: 15px 10px;
   font-size: 20px;
-  font-weight: 500;
+  font-weight: 700;
   cursor: pointer;
-  color: black;
+  white-space: nowrap;
+  color: #434343;
 
   &:hover {
     background-color: #29899e;

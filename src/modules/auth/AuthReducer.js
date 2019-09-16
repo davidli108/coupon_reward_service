@@ -1,9 +1,9 @@
 // @flow
 import * as R from 'ramda';
 import Cookie from 'js-cookie';
+import AppConfig from '@config/AppConfig';
 
 import {
-  PASSWORD,
   SIGN_IN,
   FETCH_USER,
   SIGN_UP,
@@ -12,7 +12,7 @@ import {
 } from './AuthActions';
 import { AUTHENTICATED } from '@modules/app/AppActions';
 
-export const isCookieSet = () => Boolean(Cookie.get('cf'));
+export const isCookieSet = () => Boolean(Cookie.get(AppConfig.authCookieName));
 
 const initialState = {
   isAuthenticated: false,
@@ -58,14 +58,11 @@ const AuthReducer = (
 
       return R.merge(initialState, { isAuthenticated: isCookieSet(), ...data });
     }
-    case `${PASSWORD}_SUCCESS`: {
-      return R.merge(state, { isAuthenticated: isCookieSet() });
-    }
     case AUTHENTICATED: {
       return R.merge(state, { isAuthenticated: isCookieSet() });
     }
     case LOGOUT: {
-      Cookie.remove('cf');
+      Cookie.remove(AppConfig.authCookieName);
       return initialState;
     }
     case SET_LOGGED_OUT: {

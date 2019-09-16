@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
+import preloader from '../../coupons/assets/preloader.svg';
 
 import ErrorMessage from './ErrorMessage';
 import ModalWrapper from './ModalWrapper';
@@ -13,16 +14,19 @@ import ModalSocial from './ModalSocial';
 import ModalInput from './ModalInput';
 import ModalFooter from './ModalFooter';
 import { getIsAuthenticated } from '../AuthReducer';
+import { getOrigin, isMainSite, setAuthCookie } from '../AuthHelper';
+import { validateEmail } from '@modules/helpers/FormHelper';
 
 import * as actions from '../AuthActions';
 
 type SignInModalProps = {
-  t: string => string,
+  t: Function,
   isActive: boolean,
   closeModal: Function,
   onRouteModal: Function,
   onRouteModalReset: Function,
   signIn: FormData => Promise<Object>,
+  authenticate: Function,
   isAuthenticated: boolean,
 };
 
@@ -33,27 +37,64 @@ const SignInModal = ({
   onRouteModal,
   onRouteModalReset,
   signIn,
+  authenticate,
   isAuthenticated,
 }: SignInModalProps) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const [isError, setError] = useState(false);
   const [submitHandled, setSubmitHandled] = useState(false);
+  const [isReq, setIsReq] = useState(false);
+  const country = getOrigin();
 
   const handleFormSubmit = async e => {
     e.preventDefault();
+    setError(false);
+    setErrorMessage('');
+    setIsReq(true);
 
     const payload = new FormData();
     payload.append('email', email);
     payload.append('password', password);
-    await signIn(payload);
-    setSubmitHandled(true);
+    payload.append('country', country);
+    await signIn(payload)
+      .then(response => {
+        const { ok = false, msg, nonce } = response.payload.data;
+        if (ok) {
+          if (nonce && !isMainSite()) {
+            const redirectPath =
+              document.location.pathname + document.location.search;
+            setAuthCookie(nonce, redirectPath, country);
+          } else {
+            setIsReq(false);
+            authenticate();
+            setSubmitHandled(true);
+          }
+        } else {
+          setIsReq(false);
+          setError(true);
+          setErrorMessage(msg);
+        }
+      })
+      .catch(() => {
+        setIsReq(false);
+        setError(true);
+        setErrorMessage(t('auth.signUp.messages.errorTryAgain'));
+      });
+  };
+
+  const onEmailChange = e => {
+    const email = e.target.value;
+    setEmail(email);
+    validateEmail(e, t);
   };
 
   useEffect(() => {
     if (submitHandled) {
       if (isAuthenticated) {
         setError(false);
+        setErrorMessage('');
         setEmail('');
         setPassword('');
         closeModal();
@@ -75,14 +116,18 @@ const SignInModal = ({
         <span>{t('auth.signIn.or')}</span>
       </SignInModal.Or>
       {isError && (
-        <ErrorMessage>{t('auth.signUp.messages.errorTryAgain')}</ErrorMessage>
+        <ErrorMessage>
+          {errorMessage || t('auth.signUp.messages.errorTryAgain')}
+        </ErrorMessage>
       )}
       <div>
         <SignInModal.Form onSubmit={handleFormSubmit}>
           <ModalInput
             name="email"
             value={email}
-            onChange={e => setEmail(e.target.value)}
+            onInvalid={onEmailChange}
+            onInput={onEmailChange}
+            onChange={onEmailChange}
             type="email"
             placeholder={t('auth.signIn.emailAddress')}
             required
@@ -90,12 +135,17 @@ const SignInModal = ({
           <ModalInput
             name="password"
             value={password}
+            onInvalid={t('auth.signIn.messages.inputEmpty')}
             onChange={e => setPassword(e.target.value)}
             type="password"
             placeholder={t('auth.signIn.password')}
             required
           />
-          <button>{t('auth.signIn.button')}</button>
+          {isReq ? (
+            <img src={preloader} alt="" />
+          ) : (
+            <button>{t('auth.signIn.button')}</button>
+          )}
         </SignInModal.Form>
         <SignInModal.PreFooter>
           <button onClick={onRouteModalReset}>
@@ -218,6 +268,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   signIn: actions.signIn,
+  authenticate: actions.authenticate,
 };
 
 const enhance = compose(

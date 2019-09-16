@@ -13,6 +13,7 @@ import ModalInput from './ModalInput';
 import ModalFooter from './ModalFooter';
 
 import * as actions from '../AuthActions';
+import { validateEmail } from '@modules/helpers/FormHelper';
 
 type ResetPasswordModalProps = {
   t: string => string,
@@ -33,19 +34,41 @@ const ResetPasswordModal = ({
   const [emailErrorMessage, setEmailErrorMessage] = useState('');
   const [stage, setStage] = useState(1);
 
+  const locationMap = {
+    com: 'us',
+    uk: 'gb',
+    de: 'de',
+    fr: 'fr',
+  };
+  const location = document.location.host.split('.');
+  const country = locationMap[location[location.length - 1]] || 'us';
+
+  const onEmailChange = e => {
+    const email = e.target.value;
+    setEmail(email);
+    validateEmail(e, t);
+  };
+
   const handleFormSubmit = async e => {
     e.preventDefault();
 
     const formData = new FormData();
     formData.append('email', email);
+    formData.append('country', country);
 
-    await resetPassword(formData);
-    // if (R.path(['payload', 'data'])(response).includes('Invalid')) {
-    // return setEmailErrorMessage('Email address doesn\'t exist in our database.');
-    // }
-
-    setEmailErrorMessage('');
-    setStage(2);
+    await resetPassword(formData)
+      .then(response => {
+        const { ok = false, msg } = response.payload.data;
+        if (ok) {
+          setEmailErrorMessage('');
+          setStage(2);
+        } else {
+          setEmailErrorMessage(msg);
+        }
+      })
+      .catch(() => {
+        setEmailErrorMessage(t('auth.signUp.messages.errorTryAgain'));
+      });
   };
   return (
     isActive && (
@@ -64,7 +87,9 @@ const ResetPasswordModal = ({
               <ModalInput
                 name="email"
                 value={email}
-                onChange={e => setEmail(e.target.value)}
+                onInvalid={onEmailChange}
+                onInput={onEmailChange}
+                onChange={onEmailChange}
                 type="email"
                 placeholder={t('auth.forgotPassword.emailAddress')}
                 required

@@ -8,6 +8,7 @@ export const FETCH_STORE_COUPONS_BY_PAGINATION = `${namespace}/FETCH_STORE_COUPO
 export const fetchStoreCoupons = (storeName: string) => ({
   type: FETCH_STORE_COUPONS,
   payload: {
+    client: 'default',
     request: {
       url: `/api/coupons/${storeName}`,
     },
@@ -20,6 +21,7 @@ export const fetchStoreCouponsByPagination = (
 ) => ({
   type: FETCH_STORE_COUPONS_BY_PAGINATION,
   payload: {
+    client: 'default',
     request: {
       url: `/api/coupons/${storeName}${pagination ? `/${pagination}` : ''}`,
     },
@@ -34,6 +36,7 @@ export const requestSearch = (payload: string) => ({
 export const onSearch = (keywords: string) => ({
   type: SEARCH,
   payload: {
+    client: 'default',
     request: {
       url: `/jsonstores?keywords=${keywords}`,
     },

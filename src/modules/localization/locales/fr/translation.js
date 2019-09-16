@@ -2,20 +2,25 @@
 export default {
   titles: {
     coupons:
-      'Automate Your Coupons, Savings and Cashback - %mmmm %yyyy - Piggy',
+      'Automatisez vos coupons, vos économies et votre cashback - %mmmm %yyyy - Piggy',
     storeCoupons:
       'Top des bons de réduction, codes promo et remises en ligne de storeName en ligne - %mmmm %yyyy - Piggy',
   },
   header: {
-    coupons: 'Coupons',
+    coupons: 'Codes promo',
     stores: 'Boutiques',
     getApp: "Obtenez l'application !",
-    login: 'Connexion',
-    createAccount: 'Créer un compte',
-    myAccount: 'Mon compte',
+    login: 'Se Connecter',
+    createAccount: 'Créez un compte',
+    myAccount: 'Mon Compte',
     inviteFriends: 'Inviter des amis',
-    settings: 'Réglages',
+    settings: 'Paramètres',
     signOut: 'Déconnexion',
+    updateAccount: 'Mettre le compte à jour',
+    checkEarnings: 'Vérifier vos gains',
+    storeFavorites: 'Favoris magasin',
+    referralBonus: 'Bonus de parrainage',
+    passwordReset: 'Réinitialisez votre mot de passe',
   },
   auth: {
     social: {
@@ -27,7 +32,7 @@ export default {
       subTitle: "C'est aussi simple que ça",
       or: 'ou',
       emailAddress: 'Adresse mail',
-      button: 'Rejoindre Piggy',
+      button: 'Rejoignez Piggy',
       preFooter: {
         label:
           "En m'inscrivant, j'accepte d'être ajouté à la liste d'envoi journalière et aux",
@@ -53,7 +58,7 @@ export default {
     },
     signIn: {
       title: 'Bon retour parmi nous',
-      subTitle: 'Bon retour parmi nous',
+      subTitle: "C'est bon de vous revoir.",
       or: 'ou',
       emailAddress: 'Adresse e-mail',
       password: 'Mot de passe',
@@ -61,13 +66,18 @@ export default {
       forgotPassword: 'Mot de passe oublié ?',
       footer: {
         text: "Vous n'êtes pas membre?",
-        button: 'Rejoindre Piggy',
+        button: 'Rejoignez Piggy',
       },
       messages: {
+        emptyEmail: 'Veuillez entrer une adresse email valide',
         noUserExists: 'Aucun utilisateur existant avec cet email',
         incorrectPassword: 'Mot de passe incorrect',
         emailNotContainComma:
           "La partie suivie de '@' ne doit pas contenir les symboles ','.",
+        emailShouldContain: `Veuillez inclure un '@' dans l'adresse e-mail. {{email}} manque un '@'`,
+        emailShouldNotContain: `Une partie suivant '@' ne doit pas contenir le symbole '{{specialChar}}'`,
+        emailIsIncomplete: `S'il vous plaît entrer une partie suivant '@', {{email}} est incomplète`,
+        emailIsInvalid: `'.' est utilisé à une mauvaise position dans '{{emailDomain}}'.`,
         inputEmpty: 'Veuillez remplir ce champ',
       },
     },
@@ -322,10 +332,11 @@ export default {
         privacyPolicy: 'Politique de confidentialité',
         sitemap: 'Plan du site',
         unsubscribe: 'Se désabonner',
-        eula: "ALUF (accord de licence pour l'utilisateur final)",
+        eula: 'EULA',
+        impressum: 'Impressum',
       },
       text: 'Copyright',
-      allRightReserved: 'Tous droits réservés',
+      allRightReserved: 'Tous droits réservés.',
     },
   },
   templates: {

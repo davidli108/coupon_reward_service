@@ -13,6 +13,7 @@ export const RESET_COUPONS = `${namespace}/RESET_COUPONS`;
 export const getCoupons = () => ({
   type: GET_COUPONS,
   payload: {
+    client: 'default',
     request: {
       url: '/api/coupons',
     },
@@ -26,6 +27,7 @@ export const resetCoupons = () => ({
 export const loadMore = (count: number) => ({
   type: LOAD_MORE,
   payload: {
+    client: 'default',
     request: {
       url: `/api/coupons/${count}`,
     },
@@ -35,6 +37,7 @@ export const loadMore = (count: number) => ({
 export const getCouponsByCategory = (category: string) => ({
   type: GET_COUPONS_BY_CATEGORY,
   payload: {
+    client: 'default',
     request: {
       url: `/api/coupons/${category}`,
     },
@@ -49,6 +52,7 @@ export const requestSearch = (payload: string) => ({
 export const onSearch = (keywords: string) => ({
   type: SEARCH,
   payload: {
+    client: 'default',
     request: {
       url: `/jsonstores?keywords=${keywords}`,
     },

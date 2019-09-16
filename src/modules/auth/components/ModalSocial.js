@@ -3,22 +3,36 @@ import React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
+import { getOrigin } from '../AuthHelper';
+import AppConfig from '@config/AppConfig';
 
 import googleIcon from '../assets/googleIcon.png';
 import facebookIcon from '../assets/facebookIcon.png';
 
-const ModalSocial = ({ t }) => (
-  <div>
-    <ModalSocial.LinkFacebook href="/fb">
-      <img src={facebookIcon} alt="facebook" />
-      {t('auth.social.loginFacebook')}
-    </ModalSocial.LinkFacebook>
-    <ModalSocial.LinkGoogle href="/google/signin">
-      <img src={googleIcon} alt="google" />
-      {t('auth.social.loginGoogle')}
-    </ModalSocial.LinkGoogle>
-  </div>
-);
+const ModalSocial = ({ t }) => {
+  const origin = getOrigin();
+
+  return (
+    <div>
+      <ModalSocial.LinkFacebook
+        href={`${AppConfig.apiUrl}/fb${
+          origin !== 'US' ? `?origin=${origin}` : ''
+        }`}
+      >
+        <img src={facebookIcon} alt="facebook" />
+        {t('auth.social.loginFacebook')}
+      </ModalSocial.LinkFacebook>
+      <ModalSocial.LinkGoogle
+        href={`${AppConfig.apiUrl}/google/signin${
+          origin !== 'US' ? `?origin=${origin}` : ''
+        }`}
+      >
+        <img src={googleIcon} alt="google" />
+        {t('auth.social.loginGoogle')}
+      </ModalSocial.LinkGoogle>
+    </div>
+  );
+};
 
 ModalSocial.LinkFacebook = styled.a`
   position: relative;

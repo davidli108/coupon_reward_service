@@ -68,13 +68,11 @@ export const getLocale = () => {
 };
 
 export const getLocaleConfig = () => {
-  const locale = getLocale();
-
   return {
     // TODO: enable authentication on all domains after feature support added
-    isAuthenticationAvailable: locale === Locale.en,
+    isAuthenticationAvailable: true,
     // TODO: enable follow store on all domains after feature support added
-    isFollowStoreAvailable: locale === Locale.en,
+    isFollowStoreAvailable: true,
   };
 };
 
