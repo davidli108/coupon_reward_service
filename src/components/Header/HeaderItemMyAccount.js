@@ -46,10 +46,6 @@ const HeaderItemMyAccount = ({
           {t('coupons.earnings')}
         </HeaderItemMyAccount.DropdownItem>
 
-        <HeaderItemMyAccount.DropdownItem href="/account/referrals">
-          {t('header.inviteFriends')}
-        </HeaderItemMyAccount.DropdownItem>
-
         <HeaderItemMyAccount.DropdownItem href="/account/preferences">
           {t('header.settings')}
         </HeaderItemMyAccount.DropdownItem>
