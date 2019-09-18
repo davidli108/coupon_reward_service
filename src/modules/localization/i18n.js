@@ -68,8 +68,6 @@ export const getLocale = () => {
 };
 
 export const getLocaleConfig = () => {
-  const locale = getLocale();
-
   return {
     // TODO: enable authentication on all domains after feature support added
     isAuthenticationAvailable: Object.values(Locale).includes(locale),
