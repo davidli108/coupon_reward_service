@@ -70,7 +70,7 @@ export const getLocale = () => {
 export const getLocaleConfig = () => {
   return {
     // TODO: enable authentication on all domains after feature support added
-    isAuthenticationAvailable: true,
+    isAuthenticationAvailable: Object.values(Locale).includes(locale),
     // TODO: enable follow store on all domains after feature support added
     isFollowStoreAvailable: true,
   };

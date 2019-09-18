@@ -194,14 +194,7 @@ const Header = ({
       bgColor: '#40c8e5',
       hoverBgColor: '#02a6bf',
       title: t('header.storeFavorites'),
-      redirect: '/account/earnings',
-      direct: true,
-    },
-    {
-      bgColor: '#40c8e5',
-      hoverBgColor: '#02a6bf',
-      title: t('header.referralBonus'),
-      redirect: '/account/referrals',
+      redirect: '/account/favorites',
       direct: true,
     },
     {
