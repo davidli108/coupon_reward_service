@@ -35,7 +35,13 @@ const AddSaving = ({ t, i18n }: AddSavingProps) => (
           target="_blank"
           rel="noopener noreferrer"
         >
-          {t('cashbackStores.activateSavings')}
+          {i18n.language === 'jp' ? (
+            <AddSaving.span>
+              {t('cashbackStores.activateSavings')}
+            </AddSaving.span>
+          ) : (
+            <span>{t('cashbackStores.activateSavings')}</span>
+          )}
         </AddSaving.ActivateButton>
         <AddSaving.LimitedOffer>
           <p>{t('cashbackStores.limitedOffer')}</p>
@@ -45,6 +51,10 @@ const AddSaving = ({ t, i18n }: AddSavingProps) => (
     </AddSaving.InfoWrapper>
   </AddSaving.Wrapper>
 );
+
+AddSaving.span = styled.span`
+  font-size: 97%;
+`;
 
 AddSaving.Wrapper = styled.div`
   width: 100%;

@@ -16,11 +16,11 @@ const getLocalTitle = (name, t) => {
       return t('categories.beauty');
     case 'Books & Media':
       return t('categories.booksMedia');
-    case 'Business & Office':
+    case 'Office & Business':
       return t('categories.officeBusiness');
     case 'Canada':
       return t('categories.canada');
-    case 'Cell Phones':
+    case 'Cellphones':
       return t('categories.cellphones');
     case 'Clothing':
       return t('categories.clothing');
@@ -30,18 +30,18 @@ const getLocalTitle = (name, t) => {
       return t('categories.departmentStores');
     case 'Electronics':
       return t('categories.electronics');
-    case 'Food & Entertainment':
+    case 'Dining And Entertainment':
       return t('categories.diningEntertainment');
     case 'Gifts & Flowers':
       return t('categories.giftFlowers');
     case 'Health':
       return t('categories.health');
-    case 'Hobbies and Crafts':
+    case 'Hobbies & Crafts':
       return t('categories.hobbiesCrafts');
     case 'Home & Garden':
       return t('categories.HomeGarden');
     case 'Jewelry':
-      return t('categories.jewelry');
+      return t('categories.jewelries');
     case 'Music & Instruments':
       return t('categories.musicInstruments');
     case 'Party Supplies':
@@ -52,9 +52,9 @@ const getLocalTitle = (name, t) => {
       return t('categories.services');
     case 'Shoes':
       return t('categories.shoes');
-    case 'Sports & Outdoors':
+    case 'Sports And Fitness':
       return t('categories.sportsFitness');
-    case 'Toys':
+    case 'Toys And Games':
       return t('categories.toysGames');
     case 'Travel':
       return t('categories.travel');

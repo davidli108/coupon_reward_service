@@ -19,13 +19,8 @@ const BrandNeverOverpay = ({ t, i18n, storeName }: BrandNeverOverpayProps) => {
     <>
       <BrandNeverOverpay.Cover>
         <BrandNeverOverpay.NeverOverpay isCovered={isCovered}>
-          <h2>{t('storeCoupons.neverOverlay')}</h2>
-          <p>
-            {t('storeCoupons.automaticallyAddAll').replace(
-              'storeName',
-              storeName,
-            )}
-          </p>
+          <h2>{t('storeCoupons.neverOverlay', { storeName })}</h2>
+          <p>{t('storeCoupons.automaticallyAddAll', { storeName })}</p>
         </BrandNeverOverpay.NeverOverpay>
         <span onClick={handleCoveredToggler}>
           {isCovered ? 'See More' : <MdKeyboardArrowUp />}

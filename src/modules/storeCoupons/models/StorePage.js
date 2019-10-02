@@ -44,7 +44,7 @@ export type Offer = {
   offer_name: string,
   offer_id: string,
   discount_amt: string,
-  discount_type: string,
+  discount_type: number,
   cashback_ok: string,
   offer_type: string,
   numeric_type: string,

@@ -4,13 +4,13 @@ import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
 import moment from 'moment';
+import i18n, { currencyLocaleFormat } from '@modules/localization/i18n';
 
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
 import StoreListLoader from './loaders/StoreListLoader';
-import AppConfig from '@config/AppConfig';
 
 type FeaturedStoreListProps = {
-  t: string => string,
+  t: Function,
   stores: Object,
   loaded: boolean,
 };
@@ -19,33 +19,44 @@ const FeaturedStoreList = ({ t, stores, loaded }: FeaturedStoreListProps) => {
   if (loaded) {
     return (
       <FeaturedStoreList.Wrapper>
-        {stores.map(store => (
-          <FeaturedStoreList.Item
-            key={`store_${store.store_id}`}
-            href={store.offer_link}
-            target="_blank"
-          >
-            <img
-              src={
-                store.offer_img
-                  ? `${AppConfig.cloudUrl}${store.offer_img}`
-                  : placeholder
-              }
-              onError={e => {
-                e.target.onerror = null;
-                e.target.src = placeholder;
-              }}
-              alt={`${store.store_name || ''} Coupon Codes ${moment().format(
-                'MMMM',
-              )} | ${moment().format('YYYY')}`}
-            />
-            <p>
-              {store.cashback_text
-                .replace('Cash Back', t('global.cashBack'))
-                .replace('Instant Savings', t('global.instantSaving'))}
-            </p>
-          </FeaturedStoreList.Item>
-        ))}
+        {stores.map(store => {
+          const discount = store.cashbackok
+            ? store.pay_type === 1
+              ? currencyLocaleFormat(
+                  store.cashback_text,
+                  store.country || i18n.language,
+                )
+              : `${store.cashback_text}%`
+            : '';
+          const cashBackMessageKey = store.cashbackok
+            ? store.pay_type === 1
+              ? 'global.amCashBack'
+              : 'global.upToCashBack'
+            : 'global.instantSaving';
+          const cashBackText =
+            store.override || t(cashBackMessageKey, { discount });
+          const date = moment().format('MMMM | YYYY');
+
+          return (
+            <FeaturedStoreList.Item
+              key={`store_${store.store_id}`}
+              href={store.offer_link}
+              target="_blank"
+            >
+              <img
+                src={store.offer_img || placeholder}
+                onError={e => {
+                  e.target.onerror = null;
+                  e.target.src = placeholder;
+                }}
+                alt={`${store.store_name || ''} ${t(
+                  'storeCoupons.codes',
+                )} ${date.charAt(0).toUpperCase() + date.slice(1)}`}
+              />
+              <p>{cashBackText}</p>
+            </FeaturedStoreList.Item>
+          );
+        })}
       </FeaturedStoreList.Wrapper>
     );
   }
@@ -92,6 +103,7 @@ FeaturedStoreList.Wrapper = styled.div`
 `;
 
 FeaturedStoreList.Item = styled.a`
+  text-align: center;
   min-width: 117px;
   display: flex;
   flex-flow: column nowrap;

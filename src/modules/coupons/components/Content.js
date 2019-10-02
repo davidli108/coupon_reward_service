@@ -71,7 +71,7 @@ const Content = ({
   const [loadCount, setLoadCount] = useState(20);
   const [isLoadedCategories, setIsLoadedCategories] = useState(false);
   const [activeCategory, setActiveCategory] = useState(match.params.name);
-  const [currentModal, setCurrentModal] = React.useState(null);
+  const [currentModal, setCurrentModal] = useState(null);
 
   const localeConfig = getLocaleConfig();
 
@@ -238,7 +238,7 @@ const Content = ({
             />
           ) : (
             getDealsFilter !== 'favoriteStores' && (
-              <Content.NoData>{t('coupons.noCouponsFound')}</Content.NoData>
+              <Coupons coupons={getFilteredDeals} />
             )
           )}
 

@@ -18,6 +18,7 @@ import { getIsFavorite } from '@modules/favorites/FavoritesReducer';
 import {
   getLocaleConfig,
   redirectToEnOrigin,
+  currencyLocaleFormat,
 } from '@modules/localization/i18n';
 import { getOrigin } from '@modules/auth/AuthHelper';
 
@@ -56,6 +57,18 @@ const BrandHeader = ({
   const [currentModal, setCurrentModal] = React.useState(null);
   const localeConfig = getLocaleConfig();
 
+  const discount = store.store_cashback_ok
+    ? store.store_numeric_type === 1
+      ? currencyLocaleFormat(store.store_discount, store.store_country_code)
+      : `${store.store_discount}`
+    : '';
+  const cashBackMessageKey = store.store_cashback_ok
+    ? store.store_network_status === 1
+      ? store.store_numeric_type === 1
+        ? 'global.amCashBack'
+        : 'global.upToCashBack'
+      : 'global.noCashBack'
+    : 'global.instantSaving';
   const toggleFavoriteStore = () => {
     if (
       !localeConfig.isAuthenticationAvailable ||
@@ -112,12 +125,12 @@ const BrandHeader = ({
             </>
           )}
           <BrandHeader.SmNonVisible>
-            <span>{store.store_cashback_text}</span>
+            <span>{t(cashBackMessageKey, { discount })}</span>
           </BrandHeader.SmNonVisible>
         </BrandHeader.OffersStats>
         <BrandHeader.SmVisible>
           <BrandHeader.CashBack>
-            {store.store_cashback_text}
+            {t(cashBackMessageKey, { discount })}
           </BrandHeader.CashBack>
         </BrandHeader.SmVisible>
         <BrandHeader.FollowStoreWrapper isFavorite={isFavorite}>

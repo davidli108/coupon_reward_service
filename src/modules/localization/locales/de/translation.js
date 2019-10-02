@@ -4,7 +4,7 @@ export default {
     coupons:
       'Automatisieren Sie Ihre Gutscheine, Einsparungen und Cashback - %mmmm %yyyy - Piggy',
     storeCoupons:
-      'Top Online storeName Gutscheine, Gutscheincodes und Cashback - %mmmm %yyyy - Piggy',
+      'Top Online {{ storeName }} Gutscheine, Gutscheincodes und Cashback - %mmmm %yyyy - Piggy',
   },
   header: {
     coupons: 'Gutscheine',
@@ -28,7 +28,7 @@ export default {
       loginGoogle: 'Mit Google anmelden',
     },
     signUp: {
-      title: 'Registrieren, um automatisches Bargeld Zurückzubekommen',
+      title: 'Registrieren Sie, um automatisches Cashback zubekommen',
       subTitle: 'So einfach ist das',
       or: 'oder',
       emailAddress: 'E-Mail Adresse',
@@ -139,7 +139,7 @@ export default {
     health: 'Gesundheit',
     hobbiesCrafts: 'Hobbies & Handwerk',
     HomeGarden: 'Haus & Garten',
-    jewelry: 'Schmuck',
+    jewelries: 'Schmuck',
     musicInstruments: 'Musikinstrumente',
     partySupplies: 'Partybedarf',
     pets: 'Haustiere',
@@ -150,10 +150,17 @@ export default {
     travel: 'Reise',
   },
   global: {
+    invalidDate: 'Ablauf: Ungültiges Datum',
+    earnCashBack: '{{discount}} Cashback verdienen!',
     learnMore: 'Mehr erfahren',
     get25dollars: '25 € erhalten',
-    cashBack: 'Bargeld zurück',
+    amCashBack: '{{discount}} Cashback',
+    overOff: 'Über {{discount}} Rabatt',
+    cashBack: 'Cashback',
+    cashBackPrint: '{{print}} Cashback',
     instantSaving: 'Sofortige Einsparungen',
+    noCashBack: 'Kein Cashback',
+    upToCashBack: 'Bis zu {{discount}} Cashback',
     downloadPiggy:
       "Laden Sie die automatischen Coupons von Piggy's bei Checkout herunter und verpassen Sie nie wieder einen Deal!",
     neverMiss: 'Verpassen Sie niemals ein Coupon mit unserer kostenlosen App!',
@@ -183,6 +190,7 @@ export default {
       freeShipping: 'Kostenloser Versand',
       get5dollarOff: 'Holen Sie sich 5 € Rabatt',
     },
+    off: ' Rabatt',
     seeMore: 'Mehr sehen',
     myAccount: 'Mein Konto',
     earnings: 'Einnahmen',
@@ -193,16 +201,16 @@ export default {
     testimonials: 'Referenzen',
     messages: {
       maxCashBack:
-        '- gibt den maximalen Cashback, die maximale Prämie oder den Rabatt an, den ein Benutzer verdienen kann. Einige Artikel können einen niedrigeren Cash-Back-Betrag ausweisen und einige Ausschlüsse bestehen. Nicht alle Geschäfte zahlen Cashback. Cash Back nicht mit externen Gutscheinen oder Angeboten kombinierbar. Weitere Informationen finden Sie in den Nutzungsbedingungen oder in den einzelnen Shop-Profilen.',
+        '- gibt den maximalen Cashback, die maximale Prämie oder den Rabatt an, den ein Benutzer verdienen kann. Einige Artikel können einen niedrigeren Cashback-Betrag ausweisen und einige Ausschlüsse bestehen. Nicht alle Geschäfte zahlen Cashback. Cashback nicht mit externen Gutscheinen oder Angeboten kombinierbar. Weitere Informationen finden Sie in den Nutzungsbedingungen oder in den einzelnen Shop-Profilen.',
     },
     controls: {
-      allDeals: 'All Angebote',
+      allDeals: 'Alle Angebote',
       onlyCoupons: 'Nur Gutscheine',
       favoriteStores: 'Lieblingsshops',
     },
     type: {
-      free: 'Frei',
-      shipping: 'Lieferung',
+      free: 'Kostenloser',
+      shipping: 'Versand',
       coupon: 'Gutschein',
       code: 'Code',
       deal: 'Angebote',
@@ -213,8 +221,9 @@ export default {
       tooltip:
         'Klicken Sie um einzukaufen. Verwenden Sie diesen Code an der Kasse, um zu sparen.',
     },
-    todaysFeatureCoupon: 'Heutige Gutschein von',
-    upToCashback: '+ bis zu {{discount}} Cash Back',
+    todaysFeatureCoupon: 'Heutige Gutschein von {{storeName}}',
+    upToCashback: '+ bis zu {{discount}} Cashback',
+    plusCashBack: '+{{discount}} Cashback',
     noCouponsFound: 'Keine Gutscheine gefunden',
     noFeaturedCouponsFound: 'Keine vorgestellten Gutscheine gefunden',
     login: 'Anmeldung',
@@ -226,9 +235,9 @@ export default {
       "Besuchen Sie eine Store-Seite und klicken Sie auf 'Store folgen', um sie Ihrer Liste hinzuzufügen",
     activateModal: {
       title: 'Nie wieder zu viel bezahlen bei',
-      content: `Sparen Sie Zeit und Geld mit automatischer coupuns. Piggy erscheint an der Kasse und wendet automatisch die besten Angebote.`,
+      content: `Sparen Sie Zeit und Geld mit automatischer Gutscheine. Piggy erscheint an der Kasse und wendet automatisch die besten Angebote.`,
       couponAbout:
-        'Wir finden die {{title}} - coupons, die Sie einfach weiter shoppen!',
+        'Wir finden die {{title}} - Gutscheine, die Sie einfach weiter shoppen!',
       button: 'Gutscheine jetzt aktivieren',
     },
     installExtension: {
@@ -249,7 +258,7 @@ export default {
       browseStore:
         'Durchsuchen Sie Store-Gutscheine und beliebte Cash-Back-Stores',
       findAmazing:
-        'Finden Sie erstaunliche Einsparungen, Coupons und automatisches Cash Back!',
+        'Finden Sie erstaunliche Einsparungen, Coupons und automatisches Cashback!',
     },
     seeMore: 'Mehr sehen',
     myAccount: 'Mein Konto',
@@ -262,27 +271,28 @@ export default {
     browseStores: 'Stöbern Sie mehr als 1000 Shops',
     addSaving: 'Sparen hinzufügen',
     instantlyApplyAll:
-      'Alle Gutscheine und Cashbacks sofort mit der App von Piggy anwenden',
+      'Alle Gutscheine und Cashback sofort mit der App von Piggy anwenden',
     activateSavings: 'Einsparungen aktivieren',
     limitedOffer: 'Limitiertes Angebot',
     piggyBonus: 'Piggy Bonus',
   },
   storeCoupons: {
     viewLatestCoupons:
-      'Sehen Sie sich die neuesten Online-Gutscheine für storeName unten an! Verpassen Sie niemals einen Coupon oder Cash Back aus einem unserer 3.000 anderen Stores mit unserer kostenlosen App für mobile Apps und Browser! Alle Online-Gutscheine von storeName können mit kostenlosen automatischen Rabatten kombiniert werden. Bis zu 3,0 % Cash Back! Nur von Piggy! Jeder dieser storeName-Gutscheincodes und Promotion kann mit unserem automatischen Cash Back-storeName kombiniert werden',
+      'Sehen Sie sich die neuesten Online-Gutscheine für {{ storeName }} unten an! Verpassen Sie niemals einen Coupon oder Cashback aus einem unserer 3.000 anderen Stores mit unserer kostenlosen App für mobile Apps und Browser! Alle Online-Gutscheine von {{ storeName }} können mit kostenlosen automatischen Rabatten kombiniert werden. Bis zu 3,0 % Cashback! Nur von Piggy! Jeder dieser {{ storeName }}-Gutscheincodes und Promotion kann mit unserem automatischen Cashback-{{ storeName }} kombiniert werden',
     returnPolicy: 'Rückgaberecht',
     shipping: 'Lieferung',
     secrets: 'Geheimnis',
+    codes: 'Gutschein Code',
     codesAndDeals: 'Gutschein Code & Angebote',
     followStore: 'Shops folgen',
     neverOverlay: 'Nie wieder zu viel bezahlen',
     automaticallyAddAll:
-      'Alle aktiven Gutscheine automatisch zur ihrem Bestellung mit Piggy´s  Browser-  Erweiterung hinzugfügt. Wenn Sie zur Kasse gehen, wird Piggy Gutscheine und Cashback bei storeName und viel mehr',
+      'Alle aktiven Gutscheine automatisch zur ihrem Bestellung mit Piggy´s  Browser-  Erweiterung hinzugfügt. Wenn Sie zur Kasse gehen, wird Piggy Gutscheine und Cashback bei {{storeName}} und viel mehr.',
     automaticCoupons: 'Automatische Gutscheine ',
     priceCheck: 'Preischeck',
     secretRates: 'Geheime Tarife und Angebote',
     noCouponsAndDeal:
-      'Für storeName wurden keine Gutscheine oder Angebote gefunden. Werfen Sie einen Blick auf unsere Top-Angebote und Deals.',
+      'Für {{ storeName }} wurden keine Gutscheine oder Angebote gefunden. Werfen Sie einen Blick auf unsere Top-Angebote und Deals.',
   },
   build: {
     visitStore: 'Laden besuchen',
@@ -290,14 +300,14 @@ export default {
     freeShipping: 'Kostenloser Versand',
     freeShippingOver49:
       'KOSTENLOSER Versand Standard Bodenversand für Bestellungen über 49 € !',
-    shopBuild: 'Shop Build mit 3,0 % Cash Back',
+    shopBuild: 'Shop Build mit 3,0 % Cashback',
     returnPolicy: 'Rücknahmegarantie',
     returnItems30days:
       'Sie können eine Rückgabe für einen Artikel innerhalb von 30 Tagen nach Erhalt für eine Rückerstattung veranlassen. Rücksendungen, die zwischen 31 und 60 Tagen nach Erhalt angefordert werden, sind nur für die Gutschrift im Geschäft berechtigt. Rücksendungen außerhalb unserer 30 bis 60-tägigen allgemeinen Rückgabebedingungen werden nicht akzeptiert. Rückerstattungen werden Ihrem Konto gutgeschrieben (abzüglich Rücksendung), sobald der Artikel bei uns eingegangen und durch unser Lager geprüft wurde.',
-    threePercentCashBack: 'Plus erhalten Sie 3,0% Cash Back von Build!',
+    threePercentCashBack: 'Plus erhalten Sie 3,0% Cashback von Build!',
     otherPopularStores: 'Andere beliebte Geschäfte',
     indicatesMaximumCashBack:
-      '- gibt den maximalen Cashback, die maximale Prämie oder den Rabatt an, den ein Benutzer verdienen kann. Einige Artikel können einen niedrigeren Cash-Back-Betrag ausweisen und einige Ausschlüsse bestehen. Nicht alle Geschäfte zahlen Cashback. Cash Back nicht mit externen Gutscheinen oder Angeboten kombinierbar. Weitere Informationen finden Sie in den Nutzungsbedingungen oder in den einzelnen Shop-Profilen.',
+      '- gibt den maximalen Cashback, die maximale Prämie oder den Rabatt an, den ein Benutzer verdienen kann. Einige Artikel können einen niedrigeren Cash-Back-Betrag ausweisen und einige Ausschlüsse bestehen. Nicht alle Geschäfte zahlen Cashback. Cashback nicht mit externen Gutscheinen oder Angeboten kombinierbar. Weitere Informationen finden Sie in den Nutzungsbedingungen oder in den einzelnen Shop-Profilen.',
   },
   footer: {
     stopMissingOut:
@@ -333,8 +343,5 @@ export default {
       text: 'Copyright',
       allRightReserved: 'Alle Rechte vorbehalten.',
     },
-  },
-  templates: {
-    upToCashback: 'Bis zu %s Cash Back',
   },
 };

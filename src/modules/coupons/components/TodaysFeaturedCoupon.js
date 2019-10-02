@@ -16,6 +16,7 @@ import placeholder from '@modules/coupons/assets/image-placeholder.png';
 import {
   getLocaleConfig,
   redirectToEnOrigin,
+  currencyLocaleFormat,
 } from '@modules/localization/i18n';
 import { getOrigin } from '@modules/auth/AuthHelper';
 
@@ -32,6 +33,7 @@ const modal = {
 
 type TodaysFeaturedCouponProps = {
   t: Function,
+  i18n: Object,
   store: Store,
   favorites: any,
   requestNonce: Function,
@@ -41,17 +43,19 @@ type TodaysFeaturedCouponProps = {
 
 const TodaysFeaturedCoupon = ({
   t,
+  i18n,
   store,
   favorites,
   requestNonce,
   isAuthenticated,
   isExtensionInstalled,
 }: TodaysFeaturedCouponProps) => {
-  const [currentModal, setCurrentModal] = React.useState(null);
+  const [currentModal, setCurrentModal] = useState(null);
   const [showActivateModal, setShowActivateModal] = useState(false);
   const localeConfig = getLocaleConfig();
 
   const isFavorite = Boolean(favorites[store.store_id]);
+
   const toggleFavoriteStore = () => {
     if (
       !localeConfig.isAuthenticationAvailable ||
@@ -86,49 +90,49 @@ const TodaysFeaturedCoupon = ({
   };
 
   const formatDiscountAmt = (store: Store) => {
-    const domain = [
-      { name: '.co.uk', value: '£', locale: 'en', prefix: true },
-      { name: '.com', value: '$', locale: 'en', prefix: true },
-      { name: '.de', value: '€', locale: 'de', prefix: false },
-      { name: '.fr', value: '€', locale: 'fr', prefix: false },
-    ];
-    const url = new URL(window.location);
-    const currency = domain.find(({ name }) =>
-      new RegExp(`${name}$`).test(url.hostname),
-    );
-
-    if (!currency || store.discount_amt === '0.00') {
+    if (!store.cashback_ok || parseFloat(store.discount_amt) === 0) {
       return <small>{t('global.instantSaving')}</small>;
     }
 
-    if (store.discount_type === '1') {
-      if (currency.prefix) {
-        return `${currency.value}${parseFloat(
-          store.discount_amt,
-        ).toLocaleString(currency.locale)} OFF`;
-      }
-      return `${parseFloat(store.discount_amt).toLocaleString(
-        currency.locale,
-      )}${currency.value} OFF`;
-    }
+    const discount = store.cashback_ok
+      ? store.discount_type === 1
+        ? currencyLocaleFormat(
+            store.discount_amt,
+            store.country || i18n.language,
+          )
+        : `${parseFloat(store.discount_amt)}%`
+      : '';
 
-    return parseFloat(store.discount_amt) + '% OFF';
+    return discount + t('coupons.off');
   };
+
+  const discount = store.cashback_ok
+    ? store.numeric_type === 1
+      ? currencyLocaleFormat(
+          store.discount_print,
+          store.country || i18n.language,
+        )
+      : `${store.discount_print}%`
+    : '';
+
+  const cashBackMessageText = store.noCashBack
+    ? 'global.noCashBack'
+    : store.cashback_ok
+    ? store.numeric_type === 1
+      ? 'coupons.plusCashBack'
+      : 'global.upToCashBack'
+    : '';
 
   return (
     <TodaysFeaturedCoupon.Wrapper>
       <h2>
-        {t('coupons.todaysFeatureCoupon')} {store.store_name}
+        {t('coupons.todaysFeatureCoupon', { storeName: store.store_name })}
       </h2>
       <TodaysFeaturedCoupon.Content>
         <TodaysFeaturedCoupon.LogoControlsWrapper>
           <Link to={store.store_page_link}>
             <TodaysFeaturedCoupon.Logo
-              src={
-                store.store_logo
-                  ? `${AppConfig.cloudUrl}${store.store_logo}`
-                  : placeholder
-              }
+              src={store.store_logo || placeholder}
               onError={e => {
                 e.target.onerror = null;
                 e.target.src = placeholder;
@@ -161,9 +165,17 @@ const TodaysFeaturedCoupon = ({
 
         <TodaysFeaturedCoupon.OfferingWrapper>
           <TodaysFeaturedCoupon.Offering>
-            <span>{formatDiscountAmt(store)}</span>
+            {i18n.language === 'fr' || i18n.language === 'de' ? (
+              <TodaysFeaturedCoupon.frSpan>
+                {formatDiscountAmt(store)}
+              </TodaysFeaturedCoupon.frSpan>
+            ) : (
+              <span>{formatDiscountAmt(store)}</span>
+            )}
             <span>
-              {t('coupons.upToCashback', { discount: store.discount })}
+              {store.text_override
+                ? store.discount_print
+                : t(cashBackMessageText, { discount })}
             </span>
           </TodaysFeaturedCoupon.Offering>
         </TodaysFeaturedCoupon.OfferingWrapper>
@@ -176,11 +188,7 @@ const TodaysFeaturedCoupon = ({
             isAuthenticated={isAuthenticated}
             isExtensionInstalled={isExtensionInstalled}
             store={store.store_name}
-            logo={
-              store.store_logo
-                ? `${AppConfig.cloudUrl}${store.store_logo}`
-                : placeholder
-            }
+            logo={store.store_logo || placeholder}
             code={store.coupon_code}
             link={store.offer_link}
           />
@@ -212,16 +220,16 @@ const TodaysFeaturedCoupon = ({
           callback={modalCallback}
           title={store.store_name}
           coupon={store.coupon_code}
-          logo={
-            store.store_logo
-              ? `${AppConfig.cloudUrl}${store.store_logo}`
-              : placeholder
-          }
+          logo={store.store_logo || placeholder}
         />
       )}
     </TodaysFeaturedCoupon.Wrapper>
   );
 };
+
+TodaysFeaturedCoupon.frSpan = styled.span`
+  font-size: 40px !important;
+`;
 
 TodaysFeaturedCoupon.Wrapper = styled.div`
   display: flex;
@@ -465,8 +473,6 @@ TodaysFeaturedCoupon.Offering = styled.div`
   justify-content: center;
 
   > span {
-    white-space: nowrap;
-
     small {
       display: block;
       line-height: normal;
@@ -534,7 +540,8 @@ TodaysFeaturedCoupon.Offering = styled.div`
     flex-flow: column nowrap;
     justify-content: flex-start;
     align-items: flex-start;
-    width: 50%;
+    width: fit-content;
+    padding-right: 5px;
   `}
 `;
 

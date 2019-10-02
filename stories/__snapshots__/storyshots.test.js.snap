@@ -1294,6 +1294,7 @@ exports[`Storyshots Components|@Store Featured 1`] = `
 }
 
 .c4 {
+  text-align: center;
   font-weight: 500;
   line-height: 23px;
   font-size: 13px;
@@ -1376,7 +1377,7 @@ exports[`Storyshots Components|@Store Featured 1`] = `
       <p
         className="c4"
       >
-        
+        $2 Cash Back
       </p>
     </li>
   </ul>
@@ -1672,7 +1673,7 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
             onClick={[Function]}
           >
             <img
-              alt="Target Coupon Codes September | 2019"
+              alt="Target Coupon Codes October | 2019"
               className="c4"
               onError={[Function]}
               src="image-placeholder.png"
@@ -1684,12 +1685,9 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
         >
           <p
             className="c6"
-            dangerouslySetInnerHTML={
-              Object {
-                "__html": "",
-              }
-            }
-          />
+          >
+            Instant Savings
+          </p>
           <a
             className="c7"
             href="/coupons/undefined"
@@ -2096,7 +2094,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
               onClick={[Function]}
             >
               <img
-                alt="Target Coupon Codes September | 2019"
+                alt="Target Coupon Codes October | 2019"
                 className="c8"
                 onError={[Function]}
                 src="image-placeholder.png"
@@ -2108,12 +2106,9 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
           >
             <p
               className="c10"
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "",
-                }
-              }
-            />
+            >
+              Instant Savings
+            </p>
             <a
               className="c11"
               href="/coupons/undefined"

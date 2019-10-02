@@ -1,5 +1,4 @@
 // @flow
-import * as R from 'ramda';
 import * as React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
@@ -17,7 +16,7 @@ const Coupons = ({ coupons, isLoad }: CouponsProps) => {
     <Coupons.Wrapper>
       {coupons && coupons.length !== 0 ? (
         <>
-          {R.remove(0, 1, coupons).map((coupon, index) => (
+          {coupons.map((coupon, index) => (
             <Coupon
               key={`coupon_${index}_${coupon.show_exp_date}`}
               {...coupon}

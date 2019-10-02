@@ -17,7 +17,7 @@ export const CouponCategories = [
   'health',
   'hobbies-and-crafts',
   'home-and-garden',
-  'jewelry',
+  'jewelries',
   'music-and-instruments',
   'party-supplies',
   'Pets',

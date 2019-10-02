@@ -6,6 +6,7 @@ import moment from 'moment';
 
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
 import AppConfig from '@config/AppConfig';
+import i18n, { currencyLocaleFormat } from '@modules/localization/i18n';
 
 type SearchBarItemsProps = {
   t: Function,
@@ -62,7 +63,13 @@ const SearchBarItems = ({
             />
             <div>
               <h3>{item.store_name}</h3>
-              <p>{item.store_discount}</p>
+              <p>
+                {t('global.earnCashBack', {
+                  discount: item.store_discount.includes('%')
+                    ? item.store_discount.replace(/[^@\d$|%£€ .]/g, '')
+                    : currencyLocaleFormat(item.store_discount, i18n.language),
+                })}
+              </p>
             </div>
           </SearchBarItems.Item>
         ))

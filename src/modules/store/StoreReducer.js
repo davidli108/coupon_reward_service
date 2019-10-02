@@ -1,15 +1,15 @@
 // @flow
 import * as R from 'ramda';
 
-import { type Store, type Feature } from './models';
+import { type Feature, type Store } from './models';
 import {
   GET_STORE,
+  LOAD_MORE_STATE,
+  REQUEST_SEARCH,
+  SEARCH,
   SET_FILTER,
   SET_FILTER_CLEAR,
   SET_LOAD_MORE,
-  LOAD_MORE_STATE,
-  SEARCH,
-  REQUEST_SEARCH,
 } from './StoreActions';
 
 export const STATE_KEY = 'store';
@@ -46,6 +46,14 @@ const StoreReducer = (state: StoresState = initialState, action: Object) => {
         R.pathOr([], ['payload', 'data', 'featured_stores']),
       )(action);
 
+      const paidPlacementStores = R.compose(
+        R.pathOr([], ['payload', 'data', 'paid_placements', 'featured_stores']),
+      )(action);
+
+      paidPlacementStores.forEach(store => {
+        storesData.splice(store.position - 1, 0, { ...store });
+      });
+
       const count = R.compose(
         R.pathOr([], ['payload', 'data', 'stores_count']),
       )(action);
@@ -55,6 +63,26 @@ const StoreReducer = (state: StoresState = initialState, action: Object) => {
         ['payload', 'data', 'categories'],
         action,
       );
+
+      const staticMerchantBar = R.pathOr(
+        [],
+        ['payload', 'data', 'paid_placements', 'static_merchant_bar'],
+        action,
+      );
+
+      staticMerchantBar.forEach((v, i) => {
+        staticMerchantBar[i].offer_link = v.url;
+        staticMerchantBar[i].offer_img = v.logo_url;
+        staticMerchantBar[i].pay_type = v.pay_type;
+        staticMerchantBar[i].cashbackok = parseInt(v.store_data.cashbackok);
+        staticMerchantBar[i].country = v.country;
+        staticMerchantBar[i].override = v.cashback_text_override || false;
+        featuredStores.splice(
+          staticMerchantBar[i].position - 1,
+          1,
+          staticMerchantBar[i],
+        );
+      });
 
       return R.compose(
         R.assoc<Object, Object>('featured', featuredStores),

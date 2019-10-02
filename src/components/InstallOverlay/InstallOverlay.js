@@ -6,6 +6,7 @@ import Cookie from 'js-cookie';
 import moment from 'moment';
 import AppConfig from '@config/AppConfig';
 import { withTranslation } from 'react-i18next';
+import { getLocale } from '@modules/localization/i18n';
 
 type InstallOverlayProps = {
   t: Function,
@@ -22,7 +23,8 @@ const top =
 const InstallOverlay = ({ t, isActive, callback }: InstallOverlayProps) => {
   useEffect(() => {
     if (isActive) {
-      const popup = window.open(AppConfig.extension.url, 'extensionWindow');
+      const popupUrl = `${AppConfig.extension.url}?hl=${getLocale()}`;
+      const popup = window.open(popupUrl, 'extensionWindow');
 
       const focusInterval = setInterval(() => {
         if (popup.closed) {

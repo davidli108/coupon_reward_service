@@ -22,6 +22,7 @@ import HeaderItemMyAccount from './HeaderItemMyAccount';
 import logo from './logo.svg';
 import axios from 'axios';
 import AppConfig from '@config/AppConfig';
+import { MdArrowForward } from 'react-icons/md';
 import { getOrigin, isMainSite } from '@modules/auth/AuthHelper';
 
 const modal = {
@@ -38,21 +39,36 @@ type renderHeaderItemsProps = {
   redirect?: string,
   direct?: boolean,
   onClick?: Function,
+  border?: string,
+  separator?: boolean,
 };
 
 const renderHeaderItems = (items: Array<renderHeaderItemsProps>) =>
   items.map(
-    ({ bgColor, hoverBgColor, title, link, direct, redirect, onClick }) => (
+    ({
+      bgColor,
+      hoverBgColor,
+      title,
+      link,
+      redirect,
+      direct,
+      onClick,
+      border,
+      separator,
+    }) => (
       <HeaderItem
         bgColor={bgColor}
         hoverBgColor={hoverBgColor}
         key={title}
         link={link}
+        border={border}
+        separator={separator}
         direct={direct}
         redirect={redirect}
         onClick={onClick}
       >
-        {title}
+        <span>{title}</span>
+        <MdArrowForward />
       </HeaderItem>
     ),
   );
@@ -156,20 +172,22 @@ const Header = ({
 
   const authItems = [
     {
-      bgColor: '#34a6bf',
-      hoverBgColor: '#29899e',
-      title: t('header.login'),
+      bgColor: '#02a6bf',
+      hoverBgColor: '#01899e',
+      title: t('header.createAccount'),
+      separator: true,
       onClick: () => {
-        setCurrentModal(modal.modalSignIn);
+        setCurrentModal(modal.modalSignUp);
         setOpen(false);
       },
     },
     {
-      bgColor: '#02a6bf',
-      hoverBgColor: '#01899e',
-      title: t('header.createAccount'),
+      bgColor: '#34a6bf',
+      hoverBgColor: '#29899e',
+      border: '2px',
+      title: t('header.login'),
       onClick: () => {
-        setCurrentModal(modal.modalSignUp);
+        setCurrentModal(modal.modalSignIn);
         setOpen(false);
       },
     },
@@ -221,59 +239,71 @@ const Header = ({
 
   return (
     <Header.Wrapper>
-      <HeaderItem redirect="/" direct>
-        <Header.Logo src={logo} alt="Join Piggy Logo" />
-      </HeaderItem>
-      <Header.Controls>
-        {renderHeaderItems(items)}
-        {localeConfig.isAuthenticationAvailable && isAuthenticated && (
-          <HeaderItemMyAccount
-            bgColor="#34a6bf"
-            hoverBgColor="#29899e"
-            title={t('header.myAccount')}
-            logout={logout}
-          />
-        )}
-        {localeConfig.isAuthenticationAvailable &&
-          !isAuthenticated &&
-          renderHeaderItems(authItems)}
-      </Header.Controls>
-      <Header.BurgerButtonWrapper>
-        <BurgerButton isOpen={isOpen} onClick={() => setOpen(!isOpen)} />
-      </Header.BurgerButtonWrapper>
-      <Header.SlidingMenu isOpen={isOpen}>
-        <div>
-          <Header.SlidingMenuLogo src={logo} alt="Join Piggy Logo" />
+      <Header.Container>
+        <HeaderItem redirect="/" direct>
+          <Header.Logo src={logo} alt="Join Piggy Logo" />
+        </HeaderItem>
+        <Header.Controls>
           {renderHeaderItems(items)}
-          {localeConfig.isAuthenticationAvailable &&
-            isAuthenticated &&
-            renderHeaderItems(mobileMyAccount)}
+          {localeConfig.isAuthenticationAvailable && isAuthenticated && (
+            <HeaderItemMyAccount
+              bgColor="#34a6bf"
+              hoverBgColor="#29899e"
+              title={t('header.myAccount')}
+              logout={logout}
+            />
+          )}
           {localeConfig.isAuthenticationAvailable &&
             !isAuthenticated &&
             renderHeaderItems(authItems)}
-        </div>
-      </Header.SlidingMenu>
-      <Header.Overlay isOpen={isOpen} onClick={() => setOpen(false)} />
+        </Header.Controls>
+        <Header.MobileRegister>
+          <HeaderItem
+            bgColor="#02a6bf"
+            hoverBgColor="#01899e"
+            border="2px"
+            title={t('header.login')}
+            onClick={() => setCurrentModal(modal.modalSignIn)}
+          >
+            {t('header.login')}
+          </HeaderItem>
+        </Header.MobileRegister>
+        <Header.BurgerButtonWrapper onClick={() => setOpen(!isOpen)}>
+          <BurgerButton isOpen={isOpen} onClick={() => setOpen(!isOpen)} />
+        </Header.BurgerButtonWrapper>
+        <Header.SlidingMenu isOpen={isOpen}>
+          <div>
+            {renderHeaderItems(items)}
+            {localeConfig.isAuthenticationAvailable &&
+              isAuthenticated &&
+              renderHeaderItems(mobileMyAccount)}
+            {localeConfig.isAuthenticationAvailable &&
+              !isAuthenticated &&
+              renderHeaderItems(authItems)}
+          </div>
+        </Header.SlidingMenu>
+        <Header.Overlay isOpen={isOpen} onClick={() => setOpen(false)} />
 
-      {currentModal === modal.modalSignIn && (
-        <SignInModal
-          onRouteModalReset={() => setCurrentModal(modal.modalResetPassword)}
-          onRouteModal={() => setCurrentModal(modal.modalSignUp)}
-          closeModal={() => setCurrentModal(null)}
-        />
-      )}
-      {currentModal === modal.modalSignUp && (
-        <SignUpModal
-          onRouteModal={() => setCurrentModal(modal.modalSignIn)}
-          closeModal={() => setCurrentModal(null)}
-        />
-      )}
-      {currentModal === modal.modalResetPassword && (
-        <ResetPasswordModal
-          onRouteModal={() => setCurrentModal(modal.modalSignUp)}
-          closeModal={() => setCurrentModal(null)}
-        />
-      )}
+        {currentModal === modal.modalSignIn && (
+          <SignInModal
+            onRouteModalReset={() => setCurrentModal(modal.modalResetPassword)}
+            onRouteModal={() => setCurrentModal(modal.modalSignUp)}
+            closeModal={() => setCurrentModal(null)}
+          />
+        )}
+        {currentModal === modal.modalSignUp && (
+          <SignUpModal
+            onRouteModal={() => setCurrentModal(modal.modalSignIn)}
+            closeModal={() => setCurrentModal(null)}
+          />
+        )}
+        {currentModal === modal.modalResetPassword && (
+          <ResetPasswordModal
+            onRouteModal={() => setCurrentModal(modal.modalSignUp)}
+            closeModal={() => setCurrentModal(null)}
+          />
+        )}
+      </Header.Container>
     </Header.Wrapper>
   );
 };
@@ -282,14 +312,39 @@ Header.Wrapper = styled.header`
   font-family: Roboto, Arial, sans-serif;
   letter-spacing: 0.3px;
   font-weight: 400;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #40c8e5;
-  width: 100%;
-  height: 100px;
+  height: 85px;
+  box-sizing: border-box;
   z-index: 5;
-  border-bottom: 1px solid #32b2c5;
+`;
+
+Header.Container = styled.div`
+  width: 1170px;
+  box-sizing: border-box;
+  padding: 0 15px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+Header.MobileRegister = styled.div`
+  display: flex;
+  margin: 0 50px 0 0;
+
+  > div {
+    > a {
+      margin: 0;
+      width: 89px;
+    }
+  }
+
+  ${breakpoint('lg')`
+    display: none;
+  `}
 `;
 
 Header.Overlay = styled.div`
@@ -299,32 +354,25 @@ Header.Overlay = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  background: black;
-  opacity: 0.4;
   width: 100%;
   height: 100%;
-  z-index: 3;
-
-  ${breakpoint('lg')`
-    display: none;
-  `}
+  z-index: 4;
 `;
 
 Header.Logo = styled.img`
-  height: 70px;
-  width: 210px;
+  display: block;
   cursor: pointer;
-`;
-
-Header.SlidingMenuLogo = styled(Header.Logo)`
-  margin: 25px auto;
-  display: inline-block;
 `;
 
 Header.BurgerButtonWrapper = styled.div`
   position: absolute;
-  right: 0;
+  right: 10px;
   z-index: 7;
+  width: 40px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   ${breakpoint('lg')`
     display: none;
@@ -347,34 +395,66 @@ Header.SlidingMenu = styled.div`
   position: absolute;
   top: 0;
   right: 0;
-  width: ${({ isOpen }) => (isOpen ? '350px' : '0')};
+  width: ${({ isOpen }) => (isOpen ? '366px' : '0')};
   height: 100%;
-  background: #00c8e5;
+  background: #fff;
   overflow: hidden;
   transition: 0.5s;
   z-index: 6;
   max-width: 100%;
+  box-shadow: ${({ isOpen }) =>
+    isOpen ? '0 4px 24px rgba(0, 0, 0, .25);' : 'none;'};
 
   > div {
     display: flex;
     flex-direction: column;
-    padding: 45px 30px;
+    padding: 55px 15px 45px 30px;
 
     > div {
       width: 100%;
-      height: 48px;
-      background: #00c8e5;
+      height: 60px;
+
+      &:nth-child(4) {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+      }
 
       &:hover {
         background: none;
       }
 
       > a {
-        font-size: 15px;
+        color: #374b5a;
+        font-weight: 400;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex: 1;
         padding: 0;
+        margin: 0;
+
+        svg {
+          width: 24px;
+          height: 24px;
+          fill: #b3bbc2;
+        }
 
         &:hover {
           color: #006f7f;
+        }
+
+        &:last-child {
+          margin: 0;
+        }
+      }
+
+      &:last-child {
+        > a {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #00ba4a;
+          font-weight: 500;
         }
       }
     }
@@ -382,6 +462,14 @@ Header.SlidingMenu = styled.div`
 
   ${breakpoint('lg')`
     display: none;
+  `}
+
+  ${breakpoint('xs')`
+    width: ${({ isOpen }) => (isOpen ? '320px' : '0')};
+  `}
+
+  ${breakpoint('sx')`
+    width: ${({ isOpen }) => (isOpen ? '363px' : '0')};
   `}
 `;
 

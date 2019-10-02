@@ -87,16 +87,58 @@ const CouponsReducer = (
         action,
       );
 
-      const offersCount = R.pathOr(
-        0,
-        ['payload', 'data', 'offers_count'],
+      const primaryFeaturedCoupons = R.pathOr(
+        false,
+        ['payload', 'data', 'paid_placements', 'primary_featured_coupons'],
         action,
+      );
+
+      const featuredCoupon =
+        primaryFeaturedCoupons && primaryFeaturedCoupons.length > 0
+          ? primaryFeaturedCoupons[0]
+          : offersData[0];
+
+      const featuredPlacements = R.pathOr(
+        [],
+        ['payload', 'data', 'paid_placements', 'secondary_featured_coupons'],
+        action,
+      );
+
+      featuredPlacements.forEach(offer => {
+        offersData.splice(offer.position - 1, 0, { ...offer });
+      });
+
+      const offersCount = R.add(
+        R.pathOr(0, ['payload', 'data', 'offers_count'], action),
+        featuredPlacements.length,
       );
 
       const categories = {
         categories: R.pathOr([], ['payload', 'data', 'categories'], action),
         stores: R.pathOr([], ['payload', 'data', 'featured_stores'], action),
+        featuredCoupon: featuredCoupon,
       };
+
+      const staticMerchantBar = R.pathOr(
+        [],
+        ['payload', 'data', 'paid_placements', 'static_merchant_bar'],
+        action,
+      );
+
+      staticMerchantBar.forEach((v, i) => {
+        const store = {};
+        store.cashback_text = v.cashback_text;
+        store.override = v.cashback_text_override || false;
+        store.offer_img = v.logo_url;
+        store.offer_link = v.url;
+        store.short_name = v.store_data.short_name;
+        store.store_id = v.store_data.store_id;
+        store.store_name = v.store_data.store_name;
+        store.cashbackok = parseInt(v.store_data.cashbackok);
+        store.pay_type = v.pay_type;
+        store.country = v.country;
+        categories.stores.splice(staticMerchantBar[i].position - 1, 1, store);
+      });
 
       return R.compose(
         R.assoc<Object, Object>('stores', offersData),
@@ -104,6 +146,7 @@ const CouponsReducer = (
         R.assoc<Object, Object>('categories', categories),
       )(state);
     }
+
     case REQUEST_SEARCH: {
       return R.assoc<Object, Object>('searchIsLoading', false, state);
     }
@@ -114,12 +157,14 @@ const CouponsReducer = (
         R.assoc<Object, Object>('searchIsLoading', true),
       )(state);
     }
+
     case SET_DEALS_FILTER: {
       return R.assoc<Object, Object>(
         'dealsFilter',
         R.path(['payload'], action),
       )(state);
     }
+
     case SET_FILTER_TYPE: {
       const [filterType, filterValue] = R.path(['payload'], action).split('_');
       return R.assoc<Object, Object>(`${filterType}Filter`, filterValue, state);

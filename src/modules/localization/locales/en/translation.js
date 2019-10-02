@@ -4,14 +4,14 @@ export default {
     coupons:
       'Automate Your Coupons, Savings and Cashback - %mmmm %yyyy - Piggy',
     storeCoupons:
-      'Top Online storeName Coupons, Promo Codes and Cashback - %mmmm %yyyy - Piggy',
+      'Top Online {{ storeName }} Coupons, Promo Codes and Cashback - %mmmm %yyyy - Piggy',
   },
   header: {
     coupons: 'Coupons',
     stores: 'Stores',
     getApp: 'Get the App!',
     login: 'Login',
-    createAccount: 'Create An Account',
+    createAccount: 'Register',
     myAccount: 'My Account',
     inviteFriends: 'Invite Friends',
     settings: 'Settings',
@@ -138,7 +138,7 @@ export default {
     health: 'Health',
     hobbiesCrafts: 'Hobbies and Crafts',
     HomeGarden: 'Home & Garden',
-    jewelry: 'Jewelry',
+    jewelries: 'Jewelry',
     musicInstruments: 'Music & Instruments',
     partySupplies: 'Party Supplies',
     pets: 'Pets',
@@ -149,10 +149,17 @@ export default {
     travel: 'Travel',
   },
   global: {
+    invalidDate: 'Exp. Invalid Date',
+    earnCashBack: 'Earn {{discount}} Cash Back!',
     learnMore: 'Learn more',
     get25dollars: 'Get $25',
+    amCashBack: '{{discount}} Cash Back',
+    overOff: 'Over {{discount}} off',
     cashBack: 'Cash back',
+    cashBackPrint: '{{print}} Cash back',
     instantSaving: 'Instant Savings',
+    noCashBack: 'No Cash back',
+    upToCashBack: 'Up to {{discount}} Cash Back',
     downloadPiggy:
       "Download Piggy's Automatic Coupons at Checkout and Never Miss a Deal Again!",
     neverMiss: 'Never miss a coupon with our free app!',
@@ -182,6 +189,7 @@ export default {
       freeShipping: 'Free Shipping',
       get5dollarOff: 'Get a $5 Off',
     },
+    off: ' OFF',
     seeMore: 'See More',
     myAccount: 'My Account',
     earnings: 'Earnings',
@@ -211,8 +219,9 @@ export default {
       viewDeal: 'View Deal',
       tooltip: 'Click to shop. Use this code at checkout to save!',
     },
-    todaysFeatureCoupon: "Today's Featured Coupon From",
+    todaysFeatureCoupon: "Today's Featured Coupon From {{storeName}}",
     upToCashback: '+ up to {{discount}} Cash Back',
+    plusCashBack: '+{{discount}} Cash Back',
     noCouponsFound: 'No Coupons Found',
     noFeaturedCouponsFound: 'No Featured Coupons Found',
     login: 'Login',
@@ -265,20 +274,21 @@ export default {
   },
   storeCoupons: {
     viewLatestCoupons:
-      'View the latest Online Coupons for storeName below! Never miss a storeName coupon or Cash Back opportunities from any of our 3,000 other stores with our Free Mobile App and Browser app! Any of storeName online coupons can be combined with Free, Automatic Rebates.Up to 3.0% Cash Back! Only from Piggy!Any of these storeName coupon codes and promotions can be combined with our Automatic Cash Back at storeName',
+      'View the latest Online Coupons for {{storeName}} below! Never miss a {{ storeName }} coupon or Cash Back opportunities from any of our 3,000 other stores with our Free Mobile App and Browser app! Any of {{ storeName }} online coupons can be combined with Free, Automatic Rebates.Up to 3.0% Cash Back! Only from Piggy!Any of these {{ storeName }} coupon codes and promotions can be combined with our Automatic Cash Back at {{ storeName }}',
     returnPolicy: 'Return Policy',
     shipping: 'Shipping',
     secrets: 'Secrets',
+    codes: 'Coupon Codes',
     codesAndDeals: 'Coupon Codes & Deals',
     followStore: 'Follow Store',
     neverOverlay: 'Never Overpay Again',
     automaticallyAddAll:
-      "Automatically add all active coupons to your order with Piggy's browser extension. When you get to checkout, Piggy will find coupons and cash back at storeName and more.",
+      "Automatically add all active coupons to your order with Piggy's browser extension. When you get to checkout, Piggy will find coupons and cash back at {{storeName}} and more.",
     automaticCoupons: 'Automatic Coupons',
     priceCheck: 'Price Check',
     secretRates: 'Secret Rates and Deals',
     noCouponsAndDeal:
-      'No Coupons or Deals found for storeName. Take a look at our top offers and deals below.',
+      'No Coupons or Deals found for {{storeName}}. Take a look at our top offers and deals below.',
   },
   build: {
     visitStore: 'Visit Store',
@@ -328,8 +338,5 @@ export default {
       text: 'Copyright',
       allRightReserved: 'All Rights Reserved.',
     },
-  },
-  templates: {
-    upToCashback: 'Up to %s Cash Back',
   },
 };

@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import CouponCode from './CouponCode';
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
 import AppConfig from '@config/AppConfig';
+import { currencyLocaleFormat } from '@modules/localization/i18n';
 
 const discountColors = [
   '#d0c000',
@@ -30,7 +31,7 @@ type OfferProps = {
   offer_link: string,
   discount: string,
   discount_print: string,
-  discount_type: string,
+  discount_type: number,
   discount_amt: string,
   offer_name: string,
   offer_success_print: string,
@@ -40,6 +41,9 @@ type OfferProps = {
   store_page_link: string,
   isAuthenticated: boolean,
   isExtensionInstalled: boolean,
+  cashback_ok: number,
+  numeric_type: number,
+  country: string,
 };
 
 const Offer = ({
@@ -61,17 +65,32 @@ const Offer = ({
   isThisStore,
   isAuthenticated,
   isExtensionInstalled,
+  cashback_ok,
+  numeric_type,
+  country,
 }: OfferProps) => {
   const [randomColor] = useState(Math.floor(Math.random() * 7));
-
+  const discountAmount = cashback_ok
+    ? numeric_type === 1
+      ? currencyLocaleFormat(discount_print, country || i18n.language)
+      : `${parseFloat(discount_print).toFixed(1)}%`
+    : '';
+  const cashBackMessageKey = cashback_ok
+    ? 'coupons.plusCashBack'
+    : 'global.instantSaving';
   return (
     <>
       <Offer.Wrapper>
         {offer_success_print && (
-          <Offer.NewDeal>{offer_success_print}</Offer.NewDeal>
+          <Offer.NewDeal>
+            {offer_success_print.replace(
+              'New Coupon',
+              t('coupons.shopBy.newCoupon'),
+            )}
+          </Offer.NewDeal>
         )}
         <Offer.Content>
-          {!isThisStore || discount_amt === '0.00' ? (
+          {!isThisStore || parseFloat(discount_amt) === 0 ? (
             <Offer.Image>
               <img
                 src={
@@ -92,19 +111,30 @@ const Offer = ({
           ) : (
             <Offer.Discount color={discountColors[randomColor]}>
               <span>
-                {discount_type === '1' &&
-                  `$${Number.parseFloat(discount_amt).toFixed()}`}
-                {discount_type === '2' &&
-                  `${Number.parseFloat(discount_amt).toFixed()}%`}
+                {discount_type === 1 &&
+                  `${currencyLocaleFormat(
+                    discount_amt,
+                    country || i18n.language,
+                  )}`}
+                {discount_type === 2 && `${parseFloat(discount_amt)}%`}
               </span>
-              <span>Off</span>
+
+              {i18n.language === 'jp' ? (
+                <Offer.jpSpan>{t('coupons.off')}</Offer.jpSpan>
+              ) : i18n.language === 'fr' ? (
+                <Offer.frSpan>{t('coupons.off')}</Offer.frSpan>
+              ) : (
+                <span>{t('coupons.off')}</span>
+              )}
             </Offer.Discount>
           )}
           <Offer.DescriptionWrapper>
             <Offer.Description>{offer_name}</Offer.Description>
             <Offer.SxVisible>
               <Offer.AdditionalInfo>
-                <span>{discount_print}</span>
+                <span>
+                  {t(cashBackMessageKey, { discount: discountAmount })}
+                </span>
               </Offer.AdditionalInfo>
             </Offer.SxVisible>
           </Offer.DescriptionWrapper>
@@ -113,6 +143,7 @@ const Offer = ({
           <Offer.ButtonWrapper>
             <CouponCode
               t={t}
+              i18n={i18n}
               code={coupon_code}
               link={offer_link}
               store={store_name}
@@ -123,10 +154,12 @@ const Offer = ({
               }
             />
             <Offer.ExpDate>
-              Exp.{' '}
-              {moment(show_exp_date.slice(5), 'MM/DD/YYYY').format(
-                i18n.language === 'en' ? 'MM/DD/YYYY' : 'DD/MM/YYYY',
-              )}
+              {show_exp_date === 'No Expiration!'
+                ? t('global.invalidDate')
+                : 'Exp. ' +
+                  moment(show_exp_date.slice(5), 'MM/DD/YYYY').format(
+                    i18n.language === 'en' ? 'MM/DD/YYYY' : 'DD/MM/YYYY',
+                  )}
             </Offer.ExpDate>
           </Offer.ButtonWrapper>
         </Offer.Container>
@@ -140,6 +173,18 @@ const Offer = ({
   );
 };
 
+Offer.jpSpan = styled.span`
+  font-weight: bold;
+  line-height: 46px;
+  font-size: 35px !important;
+  margin: 0 auto;
+`;
+Offer.frSpan = styled.span`
+  font-size: 33px !important;
+  font-weight: bold;
+  line-height: 46px;
+  margin: 0 auto;
+`;
 Offer.Wrapper = styled.div`
   position: relative;
   display: flex;
@@ -173,7 +218,7 @@ Offer.NewDeal = styled.div`
 `;
 
 Offer.Discount = styled.div`
-  width: 110px;
+  width: 300px;
   display: flex;
   flex-flow: column nowrap;
   color: ${props => props.color || '#d0c000'};
@@ -199,7 +244,7 @@ Offer.Discount = styled.div`
 `;
 
 Offer.Image = styled.div`
-  width: 110px;
+  width: 300px;
   height: 80px;
   display: flex;
   justify-content: center;
