@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { withTranslation } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
-import { FaChevronDown } from 'react-icons/fa';
+import { FaCaretDown } from 'react-icons/fa';
 
 type HeaderItemMyAccountProps = {
   t: any,
@@ -26,10 +26,9 @@ const HeaderItemMyAccount = ({
 
   return (
     <HeaderItemMyAccount.Wrapper onMouseLeave={() => setIsDrop(false)}>
-      <HeaderItemMyAccount.Separator />
       <p onMouseOver={() => setIsDrop(true)}>
         <span>{title}</span>
-        <FaChevronDown />
+        <FaCaretDown />
       </p>
       <HeaderItemMyAccount.DropdownWrapper
         isShow={isDrop}
@@ -59,11 +58,11 @@ HeaderItemMyAccount.Wrapper = styled.div`
   position: relative;
   display: flex;
   align-items: center;
+  margin: 0 0 0 10px;
 
   p {
     font-size: 16px;
     padding: 0 10px;
-    color: #00ba4a;
     letter-spacing: 0.53px;
     font-weight: 700;
     display: flex;
@@ -75,7 +74,7 @@ HeaderItemMyAccount.Wrapper = styled.div`
     transition: all 0.3s ease;
     box-sizing: border-box;
     cursor: pointer;
-    border: 2px solid #00ba4a;
+    color: #899197;
 
     svg {
       width: 12px;
@@ -85,7 +84,7 @@ HeaderItemMyAccount.Wrapper = styled.div`
     &::before,
     &::after {
       content: '';
-      background: #00dc58;
+      background: #899197;
       position: absolute;
       z-index: -1;
       border-radius: 5px;
@@ -105,7 +104,6 @@ HeaderItemMyAccount.Wrapper = styled.div`
     p {
       background: 0 0;
       color: #fff;
-      border: 2px solid transparent;
 
       &::after {
         height: 100%;
@@ -129,14 +127,15 @@ HeaderItemMyAccount.Separator = styled.div`
 HeaderItemMyAccount.DropdownWrapper = styled.div`
   display: ${props => (props.isShow ? 'flex' : 'none')};
   flex-direction: column;
-  padding: 5px 0;
   position: absolute;
-  right: 0;
+  left: 0;
   top: 100%;
-  min-width: 100%;
+  min-width: 160px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   border-radius: 4px;
   background-color: white;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
 `;
 
 HeaderItemMyAccount.DropdownItem = styled.a`
@@ -148,12 +147,11 @@ HeaderItemMyAccount.DropdownItem = styled.a`
   display: flex;
   align-items: center;
   height: 35px;
-  border-radius: 5px;
   position: relative;
   background: 0 0;
-  transition: all 0.3s ease;
   box-sizing: border-box;
   cursor: pointer;
+  border-bottom: 1px solid #ccc;
 
   span {
     position: relative;
@@ -165,12 +163,10 @@ HeaderItemMyAccount.DropdownItem = styled.a`
     content: '';
     background: #899197;
     position: absolute;
-    border-radius: 5px;
   }
 
   &::after {
     content: '';
-    transition: all 0.3s ease;
     height: 0;
     left: 50%;
     top: 50%;

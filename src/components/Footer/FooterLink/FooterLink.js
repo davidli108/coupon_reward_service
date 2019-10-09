@@ -22,13 +22,18 @@ FooterLink.Wrapper = styled.li`
     flex: 1 0 100%;
     max-width: 100%;
     text-align: center;
-    margin: 0 0 24px;
+    padding: 5px 0;
+  `}
+
+  ${breakpoint('ss')`
+    flex: 1 0 50%;
+    max-width: 50%;
+    text-align: center;
   `}
 
   ${breakpoint('md')`
     flex: 1 0 33.3333%;
     max-width: 33.3333%;
-    margin: 0 0 35px;
     text-align: left;
   `}
 

@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
 type HeaderItemProps = {
-  bgColor?: string,
   children: React.Node,
   direct: boolean,
   hoverBgColor?: string,
@@ -14,10 +13,10 @@ type HeaderItemProps = {
   onClick?: () => void,
   border?: string,
   separator?: boolean,
+  activeClass?: string,
 };
 
 const HeaderItem = ({
-  bgColor,
   children,
   direct,
   hoverBgColor,
@@ -26,27 +25,32 @@ const HeaderItem = ({
   onClick,
   border,
   separator,
+  activeClass,
 }: HeaderItemProps) => (
-  <HeaderItem.Wrapper
-    bgColor={bgColor}
-    hoverBgColor={hoverBgColor}
-    onClick={onClick}
-    border={border}
-  >
-    {direct && redirect && (
-      <HeaderItem.LogoLink href={redirect}>{children}</HeaderItem.LogoLink>
-    )}
-
+  <>
     {separator && <HeaderItem.Separator />}
+    <HeaderItem.Wrapper
+      hoverBgColor={hoverBgColor}
+      onClick={onClick}
+      border={border}
+    >
+      {direct && redirect && (
+        <HeaderItem.LogoLink href={redirect}>{children}</HeaderItem.LogoLink>
+      )}
 
-    {link && <HeaderItem.NavLink to={link}>{children}</HeaderItem.NavLink>}
+      {link && (
+        <HeaderItem.NavLink className={activeClass} to={link}>
+          {children}
+        </HeaderItem.NavLink>
+      )}
 
-    {!link && !redirect && !direct && (
-      <HeaderItem.Link border={border} separator={separator}>
-        {children}
-      </HeaderItem.Link>
-    )}
-  </HeaderItem.Wrapper>
+      {!link && !redirect && !direct && (
+        <HeaderItem.Link border={border} separator={separator}>
+          {children}
+        </HeaderItem.Link>
+      )}
+    </HeaderItem.Wrapper>
+  </>
 );
 
 HeaderItem.defaultProps = {
@@ -55,21 +59,19 @@ HeaderItem.defaultProps = {
 
 HeaderItem.NavLink = styled(NavLink)`
   font-size: 16px;
-  padding: 0 10px;
+  line-height: 19px;
+  padding: 8px 10px;
   color: #899197;
   letter-spacing: 0.53px;
-  margin: 0 0 0 8px;
   font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 35px;
   border-radius: 5px;
   border: 2px solid transparent;
   position: relative;
   background: 0 0;
   transition: all 0.3s ease;
-  box-sizing: border-box;
   cursor: pointer;
 
   svg {
@@ -95,6 +97,7 @@ HeaderItem.NavLink = styled(NavLink)`
       width: 0;
     }
     
+    &.active,
     &:hover {
       background: 0 0;
       color: #fff;
@@ -115,7 +118,8 @@ HeaderItem.NavLink = styled(NavLink)`
 
 HeaderItem.Link = styled.a`
   font-size: 16px;
-  padding: 0 10px;
+  line-height: 19px;
+  padding: 8px 35px;
   color: #00ba4a;
   letter-spacing: 0.53px;
   margin: ${({ separator }) => (separator ? '0' : '0 8px')};
@@ -123,13 +127,10 @@ HeaderItem.Link = styled.a`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 115px;
-  height: 35px;
   border-radius: 5px;
   position: relative;
   background: 0 0;
   transition: all 0.3s ease;
-  box-sizing: border-box;
   cursor: pointer;
   border: ${({ border }) => (border ? '2px solid #00ba4a' : '')};
 
@@ -138,6 +139,8 @@ HeaderItem.Link = styled.a`
   }
 
   ${breakpoint('lg')`
+    margin: 0;  
+  
     &::before,
     &::after {
       content: '';
@@ -181,18 +184,45 @@ HeaderItem.LogoLink = styled.a`
   display: flex;
   align-items: center;
   box-sizing: border-box;
+
+  img {
+    height: 38px;
+  }
+
+  ${breakpoint('ss')`
+    img {
+      margin: 10px 0 0;
+      height: 46px;
+    }
+  `}
+
+  ${breakpoint('md')`
+    img {
+      margin: 15px 0 0;
+      height: 57px;
+    }
+  `}
+
+  ${breakpoint('lg')`
+    img {
+      margin: 0;
+    }
+  `}
 `;
 
 HeaderItem.Wrapper = styled.div`
   position: relative;
   display: flex;
   align-items: center;
+  margin: 0;
 
-  &:last-child {
-    a {
-      margin: 0 0 0 8px;
+  ${breakpoint('lg')`
+    margin: 0 10px;
+    
+    &:last-of-type {
+      margin: 0 0 0 10px;
     }
-  }
+  `}
 `;
 
 HeaderItem.Separator = styled.div`
@@ -201,7 +231,8 @@ HeaderItem.Separator = styled.div`
   height: 3px;
   border-radius: 50%;
   background: #000;
-  margin: 0 5px 0 18px;
+  position: relative;
+  right: -6px;
 
   ${breakpoint('lg')`
     display: block;

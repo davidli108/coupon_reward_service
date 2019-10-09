@@ -19,16 +19,16 @@ type FooterProps = {
 const Footer = ({ t, i18n }: FooterProps) => {
   const footerLinks = {
     en: [
-      { url: '/howtoinstall', text: t('footer.menu.howToInstall') },
+      { url: '/about-us', text: t('footer.menu.aboutUs') },
       { url: '/blog', text: t('footer.menu.blog') },
       { url: '/about-cashback', text: t('footer.menu.aboutCashBack') },
-      { url: '/cashback-apps', text: t('footer.menu.aboutOurApp') },
-      { url: '/careers', text: t('footer.menu.careers') },
-      { url: '/contactus', text: t('footer.menu.contact') },
-      { url: '/howtoremove', text: t('footer.menu.howToUninstall') },
       { url: '/help', text: t('footer.menu.help') },
       { url: '/consumer-resources', text: t('footer.menu.consumerResources') },
-      { url: '/about-us', text: t('footer.menu.aboutUs') },
+      { url: '/contactus', text: t('footer.menu.contact') },
+      { url: '/howtoinstall', text: t('footer.menu.howToInstall') },
+      { url: '/howtoremove', text: t('footer.menu.howToUninstall') },
+      { url: '/cashback-apps', text: t('footer.menu.aboutOurApp') },
+      { url: '/careers', text: t('footer.menu.careers') },
     ],
     gb: [
       { url: '/howtoinstall', text: t('footer.menu.howToInstall') },
@@ -170,8 +170,9 @@ Footer.DownloadAppLink = styled.a`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 260px;
+  width: 164px;
   height: 54px;
+  padding: 0 10px 0 22px;
   border-radius: 4px;
   border: 1px solid #62707b;
   background-color: #fff;
@@ -234,7 +235,8 @@ Footer.DownloadAppLink = styled.a`
   `}
 
   ${breakpoint('md')`
-    width: 260px;
+    width: 164px;
+    padding: 0 10px 0 22px;
     margin: 0;
 
     > div {
@@ -244,10 +246,6 @@ Footer.DownloadAppLink = styled.a`
       justify-content: center;
       align-items: center;
     }
-  `}
-
-  ${breakpoint('lg')`
-    margin: 0 0 0 29px;
   `}
 `;
 
@@ -283,21 +281,19 @@ Footer.Container = styled.div`
 Footer.LogoWrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
   flex: 1 0 auto;
 
   ${breakpoint('xs')`
-    max-width: 320px;
     margin: 0 auto 35px;
   `}
 
   ${breakpoint('md')`
-    max-width: 410px;
+    max-width: 50%;
     margin: 0 0 35px;
   `}
 
   ${breakpoint('lg')`
-    max-width: 410px;
+    max-width: 50%;
     margin: 0;
   `}
 `;
@@ -306,6 +302,11 @@ Footer.Logo = styled.img``;
 
 Footer.Socials = styled.div`
   display: flex;
+  margin: 0;
+
+  ${breakpoint('sm')`
+      margin: 0 0 0 60px;    
+  `}
 `;
 
 Footer.SocialLink = styled.a`
@@ -380,7 +381,9 @@ Footer.SocialLink = styled.a`
           return 'background-color: #69BAEC';
         case 'instagram':
           return `
-          background: radial-gradient(circle at 30% 107%,#fdf497 0,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285AEB 90%);
+          background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+          background: -webkit-radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+          background: -ms-radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
         `;
         default:
           return;
@@ -398,22 +401,10 @@ Footer.SocialLink = styled.a`
 `;
 
 Footer.DownloadAppLinksWrapper = styled.div`
-  display: flex;
+  display: none;
   width: 100%;
   flex-direction: row;
-
-  ${breakpoint('xs')`
-    display: block;
-    width: auto;
-    flex: 1 0 100%;
-    padding: 0;
-  `}
-
-  ${breakpoint('md')`
-    flex: 1;
-    display: flex;
-    padding: 0 0 0 40px;
-  `}
+  padding: 0 15px;
 
   ${breakpoint('lg')`
     flex: 1;
@@ -428,6 +419,7 @@ Footer.Navigation = styled.ul`
   padding: 0 20px;
   list-style: none;
   box-sizing: border-box;
+  width: 100%;
 `;
 
 Footer.NavLink = styled.a`

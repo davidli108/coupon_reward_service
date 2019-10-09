@@ -15,8 +15,8 @@ const BurgerButton = ({ isOpen }: BurgerButtonProps) => (
 );
 
 BurgerButton.Wrapper = styled.div`
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   position: relative;
   transform: rotate(0deg) scale(0.5);
   transition: 0.5s ease-in-out;
@@ -40,12 +40,12 @@ BurgerButton.Wrapper = styled.div`
     }
 
     &:nth-child(2) {
-      top: 16px;
+      top: 12px;
       transform-origin: left center;
     }
 
     &:nth-child(3) {
-      top: 32px;
+      top: 24px;
       transform-origin: left center;
     }
 

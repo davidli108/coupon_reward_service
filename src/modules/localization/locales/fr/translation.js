@@ -11,7 +11,7 @@ export default {
     stores: 'Boutiques',
     getApp: "Obtenez l'application !",
     login: 'Se Connecter',
-    createAccount: 'Créez un compte',
+    createAccount: 'Enregistrer',
     myAccount: 'Mon Compte',
     inviteFriends: 'Inviter des amis',
     settings: 'Paramètres',

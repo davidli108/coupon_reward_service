@@ -11,7 +11,7 @@ export default {
     stores: 'Geschäfte',
     getApp: 'Holen Sie sich die App!',
     login: 'Anmelden',
-    createAccount: 'Ein Konto erstellen',
+    createAccount: 'Registrieren',
     myAccount: 'Mein Konto',
     inviteFriends: 'Freunde einladen',
     settings: 'Einstellungen',

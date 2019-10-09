@@ -152,17 +152,15 @@ const Header = ({
 
   const items = [
     {
-      bgColor: isActiveCoupons() ? '#03b6d1' : '#40c8e5',
+      activeClass: isActiveCoupons() ? 'active' : '',
       hoverBgColor: '#02a6bf',
       title: t('header.coupons'),
       link: '/coupons',
       onClick: () => setOpen(false),
     },
     {
-      bgColor:
-        location.pathname.indexOf('/cashback-stores') + 1
-          ? '#03b6d1'
-          : '#40c8e5',
+      activeClass:
+        location.pathname.indexOf('/cashback-stores') + 1 ? 'active' : '',
       hoverBgColor: '#02a6bf',
       title: t('header.stores'),
       link: '/cashback-stores',
@@ -257,17 +255,6 @@ const Header = ({
             !isAuthenticated &&
             renderHeaderItems(authItems)}
         </Header.Controls>
-        <Header.MobileRegister>
-          <HeaderItem
-            bgColor="#02a6bf"
-            hoverBgColor="#01899e"
-            border="2px"
-            title={t('header.login')}
-            onClick={() => setCurrentModal(modal.modalSignIn)}
-          >
-            {t('header.login')}
-          </HeaderItem>
-        </Header.MobileRegister>
         <Header.BurgerButtonWrapper onClick={() => setOpen(!isOpen)}>
           <BurgerButton isOpen={isOpen} onClick={() => setOpen(!isOpen)} />
         </Header.BurgerButtonWrapper>
@@ -316,9 +303,13 @@ Header.Wrapper = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 85px;
+  height: 60px;
   box-sizing: border-box;
   z-index: 5;
+
+  ${breakpoint('lg')`
+    height: 85px;
+  `}
 `;
 
 Header.Container = styled.div`
@@ -329,6 +320,12 @@ Header.Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  ${breakpoint('lg')`
+    > div:first-child {
+      margin: 0;    
+    }
+  `}
 `;
 
 Header.MobileRegister = styled.div`
@@ -357,6 +354,11 @@ Header.Overlay = styled.div`
   width: 100%;
   height: 100%;
   z-index: 4;
+  background: rgba(0, 0, 0, 0.4);
+
+  ${breakpoint('lg')`
+    display: none;
+  `}
 `;
 
 Header.Logo = styled.img`
@@ -366,7 +368,8 @@ Header.Logo = styled.img`
 
 Header.BurgerButtonWrapper = styled.div`
   position: absolute;
-  right: 10px;
+  right: 20px;
+  top: 19px;
   z-index: 7;
   width: 40px;
   height: 35px;
@@ -408,7 +411,7 @@ Header.SlidingMenu = styled.div`
   > div {
     display: flex;
     flex-direction: column;
-    padding: 55px 15px 45px 30px;
+    padding: 55px 25px 45px 30px;
 
     > div {
       width: 100%;
@@ -424,7 +427,7 @@ Header.SlidingMenu = styled.div`
 
       > a {
         color: #374b5a;
-        font-weight: 400;
+        font-weight: 500;
         font-size: 16px;
         display: flex;
         align-items: center;
@@ -432,11 +435,13 @@ Header.SlidingMenu = styled.div`
         flex: 1;
         padding: 0;
         margin: 0;
+        border: 0;
 
         svg {
           width: 24px;
           height: 24px;
           fill: #b3bbc2;
+          display: block;
         }
 
         &:hover {
@@ -447,16 +452,6 @@ Header.SlidingMenu = styled.div`
           margin: 0;
         }
       }
-
-      &:last-child {
-        > a {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: #00ba4a;
-          font-weight: 500;
-        }
-      }
     }
   }
 
@@ -465,7 +460,7 @@ Header.SlidingMenu = styled.div`
   `}
 
   ${breakpoint('xs')`
-    width: ${({ isOpen }) => (isOpen ? '320px' : '0')};
+    width: ${({ isOpen }) => (isOpen ? '350px' : '0')};
   `}
 
   ${breakpoint('sx')`
