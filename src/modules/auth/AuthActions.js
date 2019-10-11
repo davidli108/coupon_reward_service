@@ -7,6 +7,7 @@ export const SIGN_IN_SUCCESS = `${namespace}/SIGN_IN_SUCCESS`;
 export const SIGN_UP = `${namespace}/SIGN_UP`;
 export const CHECK_EMAIL_AVAILABLE = `${namespace}/CHECK_EMAIL_AVAILABLE`;
 export const FETCH_USER = `${namespace}/FETCH_USER`;
+export const PASSWORD = `${namespace}/PASSWORD`;
 export const PASSWORD_RESET = `${namespace}/PASSWORD_RESET`;
 export const LOGOUT = `${namespace}/LOGOUT`;
 export const SET_LOGGED_OUT = `${namespace}/SET_LOGGED_OUT`;
@@ -19,6 +20,10 @@ export const fetchUser = () => ({
     request: {
       url: '/account/getUser',
       method: 'GET',
+      headers: {
+        Accept: '*/*',
+        'x-requested-with': 'XMLHttpRequest',
+      },
     },
   },
 });

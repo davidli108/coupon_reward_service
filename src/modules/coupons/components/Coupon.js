@@ -16,6 +16,7 @@ import SocialShare from './SocialShare';
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
 import type { Deal as DealModel } from '../models/CouponsPage';
 import AppConfig from '@config/AppConfig';
+import { currencyLocaleFormat } from '@modules/localization/i18n';
 
 const OfferType = {
   discount: 'discount',
@@ -35,7 +36,6 @@ const discountColors = [
 const Coupon = ({
   t,
   i18n,
-  discount,
   discount_print,
   discount_amt,
   discount_type,
@@ -47,6 +47,10 @@ const Coupon = ({
   ref_text,
   ref_link,
   coupon_code,
+  cashback_ok,
+  numeric_type,
+  country,
+  no_cashback,
   store_page_link,
   twitter_link,
   pinterest_link,
@@ -54,6 +58,16 @@ const Coupon = ({
   isExtensionInstalled,
 }: DealModel) => {
   const [randomColor] = useState(Math.floor(Math.random() * 7));
+  const discount = cashback_ok
+    ? numeric_type === 1
+      ? currencyLocaleFormat(discount_print, country || i18n.language)
+      : `${discount_print}%`
+    : '';
+  const cashBackMessageKey = no_cashback
+    ? 'global.noCashBack'
+    : cashback_ok
+    ? 'global.amCashBack'
+    : 'global.instantSaving';
 
   return (
     <Coupon.Wrapper>
@@ -65,9 +79,7 @@ const Coupon = ({
         <Coupon.StoreLogoWrapper>
           <Link to={store_page_link}>
             <Coupon.StoreLogo
-              src={
-                store_logo ? `${AppConfig.cloudUrl}${store_logo}` : placeholder
-              }
+              src={store_logo || placeholder}
               onError={e => {
                 e.target.onerror = null;
                 e.target.src = placeholder;
@@ -78,7 +90,7 @@ const Coupon = ({
             />
           </Link>
         </Coupon.StoreLogoWrapper>
-        {discount_amt === '0.00' ? (
+        {parseFloat(discount_amt) === 0 ? (
           offer_type === OfferType.freeShipping ? (
             <Coupon.Discount>
               <span>{t('coupons.type.free')}</span>
@@ -95,20 +107,21 @@ const Coupon = ({
         ) : (
           <Coupon.Discount color={discountColors[randomColor]}>
             <span>
-              {discount_type === '1' &&
-                `$${Number.parseFloat(discount_amt).toFixed()}`}
-              {discount_type === '2' &&
-                `${Number.parseFloat(discount_amt).toFixed()}%`}
+              {discount_type === 1 &&
+                currencyLocaleFormat(discount_amt, country || i18n.language)}
+              {discount_type === 2 && `${parseFloat(discount_amt)}%`}
             </span>
-            <span>OFF</span>
+            <span>{t('coupons.off')}</span>
           </Coupon.Discount>
         )}
         <Coupon.ExpDate>
           <p>
-            Exp.{' '}
-            {moment(show_exp_date.slice(5), 'MM/DD/YYYY').format(
-              i18n.language === 'en' ? 'MM/DD/YYYY' : 'DD/MM/YYYY',
-            )}
+            {show_exp_date === 'No Expiration!'
+              ? t('global.invalidDate')
+              : 'Exp. ' +
+                moment(show_exp_date.slice(5), 'MM/DD/YYYY').format(
+                  i18n.language === 'en' ? 'MM/DD/YYYY' : 'DD/MM/YYYY',
+                )}
           </p>
         </Coupon.ExpDate>
         <Coupon.OfferText>{ref_text}</Coupon.OfferText>
@@ -116,14 +129,18 @@ const Coupon = ({
           isAuthenticated={isAuthenticated}
           isExtensionInstalled={isExtensionInstalled}
           store={store_name}
-          logo={store_logo ? `${AppConfig.cloudUrl}${store_logo}` : placeholder}
+          logo={
+            store_logo.match(/placementlogos/g)
+              ? store_logo
+              : store_logo
+              ? `${AppConfig.cloudUrl}${store_logo}`
+              : placeholder
+          }
           code={coupon_code}
           link={offer_link}
         />
         <Coupon.CashbackPercent>
-          {discount_print
-            .replace('Cash Back', t('global.cashBack'))
-            .replace('Instant Savings', t('global.instantSaving'))}
+          {t(cashBackMessageKey, { discount })}
         </Coupon.CashbackPercent>
         <SocialShare
           text={ref_text}

@@ -4,11 +4,10 @@ import styled from 'styled-components';
 
 type BurgerButtonProps = {
   isOpen: boolean,
-  onClick: () => void,
 };
 
-const BurgerButton = ({ isOpen, onClick }: BurgerButtonProps) => (
-  <BurgerButton.Wrapper isOpen={isOpen} onClick={onClick}>
+const BurgerButton = ({ isOpen }: BurgerButtonProps) => (
+  <BurgerButton.Wrapper isOpen={isOpen}>
     <span />
     <span />
     <span />
@@ -16,10 +15,9 @@ const BurgerButton = ({ isOpen, onClick }: BurgerButtonProps) => (
 );
 
 BurgerButton.Wrapper = styled.div`
-  width: 60px;
-  height: 45px;
+  width: 36px;
+  height: 36px;
   position: relative;
-  margin: 50px auto;
   transform: rotate(0deg) scale(0.5);
   transition: 0.5s ease-in-out;
   cursor: pointer;
@@ -29,7 +27,7 @@ BurgerButton.Wrapper = styled.div`
     position: absolute;
     height: 4px;
     width: 100%;
-    background: white;
+    background: #374b5a;
     border-radius: 4px;
     opacity: 1;
     left: 0;
@@ -42,12 +40,12 @@ BurgerButton.Wrapper = styled.div`
     }
 
     &:nth-child(2) {
-      top: 18px;
+      top: 12px;
       transform-origin: left center;
     }
 
     &:nth-child(3) {
-      top: 36px;
+      top: 24px;
       transform-origin: left center;
     }
 
@@ -56,19 +54,29 @@ BurgerButton.Wrapper = styled.div`
       `
       &:nth-child(1) {
         transform : rotate(45deg);
-        top       : -3px;
-        left      : 8px;
+        top       : 11px;
+        left      : 13px;
+        width     : 20px;
+        background-color: #899197;
       }
 
       &:nth-child(2) {
-        width   : 0%;
-        opacity : 0;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 4px solid #899197;
+        background-color: transparent;
+        top: 0;
+        left: 0;
+        box-sizing: border-box;
       }
 
       &:nth-child(3) {
         transform : rotate(-45deg);
-        top       : 39px;
-        left      : 8px;
+        top       : 25px;
+        left      : 13px;
+        width     : 20px;
+        background-color: #899197;
       }
     `}
   }

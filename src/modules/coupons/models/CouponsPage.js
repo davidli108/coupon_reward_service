@@ -14,7 +14,7 @@ export type Store = {
   store_name: string,
   discount_print: string,
   discount_amt: string,
-  discount_type: string,
+  discount_type: number,
   discount: string,
   ref_text: string,
   randomStore: Object,
@@ -25,6 +25,11 @@ export type Store = {
   twitter_link: string,
   pinterest_link: string,
   coupon_code?: string,
+  cashback_ok: number,
+  numeric_type: number,
+  noCashBack: boolean,
+  text_override: boolean,
+  country: string,
 };
 
 export type Category = {
@@ -37,19 +42,24 @@ export type CategoryStores = {
   short_name: string,
 };
 
+export type PaidStores = {
+  name: string,
+  shortName: string,
+};
 export type Categories = {
   categories: Category[],
   stores: CategoryStores[],
+  paidStores: PaidStores[],
 };
 
 export type Deal = {
-  t: string => string,
+  t: Function,
   i18n: Object,
   store_logo: string,
   discount: number,
   discount_print: string,
   discount_amt: string,
-  discount_type: string,
+  discount_type: number,
   show_exp_date: string,
   isCoupon: boolean,
   isFavorite: boolean,
@@ -59,11 +69,15 @@ export type Deal = {
   ref_text: string,
   offer_type: string,
   coupon_code: string,
+  numeric_type: number,
+  no_cashback: boolean,
   store_page_link: string,
   twitter_link: string,
   pinterest_link: string,
   isAuthenticated: boolean,
   isExtensionInstalled: boolean,
+  cashback_ok: number,
+  country: string,
 };
 
 export type featuredStore = {

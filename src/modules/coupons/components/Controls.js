@@ -94,7 +94,7 @@ Controls.Button = styled.div`
   display: flex;
   flex-flow: column nowrap;
 
-  width: ${props => (props.lng === 'fr' ? '110px' : '80px')};
+  min-width: ${props => (props.lng === 'fr' ? '110px' : '80px')};
   margin-right: 25px;
 
   white-space: nowrap;

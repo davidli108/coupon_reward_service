@@ -9,14 +9,14 @@ import moment from 'moment';
 
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
 import LoadMoreLoader from './loaders/LoadMoreLoader';
-import AppConfig from '@config/AppConfig';
+import i18n, { currencyLocaleFormat } from '@modules/localization/i18n';
 
 // import verificationIcon from '../assets/verif.png';
 
 import { type Store } from '../models';
 
 type StoreListProps = {
-  t: string => string,
+  t: Function,
   match: Object,
   stores: Store[],
   onLoadMore: Function,
@@ -63,42 +63,64 @@ const StoreList = ({
       <StoreList.StoreContainer>
         {stores.length !== 0 &&
           stores.map(
-            ({ name, id, img, link, cashback_save, shortName }: Object) => (
-              <StoreList.StoreItem key={`list_item_${name}_${id}`}>
-                {/* {offer_success_print && <StoreList.StoreNew>New Store</StoreList.StoreNew>} */}
-                <StoreList.Box>
-                  <StoreList.ImageWrapper>
-                    <Link to={`/coupons/${shortName}`}>
-                      <StoreList.Image
-                        src={img ? `${AppConfig.cloudUrl}${img}` : placeholder}
-                        onError={e => {
-                          e.target.onerror = null;
-                          e.target.src = placeholder;
-                        }}
-                        alt={`${name || ''} Coupon Codes ${moment().format(
-                          'MMMM',
-                        )} | ${moment().format('YYYY')}`}
-                      />
-                    </Link>
-                  </StoreList.ImageWrapper>
-                  <StoreList.Info>
-                    <StoreList.Cash
-                      dangerouslySetInnerHTML={{
-                        __html: cashback_save
-                          ? cashback_save.replace(
-                              /(up to |jusqu'à |bis zu )/i,
-                              '<span>$1</span>',
-                            )
-                          : '',
-                      }}
-                    />
-                    <StoreList.Link to={`/coupons/${shortName}`}>
-                      {t('build.visitStore')}
-                    </StoreList.Link>
-                  </StoreList.Info>
-                </StoreList.Box>
-              </StoreList.StoreItem>
-            ),
+            ({
+              name,
+              id,
+              img,
+              link,
+              cashbackSave,
+              shortName,
+              payType,
+              noCashBack,
+              country,
+              cashBackOk,
+              textOverride,
+            }: Object) => {
+              const discount = cashBackOk
+                ? payType === 1
+                  ? currencyLocaleFormat(cashbackSave, country || i18n.language)
+                  : `${cashbackSave}%`
+                : '';
+              const cashBackMessageText = noCashBack
+                ? 'global.noCashBack'
+                : cashBackOk
+                ? payType === 1
+                  ? 'global.amCashBack'
+                  : 'global.upToCashBack'
+                : 'global.instantSaving';
+              const date = moment().format('MMMM | YYYY');
+
+              return (
+                <StoreList.StoreItem key={`list_item_${name}_${id}`}>
+                  <StoreList.Box>
+                    <StoreList.ImageWrapper>
+                      <Link to={`/coupons/${shortName}`}>
+                        <StoreList.Image
+                          src={img || placeholder}
+                          onError={e => {
+                            e.target.onerror = null;
+                            e.target.src = placeholder;
+                          }}
+                          alt={`${name || ''} ${t(
+                            'storeCoupons.codes',
+                          )} ${date.charAt(0).toUpperCase() + date.slice(1)}`}
+                        />
+                      </Link>
+                    </StoreList.ImageWrapper>
+                    <StoreList.Info>
+                      <StoreList.Cash>
+                        {textOverride
+                          ? cashbackSave
+                          : t(cashBackMessageText, { discount })}
+                      </StoreList.Cash>
+                      <StoreList.Link to={`/coupons/${shortName}`}>
+                        {t('build.visitStore')}
+                      </StoreList.Link>
+                    </StoreList.Info>
+                  </StoreList.Box>
+                </StoreList.StoreItem>
+              );
+            },
           )}
       </StoreList.StoreContainer>
       <StoreList.LoadMoreButton onClick={onLoad}>
@@ -184,11 +206,7 @@ export const FavoriteStoreList = compose(
                     <StoreList.ImageWrapper>
                       <Link to={`/coupons/${short_name}`}>
                         <StoreList.Image
-                          src={
-                            offer_img
-                              ? `${AppConfig.cloudUrl}${offer_img}`
-                              : placeholder
-                          }
+                          src={offer_img || placeholder}
                           onError={e => {
                             e.target.onerror = null;
                             e.target.src = placeholder;

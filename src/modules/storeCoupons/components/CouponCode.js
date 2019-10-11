@@ -7,6 +7,7 @@ import { isMobile } from 'react-device-detect';
 
 type CouponCodeProps = {
   t: Function,
+  i18n: Object,
   code: string,
   link: string,
   store: string,
@@ -17,6 +18,7 @@ type CouponCodeProps = {
 
 const CouponCode = ({
   t,
+  i18n,
   code,
   link,
   store,
@@ -51,7 +53,11 @@ const CouponCode = ({
     return code ? (
       <>
         <CouponCode.Button onClick={handleClick} isShow={!isShowCode}>
-          <p>{t('global.revealCoupon')}</p>
+          {i18n.language === 'jp' ? (
+            <CouponCode.p>{t('global.revealCoupon')}</CouponCode.p>
+          ) : (
+            <p>{t('global.revealCoupon')}</p>
+          )}
           <CouponCode.Rectangle isShow={!!code} />
         </CouponCode.Button>
         <CouponCode.Code isShow={isShowCode} href={link} target={'_blank'}>
@@ -97,6 +103,9 @@ CouponCode.Wrapper = styled.div`
   width: 100%;
 `;
 
+CouponCode.p = styled.p`
+  font-size: 95%;
+`;
 CouponCode.Button = styled.div`
   margin-bottom: 10px;
   display: ${props => (props.isShow ? 'flex' : 'none')};

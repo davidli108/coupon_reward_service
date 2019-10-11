@@ -117,11 +117,11 @@ const CouponsPage = ({
         />
       </CouponsPage.SearchWrapper>
       {isLoaded ? (
-        offersCount !== 0 && Boolean(stores.length) ? (
+        categories.featuredCoupon ? (
           <TodaysFeaturedCoupon
             isAuthenticated={isAuthenticated}
             isExtensionInstalled={isExtensionInstalled}
-            store={stores[0]}
+            store={categories.featuredCoupon}
             favorites={favorites}
             requestNonce={requestNonce}
           />

@@ -24,7 +24,10 @@ storiesOf('Components|@Store', module)
           category: 'Accessories',
           isFeatured: true,
           offer_id: 12344,
-          cashback_text: '',
+          cashback_text: '2.00',
+          cashbackok: 1,
+          country: 'us',
+          pay_type: 1,
           store_id: '1',
         },
       ]}

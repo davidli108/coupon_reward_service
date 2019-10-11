@@ -4,14 +4,14 @@ export default {
     coupons:
       'Automatisez vos coupons, vos économies et votre cashback - %mmmm %yyyy - Piggy',
     storeCoupons:
-      'Top des bons de réduction, codes promo et remises en ligne de storeName en ligne - %mmmm %yyyy - Piggy',
+      'Top des bons de réduction, codes promo et remises en ligne de {{ storeName }} en ligne - %mmmm %yyyy - Piggy',
   },
   header: {
     coupons: 'Codes promo',
     stores: 'Boutiques',
     getApp: "Obtenez l'application !",
     login: 'Se Connecter',
-    createAccount: 'Créez un compte',
+    createAccount: 'Enregistrer',
     myAccount: 'Mon Compte',
     inviteFriends: 'Inviter des amis',
     settings: 'Paramètres',
@@ -141,7 +141,7 @@ export default {
     health: 'Santé',
     hobbiesCrafts: 'Loisirs et artisanat',
     HomeGarden: 'Maison & Jardin',
-    jewelry: 'Bijoux',
+    jewelries: 'Bijoux',
     musicInstruments: 'Musique et Instruments',
     partySupplies: 'Fournitures de fête',
     pets: 'Animaux domestiques',
@@ -152,10 +152,17 @@ export default {
     travel: 'Voyage',
   },
   global: {
+    invalidDate: 'Exp: Date invalide',
+    earnCashBack: 'Gagnez {{discount}} cash Back!',
     learnMore: 'En savoir plus',
     get25dollars: 'Obtenez 25€',
+    amCashBack: '{{discount}} Remise en Argent',
+    overOff: 'Plus de {{discount}} de réduction',
     cashBack: 'Cashback',
+    cashBackPrint: '{{print}} Cashback',
     instantSaving: 'Économies instantanées',
+    noCashBack: 'Pas de Cashback',
+    upToCashBack: "Jusqu'à {{discount}} de remise en argent",
     downloadPiggy:
       "Téléchargez les coupons automatiques de Piggy's à la caisse et ne ratez plus jamais une affaire !",
     neverMiss:
@@ -186,6 +193,7 @@ export default {
       freeShipping: 'Livraison gratuite',
       get5dollarOff: 'Obtenez 5€ de réduction',
     },
+    off: ' de rabais',
     seeMore: 'Voir plus',
     myAccount: 'Mon compte',
     earnings: 'Gains',
@@ -216,8 +224,9 @@ export default {
       tooltip:
         'Cliquez pour fair vos achats. Utilisez ce code lorsque vous passez en caisse pour faire des économies!',
     },
-    todaysFeatureCoupon: "Coupon d'aujourd'hui par",
+    todaysFeatureCoupon: "Coupon d'aujourd'hui par {{storeName}}",
     upToCashback: "+ jusqu'à {{discount}} de remise en argent",
+    plusCashBack: '+{{discount}} de remise en argent',
     noCouponsFound: 'Aucun coupon trouvé',
     noFeaturedCouponsFound: 'Aucun coupon en vedette trouvé',
     login: "S'identifier",
@@ -272,20 +281,21 @@ export default {
   },
   storeCoupons: {
     viewLatestCoupons:
-      "voir les derniers coupons en ligne pour storeName ci-dessous ! Ne manquez jamais un coupon de réduction ou un cashback dans l'une de nos 3 000 autres boutiques grâce à notre application gratuite pour mobile et à notre extension de navigateur ! Tous les coupons en ligne de storeName peuvent être combinés avec des réductions automatiques et gratuites. Jusqu'à 3,0 % de cashback ! Chacun de ces coupons et promotions peuvent être combinés avec notre cashback automatique à l'achat d'un produit Piggy !",
+      "voir les derniers coupons en ligne pour {{ storeName }} ci-dessous ! Ne manquez jamais un coupon de réduction ou un cashback dans l'une de nos 3 000 autres boutiques grâce à notre application gratuite pour mobile et à notre extension de navigateur ! Tous les coupons en ligne de {{ storeName }} peuvent être combinés avec des réductions automatiques et gratuites. Jusqu'à 3,0 % de cashback ! Chacun de ces coupons et promotions peuvent être combinés avec notre cashback automatique à l'achat d'un produit Piggy !",
     returnPolicy: 'Politique de retour',
     shipping: 'Expédition',
     secrets: 'Secrets',
+    codes: 'Codes de coupons',
     codesAndDeals: 'Codes de coupons et offres',
     followStore: 'Suivre la boutique',
     neverOverlay: 'Ne plus jamais trop payer',
     automaticallyAddAll:
-      "Ajoutez automatiquement tous les coupons actifs à votre commande avec l'extension de navigateur de Piggy. Lorsque vous passerez à la caisse, Piggy trouvera des coupons et cashback au storeName et plus encore.",
+      "Ajoutez automatiquement tous les coupons actifs à votre commande avec l'extension de navigateur de Piggy. Lorsque vous passerez à la caisse, Piggy trouvera des coupons et cashback au {{storeName}} et plus encore.",
     automaticCoupons: 'Coupons automatiques',
     priceCheck: 'Vérifiez le prix',
     secretRates: 'Tarifs et offres secrets',
     noCouponsAndDeal:
-      "Aucun Coupons ou Offre trouvé pour storeName. Jetez un coup d'œil à nos meilleures offres et offres ci-dessous.",
+      "Aucun Coupons ou Offre trouvé pour {{ storeName }}. Jetez un coup d'œil à nos meilleures offres et offres ci-dessous.",
   },
   build: {
     visitStore: 'Visitez la boutique',
@@ -338,8 +348,5 @@ export default {
       text: 'Copyright',
       allRightReserved: 'Tous droits réservés.',
     },
-  },
-  templates: {
-    upToCashback: "Jusqu'à %s de remise en argent",
   },
 };

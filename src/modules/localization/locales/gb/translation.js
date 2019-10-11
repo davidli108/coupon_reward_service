@@ -2,16 +2,16 @@
 export default {
   titles: {
     coupons:
-      'Automate Your Coupons, Savings and Cashback - %mmmm %yyyy - Piggy',
+      'Automate Your Vouchers, Savings and Cashback - %mmmm %yyyy - Piggy',
     storeCoupons:
-      'Top Online storeName Coupons, Promo Codes and Cashback - %mmmm %yyyy - Piggy',
+      'Top Online {{ storeName }} Vouchers, Promo Codes and Cashback - %mmmm %yyyy - Piggy',
   },
   header: {
-    coupons: 'Coupons',
-    stores: 'Stores',
+    coupons: 'Vouchers',
+    stores: 'Cashback',
     getApp: 'Get the App!',
     login: 'Login',
-    createAccount: 'Create An Account',
+    createAccount: 'Register',
     myAccount: 'My Account',
     inviteFriends: 'Invite Friends',
     settings: 'Settings',
@@ -138,7 +138,7 @@ export default {
     health: 'Health',
     hobbiesCrafts: 'Hobbies and Crafts',
     HomeGarden: 'Home & Garden',
-    jewelry: 'Jewelry',
+    jewelries: 'Jewelry',
     musicInstruments: 'Music & Instruments',
     partySupplies: 'Party Supplies',
     pets: 'Pets',
@@ -149,20 +149,27 @@ export default {
     travel: 'Travel',
   },
   global: {
+    invalidDate: 'Invalid Date',
+    earnCashBack: 'Gb Earn {{discount}} Cash Back!',
     learnMore: 'Learn more',
     get25dollars: 'Get $25',
+    amCashBack: '{{discount}} Cash Back',
+    overOff: 'Over {{discount}} off',
     cashBack: 'Cash back',
+    cashBackPrint: '{{print}} Cash back',
     instantSaving: 'Instant Savings',
+    noCashBack: 'No Cash back',
+    upToCashBack: 'Up to {{discount}} Cash Back',
     downloadPiggy:
-      "Download Piggy's Automatic Coupons at Checkout and Never Miss a Deal Again!",
-    neverMiss: 'Never miss a coupon with our free app!',
+      "Download Piggy's Automatic Vouchers at Checkout and Never Miss a Deal Again!",
+    neverMiss: 'Never miss a voucher with our free app!',
     loadMoreDeals: 'Load More Deals',
-    loadMoreCoupons: 'Load More Coupons',
+    loadMoreCoupons: 'Load More Vouchers',
     loadMoreStores: 'Load More Stores',
     search: 'Search',
     nothingFound: 'Nothing found',
     deals: 'Deals',
-    revealCoupon: 'Reveal Coupon',
+    revealCoupon: 'Reveal Voucher',
     newDeal: 'New Deal',
     verifiedToday: 'Verified today · XXX uses today.',
     reviews: 'reviews',
@@ -171,10 +178,10 @@ export default {
   },
   coupons: {
     shopBy: {
-      couponSales: 'Coupon & Sales',
+      couponSales: 'Voucher & Sales',
       browseByStore: 'Browse by Store',
-      newCoupon: 'New Coupon',
-      getCoupon: 'Get Coupon',
+      newCoupon: 'New Voucher',
+      getCoupon: 'Get Voucher',
       exp: 'Exp. 03/21/2019',
       favorite: 'Favorite',
       share: 'Share',
@@ -182,6 +189,7 @@ export default {
       freeShipping: 'Free Shipping',
       get5dollarOff: 'Get a $5 Off',
     },
+    off: ' OFF',
     seeMore: 'See More',
     myAccount: 'My Account',
     earnings: 'Earnings',
@@ -192,29 +200,29 @@ export default {
     testimonials: 'Testimonials',
     messages: {
       maxCashBack:
-        '- indicates the maximum cash back, reward, or discount a user may earn. Some items may pay lower cash back and some exclusions may exist. Not all stores pay cashback. Cash back not combinable with outside coupons or offers. Please view Terms or individual store profiles for more info.',
+        '- indicates the maximum cashback, reward, or discount a user may earn. Some items may pay lower cashback and some exclusions may exist. Not all stores pay cashback. Cash back not combinable with outside vouchers or offers. Please view Terms or individual store profiles for more info.',
     },
     controls: {
       allDeals: 'All Deals',
-      onlyCoupons: 'Only Coupons',
+      onlyCoupons: 'Only Vouchers',
       favoriteStores: 'Favorite Stores',
     },
     type: {
       free: 'Free',
       shipping: 'Shipping',
-      coupon: 'Coupon',
+      coupon: 'Voucher',
       code: 'Code',
       deal: 'Deal',
     },
     buttons: {
-      viewCoupon: 'View Coupon',
+      viewCoupon: 'View Voucher',
       viewDeal: 'View Deal',
       tooltip: 'Click to shop. Use this code at checkout to save!',
     },
-    todaysFeatureCoupon: "Today's Featured Coupon From",
+    todaysFeatureCoupon: "Today's Featured Voucher From {{storeName}}",
     upToCashback: '+ up to {{discount}} Cash Back',
-    noCouponsFound: 'No Coupons Found',
-    noFeaturedCouponsFound: 'No Featured Coupons Found',
+    noCouponsFound: 'No Vouchers Found',
+    noFeaturedCouponsFound: 'No Featured Vouchers Found',
     login: 'Login',
     register: 'Register',
     or: 'or',
@@ -225,8 +233,8 @@ export default {
     activateModal: {
       title: 'NEVER OVERPAY AGAIN AT',
       content: `Save time and money with Piggy's free Google Chrome extension.
-                Piggy appears at checkout and automatically applies the best coupon.`,
-      couponAbout: 'We find the {{title}} coupons, you just shop!',
+                Piggy appears at checkout and automatically applies the best voucher.`,
+      couponAbout: 'We find the {{title}} vouchers, you just shop!',
       button: 'Continue',
     },
     installExtension: {
@@ -239,13 +247,13 @@ export default {
   },
   cashbackStores: {
     shopBy: {
-      couponSales: 'Coupon & Sales',
+      couponSales: 'Voucher & Sales',
       browseByStore: 'Browse by Store',
-      viewSales: 'View sales and coupon codes',
+      viewSales: 'View sales and voucher codes',
       instantSaving: 'Instant Cash back',
       shopNow: 'Shop Now',
-      browseStore: 'Browse Store Coupons and Popular Cash Back Stores',
-      findAmazing: 'Find amazing savings, coupon and Automatic Cash Back!',
+      browseStore: 'Browse Store Vouchers and Popular Cash Back Stores',
+      findAmazing: 'Find amazing savings, voucher and Automatic Cash Back!',
     },
     seeMore: 'See More',
     myAccount: 'My Account',
@@ -258,27 +266,28 @@ export default {
     browseStores: 'Browse among more than 1000 stores',
     addSaving: 'Add savings',
     instantlyApplyAll:
-      'Instantly apply all coupons and cashback with Piggy’s app.',
+      'Instantly apply all vouchers and cashback with Piggy’s app.',
     activateSavings: 'Activate Savings',
     limitedOffer: 'Limited Offer',
     piggyBonus: 'Piggy Bonus',
   },
   storeCoupons: {
     viewLatestCoupons:
-      'View the latest Online Coupons for storeName below! Never miss a storeName coupon or Cash Back opportunities from any of our 3,000 other stores with our Free Mobile App and Browser app! Any of storeName online coupons can be combined with Free, Automatic Rebates.Up to 3.0% Cash Back! Only from Piggy!Any of these storeName coupon codes and promotions can be combined with our Automatic Cash Back at storeName',
+      'View the latest Online Vouchers for {{storeName}} below! Never miss a {{ storeName }} voucher or Cash Back opportunities from any of our 3,000 other stores with our Free Mobile App and Browser app! Any of {{ storeName }} online vouchers can be combined with Free, Automatic Rebates.Up to 3.0% Cash Back! Only from Piggy!Any of these {{ storeName }} voucher codes and promotions can be combined with our Automatic Cash Back at {{ storeName }}',
     returnPolicy: 'Return Policy',
     shipping: 'Shipping',
     secrets: 'Secrets',
-    codesAndDeals: 'Coupon Codes & Deals',
+    codes: 'Voucher Codes',
+    codesAndDeals: 'Voucher Codes & Deals',
     followStore: 'Follow Store',
     neverOverlay: 'Never Overpay Again',
     automaticallyAddAll:
-      "Automatically add all active coupons to your order with Piggy's browser extension. When you get to checkout, Piggy will find coupons and cash back at storeName and more.",
-    automaticCoupons: 'Automatic Coupons',
+      "Automatically add all active vouchers to your order with Piggy's browser extension. When you get to checkout, Piggy will find vouchers and cashback at {{storeName}} and more.",
+    automaticCoupons: 'Automatic Vouchers',
     priceCheck: 'Price Check',
     secretRates: 'Secret Rates and Deals',
     noCouponsAndDeal:
-      'No Coupons or Deals found for storeName. Take a look at our top offers and deals below.',
+      'No Vouchers or Deals found for {{storeName}}. Take a look at our top offers and deals below.',
   },
   build: {
     visitStore: 'Visit Store',
@@ -293,7 +302,7 @@ export default {
     threePercentCashBack: 'Plus get 3.0% Cash Back from Build!',
     otherPopularStores: 'Other Popular Stores',
     indicatesMaximumCashBack:
-      '- indicates the maximum cash back, reward, or discount a user may earn. Some items may pay lower cash back and some exclusions may exist. Not all stores pay cashback. Cash back not combinable with outside coupons or offers. Please view Terms or individual store profiles for more info.',
+      '- indicates the maximum cashback, reward, or discount a user may earn. Some items may pay lower cashback and some exclusions may exist. Not all stores pay cashback. Cash back not combinable with outside vouchers or offers. Please view Terms or individual store profiles for more info.',
   },
   footer: {
     stopMissingOut: 'Stop missing out. Get the app today!',
@@ -306,7 +315,7 @@ export default {
     menu: {
       howToInstall: 'How to Install',
       howToUninstall: 'How to Uninstall',
-      aboutCashBack: 'About Cash Back',
+      aboutCashBack: 'About Cashback',
       aboutOurApp: 'About Our App',
       careers: 'Careers',
       contact: 'Contact',
@@ -328,8 +337,5 @@ export default {
       text: 'Copyright',
       allRightReserved: 'All Rights Reserved.',
     },
-  },
-  templates: {
-    upToCashback: 'Up to %s Cash Back',
   },
 };

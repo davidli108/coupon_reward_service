@@ -32,10 +32,7 @@ const Offers = ({
     <>
       {offersCount === 0 && (
         <Offers.NoData>
-          {t('storeCoupons.noCouponsAndDeal').replace(
-            'storeName',
-            store.store_name,
-          )}
+          {t('storeCoupons.noCouponsAndDeal', { storeName: store.store_name })}
         </Offers.NoData>
       )}
       {offers.map(x => (

@@ -2,6 +2,10 @@ import i18n from 'i18next';
 import parseDomain from 'parse-domain';
 import * as R from 'ramda';
 import { initReactI18next } from 'react-i18next';
+import moment from 'moment';
+import 'moment/locale/de';
+import 'moment/locale/fr';
+import 'moment/locale/en-gb';
 
 import translationDE from './locales/de/translation';
 import translationEN from './locales/en/translation';
@@ -35,6 +39,13 @@ const localeToDomain = {
   de: Locale.de,
   fr: Locale.fr,
   'co.uk': Locale.gb,
+};
+
+const localeCodeCurrency = {
+  en: { code: 'en-US', cur: 'USD' },
+  de: { code: 'de-DE', cur: 'EUR' },
+  fr: { code: 'fr-FR', cur: 'EUR' },
+  gb: { code: 'en-GB', cur: 'GBP' },
 };
 
 const fallbackLocale = Locale.en;
@@ -78,6 +89,20 @@ export const getLocaleConfig = () => {
   };
 };
 
+export const currencyLocaleFormat = (amount, country = getLocale()) => {
+  country = country.toLowerCase();
+  const { code, cur } =
+    localeCodeCurrency[country] || localeCodeCurrency[getLocale()];
+  return Number.parseFloat(amount.replace(/[^@\d .]/g, '')).toLocaleString(
+    code,
+    {
+      style: 'currency',
+      currency: cur,
+      minimumFractionDigits: 0,
+    },
+  );
+};
+
 export const initializeI18n = () => {
   // eslint-disable-next-line import/no-named-as-default-member
   i18n.use(initReactI18next).init({
@@ -89,6 +114,10 @@ export const initializeI18n = () => {
       escapeValue: false,
     },
   });
+
+  // Set moment.js locale and html language
+  moment.locale(getLocale());
+  document.documentElement.lang = getLocale();
 };
 
 export default i18n;
