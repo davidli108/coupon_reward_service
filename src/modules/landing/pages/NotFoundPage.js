@@ -1,20 +1,22 @@
 // @flow
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
+import { withTranslation } from 'react-i18next';
 
-const NotFoundPage = () => (
+type NotFoundProps = {
+  t: Function,
+};
+
+const NotFoundPage = ({ t }: NotFoundProps) => (
   <NotFoundPage.Wrapper>
     <Helmet>
-      <title>Page Not Found</title>
+      <title>{t('404.title')}</title>
     </Helmet>
-    <NotFoundPage.Title>UH-OH, NOTHING TO SEE HERE!</NotFoundPage.Title>
-    <NotFoundPage.Section>
-      The page you requested does not exist.
-    </NotFoundPage.Section>
-    <NotFoundPage.Link to="/">Go Home</NotFoundPage.Link>
+    <NotFoundPage.Title>{t('404.subtitle')}</NotFoundPage.Title>
+    <NotFoundPage.Section>{t('404.text')}</NotFoundPage.Section>
+    <NotFoundPage.Link href="/">{t('404.action')}</NotFoundPage.Link>
   </NotFoundPage.Wrapper>
 );
 
@@ -58,7 +60,7 @@ NotFoundPage.Section = styled.p`
   letter-spacing: 0;
 `;
 
-NotFoundPage.Link = styled(Link)`
+NotFoundPage.Link = styled.a`
   color: ${props => props.theme.colors.darkBlue};
   font-size: 16px;
   line-height: 1.5;
@@ -68,4 +70,4 @@ NotFoundPage.Link = styled(Link)`
   }
 `;
 
-export default NotFoundPage;
+export default withTranslation()(NotFoundPage);

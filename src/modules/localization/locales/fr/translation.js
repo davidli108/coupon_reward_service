@@ -349,4 +349,10 @@ export default {
       allRightReserved: 'Tous droits réservés.',
     },
   },
+  404: {
+    title: 'Page non trouvée',
+    subtitle: 'UH-OH, RIEN À VOIR ICI!',
+    text: "La page que vous avez demandée n'existe pas.",
+    action: "Aller à la page d'accueil",
+  },
 };

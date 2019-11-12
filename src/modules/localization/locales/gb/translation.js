@@ -150,7 +150,7 @@ export default {
   },
   global: {
     invalidDate: 'Invalid Date',
-    earnCashBack: 'Gb Earn {{discount}} Cash Back!',
+    earnCashBack: 'Earn {{discount}} Cash Back!',
     learnMore: 'Learn more',
     get25dollars: 'Get $25',
     amCashBack: '{{discount}} Cash Back',
@@ -337,5 +337,11 @@ export default {
       text: 'Copyright',
       allRightReserved: 'All Rights Reserved.',
     },
+  },
+  404: {
+    title: 'Page Not Found',
+    subtitle: 'UH-OH, NOTHING TO SEE HERE!',
+    text: 'The page you requested does not exist.',
+    action: 'Go Home',
   },
 };

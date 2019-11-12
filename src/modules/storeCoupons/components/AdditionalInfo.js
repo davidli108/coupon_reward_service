@@ -36,12 +36,7 @@ const AdditionalInfo = ({ t, additionalInfo, store }: AdditionalInfoProps) => {
       <AdditionalInfo.ContentWrapper isShow={store.store_description}>
         <h2>{store.store_name}</h2>
         <AdditionalInfo.Content>
-          <p>
-            {t('storeCoupons.viewLatestCoupons').replace(
-              /storeName/g,
-              store.store_name,
-            )}
-          </p>
+          <p>{store.store_description}</p>
         </AdditionalInfo.Content>
       </AdditionalInfo.ContentWrapper>
       <AdditionalInfo.Separator isShow={store.store_description} />

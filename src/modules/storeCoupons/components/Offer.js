@@ -9,7 +9,6 @@ import { connect } from 'react-redux';
 
 import CouponCode from './CouponCode';
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
-import AppConfig from '@config/AppConfig';
 import { currencyLocaleFormat } from '@modules/localization/i18n';
 
 const discountColors = [
@@ -93,11 +92,7 @@ const Offer = ({
           {!isThisStore || parseFloat(discount_amt) === 0 ? (
             <Offer.Image>
               <img
-                src={
-                  store_logo
-                    ? `${AppConfig.cloudUrl}${store_logo}`
-                    : placeholder
-                }
+                src={store_logo || placeholder}
                 onError={e => {
                   e.target.onerror = null;
                   e.target.src = placeholder;
@@ -149,9 +144,7 @@ const Offer = ({
               store={store_name}
               isAuthenticated={isAuthenticated}
               isExtensionInstalled={isExtensionInstalled}
-              logo={
-                store_logo ? `${AppConfig.cloudUrl}${store_logo}` : placeholder
-              }
+              logo={store_logo || placeholder}
             />
             <Offer.ExpDate>
               {show_exp_date === 'No Expiration!'
