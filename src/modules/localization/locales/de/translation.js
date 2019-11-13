@@ -344,4 +344,10 @@ export default {
       allRightReserved: 'Alle Rechte vorbehalten.',
     },
   },
+  404: {
+    title: 'Seite nicht gefunden',
+    subtitle: 'UH-OH, HIER GIBT ES NICHTS ZU SEHEN!',
+    text: 'Die angeforderte Seite ist nicht vorhanden.',
+    action: 'Gehen Sie zur Startseite.',
+  },
 };
