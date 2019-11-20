@@ -79,13 +79,13 @@ const StoreReducer = (state: StoresState = initialState, action: Object) => {
         staticMerchantBar[i].override = v.cashback_text_override || false;
         featuredStores.splice(
           staticMerchantBar[i].position - 1,
-          1,
+          0,
           staticMerchantBar[i],
         );
       });
 
       return R.compose(
-        R.assoc<Object, Object>('featured', featuredStores),
+        R.assoc<Object, Object>('featured', featuredStores.splice(0, 5)),
         R.assoc<Object, Object>('stores', storesData),
         R.assoc<Object, Object>('storesCount', count),
         R.assoc<Object, Object>('categories', categories),

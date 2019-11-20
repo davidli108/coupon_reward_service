@@ -137,8 +137,10 @@ const CouponsReducer = (
         store.cashbackok = parseInt(v.store_data.cashbackok);
         store.pay_type = v.pay_type;
         store.country = v.country;
-        categories.stores.splice(staticMerchantBar[i].position - 1, 1, store);
+        categories.stores.splice(staticMerchantBar[i].position - 1, 0, store);
       });
+
+      categories.stores = categories.stores.splice(0, 5);
 
       return R.compose(
         R.assoc<Object, Object>('stores', offersData),
