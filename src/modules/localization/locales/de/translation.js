@@ -36,7 +36,10 @@ export default {
       preFooter: {
         label:
           'Mit dem Beitritt stimme ich zu, in die tägliche Mailingliste aufgenommen zu werden und die',
-        terms: 'Nutzungsbedingungen von Piggy',
+        terms: 'Nutzungsbedingungen',
+        and: 'und',
+        privacy: 'Datenschutzerklärung',
+        suffix: 'von Piggy',
       },
       footer: {
         text: 'Bereits ein Mitglied?',

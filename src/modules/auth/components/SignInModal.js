@@ -157,6 +157,11 @@ const SignInModal = ({
           textButton={t('auth.signIn.footer.button')}
           onRouteModal={onRouteModal}
         />
+        <SignInModal.Privacy>
+          Piggy's <a href="/terms">{t('auth.signUp.preFooter.terms')}</a>{' '}
+          {t('auth.signUp.preFooter.and')}{' '}
+          <a href="/privacy">{t('auth.signUp.preFooter.privacy')}</a>
+        </SignInModal.Privacy>
       </div>
     </ModalWrapper>
   );
@@ -262,6 +267,27 @@ SignInModal.PreFooter = styled.span`
   }
 `;
 
+SignInModal.Privacy = styled.div`
+  text-align: center;
+  padding: 10px 0 0;
+  font-size: 14px;
+  line-height: 20px;
+  color: #899197;
+
+  a {
+    color: ${props => props.theme.colors.blueExDark};
+    margin: 0 auto;
+    border: none;
+    cursor: pointer;
+    background: transparent;
+    outline: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+`;
+
 const mapStateToProps = state => ({
   isAuthenticated: getIsAuthenticated(state),
 });
@@ -272,10 +298,7 @@ const mapDispatchToProps = {
 };
 
 const enhance = compose(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps,
-  ),
+  connect(mapStateToProps, mapDispatchToProps),
   withTranslation(),
   withRouter,
 );

@@ -35,8 +35,11 @@ export default {
       button: 'Join Piggy',
       preFooter: {
         label:
-          "By joining, I agree to be added to daily mailing list and Piggy's",
-        terms: 'terms of service',
+          "By joining, I agree to be added to daily mailing list and to Piggy's",
+        terms: 'Terms of Service',
+        and: 'and',
+        privacy: 'Privacy Policy',
+        suffix: '',
       },
       footer: {
         text: 'Already A Member?',
