@@ -29,6 +29,10 @@ const Footer = ({ t, i18n }: FooterProps) => {
       { url: '/howtoremove', text: t('footer.menu.howToUninstall') },
       { url: '/cashback-apps', text: t('footer.menu.aboutOurApp') },
       { url: '/careers', text: t('footer.menu.careers') },
+      {
+        url: '/do-not-sell-my-personal-information',
+        text: 'Do Not Sell My Personal Information',
+      },
     ],
     gb: [
       { url: '/howtoinstall', text: t('footer.menu.howToInstall') },

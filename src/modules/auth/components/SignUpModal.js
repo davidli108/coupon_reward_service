@@ -200,11 +200,11 @@ const SignUpModal = ({
             )}
           </SignUpModal.Form>
           <SignUpModal.PreFooter>
-            {t('auth.signUp.preFooter.label')}
-            <span> </span>
-            <a href="/terms" style={{ display: 'inline-block' }}>
-              {t('auth.signUp.preFooter.terms')}
-            </a>
+            {t('auth.signUp.preFooter.label')}{' '}
+            <a href="/terms">{t('auth.signUp.preFooter.terms')}</a>{' '}
+            {t('auth.signUp.preFooter.and')}{' '}
+            <a href="/privacy">{t('auth.signUp.preFooter.privacy')}</a>{' '}
+            {t('auth.signUp.preFooter.suffix')}
           </SignUpModal.PreFooter>
           <ModalFooter
             footerText={t('auth.signUp.footer.text')}
@@ -297,7 +297,8 @@ SignUpModal.PreFooter = styled.span`
   display: block;
   text-align: center;
   margin-top: 2rem;
-  font-size: 14px;
+  font-size: 13px;
+  line-height: 17px;
 
   ${breakpoint('xs')`
     margin-top: 1rem;
@@ -309,7 +310,6 @@ SignUpModal.PreFooter = styled.span`
 
   a {
     color: ${props => props.theme.colors.blueExDark};
-    display: block;
     margin: 0 auto;
     border: none;
     cursor: pointer;
@@ -336,10 +336,7 @@ const mapDispatchToProps = {
 
 const enhance = compose(
   withRouter,
-  connect(
-    mapStateToProps,
-    mapDispatchToProps,
-  ),
+  connect(mapStateToProps, mapDispatchToProps),
   withTranslation(),
 );
 

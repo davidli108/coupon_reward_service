@@ -1673,7 +1673,7 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
             onClick={[Function]}
           >
             <img
-              alt="Target Coupon Codes November | 2019"
+              alt="Target Coupon Codes January | 2020"
               className="c4"
               onError={[Function]}
               src="image-placeholder.png"
@@ -2094,7 +2094,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
               onClick={[Function]}
             >
               <img
-                alt="Target Coupon Codes November | 2019"
+                alt="Target Coupon Codes January | 2020"
                 className="c8"
                 onError={[Function]}
                 src="image-placeholder.png"

@@ -36,7 +36,10 @@ export default {
       preFooter: {
         label:
           "En m'inscrivant, j'accepte d'être ajouté à la liste d'envoi journalière et aux",
-        terms: "conditions d'utilisation de Piggy.",
+        terms: "conditions d'utilisation",
+        and: 'et',
+        privacy: 'politique de confidentialité',
+        suffix: 'de Piggy',
       },
       footer: {
         text: 'Déjà membre ?',
