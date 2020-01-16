@@ -79,7 +79,7 @@ const CategoriesMobile = ({
               Object.keys(categories).map(key => (
                 <CategoriesMobile.Section key={`key_${key}`}>
                   <h2>{capitalizeOrNull(key)}</h2>
-                  {categories[key].map(i => (
+                  {categories['categories'].map(i => (
                     <CategoryItem
                       setOpen={setOpen}
                       key={`key_${i.short_name}`}
