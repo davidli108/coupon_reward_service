@@ -28,7 +28,7 @@ export default {
       loginGoogle: 'Login with Google',
     },
     signUp: {
-      title: 'Register to Get Automatic Cash Back',
+      title: 'Register to Get Automatic Cashback',
       subTitle: "It's that easy",
       or: 'or',
       emailAddress: 'Email Address',
@@ -153,16 +153,16 @@ export default {
   },
   global: {
     invalidDate: 'Invalid Date',
-    earnCashBack: 'Earn {{discount}} Cash Back!',
+    earnCashBack: 'Earn {{discount}} Cashback!',
     learnMore: 'Learn more',
     get25dollars: 'Get $25',
-    amCashBack: '{{discount}} Cash Back',
+    amCashBack: '{{discount}} Cashback',
     overOff: 'Over {{discount}} off',
-    cashBack: 'Cash back',
-    cashBackPrint: '{{print}} Cash back',
+    cashBack: 'Cashback',
+    cashBackPrint: '{{print}} Cashback',
     instantSaving: 'Instant Savings',
-    noCashBack: 'No Cash back',
-    upToCashBack: 'Up to {{discount}} Cash Back',
+    noCashBack: 'No Cashback',
+    upToCashBack: 'Up to {{discount}} Cashback',
     downloadPiggy:
       "Download Piggy's Automatic Vouchers at Checkout and Never Miss a Deal Again!",
     neverMiss: 'Never miss a voucher with our free app!',
@@ -203,7 +203,7 @@ export default {
     testimonials: 'Testimonials',
     messages: {
       maxCashBack:
-        '- indicates the maximum cashback, reward, or discount a user may earn. Some items may pay lower cashback and some exclusions may exist. Not all stores pay cashback. Cash back not combinable with outside vouchers or offers. Please view Terms or individual store profiles for more info.',
+        '- indicates the maximum cashback, reward, or discount a user may earn. Some items may pay lower cashback and some exclusions may exist. Not all stores pay cashback. Cashback not combinable with outside vouchers or offers. Please view Terms or individual store profiles for more info.',
     },
     controls: {
       allDeals: 'All Deals',
@@ -223,7 +223,7 @@ export default {
       tooltip: 'Click to shop. Use this code at checkout to save!',
     },
     todaysFeatureCoupon: "Today's Featured Voucher From {{storeName}}",
-    upToCashback: '+ up to {{discount}} Cash Back',
+    upToCashback: '+ up to {{discount}} Cashback',
     noCouponsFound: 'No Vouchers Found',
     noFeaturedCouponsFound: 'No Featured Vouchers Found',
     login: 'Login',
@@ -253,10 +253,10 @@ export default {
       couponSales: 'Voucher & Sales',
       browseByStore: 'Browse by Store',
       viewSales: 'View sales and voucher codes',
-      instantSaving: 'Instant Cash back',
+      instantSaving: 'Instant Cashback',
       shopNow: 'Shop Now',
-      browseStore: 'Browse Store Vouchers and Popular Cash Back Stores',
-      findAmazing: 'Find amazing savings, voucher and Automatic Cash Back!',
+      browseStore: 'Browse Store Vouchers and Popular Cashback Stores',
+      findAmazing: 'Find amazing savings, voucher and Automatic Cashback!',
     },
     seeMore: 'See More',
     myAccount: 'My Account',
@@ -276,7 +276,7 @@ export default {
   },
   storeCoupons: {
     viewLatestCoupons:
-      'View the latest Online Vouchers for {{storeName}} below! Never miss a {{ storeName }} voucher or Cash Back opportunities from any of our 3,000 other stores with our Free Mobile App and Browser app! Any of {{ storeName }} online vouchers can be combined with Free, Automatic Rebates.Up to 3.0% Cash Back! Only from Piggy!Any of these {{ storeName }} voucher codes and promotions can be combined with our Automatic Cash Back at {{ storeName }}',
+      'View the latest Online Vouchers for {{storeName}} below! Never miss a {{ storeName }} voucher or Cashback opportunities from any of our 3,000 other stores with our Free Mobile App and Browser app! Any of {{ storeName }} online vouchers can be combined with Free, Automatic Rebates.Up to 3.0% Cashback! Only from Piggy!Any of these {{ storeName }} voucher codes and promotions can be combined with our Automatic Cashback at {{ storeName }}',
     returnPolicy: 'Return Policy',
     shipping: 'Shipping',
     secrets: 'Secrets',
@@ -292,20 +292,72 @@ export default {
     noCouponsAndDeal:
       'No Vouchers or Deals found for {{storeName}}. Take a look at our top offers and deals below.',
   },
+  sitemap: {
+    meta: {
+      title: 'Popular Vouchers & Deals by Store | Piggy Sitemap',
+      description:
+        'Instantly find vouchers, discount codes, cashback offers and deals at your favourite stores with Piggy.',
+    },
+    popular_stores: 'Browse Most Popular Codes by Store',
+    visit_store: 'Visit Store',
+    all_stores: 'All stores',
+    main_pages: {
+      title: 'Main Pages',
+      home: 'Home',
+      automatic_coupon_apps: 'Automatic Coupon Apps',
+      about_cashback: 'About Cashback',
+      blog: 'Blog',
+      cashback_stores: 'Cashback Stores',
+      free_coupons: 'Free Coupons',
+      my_account: 'My Account',
+    },
+    company_info: {
+      title: 'Company Info',
+      about: 'About',
+      contact_us: 'Contact Us',
+      privacy_policy: 'Privacy Policy',
+      terms_of_use: 'Terms of Use',
+      eula: 'EULA',
+    },
+    shopping_categories: {
+      title: 'Shopping Categories',
+    },
+    account_pages: {
+      title: 'Account Pages',
+      account_update: 'Account Update',
+      change_password: 'Change Password',
+      earnings_summary: 'Earnings Summary',
+      favorites: 'Favourites',
+      referrals: 'Referrals',
+      preferences: 'Preferences',
+    },
+    help_section: {
+      title: 'Help Section',
+      contact_us: 'Contact Us',
+      how_to_install: 'How to Install',
+      how_to_uninstall: 'How to Uninstall',
+      help: 'Help',
+      unsubscribe: 'Unsubscribe',
+    },
+    misc: {
+      title: 'Misc',
+      consumer_resources: 'Consumer Resources',
+    },
+  },
   build: {
     visitStore: 'Visit Store',
     addToFavorites: 'Add to favorites',
     freeShipping: 'Free Shipping',
     freeShippingOver49:
       'FREE Shipping Standard Ground Shipping on Orders over $49!',
-    shopBuild: 'Shop Build with 3.0% Cash Back',
+    shopBuild: 'Shop Build with 3.0% Cashback',
     returnPolicy: 'Return Policy',
     returnItems30days:
       'You may initiate a return for an item(s) within 30 days of receipt for a refund. Returns requested between 31 - 60 days after receipt will only qualify for store credit. Returns outside of our 30 to 60 day General Return policy will not be accepted. Refunds will be applied to your account (minus return shipping) once the item has been received and inspected through our warehouse.',
-    threePercentCashBack: 'Plus get 3.0% Cash Back from Build!',
+    threePercentCashBack: 'Plus get 3.0% Cashback from Build!',
     otherPopularStores: 'Other Popular Stores',
     indicatesMaximumCashBack:
-      '- indicates the maximum cashback, reward, or discount a user may earn. Some items may pay lower cashback and some exclusions may exist. Not all stores pay cashback. Cash back not combinable with outside vouchers or offers. Please view Terms or individual store profiles for more info.',
+      '- indicates the maximum cashback, reward, or discount a user may earn. Some items may pay lower cashback and some exclusions may exist. Not all stores pay cashback. Cashback not combinable with outside vouchers or offers. Please view Terms or individual store profiles for more info.',
   },
   footer: {
     stopMissingOut: 'Stop missing out. Get the app today!',

@@ -3,65 +3,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import { withTranslation } from 'react-i18next';
-
-const getLocalTitle = (name, t) => {
-  switch (name) {
-    case 'Accessories':
-      return t('categories.accessories');
-    case 'Automotive':
-      return t('categories.automotive');
-    case 'Baby':
-      return t('categories.baby');
-    case 'Beauty':
-      return t('categories.beauty');
-    case 'Books & Media':
-      return t('categories.booksMedia');
-    case 'Office & Business':
-      return t('categories.officeBusiness');
-    case 'Canada':
-      return t('categories.canada');
-    case 'Cellphones':
-      return t('categories.cellphones');
-    case 'Clothing':
-      return t('categories.clothing');
-    case 'Computers':
-      return t('categories.computers');
-    case 'Department Stores':
-      return t('categories.departmentStores');
-    case 'Electronics':
-      return t('categories.electronics');
-    case 'Dining And Entertainment':
-      return t('categories.diningEntertainment');
-    case 'Gifts & Flowers':
-      return t('categories.giftFlowers');
-    case 'Health':
-      return t('categories.health');
-    case 'Hobbies & Crafts':
-      return t('categories.hobbiesCrafts');
-    case 'Home & Garden':
-      return t('categories.HomeGarden');
-    case 'Jewelry':
-      return t('categories.jewelries');
-    case 'Music & Instruments':
-      return t('categories.musicInstruments');
-    case 'Party Supplies':
-      return t('categories.partySupplies');
-    case 'Pets':
-      return t('categories.pets');
-    case 'Services':
-      return t('categories.services');
-    case 'Shoes':
-      return t('categories.shoes');
-    case 'Sports And Fitness':
-      return t('categories.sportsFitness');
-    case 'Toys And Games':
-      return t('categories.toysGames');
-    case 'Travel':
-      return t('categories.travel');
-    default:
-      return name;
-  }
-};
+import { getCategoryTitle } from '../../sitemap/constants';
 
 type CategoryItemProps = {
   t: string => string,
@@ -95,7 +37,7 @@ const CategoryItem = ({
       }
     }}
   >
-    <CategoryItem.Title>{getLocalTitle(name, t)}</CategoryItem.Title>
+    <CategoryItem.Title>{getCategoryTitle(name, t)}</CategoryItem.Title>
     {isCounter && count > 0 && <CategoryItem.Value>{count}</CategoryItem.Value>}
   </CategoryItem.Wrapper>
 );

@@ -297,6 +297,59 @@ export default {
     noCouponsAndDeal:
       'Für {{ storeName }} wurden keine Gutscheine oder Angebote gefunden. Werfen Sie einen Blick auf unsere Top-Angebote und Deals.',
   },
+  sitemap: {
+    meta: {
+      title:
+        'Beliebte Gutscheine & Angebote bei Geschäft / Shop | Piggy Sitemap',
+      description:
+        'Finden Sie sofort Gutscheine, Codes, Cash-Back-Angebote und Angebote bei Piggy in Ihren bevorzugten Geschäften.',
+    },
+    popular_stores: 'Durchsuchen Sie die beliebtesten Gutscheine nach Shop',
+    visit_store: 'Shop Besuchen',
+    all_stores: 'Alle Geschäfte',
+    main_pages: {
+      title: 'Hauptseiten',
+      home: 'Startseite',
+      automatic_coupon_apps: 'Über unsere App',
+      about_cashback: 'Über Cashback',
+      blog: 'Blog',
+      cashback_stores: 'Geschäfte',
+      free_coupons: 'Gutscheine',
+      my_account: 'Mein Konto',
+    },
+    company_info: {
+      title: 'Firmeninformation',
+      about: 'Über Uns',
+      contact_us: 'Kontakt',
+      privacy_policy: 'Datenschutzerklärung',
+      terms_of_use: 'Nutzungsbedingungen',
+      eula: 'Lizenzvereinbarung',
+    },
+    shopping_categories: {
+      title: 'Kategorien',
+    },
+    account_pages: {
+      title: 'Konto',
+      account_update: 'Kontoinformation',
+      change_password: 'Passwort ändern',
+      earnings_summary: 'Einnahmen',
+      favorites: 'Favoriten',
+      referrals: 'Verweise',
+      preferences: 'Präferenzen',
+    },
+    help_section: {
+      title: 'Hilfe',
+      contact_us: 'Kontakt',
+      how_to_install: 'Wie deinstalliert man',
+      how_to_uninstall: 'Wie deinstalliert man',
+      help: 'Hilfe',
+      unsubscribe: 'Abbestellen',
+    },
+    misc: {
+      title: 'Misc',
+      consumer_resources: 'Consumer Resources',
+    },
+  },
   build: {
     visitStore: 'Laden besuchen',
     addToFavorites: 'Zu den Favoriten hinzufügen',

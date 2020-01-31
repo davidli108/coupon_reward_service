@@ -161,7 +161,7 @@ export default {
     get25dollars: 'Obtenez 25€',
     amCashBack: '{{discount}} Remise en Argent',
     overOff: 'Plus de {{discount}} de réduction',
-    cashBack: 'Cashback',
+    cashBack: 'Remise en Argent',
     cashBackPrint: '{{print}} Cashback',
     instantSaving: 'Économies instantanées',
     noCashBack: 'Pas de Cashback',
@@ -299,6 +299,59 @@ export default {
     secretRates: 'Tarifs et offres secrets',
     noCouponsAndDeal:
       "Aucun Coupons ou Offre trouvé pour {{ storeName }}. Jetez un coup d'œil à nos meilleures offres et offres ci-dessous.",
+  },
+  sitemap: {
+    meta: {
+      title:
+        'Coupons et promotions populaires par magasin | Plan du site Piggy',
+      description:
+        'Trouvez instantanément des coupons, des codes, des offres cashback et des promotions dans vos magasins préférés avec Piggy.',
+    },
+    popular_stores: 'Parcourir les coupons les plus populaires par magasin',
+    visit_store: 'Visitez la Boutique',
+    all_stores: 'Tout les magasins',
+    main_pages: {
+      title: 'Pages principales',
+      home: `Page d'accueil`,
+      automatic_coupon_apps: 'Au sujet de notre application',
+      about_cashback: 'À propos du cashback',
+      blog: 'Blog',
+      cashback_stores: 'Boutiques',
+      free_coupons: 'Codes promo',
+      my_account: 'Mon Compte',
+    },
+    company_info: {
+      title: `Informations sur l'entreprise`,
+      about: 'A propos de nous',
+      contact_us: 'Contact',
+      privacy_policy: 'Politique de confidentialité',
+      terms_of_use: `Conditions d'utilisation`,
+      eula: 'EULA',
+    },
+    shopping_categories: {
+      title: 'Catégories',
+    },
+    account_pages: {
+      title: 'Compte',
+      account_update: 'Détails du compte',
+      change_password: 'Changer le mot de passe',
+      earnings_summary: 'Gains',
+      favorites: 'Favoris',
+      referrals: 'Parrainages',
+      preferences: 'Préférences',
+    },
+    help_section: {
+      title: 'Aide',
+      contact_us: 'Contact',
+      how_to_install: 'Comment installer',
+      how_to_uninstall: 'Comment désinstaller',
+      help: 'Aide',
+      unsubscribe: 'Se désabonner',
+    },
+    misc: {
+      title: 'Misc',
+      consumer_resources: 'Consumer Resources',
+    },
   },
   build: {
     visitStore: 'Visitez la boutique',

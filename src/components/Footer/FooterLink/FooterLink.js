@@ -2,18 +2,24 @@
 import React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
+import { NavLink } from 'react-router-dom';
 
 type LinkProps = {
   url: string,
   text: string,
   target?: string,
+  link?: boolean,
 };
 
-const FooterLink = ({ url, text, target }: LinkProps) => (
+const FooterLink = ({ url, text, target, link }: LinkProps) => (
   <FooterLink.Wrapper>
-    <FooterLink.NavLink href={url} target={target}>
-      {text}
-    </FooterLink.NavLink>
+    {link ? (
+      <FooterLink.NavLink to={url}>{text}</FooterLink.NavLink>
+    ) : (
+      <FooterLink.Link href={url} target={target}>
+        {text}
+      </FooterLink.Link>
+    )}
   </FooterLink.Wrapper>
 );
 
@@ -43,7 +49,22 @@ FooterLink.Wrapper = styled.li`
   `}
 `;
 
-FooterLink.NavLink = styled.a`
+FooterLink.Link = styled.a`
+  color: #a0a7b0;
+  font-weight: 400;
+  transition: color 0.3s ease;
+  text-decoration: underline;
+  font-size: 15px;
+  line-height: 26px;
+  letter-spacing: 0.3px;
+
+  :hover {
+    color: #374b5a;
+    text-decoration: underline;
+  }
+`;
+
+FooterLink.NavLink = styled(NavLink)`
   color: #a0a7b0;
   font-weight: 400;
   transition: color 0.3s ease;

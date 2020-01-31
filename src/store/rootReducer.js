@@ -25,6 +25,9 @@ import StoreCouponsReducer, {
 import StoreReducer, {
   STATE_KEY as STORE_STATE_KEY,
 } from '@modules/store/StoreReducer';
+import SitemapReducer, {
+  STATE_KEY as SITEMAP_STATE_KEY,
+} from '@modules/sitemap/SitemapReducer';
 
 const persist = R.curry(persistReducer)(ReduxPersist.storeConfig);
 
@@ -41,4 +44,5 @@ export default history =>
     R.assoc(ROUTER_STATE_KEY, RouterReducer(history)),
     R.assoc(STORE_COUPONS_STATE_KEY, StoreCouponsReducer),
     R.assoc(STORE_STATE_KEY, StoreReducer),
+    R.assoc(SITEMAP_STATE_KEY, SitemapReducer),
   )({});
