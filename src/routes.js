@@ -56,6 +56,14 @@ const NotAuthorizedPage = Loadable({
   loading: () => <Preloader />,
 });
 
+const SitemapPage = Loadable({
+  loader: () =>
+    import(
+      '@modules/sitemap/pages/SitemapPage' /* webpackChunkName: "SitemapPage" */
+    ),
+  loading: () => <Preloader />,
+});
+
 export default (
   <div style={{ overflow: 'hidden' }}>
     <Header />
@@ -66,6 +74,7 @@ export default (
       <Route exact path="/coupons" component={CouponsPage} />
       <Route exact path="/coupons/:name" component={SplitterPage} />
       <Route exact path="/auth/not-authorized" component={NotAuthorizedPage} />
+      <Route exact path="/sitemap" component={SitemapPage} />
 
       {/* Catch all routes */}
       <Route component={NotFoundPage} />

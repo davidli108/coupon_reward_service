@@ -70,26 +70,28 @@ const Footer = ({ t, i18n }: FooterProps) => {
     en: [
       { url: '/terms', text: t('footer.copyright.menu.termsOfUse') },
       { url: '/privacy', text: t('footer.copyright.menu.privacyPolicy') },
-      { url: '/sitemap', text: t('footer.copyright.menu.sitemap') },
+      { url: '/sitemap', text: t('footer.copyright.menu.sitemap'), link: true },
       { url: '/unsubscribe', text: t('footer.copyright.menu.unsubscribe') },
       { url: '/eula', text: t('footer.copyright.menu.eula') },
     ],
     gb: [
       { url: '/terms', text: t('footer.copyright.menu.termsOfUse') },
       { url: '/privacy', text: t('footer.copyright.menu.privacyPolicy') },
-      { url: '/sitemap', text: t('footer.copyright.menu.sitemap') },
+      { url: '/sitemap', text: t('footer.copyright.menu.sitemap'), link: true },
       { url: '/unsubscribe', text: t('footer.copyright.menu.unsubscribe') },
       { url: '/eula', text: t('footer.copyright.menu.eula') },
     ],
     fr: [
       { url: '/terms', text: t('footer.copyright.menu.termsOfUse') },
       { url: '/privacy', text: t('footer.copyright.menu.privacyPolicy') },
+      { url: '/sitemap', text: t('footer.copyright.menu.sitemap'), link: true },
       { url: '/unsubscribe', text: t('footer.copyright.menu.unsubscribe') },
       { url: '/eula', text: t('footer.copyright.menu.eula') },
     ],
     de: [
       { url: '/terms', text: t('footer.copyright.menu.termsOfUse') },
       { url: '/privacy', text: t('footer.copyright.menu.privacyPolicy') },
+      { url: '/sitemap', text: t('footer.copyright.menu.sitemap'), link: true },
       { url: '/unsubscribe', text: t('footer.copyright.menu.unsubscribe') },
       { url: '/eula', text: t('footer.copyright.menu.eula') },
       { url: '/impressum', text: t('footer.copyright.menu.impressum') },
@@ -152,7 +154,12 @@ const Footer = ({ t, i18n }: FooterProps) => {
         <div>
           <Footer.CopyrightLinks>
             {copyrightLinks[i18n.language].map((link: any, key) => (
-              <FooterLink key={key} url={link.url} text={link.text} />
+              <FooterLink
+                key={key}
+                url={link.url}
+                text={link.text}
+                link={link.link}
+              />
             ))}
           </Footer.CopyrightLinks>
           <p>

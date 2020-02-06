@@ -293,6 +293,58 @@ export default {
     noCouponsAndDeal:
       'No Coupons or Deals found for {{storeName}}. Take a look at our top offers and deals below.',
   },
+  sitemap: {
+    meta: {
+      title: 'Popular Coupons & Deals by Store | Piggy Sitemap',
+      description:
+        'Instantly find coupons, codes, cash back offers and deals at your favorite stores with Piggy.',
+    },
+    popular_stores: 'Browse Most Popular Coupons by Store',
+    visit_store: 'Visit Store',
+    all_stores: 'All stores',
+    main_pages: {
+      title: 'Main Pages',
+      home: 'Home',
+      automatic_coupon_apps: 'Automatic Coupon Apps',
+      about_cashback: 'About Cashback',
+      blog: 'Blog',
+      cashback_stores: 'Cashback Stores',
+      free_coupons: 'Free Coupons',
+      my_account: 'My Account',
+    },
+    company_info: {
+      title: 'Company Info',
+      about: 'About',
+      contact_us: 'Contact Us',
+      privacy_policy: 'Privacy Policy',
+      terms_of_use: 'Terms of Use',
+      eula: 'EULA',
+    },
+    shopping_categories: {
+      title: 'Shopping Categories',
+    },
+    account_pages: {
+      title: 'Account Pages',
+      account_update: 'Account Update',
+      change_password: 'Change Password',
+      earnings_summary: 'Earnings Summary',
+      favorites: 'Favorites',
+      referrals: 'Referrals',
+      preferences: 'Preferences',
+    },
+    help_section: {
+      title: 'Help Section',
+      contact_us: 'Contact Us',
+      how_to_install: 'How to Install',
+      how_to_uninstall: 'How to Uninstall',
+      help: 'Help',
+      unsubscribe: 'Unsubscribe',
+    },
+    misc: {
+      title: 'Misc',
+      consumer_resources: 'Consumer Resources',
+    },
+  },
   build: {
     visitStore: 'Visit Store',
     addToFavorites: 'Add to favorites',
