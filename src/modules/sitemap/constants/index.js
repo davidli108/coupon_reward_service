@@ -2,6 +2,8 @@
 import React from 'react';
 import { MdArrowBack, MdArrowForward } from 'react-icons/md';
 
+const domain = window.location.hostname;
+
 export type Category = {
   name: string,
   offers_count: number,
@@ -31,7 +33,6 @@ export const footerLinks = (
         url: '/about-cashback',
         href: true,
       },
-      { name: t('sitemap.main_pages.blog'), url: '/blog', href: true },
       {
         name: t('sitemap.main_pages.cashback_stores'),
         url: '/cashback-stores',
@@ -39,6 +40,18 @@ export const footerLinks = (
       { name: t('sitemap.main_pages.free_coupons'), url: '/coupons' },
     ],
   };
+
+  if (domain.includes('.com')) {
+    main_pages.list = [
+      ...main_pages.list.slice(0, 3),
+      {
+        name: t('sitemap.main_pages.blog'),
+        url: '/blog',
+        href: true,
+      },
+      ...main_pages.list.slice(3, main_pages.list.length),
+    ];
+  }
 
   const company_info = {
     name: t('sitemap.company_info.title'),
