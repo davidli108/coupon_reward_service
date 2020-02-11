@@ -95,7 +95,14 @@ const StorePage = ({
         meta={[
           {
             name: 'description',
-            content: `Never overpay again with the latest ${store.store_name} coupons and promotional codes automatically applied at checkout. Plus ${store.store_cashback_text} today when you use Piggy to shop ${store.store_name}`,
+            content:
+              'Never overpay again with the latest ' +
+              store.store_name +
+              ' coupons and promotional codes automatically applied at checkout. ' +
+              'Plus ' +
+              store.store_cashback_text +
+              ' today when you use Piggy to ' +
+              store.store_name,
           },
           {
             name: 'keywords',
