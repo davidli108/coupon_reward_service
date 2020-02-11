@@ -153,6 +153,7 @@ export default {
     sportsFitness: 'Sports & Fitness',
     toysGames: 'Jouets',
     travel: 'Voyage',
+    luxury: 'Luxe',
   },
   global: {
     invalidDate: 'Exp: Date invalide',

@@ -151,6 +151,7 @@ export default {
     sportsFitness: 'Sport & Fitness',
     toysGames: 'Spielzeug',
     travel: 'Reise',
+    luxury: 'Luxus',
   },
   global: {
     invalidDate: 'Ablauf: Ungültiges Datum',
