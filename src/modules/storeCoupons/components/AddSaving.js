@@ -1,6 +1,8 @@
 // @flow
 import React from 'react';
 import styled from 'styled-components';
+import { compose } from 'recompose';
+import { withRouter } from 'react-router-dom';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
 
@@ -9,48 +11,59 @@ import ClockIcon from './assets/ClockIcon';
 
 type AddSavingProps = {
   t: Function,
+  match: Object,
   i18n: Object,
 };
 
-const AddSaving = ({ t, i18n }: AddSavingProps) => (
-  <AddSaving.Wrapper>
-    <AddSaving.BonusLabel>
-      <p>{t('cashbackStores.piggyBonus')}</p>
-    </AddSaving.BonusLabel>
-    <DollarImg />
-    <AddSaving.InfoWrapper>
-      <AddSaving.TextWrapper>
-        <AddSaving.AddSavingLabel>
-          {t('cashbackStores.addSaving')}
-        </AddSaving.AddSavingLabel>
-        <AddSaving.Description>
-          {t('cashbackStores.instantlyApplyAll')}
-        </AddSaving.Description>
-      </AddSaving.TextWrapper>
-      <AddSaving.ButtonOfferWrapper>
-        <AddSaving.ActivateButton
-          href={`https://chrome.google.com/webstore/detail/piggy-automatic-coupons-c/hfapbcheiepjppjbnkphkmegjlipojba?hl=${
-            i18n.language
-          }`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {i18n.language === 'jp' ? (
-            <AddSaving.span>
-              {t('cashbackStores.activateSavings')}
-            </AddSaving.span>
-          ) : (
-            <span>{t('cashbackStores.activateSavings')}</span>
-          )}
-        </AddSaving.ActivateButton>
-        <AddSaving.LimitedOffer>
-          <p>{t('cashbackStores.limitedOffer')}</p>
-          <ClockIcon />
-        </AddSaving.LimitedOffer>
-      </AddSaving.ButtonOfferWrapper>
-    </AddSaving.InfoWrapper>
-  </AddSaving.Wrapper>
-);
+const AddSaving = ({ t, match, i18n }: AddSavingProps) => {
+  const triggerEvent = () => {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      pageCategory: 'Store Pages',
+      event: 'click_to_activate_savings',
+      label: match.url,
+    });
+  };
+
+  return (
+    <AddSaving.Wrapper>
+      <AddSaving.BonusLabel>
+        <p>{t('cashbackStores.piggyBonus')}</p>
+      </AddSaving.BonusLabel>
+      <DollarImg />
+      <AddSaving.InfoWrapper>
+        <AddSaving.TextWrapper>
+          <AddSaving.AddSavingLabel>
+            {t('cashbackStores.addSaving')}
+          </AddSaving.AddSavingLabel>
+          <AddSaving.Description>
+            {t('cashbackStores.instantlyApplyAll')}
+          </AddSaving.Description>
+        </AddSaving.TextWrapper>
+        <AddSaving.ButtonOfferWrapper>
+          <AddSaving.ActivateButton
+            href={`https://chrome.google.com/webstore/detail/piggy-automatic-coupons-c/hfapbcheiepjppjbnkphkmegjlipojba?hl=${i18n.language}`}
+            onClick={triggerEvent}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {i18n.language === 'jp' ? (
+              <AddSaving.span>
+                {t('cashbackStores.activateSavings')}
+              </AddSaving.span>
+            ) : (
+              <span>{t('cashbackStores.activateSavings')}</span>
+            )}
+          </AddSaving.ActivateButton>
+          <AddSaving.LimitedOffer>
+            <p>{t('cashbackStores.limitedOffer')}</p>
+            <ClockIcon />
+          </AddSaving.LimitedOffer>
+        </AddSaving.ButtonOfferWrapper>
+      </AddSaving.InfoWrapper>
+    </AddSaving.Wrapper>
+  );
+};
 
 AddSaving.span = styled.span`
   font-size: 97%;
@@ -202,4 +215,4 @@ AddSaving.LimitedOffer = styled.div`
   }
 `;
 
-export default withTranslation()(AddSaving);
+export default compose(withTranslation(), withRouter)(AddSaving);

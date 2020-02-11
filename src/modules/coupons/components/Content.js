@@ -98,15 +98,22 @@ const Content = ({
   });
 
   const onLoadMore = () => {
+    const { name } = match.params;
+
     if (isLoaded) {
       setIsLoaded(false);
-      loadMore(
-        match.params.name ? `${match.params.name}/${loadCount}` : loadCount,
-      ).then(() => {
+      loadMore(name ? `${name}/${loadCount}` : loadCount).then(() => {
         setIsLoaded(true);
         setLoadCount(loadCount + 20);
       });
     }
+
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      pageCategory: 'Coupons by Category',
+      event: 'load_more_coupons',
+      label: match.url,
+    });
   };
 
   const onActiveCategory = shortName => {
@@ -464,7 +471,4 @@ Content.AuthenticateControl = styled.span`
   cursor: pointer;
 `;
 
-export default compose(
-  withTranslation(),
-  withRouter,
-)(Content);
+export default compose(withTranslation(), withRouter)(Content);

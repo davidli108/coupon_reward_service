@@ -46,7 +46,23 @@ const StoreList = ({
     }
   });
 
+  const triggerEvent = (url: string) => () => {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      pageCategory: 'Stores by Category',
+      event: 'secondary_store_click',
+      label: url,
+    });
+  };
+
   const onLoad = () => {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      pageCategory: 'Stores by Category',
+      event: 'load_more_stores',
+      label: match.url,
+    });
+
     if (isLoadedStores) {
       setIsLoadedStores(false);
       setIsLoadedMore(false);
@@ -94,7 +110,10 @@ const StoreList = ({
                 <StoreList.StoreItem key={`list_item_${name}_${id}`}>
                   <StoreList.Box>
                     <StoreList.ImageWrapper>
-                      <Link to={`/coupons/${shortName}`}>
+                      <Link
+                        to={`/coupons/${shortName}`}
+                        onClick={triggerEvent(`/coupons/${shortName}`)}
+                      >
                         <StoreList.Image
                           src={img || placeholder}
                           onError={e => {
@@ -113,7 +132,10 @@ const StoreList = ({
                           ? cashbackSave
                           : t(cashBackMessageText, { discount })}
                       </StoreList.Cash>
-                      <StoreList.Link to={`/coupons/${shortName}`}>
+                      <StoreList.Link
+                        to={`/coupons/${shortName}`}
+                        onClick={triggerEvent(`/coupons/${shortName}`)}
+                      >
                         {t('build.visitStore')}
                       </StoreList.Link>
                     </StoreList.Info>
@@ -515,7 +537,4 @@ StoreList.LoadMoreButton = styled.div`
   }
 `;
 
-export default compose(
-  withTranslation(),
-  withRouter,
-)(StoreList);
+export default compose(withTranslation(), withRouter)(StoreList);

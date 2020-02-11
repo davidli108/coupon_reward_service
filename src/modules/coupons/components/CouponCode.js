@@ -1,27 +1,33 @@
 // @flow
 import React, { useState, useEffect } from 'react';
+import { compose } from 'recompose';
 import styled from 'styled-components';
+import { withRouter } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 import ModalActivateCoupons from '@components/ModalActivateCoupons/ModalActivateCoupons';
 
 type CouponCodeProps = {
   t: Function,
+  match: Object,
   code: string,
   link: string,
   store: string,
   logo: string,
   isAuthenticated: boolean,
   isExtensionInstalled: boolean,
+  featured?: boolean,
 };
 
 const CouponCode = ({
   t,
+  match,
   code,
   link,
   store,
   logo,
   isAuthenticated,
   isExtensionInstalled,
+  featured,
 }: CouponCodeProps) => {
   const [isShowCode, setIsShowCode] = useState(false);
   const [showActivateModal, setShowActivateModal] = useState(false);
@@ -32,6 +38,23 @@ const CouponCode = ({
 
   const handleClick = () => {
     setShowActivateModal(true);
+
+    if (showActivateModal && code) {
+      setIsShowCode(true);
+    }
+
+    if (showActivateModal && !code) {
+      window.open(link, '_blank');
+    }
+
+    if (code) {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        pageCategory: 'Coupons by Category',
+        event: featured ? 'feature_coupon_reveal' : 'secondary_coupon_reveal',
+        label: match.url,
+      });
+    }
   };
 
   const modalCallback = () => {
@@ -155,4 +178,4 @@ CouponCode.Tooltip = styled.div`
   }
 `;
 
-export default withTranslation()(CouponCode);
+export default compose(withTranslation(), withRouter)(CouponCode);

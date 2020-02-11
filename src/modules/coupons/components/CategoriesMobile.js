@@ -9,13 +9,7 @@ import CategoryItem from './CategoryItem';
 
 const capitalize = R.compose(
   R.join(''),
-  R.juxt([
-    R.compose(
-      R.toUpper,
-      R.head,
-    ),
-    R.tail,
-  ]),
+  R.juxt([R.compose(R.toUpper, R.head), R.tail]),
 );
 
 const capitalizeOrNull = R.unless(R.isNil, capitalize);

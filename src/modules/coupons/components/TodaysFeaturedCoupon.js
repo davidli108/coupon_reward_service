@@ -75,11 +75,7 @@ const TodaysFeaturedCoupon = ({
         const origin = getOrigin();
         const { pathname } = document.location;
 
-        document.location.href = `${
-          AppConfig.apiUrl
-        }/account/toggle-favorite/?nonce=${data.nonce}&store_id=${
-          store.store_id
-        }&origin=${origin}&redirect=${pathname}`;
+        document.location.href = `${AppConfig.apiUrl}/account/toggle-favorite/?nonce=${data.nonce}&store_id=${store.store_id}&origin=${origin}&redirect=${pathname}`;
       }
     });
   };
@@ -185,6 +181,7 @@ const TodaysFeaturedCoupon = ({
             {store.offer_name}
           </TodaysFeaturedCoupon.Description>
           <CouponCode
+            featured={true}
             isAuthenticated={isAuthenticated}
             isExtensionInstalled={isExtensionInstalled}
             store={store.store_name}

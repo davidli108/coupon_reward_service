@@ -1,6 +1,6 @@
 // @flow
 /* eslint-disable max-len */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { compose } from 'recompose';
 import { withRouter } from 'react-router-dom';
@@ -93,6 +93,15 @@ const CouponsPage = ({
   const onSearchChange = e => {
     setSearchValue(e.target.value);
   };
+
+  useEffect(() => {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      pageCategory: 'Coupons by Category',
+      event: 'coupons_page_load',
+      label: match.url,
+    });
+  }, [match]);
 
   return (
     <CouponsPage.Wrapper>
@@ -227,10 +236,7 @@ const mapDispatchToProps = {
 };
 
 export default compose(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps,
-  ),
+  connect(mapStateToProps, mapDispatchToProps),
   withRouter,
   withTranslation(),
 )(CouponsPage);
