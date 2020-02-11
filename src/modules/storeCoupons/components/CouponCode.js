@@ -4,9 +4,11 @@ import styled from 'styled-components';
 import ModalActivateCoupons from '@components/ModalActivateCoupons/ModalActivateCoupons';
 import Cookie from 'js-cookie';
 import { isMobile } from 'react-device-detect';
+import { withRouter } from 'react-router-dom';
 
 type CouponCodeProps = {
   t: Function,
+  match: Object,
   i18n: Object,
   code: string,
   link: string,
@@ -18,6 +20,7 @@ type CouponCodeProps = {
 
 const CouponCode = ({
   t,
+  match,
   i18n,
   code,
   link,
@@ -41,9 +44,24 @@ const CouponCode = ({
     setShowActivateModal(false);
     if (code && !isShowCode) {
       setIsShowCode(true);
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        pageCategory: 'Store Pages',
+        event: 'coupon_reveal',
+        label: match.url,
+      });
     } else if (!dismiss) {
       window.open(link, '_blank');
     }
+  };
+
+  const triggerDealEvent = () => {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      pageCategory: 'Store Pages',
+      event: 'deal_reveal',
+      label: match.url,
+    });
   };
 
   const renderCouponButton = () => {
@@ -76,7 +94,7 @@ const CouponCode = ({
         <p>{t('coupons.buttons.viewDeal')}</p>
       </CouponCode.Button>
     ) : (
-      <CouponCode.Link href={link} target={'_blank'}>
+      <CouponCode.Link href={link} target={'_blank'} onClick={triggerDealEvent}>
         <p>{t('coupons.buttons.viewDeal')}</p>
       </CouponCode.Link>
     );
@@ -219,4 +237,4 @@ CouponCode.Rectangle = styled.div`
   background-position: 0 0;
 `;
 
-export default CouponCode;
+export default withRouter(CouponCode);

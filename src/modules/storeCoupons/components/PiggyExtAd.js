@@ -1,6 +1,8 @@
 // @flow
 import * as R from 'ramda';
 import * as React from 'react';
+import { compose } from 'recompose';
+import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { MdStar, MdStarBorder, MdStarHalf } from 'react-icons/md';
@@ -45,15 +47,29 @@ const renderStarsReview = rating => {
   );
 };
 
-const PiggyExtAd = ({ t, i18n, stars, reviewsCount }: PiggyExtAdProps) => {
+const PiggyExtAd = ({
+  t,
+  match,
+  i18n,
+  stars,
+  reviewsCount,
+}: PiggyExtAdProps) => {
+  const triggerEvent = () => {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      pageCategory: 'Store Pages',
+      event: 'click_to_add_extension',
+      label: match.url,
+    });
+  };
+
   return (
     <PiggyExtAd.Wrapper>
       <PiggyExtAd.AddExtensionButton
         onClick={() => {
+          triggerEvent();
           window.open(
-            `https://chrome.google.com/webstore/detail/piggy-automatic-coupons-c/hfapbcheiepjppjbnkphkmegjlipojba?hl=${
-              i18n.language
-            }`,
+            `https://chrome.google.com/webstore/detail/piggy-automatic-coupons-c/hfapbcheiepjppjbnkphkmegjlipojba?hl=${i18n.language}`,
             '_blank',
           );
         }}
@@ -139,4 +155,4 @@ PiggyExtAd.Reviews = styled.div`
   `}
 `;
 
-export default withTranslation()(PiggyExtAd);
+export default compose(withTranslation(), withRouter)(PiggyExtAd);

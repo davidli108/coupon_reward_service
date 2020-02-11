@@ -344,9 +344,6 @@ const mapStateToProps = state => {
 };
 
 export default compose(
-  connect(
-    mapStateToProps,
-    null,
-  ),
+  connect(mapStateToProps, null),
   withTranslation(),
 )(Coupon);

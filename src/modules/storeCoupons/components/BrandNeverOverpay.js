@@ -11,9 +11,7 @@ const BrandNeverOverpay = ({ t, i18n, storeName }: BrandNeverOverpayProps) => {
   const [isCovered, setCovered] = React.useState(true);
   const handleCoveredToggler = () => setCovered(!isCovered);
 
-  const addChromeLink = `https://chrome.google.com/webstore/detail/piggy-automatic-coupons-c/hfapbcheiepjppjbnkphkmegjlipojba?hl=${
-    i18n.language
-  }`;
+  const addChromeLink = `https://chrome.google.com/webstore/detail/piggy-automatic-coupons-c/hfapbcheiepjppjbnkphkmegjlipojba?hl=${i18n.language}`;
 
   return (
     <>

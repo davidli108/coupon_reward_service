@@ -1,5 +1,6 @@
 // @flow
 import React, { useEffect, useState } from 'react';
+import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { MdClose } from 'react-icons/md';
@@ -18,6 +19,7 @@ import { getIsExtensionInstalled } from '../../modules/app/AppReducer';
 
 type ModalActivateCouponsProps = {
   t: Function,
+  match: Object,
   title: string,
   isActive: boolean,
   logo: string,
@@ -31,6 +33,7 @@ const isChrome = !!window.chrome;
 
 const ModalActivateCoupons = ({
   t,
+  match,
   title,
   isActive,
   logo,
@@ -42,6 +45,15 @@ const ModalActivateCoupons = ({
   const [showActivateModal, setShowActivateModal] = useState(false);
   const [modalMounted, setModalMounted] = useState(false);
   const [showInstallOverlay, setInstallOverlay] = useState(false);
+
+  const triggerEvent = () => {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      pageCategory: 'Web Modal - Start Install',
+      event: 'install_screen_load',
+      label: match.url,
+    });
+  };
 
   useEffect(() => {
     if (
@@ -56,6 +68,7 @@ const ModalActivateCoupons = ({
       setModalMounted(true);
       setTimeout(() => {
         setShowActivateModal(isActive);
+        triggerEvent();
       });
       Cookie.set('installProcessed', true, {
         expires: moment()
@@ -73,6 +86,13 @@ const ModalActivateCoupons = ({
       setModalMounted(false);
       setInstallOverlay(true);
     }, 300);
+
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      pageCategory: 'Web Modal - Start Install',
+      event: 'start_install',
+      label: match.url,
+    });
   };
 
   const installCallback = () => {
@@ -90,6 +110,13 @@ const ModalActivateCoupons = ({
       setModalMounted(false);
       callback();
     }, 300);
+
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      pageCategory: 'Web Modal - Start Install',
+      event: 'cancel_install_exit',
+      label: match.url,
+    });
   };
 
   return (
@@ -304,9 +331,7 @@ const mapStateToProps = state => ({
 });
 
 export default compose(
-  connect(
-    mapStateToProps,
-    null,
-  ),
+  connect(mapStateToProps, null),
   withTranslation(),
+  withRouter,
 )(ModalActivateCoupons);

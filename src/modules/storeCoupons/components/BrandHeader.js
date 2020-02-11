@@ -6,6 +6,7 @@ import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
 import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
+import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
@@ -33,6 +34,7 @@ const modal = {
 
 export type BrandHeaderProps = {
   t: Function,
+  match: Object,
   store: any,
   offers: any[],
   offersCount: number,
@@ -47,6 +49,7 @@ const getDealsCount = offers => offers.filter(x => x.coupon_code === '').length;
 
 const BrandHeader = ({
   t,
+  match,
   store,
   offers,
   offersCount,
@@ -70,6 +73,13 @@ const BrandHeader = ({
       : 'global.noCashBack'
     : 'global.instantSaving';
   const toggleFavoriteStore = () => {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      pageCategory: 'Store Pages',
+      event: 'favorite_store',
+      label: match.url,
+    });
+
     if (
       !localeConfig.isAuthenticationAvailable ||
       !localeConfig.isFollowStoreAvailable
@@ -88,11 +98,7 @@ const BrandHeader = ({
         const origin = getOrigin();
         const { pathname } = document.location;
 
-        document.location.href = `${
-          AppConfig.apiUrl
-        }/account/toggle-favorite/?nonce=${data.nonce}&store_id=${
-          store.store_id
-        }&origin=${origin}&redirect=${pathname}`;
+        document.location.href = `${AppConfig.apiUrl}/account/toggle-favorite/?nonce=${data.nonce}&store_id=${store.store_id}&origin=${origin}&redirect=${pathname}`;
       }
     });
   };
@@ -336,9 +342,7 @@ const mapDispatchToProps = {
 };
 
 export default compose(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps,
-  ),
+  connect(mapStateToProps, mapDispatchToProps),
   withTranslation(),
+  withRouter,
 )(BrandHeader);

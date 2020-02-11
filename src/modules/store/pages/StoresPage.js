@@ -1,6 +1,6 @@
 // @flow
 /* eslint-disable max-len */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { compose } from 'recompose';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -80,6 +80,15 @@ const StoresPage = ({
   const [isLoadedStores, setIsLoadedStores] = useState(false);
   const [isLoadedMore, setIsLoadedMore] = useState(true);
   const [isLoadedCategories, setIsLoadedCategories] = useState(false);
+
+  useEffect(() => {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      pageCategory: 'Stores by Category',
+      event: 'stores_page_load',
+      label: match.url,
+    });
+  }, [match]);
 
   return (
     <React.Fragment>
@@ -237,10 +246,7 @@ const mapDispatchToProps = {
 };
 
 export default compose(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps,
-  ),
+  connect(mapStateToProps, mapDispatchToProps),
   withRouter,
   withTranslation(),
 )(StoresPage);

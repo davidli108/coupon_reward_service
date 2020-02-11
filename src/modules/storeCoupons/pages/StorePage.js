@@ -65,7 +65,21 @@ const StorePage = ({
       // $FlowFixMe
       fetchStoreCoupons(match.params.name).then(() => setIsLoaded(true));
     }
-  });
+  }, [match]);
+
+  useEffect(() => {
+    const { name } = match.params;
+    if (name) {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        pageCategory: 'Store Pages',
+        event: isExtensionInstalled
+          ? 'store_page_load_extension_installed'
+          : 'store_page_load_no_extension',
+        label: match.url,
+      });
+    }
+  }, [match]);
 
   const onSearchChange = e => {
     setSearchValue(e.target.value);
@@ -81,11 +95,14 @@ const StorePage = ({
         meta={[
           {
             name: 'description',
-            content: `Never overpay again with the latest ${
-              store.store_name
-            } coupons and promotional codes automatically applied at checkout. Plus ${
-              store.store_cashback_text
-            } today when you use Piggy to shop ${store.store_name}`,
+            content:
+              'Never overpay again with the latest ' +
+              store.store_name +
+              ' coupons and promotional codes automatically applied at checkout. ' +
+              'Plus ' +
+              store.store_cashback_text +
+              ' today when you use Piggy to ' +
+              store.store_name,
           },
           {
             name: 'keywords',
@@ -242,10 +259,7 @@ const mapDispatchToProps = {
 const enhance = compose(
   withRouter,
   withTranslation(),
-  connect(
-    mapStateToProps,
-    mapDispatchToProps,
-  ),
+  connect(mapStateToProps, mapDispatchToProps),
 );
 
 export default enhance(StorePage);

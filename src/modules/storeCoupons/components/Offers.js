@@ -1,5 +1,7 @@
 // @flow
 import React, { useState } from 'react';
+import { compose } from 'recompose';
+import { withRouter } from 'react-router-dom';
 import Offer from './Offer';
 import type { OffersProps } from '../models/StorePage';
 import styled from 'styled-components';
@@ -9,6 +11,7 @@ import OffersLoader from '../components/loaders/OffersLoader';
 
 const Offers = ({
   t,
+  match,
   offers,
   offersCount,
   fetchStoreCoupons,
@@ -26,6 +29,13 @@ const Offers = ({
         setPages(pages + 20);
       });
     }
+
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      pageCategory: 'Store Pages',
+      event: 'load_more_deals',
+      label: match.url,
+    });
   };
 
   return (
@@ -98,4 +108,4 @@ Offers.NoData = styled.p`
   `}
 `;
 
-export default withTranslation()(Offers);
+export default compose(withTranslation(), withRouter)(Offers);

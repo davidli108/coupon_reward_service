@@ -106,6 +106,7 @@ export type BrandNeverOverpayProps = {
 
 export type PiggyExtAdProps = {
   t: Function,
+  match: Object,
   i18n: Object,
   stars: number,
   reviewsCount: string,
@@ -113,6 +114,7 @@ export type PiggyExtAdProps = {
 
 export type OffersProps = {
   t: Function,
+  match: Object,
   offers: Offer[],
   offersCount: number,
   fetchStoreCoupons: Function,
