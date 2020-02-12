@@ -26,6 +26,7 @@ export const CouponCategories = [
   'sports-and-fitness',
   'toys-and-games',
   'travel',
+  'luxury',
 ];
 
 export const isCouponCategory = (route: string) =>
