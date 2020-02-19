@@ -22,6 +22,7 @@ import EmptyFavoritesIcon from './EmptyFavoritesIcon';
 import Coupons from '../components/Coupons';
 
 import CategoriesLoader from '../components/loaders/CategoriesLoader';
+import { getCategories } from '../../sitemap/constants';
 
 const modal = {
   modalSignIn: 'modalSignIn',
@@ -31,6 +32,7 @@ const modal = {
 
 type ContentProps = {
   t: string => string,
+  i18n: Function,
   history: Object,
   match: Object,
   categories: Object,
@@ -51,6 +53,7 @@ type ContentProps = {
 
 const Content = ({
   t,
+  i18n,
   history,
   match,
   categories,
@@ -149,7 +152,7 @@ const Content = ({
           <Content.CategoriesWrapper>
             <Categories
               type="categories"
-              categories={categories.categories}
+              categories={getCategories(t, i18n, categories.categories)}
               title={t('categories.name')}
               activeCategory={activeCategory}
               onActiveCategory={onActiveCategory}

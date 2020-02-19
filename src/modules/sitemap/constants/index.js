@@ -81,8 +81,8 @@ export const footerLinks = (
     name: t('sitemap.shopping_categories.title'),
     collapsed: false,
     list: [
-      ...categories.map((category: Category) => ({
-        name: getCategoryTitle(category.name, t),
+      ...getCategories(t, i18n, categories).map((category: Category) => ({
+        name: category.name,
         url: `/coupons/${category.short_name}`,
       })),
     ],
@@ -286,4 +286,26 @@ export const getCategoryTitle = (name: string, t: Function) => {
   };
 
   return categories[name] || name;
+};
+
+export const getCategories = (
+  t: Function,
+  i18n: Object,
+  categories: Category[],
+): Category[] => {
+  const translatedCategories = [];
+
+  categories &&
+    categories.forEach(category => {
+      if (!(i18n.language === 'gb' && category.short_name === 'canada')) {
+        translatedCategories.push({
+          ...category,
+          name: getCategoryTitle(category.name, t),
+        });
+      }
+    });
+
+  return translatedCategories.sort((a, b) =>
+    Number(a.name && a.name.localeCompare(b.name)),
+  );
 };
