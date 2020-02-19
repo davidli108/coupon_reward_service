@@ -240,7 +240,4 @@ StoreSidebar.ClearFilter = styled.button`
   `}
 `;
 
-export default compose(
-  withRouter,
-  withTranslation(),
-)(StoreSidebar);
+export default compose(withRouter, withTranslation())(StoreSidebar);

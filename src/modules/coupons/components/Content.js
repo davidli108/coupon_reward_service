@@ -474,7 +474,4 @@ Content.AuthenticateControl = styled.span`
   cursor: pointer;
 `;
 
-export default compose(
-  withTranslation(),
-  withRouter,
-)(Content);
+export default compose(withTranslation(), withRouter)(Content);
