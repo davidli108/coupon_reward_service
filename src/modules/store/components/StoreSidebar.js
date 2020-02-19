@@ -10,10 +10,12 @@ import { type Store } from '../models';
 import SearchBar from '@components/SearchBar/SearchBar';
 import Categories from './Categories';
 import CategoriesMobile from './CategoriesMobile';
+import { getCategories } from '../../sitemap/constants';
 //import TagList from './TagList';
 
 type StoreSidebarProps = {
   t: Function,
+  i18n: Object,
   match: Object,
   history: Object,
   title: string,
@@ -35,6 +37,7 @@ type StoreSidebarProps = {
 
 const StoreSidebar = ({
   t,
+  i18n,
   match,
   history,
   title,
@@ -107,7 +110,7 @@ const StoreSidebar = ({
         />
       </StoreSidebar.SearchWrapper>
       <Categories
-        categories={categories}
+        categories={getCategories(t, i18n, categories)}
         title={t('header.stores')}
         activeCategory={activeCategory}
         onActiveCategory={onActiveCategory}
@@ -237,4 +240,7 @@ StoreSidebar.ClearFilter = styled.button`
   `}
 `;
 
-export default compose(withRouter, withTranslation())(StoreSidebar);
+export default compose(
+  withRouter,
+  withTranslation(),
+)(StoreSidebar);

@@ -2,12 +2,8 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
-import { withTranslation } from 'react-i18next';
-import { getCategoryTitle } from '../../sitemap/constants';
 
 type CategoryItemProps = {
-  t: string => string,
-  history: Object,
   setOpen?: boolean => void,
   name: string,
   shortName: string,
@@ -18,8 +14,6 @@ type CategoryItemProps = {
 };
 
 const CategoryItem = ({
-  t,
-  history,
   setOpen,
   name,
   shortName,
@@ -37,7 +31,7 @@ const CategoryItem = ({
       }
     }}
   >
-    <CategoryItem.Title>{getCategoryTitle(name, t)}</CategoryItem.Title>
+    <CategoryItem.Title>{name}</CategoryItem.Title>
     {isCounter && count > 0 && <CategoryItem.Value>{count}</CategoryItem.Value>}
   </CategoryItem.Wrapper>
 );
@@ -80,4 +74,4 @@ CategoryItem.Value = styled.div`
   color: #c2c2c2;
 `;
 
-export default withRouter(withTranslation()(CategoryItem));
+export default withRouter(CategoryItem);
