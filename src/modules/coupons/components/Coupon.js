@@ -15,7 +15,6 @@ import SocialShare from './SocialShare';
 
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
 import type { Deal as DealModel } from '../models/CouponsPage';
-import AppConfig from '@config/AppConfig';
 import { currencyLocaleFormat } from '@modules/localization/i18n';
 
 const OfferType = {
@@ -129,13 +128,7 @@ const Coupon = ({
           isAuthenticated={isAuthenticated}
           isExtensionInstalled={isExtensionInstalled}
           store={store_name}
-          logo={
-            store_logo.match(/placementlogos/g)
-              ? store_logo
-              : store_logo
-              ? `${AppConfig.cloudUrl}${store_logo}`
-              : placeholder
-          }
+          logo={store_logo || placeholder}
           code={coupon_code}
           link={offer_link}
         />
