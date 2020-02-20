@@ -15,7 +15,6 @@ import SocialShare from './SocialShare';
 
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
 import type { Deal as DealModel } from '../models/CouponsPage';
-import AppConfig from '@config/AppConfig';
 import { currencyLocaleFormat } from '@modules/localization/i18n';
 
 const OfferType = {
