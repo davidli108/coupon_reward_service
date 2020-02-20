@@ -129,13 +129,7 @@ const Coupon = ({
           isAuthenticated={isAuthenticated}
           isExtensionInstalled={isExtensionInstalled}
           store={store_name}
-          logo={
-            store_logo.match(/placementlogos/g)
-              ? store_logo
-              : store_logo
-              ? `${AppConfig.cloudUrl}${store_logo}`
-              : placeholder
-          }
+          logo={store_logo || placeholder}
           code={coupon_code}
           link={offer_link}
         />
