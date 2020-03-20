@@ -469,13 +469,13 @@ StoreList.Coupons = styled.p`
   `}
 `;
 
-StoreList.Link = styled(Link)`
+StoreList.Link = styled.a`
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  background: ${props => props.theme.colors.blue};
-  border: 1px solid ${props => props.theme.colors.blueDark};
+  background: ${props => props.theme.colors.greenMain};
+  border: 2px solid transparent;
   box-sizing: border-box;
   border-radius: 4px;
   font-size: 17px;
@@ -485,12 +485,11 @@ StoreList.Link = styled(Link)`
   cursor: pointer;
   margin: 0 0 0 10px;
   transition: background 205ms linear;
-  box-shadow: inset 0px 1px 2px rgba(255, 255, 255, 0.5),
-    inset 0px -1px 5px rgba(0, 0, 0, 0.0584805),
-    inset 0px -2px 0px rgba(255, 255, 255, 0.213315);
 
   &:hover {
-    background: ${props => props.theme.colors.blueDark};
+    background: ${props => props.theme.colors.white};
+    color: ${props => props.theme.colors.greenMain};
+    border-color: ${props => props.theme.colors.greenMain} !important;
   }
 
   ${breakpoint('xs')`

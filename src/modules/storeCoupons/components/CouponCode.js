@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import ModalActivateCoupons from '@components/ModalActivateCoupons/ModalActivateCoupons';
 import Cookie from 'js-cookie';
 import { isMobile } from 'react-device-detect';
+import breakpoint from 'styled-components-breakpoint';
 import { withRouter } from 'react-router-dom';
 
 type CouponCodeProps = {
@@ -16,6 +17,7 @@ type CouponCodeProps = {
   logo: string,
   isAuthenticated: boolean,
   isExtensionInstalled: boolean,
+  isVisit: boolean,
 };
 
 const CouponCode = ({
@@ -28,6 +30,7 @@ const CouponCode = ({
   logo,
   isAuthenticated,
   isExtensionInstalled,
+  isVisit,
 }: CouponCodeProps) => {
   const [isShowCode, setIsShowCode] = useState(false);
   const [showActivateModal, setShowActivateModal] = useState(false);
@@ -38,20 +41,22 @@ const CouponCode = ({
 
   const handleClick = () => {
     setShowActivateModal(true);
-  };
 
-  const modalCallback = (dismiss: boolean) => {
-    setShowActivateModal(false);
-    if (code && !isShowCode) {
+    if (showActivateModal && code) {
       setIsShowCode(true);
+    }
+
+    if (showActivateModal && !code) {
+      window.open(link, '_blank');
+    }
+
+    if (code && !isShowCode) {
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
         pageCategory: 'Store Pages',
         event: 'coupon_reveal',
         label: match.url,
       });
-    } else if (!dismiss) {
-      window.open(link, '_blank');
     }
   };
 
@@ -62,6 +67,15 @@ const CouponCode = ({
       event: 'deal_reveal',
       label: match.url,
     });
+  };
+
+  const modalCallback = (dismiss: boolean) => {
+    setShowActivateModal(false);
+    if (code && !isShowCode) {
+      setIsShowCode(true);
+    } else if (!dismiss) {
+      window.open(link, '_blank');
+    }
   };
 
   const renderCouponButton = () => {
@@ -88,10 +102,15 @@ const CouponCode = ({
     ) : isChrome &&
       !isMobile &&
       !isShowCode &&
+      !isVisit &&
       !isAuthenticated &&
       !isInstallProcessed ? (
       <CouponCode.Button onClick={handleClick} isShow={!isShowCode}>
         <p>{t('coupons.buttons.viewDeal')}</p>
+      </CouponCode.Button>
+    ) : isVisit ? (
+      <CouponCode.Button onClick={handleClick} isShow={!isShowCode}>
+        <p> {t('build.visitStore')}</p>
       </CouponCode.Button>
     ) : (
       <CouponCode.Link href={link} target={'_blank'} onClick={triggerDealEvent}>
@@ -119,28 +138,43 @@ const CouponCode = ({
 
 CouponCode.Wrapper = styled.div`
   width: 100%;
+  position: relative;
 `;
 
 CouponCode.p = styled.p`
   font-size: 95%;
 `;
+
 CouponCode.Button = styled.div`
-  margin-bottom: 10px;
-  display: ${props => (props.isShow ? 'flex' : 'none')};
+  display: flex;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-
   width: 100%;
-  height: 45px;
-  background: #00cbe9;
+  height: 50px;
+  background: ${props => props.theme.colors.greenLight};
   border-radius: 4px;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 16px;
   text-align: center;
   letter-spacing: 0.51px;
-  color: #fff;
+  color: ${props => props.theme.colors.greenMain};
   cursor: pointer;
+  border: 2px solid ${props => props.theme.colors.greenMain};
+  transition: 0.3s;
+  margin: 0 auto;
+
+  ${breakpoint('lg')`
+    font-size: 16px;
+    max-width: 184px;
+    margin: unset;
+  `}
+
+  &:hover {
+    background: ${props => props.theme.colors.greenMain};
+    color: ${props => props.theme.colors.greenLight};
+    border: 2px solid transparent;
+  }
 
   p {
     width: 100%;
@@ -153,17 +187,17 @@ CouponCode.Link = styled.a`
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-
   width: 100%;
   height: 45px;
-  background: #00cbe9;
   border-radius: 4px;
   font-weight: 500;
   font-size: 16px;
   text-align: center;
   letter-spacing: 0.51px;
-  color: #fff;
   cursor: pointer;
+  background: ${props => props.theme.colors.greenMain};
+  color: ${props => props.theme.colors.greenLight};
+  border: 2px solid transparent;
 
   p {
     width: 100%;
@@ -173,7 +207,7 @@ CouponCode.Link = styled.a`
 CouponCode.Code = styled.a`
   display: ${props => (props.isShow ? 'flex' : 'none')};
   width: 100%;
-  height: 45px;
+  height: 50px;
   margin-bottom: 10px;
   justify-content: center;
   align-items: center;
@@ -181,8 +215,9 @@ CouponCode.Code = styled.a`
   background-color: #fefff4;
   color: black;
   text-align: center;
-  position: relative;
   box-sizing: border-box;
+  position: absolute;
+  top: 0;
 
   :hover {
     > div {
@@ -233,7 +268,12 @@ CouponCode.Rectangle = styled.div`
   display: ${props => (props.isShow ? 'flex' : 'none')};
   border-top-right-radius: 4px;
   border-bottom-left-radius: 4px;
-  background-image: linear-gradient(45deg, #00a2ba 50%, #f1f1f1 50%);
+  background-image: linear-gradient(
+    45deg,
+    ${props => props.theme.colors.greenMain} 50%,
+    ${props => props.theme.colors.greenWhite} 50%
+  );
+
   background-position: 0 0;
 `;
 

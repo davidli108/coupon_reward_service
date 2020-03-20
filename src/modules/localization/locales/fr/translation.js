@@ -21,6 +21,10 @@ export default {
     storeFavorites: 'Favoris magasin',
     referralBonus: 'Bonus de parrainage',
     passwordReset: 'Réinitialisez votre mot de passe',
+    accountDetails: 'Details du Compte',
+    earningSaving: 'Gains et Économies',
+    favoriteStores: 'Boutiques Préférées',
+    shop: 'Achetez {{ storeName }} avec {{ cashBack }}',
   },
   auth: {
     social: {
@@ -156,6 +160,7 @@ export default {
     luxury: 'Luxe',
   },
   global: {
+    activateCashback: 'Activer {{discount}} Cash back',
     invalidDate: 'Exp: Date invalide',
     earnCashBack: 'Gagnez {{discount}} cash Back!',
     learnMore: 'En savoir plus',
@@ -284,6 +289,7 @@ export default {
     piggyBonus: 'Bonus Piggy',
   },
   storeCoupons: {
+    cashBackCategories: 'Catégories de remise en argent',
     viewLatestCoupons:
       "voir les derniers coupons en ligne pour {{ storeName }} ci-dessous ! Ne manquez jamais un coupon de réduction ou un cashback dans l'une de nos 3 000 autres boutiques grâce à notre application gratuite pour mobile et à notre extension de navigateur ! Tous les coupons en ligne de {{ storeName }} peuvent être combinés avec des réductions automatiques et gratuites. Jusqu'à 3,0 % de cashback ! Chacun de ces coupons et promotions peuvent être combinés avec notre cashback automatique à l'achat d'un produit Piggy !",
     returnPolicy: 'Politique de retour',

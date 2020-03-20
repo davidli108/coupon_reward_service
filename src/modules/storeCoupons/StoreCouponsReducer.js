@@ -28,6 +28,7 @@ const initialState = {
   searchIsLoading: false,
   count: 0,
   reviews: 0,
+  cashbackRates: [],
 };
 
 const StoreCouponsReducer = (
@@ -39,6 +40,12 @@ const StoreCouponsReducer = (
       return R.assoc<Object, Object>('fetchingState', 'FETCHING')(state);
     }
     case `${FETCH_STORE_COUPONS}_SUCCESS`: {
+      const cashbackRates = R.pathOr(
+        [],
+        ['payload', 'data', 'cashback_rates'],
+        action,
+      );
+
       const count: number = R.pathOr(0, ['payload', 'data', 'offers_count'])(
         action,
       );
@@ -66,14 +73,16 @@ const StoreCouponsReducer = (
         additionalInfo,
         count,
         reviews,
+        cashbackRates,
       };
 
       return R.assoc<Object, Object>('fetchingState', 'LOADED')(newState);
     }
     case `${FETCH_STORE_COUPONS_BY_PAGINATION}_SUCCESS`: {
-      const offersData = R.pathOr([], ['payload', 'data', 'offers_data'])(
-        action,
-      );
+      const offersData = R.pathOr(
+        [],
+        ['payload', 'data', 'offers_data'],
+      )(action);
 
       // $FlowFixMe
       const offers = R.concat(state.offers, offersData);
@@ -110,6 +119,7 @@ export const getAdditionalInfo = R.path<Object[]>([
   'additionalInfo',
 ]);
 export const getFetchingState = R.path<string>([STATE_KEY, 'fetchingState']);
+export const getCashbackRates = R.path<string>([STATE_KEY, 'cashbackRates']);
 export const getStoreSearch = R.path<string>([STATE_KEY, 'search']);
 export const searchIsLoading = R.path<string>([STATE_KEY, 'searchIsLoading']);
 export const getCountOffers = R.path<string>([STATE_KEY, 'count']);

@@ -106,20 +106,23 @@ CouponCode.Button = styled.div`
   display: ${props => (props.isShow ? 'flex' : 'none')};
   justify-content: center;
   align-items: center;
-  background: #00cbe9;
-  border: 1px solid #00b4cf;
+  background: ${props => props.theme.colors.blue};
+  color: ${props => props.theme.colors.white};
+  border: 1px solid ${props => props.theme.colors.blueDark};
   box-sizing: border-box;
-  box-shadow: inset 0px 1px 2px rgba(255, 255, 255, 0.5),
-    inset 0px -1px 5px rgba(0, 0, 0, 0.0584805),
-    inset 0px -2px 0px rgba(255, 255, 255, 0.213315);
   border-radius: 4px;
   font-weight: 500;
   line-height: 20px;
   font-size: 17px;
   text-align: center;
   letter-spacing: 0.51px;
-  color: #fff;
   cursor: pointer;
+
+  &:hover {
+    background: ${props => props.theme.colors.blueDark} !important;
+    color: ${props => props.theme.colors.white} !important;
+    border: 1px solid ${props => props.theme.colors.blueDark} !important;
+  }
 `;
 
 CouponCode.Code = styled.a`
@@ -131,11 +134,11 @@ CouponCode.Code = styled.a`
   justify-content: center;
   align-items: center;
   border: 2px dashed gray;
-  background-color: #fefff4;
+  background-color: ${props => props.theme.colors.whiteEnLight};
   color: black;
   text-align: center;
-  position: relative;
   box-sizing: border-box;
+  position: relative;
 
   :hover {
     > div {
@@ -154,8 +157,8 @@ CouponCode.Tooltip = styled.div`
   margin: 0 0 10px -100px;
   border-radius: 5px;
   padding: 6px 10px;
-  background-color: #000;
-  color: #fff;
+  background-color: ${props => props.theme.colors.black};
+  color: ${props => props.theme.colors.white};
   font-size: 14px;
   line-height: 18px;
   font-weight: 500;
@@ -174,7 +177,7 @@ CouponCode.Tooltip = styled.div`
     margin: 0 0 0 -5px;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    border-top: 5px solid #000;
+    border-top: 5px solid ${props => props.theme.colors.black};
   }
 `;
 

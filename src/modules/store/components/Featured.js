@@ -182,12 +182,12 @@ Featured.Image = styled.img`
   object-fit: contain;
 `;
 
-Featured.Link = styled(Link)`
+Featured.Link = styled.a`
   display: block;
   width: 100%;
   padding: 9px 0;
-  background: ${props => props.theme.colors.blue};
-  border: 1px solid ${props => props.theme.colors.blueDark};
+  background: ${props => props.theme.colors.greenMain};
+  border: 2px solid transparent;
   border-radius: 4px;
   font-weight: bold;
   line-height: 20px;
@@ -200,7 +200,9 @@ Featured.Link = styled(Link)`
   transition: background 205ms linear;
 
   &:hover {
-    background: ${props => props.theme.colors.blueDark};
+    background: ${props => props.theme.colors.white};
+    color: ${props => props.theme.colors.greenMain};
+    border-color: ${props => props.theme.colors.greenMain} !important;
   }
 `;
 

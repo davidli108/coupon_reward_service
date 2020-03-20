@@ -71,7 +71,7 @@ AddSaving.span = styled.span`
 
 AddSaving.Wrapper = styled.div`
   width: 100%;
-  margin-top: 50px;
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -80,6 +80,10 @@ AddSaving.Wrapper = styled.div`
 
   ${breakpoint('sx')`
     flex-direction: row;
+  `}
+
+  ${breakpoint('md')`
+    margin-top: 50px;
   `}
 `;
 
@@ -181,15 +185,22 @@ AddSaving.ActivateButton = styled.a`
   min-width: 90%;
   margin: 10px 0;
   padding: 10px 0;
-  border: 2px solid #7ed321;
   box-sizing: border-box;
   border-radius: 4px;
   letter-spacing: 0.5px;
-  color: #7ed321;
   font-size: 20px;
   font-weight: 500;
   cursor: pointer;
   text-align: center;
+  color: ${props => props.theme.colors.white};
+  border: 2px solid ${props => props.theme.colors.greenMain};
+  background: ${props => props.theme.colors.greenMain};
+  transition: 0.3s;
+
+  &:hover {
+    color: ${props => props.theme.colors.greenMain};
+    background: ${props => props.theme.colors.greenLight};
+  }
 
   ${breakpoint('sx')`
     min-width: 100%;

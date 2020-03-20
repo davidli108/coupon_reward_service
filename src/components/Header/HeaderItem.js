@@ -60,11 +60,11 @@ HeaderItem.defaultProps = {
 HeaderItem.NavLink = styled(NavLink)`
   font-size: 16px;
   line-height: 19px;
-  padding: 8px 10px;
+  padding: 8px 5px;
   color: #899197;
   letter-spacing: 0.53px;
   font-weight: 700;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   border-radius: 5px;
@@ -79,6 +79,7 @@ HeaderItem.NavLink = styled(NavLink)`
   }
 
   ${breakpoint('lg')`
+    display: flex;
     &::before,
     &::after {
       content: '';
@@ -119,7 +120,7 @@ HeaderItem.NavLink = styled(NavLink)`
 HeaderItem.Link = styled.a`
   font-size: 16px;
   line-height: 19px;
-  padding: 8px 35px;
+  padding: 5px 10px;
   color: #00ba4a;
   letter-spacing: 0.53px;
   margin: ${({ separator }) => (separator ? '0' : '0 8px')};
@@ -135,12 +136,12 @@ HeaderItem.Link = styled.a`
   border: ${({ border }) => (border ? '2px solid #00ba4a' : '')};
 
   svg {
-    ${({ border }) => (border ? 'display: none;' : 'display: block;')}
+    display: none !important;
   }
 
   ${breakpoint('lg')`
-    margin: 0;  
-  
+    margin: 0 4px;
+
     &::before,
     &::after {
       content: '';
@@ -176,6 +177,10 @@ HeaderItem.Link = styled.a`
       display: none;
     }
   `}
+
+  ${breakpoint('xl')`
+    padding: 5px 20px;
+  `}
 `;
 
 HeaderItem.LogoLink = styled.a`
@@ -191,14 +196,14 @@ HeaderItem.LogoLink = styled.a`
 
   ${breakpoint('ss')`
     img {
-      margin: 10px 0 0;
+      margin: 2px 0 0;
       height: 46px;
     }
   `}
 
   ${breakpoint('md')`
     img {
-      margin: 15px 0 0;
+      margin: 3px 0 0;
       height: 57px;
     }
   `}
@@ -217,11 +222,15 @@ HeaderItem.Wrapper = styled.div`
   margin: 0;
 
   ${breakpoint('lg')`
-    margin: 0 10px;
+    margin: 0 3px;
     
     &:last-of-type {
-      margin: 0 0 0 10px;
+      margin: 0 ;
     }
+  `}
+
+  ${breakpoint('xl')`
+    margin: 0 10px;
   `}
 `;
 
@@ -232,10 +241,14 @@ HeaderItem.Separator = styled.div`
   border-radius: 50%;
   background: #000;
   position: relative;
-  right: -6px;
+  right: 0;
 
   ${breakpoint('lg')`
     display: block;
+  `}
+
+  ${breakpoint('xl')`
+    right: -6px;
   `}
 `;
 
