@@ -2158,7 +2158,7 @@ exports[`Storyshots Components|@Store Featured 1`] = `
 
 @media (min-width:25.8125em) {
   .c2 {
-    min-width: 144px;
+    min-width: 147px;
     padding: 11px 9px;
   }
 }
