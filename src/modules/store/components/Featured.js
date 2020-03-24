@@ -166,7 +166,7 @@ Featured.Item = styled.li`
   `}
 
   ${breakpoint('xl')`
-    min-width: 148px;
+    min-width: 147px;
   `}
 `;
 

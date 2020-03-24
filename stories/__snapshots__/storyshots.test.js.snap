@@ -2172,7 +2172,7 @@ exports[`Storyshots Components|@Store Featured 1`] = `
 
 @media (min-width:75em) {
   .c2 {
-    min-width: 148px;
+    min-width: 147px;
   }
 }
 

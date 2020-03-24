@@ -240,8 +240,7 @@ TodaysFeaturedCoupon.Wrapper = styled.div`
     font-size: 16px;
     color: #374b5a;
     text-align: center;
-
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 
     ${breakpoint('sx')`
       line-height: 24px;

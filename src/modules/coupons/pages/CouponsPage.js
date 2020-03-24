@@ -153,10 +153,13 @@ const CouponsPage = ({
 };
 
 CouponsPage.Wrapper = styled.div`
-  padding: 10px;
-  padding-bottom: 50px;
+  padding: 30px 10px 50px;
   display: flex;
   flex-flow: column nowrap;
+
+  ${breakpoint('lg')`
+    padding: 50px 10px;
+  `}
 
   ${breakpoint('xl')`
     width: 1140px;
