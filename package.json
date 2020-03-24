@@ -21,6 +21,8 @@
     "prettier": "prettier --write 'src/**/*.js'"
   },
   "dependencies": {
+    "@haiku/mahalec-animateinterstitialjohn": "^0.0.16",
+    "@haiku/mahalec-animateinterstitialnate": "^0.0.11",
     "axios": "^0.18.0",
     "bfj": "^6.1.1",
     "body-parser": "^1.19.0",

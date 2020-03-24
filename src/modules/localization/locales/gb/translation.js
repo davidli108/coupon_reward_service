@@ -21,6 +21,10 @@ export default {
     storeFavorites: 'Store Favorites',
     referralBonus: 'Referral Bonus',
     passwordReset: 'Password Reset',
+    accountDetails: 'Account Details',
+    earningSaving: 'Earnings & Savings',
+    favoriteStores: 'Favourite Stores',
+    shop: 'Shop {{ storeName }} with {{ cashBack }}',
   },
   auth: {
     social: {
@@ -153,6 +157,7 @@ export default {
     luxury: 'Luxury',
   },
   global: {
+    activateCashback: 'Activate {{discount}} Cashback',
     invalidDate: 'Invalid Date',
     earnCashBack: 'Earn {{discount}} Cashback!',
     learnMore: 'Learn more',
@@ -276,6 +281,7 @@ export default {
     piggyBonus: 'Piggy Bonus',
   },
   storeCoupons: {
+    cashBackCategories: 'Cashback Categories',
     viewLatestCoupons:
       'View the latest Online Vouchers for {{storeName}} below! Never miss a {{ storeName }} voucher or Cashback opportunities from any of our 3,000 other stores with our Free Mobile App and Browser app! Any of {{ storeName }} online vouchers can be combined with Free, Automatic Rebates.Up to 3.0% Cashback! Only from Piggy!Any of these {{ storeName }} voucher codes and promotions can be combined with our Automatic Cashback at {{ storeName }}',
     returnPolicy: 'Return Policy',

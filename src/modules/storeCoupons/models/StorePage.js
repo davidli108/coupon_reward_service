@@ -1,4 +1,13 @@
 // @flow
+export type CashBackRate = {
+  category_name: string,
+  category_description: string,
+  cta: string,
+  int_url: string,
+  image: string,
+  cashback_rate: string,
+  weight: number,
+};
 
 export type Content = {
   title?: string,
@@ -60,11 +69,6 @@ export type Offer = {
   pinterest_link: string,
 };
 
-export type SearchBarProps = {
-  name: string,
-  placeholder?: string,
-};
-
 export type StorePageProps = {
   t: Function,
   store: Store,
@@ -82,9 +86,18 @@ export type StorePageProps = {
   reviews: string,
   getFilteredList: any,
   isExtensionInstalled: boolean,
+  cashbackRates: Array<CashBackRate>,
 };
 
 export type BrandProps = {
+  t: Function,
+  i18n: Object,
+  coupon_code: string,
+  offer_link: string,
+  store_name: string,
+  isAuthenticated: boolean,
+  isExtensionInstalled: boolean,
+  store_logo: string,
   store: Store,
   isLoaded: boolean,
   offersCount: number,
@@ -120,12 +133,14 @@ export type OffersProps = {
   fetchStoreCoupons: Function,
   storeName: string,
   store: Object,
+  cashbackRates: Array<CashBackRate>,
 };
 
 export type AdditionalInfoProps = {
   t: Function,
   additionalInfo: AdditionalInfo,
   store: Object,
+  cashbackRates: Array<CashBackRate>,
 };
 
 export type AdditionalInfoSectionProps = {
@@ -142,4 +157,17 @@ export type AdditionalInfoContentProps = {
 export type StoreInformationProps = {
   t: string => string,
   store: Store,
+};
+
+export type CashBackContentsProps = {
+  t: Function,
+  wZero: boolean,
+  store: Object,
+  cashbackRates: Array<CashBackRate>,
+};
+
+export type CashBackContentProps = {
+  t: Function,
+  store: Object,
+  item: CashBackRate,
 };

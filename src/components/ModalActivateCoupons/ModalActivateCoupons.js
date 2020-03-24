@@ -16,6 +16,10 @@ import { withTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet';
 import { isMobile } from 'react-device-detect';
 import { getIsExtensionInstalled } from '../../modules/app/AppReducer';
+import AnimateInterstitialJohn from '@haiku/mahalec-animateinterstitialjohn/react';
+import AnimateInterstitialNate from '@haiku/mahalec-animateinterstitialnate/react';
+
+import Delayed from './Delayed';
 
 type ModalActivateCouponsProps = {
   t: Function,
@@ -45,6 +49,7 @@ const ModalActivateCoupons = ({
   const [showActivateModal, setShowActivateModal] = useState(false);
   const [modalMounted, setModalMounted] = useState(false);
   const [showInstallOverlay, setInstallOverlay] = useState(false);
+  const [renderedComponent, setRenderedComponent] = useState(0);
 
   const triggerEvent = () => {
     window.dataLayer = window.dataLayer || [];
@@ -66,6 +71,7 @@ const ModalActivateCoupons = ({
       !Boolean(Cookie.get('installProcessed'))
     ) {
       setModalMounted(true);
+      setRenderedComponent(randomIntFromInterval(1, 3));
       setTimeout(() => {
         setShowActivateModal(isActive);
         triggerEvent();
@@ -80,7 +86,8 @@ const ModalActivateCoupons = ({
     }
   }, [isActive]);
 
-  const handleClick = () => {
+  const handleClick = e => {
+    e.preventDefault();
     setShowActivateModal(false);
     setTimeout(() => {
       setModalMounted(false);
@@ -104,7 +111,8 @@ const ModalActivateCoupons = ({
     }
   };
 
-  const dismissModal = () => {
+  const dismissModal = e => {
+    e.preventDefault();
     setShowActivateModal(false);
     setTimeout(() => {
       setModalMounted(false);
@@ -119,6 +127,10 @@ const ModalActivateCoupons = ({
     });
   };
 
+  function randomIntFromInterval(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+
   return (
     <>
       <Helmet>
@@ -131,20 +143,44 @@ const ModalActivateCoupons = ({
             isActive={showActivateModal}
           />
           <ModalActivateCoupons.Container isActive={showActivateModal}>
-            <ModalActivateCoupons.Content>
-              <MdClose onClick={dismissModal} />
-              <ModalActivateCoupons.Icon src={icon} />
-              <h2>{t('coupons.activateModal.title')}</h2>
-              <ModalActivateCoupons.Store>
-                <img src={logo} alt={title} />
-              </ModalActivateCoupons.Store>
-              <div>{t('coupons.activateModal.content')}</div>
-              <p>{t('coupons.activateModal.couponAbout', { title })}</p>
-              <button onClick={handleClick}>
-                {t('coupons.activateModal.button')}
-              </button>
-              <ModalActivateCoupons.Piggy src={piggy} />
-            </ModalActivateCoupons.Content>
+            {renderedComponent === 1 && (
+              <ModalActivateCoupons.animateContainer>
+                <div className="modelNate">
+                  <MdClose onClick={dismissModal} />
+                  <Delayed waitBeforeShow={8000}>
+                    <button onClick={handleClick} />
+                  </Delayed>
+                </div>
+                <AnimateInterstitialNate loop={false} />
+              </ModalActivateCoupons.animateContainer>
+            )}
+            {renderedComponent === 2 && (
+              <ModalActivateCoupons.animateContainer>
+                <div className="modelJohn">
+                  <MdClose onClick={dismissModal} />
+                  <Delayed waitBeforeShow={8000}>
+                    <button onClick={handleClick} />
+                  </Delayed>
+                </div>
+                <AnimateInterstitialJohn loop={false} />
+              </ModalActivateCoupons.animateContainer>
+            )}
+            {renderedComponent === 3 && (
+              <ModalActivateCoupons.Content>
+                <MdClose onClick={dismissModal} />
+                <ModalActivateCoupons.Icon src={icon} />
+                <h2>{t('coupons.activateModal.title')}</h2>
+                <ModalActivateCoupons.Store>
+                  <img src={logo} alt={title} />
+                </ModalActivateCoupons.Store>
+                <div>{t('coupons.activateModal.content')}</div>
+                <p>{t('coupons.activateModal.couponAbout', { title })}</p>
+                <button onClick={handleClick}>
+                  {t('coupons.activateModal.button')}
+                </button>
+                <ModalActivateCoupons.Piggy src={piggy} />
+              </ModalActivateCoupons.Content>
+            )}
           </ModalActivateCoupons.Container>
         </ModalActivateCoupons.Wrapper>
       )}
@@ -158,6 +194,68 @@ const ModalActivateCoupons = ({
     </>
   );
 };
+ModalActivateCoupons.animateContainer = styled.div`
+  position: relative;
+
+  button {
+    display: block;
+    position: absolute;
+    bottom: 125px;
+    left: 270px;
+    z-index: 100000;
+    width: 240px;
+    height: 32px;
+    text-indent: -999999px;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+  }
+
+  button:first-of-type {
+    bottom: 170px;
+    left: 203px;
+    width: 462px;
+    height: 57px;
+  }
+
+  .modelJohn {
+    > svg {
+      position: absolute;
+      right: 105px;
+      top: 58px;
+      z-index: 1000000;
+      fill: transparent;
+      cursor: pointer;
+    }
+
+    button {
+      &:first-of-type {
+        bottom: 198px;
+        left: 151px;
+        width: 468px;
+        height: 64px;
+      }
+    }
+  }
+
+  .modelNate {
+    > svg {
+      right: 122px;
+      top: 40px;
+      position: absolute;
+      z-index: 1000000;
+      fill: transparent;
+      cursor: pointer;
+    }
+
+    button {
+      &:first-of-type {
+        bottom: 237px;
+        left: 173px;
+      }
+    }
+  }
+`;
 
 ModalActivateCoupons.Wrapper = styled.div`
   position: fixed;
@@ -165,6 +263,9 @@ ModalActivateCoupons.Wrapper = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
   z-index: 1050;
   display: flex;
   justify-content: center;
@@ -176,8 +277,10 @@ ModalActivateCoupons.Overlay = styled.div`
   left: 0;
   top: 0;
   background: ${props => props.theme.colors.modalOverlayBg};
-  height: 100%;
-  width: 100%;
+  height: 100% !important;
+  width: 100% !important;
+  max-width: unset !important;
+  margin: 0 !important;
   cursor: pointer;
   transition: opacity 0.3s ease;
   opacity: ${({ isActive }) => Number(Boolean(isActive))};
@@ -201,7 +304,6 @@ ModalActivateCoupons.Icon = styled.img`
 `;
 
 ModalActivateCoupons.Container = styled.div`
-  max-width: 600px;
   position: absolute;
   transition: all 0.3s ease-in-out;
   transform: translate3d(
@@ -215,7 +317,10 @@ ModalActivateCoupons.Container = styled.div`
   `}
 
   ${breakpoint('md')`
-    max-width: 600px;
+    margin: 30px auto;
+  `}
+
+  ${breakpoint('lg')`
     margin: 30px auto;
   `}
 `;

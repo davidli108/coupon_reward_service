@@ -4,20 +4,26 @@ import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { connect } from 'react-redux';
 import moment from 'moment';
-
 import BrandHeader from './BrandHeader';
 import BrandContent from './BrandContent';
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
 import BrandImageLoader from './loaders/BrandImageLoader';
 import BrandXlLoader from './loaders/BrandXlLoader';
-
 import type { BrandProps } from '../models/StorePage';
-
 import { getStore } from '../StoreCouponsReducer';
 import AppConfig from '@config/AppConfig';
+import CouponCode from './CouponCode';
 
 const Brand = ({
+  t,
   store,
+  i18n,
+  coupon_code,
+  offer_link,
+  store_name,
+  isAuthenticated,
+  isExtensionInstalled,
+  store_logo,
   isLoaded,
   offersCount,
   reviews,
@@ -26,21 +32,48 @@ const Brand = ({
   <>
     <Brand.Wrapper>
       {isLoaded ? (
-        <Brand.BrandImageWrapper href={store.store_info_link} target="_blank">
-          <img
-            src={
-              store.store_logo_image_path
-                ? `${AppConfig.cloudUrl}${store.store_logo_image_path}`
-                : placeholder
-            }
-            onError={e => {
-              e.target.onerror = null;
-              e.target.src = placeholder;
-            }}
-            alt={`${store.store_name || ''} Coupon Codes ${moment().format(
-              'MMMM',
-            )} | ${moment().format('YYYY')}`}
-          />
+        <Brand.BrandImageWrapper>
+          <Brand.BrandImageWrapperLink
+            href={store.store_info_link}
+            target="_blank"
+          >
+            <Brand.BrandImageWrapperHolder
+              src={
+                store.store_logo_image_path
+                  ? `${AppConfig.cloudUrl}${store.store_logo_image_path}`
+                  : placeholder
+              }
+              onError={e => {
+                e.target.onerror = null;
+                e.target.src = placeholder;
+              }}
+              alt={`${store.store_name ||
+                ''} {t('storeCoupons.codes')}  ${moment().format(
+                'MMMM',
+              )} | ${moment().format('YYYY')}`}
+            />
+          </Brand.BrandImageWrapperLink>
+
+          <Brand.CashBackActivateButton>
+            <CouponCode
+              t={t}
+              i18n={i18n}
+              code={coupon_code}
+              link={store.store_info_link}
+              store={store.store_name}
+              isAuthenticated={isAuthenticated}
+              isExtensionInstalled={isExtensionInstalled}
+              logo={
+                store.store_logo_image_path
+                  ? `${AppConfig.cloudUrl}${store.store_logo_image_path}`
+                  : placeholder
+              }
+              isVisit={true}
+            />
+            <Brand.CashBackActivate>
+              {t('global.activateCashback', { discount: store.store_discount })}
+            </Brand.CashBackActivate>
+          </Brand.CashBackActivateButton>
         </Brand.BrandImageWrapper>
       ) : (
         <BrandImageLoader />
@@ -84,56 +117,82 @@ Brand.Wrapper = styled.div`
   width: 100%;
   display: flex;
   flex-flow: column nowrap;
-
-  ${breakpoint('sx')`
-    flex-flow: row nowrap;
-
-    > a {
-      padding: 0 15px;
-    }
-  `}
-
-  ${breakpoint('lg')`
-    height: auto;
-    width: 100%;
-  `}
-
   padding-top: 15px;
+
+  ${breakpoint('md')`
+    flex-flow: row nowrap;
+  `}
 `;
 
-Brand.BrandImageWrapper = styled.a`
+Brand.BrandImageWrapperLink = styled.a`
+  display: block;
+`;
+
+Brand.BrandWrapperBtn = styled.div`
+  width: 100%;
+
+  > div > div {
+    margin: 0 auto !important;
+  }
+`;
+Brand.BrandImageWrapper = styled.div`
   width: 100%;
   margin-right: 30px;
   padding: 25px 0;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-
-  border: 1px solid #dadde2;
+  border: 1px solid ${props => props.theme.colors.whiteLight};
   border-radius: 5px;
+  overflow: hidden;
+  box-sizing: border-box;
+  margin-bottom: 20px;
 
-  ${breakpoint('sx')`
-    width: 250px;
-    height: 100%;
-    padding: 0;
+  ${breakpoint('sm')`
+    width: 340px;
+    height: 340px;
   `}
 
   ${breakpoint('md')`
-    width: 300px;
-    height: 150px;
-  `}
-
-  ${breakpoint('xl')`
-    width: 250px;
+    width: 280px;
     height: 280px;
+    margin-bottom: 0;
   `}
 
-  > img {
-    height: auto;
-    width: auto;
-    max-width: 100%;
-    max-height: 100%;
+  ${breakpoint('lg')`
+    width: 280px;
+    height: 320px;
+  `}
+
+  > div > div {
+    width: 220px;
+    height: 40px;
+    margin: 20px auto !important;
+    max-width: unset !important;
+
+    ${breakpoint('md')`
+      width: 140px;
+    `}
+
+    ${breakpoint('lg')`
+      width: 80%;
+      height: 45px;
+      font-size: 16px;
+    `}
   }
+`;
+
+Brand.BrandImageWrapperHolder = styled.img`
+  height: auto;
+  width: auto;
+  max-width: 160px;
+  max-height: 160px;
+
+  ${breakpoint('md')`
+    max-width: 100%;
+    max-height: 130px;
+  `}
 `;
 
 Brand.NoWrapFlexBox = styled.div`
@@ -144,7 +203,6 @@ Brand.NoWrapFlexBox = styled.div`
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: baseline;
-
     width: 100%;
     padding: 10px 0;
   `}
@@ -152,36 +210,46 @@ Brand.NoWrapFlexBox = styled.div`
   ${breakpoint('md')`
     flex-direction: row;
   `}
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    padding: 8px 20px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0;
+  }
 `;
 
 Brand.NoWrapFlexBoxWithBorder = styled(Brand.NoWrapFlexBox)`
   ${breakpoint('md')`
-    border: 1px dashed #00CBE9;
+    border: 1px dashed ${props => props.theme.colors.blue};
     border-radius: 5px;
     padding: 8px 20px;
-
     align-items: center;
-
     height: auto;
 
     > * {
       padding: 0;
     }
   `}
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    padding: 8px 20px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0;
+  }
 `;
 
 Brand.XlWrapper = styled.div`
   width: 100%;
-  display: none;
-
-  ${breakpoint('xl')`
-    display: flex;
-  `}
+  display: flex;
 `;
 
 Brand.MdWrapper = styled.div`
   margin-top: 10px;
-  display: flex;
+  display: none;
 
   ${breakpoint('sm')`
     margin-top: 30px;
@@ -195,6 +263,7 @@ Brand.MdWrapper = styled.div`
 Brand.WrapFlexBox = styled.div`
   display: flex;
   flex-flow: column nowrap;
+  width: 100%;
 
   ${breakpoint('xl')`
     display: block;
@@ -203,9 +272,79 @@ Brand.WrapFlexBox = styled.div`
   ${breakpoint('md')`
     flex-flow: row wrap;
     align-items: center;
-
-    width: calc(100% - 270px);
+    width: 100%
   `}
+
+  ${breakpoint('lg')`
+    width: calc(100% - 310px);
+  `}
+`;
+
+Brand.ShopNow = styled.a`
+  @media (max-width: 425px) {
+    padding: 13px 140px;
+  }
+
+  @media (max-width: 375px) {
+    padding: 13px 110px;
+  }
+
+  @media (max-width: 320px) {
+    padding: 13px 80px;
+  }
+
+  text-decoration: none;
+  box-sizing: border-box;
+  letter-spacing: 0.5px;
+  color: ${props => props.theme.colors.greenLight};
+  font-size: 17px;
+  font-weight: 500;
+  text-align: center;
+  padding: 13px 60px;
+  border-radius: 4px;
+  background-color: ${props => props.theme.colors.greenMain};
+  box-shadow: inset 0px 1px 2px rgba(255, 255, 255, 0.5),
+    inset 0px -1px 5px rgba(0, 0, 0, 0.0584805),
+    inset 0px -2px 0px rgba(255, 255, 255, 0.213315);
+  float: right;
+  margin-bottom: 11px;
+`;
+
+Brand.CashBackActivate = styled.p`
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 120%;
+  text-align: center;
+  letter-spacing: -0.188889px;
+  color: ${props => props.theme.colors.black};
+`;
+
+Brand.CashBackActivateButton = styled.div`
+  height: auto;
+  width: 100%;
+
+  > div > div[class*='CouponCode__Button'] {
+    width: 220px;
+    height: 40px;
+    margin: 20px auto !important;
+    max-width: unset !important;
+
+    ${breakpoint('md')`
+      width: 140px;
+    `}
+
+    ${breakpoint('lg')`
+      width: 100%;
+      height: 45px;
+      font-size: 16px;
+      margin: 0 auto 20px!important;
+    `}
+  }
+`;
+
+Brand.ShopNowImgArrow = styled.img`
+  padding-left: 11px;
 `;
 
 const mapStateToProps = state => ({

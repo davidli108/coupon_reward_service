@@ -145,6 +145,7 @@ const Offer = ({
               isAuthenticated={isAuthenticated}
               isExtensionInstalled={isExtensionInstalled}
               logo={store_logo || placeholder}
+              isVisit={false}
             />
             <Offer.ExpDate>
               {show_exp_date === 'No Expiration!'
@@ -158,7 +159,7 @@ const Offer = ({
         </Offer.Container>
         <Offer.SxNonVisible>
           <Offer.AdditionalInfo>
-            <span>{discount_print}</span>
+            <span>{t(cashBackMessageKey, { discount: discountAmount })}</span>
           </Offer.AdditionalInfo>
         </Offer.SxNonVisible>
       </Offer.Wrapper>
@@ -185,16 +186,20 @@ Offer.Wrapper = styled.div`
   background: #fff;
   border: 1px solid #dadde2;
   padding: 30px 20px 10px 20px;
-  margin-top: 25px;
+  margin-top: 15px;
 
   ${breakpoint('sx')`
     width: calc(100% - 42px);
-    flex-flow: row nowrap;
+    align-items: center;
   `}
 
   ${breakpoint('md')`
+    flex-flow: row nowrap;
     width: calc(100% - 75px);
     padding: 30px 30px 20px 40px;
+    flex-flow: row nowrap;
+    margin-top: 25px;
+    justify-content: space-around;
   `}
 `;
 
@@ -216,14 +221,29 @@ Offer.Discount = styled.div`
   flex-flow: column nowrap;
   color: ${props => props.color || '#d0c000'};
 
+  ${breakpoint('xs')`
+    flex-flow: row nowrap;
+    width: auto;
+      > span:last-child {
+        margin-left: 10px;
+      }
+  `}
+
   ${breakpoint('sx')`
     flex-flow: row nowrap;
+    width: auto;
+
+    > span:last-child {
+      margin-left: 10px;
+    }
   `}
 
   ${breakpoint('md')`
     flex-flow: column nowrap;
+    width: 200px;
 
     > span:last-child {
+      margin-left: auto;
       letter-spacing: 4px;
     }
   `}
@@ -248,6 +268,9 @@ Offer.Image = styled.div`
     width: 90px;
     height: auto;
   }
+  ${breakpoint('md')`
+    width: 200px;
+  `}
 `;
 
 Offer.SxVisible = styled.div`
@@ -268,22 +291,16 @@ Offer.SxNonVisible = styled.div`
 
 Offer.Content = styled.div`
   display: flex;
-  flex-flow: row nowrap;
   width: 100%;
   align-items: center;
-  padding-right: 20px;
-
-  ${breakpoint('sx')`
-    width: calc(50% - 10px);
-    align-items: flex-start;
-    flex-flow: column nowrap;
-    margin: 0 30px 0 0;
-  `}
+  flex-flow: column nowrap;
+  margin: 0 auto;
 
   ${breakpoint('md')`
     width: 100%;
     flex-flow: row nowrap;
     margin: 0;
+    align-items: flex-start;
   `}
 `;
 
@@ -292,6 +309,7 @@ Offer.DescriptionWrapper = styled.div`
   flex-flow: column nowrap;
   width: 100%;
   margin-left: 20px;
+  align-items: center;
 
   ${breakpoint('sx')`
     margin-left: 5px;
@@ -299,8 +317,12 @@ Offer.DescriptionWrapper = styled.div`
 
   ${breakpoint('md')`
     align-items: justify-content;
-    margin: 10px 10px 0 8%;
+    margin: 10px 10px 0 2%;
   `}
+
+  @media (max-width: 375px) {
+    margin: 0;
+  }
 `;
 
 Offer.Description = styled.div`
@@ -312,12 +334,18 @@ Offer.Description = styled.div`
 
   ${breakpoint('sx')`
     margin: 10px 0;
+    text-align: center;
   `}
 
   ${breakpoint('md')`
     margin: 0;
     font-size: 18px;
     max-width: 400px;
+  `}
+
+  ${breakpoint('xs')`
+    margin: 10px 0;
+    text-align: center;
   `}
 `;
 
@@ -333,7 +361,6 @@ Offer.AdditionalInfo = styled.div`
   color: #62707b;
 
   ${breakpoint('sx')`
-    text-align: left;
     width: calc(100% - 40px);
   `}
 
@@ -353,15 +380,11 @@ Offer.AdditionalInfo = styled.div`
 Offer.Container = styled.div`
   display: flex;
   justify-content: center;
-
-  ${breakpoint('sx')`
-    width: calc(50% - 10px);
-    justify-content: flex-end;
-    margin-left: 10px;
-  `}
+  width: auto;
 
   ${breakpoint('md')`
     width: 30%;
+    justify-content: flex-end;
   `}
 `;
 
@@ -374,7 +397,7 @@ Offer.ButtonWrapper = styled.div`
   margin-top: 10px;
 
   ${breakpoint('sx')`
-    margin-top: 0;
+    margin-top: 10px;
   `}
 
   ${breakpoint('sm')`

@@ -1,9 +1,10 @@
 // @flow
-import React, { useState } from 'react';
+import React from 'react';
 import { withTranslation } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import { FaCaretDown } from 'react-icons/fa';
+import HeaderItemMyAccountDetails from './HeaderItemMyAcccoutDetails';
 
 type HeaderItemMyAccountProps = {
   t: any,
@@ -18,33 +19,14 @@ const HeaderItemMyAccount = ({
   logout,
   i18n,
 }: HeaderItemMyAccountProps) => {
-  const [isDrop, setIsDrop] = useState(false);
-  const doLogout = () => {
-    logout();
-    setIsDrop(false);
-  };
-
   return (
-    <HeaderItemMyAccount.Wrapper onMouseLeave={() => setIsDrop(false)}>
-      <p onMouseOver={() => setIsDrop(true)}>
+    <HeaderItemMyAccount.Wrapper>
+      <p>
         <span>{title}</span>
         <FaCaretDown />
       </p>
-      <HeaderItemMyAccount.DropdownWrapper
-        isShow={isDrop}
-        isDe={i18n.language === 'de'}
-      >
-        <HeaderItemMyAccount.DropdownItem href="/account/earnings">
-          <span>{t('coupons.earnings')}</span>
-        </HeaderItemMyAccount.DropdownItem>
-
-        <HeaderItemMyAccount.DropdownItem href="/account/preferences">
-          <span>{t('header.settings')}</span>
-        </HeaderItemMyAccount.DropdownItem>
-
-        <HeaderItemMyAccount.DropdownItem onClick={doLogout}>
-          <span>{t('header.signOut')}</span>
-        </HeaderItemMyAccount.DropdownItem>
+      <HeaderItemMyAccount.DropdownWrapper isDe={i18n.language === 'de'}>
+        <HeaderItemMyAccountDetails logout={logout} />
       </HeaderItemMyAccount.DropdownWrapper>
     </HeaderItemMyAccount.Wrapper>
   );
@@ -54,7 +36,7 @@ HeaderItemMyAccount.Wrapper = styled.div`
   height: 100%;
   width: fit-content;
   z-index: 5;
-  font-weight: bold;
+  font-weight: 500;
   position: relative;
   display: flex;
   align-items: center;
@@ -62,29 +44,28 @@ HeaderItemMyAccount.Wrapper = styled.div`
 
   p {
     font-size: 16px;
-    padding: 0 10px;
+    line-height: 19px;
+    padding: 5px 10px;
     letter-spacing: 0.53px;
+    margin: 0;
     font-weight: 700;
     display: flex;
     align-items: center;
-    height: 35px;
+    justify-content: center;
     border-radius: 5px;
     position: relative;
-    background: 0 0;
     transition: all 0.3s ease;
-    box-sizing: border-box;
     cursor: pointer;
-    color: #899197;
-
-    svg {
-      width: 12px;
-      margin: 0 0 0 5px;
-    }
+    border: 2px solid ${props => props.theme.colors.greenBlank};
+    outline: 0;
+    border-color: ${props => props.theme.colors.greenBlank};
+    color: ${props => props.theme.colors.greenBlank};
+    background: 0 0;
 
     &::before,
     &::after {
       content: '';
-      background: #899197;
+      background: ${props => props.theme.colors.greenBlank};
       position: absolute;
       z-index: -1;
       border-radius: 5px;
@@ -94,23 +75,79 @@ HeaderItemMyAccount.Wrapper = styled.div`
       content: '';
       transition: all 0.3s ease;
       height: 0;
+      width: 0;
       left: 50%;
       top: 50%;
-      width: 0;
     }
-  }
 
-  &:hover {
-    p {
-      background: 0 0;
-      color: #fff;
+    svg {
+      width: 12px;
+      margin: 0 0 0 5px;
+    }
+
+    &:hover {
+      border-color: transparent;
+      color: ${props => props.theme.colors.white};
+      background: ${props => props.theme.colors.greenBlank};
+      display: flex;
 
       &::after {
         height: 100%;
+        width: 100%;
         left: 0;
         top: 0;
-        width: 100%;
       }
+    }
+  }
+`;
+
+HeaderItemMyAccount.DropdownWrapper = styled.div`
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  min-width: 250px;
+  padding-top: 10px;
+
+  ${/* sc-selector */ HeaderItemMyAccount.Wrapper}:hover & {
+    display: flex;
+  }
+
+  > div {
+    min-width: 250px;
+    flex-direction: column;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    background-color: white;
+    border: 1px solid ${props => props.theme.colors.whiteLight};
+    box-sizing: border-box;
+    position: relative;
+
+    &::after,
+    &::before {
+      bottom: 100%;
+      right: 10%;
+      border: solid transparent;
+      content: ' ';
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+      z-index: 100;
+    }
+
+    &::after {
+      border-color: rgba(255, 255, 255, 0);
+      border-bottom-color: ${props => props.theme.colors.white};
+      border-width: 5px;
+      margin-right: -5px;
+    }
+
+    &::before {
+      border-color: rgba(218, 221, 226, 0);
+      border-bottom-color: ${props => props.theme.colors.whiteLight};
+      border-width: 6px;
+      margin-right: -6px;
     }
   }
 `;
@@ -120,70 +157,50 @@ HeaderItemMyAccount.Separator = styled.div`
   width: 3px;
   height: 3px;
   border-radius: 50%;
-  background: #000;
+  background: ${props => props.theme.colors.black};
   margin: 0 18px;
 `;
 
-HeaderItemMyAccount.DropdownWrapper = styled.div`
-  display: ${props => (props.isShow ? 'flex' : 'none')};
-  flex-direction: column;
-  position: absolute;
-  left: 0;
-  top: 100%;
-  min-width: 160px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-  border-radius: 4px;
-  background-color: white;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-`;
-
 HeaderItemMyAccount.DropdownItem = styled.a`
-  font-size: 16px;
+  font-size: 14px;
   padding: 0 15px;
-  color: #899197;
+  color: ${props => props.theme.colors.darkGray};
   letter-spacing: 0.53px;
-  font-weight: 700;
   display: flex;
   align-items: center;
-  height: 35px;
-  position: relative;
-  background: 0 0;
+  justify-content: space-between;
+  height: 60px;
   box-sizing: border-box;
   cursor: pointer;
-  border-bottom: 1px solid #ccc;
 
-  span {
-    position: relative;
-    z-index: 1;
+  > span {
+    width: 70%;
+    text-align: left;
   }
 
-  &::before,
-  &::after {
-    content: '';
-    background: #899197;
-    position: absolute;
-  }
+  &:nth-of-type(4) {
+    width: 80%;
+    margin: 0 auto;
+    padding: 0;
+    height: 60px;
+    border-top: 1px solid ${props => props.theme.colors.whitenLight};
+    justify-content: flex-start;
+    color: ${props => props.theme.colors.lightDark};
 
-  &::after {
-    content: '';
-    height: 0;
-    left: 50%;
-    top: 50%;
-    width: 0;
+    > span {
+      width: auto;
+      margin-right: 10px;
+    }
   }
 
   &:hover {
-    background: 0 0;
-    color: #fff;
-
-    &::after {
-      height: 100%;
-      left: 0;
-      top: 0;
-      width: 100%;
-    }
+    color: ${props => props.theme.colors.greenBlank};
   }
+`;
+
+HeaderItemMyAccount.ico = styled.img`
+  display: block;
+  cursor: pointer;
 `;
 
 export default withRouter(withTranslation()(HeaderItemMyAccount));

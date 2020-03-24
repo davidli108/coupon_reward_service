@@ -4,9 +4,8 @@ import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withRouter } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
-
-import IconSearch from './icon-search.png';
-
+import IconSearch from './icon-search.svg';
+import IconClose from './icon-close.svg';
 import SearchBarItems from './SearchBarItems';
 
 type SearchBarProps = {
@@ -15,13 +14,22 @@ type SearchBarProps = {
   onSet: Function,
   result: Object,
   value: string,
+  setSearchValue: Function,
 };
 
-const SearchBar = ({ t, history, value, onSet, result }: SearchBarProps) => {
+const SearchBar = ({
+  t,
+  history,
+  value,
+  onSet,
+  result,
+  setSearchValue,
+}: SearchBarProps) => {
   const [isShowItems, setIsShowItems] = useState(false);
   const [refItemsWrapper, setRefItemsWrapper] = useState(null);
   const [refSearchBar, setRefSearchBar] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(-1);
+  const [isMenuActive, setIsMenuActive] = useState(false);
 
   const html: HTMLElement | null = document.querySelector('html');
 
@@ -68,61 +76,109 @@ const SearchBar = ({ t, history, value, onSet, result }: SearchBarProps) => {
     }
   };
 
+  const toggleMenu = () => {
+    setIsMenuActive(!isMenuActive);
+  };
+
   return (
-    <SearchBar.Wrapper ref={setRefSearchBar} onKeyUp={onKeyUp}>
-      <SearchBar.Input
-        type="text"
-        name="search"
-        value={value}
-        onChange={e => {
-          onSet(e);
-          setCurrentIndex(-1);
-        }}
-        onClick={() => onOpenItems()}
-        placeholder={t('global.search')}
-        pattern="[a-zA-Z0-9-]"
-        autoComplete="off"
-      />
-      <SearchBar.Icon src={IconSearch} alt="search" />
-      {/* $FlowFixMe */}
-      <div ref={setRefItemsWrapper}>
-        {value && isShowItems ? (
-          <SearchBarItems
-            t={t}
-            result={result}
-            currentIndex={currentIndex}
-            setCurrentIndex={setCurrentIndex}
-            setIsShowItems={setIsShowItems}
+    <SearchBar.SearchShortMobile className={isMenuActive ? 'active' : ''}>
+      <SearchBar.SearchButtonMobile onClick={toggleMenu}>
+        <SearchBar.Icon src={IconSearch} alt="search" />
+      </SearchBar.SearchButtonMobile>
+      <SearchBar.SearchContent>
+        <SearchBar.Wrapper ref={setRefSearchBar} onKeyUp={onKeyUp}>
+          <SearchBar.Icon src={IconSearch} alt="search" />
+          <SearchBar.Input
+            type="text"
+            name="search"
+            value={value}
+            onChange={e => {
+              onSet(e);
+              setCurrentIndex(-1);
+            }}
+            onClick={() => onOpenItems()}
+            placeholder={t('global.search')}
+            autoComplete="off"
           />
-        ) : null}
-      </div>
-    </SearchBar.Wrapper>
+          <SearchBar.ItemsWrapper
+            ref={setRefItemsWrapper}
+            onClick={() => setIsMenuActive(false)}
+          >
+            {value && isShowItems ? (
+              <SearchBarItems
+                t={t}
+                result={result}
+                currentIndex={currentIndex}
+                setCurrentIndex={setCurrentIndex}
+                setIsShowItems={setIsShowItems}
+                setSearchValue={setSearchValue}
+              />
+            ) : null}
+          </SearchBar.ItemsWrapper>
+        </SearchBar.Wrapper>
+        <SearchBar.ButtonClose onClick={toggleMenu}>
+          <img src={IconClose} alt="close" />
+        </SearchBar.ButtonClose>
+      </SearchBar.SearchContent>
+      <SearchBar.Backdrop onClick={toggleMenu} />
+    </SearchBar.SearchShortMobile>
   );
 };
 
 SearchBar.Wrapper = styled.div`
-  position: relative;
+  position: absolute;
+  left: 30px;
+  top: 80px;
   display: flex;
   align-items: center;
-  width: 100%;
+  width: calc(100% - 60px);
+  height: 40px;
   border: 1px solid ${props => props.theme.colors.whiteLight};
-  margin: 0 0 33px 0;
+  margin: 0;
   border-radius: 5px;
-
-  ${breakpoint('xs')`
-    margin: 0 0 15px 0;
-  `}
+  background: ${props => props.theme.colors.whitebg};
+  transition: 0.3s;
 
   ${breakpoint('sm')`
-    margin: 0 0 33px 0;
+    width: 300px;
+    left: 160px;
+    top: 5px;
   `}
+
+  ${breakpoint('md')`
+    width: 400px;
+    left: 200px;
+    top: 13px;
+    visibility: hidden;
+  `}
+
+  ${breakpoint('lg')`
+    position: relative;
+    left: unset;
+    top: unset;
+    width: 330px;
+    visibility: visible;
+  `}
+
+  ${breakpoint('xl')`
+    position: relative;
+    left: unset;
+    top: unset;
+    width: 330px;
+  `}
+
+  &:hover,
+  &:focus {
+    background: ${props => props.theme.colors.white};
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15) !important;
+  }
 `;
 
 SearchBar.Input = styled.input`
   display: block;
   border: none;
   width: 100%;
-  padding: 11px 10px 11px 20px;
+  padding: 11px 10px 11px 13px;
   border-bottom-left-radius: 5px;
   border-top-left-radius: 5px;
   line-height: 19px;
@@ -130,9 +186,10 @@ SearchBar.Input = styled.input`
   letter-spacing: 0.571428px;
   outline: none;
   box-shadow: none !important;
+  background: none !important;
 
   &::placeholder {
-    color: ${props => props.theme.colors.whiteDark};
+    color: ${props => props.theme.colors.darkSky};
   }
 `;
 
@@ -140,52 +197,145 @@ SearchBar.Icon = styled.img`
   display: block;
 
   ${breakpoint('xs')`
-    padding: 0 28px 0 0;
-  `}
-
-  ${breakpoint('sm')`
-    padding: 0 20px 0 0;
+    padding: 0  0 0 15px;
   `}
 `;
 
-SearchBar.StoreWrapper = styled.div`
+SearchBar.SearchContent = styled.div`
   position: absolute;
-  background: ${props => props.theme.colors.white};
-  z-index: 1;
-  width: 100%;
   left: 0;
-  top: 42px;
-  border: 1px solid ${props => props.theme.colors.whiteLight};
-  border-radius: 5px;
-`;
-
-SearchBar.Item = styled.div`
+  top: 0;
+  right: 0;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  transition: all 0.3s ease;
+  z-index: 10;
+  opacity: 0;
+  pointer-events: none;
   display: flex;
   align-items: center;
-  padding: 5px;
+  justify-content: center;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  height: 0;
+  background: ${props => props.theme.colors.white};
+  transition-property: all;
+  transition-duration: 0.4s;
+  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+
+  ${breakpoint('lg')`
+      opacity: 1;
+      position: unset;
+      z-index:unset;
+      pointer-events: unset;
+      background: unset;
+  `}
+`;
+
+SearchBar.ButtonClose = styled.button`
+  display: block;
+  border: 0;
+  background: none;
+  position: absolute;
+  right: 5%;
+  z-index: 11;
+  width: 24px;
+  height: 24px;
   cursor: pointer;
+  outline: none;
+  transition: 0.3s;
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  ${breakpoint('ss')`
+    right: 10%;
+  `}
+
+  ${breakpoint('lg')`
+    display: none;
+  `}
+`;
+SearchBar.Backdrop = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: ${props => props.theme.colors.black};
+  opacity: 0;
+  z-index: 1;
+  pointer-events: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+`;
+
+SearchBar.SearchButtonMobile = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  padding: 0;
+  border: 1px solid ${props => props.theme.colors.whiteLight};
+  border-radius: 5px;
+  background: ${props => props.theme.colors.whitebg};
+  cursor: pointer;
+  transition: 0.3s;
+  outline: none;
+
+  > ${SearchBar.Icon} {
+    padding: 0;
+  }
 
   &:hover {
     background: ${props => props.theme.colors.whiteExLight};
   }
 
-  img {
-    width: 80px;
-    border: 1px solid ${props => props.theme.colors.whiteLight};
+  ${breakpoint('lg')`
+    display: none;
+  `}
+`;
+
+SearchBar.SearchShortMobile = styled.div`
+  &.active ${SearchBar.Backdrop} {
+    opacity: 0.5;
+    pointer-events: auto;
+    ${breakpoint('lg')`
+      display: none
+    `}
   }
 
-  div {
-    margin: 0 0 0 5px;
+  &.active ${SearchBar.Wrapper} {
+    visibility: visible;
+    position: unset;
+    left: unset;
+    top: unset;
+    width: 70%;
 
-    h3 {
-      margin: 0 0 5px 0;
-      font-weight: bold;
-    }
+    ${breakpoint('lg')`
+      position: relative;
+      left: unset;
+      top: unset;
+      width: 330px;
+      visibility: visible;
+    `}
+  }
 
-    p {
-      font-size: 13px;
-    }
+  &.active ${SearchBar.SearchContent} {
+    opacity: 1;
+    pointer-events: auto;
+    height: 85px;
+    ${breakpoint('lg')`
+      pointer-events: unset;
+      height: unset;
+      box-shadow: none;
+    `}
   }
 `;
+
+SearchBar.ItemsWrapper = styled.div``;
 
 export default withRouter(withTranslation()(SearchBar));

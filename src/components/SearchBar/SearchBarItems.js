@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
+import breakpoint from 'styled-components-breakpoint';
 import moment from 'moment';
 
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
@@ -15,6 +16,7 @@ type SearchBarItemsProps = {
   currentIndex: number,
   setCurrentIndex: number => void,
   setIsShowItems: boolean => void,
+  setSearchValue: Function,
 };
 
 const SearchBarItems = ({
@@ -24,6 +26,7 @@ const SearchBarItems = ({
   currentIndex,
   setCurrentIndex,
   setIsShowItems,
+  setSearchValue,
 }: SearchBarItemsProps) => {
   const [refItem, setRefItem] = useState(null);
 
@@ -35,64 +38,123 @@ const SearchBarItems = ({
 
   const onClickItem = shortName => {
     setIsShowItems(false);
+    setSearchValue('');
     history.push(`/coupons/${shortName}`);
   };
 
   return (
     <SearchBarItems.StoreWrapper onKeyDown={e => e.preventDefault()}>
-      {result && result.length > 0 ? (
-        result.map((item, index) => (
-          <SearchBarItems.Item
-            key={`store_item_${item.store_id}`}
-            onClick={() => onClickItem(item.short_name)}
-            isFocus={index === currentIndex}
-            tabIndex={index === currentIndex ? 1 : -1}
-            ref={e => index === currentIndex && setRefItem(e)}
-          >
-            <img
-              src={
-                item.image ? `${AppConfig.cloudUrl}${item.image}` : placeholder
-              }
-              onError={e => {
-                e.target.onerror = null;
-                e.target.src = placeholder;
-              }}
-              alt={`${item.store_name || ''} Coupon Codes ${moment().format(
-                'MMMM',
-              )} | ${moment().format('YYYY')}`}
-            />
-            <div>
-              <h3>{item.store_name}</h3>
-              <p>
-                {t('global.earnCashBack', {
-                  discount: item.store_discount.includes('%')
-                    ? item.store_discount.replace(/[^@\d$|%£€ .]/g, '')
-                    : currencyLocaleFormat(item.store_discount, i18n.language),
-                })}
-              </p>
-            </div>
-          </SearchBarItems.Item>
-        ))
-      ) : (
-        <SearchBarItems.NotFound>
-          {t('global.nothingFound')}
-        </SearchBarItems.NotFound>
-      )}
+      <div>
+        <SearchBarItems.StoreScrollArea>
+          {result && result.length > 0 ? (
+            result.map((item, index) => (
+              <SearchBarItems.Item
+                key={`store_item_${item.store_id}`}
+                onClick={() => onClickItem(item.short_name)}
+                isFocus={index === currentIndex}
+                tabIndex={index === currentIndex ? 1 : -1}
+                ref={e => index === currentIndex && setRefItem(e)}
+              >
+                <img
+                  src={
+                    item.image
+                      ? `${AppConfig.cloudUrl}${item.image}`
+                      : placeholder
+                  }
+                  onError={e => {
+                    e.target.onerror = null;
+                    e.target.src = placeholder;
+                  }}
+                  alt={`${item.store_name ||
+                    ''} {t('storeCoupons.codes')} ${moment().format(
+                    'MMMM',
+                  )} | ${moment().format('YYYY')}`}
+                />
+                <div>
+                  <h3>{item.store_name}</h3>
+                  <p>
+                    {t('global.earnCashBack', {
+                      discount: item.store_discount.includes('%')
+                        ? item.store_discount.replace(/[^0-9]/g, '')
+                        : currencyLocaleFormat(
+                            item.store_discount,
+                            i18n.language,
+                          ),
+                    })}
+                  </p>
+                </div>
+              </SearchBarItems.Item>
+            ))
+          ) : (
+            <SearchBarItems.NotFound>
+              {t('global.nothingFound')}
+            </SearchBarItems.NotFound>
+          )}
+        </SearchBarItems.StoreScrollArea>
+      </div>
     </SearchBarItems.StoreWrapper>
   );
 };
 
 SearchBarItems.StoreWrapper = styled.div`
   position: absolute;
+  width: 100%;
+  left: 0;
+  right: 0;
+  top: 80px;
+  max-height: 50vh;
   background: ${props => props.theme.colors.white};
-  z-index: 1;
+  box-sizing: border-box;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
+  ${breakpoint('lg')`
+    z-index: 1;
+    width: 393px;
+    left: -0.5px;
+    top: 56px;
+    border: 1px solid ${props => props.theme.colors.whiteLight};
+    border-radius: 5px;
+
+    &:after,
+    &:before {
+      bottom: 100%;
+      left: 10%;
+      border: solid transparent;
+      content: ' ';
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+      z-index: 100;
+    }
+
+    &:after {
+      border-color: rgba(255, 255, 255, 0);
+      border-bottom-color: ${props => props.theme.colors.white};
+      border-width: 5px;
+      margin-left: -5px;
+    }
+
+    &:before {
+      border-color: rgba(218, 221, 226, 0);
+      border-bottom-color: ${props => props.theme.colors.whiteLight};
+      border-width: 6px;
+      margin-left: -6px;
+    }
+
+    > div {
+      width: 100%;
+      max-height: 49vh;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+  `}
+`;
+
+SearchBarItems.StoreScrollArea = styled.div`
   width: 100%;
   max-height: 50vh;
   overflow-y: scroll;
-  left: 0;
-  top: 42px;
-  border: 1px solid ${props => props.theme.colors.whiteLight};
-  border-radius: 5px;
+  box-sizing: border-box;
 `;
 
 SearchBarItems.PreloaderWrapper = styled.div`
@@ -111,11 +173,11 @@ SearchBarItems.Item = styled.button`
   width: 100%;
   display: flex;
   align-items: center;
-  padding: 5px;
   cursor: pointer;
   background: none;
   border: none;
   outline: none;
+  padding: 15px 30px;
 
   &:focus {
     background: ${props => props.theme.colors.whiteExLight};
@@ -123,14 +185,13 @@ SearchBarItems.Item = styled.button`
 
   img {
     flex-shrink: 0;
-    width: 80px;
-    height: 80px;
+    width: 75px;
+    height: 75px;
     object-fit: contain;
-    border: 1px solid ${props => props.theme.colors.whiteLight};
   }
 
   div {
-    margin: 0 0 0 10px;
+    margin: 0 0 0 20px;
     text-align: left;
 
     h3 {

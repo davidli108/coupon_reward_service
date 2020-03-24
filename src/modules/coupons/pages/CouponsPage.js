@@ -10,7 +10,6 @@ import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import moment from 'moment';
 
-import SearchBar from '@components/SearchBar/SearchBar';
 import { getIsAuthenticated } from '@modules/auth/AuthReducer';
 import * as couponsActions from '@modules/coupons/CouponsActions';
 import {
@@ -87,12 +86,7 @@ const CouponsPage = ({
   isAuthenticated,
   isExtensionInstalled,
 }: CouponsPageProps) => {
-  const [searchValue, setSearchValue] = useState('');
   const [isLoaded, setIsLoaded] = useState(true);
-
-  const onSearchChange = e => {
-    setSearchValue(e.target.value);
-  };
 
   useEffect(() => {
     window.dataLayer = window.dataLayer || [];
@@ -118,13 +112,6 @@ const CouponsPage = ({
       />
 
       {/* <DownloadPiggy /> */}
-      <CouponsPage.SearchWrapper>
-        <SearchBar
-          onSet={onSearchChange}
-          result={searchValue ? getFilteredList(searchValue) : []}
-          value={searchValue}
-        />
-      </CouponsPage.SearchWrapper>
       {isLoaded ? (
         categories.featuredCoupon ? (
           <TodaysFeaturedCoupon
@@ -174,22 +161,6 @@ CouponsPage.Wrapper = styled.div`
   ${breakpoint('xl')`
     width: 1140px;
     margin: 0 auto;
-  `}
-`;
-
-CouponsPage.SearchWrapper = styled.div`
-  width: inherit;
-  margin-top: 10px;
-
-  ${breakpoint('md')`
-    width: 80%;
-    max-width: 617px;
-    margin: 0 auto;
-    margin-top: 50px;
-
-    > div {
-      width: 100%;
-    }
   `}
 `;
 

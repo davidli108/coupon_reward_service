@@ -7,7 +7,6 @@ import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
 import { type Store } from '../models';
 
-import SearchBar from '@components/SearchBar/SearchBar';
 import Categories from './Categories';
 import CategoriesMobile from './CategoriesMobile';
 import { getCategories } from '../../sitemap/constants';
@@ -56,12 +55,7 @@ const StoreSidebar = ({
   setIsLoadedCategories,
   getFilteredList,
 }: StoreSidebarProps) => {
-  const [searchValue, setSearchValue] = useState('');
   const [activeCategory, setActiveCategory] = useState(match.params.name);
-
-  const onSearchChange = e => {
-    setSearchValue(e.target.value);
-  };
 
   useEffect(() => {
     if (setIsLoadedStores) {
@@ -102,13 +96,6 @@ const StoreSidebar = ({
 
   return (
     <StoreSidebar.Wrapper>
-      <StoreSidebar.SearchWrapper>
-        <SearchBar
-          onSet={onSearchChange}
-          result={searchValue ? getFilteredList(searchValue) : []}
-          value={searchValue}
-        />
-      </StoreSidebar.SearchWrapper>
       <Categories
         categories={getCategories(t, i18n, categories)}
         title={t('header.stores')}

@@ -97,6 +97,14 @@ PiggyExtAd.Wrapper = styled.div`
     width: 300px;
     flex-direction: column;
   `}
+
+  @media (min-width: 1024px) {
+    width: 100%;
+  }
+
+  @media (min-width: 768px) {
+    width: 146px;
+  }
 `;
 
 PiggyExtAd.AddExtensionButton = styled.div`
@@ -105,16 +113,27 @@ PiggyExtAd.AddExtensionButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid #7ed321;
   border-radius: 4px;
   font-weight: 500;
   font-size: 18px;
-  color: #7ed321;
   cursor: pointer;
+  color: ${props => props.theme.colors.white};
+  border: 2px solid ${props => props.theme.colors.greenMain};
+  background: ${props => props.theme.colors.greenMain};
+  transition: 0.3s;
+
+  ${breakpoint('md')`
+    font-size: 15px;
+  `}
 
   ${breakpoint('sm')`
     width: 100%;
   `}
+
+  &:hover {
+    color: ${props => props.theme.colors.greenMain};
+    background: ${props => props.theme.colors.greenLight};
+  }
 `;
 
 PiggyExtAd.Reviews = styled.div`
@@ -126,7 +145,7 @@ PiggyExtAd.Reviews = styled.div`
 
   > div {
     display: flex;
-    color: #00cbe9;
+    color: ${props => props.theme.colors.orangeDark};
   }
 
   > span {
@@ -153,6 +172,10 @@ PiggyExtAd.Reviews = styled.div`
     justify-content: center;
     padding: 0 0 0 10px;
   `}
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 export default compose(withTranslation(), withRouter)(PiggyExtAd);

@@ -12,13 +12,13 @@ import {
   getFilteredList,
   getIsExtensionInstalled,
 } from '@modules/app/AppReducer';
-import SearchBar from '@components/SearchBar/SearchBar';
 import Brand from '../components/Brand';
 import Offers from '../components/Offers';
 import AdditionalInfo from '../components/AdditionalInfo';
 //import StoreInformation from '../components/StoreInformation';
 import type { StorePageProps } from '../models/StorePage';
 import {
+  getCashbackRates,
   getFetchingState,
   getOffers,
   getStoreSearch,
@@ -47,8 +47,8 @@ const StorePage = ({
   store,
   reviews,
   isExtensionInstalled,
+  cashbackRates,
 }: StorePageProps) => {
-  const [searchValue, setSearchValue] = useState('');
   const [storeName, setStoreName] = useState(match.params.name);
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -81,10 +81,6 @@ const StorePage = ({
     }
   }, [match]);
 
-  const onSearchChange = e => {
-    setSearchValue(e.target.value);
-  };
-
   return (
     <StorePage.Wrapper>
       <Helmet
@@ -98,8 +94,8 @@ const StorePage = ({
             content:
               'Never overpay again with the latest ' +
               store.store_name +
-              ' coupons and promotional codes automatically applied at checkout. ' +
-              'Plus ' +
+              ' coupons and promotional codes automatically applied at checkout.' +
+              ' Plus ' +
               store.store_cashback_text +
               ' today when you use Piggy to ' +
               store.store_name,
@@ -110,16 +106,8 @@ const StorePage = ({
           },
         ]}
       />
-
-      <StorePage.SearchWrapper>
-        <SearchBar
-          onSet={onSearchChange}
-          result={searchValue ? getFilteredList(searchValue) : []}
-          value={searchValue}
-          isLoading={searchIsLoading}
-        />
-      </StorePage.SearchWrapper>
       <Brand
+        t={t}
         isLoaded={isLoaded}
         extensionActive={isLoaded && isExtensionInstalled}
         offersCount={offersCount}
@@ -134,6 +122,7 @@ const StorePage = ({
           {isLoaded ? (
             <Offers
               offers={offers}
+              cashbackRates={cashbackRates}
               offersCount={offersCount}
               fetchStoreCoupons={fetchStoreCouponsByPagination}
               storeName={match.params.name}
@@ -147,7 +136,11 @@ const StorePage = ({
           {!isExtensionInstalled && <AddSaving />}
         </StorePage.ColumnNoWrapFlexBox>
         <StorePage.ColumnNoWrapFlexBox order="1">
-          {isLoaded ? <AdditionalInfo /> : <AdditionalInfoLoader />}
+          {isLoaded ? (
+            <AdditionalInfo cashbackRates={cashbackRates} />
+          ) : (
+            <AdditionalInfoLoader />
+          )}
         </StorePage.ColumnNoWrapFlexBox>
       </StorePage.DesktopContent>
       {/*{isLoaded && <StoreInformation />}*/}
@@ -180,14 +173,6 @@ StorePage.NoWrapFlexBox = styled.div`
   `}
 `;
 
-StorePage.SearchWrapper = styled.div`
-  width: 100%;
-
-  ${breakpoint('lg')`
-    width: 500px;
-  `}
-`;
-
 StorePage.NoWrapFlexBoxWithBorder = styled(StorePage.NoWrapFlexBox)`
   ${breakpoint('lg')`
       border: 1px dashed #00CBE9;
@@ -212,7 +197,7 @@ StorePage.DesktopContent = styled(StorePage.NoWrapFlexBox)`
     }
 
     > div:last-child {
-      width: 280px;
+      width: 262px;
     }
   `}
 `;
@@ -248,6 +233,7 @@ const mapStateToProps = state => ({
   reviews: getReviews(state),
   getFilteredList: getFilteredList(state),
   isExtensionInstalled: getIsExtensionInstalled(state),
+  cashbackRates: getCashbackRates(state),
 });
 
 const mapDispatchToProps = {

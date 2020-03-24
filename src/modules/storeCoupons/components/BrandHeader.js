@@ -254,7 +254,7 @@ BrandHeader.OffersStats = styled.div`
   ${breakpoint('md')`
     width: 100%;
     max-width: 500px;
-    padding: 0 0 20px 0;
+    padding: 10px 0 20px 0;
   `}
 
   ${breakpoint('xl')`
@@ -300,7 +300,7 @@ BrandHeader.FollowStoreWrapper = styled.div`
 
   ${breakpoint('md')`
     padding: 0;
-    margin: auto 0;
+    margin: auto 0 10px;
   `}
 
   ${breakpoint('xl')`

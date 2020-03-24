@@ -25,6 +25,10 @@ BrandContent.Wrapper = styled.div`
   ${breakpoint('md')`
     padding: 20px 20px 0 20px !important;
   `}
+
+  @media (max-width: 425px) {
+    width: 100%;
+  }
 `;
 
 export default BrandContent;

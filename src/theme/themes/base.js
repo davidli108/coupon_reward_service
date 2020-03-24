@@ -1,8 +1,8 @@
 // @flow
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
-
 import breakpoints from '../patterns/breakpoints';
+import breakpoint from 'styled-components-breakpoint';
 import colors from '../patterns/colors';
 import fonts from '../patterns/fonts';
 
@@ -15,6 +15,10 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     font-family : ${props => props.theme.fonts.roboto};
+    margin-top: 66px;
+    ${breakpoint('ss')`
+      margin-top: 88px;
+    `}
   }
 
   input:-webkit-autofill,

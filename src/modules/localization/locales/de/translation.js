@@ -21,6 +21,10 @@ export default {
     storeFavorites: 'Shop-Favoriten',
     referralBonus: 'Empfehlungsbonus',
     passwordReset: 'Passwort ändern',
+    accountDetails: 'Kontodetails',
+    earningSaving: 'Einnahmen und Ersparnisse',
+    favoriteStores: 'Lieblingsgeschäfte',
+    shop: 'Kaufen Sie {{ storeName }} mit {{ cashBack }} ein',
   },
   auth: {
     social: {
@@ -154,6 +158,7 @@ export default {
     luxury: 'Luxus',
   },
   global: {
+    activateCashback: 'Aktivieren Sie {{discount}} Cash back',
     invalidDate: 'Ablauf: Ungültiges Datum',
     earnCashBack: '{{discount}} Cashback verdienen!',
     learnMore: 'Mehr erfahren',
@@ -281,6 +286,7 @@ export default {
     piggyBonus: 'Piggy Bonus',
   },
   storeCoupons: {
+    cashBackCategories: 'Cash-Back-Kategorien',
     viewLatestCoupons:
       'Sehen Sie sich die neuesten Online-Gutscheine für {{ storeName }} unten an! Verpassen Sie niemals einen Coupon oder Cashback aus einem unserer 3.000 anderen Stores mit unserer kostenlosen App für mobile Apps und Browser! Alle Online-Gutscheine von {{ storeName }} können mit kostenlosen automatischen Rabatten kombiniert werden. Bis zu 3,0 % Cashback! Nur von Piggy! Jeder dieser {{ storeName }}-Gutscheincodes und Promotion kann mit unserem automatischen Cashback-{{ storeName }} kombiniert werden',
     returnPolicy: 'Rückgaberecht',

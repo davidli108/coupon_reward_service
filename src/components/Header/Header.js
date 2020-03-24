@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
-import styled from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
 
@@ -15,6 +15,10 @@ import SignUpModal from '@modules/auth/components/SignUpModal';
 import ResetPasswordModal from '@modules/auth/components/ResetPasswordModal';
 import { getLocaleConfig } from '@modules/localization/i18n';
 import { getStoresList, setExtensionInstalled } from '@modules/app/AppActions';
+import {
+  getFilteredList,
+  getIsExtensionInstalled,
+} from '@modules/app/AppReducer';
 
 import BurgerButton from './BurgerButton';
 import HeaderItem from './HeaderItem';
@@ -24,6 +28,8 @@ import axios from 'axios';
 import AppConfig from '@config/AppConfig';
 import { MdArrowForward } from 'react-icons/md';
 import { getOrigin, isMainSite } from '@modules/auth/AuthHelper';
+import SearchBar from '@components/SearchBar/SearchBar';
+import HeaderItemMyAccountDetails from './HeaderItemMyAcccoutDetails';
 
 const modal = {
   modalSignIn: 'modalSignIn',
@@ -75,6 +81,7 @@ const renderHeaderItems = (items: Array<renderHeaderItemsProps>) =>
 
 type HeaderProps = {
   t: Function,
+  i18n: Object,
   isCookieSet: Function,
   isAuthenticated: Boolean,
   location: Object,
@@ -83,10 +90,13 @@ type HeaderProps = {
   authenticate: Function,
   getStoresList: any => Promise<Object>,
   setExtensionInstalled: Function,
+  getFilteredList: Function,
+  theme: Object,
 };
 
 const Header = ({
   t,
+  i18n,
   isCookieSet,
   isAuthenticated,
   location,
@@ -95,12 +105,19 @@ const Header = ({
   authenticate,
   getStoresList,
   setExtensionInstalled,
+  getFilteredList,
+  theme,
 }: HeaderProps) => {
   const [isOpen, setOpen] = useState(false);
   const [currentModal, setCurrentModal] = useState(null);
+  const [searchValue, setSearchValue] = useState('');
 
   const localeConfig = getLocaleConfig();
   const getExtension = () => axios.get(AppConfig.extension.chrome);
+
+  const onSearchChange = e => {
+    setSearchValue(e.target.value);
+  };
 
   const isActiveCoupons = () => {
     const isCouponsLocation = location.pathname.indexOf('/coupons') + 1;
@@ -153,7 +170,7 @@ const Header = ({
   const items = [
     {
       activeClass: isActiveCoupons() ? 'active' : '',
-      hoverBgColor: '#02a6bf',
+      hoverBgColor: '{theme.colors.skyLightBlue}',
       title: t('header.coupons'),
       link: '/coupons',
       onClick: () => setOpen(false),
@@ -161,7 +178,7 @@ const Header = ({
     {
       activeClass:
         location.pathname.indexOf('/cashback-stores') + 1 ? 'active' : '',
-      hoverBgColor: '#02a6bf',
+      hoverBgColor: '{theme.colors.skyLightBlue}',
       title: t('header.stores'),
       link: '/cashback-stores',
       onClick: () => setOpen(false),
@@ -170,8 +187,8 @@ const Header = ({
 
   const authItems = [
     {
-      bgColor: '#02a6bf',
-      hoverBgColor: '#01899e',
+      bgColor: '{theme.colors.skyLightBlue}',
+      hoverBgColor: '{theme.colors.skyLightDark}',
       title: t('header.createAccount'),
       separator: true,
       onClick: () => {
@@ -180,8 +197,8 @@ const Header = ({
       },
     },
     {
-      bgColor: '#34a6bf',
-      hoverBgColor: '#29899e',
+      bgColor: '{theme.colors.skyBlue}',
+      hoverBgColor: '{theme.colors.skyDarkBlue}',
       border: '2px',
       title: t('header.login'),
       onClick: () => {
@@ -191,86 +208,61 @@ const Header = ({
     },
   ];
 
-  const mobileMyAccount = [
-    {
-      bgColor: '#40c8e5',
-      hoverBgColor: '#02a6bf',
-      title: t('header.updateAccount'),
-      redirect: '/account/update',
-      direct: true,
-    },
-    {
-      bgColor: '#40c8e5',
-      hoverBgColor: '#02a6bf',
-      title: t('header.checkEarnings'),
-      redirect: '/account/earnings',
-      direct: true,
-    },
-    {
-      bgColor: '#40c8e5',
-      hoverBgColor: '#02a6bf',
-      title: t('header.storeFavorites'),
-      redirect: '/account/favorites',
-      direct: true,
-    },
-    {
-      bgColor: '#40c8e5',
-      hoverBgColor: '#02a6bf',
-      title: t('header.settings'),
-      redirect: '/account/preferences',
-      direct: true,
-    },
-    {
-      bgColor: '#40c8e5',
-      hoverBgColor: '#02a6bf',
-      title: t('header.passwordReset'),
-      redirect: '/account/passwordreset',
-      direct: true,
-    },
-    {
-      bgColor: '#40c8e5',
-      hoverBgColor: '#02a6bf',
-      title: t('header.signOut'),
-      onClick: logout,
-    },
-  ];
-
   return (
     <Header.Wrapper>
       <Header.Container>
         <HeaderItem redirect="/" direct>
           <Header.Logo src={logo} alt="Join Piggy Logo" />
         </HeaderItem>
-        <Header.Controls>
-          {renderHeaderItems(items)}
-          {localeConfig.isAuthenticationAvailable && isAuthenticated && (
-            <HeaderItemMyAccount
-              bgColor="#34a6bf"
-              hoverBgColor="#29899e"
-              title={t('header.myAccount')}
-              logout={logout}
-            />
-          )}
-          {localeConfig.isAuthenticationAvailable &&
-            !isAuthenticated &&
-            renderHeaderItems(authItems)}
-        </Header.Controls>
+
+        <SearchBar
+          onSet={onSearchChange}
+          result={searchValue ? getFilteredList(searchValue) : []}
+          value={searchValue}
+          setSearchValue={setSearchValue}
+        />
+
+        <Header.ControlsWrap>
+          <Header.Controls>
+            {renderHeaderItems(items)}
+            {localeConfig.isAuthenticationAvailable && isCookieSet && (
+              <HeaderItemMyAccount
+                bgColor={theme.colors.skyBlue}
+                hoverBgColor={theme.colors.skyDarkBlue}
+                title={t('header.myAccount')}
+                logout={logout}
+              />
+            )}
+            {localeConfig.isAuthenticationAvailable &&
+              !isCookieSet &&
+              renderHeaderItems([authItems[0]])}
+          </Header.Controls>
+          <Header.ControlLogin>
+            {localeConfig.isAuthenticationAvailable &&
+              !isCookieSet &&
+              renderHeaderItems([authItems[1]])}
+          </Header.ControlLogin>
+        </Header.ControlsWrap>
         <Header.BurgerButtonWrapper onClick={() => setOpen(!isOpen)}>
           <BurgerButton isOpen={isOpen} onClick={() => setOpen(!isOpen)} />
         </Header.BurgerButtonWrapper>
         <Header.SlidingMenu isOpen={isOpen}>
           <div>
+            <Header.LoginWarp>
+              {localeConfig.isAuthenticationAvailable &&
+                !isCookieSet &&
+                renderHeaderItems(authItems)}
+            </Header.LoginWarp>
+
             {renderHeaderItems(items)}
-            {localeConfig.isAuthenticationAvailable &&
-              isAuthenticated &&
-              renderHeaderItems(mobileMyAccount)}
-            {localeConfig.isAuthenticationAvailable &&
-              !isAuthenticated &&
-              renderHeaderItems(authItems)}
+            <Header.MyAccount>
+              {localeConfig.isAuthenticationAvailable && isCookieSet && (
+                <HeaderItemMyAccountDetails logout={logout} />
+              )}
+            </Header.MyAccount>
           </div>
         </Header.SlidingMenu>
         <Header.Overlay isOpen={isOpen} onClick={() => setOpen(false)} />
-
         {currentModal === modal.modalSignIn && (
           <SignInModal
             onRouteModalReset={() => setCurrentModal(modal.modalResetPassword)}
@@ -306,8 +298,14 @@ Header.Wrapper = styled.header`
   height: 60px;
   box-sizing: border-box;
   z-index: 5;
+  box-shadow: 0 4px 34px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  background: ${props => props.theme.colors.white};
 
-  ${breakpoint('lg')`
+  ${breakpoint('ss')`
     height: 85px;
   `}
 `;
@@ -318,10 +316,15 @@ Header.Container = styled.div`
   padding: 0 15px;
   margin: 0 auto;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
 
+  > div:first-child {
+    margin-right: auto;
+  }
   ${breakpoint('lg')`
+    justify-content: space-between;
+
     > div:first-child {
       margin: 0;    
     }
@@ -346,7 +349,7 @@ Header.MobileRegister = styled.div`
 
 Header.Overlay = styled.div`
   display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -358,7 +361,7 @@ Header.Overlay = styled.div`
 
   ${breakpoint('lg')`
     display: none;
-  `}
+  `};
 `;
 
 Header.Logo = styled.img`
@@ -368,8 +371,8 @@ Header.Logo = styled.img`
 
 Header.BurgerButtonWrapper = styled.div`
   position: absolute;
-  right: 20px;
-  top: 19px;
+  right: 10px;
+  top: 14px;
   z-index: 7;
   width: 40px;
   height: 35px;
@@ -377,8 +380,22 @@ Header.BurgerButtonWrapper = styled.div`
   align-items: center;
   justify-content: center;
 
+  ${breakpoint('ss')`
+    right: 20px;
+    top: 26px;
+  `}
+
   ${breakpoint('lg')`
     display: none;
+  `}
+`;
+
+Header.ControlsWrap = styled.div`
+  height: 100%;
+  align-items: center;
+
+  ${breakpoint('lg')`
+    display: flex;
   `}
 `;
 
@@ -389,7 +406,37 @@ Header.Controls = styled.div`
 
   ${breakpoint('lg')`
     display: flex;
+    margin-left:-30px;
   `}
+`;
+
+Header.ControlLogin = styled.div`
+  display: flex;
+  margin: 0 25px 0 5px;
+
+  ${breakpoint('ss')`
+    margin: 0 50px 0 10px;
+  `}
+
+  ${breakpoint('lg')`
+    margin-right: 0px;
+  `}
+
+  a {
+    padding: 6px 15px;
+
+    ${breakpoint('ss')`
+      padding: 6px 30px;
+    `}
+
+    ${breakpoint('lg')`
+      padding: 5px 10px;
+    `}
+
+    ${breakpoint('xl')`
+      padding: 5px 30px;
+    `}
+  }
 `;
 
 Header.SlidingMenu = styled.div`
@@ -399,8 +446,8 @@ Header.SlidingMenu = styled.div`
   top: 0;
   right: 0;
   width: ${({ isOpen }) => (isOpen ? '366px' : '0')};
-  height: 100%;
-  background: #fff;
+  height: 100vh;
+  background: ${props => props.theme.colors.white};
   overflow: hidden;
   transition: 0.5s;
   z-index: 6;
@@ -415,18 +462,18 @@ Header.SlidingMenu = styled.div`
 
     > div {
       width: 100%;
-      height: 60px;
 
-      &:nth-child(4) {
-        border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+      &:nth-child(3) {
+        border-bottom: 1px solid ${props => props.theme.colors.whitenLight};
+        margin-bottom: 20px;
       }
 
       &:hover {
         background: none;
       }
 
-      > a {
-        color: #374b5a;
+      > ${HeaderItem.NavLink} {
+        color: ${props => props.theme.colors.blackLight};
         font-weight: 500;
         font-size: 16px;
         display: flex;
@@ -436,16 +483,22 @@ Header.SlidingMenu = styled.div`
         padding: 0;
         margin: 0;
         border: 0;
+        height: 60px;
+        transition: 0.3s;
 
         svg {
           width: 24px;
           height: 24px;
-          fill: #b3bbc2;
+          fill: ${props => props.theme.colors.lightDark};
           display: block;
         }
 
         &:hover {
-          color: #006f7f;
+          color: ${props => props.theme.colors.greenBlank};
+
+          svg {
+            fill: ${props => props.theme.colors.greenBlank};
+          }
         }
 
         &:last-child {
@@ -468,9 +521,44 @@ Header.SlidingMenu = styled.div`
   `}
 `;
 
+Header.LoginWarp = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: inherit;
+  margin-top: 20px;
+
+  ${HeaderItem.Wrapper} {
+    width: 48%;
+
+    > a {
+      width: 100%;
+      border: 2px solid ${props => props.theme.colors.greenBlank};
+    }
+  }
+`;
+
+Header.MyAccount = styled.div`
+  a {
+    padding: 0;
+
+    span {
+      width: 70%;
+    }
+
+    &:nth-of-type(4) {
+      width: 100%;
+      border: 0;
+      justify-content: flex-end;
+      margin: 0;
+    }
+  }
+`;
 const mapStateToProps = state => ({
   isAuthenticated: getIsAuthenticated(state),
   isCookieSet: isCookieSet(),
+  isExtensionInstalled: getIsExtensionInstalled(state),
+  getFilteredList: getFilteredList(state),
 });
 
 const mapDispatchToProps = {
@@ -482,10 +570,8 @@ const mapDispatchToProps = {
 };
 
 export default compose(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps,
-  ),
+  connect(mapStateToProps, mapDispatchToProps),
   withRouter,
+  withTheme,
   withTranslation(),
 )(Header);
