@@ -75,7 +75,7 @@ const SearchBarItems = ({
                   <p>
                     {t('global.earnCashBack', {
                       discount: item.store_discount.includes('%')
-                        ? item.store_discount.replace(/[^0-9]/g, '')
+                        ? item.store_discount.replace(/[^@\d$|%£€ .]/g, '')
                         : currencyLocaleFormat(
                             item.store_discount,
                             i18n.language,
