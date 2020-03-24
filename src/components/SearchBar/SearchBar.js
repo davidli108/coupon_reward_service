@@ -331,6 +331,7 @@ SearchBar.SearchShortMobile = styled.div`
     ${breakpoint('lg')`
       pointer-events: unset;
       height: unset;
+      box-shadow: none;
     `}
   }
 `;

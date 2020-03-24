@@ -2187,8 +2187,8 @@ exports[`Storyshots Components|@Store Featured 1`] = `
     >
       <a
         className="c3"
+        href="/coupons/undefined"
         onClick={[Function]}
-        to="/coupons/undefined"
       >
         Visit Store
       </a>
@@ -2509,8 +2509,8 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
           </p>
           <a
             className="c7"
+            href="/coupons/undefined"
             onClick={[Function]}
-            to="/coupons/undefined"
           >
             Visit Store
           </a>
@@ -2931,8 +2931,8 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
             </p>
             <a
               className="c11"
+              href="/coupons/undefined"
               onClick={[Function]}
-              to="/coupons/undefined"
             >
               Visit Store
             </a>

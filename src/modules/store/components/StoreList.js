@@ -469,7 +469,7 @@ StoreList.Coupons = styled.p`
   `}
 `;
 
-StoreList.Link = styled.a`
+StoreList.Link = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;

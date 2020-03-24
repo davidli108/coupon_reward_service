@@ -182,7 +182,7 @@ Featured.Image = styled.img`
   object-fit: contain;
 `;
 
-Featured.Link = styled.a`
+Featured.Link = styled(Link)`
   display: block;
   width: 100%;
   padding: 9px 0;
