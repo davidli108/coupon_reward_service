@@ -156,7 +156,7 @@ Featured.Item = styled.li`
   `}
 
   ${breakpoint('sx')`
-    min-width: 144px;
+    min-width: 147px;
     padding: 11px 9px;
   `}
 
@@ -166,7 +166,7 @@ Featured.Item = styled.li`
   `}
 
   ${breakpoint('xl')`
-    min-width: 148px;
+    min-width: 147px;
   `}
 `;
 
