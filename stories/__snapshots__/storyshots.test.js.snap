@@ -2951,195 +2951,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
 `;
 
 exports[`Storyshots Components|@Store StoreSidebar 1`] = `
-.c9 {
-  position: absolute;
-  left: 30px;
-  top: 80px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  width: calc(100% - 60px);
-  height: 40px;
-  border: 1px solid #DADDE2;
-  margin: 0;
-  border-radius: 5px;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
-}
-
-.c9:hover,
-.c9:focus {
-  background: #FFF !important;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.15) !important;
-}
-
-.c10 {
-  display: block;
-  border: none;
-  width: 100%;
-  padding: 11px 10px 11px 13px;
-  border-bottom-left-radius: 5px;
-  border-top-left-radius: 5px;
-  line-height: 19px;
-  font-size: 16px;
-  -webkit-letter-spacing: 0.571428px;
-  -moz-letter-spacing: 0.571428px;
-  -ms-letter-spacing: 0.571428px;
-  letter-spacing: 0.571428px;
-  outline: none;
-  box-shadow: none !important;
-  background: none !important;
-}
-
-.c10::-webkit-input-placeholder {
-  color: #adb8c0;
-}
-
-.c10::-moz-placeholder {
-  color: #adb8c0;
-}
-
-.c10:-ms-input-placeholder {
-  color: #adb8c0;
-}
-
-.c10::placeholder {
-  color: #adb8c0;
-}
-
-.c5 {
-  display: block;
-  padding: 0 0 0 15px;
-}
-
-.c7 {
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-  z-index: 10;
-  opacity: 0;
-  pointer-events: none;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  box-shadow: 0 10px 24px rgba(0,0,0,0.2);
-  width: 100%;
-  height: 0;
-  background: #FFF;
-  -webkit-transition-property: all;
-  transition-property: all;
-  -webkit-transition-duration: 0.4s;
-  transition-duration: 0.4s;
-  -webkit-transition-timing-function: cubic-bezier(0,1,0.5,1);
-  transition-timing-function: cubic-bezier(0,1,0.5,1);
-}
-
-.c11 {
-  display: block;
-  border: 0;
-  background: none;
-  position: absolute;
-  right: 5%;
-  z-index: 11;
-  width: 24px;
-  height: 24px;
-  cursor: pointer;
-  outline: none;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
-}
-
-.c11:hover {
-  opacity: 0.7;
-}
-
-.c13 {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #000;
-  opacity: 0;
-  z-index: 1;
-  pointer-events: none;
-  cursor: pointer;
-  -webkit-transition: background-color 0.3s ease;
-  transition: background-color 0.3s ease;
-}
-
-.c3 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  width: 35px;
-  height: 35px;
-  padding: 0;
-  border: 1px solid #DADDE2;
-  border-radius: 5px;
-  cursor: pointer;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
-  outline: none;
-}
-
-.c3 > .c4 {
-  padding: 0;
-}
-
-.c3:hover {
-  background: #F9FAFC;
-}
-
-.c2.active .c12 {
-  opacity: 0.5;
-  pointer-events: auto;
-}
-
-.c2.active .c8 {
-  visibility: visible;
-  position: unset;
-  left: unset;
-  top: unset;
-  width: 70%;
-}
-
-.c2.active .c6 {
-  opacity: 1;
-  pointer-events: auto;
-  height: 85px;
-}
-
-.c15 {
+.c2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -3153,32 +2965,32 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
   background: white;
 }
 
-.c15 > p {
+.c2 > p {
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
 }
 
-.c15:hover {
+.c2:hover {
   background: #eee;
 }
 
-.c15:hover > p {
+.c2:hover > p {
   color: rgba(0,0,0,0.7);
 }
 
-.c16 {
+.c3 {
   font-weight: 500;
   line-height: 32px;
   font-size: 13px;
   color: #c2c2c2;
 }
 
-.c14 {
+.c1 {
   display: none;
 }
 
-.c17 {
+.c4 {
   position: relative;
   border: 1px solid #dadde2;
   border-radius: 5px;
@@ -3186,7 +2998,7 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
   cursor: pointer;
 }
 
-.c18 {
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -3202,7 +3014,7 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
   padding: 10px 20px;
 }
 
-.c19 {
+.c6 {
   position: absolute;
   right: 0;
   top: 18px;
@@ -3227,76 +3039,8 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
   flex-shrink: 0;
 }
 
-.c1 {
-  width: 100%;
-}
-
-@media (min-width:36em) {
-  .c9 {
-    width: 300px;
-    left: 160px;
-    top: 5px;
-  }
-}
-
 @media (min-width:48em) {
-  .c9 {
-    width: 400px;
-    left: 200px;
-    top: 13px;
-    visibility: hidden;
-  }
-}
-
-@media (min-width:62em) {
-  .c9 {
-    position: relative;
-    left: unset;
-    top: unset;
-    width: 330px;
-    visibility: visible;
-  }
-}
-
-@media (min-width:75em) {
-  .c9 {
-    position: relative;
-    left: unset;
-    top: unset;
-    width: 330px;
-  }
-}
-
-@media (min-width:62em) {
-  .c7 {
-    opacity: 1;
-    position: unset;
-    z-index: unset;
-    pointer-events: unset;
-    background: unset;
-  }
-}
-
-@media (min-width:30em) {
-  .c11 {
-    right: 10%;
-  }
-}
-
-@media (min-width:62em) {
-  .c11 {
-    display: none;
-  }
-}
-
-@media (min-width:62em) {
-  .c3 {
-    display: none;
-  }
-}
-
-@media (min-width:48em) {
-  .c14 {
+  .c1 {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -3307,7 +3051,7 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
     padding-bottom: 30px;
   }
 
-  .c14 > h2 {
+  .c1 > h2 {
     font-weight: bold;
     line-height: 24px;
     font-size: 20px;
@@ -3322,7 +3066,7 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
 }
 
 @media (min-width:48em) {
-  .c17 {
+  .c4 {
     display: none;
   }
 }
@@ -3354,97 +3098,38 @@ exports[`Storyshots Components|@Store StoreSidebar 1`] = `
   <div
     className="c1"
   >
-    <div
-      className="c2"
-    >
-      <button
-        className="c3"
-        onClick={[Function]}
-      >
-        <img
-          alt="search"
-          className="c4 c5"
-          src="icon-search.svg"
-        />
-      </button>
-      <div
-        className="c6 c7"
-      >
-        <div
-          className="c8 c9"
-          onKeyUp={[Function]}
-        >
-          <img
-            alt="search"
-            className="c4 c5"
-            src="icon-search.svg"
-          />
-          <input
-            autoComplete="off"
-            className="c10"
-            name="search"
-            onChange={[Function]}
-            onClick={[Function]}
-            placeholder="Search"
-            type="text"
-            value=""
-          />
-          <div
-            className=""
-            onClick={[Function]}
-          />
-        </div>
-        <button
-          className="c11"
-          onClick={[Function]}
-        >
-          <img
-            alt="close"
-            src="icon-close.svg"
-          />
-        </button>
-      </div>
-      <div
-        className="c12 c13"
-        onClick={[Function]}
-      />
-    </div>
-  </div>
-  <div
-    className="c14"
-  >
     <h2>
       Stores
     </h2>
     <div
-      className="c15"
+      className="c2"
       onClick={[Function]}
     >
       <p
-        className="c16"
+        className="c3"
       />
     </div>
     <div
-      className="c15"
+      className="c2"
       onClick={[Function]}
     >
       <p
-        className="c16"
+        className="c3"
       />
     </div>
   </div>
   <div
-    className="c17"
+    className="c4"
   >
     <p
-      className="c18"
+      className="c5"
       onClick={[Function]}
     >
       Select category...
     </p>
     <div />
     <div
-      className="c19"
+      className="c6"
     />
   </div>
 </div>

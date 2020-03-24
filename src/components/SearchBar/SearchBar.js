@@ -136,7 +136,7 @@ SearchBar.Wrapper = styled.div`
   border: 1px solid ${props => props.theme.colors.whiteLight};
   margin: 0;
   border-radius: 5px;
-  background: ${props => props.theme.colors.whiteBg};
+  background: ${props => props.theme.colors.whitebg};
   transition: 0.3s;
 
   ${breakpoint('sm')`
@@ -169,7 +169,7 @@ SearchBar.Wrapper = styled.div`
 
   &:hover,
   &:focus {
-    background: ${props => props.theme.colors.white} !important;
+    background: ${props => props.theme.colors.white};
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15) !important;
   }
 `;
@@ -281,7 +281,7 @@ SearchBar.SearchButtonMobile = styled.button`
   padding: 0;
   border: 1px solid ${props => props.theme.colors.whiteLight};
   border-radius: 5px;
-  background: ${props => props.theme.colors.whiteBg};
+  background: ${props => props.theme.colors.whitebg};
   cursor: pointer;
   transition: 0.3s;
   outline: none;
@@ -303,6 +303,9 @@ SearchBar.SearchShortMobile = styled.div`
   &.active ${SearchBar.Backdrop} {
     opacity: 0.5;
     pointer-events: auto;
+    ${breakpoint('lg')`
+      display: none
+    `}
   }
 
   &.active ${SearchBar.Wrapper} {
@@ -311,12 +314,24 @@ SearchBar.SearchShortMobile = styled.div`
     left: unset;
     top: unset;
     width: 70%;
+
+    ${breakpoint('lg')`
+      position: relative;
+      left: unset;
+      top: unset;
+      width: 330px;
+      visibility: visible;
+    `}
   }
 
   &.active ${SearchBar.SearchContent} {
     opacity: 1;
     pointer-events: auto;
     height: 85px;
+    ${breakpoint('lg')`
+      pointer-events: unset;
+      height: unset;
+    `}
   }
 `;
 
