@@ -4,12 +4,13 @@ import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
 import DesktopIcon from './desktop.svg';
-import DesktopHoveIcon from './desktoph.svg';
+import DesktopIconHover from './desktoph.svg';
 import InstagramIcon from './instagram.svg';
 import { FaTwitter, FaFacebookF, FaInstagram } from 'react-icons/fa';
 
 import logo from '../Header/logo.svg';
 import FooterLink from './FooterLink/FooterLink';
+import AppConfig from '@config/AppConfig';
 
 type FooterProps = {
   t: Function,
@@ -130,16 +131,14 @@ const Footer = ({ t, i18n }: FooterProps) => {
         </Footer.LogoWrapper>
         <Footer.DownloadAppLinksWrapper>
           <Footer.DownloadAppLink
-            href={`https://chrome.google.com/webstore/detail/piggy-automatic-coupons-c/hfapbcheiepjppjbnkphkmegjlipojba?hl=${
-              i18n.language
-            }`}
+            href={`${AppConfig.extension.url}?hl=${i18n.language}`}
             target="_blank"
             style={{ order: '1' }}
             lng={i18n.language}
           >
             <div>
               <img src={DesktopIcon} alt="" />
-              <img src={DesktopHoveIcon} alt="" />
+              <img src={DesktopIconHover} alt="" />
             </div>
             <p>{t('footer.downloadButtons.desktop')}</p>
           </Footer.DownloadAppLink>
@@ -316,7 +315,7 @@ Footer.Socials = styled.div`
   margin: 0;
 
   ${breakpoint('sm')`
-      margin: 0 0 0 60px;    
+      margin: 0 0 0 60px;
   `}
 `;
 

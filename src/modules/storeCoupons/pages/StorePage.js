@@ -126,6 +126,7 @@ const StorePage = ({
               offersCount={offersCount}
               fetchStoreCoupons={fetchStoreCouponsByPagination}
               storeName={match.params.name}
+              match={match}
               store={store}
             />
           ) : (
