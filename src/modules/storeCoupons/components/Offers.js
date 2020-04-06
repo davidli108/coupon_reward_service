@@ -186,7 +186,7 @@ Offers.CashBackCatListDiv = styled.div`
 `;
 
 Offers.CashBackCatDiv = styled.div`
-  @media (min-width: 1024px) {
+  @media (min-width: 992px) {
     display: none;
   }
 
