@@ -6,7 +6,7 @@ import { FiChevronsRight } from 'react-icons/fi';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import { withTranslation } from 'react-i18next';
-
+import { getSortedCashbackRate } from './constant';
 // import AdditionalInfoSection from './AdditionalInfoSection';
 import type { AdditionalInfoProps } from '../models/StorePage';
 import {
@@ -36,22 +36,14 @@ const AdditionalInfo = ({
         {cashbackRates.length > 0 ? (
           <AdditionalInfo.CashBackUl>
             <h2>{t('storeCoupons.cashBackCategories')}</h2>
-            {cashbackRates
-              .sort(function(a, b) {
-                const na = a.category_name.toLowerCase(),
-                  nb = b.category_name.toLowerCase();
-                if (na < nb) return -1;
-                if (na > nb) return 1;
-                return 0;
-              })
-              .map(v => (
-                <AdditionalInfo.CashBackLi>
-                  <a href={v.int_url}>{v.category_name}</a>
-                  <span>
-                    <a href={v.int_url}>{v.cashback_rate}</a>
-                  </span>
-                </AdditionalInfo.CashBackLi>
-              ))}
+            {getSortedCashbackRate(cashbackRates, true).map(v => (
+              <AdditionalInfo.CashBackLi>
+                <a href={v.int_url}>{v.category_name}</a>
+                <span>
+                  <a href={v.int_url}>{v.cashback_rate}</a>
+                </span>
+              </AdditionalInfo.CashBackLi>
+            ))}
           </AdditionalInfo.CashBackUl>
         ) : null}
         <h2>{t('storeCoupons.secrets')}</h2>

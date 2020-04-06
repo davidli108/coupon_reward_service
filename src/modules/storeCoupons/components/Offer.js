@@ -302,6 +302,10 @@ Offer.Content = styled.div`
     margin: 0;
     align-items: flex-start;
   `}
+
+  @media (max-width: 1024px) {
+    width: 380px;
+  }
 `;
 
 Offer.DescriptionWrapper = styled.div`

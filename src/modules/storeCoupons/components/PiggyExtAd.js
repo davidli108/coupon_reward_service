@@ -9,6 +9,7 @@ import { MdStar, MdStarBorder, MdStarHalf } from 'react-icons/md';
 import { withTranslation } from 'react-i18next';
 
 import type { PiggyExtAdProps } from '../models/StorePage';
+import AppConfig from '@config/AppConfig';
 
 // eslint-disable-next-line no-unused-vars
 const renderStarsReview = rating => {
@@ -69,7 +70,7 @@ const PiggyExtAd = ({
         onClick={() => {
           triggerEvent();
           window.open(
-            `https://chrome.google.com/webstore/detail/piggy-automatic-coupons-c/hfapbcheiepjppjbnkphkmegjlipojba?hl=${i18n.language}`,
+            `${AppConfig.extension.url}?hl=${i18n.language}`,
             '_blank',
           );
         }}

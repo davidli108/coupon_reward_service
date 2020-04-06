@@ -177,6 +177,10 @@ BrandHeader.Name = styled.h2`
   padding-top: 15px;
   text-align: center;
 
+  @media (max-width: 320px) {
+    font-size: 100%;
+  }
+
   ${breakpoint('sx')`
     text-align: left;
   `}
@@ -294,8 +298,7 @@ BrandHeader.FollowStoreWrapper = styled.div`
   margin: 0 auto;
 
   ${breakpoint('sx')`
-    padding: 25px 0 10px 0;
-    margin: auto 0;
+    padding: 0px;
   `}
 
   ${breakpoint('md')`

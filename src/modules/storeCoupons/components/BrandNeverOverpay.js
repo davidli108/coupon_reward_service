@@ -4,14 +4,14 @@ import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
 import { MdKeyboardArrowUp } from 'react-icons/md';
-
+import AppConfig from '@config/AppConfig';
 import type { BrandNeverOverpayProps } from '../models/StorePage';
 
 const BrandNeverOverpay = ({ t, i18n, storeName }: BrandNeverOverpayProps) => {
   const [isCovered, setCovered] = React.useState(true);
   const handleCoveredToggler = () => setCovered(!isCovered);
 
-  const addChromeLink = `https://chrome.google.com/webstore/detail/piggy-automatic-coupons-c/hfapbcheiepjppjbnkphkmegjlipojba?hl=${i18n.language}`;
+  const addChromeLink = `${AppConfig.extension.url}?hl=${i18n.language}`;
 
   return (
     <>
@@ -111,6 +111,22 @@ BrandNeverOverpay.Advantages = styled.div`
     margin: 0;
     padding: 0 0 25px 0;
   `}
+
+  @media (min-width: 768px) {
+    display: block;
+
+    & > span {
+      margin: 0 5%;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    display: flex;
+
+    & > span {
+      margin: auto;
+    }
+  }
 `;
 
 BrandNeverOverpay.NeverOverpay = styled.section`
@@ -160,8 +176,12 @@ BrandNeverOverpay.NeverOverpay = styled.section`
     }
 
     ${breakpoint('sx')`
-      text-align: left;
+      text-align: center;
     `}
+
+    @media (min-width: 768px) {
+      text-align: left;
+    }
   }
 
   > p {

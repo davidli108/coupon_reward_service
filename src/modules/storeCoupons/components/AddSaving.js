@@ -8,6 +8,7 @@ import { withTranslation } from 'react-i18next';
 
 import DollarImg from './assets/DollarImg';
 import ClockIcon from './assets/ClockIcon';
+import AppConfig from '@config/AppConfig';
 
 type AddSavingProps = {
   t: Function,
@@ -42,7 +43,7 @@ const AddSaving = ({ t, match, i18n }: AddSavingProps) => {
         </AddSaving.TextWrapper>
         <AddSaving.ButtonOfferWrapper>
           <AddSaving.ActivateButton
-            href={`https://chrome.google.com/webstore/detail/piggy-automatic-coupons-c/hfapbcheiepjppjbnkphkmegjlipojba?hl=${i18n.language}`}
+            href={`${AppConfig.extension.url}?hl=${i18n.language}`}
             onClick={triggerEvent}
             target="_blank"
             rel="noopener noreferrer"

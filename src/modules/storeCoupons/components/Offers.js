@@ -8,6 +8,10 @@ import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
 import OffersLoader from '../components/loaders/OffersLoader';
+import dropDownArrow from '../assets/category_dropdown_arrow.svg';
+import dropDownArrowUp from '../assets/category_dropdown_arrow_up.svg';
+import CashbackContents from './CashbackContents';
+import { getSortedCashbackRate } from './constant';
 
 const Offers = ({
   t,
@@ -17,8 +21,10 @@ const Offers = ({
   fetchStoreCoupons,
   storeName,
   store,
+  cashbackRates,
 }: OffersProps) => {
   const [pages, setPages] = useState(0);
+  const [cashBackCollapse, setCashBackCollapse] = useState(false);
   const [isLoaded, setIsLoaded] = useState(true);
 
   const onLoadMore = () => {
@@ -38,8 +44,51 @@ const Offers = ({
     });
   };
 
+  const togglePanel = () => {
+    setCashBackCollapse(!cashBackCollapse);
+  };
+
   return (
     <>
+      {cashbackRates !== [] ? (
+        <>
+          <Offers.CashBackCatDiv isCollapse={cashBackCollapse}>
+            <div
+              onClick={() => {
+                togglePanel();
+              }}
+            >
+              <h2>
+                {t('storeCoupons.cashBackCategories')}
+                <Offers.CollapseArrow
+                  src={cashBackCollapse ? dropDownArrowUp : dropDownArrow}
+                />
+              </h2>
+            </div>
+            {cashBackCollapse ? (
+              <Offers.CashBackCatListDiv>
+                <Offers.CashBackUl>
+                  {getSortedCashbackRate(cashbackRates, false).map(v => (
+                    <Offers.CashBackLi>
+                      <a href={v.int_url}>{v.category_name}</a>
+                      <span>
+                        <a href={v.int_url}>{v.cashback_rate}</a>
+                      </span>
+                    </Offers.CashBackLi>
+                  ))}
+                </Offers.CashBackUl>
+              </Offers.CashBackCatListDiv>
+            ) : null}
+          </Offers.CashBackCatDiv>
+          <CashbackContents
+            t={t}
+            wZero={false}
+            store={store}
+            cashbackRates={cashbackRates}
+          />
+        </>
+      ) : null}
+
       {offersCount === 0 && (
         <Offers.NoData>
           {t('storeCoupons.noCouponsAndDeal', { storeName: store.store_name })}
@@ -52,6 +101,14 @@ const Offers = ({
           isThisStore={offersCount !== 0}
         />
       ))}
+      {cashbackRates !== [] && (
+        <CashbackContents
+          t={t}
+          wZero={true}
+          store={store}
+          cashbackRates={cashbackRates}
+        />
+      )}
       {!isLoaded &&
         Array.apply(null, Array(3)).map((_, ind) => <OffersLoader key={ind} />)}
       {offersCount > offers.length && isLoaded && (
@@ -108,4 +165,93 @@ Offers.NoData = styled.p`
   `}
 `;
 
-export default compose(withTranslation(), withRouter)(Offers);
+Offers.CashBackCatListDiv = styled.div`
+  @media (min-width: 1024px) {
+    display: none;
+  }
+
+  box-shadow: 0px 12px 12px 0px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  background: #fff;
+  border: 1px solid #dadde2;
+  box-sizing: border-box;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  padding: 20px;
+  margin-left: -26px;
+  width: 90%;
+  border-top: none;
+  max-height: 450px;
+  overflow: auto;
+`;
+
+Offers.CashBackCatDiv = styled.div`
+  @media (min-width: 992px) {
+    display: none;
+  }
+
+  box-shadow: ${({ isCollapse }) =>
+    isCollapse ? `0px 12px 22px rgba(0, 0, 0, 0.2)` : 'none'};
+  width: 100%;
+  background: #fff;
+  border: 1px solid #dadde2;
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding: 12px 25px;
+  margin-top: 30px;
+
+  h2 {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+    letter-spacing: 0.45px;
+    color: #899197;
+  }
+`;
+
+Offers.CashBackLi = styled.li`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5em;
+
+  a {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 32px;
+    text-decoration-line: underline;
+    color: #a7a7a7;
+  }
+
+  span {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 32px;
+    text-align: right;
+    text-decoration-line: underline;
+    color: #374b5a;
+  }
+`;
+
+Offers.CashBackUl = styled.ul`
+  @media (max-width: 768px) {
+    display: block;
+  }
+
+  width: 100%;
+  list-style: none;
+  display: none;
+`;
+
+Offers.CollapseArrow = styled.img`
+  float: right;
+  padding-top: 10px;
+`;
+
+export default compose(
+  withTranslation(),
+  withRouter,
+)(Offers);
