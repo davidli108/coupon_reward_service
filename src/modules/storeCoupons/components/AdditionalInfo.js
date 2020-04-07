@@ -38,9 +38,13 @@ const AdditionalInfo = ({
             <h2>{t('storeCoupons.cashBackCategories')}</h2>
             {getSortedCashbackRate(cashbackRates, true).map(v => (
               <AdditionalInfo.CashBackLi>
-                <a href={v.int_url}>{v.category_name}</a>
+                <a href={v.int_url} target={'_blank'}>
+                  {v.category_name}
+                </a>
                 <span>
-                  <a href={v.int_url}>{v.cashback_rate}</a>
+                  <a href={v.int_url} target={'_blank'}>
+                    {v.cashback_rate}
+                  </a>
                 </span>
               </AdditionalInfo.CashBackLi>
             ))}
