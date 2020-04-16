@@ -14,7 +14,11 @@ import { getStore } from '../StoreCouponsReducer';
 import AppConfig from '@config/AppConfig';
 import { isAmazonStore } from '@config/Utils';
 import CouponCode from './CouponCode';
-import { currencyLocaleFormat } from '@modules/localization/i18n';
+import i18n, {
+  currencyLocaleFormat,
+  getDomainAttrs,
+  setDecimalFormat,
+} from '@modules/localization/i18n';
 
 const Brand = ({
   t,
@@ -93,10 +97,12 @@ const Brand = ({
               )}
               <Brand.CashBackActivate>
                 {isAmazon && t('global.noCashBack')}
-                {!isAmazon &&
-                  (discount && discount !== '%'
-                    ? t('global.activateCashback', { discount })
-                    : t('global.instantSaving'))}
+                  {!isAmazon &&
+                    (discount
+                      ? t('global.activateCashback', {
+                          discount: setDecimalFormat(discount),
+                        })
+                      : t('global.instantSaving'))}
               </Brand.CashBackActivate>
             </Brand.CashBackActivateButton>
           </Brand.BrandImageWrapper>

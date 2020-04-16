@@ -4,7 +4,10 @@ import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
 import moment from 'moment';
-import i18n, { currencyLocaleFormat } from '@modules/localization/i18n';
+import i18n, { 
+  currencyLocaleFormat,
+  setDecimalFormat,
+ } from '@modules/localization/i18n';
 
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
 import StoreListLoader from './loaders/StoreListLoader';
@@ -26,7 +29,7 @@ const FeaturedStoreList = ({ t, stores, loaded }: FeaturedStoreListProps) => {
                   store.cashback_text,
                   store.country || i18n.language,
                 )
-              : `${store.cashback_text}%`
+              : setDecimalFormat(`${store.cashback_text}%`)
             : '';
           const cashBackMessageKey = store.cashbackok
             ? store.pay_type === 1
