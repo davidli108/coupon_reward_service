@@ -16,7 +16,6 @@ import { isAmazonStore } from '@config/Utils';
 import CouponCode from './CouponCode';
 import i18n, {
   currencyLocaleFormat,
-  getDomainAttrs,
   setDecimalFormat,
 } from '@modules/localization/i18n';
 
