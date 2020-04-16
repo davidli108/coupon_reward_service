@@ -13,6 +13,7 @@ import type { BrandProps } from '../models/StorePage';
 import { getStore } from '../StoreCouponsReducer';
 import AppConfig from '@config/AppConfig';
 import CouponCode from './CouponCode';
+import { getDomainAttrs , setDecimalFormat} from '@modules/localization/i18n';
 
 const Brand = ({
   t,
@@ -80,20 +81,51 @@ const Brand = ({
       )}
       <Brand.WrapFlexBox>
         {isLoaded ? (
-          <>
-            <BrandHeader offersCount={offersCount} />
-            {!extensionActive && (
-              <Brand.XlWrapper>
-                <Brand.NoWrapFlexBoxWithBorder>
-                  <BrandContent
-                    storeName={store.store_name}
-                    stars={5}
-                    reviewsCount={reviews}
-                  />
-                </Brand.NoWrapFlexBoxWithBorder>
-              </Brand.XlWrapper>
-            )}
-          </>
+          <Brand.BrandImageWrapper>
+            <Brand.BrandImageWrapperLink
+              href={store.store_info_link}
+              target="_blank"
+            >
+              <Brand.BrandImageWrapperHolder
+                src={
+                  store.store_logo_image_path
+                    ? `${AppConfig.cloudUrl}${store.store_logo_image_path}`
+                    : placeholder
+                }
+                onError={e => {
+                  e.target.onerror = null;
+                  e.target.src = placeholder;
+                }}
+                alt={`${store.store_name || ''} Coupon Codes ${moment().format(
+                  'MMMM',
+                )} | ${moment().format('YYYY')}`}
+              />
+            </Brand.BrandImageWrapperLink>
+
+            <Brand.CashBackActivateButton>
+              <CouponCode
+                t={t}
+                i18n={i18n}
+                code={coupon_code}
+                link={store.store_info_link}
+                store={store.store_name}
+                isAuthenticated={isAuthenticated}
+                isExtensionInstalled={isExtensionInstalled || isAmazon}
+                logo={
+                  store.store_logo_image_path
+                    ? `${AppConfig.cloudUrl}${store.store_logo_image_path}`
+                    : placeholder
+                }
+                isVisit={true}
+              />
+              <Brand.CashBackActivate>
+                {noCashback ||
+                  t('global.activateCashback', {
+                    discount: setDecimalFormat(`${store.store_discount}%`),
+                  })}
+              </Brand.CashBackActivate>
+            </Brand.CashBackActivateButton>
+          </Brand.BrandImageWrapper>
         ) : (
           <BrandXlLoader />
         )}

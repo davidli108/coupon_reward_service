@@ -15,7 +15,10 @@ import SocialShare from './SocialShare';
 
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
 import type { Deal as DealModel } from '../models/CouponsPage';
-import { currencyLocaleFormat } from '@modules/localization/i18n';
+import i18n, {
+  currencyLocaleFormat,
+  setDecimalFormat,
+} from '@modules/localization/i18n';
 
 const OfferType = {
   discount: 'discount',
@@ -60,7 +63,7 @@ const Coupon = ({
   const discount = cashback_ok
     ? numeric_type === 1
       ? currencyLocaleFormat(discount_print, country || i18n.language)
-      : `${discount_print}%`
+      : setDecimalFormat(`${discount_print}%`)
     : '';
   const cashBackMessageKey = no_cashback
     ? 'global.noCashBack'

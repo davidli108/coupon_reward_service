@@ -27,7 +27,7 @@ const resources = {
   },
 };
 
-export const Locale = {
+const Locale = {
   en: 'en',
   de: 'de',
   fr: 'fr',
@@ -66,6 +66,10 @@ export const getDomainAttrs = () => {
     enDomain,
     enOrigin,
   };
+};
+
+export const setDecimalFormat = (amount) => {
+  return ((getLocale() === Locale.de || getLocale() === Locale.fr) ? amount.replace(/\./g, ',') : amount)
 };
 
 export const redirectToEnOrigin = () => {
