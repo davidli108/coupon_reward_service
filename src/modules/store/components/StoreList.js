@@ -5,19 +5,13 @@ import { Link, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
-import moment, { locale } from 'moment';
+import moment from 'moment';
 
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
 import LoadMoreLoader from './loaders/LoadMoreLoader';
 import { 
   currencyLocaleFormat,
-<<<<<<< HEAD
   setDecimalFormat,
-=======
-  getDomainAttrs,
-  getLocale,
-  Locale,
->>>>>>> 78fb3fd... Update Joinpiggy DE Website
 } from '@modules/localization/i18n';
 import { isAmazonStore } from '@config/Utils';
 
