@@ -27,7 +27,7 @@ const resources = {
   },
 };
 
-const Locale = {
+export const Locale = {
   en: 'en',
   de: 'de',
   fr: 'fr',

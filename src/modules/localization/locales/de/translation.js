@@ -167,7 +167,7 @@ export default {
     overOff: 'Über {{discount}} Rabatt',
     cashBack: 'Cashback',
     cashBackPrint: '{{print}} Cashback',
-    instantSaving: 'Sofortige Einsparungen',
+    instantSaving: 'Sofortige Ersparnisse',
     noCashBack: 'Kein Cashback',
     upToCashBack: 'Bis zu {{discount}} Cashback',
     downloadPiggy:
@@ -175,7 +175,7 @@ export default {
     neverMiss: 'Verpassen Sie niemals ein Coupon mit unserer kostenlosen App!',
     loadMoreDeals: 'Lade mehr Angebote',
     loadMoreCoupons: 'Lade mehr Gutscheine',
-    loadMoreStores: 'Lade mehr Geschäfte',
+    loadMoreStores: 'Weitere Shops laden',
     search: 'Suche',
     nothingFound: 'Nicht gefunden',
     deals: 'Angebote',
@@ -262,7 +262,7 @@ export default {
       couponSales: 'Gutschein & Verkauf',
       browseByStore: 'Nach Geschäft durchsuchen',
       viewSales: 'Verkaufs- und Gutscheincodes anzeigen',
-      instantSaving: 'Sofortige Einsparungen',
+      instantSaving: 'Sofortige Ersparnisse',
       shopNow: 'Jetzt einkaufen',
       browseStore:
         'Durchsuchen Sie Store-Gutscheine und beliebte Cash-Back-Stores',
@@ -277,7 +277,7 @@ export default {
     preferences: 'Vorlieben',
     resetPassword: 'Passwort zurücksetzen',
     testimonials: 'Referenzen',
-    browseStores: 'Stöbern Sie mehr als 1000 Shops',
+    browseStores: 'Stöbere in über 1.000 Shops',
     addSaving: 'Sparen hinzufügen',
     instantlyApplyAll:
       'Alle Gutscheine und Cashback sofort mit der App von Piggy anwenden',
@@ -358,7 +358,7 @@ export default {
     },
   },
   build: {
-    visitStore: 'Laden besuchen',
+    visitStore: 'Shop besuchen',
     addToFavorites: 'Zu den Favoriten hinzufügen',
     freeShipping: 'Kostenloser Versand',
     freeShippingOver49:
