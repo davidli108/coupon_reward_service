@@ -12,8 +12,6 @@ import LoadMoreLoader from './loaders/LoadMoreLoader';
 import i18n, {
   currencyLocaleFormat,
   getDomainAttrs,
-  getLocale,
-  Locale,
   setDecimalFormat,
 } from '@modules/localization/i18n';
 
@@ -103,10 +101,7 @@ const StoreList = ({
                   ? currencyLocaleFormat(cashbackSave, country || i18n.language)
                   : setDecimalFormat(`${cashbackSave}%`)
                 : '';
-<<<<<<< HEAD
-=======
-                
->>>>>>> bee098f... Update Joinpiggy.de website text
+
               const cashBackMessageText = noCashBack
                 ? 'global.noCashBack'
                 : cashBackOk
