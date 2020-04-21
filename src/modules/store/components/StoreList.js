@@ -99,7 +99,7 @@ const StoreList = ({
                   ? currencyLocaleFormat(cashbackSave, country || i18n.language)
                   : setDecimalFormat(`${cashbackSave}%`)
                 : '';
-                
+
               const cashBackMessageText = noCashBack
                 ? 'global.noCashBack'
                 : cashBackOk

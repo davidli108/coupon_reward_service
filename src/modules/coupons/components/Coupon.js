@@ -15,7 +15,7 @@ import SocialShare from './SocialShare';
 
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
 import type { Deal as DealModel } from '../models/CouponsPage';
-import i18n, {
+import {
   currencyLocaleFormat,
   setDecimalFormat,
 } from '@modules/localization/i18n';
