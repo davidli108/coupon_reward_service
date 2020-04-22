@@ -8,7 +8,7 @@ export default {
   },
   header: {
     coupons: 'Gutscheine',
-    stores: 'Geschäfte',
+    stores: 'Shops',
     getApp: 'Holen Sie sich die App!',
     login: 'Anmelden',
     createAccount: 'Registrieren',
