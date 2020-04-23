@@ -11,7 +11,6 @@ import placeholder from '@modules/coupons/assets/image-placeholder.png';
 import LoadMoreLoader from './loaders/LoadMoreLoader';
 import i18n, {
   currencyLocaleFormat,
-  getDomainAttrs,
   setDecimalFormat,
 } from '@modules/localization/i18n';
 

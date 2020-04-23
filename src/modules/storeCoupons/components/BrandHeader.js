@@ -1,6 +1,6 @@
 // @flow
 import * as R from 'ramda';
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 // eslint-disable-next-line no-unused-vars, import/no-unresolved
 import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
 import { withTranslation } from 'react-i18next';
@@ -59,7 +59,9 @@ const BrandHeader = ({
   isFavorite,
   isAuthenticated,
 }: BrandHeaderProps) => {
-  const [currentModal, setCurrentModal] = React.useState(null);
+  const [currentModal, setCurrentModal] = useState(null);
+  const [noCashback, setNoCashback] = useState(false);
+  const { tld } = getDomainAttrs();
   const localeConfig = getLocaleConfig();
 
   const discount = store.store_cashback_ok
@@ -67,6 +69,7 @@ const BrandHeader = ({
       ? currencyLocaleFormat(store.store_discount, store.store_country_code)
       : setDecimalFormat(`${store.store_discount}`)
     : '';
+
   const cashBackMessageKey = store.store_cashback_ok
     ? store.store_network_status === 1
       ? store.store_numeric_type === 1
@@ -74,6 +77,7 @@ const BrandHeader = ({
         : 'global.upToCashBack'
       : 'global.noCashBack'
     : 'global.instantSaving';
+
   const toggleFavoriteStore = () => {
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
@@ -105,6 +109,12 @@ const BrandHeader = ({
     });
   };
 
+  useEffect(() => {
+    if (store.store_discount === '0.0%' && ['com', 'co.uk'].includes(tld)) {
+      setNoCashback(t('coupons.noCashback'));
+    }
+  }, [store]);
+
   return (
     <>
       <BrandHeader.Name>
@@ -133,7 +143,7 @@ const BrandHeader = ({
             </>
           )}
           <BrandHeader.SmNonVisible>
-            <span>{t(cashBackMessageKey, { discount })}</span>
+            <span>{noCashback || t(cashBackMessageKey, { discount })}</span>
           </BrandHeader.SmNonVisible>
         </BrandHeader.OffersStats>
         <BrandHeader.SmVisible>
@@ -182,15 +192,13 @@ BrandHeader.Name = styled.h2`
   @media (max-width: 320px) {
     font-size: 100%;
   }
-
   ${breakpoint('sx')`
-    text-align: left;
+    text-align: center;
   `}
-
   ${breakpoint('xl')`
     padding: 0;
     width: 100%;
-
+    text-align: left;
     line-height: 46px;
     font-size: 39px;
   `}
@@ -198,11 +206,9 @@ BrandHeader.Name = styled.h2`
 
 BrandHeader.SmNonVisible = styled.span`
   display: flex;
-
   ${breakpoint('sx')`
-    display: none;
+    display: flex;
   `}
-
   ${breakpoint('md')`
     display: flex;
   `}
@@ -210,11 +216,9 @@ BrandHeader.SmNonVisible = styled.span`
 
 BrandHeader.SmVisible = styled.span`
   display: none;
-
   ${breakpoint('sx')`
-    display: flex;
+    display: none;
   `}
-
   ${breakpoint('md')`
     display: none;
   `}
@@ -222,7 +226,6 @@ BrandHeader.SmVisible = styled.span`
 
 BrandHeader.Br = styled.br`
   display: flex;
-
   ${breakpoint('md')`
     display: none;
   `}
@@ -232,12 +235,10 @@ BrandHeader.NoWrapFlexBox = styled.div`
   width: 100%;
   display: flex;
   flex-flow: column nowrap;
-
   ${breakpoint('xl')`
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: baseline;
-
     width: 100%;
     padding: 10px 0;
   `}
@@ -249,36 +250,40 @@ BrandHeader.OffersStats = styled.div`
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
-
   padding: 15px 0 18px 0;
-
   ${breakpoint('sx')`
-    width: 200px;
-    margin: 0;
+    width: 80%;
+    margin: 0 auto;
   `}
-
   ${breakpoint('md')`
     width: 100%;
     max-width: 500px;
-    padding: 10px 0 20px 0;
+    padding: 0 0 20px 0;
   `}
-
   ${breakpoint('xl')`
     padding: 0 0 5px 0;
   `}
+  @media (max-width: 1024px) {
+    margin: 10px 0 0 0;
+  }
+
+  @media (min-width: 768px) {
+    margin-left: 0;
+  }
+
+  @media (max-width: 425px) {
+    margin: 0 auto;
+  }
 
   & > span {
     font-size: 11px;
     color: #62707b;
-
     ${breakpoint('sx')`
       font-size: 13px;
     `}
-
     ${breakpoint('md')`
       font-size: 16px;
     `}
-
     &:last-child {
       margin-right: 5px;
     }
@@ -288,7 +293,6 @@ BrandHeader.OffersStats = styled.div`
 BrandHeader.CashBack = styled.span`
   font-size: 13px;
   color: #62707b;
-
   ${breakpoint('md')`
     font-size: 16px;
   `}
@@ -298,27 +302,22 @@ BrandHeader.FollowStoreWrapper = styled.div`
   display: flex;
   align-items: center;
   margin: 0 auto;
-
   ${breakpoint('sx')`
     padding: 0px;
   `}
-
   ${breakpoint('md')`
     padding: 0;
-    margin: auto 0 10px;
+    margin: auto 0;
+    margin-bottom: 10px;
   `}
-
   ${breakpoint('xl')`
     padding: 0 0 0 30px;
   `}
-
   > div {
     display: flex;
     align-items: center;
-
     width: fit-content;
     height: auto;
-
     cursor: pointer;
 
     > svg {
