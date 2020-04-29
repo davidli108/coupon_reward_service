@@ -9,7 +9,7 @@ import moment from 'moment';
 
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
 import LoadMoreLoader from './loaders/LoadMoreLoader';
-import i18n, { currencyLocaleFormat } from '@modules/localization/i18n';
+import { currencyLocaleFormat } from '@modules/localization/i18n';
 
 // import verificationIcon from '../assets/verif.png';
 
@@ -94,7 +94,7 @@ const StoreList = ({
             }: Object) => {
               const discount = cashBackOk
                 ? payType === 1
-                  ? currencyLocaleFormat(cashbackSave, country || i18n.language)
+                  ? currencyLocaleFormat(cashbackSave, country)
                   : `${cashbackSave}%`
                 : '';
               const cashBackMessageText = noCashBack
