@@ -9,7 +9,10 @@ import { connect } from 'react-redux';
 
 import CouponCode from './CouponCode';
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
-import { currencyLocaleFormat } from '@modules/localization/i18n';
+import {
+  currencyLocaleFormat,
+  getCurrencySymbol,
+} from '@modules/localization/i18n';
 
 const discountColors = [
   '#d0c000',
@@ -124,7 +127,9 @@ const Offer = ({
             </Offer.Discount>
           )}
           <Offer.DescriptionWrapper>
-            <Offer.Description>{offer_name}</Offer.Description>
+            <Offer.Description>
+              {offer_name.replace(/\$/g, getCurrencySymbol() || '$')}
+            </Offer.Description>
             <Offer.SxVisible>
               <Offer.AdditionalInfo>
                 <span>

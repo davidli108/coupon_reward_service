@@ -9,6 +9,7 @@ import { withTranslation } from 'react-i18next';
 import { getSortedCashbackRate } from './constant';
 // import AdditionalInfoSection from './AdditionalInfoSection';
 import type { AdditionalInfoProps } from '../models/StorePage';
+import { getCurrencySymbol } from '@modules/localization/i18n';
 import {
   getAdditionalInfo,
   getStore,
@@ -72,7 +73,10 @@ const AdditionalInfo = ({
           >
             {t('header.shop', {
               storeName: store.store_name,
-              cashBack: store.store_discount_print_sidebar,
+              cashBack: store.store_discount_print_sidebar.replace(
+                /\$/g,
+                getCurrencySymbol() || '$',
+              ),
             })}
             <FiChevronsRight />
           </AdditionalInfo.ContentLink>
