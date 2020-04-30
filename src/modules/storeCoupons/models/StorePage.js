@@ -41,6 +41,9 @@ export type Store = {
   stores_code_count: string,
   store_info_link: string,
   store_discount: string,
+  store_cashback_ok: string,
+  store_country_code: string,
+  store_numeric_type: number,
 };
 
 export type Offer = {

@@ -33,7 +33,7 @@ const CashbackContent = ({ t, item, store }: CashBackContentProps) => (
           <h2>{item.category_name}</h2>
           <CashbackContent.ShopNowTop>
             <CashbackContent.ShopNowSpan>
-              <CashbackContent.ShopNow href={item.int_url}>
+              <CashbackContent.ShopNow href={item.int_url} target={'_blank'}>
                 {t('cashbackStores.shopBy.shopNow')}
               </CashbackContent.ShopNow>
             </CashbackContent.ShopNowSpan>

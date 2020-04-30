@@ -103,6 +103,14 @@ export const currencyLocaleFormat = (amount, country = getLocale()) => {
   );
 };
 
+export const getCurrencySymbol = () => {
+  const locale = getLocale();
+  const { code, cur } = localeCodeCurrency[locale.toLowerCase()];
+  return Number.parseFloat()
+    .toLocaleString(code, { style: 'currency', currency: cur })
+    .replace('NaN', '');
+};
+
 export const initializeI18n = () => {
   // eslint-disable-next-line import/no-named-as-default-member
   i18n.use(initReactI18next).init({

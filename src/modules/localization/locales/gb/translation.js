@@ -230,6 +230,7 @@ export default {
     },
     todaysFeatureCoupon: "Today's Featured Voucher From {{storeName}}",
     upToCashback: '+ up to {{discount}} Cashback',
+    plusCashBack: '+{{discount}} Cashback',
     noCouponsFound: 'No Vouchers Found',
     noFeaturedCouponsFound: 'No Featured Vouchers Found',
     login: 'Login',
