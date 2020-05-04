@@ -15,9 +15,9 @@ import {
 import Brand from '../components/Brand';
 import Offers from '../components/Offers';
 import AdditionalInfo from '../components/AdditionalInfo';
-//import StoreInformation from '../components/StoreInformation';
 import type { StorePageProps } from '../models/StorePage';
 import {
+  getTerms,
   getCashbackRates,
   getFetchingState,
   getOffers,
@@ -31,6 +31,9 @@ import * as actions from '../StoreCouponsActions';
 import AdditionalInfoLoader from '../components/loaders/AdditionalInfoLoader';
 import OffersLoader from '../components/loaders/OffersLoader';
 import AddSaving from '../components/AddSaving';
+import { getDomainAttrs } from '@modules/localization/i18n';
+import parse from 'html-react-parser';
+import styles from './StorePage.styles';
 
 const StorePage = ({
   t,
@@ -48,9 +51,12 @@ const StorePage = ({
   reviews,
   isExtensionInstalled,
   cashbackRates,
+  terms,
 }: StorePageProps) => {
   const [storeName, setStoreName] = useState(match.params.name);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isAmazon, setIsAmazon] = useState(false);
+  const { tld } = getDomainAttrs();
 
   useEffect(() => {
     match.params.name &&
@@ -59,11 +65,21 @@ const StorePage = ({
   }, []);
 
   useEffect(() => {
-    if (match.params.name && match.params.name !== storeName) {
-      setStoreName(match.params.name);
+    if (storeName === 'amazon' && ['com', 'co.uk'].includes(tld)) {
+      setIsAmazon(true);
+    } else {
+      setIsAmazon(false);
+    }
+  }, [storeName]);
+
+  useEffect(() => {
+    const { name } = match.params;
+
+    if (name && name !== storeName) {
+      setStoreName(name);
       setIsLoaded(false);
       // $FlowFixMe
-      fetchStoreCoupons(match.params.name).then(() => setIsLoaded(true));
+      fetchStoreCoupons(name).then(() => setIsLoaded(true));
     }
   }, [match]);
 
@@ -106,6 +122,7 @@ const StorePage = ({
           },
         ]}
       />
+
       <Brand
         t={t}
         isLoaded={isLoaded}
@@ -134,7 +151,11 @@ const StorePage = ({
               <OffersLoader key={ind} />
             ))
           )}
-          {!isExtensionInstalled && <AddSaving />}
+          {!isExtensionInstalled && !isAmazon && <AddSaving />}
+
+          <StorePage.TermsWrapper isShow={terms} isMobile={false}>
+            {parse(state ? terms : '')}
+          </StorePage.TermsWrapper>
         </StorePage.ColumnNoWrapFlexBox>
         <StorePage.ColumnNoWrapFlexBox order="1">
           {isLoaded ? (
@@ -142,6 +163,9 @@ const StorePage = ({
           ) : (
             <AdditionalInfoLoader />
           )}
+          <StorePage.TermsWrapper isShow={terms} isMobile={true}>
+            {parse(state ? terms : '')}
+          </StorePage.TermsWrapper>
         </StorePage.ColumnNoWrapFlexBox>
       </StorePage.DesktopContent>
       {/*{isLoaded && <StoreInformation />}*/}
@@ -235,7 +259,10 @@ const mapStateToProps = state => ({
   getFilteredList: getFilteredList(state),
   isExtensionInstalled: getIsExtensionInstalled(state),
   cashbackRates: getCashbackRates(state),
+  terms: getTerms(state),
 });
+
+styles(StorePage);
 
 const mapDispatchToProps = {
   fetchStoreCoupons: actions.fetchStoreCoupons,

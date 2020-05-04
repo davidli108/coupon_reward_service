@@ -66,6 +66,8 @@ const StoreCouponsReducer = (
         R.path(['payload', 'data']),
       )(action);
 
+      const terms = R.pathOr('', ['payload', 'data', 'terms'], action).trim();
+
       const newState = {
         ...state,
         offers,
@@ -74,6 +76,7 @@ const StoreCouponsReducer = (
         count,
         reviews,
         cashbackRates,
+        terms,
       };
 
       return R.assoc<Object, Object>('fetchingState', 'LOADED')(newState);
@@ -120,6 +123,7 @@ export const getAdditionalInfo = R.path<Object[]>([
 ]);
 export const getFetchingState = R.path<string>([STATE_KEY, 'fetchingState']);
 export const getCashbackRates = R.path<string>([STATE_KEY, 'cashbackRates']);
+export const getTerms = R.path<string>([STATE_KEY, 'terms']);
 export const getStoreSearch = R.path<string>([STATE_KEY, 'search']);
 export const searchIsLoading = R.path<string>([STATE_KEY, 'searchIsLoading']);
 export const getCountOffers = R.path<string>([STATE_KEY, 'count']);

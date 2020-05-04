@@ -90,6 +90,7 @@ export type StorePageProps = {
   getFilteredList: any,
   isExtensionInstalled: boolean,
   cashbackRates: Array<CashBackRate>,
+  terms: string,
 };
 
 export type BrandProps = {
