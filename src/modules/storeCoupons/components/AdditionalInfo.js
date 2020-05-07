@@ -73,10 +73,12 @@ const AdditionalInfo = ({
           >
             {t('header.shop', {
               storeName: store.store_name,
-              cashBack: store.store_discount_print_sidebar.replace(
-                /\$/g,
-                getCurrencySymbol() || '$',
-              ),
+              cashBack:
+                store.store_discount_print_sidebar &&
+                store.store_discount_print_sidebar.replace(
+                  /\$/g,
+                  getCurrencySymbol() || '$',
+                ),
             })}
             <FiChevronsRight />
           </AdditionalInfo.ContentLink>
