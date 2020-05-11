@@ -69,6 +69,7 @@ export default (
     <Header />
     <Switch>
       <Route exact path="/" component={HomePage} />
+      <Route exact path="/register" component={HomePage} />
       <Route exact path="/cashback-stores" component={StoresPage} />
       <Route exact path="/cashback-stores/:name" component={StoresPage} />
       <Route exact path="/coupons" component={CouponsPage} />

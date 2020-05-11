@@ -6,6 +6,7 @@ import { compose } from 'recompose';
 import styled, { withTheme } from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
+import queryString from 'query-string';
 
 import { isCouponCategory } from '@config/CategoriesConfig';
 import * as actions from '@modules/auth/AuthActions';
@@ -92,6 +93,7 @@ type HeaderProps = {
   setExtensionInstalled: Function,
   getFilteredList: Function,
   theme: Object,
+  history: Object,
 };
 
 const Header = ({
@@ -107,10 +109,12 @@ const Header = ({
   setExtensionInstalled,
   getFilteredList,
   theme,
+  history,
 }: HeaderProps) => {
   const [isOpen, setOpen] = useState(false);
   const [currentModal, setCurrentModal] = useState(null);
   const [searchValue, setSearchValue] = useState('');
+  const [signUpEmail, setSignUpEmail] = useState('');
 
   const localeConfig = getLocaleConfig();
   const getExtension = () => axios.get(AppConfig.extension.chrome);
@@ -155,6 +159,16 @@ const Header = ({
       authenticate();
     }
     checkIfExtensionIsInstalled();
+
+    if (location.pathname === '/register') {
+      const params = queryString.parse(location.search);
+      if (params.e) {
+        setSignUpEmail(params.e);
+        history.push('/register');
+      }
+
+      setCurrentModal(modal.modalSignUp);
+    }
   }, [location]);
 
   useEffect(() => {
@@ -274,6 +288,7 @@ const Header = ({
           <SignUpModal
             onRouteModal={() => setCurrentModal(modal.modalSignIn)}
             closeModal={() => setCurrentModal(null)}
+            signUpEmail={signUpEmail}
           />
         )}
         {currentModal === modal.modalResetPassword && (
