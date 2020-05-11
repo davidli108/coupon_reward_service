@@ -48,6 +48,7 @@ type renderHeaderItemsProps = {
   onClick?: Function,
   border?: string,
   separator?: boolean,
+  fontFamily?: string,
 };
 
 const renderHeaderItems = (items: Array<renderHeaderItemsProps>) =>
@@ -87,6 +88,7 @@ type HeaderProps = {
   isAuthenticated: Boolean,
   location: Object,
   signOut: Function,
+  match: Object,
   setLoggedOut: Function,
   authenticate: Function,
   getStoresList: any => Promise<Object>,
@@ -103,6 +105,7 @@ const Header = ({
   isAuthenticated,
   location,
   signOut,
+  match,
   setLoggedOut,
   authenticate,
   getStoresList,
@@ -201,44 +204,56 @@ const Header = ({
 
   const authItems = [
     {
+      bgColor: '{theme.colors.skyBlue}',
+      hoverBgColor: '{theme.colors.skyDarkBlue}',
+      title: t('header.signIn'),
+      onClick: () => {
+        setCurrentModal(modal.modalSignIn);
+        setOpen(false);
+      },
+    },
+    {
       bgColor: '{theme.colors.skyLightBlue}',
       hoverBgColor: '{theme.colors.skyLightDark}',
       title: t('header.createAccount'),
-      separator: true,
+      border: '2px',
       onClick: () => {
         setCurrentModal(modal.modalSignUp);
         setOpen(false);
       },
     },
+  ];
+
+  const subHeaderItems = [
     {
-      bgColor: '{theme.colors.skyBlue}',
-      hoverBgColor: '{theme.colors.skyDarkBlue}',
-      border: '2px',
-      title: t('header.login'),
-      onClick: () => {
-        setCurrentModal(modal.modalSignIn);
-        setOpen(false);
-      },
+      title: t('header.coupons'),
+      link: '/coupons',
+      onClick: () => setOpen(false),
+    },
+    {
+      title: t('header.stores'),
+      link: '/cashback-stores',
+      onClick: () => setOpen(false),
     },
   ];
 
   return (
     <Header.Wrapper>
       <Header.Container>
-        <HeaderItem redirect="/" direct>
-          <Header.Logo src={logo} alt="Join Piggy Logo" />
-        </HeaderItem>
-
-        <SearchBar
-          onSet={onSearchChange}
-          result={searchValue ? getFilteredList(searchValue) : []}
-          value={searchValue}
-          setSearchValue={setSearchValue}
-        />
+        <Header.LogoWrapper>
+          <HeaderItem redirect="/" direct>
+            <Header.Logo src={logo} alt="Join Piggy Logo" />
+          </HeaderItem>
+          <SearchBar
+            onSet={onSearchChange}
+            result={searchValue ? getFilteredList(searchValue) : []}
+            value={searchValue}
+            setSearchValue={setSearchValue}
+          />
+        </Header.LogoWrapper>
 
         <Header.ControlsWrap>
           <Header.Controls>
-            {renderHeaderItems(items)}
             {localeConfig.isAuthenticationAvailable && isCookieSet && (
               <HeaderItemMyAccount
                 bgColor={theme.colors.skyBlue}
@@ -247,15 +262,12 @@ const Header = ({
                 logout={logout}
               />
             )}
-            {localeConfig.isAuthenticationAvailable &&
-              !isCookieSet &&
-              renderHeaderItems([authItems[0]])}
+            <Header.AuthItems>
+              {localeConfig.isAuthenticationAvailable &&
+                !isCookieSet &&
+                renderHeaderItems(authItems)}
+            </Header.AuthItems>
           </Header.Controls>
-          <Header.ControlLogin>
-            {localeConfig.isAuthenticationAvailable &&
-              !isCookieSet &&
-              renderHeaderItems([authItems[1]])}
-          </Header.ControlLogin>
         </Header.ControlsWrap>
         <Header.BurgerButtonWrapper onClick={() => setOpen(!isOpen)}>
           <BurgerButton isOpen={isOpen} onClick={() => setOpen(!isOpen)} />
@@ -298,6 +310,10 @@ const Header = ({
           />
         )}
       </Header.Container>
+
+      {match.path === '/' && (
+        <Header.SubNav>{renderHeaderItems(subHeaderItems)}</Header.SubNav>
+      )}
     </Header.Wrapper>
   );
 };
@@ -312,7 +328,7 @@ Header.Wrapper = styled.header`
   align-items: center;
   height: 60px;
   box-sizing: border-box;
-  z-index: 5;
+  z-index: 15;
   box-shadow: 0 4px 34px rgba(0, 0, 0, 0.1);
   position: fixed;
   left: 0;
@@ -321,7 +337,35 @@ Header.Wrapper = styled.header`
   background: ${props => props.theme.colors.white};
 
   ${breakpoint('ss')`
-    height: 85px;
+    height: 65px;
+  `}
+
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.05);
+    background-color: #fff;
+  }
+`;
+
+Header.LogoWrapper = styled.div`
+  display: flex;
+  align-items: center;
+
+  ${breakpoint('xs')`
+    width: calc(100% - 40px);
+    justify-content: space-between;
+  `}
+
+  ${breakpoint('md')`
+    width: auto;
+    justify-content: flex-start;
   `}
 `;
 
@@ -333,6 +377,9 @@ Header.Container = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  position: relative;
+  z-index: 2;
+  height: 100%;
 
   > div:first-child {
     margin-right: auto;
@@ -341,9 +388,21 @@ Header.Container = styled.div`
     justify-content: space-between;
 
     > div:first-child {
-      margin: 0;    
+      margin: 0;
     }
   `}
+`;
+
+Header.AuthItems = styled.div`
+  display: flex;
+
+  a {
+    font-size: 14px;
+  }
+
+  span {
+    font-family: ${({ theme }) => theme.fonts.montserrat} !important;
+  }
 `;
 
 Header.MobileRegister = styled.div`
@@ -372,7 +431,6 @@ Header.Overlay = styled.div`
   width: 100%;
   height: 100%;
   z-index: 4;
-  background: rgba(0, 0, 0, 0.4);
 
   ${breakpoint('lg')`
     display: none;
@@ -397,10 +455,10 @@ Header.BurgerButtonWrapper = styled.div`
 
   ${breakpoint('ss')`
     right: 20px;
-    top: 26px;
+    top: 15px;
   `}
 
-  ${breakpoint('lg')`
+  ${breakpoint('md')`
     display: none;
   `}
 `;
@@ -419,9 +477,9 @@ Header.Controls = styled.div`
   display: none;
   align-items: center;
 
-  ${breakpoint('lg')`
+  ${breakpoint('md')`
     display: flex;
-    margin-left:-30px;
+    margin-left: -30px;
   `}
 `;
 
@@ -528,11 +586,14 @@ Header.SlidingMenu = styled.div`
   `}
 
   ${breakpoint('xs')`
-    width: ${({ isOpen }) => (isOpen ? '350px' : '0')};
-  `}
-
-  ${breakpoint('sx')`
-    width: ${({ isOpen }) => (isOpen ? '363px' : '0')};
+    width: 100%;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: auto;
+    box-shadow: ${({ isOpen }) =>
+      isOpen ? '0 4px 24px rgba(0, 0, 0, .25);' : 'none;'};
+    transform: translate3d(0, ${({ isOpen }) => (isOpen ? '0' : '-100%')}, 0);
   `}
 `;
 
@@ -569,6 +630,65 @@ Header.MyAccount = styled.div`
     }
   }
 `;
+
+Header.SubNav = styled.div`
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 40px;
+  display: none;
+  z-index: 0;
+  justify-content: center;
+  background-color: #fff;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.05);
+  padding: 0;
+
+  ${breakpoint('md')`
+    display: flex;
+    padding: 0;
+  `}
+
+  ${breakpoint('xl')`
+    padding: 0 110px 0 0;
+  `}
+
+  div {
+    margin: 0;
+  }
+
+  a {
+    padding: 0 40px;
+    border: 0;
+    height: 40px;
+    font-weight: 500;
+    font-size: 14px;
+    color: ${({ theme }) => theme.colors.darkGray};
+    text-decoration: none;
+
+    ::after,
+    ::before {
+      display: none;
+    }
+
+    &:hover {
+      color: inherit;
+    }
+
+    &.active {
+      color: ${({ theme }) => theme.colors.greenBlank};
+    }
+
+    ${breakpoint('md')`
+      display: flex;
+
+      svg {
+        display: none;
+      }
+    `}
+  }
+`;
+
 const mapStateToProps = state => ({
   isAuthenticated: getIsAuthenticated(state),
   isCookieSet: isCookieSet(),

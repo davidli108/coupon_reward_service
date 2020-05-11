@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const styles = (StorePage: Object) => {
   StorePage.TermsWrapper = styled.div`
     display: ${({ isShow, isMobile }) => {
-      return !isMobile ? (isShow ? 'flex' : 'none') : 'none'
+      return !isMobile ? (isShow ? 'flex' : 'none') : 'none';
     }};
     margin-top: 40px;
     flex-direction: column;
@@ -16,7 +16,7 @@ const styles = (StorePage: Object) => {
 
     @media (max-width: 768px) {
       display: ${({ isShow, isMobile }) => {
-        return isMobile ? (isShow ? 'flex' : 'none') : 'none'
+        return isMobile ? (isShow ? 'flex' : 'none') : 'none';
       }};
     }
 

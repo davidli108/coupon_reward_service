@@ -132,12 +132,12 @@ SearchBar.Wrapper = styled.div`
   display: flex;
   align-items: center;
   width: calc(100% - 60px);
-  height: 40px;
-  border: 1px solid ${props => props.theme.colors.whiteLight};
+  border: 1px solid ${props => props.theme.colors.lightDark};
   margin: 0;
   border-radius: 5px;
   background: ${props => props.theme.colors.whitebg};
   transition: 0.3s;
+  box-sizing: border-box;
 
   ${breakpoint('sm')`
     width: 300px;
@@ -146,25 +146,24 @@ SearchBar.Wrapper = styled.div`
   `}
 
   ${breakpoint('md')`
-    width: 400px;
-    left: 200px;
-    top: 13px;
-    visibility: hidden;
+    position: relative;
+    width: 330px;
+    left: unset;
+    top: unset;
+    visibility: visible;
+    margin: 0 0 0 25px;
   `}
 
   ${breakpoint('lg')`
-    position: relative;
-    left: unset;
-    top: unset;
-    width: 330px;
-    visibility: visible;
+    width: 487px;
   `}
 
   ${breakpoint('xl')`
     position: relative;
     left: unset;
     top: unset;
-    width: 330px;
+    margin: 0 0 0 130px;
+    width: 558px;
   `}
 
   &:hover,
@@ -178,7 +177,8 @@ SearchBar.Input = styled.input`
   display: block;
   border: none;
   width: 100%;
-  padding: 11px 10px 11px 13px;
+  height: 35px;
+  padding: 0 10px 0 13px;
   border-bottom-left-radius: 5px;
   border-top-left-radius: 5px;
   line-height: 19px;
@@ -187,9 +187,10 @@ SearchBar.Input = styled.input`
   outline: none;
   box-shadow: none !important;
   background: none !important;
+  box-sizing: border-box;
 
   &::placeholder {
-    color: ${props => props.theme.colors.darkSky};
+    color: ${props => props.theme.colors.lightDark};
   }
 `;
 
@@ -224,7 +225,7 @@ SearchBar.SearchContent = styled.div`
   transition-duration: 0.4s;
   transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
 
-  ${breakpoint('lg')`
+  ${breakpoint('md')`
       opacity: 1;
       position: unset;
       z-index:unset;
@@ -254,7 +255,7 @@ SearchBar.ButtonClose = styled.button`
     right: 10%;
   `}
 
-  ${breakpoint('lg')`
+  ${breakpoint('md')`
     display: none;
   `}
 `;
@@ -285,6 +286,7 @@ SearchBar.SearchButtonMobile = styled.button`
   cursor: pointer;
   transition: 0.3s;
   outline: none;
+  margin: 0 0 0 30px;
 
   > ${SearchBar.Icon} {
     padding: 0;
@@ -294,7 +296,7 @@ SearchBar.SearchButtonMobile = styled.button`
     background: ${props => props.theme.colors.whiteExLight};
   }
 
-  ${breakpoint('lg')`
+  ${breakpoint('md')`
     display: none;
   `}
 `;
