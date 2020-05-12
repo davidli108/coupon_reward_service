@@ -141,21 +141,53 @@ const styles = (HomePageCarousel: Object) => {
     flex-flow: column nowrap;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 0;
 
     span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1 0 auto;
+      background-color: ${({ theme }) => theme.colors.white};
+      width: 100%;
       cursor: pointer;
+      border-bottom: 2px solid ${({ theme }) => theme.colors.whitebg};
+
+      &:last-child {
+        border-radius: 0 0 6px 0;
+        border: 0;
+      }
+
+      @media (max-width: 1199px) {
+        border: 0;
+      }
+
+      @media (max-width: 991px) {
+        width: auto;
+        background: 0 none;
+        flex: 0;
+        height: 57px;
+      }
     }
 
     img {
       display: block;
-      max-width: 77px;
-      max-height: 28px;
+      max-height: 46px;
     }
 
     @media (max-width: 991px) {
       flex-flow: row nowrap;
       justify-content: space-around;
+      margin: 9px 0 0;
+    }
+
+    @media (max-width: 767px) {
+      flex-flow: row nowrap;
+      justify-content: flex-start;
+      overflow: scroll;
+
+      span {
+        padding: 0 25px;
+      }
     }
   `;
 

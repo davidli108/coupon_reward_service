@@ -17,6 +17,18 @@ const HomeHero = ({
 ) => {
   const langShort = i18n.language;
 
+  /* eslint-disable global-require */
+  const hero = langShort === 'de'
+    ? require('../assets/de/hero-image.png')
+    : require('../assets/fr/hero-image.png');
+  const hero2x = langShort === 'de'
+    ? require('../assets/de/hero-image@2x.png')
+    : require('../assets/fr/hero-image@2x.png');
+  const hero3x = langShort === 'de'
+    ? require('../assets/de/hero-image@3x.png')
+    : require('../assets/fr/hero-image@3x.png');
+  /* eslint-enable global-require */
+
   return (
     <HomeHero.Wrapper>
       <div id="home-hero-v2">
@@ -25,11 +37,11 @@ const HomeHero = ({
         </div>
         <div className="hero-block-banner">
           <div className="floating-banner">
-            <img src={`img/${langShort}/hero-image.png`}
+            <img src={hero}
                  srcSet={`
-                      img/${langShort}/hero-image@3x.png 3x,
-                      img/${langShort}/hero-image@2x.png 2x,
-                      img/${langShort}/hero-image.png 1x`
+                      ${hero3x} 3x,
+                      ${hero2x} 2x,
+                      ${hero} 1x`
                  }
                  alt="banner" />
           </div>

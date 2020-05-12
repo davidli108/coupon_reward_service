@@ -132,7 +132,6 @@ SearchBar.Wrapper = styled.div`
   display: flex;
   align-items: center;
   width: calc(100% - 60px);
-  border: 1px solid ${props => props.theme.colors.lightDark};
   margin: 0;
   border-radius: 5px;
   background: ${props => props.theme.colors.whitebg};

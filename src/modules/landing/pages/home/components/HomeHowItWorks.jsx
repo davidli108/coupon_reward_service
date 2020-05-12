@@ -15,6 +15,18 @@ const HomeHowItWorks = ({
 ) => {
   const langShort = i18n.language;
 
+  /* eslint-disable global-require */
+  const install = langShort === 'de'
+    ? require('../assets/de/install.svg')
+    : require('../assets/fr/install.svg');
+  const laptop = langShort === 'de'
+    ? require('../assets/de/laptop.svg')
+    : require('../assets/fr/laptop.svg');
+  const wallet = langShort === 'de'
+    ? require('../assets/de/wallet.svg')
+    : require('../assets/fr/wallet.svg');
+  /* eslint-enable global-require */
+
   return (
     <HomeHowItWorks.Wrapper>
       <div className="row">
@@ -22,7 +34,7 @@ const HomeHowItWorks = ({
           <h2 className="h2class text-center">{t('homepage.howItWorks.title')}</h2>
         </div>
         <div className="col-xs-12 col-sm-4">
-          <img src={`img/${langShort}/install.svg`}
+          <img src={install}
                alt="Click Install"
                className="img-responsive center-block" />
             <h3 className="h3class text-center">{t('homepage.howItWorks.subHeader1')}</h3>
@@ -38,14 +50,14 @@ const HomeHowItWorks = ({
             </p>
         </div>
         <div className="col-xs-12 col-sm-4">
-          <img src={`img/${langShort}/laptop.svg`}
+          <img src={laptop}
                alt="You just shop"
                className="img-responsive center-block" />
             <h3 className="h3class text-center">{t('homepage.howItWorks.subHeader2')}</h3>
             <p className="pclass text-center">{t('homepage.howItWorks.subText2')}</p>
         </div>
         <div className="col-xs-12 col-sm-4">
-          <img src={`img/${langShort}/wallet.svg`} alt="Save Instantly"
+          <img src={wallet} alt="Save Instantly"
                className="img-responsive center-block" />
             <h3 className="h3class text-center">{t('homepage.howItWorks.subHeader3')}</h3>
             <p className="pclass text-center">{t('homepage.howItWorks.subText3')}</p>
