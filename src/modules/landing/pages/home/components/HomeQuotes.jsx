@@ -15,7 +15,7 @@ import User4 from '../assets/users/user04.svg';
 import User5 from '../assets/users/user05.svg';
 import User6 from '../assets/users/user06.svg';
 
-const user = [Quote, User2, User3, User4, User5, User6];
+const user = [Quote, User2, User4, User5, User3, User6, User4];
 
 const slider_settings = {
   centerMode: true,
