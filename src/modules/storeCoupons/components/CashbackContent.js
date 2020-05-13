@@ -2,7 +2,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-import AppConfig from '@config/AppConfig';
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
 import type { CashBackContentProps } from '../models/StorePage';
 import moment from 'moment';
@@ -12,13 +11,7 @@ const CashbackContent = ({ t, item, store }: CashBackContentProps) => (
     <CashbackContent.CashBackRectangleContainer>
       <CashbackContent.CashbackImgDiv>
         <CashbackContent.CashbackImg
-          src={
-            item.image
-              ? item.image.match(/cashbackrateimage/g)
-                ? item.image
-                : `${AppConfig.cloudUrl}${item.image}`
-              : placeholder
-          }
+          src={item.image ? `${item.image}` : placeholder}
           onError={e => {
             e.target.onerror = null;
             e.target.src = placeholder;
@@ -54,8 +47,9 @@ const CashbackContent = ({ t, item, store }: CashBackContentProps) => (
 );
 
 CashbackContent.CashBackRectangleContainer = styled.div`
-  height: 200px;
-  margin-bottom: 30px;
+  height: auto;
+  padding-bottom: 20px;
+  margin-top: 30px;
   background: #fff;
   border: 1px solid #dadde2;
   border-radius: 5px;
@@ -63,7 +57,7 @@ CashbackContent.CashBackRectangleContainer = styled.div`
   width: 100%;
 
   @media (max-width: 1024px) {
-    height: auto;
+    padding-bottom: 0;
   }
 
   @media (max-width: 320px) {
@@ -72,6 +66,7 @@ CashbackContent.CashBackRectangleContainer = styled.div`
 `;
 
 CashbackContent.CashbackImgDiv = styled.div`
+  margin: 0 auto;
   float: left;
 `;
 
@@ -243,6 +238,8 @@ CashbackContent.ShopNow = styled.a`
 `;
 
 CashbackContent.ShopNowTop = styled.div`
+  width: 100%;
+
   @media (max-width: 425px) {
     display: none;
   }
@@ -251,6 +248,8 @@ CashbackContent.ShopNowTop = styled.div`
 `;
 
 CashbackContent.ShopNowBottom = styled.div`
+  margin-top: 10px;
+
   @media (max-width: 425px) {
     display: block;
   }

@@ -14,7 +14,9 @@ const CashbackContents = ({
   const sortedCashBackRate = getSortedCashbackRate(cashbackRates, wZero);
   const checkForCashBack = v => {
     if ((wZero && v.weight === '0') || (!wZero && v.weight !== '0')) {
-      return <CashbackContent t={t} store={store} item={v} />;
+      return (
+        <CashbackContent key={v.category_name} t={t} store={store} item={v} />
+      );
     }
   };
 
@@ -27,7 +29,6 @@ const CashbackContents = ({
 
 CashbackContents.Content = styled.div`
   width: 100%;
-  margin-top: 16px;
 `;
 
 export default CashbackContents;

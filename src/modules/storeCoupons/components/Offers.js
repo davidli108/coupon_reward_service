@@ -101,7 +101,7 @@ const Offers = ({
           isThisStore={offersCount !== 0}
         />
       ))}
-      {cashbackRates !== [] && (
+      {cashbackRates.length !== 0 && (
         <CashbackContents
           t={t}
           wZero={true}
@@ -121,6 +121,7 @@ const Offers = ({
 };
 
 Offers.LoadMoreDeals = styled.p`
+  z-index: 2;
   width: 100%;
   margin-top: 30px;
   display: flex;
@@ -251,7 +252,4 @@ Offers.CollapseArrow = styled.img`
   padding-top: 10px;
 `;
 
-export default compose(
-  withTranslation(),
-  withRouter,
-)(Offers);
+export default compose(withTranslation(), withRouter)(Offers);

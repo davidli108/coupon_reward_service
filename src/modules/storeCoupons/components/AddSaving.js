@@ -72,7 +72,7 @@ AddSaving.span = styled.span`
 
 AddSaving.Wrapper = styled.div`
   width: 100%;
-  margin-top: 20px;
+  margin-top: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -81,10 +81,6 @@ AddSaving.Wrapper = styled.div`
 
   ${breakpoint('sx')`
     flex-direction: row;
-  `}
-
-  ${breakpoint('md')`
-    margin-top: 50px;
   `}
 `;
 

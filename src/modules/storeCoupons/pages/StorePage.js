@@ -238,6 +238,8 @@ StorePage.ColumnNoWrapFlexBox = styled.div`
     order: ${({ order }) => order};
     width: 100%;
   `}
+
+  ${({ order }) => (order === '1' ? 'margin-right: 45px;' : '')}
 `;
 
 StorePage.PreloaderWrapper = styled.div`
