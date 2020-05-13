@@ -64,6 +64,7 @@ const LandingReducer = (
       const mapFeaturedCashback =
         paid_placements.featured_cashback &&
         paid_placements.featured_cashback.map(item => {
+
           const cashback = parseFloat(item.cashback.replace(/[%$£€]/, ''));
 
           if (item.cashback.includes('$')) {
@@ -93,6 +94,7 @@ const LandingReducer = (
           item['secondary_text'] = stringElipsis(item['secondary_text'], 120);
           return item;
         });
+
 
       return R.compose(
         R.assoc<Object, Object>(
