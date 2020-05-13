@@ -32,7 +32,13 @@ const LandingReducer = (
   switch (action.type) {
     case `${FETCH_HOMEPAGE_FEATURE}_SUCCESS`: {
       const paid_placements: Object = R.pathOr(
-        [],
+        {
+          homepage_feature: [],
+          top_deals: [],
+          featured_cashback: [],
+          featured_stores: [],
+          amazon_deal: [],
+        },
         ['payload', 'data', 'paid_placements'],
         action,
       );
@@ -114,7 +120,9 @@ const LandingReducer = (
 
     case `${FETCH_HOME_FEATURE}_SUCCESS`: {
       const paid_placements: Object = R.pathOr(
-        [],
+        {
+          featured_stores: [],
+        },
         ['payload', 'data', 'paid_placements'],
         action,
       );
