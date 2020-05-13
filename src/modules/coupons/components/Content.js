@@ -229,7 +229,7 @@ const Content = ({
           )}
 
           {isLoaded ? (
-            offersCount !== 0 ? (
+            offersCount !== 0 && getFilteredDeals && getFilteredDeals.length ? (
               <Coupons coupons={getFilteredDeals} />
             ) : (
               getDealsFilter !== 'favoriteStores' && (

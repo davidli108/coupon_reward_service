@@ -15,9 +15,10 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     font-family : ${props => props.theme.fonts.roboto};
-    margin-top: 66px;
+    margin-top: 60px;
+
     ${breakpoint('ss')`
-      margin-top: 88px;
+      margin-top: 105px;
     `}
   }
 

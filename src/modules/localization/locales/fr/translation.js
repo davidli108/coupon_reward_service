@@ -10,6 +10,7 @@ export default {
     coupons: 'Codes promo',
     stores: 'Boutiques',
     getApp: "Obtenez l'application !",
+    signIn: 'Se Connecter',
     login: 'Se Connecter',
     createAccount: 'Enregistrer',
     myAccount: 'Mon Compte',
@@ -417,5 +418,55 @@ export default {
     subtitle: 'UH-OH, RIEN À VOIR ICI!',
     text: "La page que vous avez demandée n'existe pas.",
     action: "Aller à la page d'accueil",
+  },
+  homepage: {
+    hero: {
+      title: "Piggy est le moyen le plus facile d'économiser de l'argent !",
+      text: {
+        first:
+          "Ajoutez Piggy aujourd'hui pour un remboursement de plus de 70 % dans plus de 6 000 magasins.",
+        second:
+          'Piggy est une extension Chrome gratuite qui ajoute automatiquement des coupons, vérifie les prix et offre du cash back lorsque vous magasinez en ligne.',
+      },
+      activate_extension: `<strong>Ajoutez à {{browser}}</strong> C'est gratuit`,
+      number_users: '1,000,000 utilisateurs',
+    },
+    howItWorks: {
+      title: `Comment ça marche`,
+      subHeader1: '2 Cliquez sur Installer',
+      subText1:
+        'Cliquez sur "Ajouter à Chrome" puis sur "Ajouter une extension" pour installer.',
+      subText1Link: 'Aller à la boutique en ligne de Google Chrome',
+      subHeader2: 'Vous avez juste à faire vos achats',
+      subText2: `Nous trouverons et appliquerons chaque coupon sur Internet et vous obtiendrez jusqu'à 20% de cashback dans des milliers de magasins.`,
+      subHeader3: 'Économisez instantanément',
+      subText3: `Non seulement Piggy applique le coupon avec le plus d'économies, Piggy vous offre également des tarifs non publiés dans les hôtels.`,
+      buttonAll: 'Continuer',
+    },
+    worksWithStores: 'Piggy travaille avec plus de 6 000 magasins',
+    worksWithStoresInfo: `Saviez-vous que les utilisateurs de Piggy économiser une moyenne de 24 € chaque fois qu'ils magasinent en ligne en utilisant Piggy?<br/>C'est parce que Piggy travaille avec plus de 6.000 magasins. Tout, des vêtements et des pizzas à la réservation d'un hôtel.`,
+    worksWithStoresTop: 'Magasins les plus visités:',
+    worksWithStoresActivate: 'Activez les coupons gratuits et les cashbacks',
+    quotes: {
+      title: "Ce qu'on dit sur Piggy",
+      text00: "“Piggy est l'un des meilleurs programmes là-bas“",
+      name00: 'Time Magazine',
+      text01:
+        '“Facile automatique et gratuit, les codes donnent de bonne reduction, c est parfait “',
+      name01: 'Hortense G.',
+      text02:
+        "“C'est automatique et gratuit les codes sont de grosse réduction je suis satisfait !!!!!!”",
+      name02: 'NaKy',
+      text03: "“parfait! j'aime cela”",
+      name03: 'Therese C.',
+      text04: "“Application tres utile! J'aime cela“",
+      name04: 'Lisa W.',
+      text05:
+        '“Facile automatique et gratuit, les codes donnent de bonne reduction, c est parfait”',
+      name05: 'Rei I.',
+      text06:
+        '“Facile automatique et gratuit, les codes donnent de bonne reduction, c est parfait “',
+      name06: 'Hortense G.',
+    },
   },
 };

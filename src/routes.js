@@ -6,11 +6,23 @@ import { Route, Switch } from 'react-router-dom';
 import Footer from '@components/Footer/Footer';
 import Header from '@components/Header/Header';
 import Preloader from '@components/Preloader/Preloader';
+import { getDomainAttrs } from '@modules/localization/i18n';
+
+const { domain, tld } = getDomainAttrs();
+const isEN = tld === 'com' || tld === 'co.uk' || domain === 'localhost';
 
 const HomePage = Loadable({
   loader: () =>
     import(
-      '@modules/landing/pages/HomePage' /* webpackChunkName: "HomePage" */
+      '@modules/landing/pages/homepage/HomePage' /* webpackChunkName: "HomePage" */
+    ),
+  loading: () => <Preloader />,
+});
+
+const Home = Loadable({
+  loader: () =>
+    import(
+      '@modules/landing/pages/home/Home' /* webpackChunkName: "HomePage" */
     ),
   loading: () => <Preloader />,
 });
@@ -68,7 +80,12 @@ export default (
   <div style={{ overflow: 'hidden' }}>
     <Header />
     <Switch>
-      <Route exact path="/" component={HomePage} />
+      {isEN ? (
+        <Route exact path="/" component={HomePage} />
+      ) : (
+        <Route exact path="/" component={Home} />
+      )}
+      <Route exact path="/register" component={HomePage} />
       <Route exact path="/cashback-stores" component={StoresPage} />
       <Route exact path="/cashback-stores/:name" component={StoresPage} />
       <Route exact path="/coupons" component={CouponsPage} />

@@ -33,6 +33,7 @@ type SignUpModalProps = {
   authenticate: Function,
   checkEmailAvailable: Function,
   history: Object,
+  signUpEmail: string,
 };
 
 const SignUpModal = ({
@@ -48,8 +49,9 @@ const SignUpModal = ({
   history,
   fetchUser,
   authenticate,
+  signUpEmail,
 }: SignUpModalProps) => {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState(signUpEmail || '');
   const [emailErrorMessage, setEmailErrorMessage] = useState('');
   const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
   const [stage, setStage] = useState(1);
