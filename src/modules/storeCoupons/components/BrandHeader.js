@@ -65,6 +65,7 @@ const BrandHeader = ({
       ? currencyLocaleFormat(store.store_discount, store.store_country_code)
       : `${store.store_discount}`
     : '';
+
   const cashBackMessageKey = store.store_cashback_ok
     ? store.store_network_status === 1
       ? store.store_numeric_type === 1
@@ -131,7 +132,11 @@ const BrandHeader = ({
             </>
           )}
           <BrandHeader.SmNonVisible>
-            <span>{t(cashBackMessageKey, { discount })}</span>
+            <span>
+              {discount
+                ? t(cashBackMessageKey, { discount })
+                : t('global.instantSaving')}
+            </span>
           </BrandHeader.SmNonVisible>
         </BrandHeader.OffersStats>
         <BrandHeader.SmVisible>

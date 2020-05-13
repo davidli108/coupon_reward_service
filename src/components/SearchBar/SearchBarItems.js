@@ -47,7 +47,10 @@ const SearchBarItems = ({
       return item.store_discount.replace(/[^@\d$|%£€ .]/g, '');
     }
 
-    return currencyLocaleFormat(item.store_discount, i18n.language);
+    return currencyLocaleFormat(
+      item.store_discount.replace(/[^@\d .]/g, ''),
+      i18n.language,
+    );
   };
 
   return (
@@ -85,7 +88,7 @@ const SearchBarItems = ({
                       ? t('global.earnCashBack', {
                           discount: getDiscount(item),
                         })
-                      : t('global.noCashBack')}
+                      : t('global.instantSaving')}
                   </p>
                 </div>
               </SearchBarItems.Item>

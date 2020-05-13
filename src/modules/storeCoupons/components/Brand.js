@@ -33,7 +33,7 @@ const Brand = ({
   const discount = store.store_cashback_ok
     ? store.store_numeric_type === 1
       ? currencyLocaleFormat(
-          store.store_discount.replace('$', ''),
+          store.store_discount.replace(/[$£€]/, ''),
           store.store_country_code,
         )
       : `${store.store_discount.replace('%', '')}%`
@@ -82,7 +82,7 @@ const Brand = ({
                 isVisit={true}
               />
               <Brand.CashBackActivate>
-                {discount
+                {discount && discount !== '%'
                   ? t('global.activateCashback', { discount })
                   : t('global.instantSaving')}
               </Brand.CashBackActivate>

@@ -93,14 +93,13 @@ export const currencyLocaleFormat = (amount, country = getLocale()) => {
   country = country.toLowerCase();
   const { code, cur } =
     localeCodeCurrency[country] || localeCodeCurrency[getLocale()];
-  return Number.parseFloat(amount.replace(/[^@\d .]/g, '')).toLocaleString(
-    code,
-    {
-      style: 'currency',
-      currency: cur,
-      minimumFractionDigits: 0,
-    },
-  );
+  return amount.trim()
+    ? Number.parseFloat(amount.replace(/[^@\d .]/g, '')).toLocaleString(code, {
+        style: 'currency',
+        currency: cur,
+        minimumFractionDigits: 0,
+      })
+    : '';
 };
 
 export const getCurrencySymbol = () => {
