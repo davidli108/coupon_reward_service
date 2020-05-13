@@ -33,7 +33,7 @@ const HomeFavoriteStores = ({
         <h4 className="h4class text-center" dangerouslySetInnerHTML={{__html: t('homepage.worksWithStoresInfo')}} />
         <h6 className="h6class text-center">{t(day)} {t('homepage.worksWithStoresTop')}</h6>
         <div className="stores placements">
-          {featuredStores && featuredStores.map((store, key) => (
+          {featuredStores.map((store, key) => (
             <div key={key} className="store-item">
               <Link to={`/coupon/${store.short_name}`}>
                 <img src={store.offer_img} alt={store.store_name}/>

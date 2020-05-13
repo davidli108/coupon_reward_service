@@ -42,6 +42,14 @@ const SearchBarItems = ({
     history.push(`/coupons/${shortName}`);
   };
 
+  const getDiscount = item => {
+    if (item.store_discount.includes('%')) {
+      return item.store_discount.replace(/[^@\d$|%£€ .]/g, '');
+    }
+
+    return currencyLocaleFormat(item.store_discount, i18n.language);
+  };
+
   return (
     <SearchBarItems.StoreWrapper onKeyDown={e => e.preventDefault()}>
       <div>
@@ -73,14 +81,11 @@ const SearchBarItems = ({
                 <div>
                   <h3>{item.store_name}</h3>
                   <p>
-                    {t('global.earnCashBack', {
-                      discount: item.store_discount.includes('%')
-                        ? item.store_discount.replace(/[^@\d$|%£€ .]/g, '')
-                        : currencyLocaleFormat(
-                            item.store_discount,
-                            i18n.language,
-                          ),
-                    })}
+                    {getDiscount(item)
+                      ? t('global.earnCashBack', {
+                          discount: getDiscount(item),
+                        })
+                      : t('global.noCashBack')}
                   </p>
                 </div>
               </SearchBarItems.Item>
