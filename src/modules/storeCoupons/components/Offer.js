@@ -191,7 +191,7 @@ Offer.Wrapper = styled.div`
   background: #fff;
   border: 1px solid #dadde2;
   padding: 30px 20px 10px 20px;
-  margin-top: 15px;
+  margin-top: 30px;
 
   ${breakpoint('sx')`
     width: calc(100% - 42px);
@@ -203,7 +203,6 @@ Offer.Wrapper = styled.div`
     width: calc(100% - 75px);
     padding: 30px 30px 20px 40px;
     flex-flow: row nowrap;
-    margin-top: 25px;
     justify-content: space-around;
   `}
 `;
@@ -307,10 +306,6 @@ Offer.Content = styled.div`
     margin: 0;
     align-items: flex-start;
   `}
-
-  @media (max-width: 1024px) {
-    width: 380px;
-  }
 `;
 
 Offer.DescriptionWrapper = styled.div`

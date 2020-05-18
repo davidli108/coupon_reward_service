@@ -38,7 +38,7 @@ const AdditionalInfo = ({
           <AdditionalInfo.CashBackUl>
             <h2>{t('storeCoupons.cashBackCategories')}</h2>
             {getSortedCashbackRate(cashbackRates, true).map(v => (
-              <AdditionalInfo.CashBackLi>
+              <AdditionalInfo.CashBackLi key={v.category_name}>
                 <a href={v.int_url} target={'_blank'}>
                   {v.category_name}
                 </a>
@@ -238,6 +238,7 @@ AdditionalInfo.CashBackLi = styled.li`
 AdditionalInfo.CashBackUl = styled.ul`
   list-style: none;
   width: 262px;
+  margin-bottom: 30px;
 
   h2 {
     font-style: normal;
