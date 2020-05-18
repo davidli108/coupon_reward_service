@@ -1,12 +1,24 @@
 export const renderIubendaScripts = () => {
+  const domain = document.location.hostname.split('.');
+  const location = domain[domain.length - 1];
   const iubendaConfig = document.createElement('script');
+  const languageMap = {
+    fr: 'fr',
+    de: 'de',
+  };
+  const cookiePolicyId = {
+    de: 62071698,
+    fr: 89416678,
+    en: 22654027,
+  };
+
   iubendaConfig.type = 'text/javascript';
   iubendaConfig.innerHTML = `
     var _iub = _iub || [];
     _iub.csConfiguration = {
-      lang: 'en',
+      lang: '${languageMap[location] || 'en'}',
       siteId: 1297147,
-      cookiePolicyId: 22654027,
+      cookiePolicyId: ${cookiePolicyId[location] || 22654027},
       consentOnScroll: false,
       banner: {
         slideDown: false,
