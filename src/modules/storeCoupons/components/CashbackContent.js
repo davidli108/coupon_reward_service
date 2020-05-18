@@ -72,7 +72,7 @@ CashbackContent.CashbackImgDiv = styled.div`
 
 CashbackContent.ShopNowSpan = styled.span`
   @media (min-width: 768px) {
-    padding: 13px 40px;
+    padding: 13px;
     font-size: 17px;
   }
 
@@ -101,6 +101,10 @@ CashbackContent.CategoryName = styled.div`
   justify-content: space-between;
   display: inline-flex;
   margin-top: 12px;
+
+  h2 {
+    width: 800px;
+  }
 `;
 
 CashbackContent.CashbackTextDiv = styled.div`
