@@ -63,7 +63,7 @@ const Coupon = ({
   const discount = cashback_ok
     ? numeric_type === 1
       ? currencyLocaleFormat(discount_print, country || i18n.language)
-      : setDecimalFormat(`${discount_print}%`)
+      : setDecimalFormat(`${discount_print} %`)
     : '';
   const cashBackMessageKey = no_cashback
     ? 'global.noCashBack'
