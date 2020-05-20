@@ -70,9 +70,21 @@ const Offers = ({
                 <Offers.CashBackUl>
                   {getSortedCashbackRate(cashbackRates, false).map(v => (
                     <Offers.CashBackLi>
-                      <a href={v.int_url}>{v.category_name}</a>
+                      <a
+                        href={v.int_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {v.category_name}
+                      </a>
                       <span>
-                        <a href={v.int_url}>{v.cashback_rate}</a>
+                        <a
+                          href={v.int_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {v.cashback_rate}
+                        </a>
                       </span>
                     </Offers.CashBackLi>
                   ))}

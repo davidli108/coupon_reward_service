@@ -71,18 +71,39 @@ CashbackContent.CashbackImgDiv = styled.div`
 `;
 
 CashbackContent.ShopNowSpan = styled.span`
+  margin-bottom: -22px;
+  margin-top: 16px;
+
+  @media (max-width: 992px) {
+    a {
+      margin-right: 10px;
+    }
+  }
+
   @media (min-width: 768px) {
     padding: 13px;
     font-size: 17px;
   }
-
-  margin-bottom: -22px;
-  margin-top: 16px;
 `;
 
 CashbackContent.CategoryName = styled.div`
+  width: 550px;
+  justify-content: space-between;
+  display: inline-flex;
+  margin-top: 12px;
+
+  h2 {
+    width: 800px;
+  }
+
   @media (max-width: 1024px) {
     width: 100%;
+  }
+
+  @media (max-width: 992px) {
+    h2 {
+      width: 300px;
+    }
   }
 
   @media (max-width: 425px) {
@@ -95,15 +116,6 @@ CashbackContent.CategoryName = styled.div`
 
   @media (max-width: 320px) {
     width: 262px;
-  }
-
-  width: 550px;
-  justify-content: space-between;
-  display: inline-flex;
-  margin-top: 12px;
-
-  h2 {
-    width: 800px;
   }
 `;
 
