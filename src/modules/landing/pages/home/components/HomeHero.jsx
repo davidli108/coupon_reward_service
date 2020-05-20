@@ -18,15 +18,28 @@ const HomeHero = ({
   const langShort = i18n.language;
 
   /* eslint-disable global-require */
-  const hero = langShort === 'de'
-    ? require('../assets/de/hero-image.png')
-    : require('../assets/fr/hero-image.png');
-  const hero2x = langShort === 'de'
-    ? require('../assets/de/hero-image@2x.png')
-    : require('../assets/fr/hero-image@2x.png');
-  const hero3x = langShort === 'de'
-    ? require('../assets/de/hero-image@3x.png')
-    : require('../assets/fr/hero-image@3x.png');
+  const assets = () => {
+    switch (langShort) {
+      case 'de':
+        return {
+          hero: require('../assets/de/hero-image.png'),
+          hero2: require('../assets/de/hero-image@2x.png'),
+          hero3: require('../assets/de/hero-image@3x.png'),
+        };
+      case 'fr':
+        return {
+          hero: require('../assets/fr/hero-image.png'),
+          hero2: require('../assets/fr/hero-image@2x.png'),
+          hero3: require('../assets/fr/hero-image@3x.png'),
+        };
+      default:
+        return {
+          hero: require('../assets/en/hero-image.png'),
+          hero2: require('../assets/en/hero-image@2x.png'),
+          hero3: require('../assets/en/hero-image@3x.png'),
+        };
+    }
+  };
   /* eslint-enable global-require */
 
   return (
@@ -37,11 +50,11 @@ const HomeHero = ({
         </div>
         <div className="hero-block-banner">
           <div className="floating-banner">
-            <img src={hero}
+            <img src={assets().hero}
                  srcSet={`
-                      ${hero3x} 3x,
-                      ${hero2x} 2x,
-                      ${hero} 1x`
+                      ${assets().hero3} 3x,
+                      ${assets().hero2} 2x,
+                      ${assets().hero} 1x`
                  }
                  alt="banner" />
           </div>

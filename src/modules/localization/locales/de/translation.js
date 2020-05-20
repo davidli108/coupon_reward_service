@@ -442,8 +442,8 @@ export default {
       buttonAll: 'Fortfahren',
     },
     worksWithStores: 'Piggy arbeitet mit über 6.000 Shops zusammen',
-    worksWithStoresInfo:
-      'Wusstest du, dass Piggy-Nutzer bei jedem Online-Einkauf durchschnittlich 24 € sparen? Das liegt daran, dass Piggy mit über 6.000 Shops zusammenarbeitet: von Mode, über Pizza bis hin zu Hotelanbietern.',
+    worksWithStoresInfo: `Wusstest du, dass Piggy-Nutzer bei jedem Online-Einkauf durchschnittlich 24€ sparen?<br/>
+        Das liegt daran, dass Piggy mit über 6.000 Shops zusammenarbeitet: von Mode, über Pizza bis hin zu Hotelanbietern.`,
     worksWithStoresTop: 'Die heute am häufigsten besuchten Online-Shops:',
     worksWithStoresActivate: 'Kostenlos Gutscheine und Cashback aktivieren',
     quotes: {

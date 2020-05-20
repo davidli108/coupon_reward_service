@@ -444,7 +444,8 @@ export default {
       buttonAll: 'Continuer',
     },
     worksWithStores: 'Piggy travaille avec plus de 6 000 magasins',
-    worksWithStoresInfo: `Saviez-vous que les utilisateurs de Piggy économiser une moyenne de 24 € chaque fois qu'ils magasinent en ligne en utilisant Piggy?<br/>C'est parce que Piggy travaille avec plus de 6.000 magasins. Tout, des vêtements et des pizzas à la réservation d'un hôtel.`,
+    worksWithStoresInfo: `Saviez-vous que les utilisateurs de Piggy économiser une moyenne de 24€ chaque fois qu'ils magasinent en ligne en utilisant Piggy?<br/>
+        C'est parce que Piggy travaille avec plus de 6.000 magasins. Tout, des vêtements et des pizzas à la réservation d'un hôtel.`,
     worksWithStoresTop: 'Magasins les plus visités:',
     worksWithStoresActivate: 'Activez les coupons gratuits et les cashbacks',
     quotes: {

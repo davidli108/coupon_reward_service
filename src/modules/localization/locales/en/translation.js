@@ -420,6 +420,56 @@ export default {
     discover: 'Discover deals by category:',
     all: 'All',
     was: 'Was {{price}}',
+    hero: {
+      title: 'Piggy is the easiest way to save money!',
+      text: {
+        first:
+          'Add Piggy today for automatic coupons up to 70% off at over 6,000 stores!',
+        second:
+          'Piggy is a free Chrome extension that automatically adds coupons, checks prices and offers cash back when you shop online.',
+      },
+      activate_extension: `<strong>Add to {{browser}}</strong> It's free!`,
+      number_users: '1,000,000 users',
+    },
+    howItWorks: {
+      title: `How It Works`,
+      subHeader1: '2 Click Install',
+      subText1: 'Click "Add to Chrome" then click "Add extension" to install.',
+      subText1Link: `Go to Google Chrome's Web Store.`,
+      subHeader2: 'You just shop',
+      subText2: `We'll find and apply every coupon on the internet and you'll earn up to 20% cash back at thousands of stores.`,
+      subHeader3: 'Save Instantly',
+      subText3:
+        'Not only does Piggy apply the coupon with the most savings, Piggy also gets you unpublished rates at hotels.',
+      buttonAll: 'Continue',
+    },
+    worksWithStores: 'Piggy works with over 6,000 stores',
+    worksWithStoresInfo: `Did you know Piggy's users save an average of $24 each time they shop online using Piggy?<br/>
+      That's because Piggy works with over 6,000 stores. Everything from clothes and pizza to booking a hotel.`,
+    worksWithStoresTop: `{{today}}'s Top Visited Stores:`,
+    worksWithStoresActivate: 'Activate Free Coupons & Cash back',
+    quotes: {
+      title: `What's being said about Piggy`,
+      text00: '“Piggy is one of the best programs out there“',
+      name00: 'Time Magazine',
+      text01: '“This is amazingly simple to use.“',
+      name01: 'Thomas P.',
+      text02:
+        '“Really....this is the most useful extension that I have installed in my computer. Thanks for your help to save money.”',
+      name02: 'Joel G.',
+      text03:
+        '“I really like this because im not tech savvy so this automatic pop up is great for people like me”',
+      name03: 'Metrell M.',
+      text04:
+        '“The first time I used it I was scared that I had put something in my computer that I might regret. Piggy was the best thing that could of happened to me. Piggy started saving me money on almost every thing I purchased on line. Thanks Piggy!“',
+      name04: 'Beverly B.',
+      text05:
+        '“Just need to click on code and it automatically is subtracted from my total. What could be any easier?”',
+      name05: 'Angelika L.',
+      text06:
+        '“Love it! Do not have to go around finding discount codes. It automatically comes up when you are shopping online. Very simple”',
+      name06: 'Tonya T.',
+    },
   },
   mortgage: {
     lender: {
