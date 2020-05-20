@@ -29,7 +29,7 @@ const FeaturedStoreList = ({ t, stores, loaded }: FeaturedStoreListProps) => {
                   store.cashback_text,
                   store.country || i18n.language,
                 )
-              : setDecimalFormat(`${store.cashback_text}%`)
+              : setDecimalFormat(`${store.cashback_text} %`)
             : '';
           const cashBackMessageKey = store.cashbackok
             ? store.pay_type === 1
