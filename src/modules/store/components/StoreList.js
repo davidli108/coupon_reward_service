@@ -97,7 +97,7 @@ const StoreList = ({
             }: Object) => {
               const discount = cashBackOk
                 ? payType === 1
-                  ? currencyLocaleFormat(cashbackSave, country)
+                  ? currencyLocaleFormat(cashbackSave, country || i18n.language)
                   : setDecimalFormat(`${cashbackSave} %`)
                 : '';
 
