@@ -90,7 +90,7 @@ const Brand = ({
               <Brand.CashBackActivate>
                 {noCashback ||
                   t('global.activateCashback', {
-                    discount: setDecimalFormat(`${store.store_discount}%`),
+                    discount: setDecimalFormat(`${store.store_discount} %`),
                   })}
               </Brand.CashBackActivate>
             </Brand.CashBackActivateButton>
