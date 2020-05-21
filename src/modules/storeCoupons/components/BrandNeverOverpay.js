@@ -1,5 +1,5 @@
 // @flow
-import * as React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
@@ -8,7 +8,7 @@ import AppConfig from '@config/AppConfig';
 import type { BrandNeverOverpayProps } from '../models/StorePage';
 
 const BrandNeverOverpay = ({ t, i18n, storeName }: BrandNeverOverpayProps) => {
-  const [isCovered, setCovered] = React.useState(true);
+  const [isCovered, setCovered] = useState(true);
   const handleCoveredToggler = () => setCovered(!isCovered);
 
   const addChromeLink = `${AppConfig.extension.url}?hl=${i18n.language}`;

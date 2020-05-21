@@ -7,6 +7,7 @@ import moment from 'moment';
 
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
 import AppConfig from '@config/AppConfig';
+import { isAmazonStore } from '@config/Utils';
 import i18n, { currencyLocaleFormat } from '@modules/localization/i18n';
 
 type SearchBarItemsProps = {
@@ -42,15 +43,25 @@ const SearchBarItems = ({
     history.push(`/coupons/${shortName}`);
   };
 
-  const getDiscount = item => {
-    if (item.store_discount.includes('%')) {
-      return item.store_discount.replace(/[^@\d$|%£€ .]/g, '');
+  const getCashback = store => {
+    if (isAmazonStore(store.store_name)) {
+      return t('global.noCashBack');
     }
 
-    return currencyLocaleFormat(
-      item.store_discount.replace(/[^@\d .]/g, ''),
-      i18n.language,
-    );
+    if (store.store_discount.includes('0.0%')) {
+      return t('coupons.instantSaving');
+    }
+
+    const discount = store.store_discount.includes('%')
+      ? store.store_discount.replace(/[^@\d$|%£€ .]/g, '')
+      : currencyLocaleFormat(
+          store.store_discount.replace(/[^@\d .]/g, ''),
+          i18n.language,
+        );
+
+    return discount
+      ? t('global.earnCashBack', { discount })
+      : t('global.instantSaving');
   };
 
   return (
@@ -76,20 +87,13 @@ const SearchBarItems = ({
                     e.target.onerror = null;
                     e.target.src = placeholder;
                   }}
-                  alt={`${item.store_name ||
-                    ''} {t('storeCoupons.codes')} ${moment().format(
+                  alt={`${item.store_name || ''} Coupon Codes ${moment().format(
                     'MMMM',
                   )} | ${moment().format('YYYY')}`}
                 />
                 <div>
                   <h3>{item.store_name}</h3>
-                  <p>
-                    {getDiscount(item)
-                      ? t('global.earnCashBack', {
-                          discount: getDiscount(item),
-                        })
-                      : t('global.instantSaving')}
-                  </p>
+                  <p>{getCashback(item)}</p>
                 </div>
               </SearchBarItems.Item>
             ))

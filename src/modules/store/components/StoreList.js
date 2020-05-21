@@ -10,8 +10,7 @@ import moment from 'moment';
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
 import LoadMoreLoader from './loaders/LoadMoreLoader';
 import { currencyLocaleFormat } from '@modules/localization/i18n';
-
-// import verificationIcon from '../assets/verif.png';
+import { isAmazonStore } from '@config/Utils';
 
 import { type Store } from '../models';
 
@@ -97,6 +96,7 @@ const StoreList = ({
                   ? currencyLocaleFormat(cashbackSave, country)
                   : `${cashbackSave}%`
                 : '';
+
               const cashBackMessageText = noCashBack
                 ? 'global.noCashBack'
                 : cashBackOk
@@ -104,7 +104,18 @@ const StoreList = ({
                   ? 'global.amCashBack'
                   : 'global.upToCashBack'
                 : 'global.instantSaving';
+
               const date = moment().format('MMMM | YYYY');
+
+              const getCashback = (name, cashbackSave) => {
+                if (isAmazonStore(name)) {
+                  return t('global.noCashBack');
+                }
+
+                return textOverride
+                  ? cashbackSave
+                  : t(cashBackMessageText, { discount });
+              };
 
               return (
                 <StoreList.StoreItem key={`list_item_${name}_${id}`}>
@@ -128,9 +139,7 @@ const StoreList = ({
                     </StoreList.ImageWrapper>
                     <StoreList.Info>
                       <StoreList.Cash>
-                        {textOverride
-                          ? cashbackSave
-                          : t(cashBackMessageText, { discount })}
+                        {getCashback(name, cashbackSave)}
                       </StoreList.Cash>
                       <StoreList.Link
                         to={`/coupons/${shortName}`}
@@ -390,11 +399,7 @@ StoreList.Image = styled.img`
   object-fit: contain;
 
   ${breakpoint('md')`
-   margin: 0 26px 0 0;
-  `}
-
-  ${breakpoint('lg')`
-    
+    margin: 0 26px 0 0;
   `}
 `;
 
@@ -421,7 +426,7 @@ StoreList.Cash = styled.p`
   ${breakpoint('xs')`
     margin: 0 0 18px;
     font-size: 17px;
-    
+
     > span {
       display: none;
     }
@@ -475,13 +480,13 @@ StoreList.Link = styled(Link)`
   justify-content: center;
   font-weight: bold;
   background: ${props => props.theme.colors.greenMain};
+  color: ${props => props.theme.colors.white};
   border: 2px solid transparent;
   box-sizing: border-box;
   border-radius: 4px;
   font-size: 17px;
   text-align: center;
   letter-spacing: 0.51px;
-  color: ${props => props.theme.colors.white};
   cursor: pointer;
   margin: 0 0 0 10px;
   transition: background 205ms linear;

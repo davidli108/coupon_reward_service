@@ -168,7 +168,7 @@ export default {
     cashBack: 'Cash back',
     cashBackPrint: '{{print}} Cash back',
     instantSaving: 'Instant Savings',
-    noCashBack: 'No Cash back',
+    noCashBack: 'No Cash Back',
     upToCashBack: 'Up to {{discount}} Cash Back',
     downloadPiggy:
       "Download Piggy's Automatic Coupons at Checkout and Never Miss a Deal Again!",
@@ -231,7 +231,6 @@ export default {
     },
     todaysFeatureCoupon: "Today's Featured Coupon From {{storeName}}",
     upToCashback: '+ up to {{discount}} Cash Back',
-    noCashback: 'Cash Back is not available',
     plusCashBack: '+{{discount}} Cash Back',
     noCouponsFound: 'No Coupons Found',
     noFeaturedCouponsFound: 'No Featured Coupons Found',

@@ -1,5 +1,5 @@
 // @flow
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
@@ -13,6 +13,7 @@ import {
   currencyLocaleFormat,
   getCurrencySymbol,
 } from '@modules/localization/i18n';
+import { isAmazonStore } from '@config/Utils';
 
 const discountColors = [
   '#d0c000',
@@ -72,6 +73,9 @@ const Offer = ({
   country,
 }: OfferProps) => {
   const [randomColor] = useState(Math.floor(Math.random() * 7));
+  const [noCashback, setNoCashback] = useState('');
+  const [isAmazon, setIsAmazon] = useState(false);
+
   const discountAmount = cashback_ok
     ? numeric_type === 1
       ? currencyLocaleFormat(discount_print, country || i18n.language)
@@ -80,6 +84,17 @@ const Offer = ({
   const cashBackMessageKey = cashback_ok
     ? 'coupons.plusCashBack'
     : 'global.instantSaving';
+
+  useEffect(() => {
+    if (isAmazonStore(store_name)) {
+      setNoCashback(t('global.noCashBack'));
+    }
+
+    if (store_name === 'Amazon') {
+      setIsAmazon(true);
+    }
+  }, [store_name]);
+
   return (
     <>
       <Offer.Wrapper>
@@ -133,7 +148,8 @@ const Offer = ({
             <Offer.SxVisible>
               <Offer.AdditionalInfo>
                 <span>
-                  {t(cashBackMessageKey, { discount: discountAmount })}
+                  {noCashback ||
+                    t(cashBackMessageKey, { discount: discountAmount })}
                 </span>
               </Offer.AdditionalInfo>
             </Offer.SxVisible>
@@ -148,7 +164,7 @@ const Offer = ({
               link={offer_link}
               store={store_name}
               isAuthenticated={isAuthenticated}
-              isExtensionInstalled={isExtensionInstalled}
+              isExtensionInstalled={isExtensionInstalled || isAmazon}
               logo={store_logo || placeholder}
               isVisit={false}
             />

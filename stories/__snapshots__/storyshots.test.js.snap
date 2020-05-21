@@ -2401,6 +2401,7 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
   justify-content: center;
   font-weight: bold;
   background: #2c9e25;
+  color: #FFF;
   border: 2px solid transparent;
   box-sizing: border-box;
   border-radius: 4px;
@@ -2410,7 +2411,6 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
   -moz-letter-spacing: 0.51px;
   -ms-letter-spacing: 0.51px;
   letter-spacing: 0.51px;
-  color: #FFF;
   cursor: pointer;
   margin: 0 0 0 10px;
   -webkit-transition: background 205ms linear;
@@ -2748,6 +2748,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
   justify-content: center;
   font-weight: bold;
   background: #2c9e25;
+  color: #FFF;
   border: 2px solid transparent;
   box-sizing: border-box;
   border-radius: 4px;
@@ -2757,7 +2758,6 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
   -moz-letter-spacing: 0.51px;
   -ms-letter-spacing: 0.51px;
   letter-spacing: 0.51px;
-  color: #FFF;
   cursor: pointer;
   margin: 0 0 0 10px;
   -webkit-transition: background 205ms linear;

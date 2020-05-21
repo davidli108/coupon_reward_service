@@ -1,5 +1,5 @@
 // @flow
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { connect } from 'react-redux';
@@ -12,6 +12,7 @@ import BrandXlLoader from './loaders/BrandXlLoader';
 import type { BrandProps } from '../models/StorePage';
 import { getStore } from '../StoreCouponsReducer';
 import AppConfig from '@config/AppConfig';
+import { isAmazonStore } from '@config/Utils';
 import CouponCode from './CouponCode';
 import { currencyLocaleFormat } from '@modules/localization/i18n';
 
@@ -30,6 +31,7 @@ const Brand = ({
   reviews,
   extensionActive,
 }: BrandProps) => {
+  const [isAmazon, setIsAmazon] = useState(false);
   const discount = store.store_cashback_ok
     ? store.store_numeric_type === 1
       ? currencyLocaleFormat(
@@ -38,6 +40,12 @@ const Brand = ({
         )
       : `${store.store_discount.replace('%', '')}%`
     : '';
+
+  useEffect(() => {
+    if (isAmazonStore(store.store_name)) {
+      setIsAmazon(true);
+    }
+  }, [store]);
 
   return (
     <>
@@ -82,9 +90,11 @@ const Brand = ({
                 isVisit={true}
               />
               <Brand.CashBackActivate>
-                {discount && discount !== '%'
-                  ? t('global.activateCashback', { discount })
-                  : t('global.instantSaving')}
+                {isAmazon && t('global.noCashBack')}
+                {!isAmazon &&
+                  (discount && discount !== '%'
+                    ? t('global.activateCashback', { discount })
+                    : t('global.instantSaving'))}
               </Brand.CashBackActivate>
             </Brand.CashBackActivateButton>
           </Brand.BrandImageWrapper>
@@ -139,7 +149,13 @@ Brand.Wrapper = styled.div`
 `;
 
 Brand.BrandImageWrapperLink = styled.a`
-  display: block;
+  display: flex;
+  flex: 1 0 auto;
+  align-items: center;
+  justify-content: center;
+  padding: 0 25px;
+  width: 100%;
+  box-sizing: border-box;
 `;
 
 Brand.BrandWrapperBtn = styled.div`
@@ -179,7 +195,7 @@ Brand.BrandImageWrapper = styled.div`
     height: 320px;
   `}
 
-  > div > div {
+  > div > div[class*='CouponCode__Wrapper'] {
     width: 220px;
     height: 40px;
     margin: 20px auto !important;
@@ -200,13 +216,8 @@ Brand.BrandImageWrapper = styled.div`
 Brand.BrandImageWrapperHolder = styled.img`
   height: auto;
   width: auto;
-  max-width: 160px;
-  max-height: 160px;
-
-  ${breakpoint('md')`
-    max-width: 100%;
-    max-height: 130px;
-  `}
+  max-width: 100%;
+  max-height: 165px;
 `;
 
 Brand.NoWrapFlexBox = styled.div`
