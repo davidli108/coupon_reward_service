@@ -9,6 +9,7 @@ import { withTranslation } from 'react-i18next';
 import { getSortedCashbackRate } from './constant';
 // import AdditionalInfoSection from './AdditionalInfoSection';
 import type { AdditionalInfoProps } from '../models/StorePage';
+import { getCurrencySymbol } from '@modules/localization/i18n';
 import {
   getAdditionalInfo,
   getStore,
@@ -37,7 +38,7 @@ const AdditionalInfo = ({
           <AdditionalInfo.CashBackUl>
             <h2>{t('storeCoupons.cashBackCategories')}</h2>
             {getSortedCashbackRate(cashbackRates, true).map(v => (
-              <AdditionalInfo.CashBackLi>
+              <AdditionalInfo.CashBackLi key={v.category_name}>
                 <a href={v.int_url} target={'_blank'}>
                   {v.category_name}
                 </a>
@@ -72,7 +73,12 @@ const AdditionalInfo = ({
           >
             {t('header.shop', {
               storeName: store.store_name,
-              cashBack: store.store_discount_print_sidebar,
+              cashBack:
+                store.store_discount_print_sidebar &&
+                store.store_discount_print_sidebar.replace(
+                  /\$/g,
+                  getCurrencySymbol() || '$',
+                ),
             })}
             <FiChevronsRight />
           </AdditionalInfo.ContentLink>
@@ -232,6 +238,7 @@ AdditionalInfo.CashBackLi = styled.li`
 AdditionalInfo.CashBackUl = styled.ul`
   list-style: none;
   width: 262px;
+  margin-bottom: 30px;
 
   h2 {
     font-style: normal;

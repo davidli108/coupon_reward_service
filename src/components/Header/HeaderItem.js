@@ -70,7 +70,8 @@ HeaderItem.NavLink = styled(NavLink)`
   border-radius: 5px;
   border: 2px solid transparent;
   position: relative;
-  background: 0 0;
+  background: ${({ border, theme }) => (border ? theme.colors.greenLight : 0)} 0;
+  text-decoration: ${({ border }) => (border ? 'none' : 'inherit')};
   transition: all 0.3s ease;
   cursor: pointer;
 
@@ -88,7 +89,7 @@ HeaderItem.NavLink = styled(NavLink)`
       z-index: -1;
       border-radius: 5px;
     }
-  
+
     &::after {
       content: '';
       transition: all 0.3s ease;
@@ -97,12 +98,12 @@ HeaderItem.NavLink = styled(NavLink)`
       top: 50%;
       width: 0;
     }
-    
+
     &.active,
     &:hover {
       background: 0 0;
       color: #fff;
-  
+
       &::after {
         height: 100%;
         left: 0;
@@ -110,7 +111,7 @@ HeaderItem.NavLink = styled(NavLink)`
         width: 100%;
       }
     }
-    
+
     svg {
       display: none;
     }
@@ -120,17 +121,21 @@ HeaderItem.NavLink = styled(NavLink)`
 HeaderItem.Link = styled.a`
   font-size: 16px;
   line-height: 19px;
-  padding: 5px 10px;
+  padding: 0 10px;
+  height: 37px;
+  box-sizing: border-box;
   color: #00ba4a;
   letter-spacing: 0.53px;
-  margin: ${({ separator }) => (separator ? '0' : '0 8px')};
+  margin: 0;
   font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 5px;
   position: relative;
-  background: 0 0;
+  background: ${({ border, theme }) =>
+    border ? theme.colors.greenLight : 0} 0;
+  text-decoration: ${({ border }) => (border ? 'none' : 'underline')};
   transition: all 0.3s ease;
   cursor: pointer;
   border: ${({ border }) => (border ? '2px solid #00ba4a' : '')};
@@ -140,8 +145,6 @@ HeaderItem.Link = styled.a`
   }
 
   ${breakpoint('lg')`
-    margin: 0 4px;
-
     &::before,
     &::after {
       content: '';
@@ -150,7 +153,7 @@ HeaderItem.Link = styled.a`
       z-index: -1;
       border-radius: 5px;
     }
-  
+
     &::after {
       content: '';
       transition: all 0.3s ease;
@@ -159,12 +162,12 @@ HeaderItem.Link = styled.a`
       top: 50%;
       width: 0;
     }
-  
+
     &:hover {
       background: 0 0;
       color: #fff;
       border: ${({ border }) => (border ? '2px solid transparent' : '')};
-  
+
       &::after {
         height: 100%;
         left: 0;
@@ -172,15 +175,23 @@ HeaderItem.Link = styled.a`
         width: 100%;
       }
     }
-    
+
     svg {
       display: none;
     }
   `}
 
   ${breakpoint('xl')`
-    padding: 5px 20px;
+    padding: 0 15px;
+    margin: 0 0 0 20px;
   `}
+
+  @media (max-width: 320px) {
+    span {
+      width: 105px;
+      text-align: center;
+    }
+  }
 `;
 
 HeaderItem.LogoLink = styled.a`
@@ -194,6 +205,11 @@ HeaderItem.LogoLink = styled.a`
     height: 38px;
   }
 
+  ${breakpoint('xs')`
+    position: relative;
+    z-index: 7;
+  `}
+
   ${breakpoint('ss')`
     img {
       margin: 2px 0 0;
@@ -202,9 +218,11 @@ HeaderItem.LogoLink = styled.a`
   `}
 
   ${breakpoint('md')`
+    position: static;
+
     img {
       margin: 3px 0 0;
-      height: 57px;
+      height: 47px;
     }
   `}
 
@@ -219,18 +237,12 @@ HeaderItem.Wrapper = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-  margin: 0;
+  margin: 0 20px 0 0;
 
-  ${breakpoint('lg')`
-    margin: 0 3px;
-    
+  ${breakpoint('md')`
     &:last-of-type {
-      margin: 0 ;
+      margin: 0;
     }
-  `}
-
-  ${breakpoint('xl')`
-    margin: 0 10px;
   `}
 `;
 

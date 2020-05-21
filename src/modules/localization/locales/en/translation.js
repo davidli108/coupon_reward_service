@@ -10,8 +10,9 @@ export default {
     coupons: 'Coupons',
     stores: 'Stores',
     getApp: 'Get the App!',
+    signIn: 'Sign in',
     login: 'Login',
-    createAccount: 'Register',
+    createAccount: 'Join Now',
     myAccount: 'My Account',
     inviteFriends: 'Invite Friends',
     settings: 'Settings',
@@ -230,6 +231,7 @@ export default {
     },
     todaysFeatureCoupon: "Today's Featured Coupon From {{storeName}}",
     upToCashback: '+ up to {{discount}} Cash Back',
+    noCashback: 'Cash Back is not available',
     plusCashBack: '+{{discount}} Cash Back',
     noCouponsFound: 'No Coupons Found',
     noFeaturedCouponsFound: 'No Featured Coupons Found',
@@ -274,10 +276,10 @@ export default {
     resetPassword: 'Reset Password',
     testimonials: 'Testimonials',
     browseStores: 'Browse among more than 1000 stores',
-    addSaving: 'Add savings',
+    addSaving: 'Need a Coupon?',
     instantlyApplyAll:
-      'Instantly apply all coupons and cashback with Piggy’s app.',
-    activateSavings: 'Activate Savings',
+      'Instantly apply coupons and cash back in a single click with Piggy’s app.',
+    activateSavings: 'Continue',
     limitedOffer: 'Limited Offer',
     piggyBonus: 'Piggy Bonus',
   },
@@ -406,5 +408,83 @@ export default {
     subtitle: 'UH-OH, NOTHING TO SEE HERE!',
     text: 'The page you requested does not exist.',
     action: 'Go Home',
+  },
+  homepage: {
+    topDeals: "Piggy's Top Deals Today",
+    matd: 'More About This Deal',
+    seeAllDeals: 'See all {{storeName}} Deals',
+    uptoCashback: 'Up to {{cashback}}',
+    featuredCashBack: 'Featured Cash Back Deals',
+    gtdn: 'Get This Deal Now',
+    plusCashback: 'Plus {{cashback}} Cash Back',
+    discover: 'Discover deals by category:',
+    all: 'All',
+    was: 'Was {{price}}',
+    hero: {
+      title: 'Piggy is the easiest way to save money!',
+      text: {
+        first:
+          'Add Piggy today for automatic coupons up to 70% off at over 6,000 stores!',
+        second:
+          'Piggy is a free Chrome extension that automatically adds coupons, checks prices and offers cash back when you shop online.',
+      },
+      activate_extension: `<strong>Add to {{browser}}</strong> It's free!`,
+      number_users: '1,000,000 users',
+    },
+    howItWorks: {
+      title: `How It Works`,
+      subHeader1: '2 Click Install',
+      subText1: 'Click "Add to Chrome" then click "Add extension" to install.',
+      subText1Link: `Go to Google Chrome's Web Store.`,
+      subHeader2: 'You just shop',
+      subText2: `We'll find and apply every coupon on the internet and you'll earn up to 20% cash back at thousands of stores.`,
+      subHeader3: 'Save Instantly',
+      subText3:
+        'Not only does Piggy apply the coupon with the most savings, Piggy also gets you unpublished rates at hotels.',
+      buttonAll: 'Continue',
+    },
+    worksWithStores: 'Piggy works with over 6,000 stores',
+    worksWithStoresInfo: `Did you know Piggy's users save an average of $24 each time they shop online using Piggy?<br/>
+      That's because Piggy works with over 6,000 stores. Everything from clothes and pizza to booking a hotel.`,
+    worksWithStoresTop: `{{today}}'s Top Visited Stores:`,
+    worksWithStoresActivate: 'Activate Free Coupons & Cash back',
+    quotes: {
+      title: `What's being said about Piggy`,
+      text00: '“Piggy is one of the best programs out there“',
+      name00: 'Time Magazine',
+      text01: '“This is amazingly simple to use.“',
+      name01: 'Thomas P.',
+      text02:
+        '“Really....this is the most useful extension that I have installed in my computer. Thanks for your help to save money.”',
+      name02: 'Joel G.',
+      text03:
+        '“I really like this because im not tech savvy so this automatic pop up is great for people like me”',
+      name03: 'Metrell M.',
+      text04:
+        '“The first time I used it I was scared that I had put something in my computer that I might regret. Piggy was the best thing that could of happened to me. Piggy started saving me money on almost every thing I purchased on line. Thanks Piggy!“',
+      name04: 'Beverly B.',
+      text05:
+        '“Just need to click on code and it automatically is subtracted from my total. What could be any easier?”',
+      name05: 'Angelika L.',
+      text06:
+        '“Love it! Do not have to go around finding discount codes. It automatically comes up when you are shopping online. Very simple”',
+      name06: 'Tonya T.',
+    },
+  },
+  mortgage: {
+    lender: {
+      view_rate: 'View Rates',
+      best_overall: 'Best Overall',
+    },
+    lender_found: 'We have found lenders in your area',
+    view_rate: 'View My Rates',
+    modal: {
+      text:
+        'By Clicking on the above button, I hereby consent, acknowledge and agree to the Piggy privacy policy and agree to receive notices and other communication electronically. I consent to receive email, text messages from relevant marketing and lending parties on behalf of Piggy and its participating lenders or authorized third parties, and that they may contact me at the telephone number provided here, including my wireless number, if applicable, even if that telephone number is on a corporate, state, or national Do Not Call Registry. I understand that I can elect to not receive such calls or messages at any time, and that consent is not a condition of purchase. You agree that we can share your personal data with third parties, such as our mortgage partners, service providers and other affiliates, and that we can use this data for marketing and analytics, and to make your experience easier.',
+    },
+    government_announces:
+      'Government Announces FHA Refinancing to Get Less Expensive',
+    fha_text:
+      'FHA to reduce annual mortgage insurance premiums by $900 per year for the average first-time homebuyer. Mortgage insurance savings applies  for new home purchase or existing home refinance FHA loans. More than 800,000 FHA borrowers are projected to take advantage of these lower rates this year. Lowered premiums will create opportunities for 250,000 new homeowners to purchase a home in the next 3 years.',
   },
 };

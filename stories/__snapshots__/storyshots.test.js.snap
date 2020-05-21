@@ -260,7 +260,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
   margin: 10px;
   box-sizing: border-box;
   color: #fff;
-  background: #434343;
+  background: #29343C;
   border: solid 1px #bdbbb9;
   border-radius: 2px;
   font-family: Roboto,sans-serif;
@@ -290,7 +290,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
   margin: 10px;
   box-sizing: border-box;
   color: #fff;
-  background: #62707B;
+  background: #434343;
   border: solid 1px #bdbbb9;
   border-radius: 2px;
   font-family: Roboto,sans-serif;
@@ -320,7 +320,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
   margin: 10px;
   box-sizing: border-box;
   color: #fff;
-  background: #374B5A;
+  background: #62707B;
   border: solid 1px #bdbbb9;
   border-radius: 2px;
   font-family: Roboto,sans-serif;
@@ -350,7 +350,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
   margin: 10px;
   box-sizing: border-box;
   color: #fff;
-  background: rgba(0,0,0,0.2);
+  background: #374B5A;
   border: solid 1px #bdbbb9;
   border-radius: 2px;
   font-family: Roboto,sans-serif;
@@ -379,8 +379,8 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
   padding: 20px;
   margin: 10px;
   box-sizing: border-box;
-  color: #000;
-  background: #2c9e25;
+  color: #fff;
+  background: rgba(0,0,0,0.2);
   border: solid 1px #bdbbb9;
   border-radius: 2px;
   font-family: Roboto,sans-serif;
@@ -410,7 +410,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
   margin: 10px;
   box-sizing: border-box;
   color: #000;
-  background: #f5fff4;
+  background: #2c9e25;
   border: solid 1px #bdbbb9;
   border-radius: 2px;
   font-family: Roboto,sans-serif;
@@ -440,7 +440,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
   margin: 10px;
   box-sizing: border-box;
   color: #000;
-  background: #e2e2e2;
+  background: #f5fff4;
   border: solid 1px #bdbbb9;
   border-radius: 2px;
   font-family: Roboto,sans-serif;
@@ -470,7 +470,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
   margin: 10px;
   box-sizing: border-box;
   color: #000;
-  background: #00ba4a;
+  background: #e2e2e2;
   border: solid 1px #bdbbb9;
   border-radius: 2px;
   font-family: Roboto,sans-serif;
@@ -499,8 +499,8 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
   padding: 20px;
   margin: 10px;
   box-sizing: border-box;
-  color: #fff;
-  background: rgba(0,0,0,0.5);
+  color: #000;
+  background: #00ba4a;
   border: solid 1px #bdbbb9;
   border-radius: 2px;
   font-family: Roboto,sans-serif;
@@ -529,8 +529,8 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
   padding: 20px;
   margin: 10px;
   box-sizing: border-box;
-  color: #000;
-  background: #899197;
+  color: #fff;
+  background: rgba(0,0,0,0.5);
   border: solid 1px #bdbbb9;
   border-radius: 2px;
   font-family: Roboto,sans-serif;
@@ -559,8 +559,8 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
   padding: 20px;
   margin: 10px;
   box-sizing: border-box;
-  color: #fff;
-  background: #3b5998;
+  color: #000;
+  background: #899197;
   border: solid 1px #bdbbb9;
   border-radius: 2px;
   font-family: Roboto,sans-serif;
@@ -589,8 +589,8 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
   padding: 20px;
   margin: 10px;
   box-sizing: border-box;
-  color: #000;
-  background: #00CBE9;
+  color: #fff;
+  background: #3b5998;
   border: solid 1px #bdbbb9;
   border-radius: 2px;
   font-family: Roboto,sans-serif;
@@ -620,7 +620,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
   margin: 10px;
   box-sizing: border-box;
   color: #000;
-  background: #00B4CF;
+  background: #00CBE9;
   border: solid 1px #bdbbb9;
   border-radius: 2px;
   font-family: Roboto,sans-serif;
@@ -650,7 +650,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
   margin: 10px;
   box-sizing: border-box;
   color: #000;
-  background: #337ab7;
+  background: #00B4CF;
   border: solid 1px #bdbbb9;
   border-radius: 2px;
   font-family: Roboto,sans-serif;
@@ -680,7 +680,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
   margin: 10px;
   box-sizing: border-box;
   color: #000;
-  background: #D4D4D4;
+  background: #337ab7;
   border: solid 1px #bdbbb9;
   border-radius: 2px;
   font-family: Roboto,sans-serif;
@@ -710,7 +710,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
   margin: 10px;
   box-sizing: border-box;
   color: #000;
-  background: #C2C2C2;
+  background: #D4D4D4;
   border: solid 1px #bdbbb9;
   border-radius: 2px;
   font-family: Roboto,sans-serif;
@@ -740,7 +740,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
   margin: 10px;
   box-sizing: border-box;
   color: #000;
-  background: #7F7F7F;
+  background: #C2C2C2;
   border: solid 1px #bdbbb9;
   border-radius: 2px;
   font-family: Roboto,sans-serif;
@@ -770,7 +770,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
   margin: 10px;
   box-sizing: border-box;
   color: #000;
-  background: #B1B1B1;
+  background: #7F7F7F;
   border: solid 1px #bdbbb9;
   border-radius: 2px;
   font-family: Roboto,sans-serif;
@@ -800,7 +800,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
   margin: 10px;
   box-sizing: border-box;
   color: #000;
-  background: #b3bbc2;
+  background: #B1B1B1;
   border: solid 1px #bdbbb9;
   border-radius: 2px;
   font-family: Roboto,sans-serif;
@@ -830,7 +830,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
   margin: 10px;
   box-sizing: border-box;
   color: #000;
-  background: #ef65a0;
+  background: #b3bbc2;
   border: solid 1px #bdbbb9;
   border-radius: 2px;
   font-family: Roboto,sans-serif;
@@ -860,7 +860,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
   margin: 10px;
   box-sizing: border-box;
   color: #000;
-  background: #F76171;
+  background: #ef65a0;
   border: solid 1px #bdbbb9;
   border-radius: 2px;
   font-family: Roboto,sans-serif;
@@ -890,7 +890,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
   margin: 10px;
   box-sizing: border-box;
   color: #000;
-  background: #ee5797;
+  background: #F76171;
   border: solid 1px #bdbbb9;
   border-radius: 2px;
   font-family: Roboto,sans-serif;
@@ -920,7 +920,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
   margin: 10px;
   box-sizing: border-box;
   color: #000;
-  background: #E9B600;
+  background: #ee5797;
   border: solid 1px #bdbbb9;
   border-radius: 2px;
   font-family: Roboto,sans-serif;
@@ -950,7 +950,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
   margin: 10px;
   box-sizing: border-box;
   color: #000;
-  background: #34a6bf;
+  background: #E9B600;
   border: solid 1px #bdbbb9;
   border-radius: 2px;
   font-family: Roboto,sans-serif;
@@ -980,7 +980,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
   margin: 10px;
   box-sizing: border-box;
   color: #000;
-  background: #29899e;
+  background: #f10101;
   border: solid 1px #bdbbb9;
   border-radius: 2px;
   font-family: Roboto,sans-serif;
@@ -1010,7 +1010,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
   margin: 10px;
   box-sizing: border-box;
   color: #000;
-  background: #02a6bf;
+  background: #34a6bf;
   border: solid 1px #bdbbb9;
   border-radius: 2px;
   font-family: Roboto,sans-serif;
@@ -1040,7 +1040,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
   margin: 10px;
   box-sizing: border-box;
   color: #000;
-  background: #01899e;
+  background: #29899e;
   border: solid 1px #bdbbb9;
   border-radius: 2px;
   font-family: Roboto,sans-serif;
@@ -1070,7 +1070,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
   margin: 10px;
   box-sizing: border-box;
   color: #000;
-  background: #adb8c0;
+  background: #02a6bf;
   border: solid 1px #bdbbb9;
   border-radius: 2px;
   font-family: Roboto,sans-serif;
@@ -1100,7 +1100,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
   margin: 10px;
   box-sizing: border-box;
   color: #000;
-  background: #a7a7a7;
+  background: #01899e;
   border: solid 1px #bdbbb9;
   border-radius: 2px;
   font-family: Roboto,sans-serif;
@@ -1130,7 +1130,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
   margin: 10px;
   box-sizing: border-box;
   color: #000;
-  background: #e3e6e9;
+  background: #adb8c0;
   border: solid 1px #bdbbb9;
   border-radius: 2px;
   font-family: Roboto,sans-serif;
@@ -1159,6 +1159,66 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
   padding: 20px;
   margin: 10px;
   box-sizing: border-box;
+  color: #000;
+  background: #a7a7a7;
+  border: solid 1px #bdbbb9;
+  border-radius: 2px;
+  font-family: Roboto,sans-serif;
+  cursor: pointer;
+}
+
+.c41:hover label {
+  opacity: 1;
+}
+
+.c42 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 150px;
+  width: 200px;
+  padding: 20px;
+  margin: 10px;
+  box-sizing: border-box;
+  color: #000;
+  background: #e3e6e9;
+  border: solid 1px #bdbbb9;
+  border-radius: 2px;
+  font-family: Roboto,sans-serif;
+  cursor: pointer;
+}
+
+.c42:hover label {
+  opacity: 1;
+}
+
+.c43 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 150px;
+  width: 200px;
+  padding: 20px;
+  margin: 10px;
+  box-sizing: border-box;
   color: #fff;
   background: rgba(70,73,77,.93);
   border: solid 1px #bdbbb9;
@@ -1167,7 +1227,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
   cursor: pointer;
 }
 
-.c41:hover label {
+.c43:hover label {
   opacity: 1;
 }
 
@@ -1378,6 +1438,27 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
     </div>
     <div
       className="c11"
+      color="#29343C"
+      data-clipboard-text="\${props => props.theme.colors.blackGrey}"
+    >
+      <p
+        className="c1"
+      >
+        BlackGrey
+      </p>
+      <p
+        className="c2"
+      >
+        #29343C
+      </p>
+      <label
+        className="c3"
+      >
+        Copy
+      </label>
+    </div>
+    <div
+      className="c12"
       color="#434343"
       data-clipboard-text="\${props => props.theme.colors.blackGray}"
     >
@@ -1398,7 +1479,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
       </label>
     </div>
     <div
-      className="c12"
+      className="c13"
       color="#62707B"
       data-clipboard-text="\${props => props.theme.colors.darkGray}"
     >
@@ -1419,7 +1500,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
       </label>
     </div>
     <div
-      className="c13"
+      className="c14"
       color="#374B5A"
       data-clipboard-text="\${props => props.theme.colors.blackLight}"
     >
@@ -1440,7 +1521,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
       </label>
     </div>
     <div
-      className="c14"
+      className="c15"
       color="rgba(0, 0, 0, 0.2)"
       data-clipboard-text="\${props => props.theme.colors.blackAlpha}"
     >
@@ -1461,7 +1542,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
       </label>
     </div>
     <div
-      className="c15"
+      className="c16"
       color="#2c9e25"
       data-clipboard-text="\${props => props.theme.colors.greenMain}"
     >
@@ -1482,7 +1563,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
       </label>
     </div>
     <div
-      className="c16"
+      className="c17"
       color="#f5fff4"
       data-clipboard-text="\${props => props.theme.colors.greenLight}"
     >
@@ -1503,7 +1584,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
       </label>
     </div>
     <div
-      className="c17"
+      className="c18"
       color="#e2e2e2"
       data-clipboard-text="\${props => props.theme.colors.greenWhite}"
     >
@@ -1524,7 +1605,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
       </label>
     </div>
     <div
-      className="c18"
+      className="c19"
       color="#00ba4a"
       data-clipboard-text="\${props => props.theme.colors.greenBlank}"
     >
@@ -1545,7 +1626,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
       </label>
     </div>
     <div
-      className="c19"
+      className="c20"
       color="rgba(0, 0, 0, 0.5)"
       data-clipboard-text="\${props => props.theme.colors.blackAlphaDark}"
     >
@@ -1566,7 +1647,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
       </label>
     </div>
     <div
-      className="c20"
+      className="c21"
       color="#899197"
       data-clipboard-text="\${props => props.theme.colors.blackExLight}"
     >
@@ -1587,7 +1668,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
       </label>
     </div>
     <div
-      className="c21"
+      className="c22"
       color="#3b5998"
       data-clipboard-text="\${props => props.theme.colors.blueFacebook}"
     >
@@ -1608,7 +1689,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
       </label>
     </div>
     <div
-      className="c22"
+      className="c23"
       color="#00CBE9"
       data-clipboard-text="\${props => props.theme.colors.blue}"
     >
@@ -1629,7 +1710,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
       </label>
     </div>
     <div
-      className="c23"
+      className="c24"
       color="#00B4CF"
       data-clipboard-text="\${props => props.theme.colors.blueDark}"
     >
@@ -1650,7 +1731,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
       </label>
     </div>
     <div
-      className="c24"
+      className="c25"
       color="#337ab7"
       data-clipboard-text="\${props => props.theme.colors.blueExDark}"
     >
@@ -1671,7 +1752,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
       </label>
     </div>
     <div
-      className="c25"
+      className="c26"
       color="#D4D4D4"
       data-clipboard-text="\${props => props.theme.colors.gray}"
     >
@@ -1692,7 +1773,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
       </label>
     </div>
     <div
-      className="c26"
+      className="c27"
       color="#C2C2C2"
       data-clipboard-text="\${props => props.theme.colors.grayLight}"
     >
@@ -1713,7 +1794,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
       </label>
     </div>
     <div
-      className="c27"
+      className="c28"
       color="#7F7F7F"
       data-clipboard-text="\${props => props.theme.colors.grayDark}"
     >
@@ -1734,7 +1815,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
       </label>
     </div>
     <div
-      className="c28"
+      className="c29"
       color="#B1B1B1"
       data-clipboard-text="\${props => props.theme.colors.grayTintsDark}"
     >
@@ -1755,7 +1836,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
       </label>
     </div>
     <div
-      className="c29"
+      className="c30"
       color="#b3bbc2"
       data-clipboard-text="\${props => props.theme.colors.lightDark}"
     >
@@ -1776,7 +1857,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
       </label>
     </div>
     <div
-      className="c30"
+      className="c31"
       color="#ef65a0"
       data-clipboard-text="\${props => props.theme.colors.pink}"
     >
@@ -1797,7 +1878,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
       </label>
     </div>
     <div
-      className="c31"
+      className="c32"
       color="#F76171"
       data-clipboard-text="\${props => props.theme.colors.pinkLight}"
     >
@@ -1818,7 +1899,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
       </label>
     </div>
     <div
-      className="c32"
+      className="c33"
       color="#ee5797"
       data-clipboard-text="\${props => props.theme.colors.pinkDark}"
     >
@@ -1839,7 +1920,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
       </label>
     </div>
     <div
-      className="c33"
+      className="c34"
       color="#E9B600"
       data-clipboard-text="\${props => props.theme.colors.orangeDark}"
     >
@@ -1860,7 +1941,28 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
       </label>
     </div>
     <div
-      className="c34"
+      className="c35"
+      color="#f10101"
+      data-clipboard-text="\${props => props.theme.colors.red}"
+    >
+      <p
+        className="c1"
+      >
+        red
+      </p>
+      <p
+        className="c2"
+      >
+        #f10101
+      </p>
+      <label
+        className="c3"
+      >
+        Copy
+      </label>
+    </div>
+    <div
+      className="c36"
       color="#34a6bf"
       data-clipboard-text="\${props => props.theme.colors.skyBlue}"
     >
@@ -1881,7 +1983,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
       </label>
     </div>
     <div
-      className="c35"
+      className="c37"
       color="#29899e"
       data-clipboard-text="\${props => props.theme.colors.skyDarkBlue}"
     >
@@ -1902,7 +2004,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
       </label>
     </div>
     <div
-      className="c36"
+      className="c38"
       color="#02a6bf"
       data-clipboard-text="\${props => props.theme.colors.skyLightBlue}"
     >
@@ -1923,7 +2025,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
       </label>
     </div>
     <div
-      className="c37"
+      className="c39"
       color="#01899e"
       data-clipboard-text="\${props => props.theme.colors.skyLightDark}"
     >
@@ -1944,7 +2046,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
       </label>
     </div>
     <div
-      className="c38"
+      className="c40"
       color="#adb8c0"
       data-clipboard-text="\${props => props.theme.colors.darkSky}"
     >
@@ -1965,7 +2067,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
       </label>
     </div>
     <div
-      className="c39"
+      className="c41"
       color="#a7a7a7"
       data-clipboard-text="\${props => props.theme.colors.darkGrayBlank}"
     >
@@ -1986,7 +2088,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
       </label>
     </div>
     <div
-      className="c40"
+      className="c42"
       color="#e3e6e9"
       data-clipboard-text="\${props => props.theme.colors.darkBlueBlank}"
     >
@@ -2007,7 +2109,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
       </label>
     </div>
     <div
-      className="c41"
+      className="c43"
       color="rgba(70, 73, 77, .93)"
       data-clipboard-text="\${props => props.theme.colors.modalOverlayBg}"
     >
@@ -2492,7 +2594,7 @@ exports[`Storyshots Components|@Store StoreList 1`] = `
             onClick={[Function]}
           >
             <img
-              alt="Target Coupon Codes April | 2020"
+              alt="Target Coupon Codes May | 2020"
               className="c4"
               onError={[Function]}
               src="image-placeholder.png"
@@ -2914,7 +3016,7 @@ exports[`Storyshots Components|@Store StoreMain 1`] = `
               onClick={[Function]}
             >
               <img
-                alt="Target Coupon Codes April | 2020"
+                alt="Target Coupon Codes May | 2020"
                 className="c8"
                 onError={[Function]}
                 src="image-placeholder.png"

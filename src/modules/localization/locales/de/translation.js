@@ -10,6 +10,7 @@ export default {
     coupons: 'Gutscheine',
     stores: 'Shops',
     getApp: 'Holen Sie sich die App!',
+    signIn: 'Anmelden',
     login: 'Anmelden',
     createAccount: 'Registrieren',
     myAccount: 'Mein Konto',
@@ -158,7 +159,7 @@ export default {
     luxury: 'Luxus',
   },
   global: {
-    activateCashback: 'Aktivieren Sie {{discount}} Cash back',
+    activateCashback: 'Aktivieren Sie  {{discount}} Cash back',
     invalidDate: 'Ablauf: Ungültiges Datum',
     earnCashBack: '{{discount}} Cashback verdienen!',
     learnMore: 'Mehr erfahren',
@@ -377,13 +378,13 @@ export default {
       'Verpassen Sie es nicht. Holen Sie sich die App noch heute!',
     getTheApp: 'Holen Sie sich die App',
     downloadButtons: {
-      desktop: 'Für Desktop Herunterladen',
+      desktop: 'Download für Desktop',
       android: 'Für Android Herunterladen',
       ios: 'Für IOS Herunterladen',
     },
     menu: {
-      howToInstall: 'Wie installiert man',
-      howToUninstall: 'Wie deinstalliert man',
+      howToInstall: 'Piggy installieren',
+      howToUninstall: 'Piggy deinstallieren',
       aboutCashBack: 'Über CashBack',
       aboutOurApp: 'Über unsere App',
       careers: 'Karriere',
@@ -412,5 +413,57 @@ export default {
     subtitle: 'UH-OH, HIER GIBT ES NICHTS ZU SEHEN!',
     text: 'Die angeforderte Seite ist nicht vorhanden.',
     action: 'Gehen Sie zur Startseite.',
+  },
+  homepage: {
+    hero: {
+      title: 'Piggy ist der einfachste Weg, um Geld zu sparen!',
+      text: {
+        first:
+          'Installiere Piggy noch heute und erhalte automatisch Gutscheine mit bis zu 70 % Rabatt in über 6.000 Shops!',
+        second:
+          'Piggy ist eine kostenlose Chrome-Erweiterung, die bei einem Online-Einkauf automatisch Gutscheine anwendet, Preise vergleicht und Cashback bietet.',
+      },
+      activate_extension:
+        '<strong>Zu {{browser}} hinzufügen</strong> Es kostet nichts',
+      number_users: '1,000,000 Benutzer',
+    },
+    howItWorks: {
+      title: `So funktioniert’s`,
+      subHeader1: '2 Klicks zum Installieren',
+      subText1:
+        'Klicke auf „Zu Chrome hinzufügen“ und dann auf „Erweiterung hinzufügen“ und schon beginnt die Installation.',
+      subText1Link: 'Google Chrome Web Store besuchen.',
+      subHeader2: 'Ganz normal einkaufen',
+      subText2:
+        'Wir suchen und wenden jeden verfügbaren Online-Gutschein an und du verdienst in Tausenden von Shops bis zu 20 % Cashback.',
+      subHeader3: 'Sofort sparen',
+      subText3:
+        'Piggy wendet nicht nur die besten Rabattcodes an, es bietet dir auch unveröffentlichte Hoteltarife.',
+      buttonAll: 'Fortfahren',
+    },
+    worksWithStores: 'Piggy arbeitet mit über 6.000 Shops zusammen',
+    worksWithStoresInfo: `Wusstest du, dass Piggy-Nutzer bei jedem Online-Einkauf durchschnittlich 24€ sparen?<br/>
+        Das liegt daran, dass Piggy mit über 6.000 Shops zusammenarbeitet: von Mode, über Pizza bis hin zu Hotelanbietern.`,
+    worksWithStoresTop: 'Die heute am häufigsten besuchten Online-Shops:',
+    worksWithStoresActivate: 'Kostenlos Gutscheine und Cashback aktivieren',
+    quotes: {
+      title: 'Was über Piggy gesagt wird',
+      text00: '“Piggy ist eines der besten Programme auf dem Markt.“',
+      name00: 'Time Magazine',
+      text01: '“Das ist prima, eine gute Ersparnis“',
+      name01: 'Udo G.',
+      text02:
+        '“super tolle sache wenn man geld sparen kann,und denn noch darauf hingewiesen wird”',
+      name02: 'Andrea G.',
+      text03: '“Mit Otto bin ich immer sehr zufrieden”',
+      name03: 'Heinz D.',
+      text04: '“immer gut meine Katzen sind auch zufrieden danke“',
+      name04: 'Gabriele E.',
+      text05:
+        '“bin sehr zufrieden mit den Ersparnissen. Gerne werde ich dies weiterempfehlen”',
+      name05: 'Angelika L.',
+      text06: '“Spannende Aktion”',
+      name06: 'Petra Q.',
+    },
   },
 };

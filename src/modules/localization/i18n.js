@@ -97,14 +97,21 @@ export const currencyLocaleFormat = (amount, country = getLocale()) => {
   country = country.toLowerCase();
   const { code, cur } =
     localeCodeCurrency[country] || localeCodeCurrency[getLocale()];
-  return Number.parseFloat(amount.replace(/[^@\d .]/g, '')).toLocaleString(
-    code,
-    {
-      style: 'currency',
-      currency: cur,
-      minimumFractionDigits: 0,
-    },
-  );
+  return amount.trim()
+    ? Number.parseFloat(amount.replace(/[^@\d .]/g, '')).toLocaleString(code, {
+        style: 'currency',
+        currency: cur,
+        minimumFractionDigits: 0,
+      })
+    : '';
+};
+
+export const getCurrencySymbol = () => {
+  const locale = getLocale();
+  const { code, cur } = localeCodeCurrency[locale.toLowerCase()];
+  return Number.parseFloat()
+    .toLocaleString(code, { style: 'currency', currency: cur })
+    .replace('NaN', '');
 };
 
 export const initializeI18n = () => {

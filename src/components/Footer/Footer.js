@@ -241,13 +241,14 @@ Footer.DownloadAppLink = styled.a`
     max-width: 320px;
     justify-content: center;
     margin: 0 auto 20px;
+    padding: 0 10px 0 0;
     width: 100%;
   `}
 
   ${breakpoint('md')`
-    width: 164px;
+    width: 268px;
     padding: 0 10px 0 22px;
-    margin: 0;
+    margin: 0 0 0 50px;
 
     > div {
       width: 25px;
@@ -411,10 +412,12 @@ Footer.SocialLink = styled.a`
 `;
 
 Footer.DownloadAppLinksWrapper = styled.div`
-  display: none;
+  display: flex;
+  flex: 1;
   width: 100%;
   flex-direction: row;
   padding: 0 15px;
+  box-sizing: border-box;
 
   ${breakpoint('lg')`
     flex: 1;
@@ -462,11 +465,12 @@ Footer.CopyrightWrapper = styled.div`
     `}
 
     ${breakpoint('lg')`
-      width: 970px;
+      padding: 0 35px;
     `}
 
     ${breakpoint('xl')`
       width: 1170px;
+      padding: 0 20px;
     `}
 
     > p {
@@ -482,6 +486,10 @@ Footer.CopyrightWrapper = styled.div`
       ${breakpoint('xs')`
         margin: 0;
         padding: 0 20px 45px;
+      `}
+
+      ${breakpoint('md')`
+        padding: 45px 20px;
       `}
     }
 

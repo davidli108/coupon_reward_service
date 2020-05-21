@@ -70,9 +70,21 @@ const Offers = ({
                 <Offers.CashBackUl>
                   {getSortedCashbackRate(cashbackRates, false).map(v => (
                     <Offers.CashBackLi>
-                      <a href={v.int_url}>{v.category_name}</a>
+                      <a
+                        href={v.int_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {v.category_name}
+                      </a>
                       <span>
-                        <a href={v.int_url}>{v.cashback_rate}</a>
+                        <a
+                          href={v.int_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {v.cashback_rate}
+                        </a>
                       </span>
                     </Offers.CashBackLi>
                   ))}
@@ -101,7 +113,7 @@ const Offers = ({
           isThisStore={offersCount !== 0}
         />
       ))}
-      {cashbackRates !== [] && (
+      {cashbackRates.length !== 0 && (
         <CashbackContents
           t={t}
           wZero={true}
@@ -121,6 +133,7 @@ const Offers = ({
 };
 
 Offers.LoadMoreDeals = styled.p`
+  z-index: 2;
   width: 100%;
   margin-top: 30px;
   display: flex;
@@ -251,7 +264,4 @@ Offers.CollapseArrow = styled.img`
   padding-top: 10px;
 `;
 
-export default compose(
-  withTranslation(),
-  withRouter,
-)(Offers);
+export default compose(withTranslation(), withRouter)(Offers);

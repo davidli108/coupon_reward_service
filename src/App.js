@@ -26,13 +26,9 @@ const metaKeywords = [
   'cashback',
 ];
 
-const domain = document.location.hostname;
-
 const App = () => {
   useEffect(() => {
-    if (domain.includes('joinpiggy.com')) {
-      renderIubendaScripts();
-    }
+    renderIubendaScripts();
   }, []);
 
   return (
@@ -43,7 +39,7 @@ const App = () => {
           <meta name="keywords" content={metaKeywords} />
           <meta name="og:image" content={logo} />
         </Helmet>
-        <GlobalStyle domain={domain} />
+        <GlobalStyle />
         <ScrollToTop>{routes}</ScrollToTop>
       </div>
     </ThemeProvider>
