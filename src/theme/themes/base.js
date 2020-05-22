@@ -103,10 +103,6 @@ export const GlobalStyle = createGlobalStyle`
           max-width: calc(100% - 40px);
         }
       
-        @media only screen and (min-width: 768px) {
-          max-width: 650px;
-        }
-      
         @media only screen and (min-width: 992px) {
           max-width: 800px;
         }
@@ -163,10 +159,11 @@ export const GlobalStyle = createGlobalStyle`
       
       @media only screen and (min-width: 768px) {
         right: -40px;
+        top: -5px;
+        bottom: auto;
       }
       
       @media only screen and (min-width: 992px) {
-        right: 0;
         bottom: auto;
         top: -5px;
       }
@@ -207,52 +204,36 @@ export const GlobalStyle = createGlobalStyle`
     
       #iubenda-iframe-popup {
         width: 100% !important;
-        padding: 0 15px !important;
+        margin: 0 15px !important;
         max-width: 980px !important;
         box-shadow: none !important;
+        background-color: white !important;
+        border-radius: 8px !important;
+        box-shadow: 0px 24px 64px rgba(0, 0, 0, 0.2) !important;
+        padding: 40px 20px 0!important;
+        height: calc(100vh - 175px + 40px + 90px) !important;
+        max-height: calc(650px + 40px + 90px) !important;
         
-        @media only screen and (min-width: 320px) {
-          height: 80% !important;
+        @media only screen and (min-width: 480px) {
+          height: calc(100vh - 230px + 40px + 90px) !important;
         }
         
         @media only screen and (min-width: 768px) {
-          padding: 0 40px !important;
-          height: 75% !important;
-        }
-        
-        @media only screen and (min-width: 992px) {
-          padding: 0 15px !important;
-          height: 60% !important;
+          padding: 40px 40px 0 !important;
         }
         
         @media only screen and (min-width: 1200px) {
-          height: 80% !important;
+          padding: 40px 90px 0 !important;
         }
         
         #iubenda-iframe-content {
-          max-width: 950px !important;
           margin: 0 auto !important;
-          box-shadow: 0px 24px 64px rgba(0, 0, 0, 0.2) !important;
           border-radius: 5px !important;
           background-color: #fff !important;
-          padding: 42px 92px 0 !important;
-          
-          @media only screen and (min-width: 320px) {
-            padding: 20px 20px 0 !important;
-          }
-          
-          @media only screen and (min-width: 992px) {
-            padding: 42px 92px 0 !important;
-          }
           
           .iubenda-iframe-footer {
             justify-content: center !important;
-            margin: 0 -92px !important;
             background-color: #fff !important;
-            
-            @media only screen and (min-width: 320px) {
-              margin: 0 -20px !important;
-            }
             
             > * {
               margin: 0 !important;
@@ -271,7 +252,7 @@ export const GlobalStyle = createGlobalStyle`
               @media only screen and (min-width: 768px) {
                 transform: none !important;
                 justify-content: center !important;
-                height: 92px !important;
+                height: 90px !important;
               }
             
               button {
@@ -284,6 +265,7 @@ export const GlobalStyle = createGlobalStyle`
                 font-size: 12px !important;
                 line-height: 15px !important;
                 font-weight: 700 !important;
+                text-transform: capitalize !important;
                 
                 @media only screen and (min-width: 320px) {
                   flex: none !important;
@@ -296,6 +278,14 @@ export const GlobalStyle = createGlobalStyle`
         .iubenda-iframe-close-btn {
           display: none !important;
         }
+      }
+      
+      .iubenda-iframe-top-container {
+        padding: 0 !important;
+        
+        // iframe {
+        //   height: calc(100vh - 230px) !important;
+        // }
       }
     }
     
