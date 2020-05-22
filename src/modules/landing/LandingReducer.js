@@ -31,17 +31,33 @@ const LandingReducer = (
 ) => {
   switch (action.type) {
     case `${FETCH_HOMEPAGE_FEATURE}_SUCCESS`: {
-      const paid_placements: Object = R.pathOr(
-        {
-          homepage_feature: [],
-          top_deals: [],
-          featured_cashback: [],
-          featured_stores: [],
-          amazon_deal: [],
-        },
-        ['payload', 'data', 'paid_placements'],
-        action,
-      );
+      const paid_placements: Object = {
+        homepage_feature: R.pathOr(
+          [],
+          ['payload', 'data', 'paid_placements', 'homepage_feature'],
+          action,
+        ),
+        top_deals: R.pathOr(
+          [],
+          ['payload', 'data', 'paid_placements', 'top_deals'],
+          action,
+        ),
+        featured_cashback: R.pathOr(
+          [],
+          ['payload', 'data', 'paid_placements', 'featured_cashback'],
+          action,
+        ),
+        featured_stores: R.pathOr(
+          [],
+          ['payload', 'data', 'paid_placements', 'featured_stores'],
+          action,
+        ),
+        amazon_deal: R.pathOr(
+          [],
+          ['payload', 'data', 'paid_placements', 'amazon_deal'],
+          action,
+        ),
+      };
 
       const categories: Object = R.pathOr(
         [],

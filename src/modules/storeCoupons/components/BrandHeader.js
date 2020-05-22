@@ -1,7 +1,6 @@
 // @flow
 import * as R from 'ramda';
-import * as React from 'react';
-// eslint-disable-next-line no-unused-vars, import/no-unresolved
+import React, { useState, useEffect } from 'react';
 import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
 import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
@@ -25,6 +24,7 @@ import { getOrigin } from '@modules/auth/AuthHelper';
 
 import { getStore, getOffers } from '../StoreCouponsReducer';
 import AppConfig from '@config/AppConfig';
+import { isAmazonStore } from '@config/Utils';
 
 const modal = {
   modalSignIn: 'modalSignIn',
@@ -57,7 +57,8 @@ const BrandHeader = ({
   isFavorite,
   isAuthenticated,
 }: BrandHeaderProps) => {
-  const [currentModal, setCurrentModal] = React.useState(null);
+  const [currentModal, setCurrentModal] = useState(null);
+  const [isAmazon, setIsAmazon] = useState(false);
   const localeConfig = getLocaleConfig();
 
   const discount = store.store_cashback_ok
@@ -73,6 +74,7 @@ const BrandHeader = ({
         : 'global.upToCashBack'
       : 'global.noCashBack'
     : 'global.instantSaving';
+
   const toggleFavoriteStore = () => {
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
@@ -104,6 +106,12 @@ const BrandHeader = ({
     });
   };
 
+  useEffect(() => {
+    if (isAmazonStore(store.store_name)) {
+      setIsAmazon(true);
+    }
+  }, [store]);
+
   return (
     <>
       <BrandHeader.Name>
@@ -133,7 +141,9 @@ const BrandHeader = ({
           )}
           <BrandHeader.SmNonVisible>
             <span>
-              {discount
+              {isAmazon
+                ? t('global.noCashBack')
+                : discount
                 ? t(cashBackMessageKey, { discount })
                 : t('global.instantSaving')}
             </span>

@@ -171,7 +171,7 @@ export default {
     cashBack: 'Remise en Argent',
     cashBackPrint: '{{print}} Cashback',
     instantSaving: 'Économies instantanées',
-    noCashBack: 'Pas de Cashback',
+    noCashBack: 'Pas de remise en argent',
     upToCashBack: "Jusqu'à {{discount}} de remise en argent",
     downloadPiggy:
       "Téléchargez les coupons automatiques de Piggy's à la caisse et ne ratez plus jamais une affaire !",

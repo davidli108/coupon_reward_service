@@ -1,5 +1,5 @@
 // @flow
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { FiChevronsRight } from 'react-icons/fi';
@@ -7,9 +7,9 @@ import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import { withTranslation } from 'react-i18next';
 import { getSortedCashbackRate } from './constant';
-// import AdditionalInfoSection from './AdditionalInfoSection';
 import type { AdditionalInfoProps } from '../models/StorePage';
 import { getCurrencySymbol } from '@modules/localization/i18n';
+import { isAmazonStore } from '@config/Utils';
 import {
   getAdditionalInfo,
   getStore,
@@ -22,18 +22,27 @@ const AdditionalInfo = ({
   store,
   cashbackRates,
 }: AdditionalInfoProps) => {
+  const [isAmazon, setIsAmazon] = useState(false);
+
+  useEffect(() => {
+    if (isAmazonStore(store.store_name)) {
+      setIsAmazon(true);
+    }
+  }, [store]);
+
+  const getCashback = () => {
+    return isAmazon
+      ? `${t('global.noCashBack')} `
+      : store.store_discount_print_sidebar &&
+          store.store_discount_print_sidebar.replace(
+            /\$/g,
+            getCurrencySymbol() || '$',
+          );
+  };
+
   return (
     <AdditionalInfo.Wrapper>
-      {/* {additionalInfo.map(section => (
-        <AdditionalInfoSection
-          key={`section_${section.title}`}
-          title={section.title || ''}
-          content={section.content || ''}
-        />
-      ))} */}
-      <AdditionalInfo.ContentWrapper
-        isShow={additionalInfo.featured_store_secrets_body}
-      >
+      <AdditionalInfo.ContentWrapper isShow={true}>
         {cashbackRates.length > 0 ? (
           <AdditionalInfo.CashBackUl>
             <h2>{t('storeCoupons.cashBackCategories')}</h2>
@@ -51,6 +60,11 @@ const AdditionalInfo = ({
             ))}
           </AdditionalInfo.CashBackUl>
         ) : null}
+      </AdditionalInfo.ContentWrapper>
+
+      <AdditionalInfo.ContentWrapper
+        isShow={additionalInfo.featured_store_secrets_body}
+      >
         <h2>{t('storeCoupons.secrets')}</h2>
         <AdditionalInfo.Content
           dangerouslySetInnerHTML={{
@@ -73,12 +87,7 @@ const AdditionalInfo = ({
           >
             {t('header.shop', {
               storeName: store.store_name,
-              cashBack:
-                store.store_discount_print_sidebar &&
-                store.store_discount_print_sidebar.replace(
-                  /\$/g,
-                  getCurrencySymbol() || '$',
-                ),
+              cashBack: getCashback(),
             })}
             <FiChevronsRight />
           </AdditionalInfo.ContentLink>
@@ -89,13 +98,13 @@ const AdditionalInfo = ({
         isShow={additionalInfo.featured_store_secrets_body}
       />
 
-      <AdditionalInfo.ContentWrapper isShow={store.store_description}>
+      <AdditionalInfo.ContentWrapper isShow={store.store_description.trim()}>
         <h2>{store.store_name}</h2>
         <AdditionalInfo.Content>
           <p>{store.store_description}</p>
         </AdditionalInfo.Content>
       </AdditionalInfo.ContentWrapper>
-      <AdditionalInfo.Separator isShow={store.store_description} />
+      <AdditionalInfo.Separator isShow={store.store_description.trim()} />
       <AdditionalInfo.ContentWrapper
         isShow={additionalInfo.featured_store_returns_body}
       >
