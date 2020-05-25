@@ -67,6 +67,7 @@ const LandingReducer = (
 
       const homepageFeatures = paid_placements.homepage_feature.map(item => {
         item['override_text'] = stringElipsis(item['override_text'], 45);
+        item['store_name'] = stringElipsis(item['store_name'], 25);
         return item;
       });
 
