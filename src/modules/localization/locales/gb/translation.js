@@ -300,6 +300,9 @@ export default {
     secretRates: 'Secret Rates and Deals',
     noCouponsAndDeal:
       'No Vouchers or Deals found for {{storeName}}. Take a look at our top offers and deals below.',
+    getBestPrice: 'Get the Best Price',
+    alertAutomatically:
+      'Piggy will automatically alert you of the best price at {{ storeName }}. You can also track the price history on your items and get alerts if the price drops.',
   },
   sitemap: {
     meta: {
