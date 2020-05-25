@@ -65,28 +65,22 @@ const LandingReducer = (
         action,
       );
 
-      const homepageFeatures =
-        paid_placements.homepage_feature &&
-        paid_placements.homepage_feature.map(item => {
-          item['override_text'] = stringElipsis(item['override_text'], 50);
-          item['store_name'] = stringElipsis(item['store_name'], 25);
-          return item;
-        });
+      const homepageFeatures = paid_placements.homepage_feature.map(item => {
+        item['override_text'] = stringElipsis(item['override_text'], 45);
+        item['store_name'] = stringElipsis(item['store_name'], 25);
+        return item;
+      });
 
-      const mapTopDeal =
-        paid_placements.top_deals &&
-        paid_placements.top_deals.map(item => {
-          const limit = item['was_price'] ? 7 : 10;
-          item['override_text'] = stringElipsis(item['override_text'], 45);
-          item['was_price'] = stringElipsis(item['was_price'], limit);
-          item['secondary_text'] = stringElipsis(item['secondary_text'], limit);
-          return item;
-        });
+      const mapTopDeal = paid_placements.top_deals.map(item => {
+        const limit = item['was_price'] ? 7 : 10;
+        item['override_text'] = stringElipsis(item['override_text'], 45);
+        item['was_price'] = stringElipsis(item['was_price'], limit);
+        item['secondary_text'] = stringElipsis(item['secondary_text'], limit);
+        return item;
+      });
 
-      const mapFeaturedCashback =
-        paid_placements.featured_cashback &&
-        paid_placements.featured_cashback.map(item => {
-
+      const mapFeaturedCashback = paid_placements.featured_cashback.map(
+        item => {
           const cashback = parseFloat(item.cashback.replace(/[%$£€]/, ''));
 
           if (item.cashback.includes('$')) {
@@ -107,16 +101,14 @@ const LandingReducer = (
 
           item['was_price'] = item['was_price'] || null;
           return item;
-        });
+        },
+      );
 
-      const mapAmazonDeal =
-        paid_placements.amazon_deal &&
-        paid_placements.amazon_deal.map(item => {
-          item['text_override'] = stringElipsis(item['text_override'], 90);
-          item['secondary_text'] = stringElipsis(item['secondary_text'], 120);
-          return item;
-        });
-
+      const mapAmazonDeal = paid_placements.amazon_deal.map(item => {
+        item['text_override'] = stringElipsis(item['text_override'], 90);
+        item['secondary_text'] = stringElipsis(item['secondary_text'], 120);
+        return item;
+      });
 
       return R.compose(
         R.assoc<Object, Object>(

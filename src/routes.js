@@ -85,6 +85,7 @@ export default (
       ) : (
         <Route exact path="/" component={Home} />
       )}
+      <Route exact path="/home" component={Home} />
       <Route exact path="/register" component={HomePage} />
       <Route exact path="/cashback-stores" component={StoresPage} />
       <Route exact path="/cashback-stores/:name" component={StoresPage} />

@@ -194,15 +194,24 @@ const styles = (HomePageCarousel: Object) => {
   HomePageCarousel.Slide = styled.div`
     display: flex !important;
     align-items: center;
+    justify-content: center;
+
+    .img-content {
+      width: 35%;
+    }
 
     img {
-      width: 370px;
-      max-height: 265px;
+      width: 100%;
+      height: 265px;
       object-fit: scale-down;
     }
 
     .content {
-      padding: 0 60px 20px;
+      display: flex;
+      justify-content: space-evenly;
+      flex-direction: column;
+      width: 40%;
+      height: 265px;
 
       img {
         display: block;
@@ -220,6 +229,12 @@ const styles = (HomePageCarousel: Object) => {
         font: bold 34px ${({ theme }) => theme.fonts.montserrat} !important;
       }
 
+      .storeName {
+        margin: 30px 0 10px;
+        font-family: ${({ theme }) => theme.fonts.montserrat};
+        font-weight: bold;
+      }
+
       p {
         margin: 0 0 10px;
         font: 600 18px/24px ${({ theme }) => theme.fonts.roboto};
@@ -227,6 +242,7 @@ const styles = (HomePageCarousel: Object) => {
 
       button {
         border: 0;
+        width: 230px;
         background-color: ${({ theme }) => theme.colors.greenMain};
         padding: 0 30px;
         height: 47px;
@@ -235,6 +251,7 @@ const styles = (HomePageCarousel: Object) => {
         font: normal 700 17px/21px ${({ theme }) => theme.fonts.montserrat} !important;
         cursor: pointer;
         transition: background 0.3s ease;
+        margin-bottom: 10px;
 
         &:hover {
           background-color: ${({ theme }) => theme.colors.greenBlank};
@@ -242,6 +259,10 @@ const styles = (HomePageCarousel: Object) => {
 
         &:focus {
           outline: none;
+        }
+
+        @media (max-width: 425px) {
+          width: 100%;
         }
       }
     }
@@ -253,12 +274,9 @@ const styles = (HomePageCarousel: Object) => {
 
       img {
         flex: 0 0 290px;
-        width: 355px;
       }
 
       .content {
-        padding: 0 32px 20px;
-
         h3 {
           font: normal 700 16px/21px ${({ theme }) => theme.fonts.montserrat} !important;
         }
@@ -285,6 +303,14 @@ const styles = (HomePageCarousel: Object) => {
     }
 
     @media (max-width: 425px) {
+      .img-content {
+        width: 100%;
+      }
+
+      .content {
+        width: 85%;
+      }
+
       img {
         flex: 0 0 190px;
         width: inherit;

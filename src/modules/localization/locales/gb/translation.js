@@ -300,6 +300,9 @@ export default {
     secretRates: 'Secret Rates and Deals',
     noCouponsAndDeal:
       'No Vouchers or Deals found for {{storeName}}. Take a look at our top offers and deals below.',
+    getBestPrice: 'Get the Best Price',
+    alertAutomatically:
+      'Piggy will automatically alert you of the best price at {{ storeName }}. You can also track the price history on your items and get alerts if the price drops.',
   },
   sitemap: {
     meta: {
@@ -419,5 +422,55 @@ export default {
     discover: 'Discover deals by category:',
     all: 'All',
     was: 'Was {{price}}',
+    hero: {
+      title: 'Piggy ist der einfachste Weg, um Geld zu sparen!',
+      text: {
+        first:
+          'Installiere Piggy noch heute und erhalte automatisch Gutscheine mit bis zu 70 % Rabatt in über 6.000 Shops!',
+        second:
+          'Piggy ist eine kostenlose Chrome-Erweiterung, die bei einem Online-Einkauf automatisch Gutscheine anwendet, Preise vergleicht und Cashback bietet.',
+      },
+      activate_extension:
+        '<strong>Zu {{browser}} hinzufügen</strong> Es kostet nichts',
+      number_users: '1,000,000 Benutzer',
+    },
+    howItWorks: {
+      title: `So funktioniert’s`,
+      subHeader1: '2 Klicks zum Installieren',
+      subText1:
+        'Klicke auf „Zu Chrome hinzufügen“ und dann auf „Erweiterung hinzufügen“ und schon beginnt die Installation.',
+      subText1Link: 'Google Chrome Web Store besuchen.',
+      subHeader2: 'Ganz normal einkaufen',
+      subText2:
+        'Wir suchen und wenden jeden verfügbaren Online-Gutschein an und du verdienst in Tausenden von Shops bis zu 20 % Cashback.',
+      subHeader3: 'Sofort sparen',
+      subText3:
+        'Piggy wendet nicht nur die besten Rabattcodes an, es bietet dir auch unveröffentlichte Hoteltarife.',
+      buttonAll: 'Fortfahren',
+    },
+    worksWithStores: 'Piggy arbeitet mit über 6.000 Shops zusammen',
+    worksWithStoresInfo:
+      'Wusstest du, dass Piggy-Nutzer bei jedem Online-Einkauf durchschnittlich 24 € sparen? Das liegt daran, dass Piggy mit über 6.000 Shops zusammenarbeitet: von Mode, über Pizza bis hin zu Hotelanbietern.',
+    worksWithStoresTop: 'Die heute am häufigsten besuchten Online-Shops:',
+    worksWithStoresActivate: 'Kostenlos Gutscheine und Cashback aktivieren',
+    quotes: {
+      title: 'Was über Piggy gesagt wird',
+      text00: '“Piggy ist eines der besten Programme auf dem Markt.“',
+      name00: 'Time Magazine',
+      text01: '“Das ist prima, eine gute Ersparnis“',
+      name01: 'Udo G.',
+      text02:
+        '“super tolle sache wenn man geld sparen kann,und denn noch darauf hingewiesen wird”',
+      name02: 'Andrea G.',
+      text03: '“Mit Otto bin ich immer sehr zufrieden”',
+      name03: 'Heinz D.',
+      text04: '“immer gut meine Katzen sind auch zufrieden danke“',
+      name04: 'Gabriele E.',
+      text05:
+        '“bin sehr zufrieden mit den Ersparnissen. Gerne werde ich dies weiterempfehlen”',
+      name05: 'Angelika L.',
+      text06: '“Spannende Aktion”',
+      name06: 'Petra Q.',
+    },
   },
 };

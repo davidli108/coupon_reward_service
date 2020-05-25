@@ -7,8 +7,15 @@ import {slider_settings} from '../HomePage.constants';
 import {type HomePageCarouselProps} from '../HomePage.types';
 import HomepageFeatureLoader from '../loader/HompageFeatureLoader';
 import styles from './HomePageCarousel.styles';
+import TextFit  from 'react-textfit'
 
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
+
+const StoreName = (storeName: string) => {
+  return (storeName.length < 15)
+    ? (<h1>{storeName}</h1>)
+    : (<TextFit mode="single" className="storeName">{storeName}</TextFit>)
+}
 const HomePageCarousel = ({
   t,
   storesData,
@@ -24,13 +31,15 @@ const HomePageCarousel = ({
           {homePageFeaturedStore && homePageFeaturedStore.map((item, key) => {
             return (
               <HomePageCarousel.Slide key={key}>
-                <img src={item.img} alt=""/>
-                <div className="content">
-                  <h1>{item.store_name}</h1>
-                  <h3>{item.override_text}</h3>
-                  <p>{item.cashback ? t('homepage.plusCashback', {cashback: item.cashback}) : ''}</p>
-                  <button onClick={() => handler(item.img, item.link, item.store_name)}>{t('homepage.gtdn')}</button>
-                </div>
+                  <div className="img-content">
+                    <img src={item.img} alt=""/>
+                  </div>
+                  <div className="content">
+                    {StoreName(item.store_name)}
+                    <h3>{item.override_text}</h3>
+                    <p>{item.cashback ? t('homepage.plusCashback', {cashback: item.cashback}) : ''}</p>
+                    <button onClick={() => handler(item.img, item.link, item.store_name)}>{t('homepage.gtdn')}</button>
+                  </div>
               </HomePageCarousel.Slide>
             )
           })}

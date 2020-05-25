@@ -304,6 +304,9 @@ export default {
     secretRates: 'Geheime Tarife und Angebote',
     noCouponsAndDeal:
       'Für {{ storeName }} wurden keine Gutscheine oder Angebote gefunden. Werfen Sie einen Blick auf unsere Top-Angebote und Deals.',
+    getBestPrice: 'Get the Best Price',
+    alertAutomatically:
+      'Piggy will automatically alert you of the best price at {{ storeName }}. You can also track the price history on your items and get alerts if the price drops.',
   },
   sitemap: {
     meta: {
@@ -442,8 +445,8 @@ export default {
       buttonAll: 'Fortfahren',
     },
     worksWithStores: 'Piggy arbeitet mit über 6.000 Shops zusammen',
-    worksWithStoresInfo:
-      'Wusstest du, dass Piggy-Nutzer bei jedem Online-Einkauf durchschnittlich 24 € sparen? Das liegt daran, dass Piggy mit über 6.000 Shops zusammenarbeitet: von Mode, über Pizza bis hin zu Hotelanbietern.',
+    worksWithStoresInfo: `Wusstest du, dass Piggy-Nutzer bei jedem Online-Einkauf durchschnittlich 24€ sparen?<br/>
+        Das liegt daran, dass Piggy mit über 6.000 Shops zusammenarbeitet: von Mode, über Pizza bis hin zu Hotelanbietern.`,
     worksWithStoresTop: 'Die heute am häufigsten besuchten Online-Shops:',
     worksWithStoresActivate: 'Kostenlos Gutscheine und Cashback aktivieren',
     quotes: {

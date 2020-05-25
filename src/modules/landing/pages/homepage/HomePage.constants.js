@@ -14,7 +14,7 @@ export const slider_settings = {
   dots: false,
   slidesToShow: 1,
   slidesToScroll: 1,
-  infinite: false,
+  infinite: true,
   swipe: false,
   prevArrow: (
     <SlickButtonWrapper>

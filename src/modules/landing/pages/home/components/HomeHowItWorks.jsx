@@ -16,15 +16,28 @@ const HomeHowItWorks = ({
   const langShort = i18n.language;
 
   /* eslint-disable global-require */
-  const install = langShort === 'de'
-    ? require('../assets/de/install.svg')
-    : require('../assets/fr/install.svg');
-  const laptop = langShort === 'de'
-    ? require('../assets/de/laptop.svg')
-    : require('../assets/fr/laptop.svg');
-  const wallet = langShort === 'de'
-    ? require('../assets/de/wallet.svg')
-    : require('../assets/fr/wallet.svg');
+  const assets = () => {
+    switch (langShort) {
+      case 'de':
+        return {
+          install: require('../assets/de/install.svg'),
+          laptop: require('../assets/de/laptop.svg'),
+          wallet: require('../assets/de/wallet.svg'),
+        };
+      case 'fr':
+        return {
+          install: require('../assets/fr/install.svg'),
+          laptop: require('../assets/fr/laptop.svg'),
+          wallet: require('../assets/fr/wallet.svg'),
+        };
+      default:
+        return {
+          install: require('../assets/en/install.svg'),
+          laptop: require('../assets/en/laptop.svg'),
+          wallet: require('../assets/en/wallet.svg'),
+        };
+    }
+  };
   /* eslint-enable global-require */
 
   return (
@@ -34,7 +47,7 @@ const HomeHowItWorks = ({
           <h2 className="h2class text-center">{t('homepage.howItWorks.title')}</h2>
         </div>
         <div className="col-xs-12 col-sm-4">
-          <img src={install}
+          <img src={assets().install}
                alt="Click Install"
                className="img-responsive center-block" />
             <h3 className="h3class text-center">{t('homepage.howItWorks.subHeader1')}</h3>
@@ -50,14 +63,14 @@ const HomeHowItWorks = ({
             </p>
         </div>
         <div className="col-xs-12 col-sm-4">
-          <img src={laptop}
+          <img src={assets().laptop}
                alt="You just shop"
                className="img-responsive center-block" />
             <h3 className="h3class text-center">{t('homepage.howItWorks.subHeader2')}</h3>
             <p className="pclass text-center">{t('homepage.howItWorks.subText2')}</p>
         </div>
         <div className="col-xs-12 col-sm-4">
-          <img src={wallet} alt="Save Instantly"
+          <img src={assets().wallet} alt="Save Instantly"
                className="img-responsive center-block" />
             <h3 className="h3class text-center">{t('homepage.howItWorks.subHeader3')}</h3>
             <p className="pclass text-center">{t('homepage.howItWorks.subText3')}</p>
