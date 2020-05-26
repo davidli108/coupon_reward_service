@@ -127,14 +127,14 @@ const StorePage = ({
       <Brand
         t={t}
         isLoaded={isLoaded}
-        extensionActive={isLoaded && isExtensionInstalled}
+        extensionActive={isLoaded && (isExtensionInstalled || isAmazon)}
         offersCount={offersCount}
         reviews={reviews}
       />
       <StorePage.DesktopContent>
         <StorePage.ColumnNoWrapFlexBox
           order="2"
-          extensionActive={isLoaded && isExtensionInstalled}
+          extensionActive={isLoaded && (isExtensionInstalled || isAmazon)}
           style={{ marginBottom: 50 }}
         >
           {isLoaded ? (

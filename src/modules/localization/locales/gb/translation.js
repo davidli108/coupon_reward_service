@@ -423,54 +423,51 @@ export default {
     all: 'All',
     was: 'Was {{price}}',
     hero: {
-      title: 'Piggy ist der einfachste Weg, um Geld zu sparen!',
+      title: 'Piggy is the easiest way to save money!',
       text: {
         first:
-          'Installiere Piggy noch heute und erhalte automatisch Gutscheine mit bis zu 70 % Rabatt in über 6.000 Shops!',
+          'Add Piggy today for automatic vouchers up to 70% off at over 6,000 stores!',
         second:
-          'Piggy ist eine kostenlose Chrome-Erweiterung, die bei einem Online-Einkauf automatisch Gutscheine anwendet, Preise vergleicht und Cashback bietet.',
+          'Piggy is a free Chrome extension that automatically adds vouchers, checks prices and offers cashback when you shop online.',
       },
-      activate_extension:
-        '<strong>Zu {{browser}} hinzufügen</strong> Es kostet nichts',
-      number_users: '1,000,000 Benutzer',
+      activate_extension: `<strong>Add to {{browser}}</strong> It's free!`,
+      number_users: '1,000,000 users',
     },
     howItWorks: {
-      title: `So funktioniert’s`,
-      subHeader1: '2 Klicks zum Installieren',
-      subText1:
-        'Klicke auf „Zu Chrome hinzufügen“ und dann auf „Erweiterung hinzufügen“ und schon beginnt die Installation.',
-      subText1Link: 'Google Chrome Web Store besuchen.',
-      subHeader2: 'Ganz normal einkaufen',
-      subText2:
-        'Wir suchen und wenden jeden verfügbaren Online-Gutschein an und du verdienst in Tausenden von Shops bis zu 20 % Cashback.',
-      subHeader3: 'Sofort sparen',
+      title: `How It Works`,
+      subHeader1: '2 Click Install',
+      subText1: 'Click "Add to Chrome" then click "Add extension" to install.',
+      subText1Link: `Go to Google Chrome's Web Store.`,
+      subHeader2: 'You just shop',
+      subText2: `We'll find and apply every voucher on the internet and you'll earn up to 20% cashback at thousands of stores.`,
+      subHeader3: 'Save Instantly',
       subText3:
-        'Piggy wendet nicht nur die besten Rabattcodes an, es bietet dir auch unveröffentlichte Hoteltarife.',
-      buttonAll: 'Fortfahren',
+        'Not only does Piggy apply the voucher with the most savings, Piggy also gets you unpublished rates at hotels.',
+      buttonAll: 'Continue',
     },
-    worksWithStores: 'Piggy arbeitet mit über 6.000 Shops zusammen',
-    worksWithStoresInfo:
-      'Wusstest du, dass Piggy-Nutzer bei jedem Online-Einkauf durchschnittlich 24 € sparen? Das liegt daran, dass Piggy mit über 6.000 Shops zusammenarbeitet: von Mode, über Pizza bis hin zu Hotelanbietern.',
-    worksWithStoresTop: 'Die heute am häufigsten besuchten Online-Shops:',
-    worksWithStoresActivate: 'Kostenlos Gutscheine und Cashback aktivieren',
+    worksWithStores: 'Piggy works with over 6,000 stores',
+    worksWithStoresInfo: `Did you know Piggy's users save an average of £24 each time they shop online using Piggy?<br/>
+      That's because Piggy works with over 6,000 stores. Everything from clothes and pizza to booking a hotel.`,
+    worksWithStoresTop: `{{today}}'s Top Visited Stores:`,
+    worksWithStoresActivate: 'Activate Free Vouchers & Cashback',
     quotes: {
-      title: 'Was über Piggy gesagt wird',
-      text00: '“Piggy ist eines der besten Programme auf dem Markt.“',
+      title: `What's being said about Piggy`,
+      text00: '“Piggy is one of the best programs out there“',
       name00: 'Time Magazine',
-      text01: '“Das ist prima, eine gute Ersparnis“',
-      name01: 'Udo G.',
-      text02:
-        '“super tolle sache wenn man geld sparen kann,und denn noch darauf hingewiesen wird”',
-      name02: 'Andrea G.',
-      text03: '“Mit Otto bin ich immer sehr zufrieden”',
-      name03: 'Heinz D.',
-      text04: '“immer gut meine Katzen sind auch zufrieden danke“',
-      name04: 'Gabriele E.',
-      text05:
-        '“bin sehr zufrieden mit den Ersparnissen. Gerne werde ich dies weiterempfehlen”',
-      name05: 'Angelika L.',
-      text06: '“Spannende Aktion”',
-      name06: 'Petra Q.',
+      text01:
+        '“Piggy Rocks! Does exactly what it says it will do--very user-friendly; does the voucher comparison for you; and you end up with the BEST Voucher Deal of the Day! Great Extension to have!”',
+      name01: 'Cipriano A.',
+      text02: '“Thanks for the free activation code!“',
+      name02: 'Kayla M.',
+      text03: '“You rock Piggy”',
+      name03: 'Bob S.',
+      text04:
+        '“Piggy is a fantastic help! He saves so much time and money for me who does a lot of online shopping!”',
+      name04: 'Nancy R.',
+      text05: `“I just adore my Piggy and the savings it affords me on any order! Who doesn't like saving money ??“`,
+      name05: 'Susan L.',
+      text06: `“I doubted at first and didn't trust this pig popping up on my screen. But it is for real!”`,
+      name06: 'Davene G.',
     },
   },
 };

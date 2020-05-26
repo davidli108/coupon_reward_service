@@ -105,7 +105,7 @@ const Brand = ({
           {isLoaded ? (
             <>
               <BrandHeader offersCount={offersCount} />
-              {!extensionActive && (
+              {!extensionActive && !isAmazon && (
                 <Brand.XlWrapper>
                   <Brand.NoWrapFlexBoxWithBorder>
                     <BrandContent
