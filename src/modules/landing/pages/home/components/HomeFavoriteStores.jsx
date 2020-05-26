@@ -31,6 +31,8 @@ const HomeFavoriteStores = ({
         return require('../assets/de/stores-bg.svg');
       case 'fr':
         return require('../assets/fr/stores-bg.svg');
+      case 'gb':
+        return require('../assets/gb/stores-bg.svg');
       default:
         return require('../assets/en/stores-bg.svg');
     }

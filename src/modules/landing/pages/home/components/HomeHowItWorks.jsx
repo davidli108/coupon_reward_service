@@ -30,6 +30,12 @@ const HomeHowItWorks = ({
           laptop: require('../assets/fr/laptop.svg'),
           wallet: require('../assets/fr/wallet.svg'),
         };
+      case 'gb':
+        return {
+          install: require('../assets/gb/install.svg'),
+          laptop: require('../assets/gb/laptop.svg'),
+          wallet: require('../assets/gb/wallet.svg'),
+        };
       default:
         return {
           install: require('../assets/en/install.svg'),

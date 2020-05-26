@@ -32,6 +32,12 @@ const HomeHero = ({
           hero2: require('../assets/fr/hero-image@2x.png'),
           hero3: require('../assets/fr/hero-image@3x.png'),
         };
+      case 'gb':
+        return {
+          hero: require('../assets/gb/hero-image.png'),
+          hero2: require('../assets/gb/hero-image@2x.png'),
+          hero3: require('../assets/gb/hero-image@3x.png'),
+        };
       default:
         return {
           hero: require('../assets/en/hero-image.png'),
