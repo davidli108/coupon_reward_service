@@ -74,6 +74,10 @@ const Offers = ({
                         href={v.int_url}
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={()=> {
+                            togglePanel()
+                          }
+                        }
                       >
                         {v.category_name}
                       </a>
@@ -82,6 +86,10 @@ const Offers = ({
                           href={v.int_url}
                           target="_blank"
                           rel="noopener noreferrer"
+                          onClick={()=> {
+                              togglePanel()
+                            }
+                          }
                         >
                           {v.cashback_rate}
                         </a>
