@@ -44,25 +44,26 @@ const AdditionalInfo = ({
     <AdditionalInfo.Wrapper>
       {cashbackRates.length > 0 ? (
         <AdditionalInfo.ContentWrapper isShow={true} className="categories">
-            <AdditionalInfo.CashBackUl>
-              <h2>{t('storeCoupons.cashBackCategories')}</h2>
-              {getSortedCashbackRate(cashbackRates, true).map(v => (
-                <AdditionalInfo.CashBackLi key={v.category_name}>
+          <AdditionalInfo.CashBackUl>
+            <h2>{t('storeCoupons.cashBackCategories')}</h2>
+            {getSortedCashbackRate(cashbackRates, true).map(v => (
+              <AdditionalInfo.CashBackLi key={v.category_name}>
+                <a href={v.int_url} target={'_blank'}>
+                  {v.category_name}
+                </a>
+                <span>
                   <a href={v.int_url} target={'_blank'}>
-                    {v.category_name}
+                    {v.cashback_rate}
                   </a>
-                  <span>
-                    <a href={v.int_url} target={'_blank'}>
-                      {v.cashback_rate}
-                    </a>
-                  </span>
-                </AdditionalInfo.CashBackLi>
-              ))}
-            </AdditionalInfo.CashBackUl>
+                </span>
+              </AdditionalInfo.CashBackLi>
+            ))}
+          </AdditionalInfo.CashBackUl>
         </AdditionalInfo.ContentWrapper>
       ) : null}
 
-      <AdditionalInfo.ContentWrapper className={'content-info'}
+      <AdditionalInfo.ContentWrapper
+        className={'content-info'}
         isShow={additionalInfo.featured_store_secrets_body}
       >
         <h2>{t('storeCoupons.secrets')}</h2>
@@ -77,21 +78,24 @@ const AdditionalInfo = ({
         isShow={additionalInfo.featured_store_secrets_body}
       />
 
-      <AdditionalInfo.ContentWrapper className={'content-info'}
+      <AdditionalInfo.ContentWrapper
+        className={'content-info'}
         isShow={additionalInfo.featured_store_secrets_body}
       >
-        <AdditionalInfo.Content>
-          <AdditionalInfo.ContentLink
-            href={store.store_info_link}
-            target="_blank"
-          >
-            {t('header.shop', {
-              storeName: store.store_name,
-              cashBack: getCashback(),
-            })}
-            <FiChevronsRight />
-          </AdditionalInfo.ContentLink>
-        </AdditionalInfo.Content>
+        {!isAmazon && (
+          <AdditionalInfo.Content>
+            <AdditionalInfo.ContentLink
+              href={store.store_info_link}
+              target="_blank"
+            >
+              {t('header.shop', {
+                storeName: store.store_name,
+                cashBack: getCashback(),
+              })}
+              <FiChevronsRight />
+            </AdditionalInfo.ContentLink>
+          </AdditionalInfo.Content>
+        )}
 
         <AdditionalInfo.ContentWrapper isShow={store.store_description.trim()}>
           <h2>{store.store_name}</h2>
@@ -99,14 +103,14 @@ const AdditionalInfo = ({
             <p>{store.store_description}</p>
           </AdditionalInfo.Content>
         </AdditionalInfo.ContentWrapper>
-
       </AdditionalInfo.ContentWrapper>
 
       <AdditionalInfo.Separator
         isShow={additionalInfo.featured_store_secrets_body}
       />
 
-      <AdditionalInfo.ContentWrapper className={'content-info'}
+      <AdditionalInfo.ContentWrapper
+        className={'content-info'}
         isShow={additionalInfo.featured_store_returns_body}
       >
         <h2>{t('storeCoupons.returnPolicy')}</h2>
@@ -126,13 +130,11 @@ const AdditionalInfo = ({
             }}
           />
         </AdditionalInfo.ContentWrapper>
-
       </AdditionalInfo.ContentWrapper>
 
       <AdditionalInfo.Separator
         isShow={additionalInfo.featured_store_returns_body}
       />
-
     </AdditionalInfo.Wrapper>
   );
 };

@@ -56,7 +56,7 @@ const CouponCode = ({
     }
 
     if (showActivateModal && !code) {
-      window.open(link, '_blank');
+      window.open(`${link}${isAmazon ? '&direct=1' : ''}`, '_blank');
     }
 
     if (code && !isShowCode) {
@@ -93,7 +93,10 @@ const CouponCode = ({
 
     return code ? (
       <>
-        <CouponCode.Button onClick={handleClick} isShow={!isShowCode}>
+        <CouponCode.Button
+          onClick={handleClick}
+          isShow={!isShowCode && !isAmazon}
+        >
           {i18n.language === 'jp' ? (
             <CouponCode.p>{t('global.revealCoupon')}</CouponCode.p>
           ) : (
@@ -101,7 +104,11 @@ const CouponCode = ({
           )}
           <CouponCode.Rectangle isShow={!!code} />
         </CouponCode.Button>
-        <CouponCode.Code isShow={isShowCode} href={link} target={'_blank'}>
+        <CouponCode.Code
+          isShow={isShowCode || isAmazon}
+          href={`${link}${isAmazon ? '&direct=1' : ''}`}
+          target={'_blank'}
+        >
           {code}
           <CouponCode.Tooltip>
             {t('coupons.buttons.tooltip')}
@@ -113,6 +120,7 @@ const CouponCode = ({
       !isShowCode &&
       !isVisit &&
       !isAuthenticated &&
+      !isAmazon &&
       !isInstallProcessed ? (
       <CouponCode.Button onClick={handleClick} isShow={!isShowCode}>
         <p>{t('coupons.buttons.viewDeal')}</p>
@@ -122,7 +130,11 @@ const CouponCode = ({
         <p> {t('build.visitStore')}</p>
       </CouponCode.Button>
     ) : (
-      <CouponCode.Link href={link} target={'_blank'} onClick={triggerDealEvent}>
+      <CouponCode.Link
+        href={`${link}${isAmazon ? '&direct=1' : ''}`}
+        target={'_blank'}
+        onClick={triggerDealEvent}
+      >
         <p>{t('coupons.buttons.viewDeal')}</p>
       </CouponCode.Link>
     );

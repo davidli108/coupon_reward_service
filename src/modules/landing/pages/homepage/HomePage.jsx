@@ -23,7 +23,6 @@ import HomePageCategories from './components/HomePageCategories';
 import { type HomePageProps } from './HomePage.types';
 
 import styles from './HomePage.styles';
-import Cookie from "js-cookie";
 
 const HomePage = ({
   t,
@@ -60,11 +59,6 @@ const HomePage = ({
     if (showActivateModal && !isModalShow) {
       setIsModalShow(true);
     }
-
-    if (Boolean(Cookie.get('installProcessed'))) {
-      window.open(link, '_blank');
-    }
-
   };
 
   const modalCallback = (dismiss: boolean) => {
