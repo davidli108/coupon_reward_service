@@ -63,9 +63,8 @@ const HomePage = ({
 
   const modalCallback = (dismiss: boolean) => {
     setShowActivateModal(false);
-    if (!isModalShow) {
-      setIsModalShow(true);
-    } else if (!dismiss) {
+
+    if (!dismiss) {
       window.open(link, '_blank');
     }
   };
