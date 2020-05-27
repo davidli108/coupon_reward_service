@@ -1,11 +1,13 @@
 // @flow
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import ModalActivateCoupons from '@components/ModalActivateCoupons/ModalActivateCoupons';
 import Cookie from 'js-cookie';
 import { isMobile } from 'react-device-detect';
 import breakpoint from 'styled-components-breakpoint';
 import { withRouter } from 'react-router-dom';
+
+import ModalActivateCoupons from '@components/ModalActivateCoupons/ModalActivateCoupons';
+import { isAmazonStore } from '@config/Utils';
 
 type CouponCodeProps = {
   t: Function,
@@ -34,10 +36,17 @@ const CouponCode = ({
 }: CouponCodeProps) => {
   const [isShowCode, setIsShowCode] = useState(false);
   const [showActivateModal, setShowActivateModal] = useState(false);
+  const [isAmazon, setIsAmazon] = useState(false);
 
   useEffect(() => {
     setIsShowCode((isAuthenticated && code) || (isExtensionInstalled && code));
   }, [isAuthenticated, isExtensionInstalled]);
+
+  useEffect(() => {
+    if (isAmazonStore(store)) {
+      setIsAmazon(true);
+    }
+  }, [store]);
 
   const handleClick = () => {
     setShowActivateModal(true);
@@ -74,7 +83,7 @@ const CouponCode = ({
     if (code && !isShowCode) {
       setIsShowCode(true);
     } else if (!dismiss) {
-      window.open(link, '_blank');
+      window.open(`${link}${isAmazon ? '&direct=1' : ''}`, '_blank');
     }
   };
 
