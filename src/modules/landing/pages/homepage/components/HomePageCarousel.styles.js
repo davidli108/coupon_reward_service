@@ -221,7 +221,7 @@ const styles = (HomePageCarousel: Object) => {
 
       h3 {
         margin: 0 0 10px;
-        font: bold 25px/34px ${({ theme }) => theme.fonts.montserrat} !important;
+        font: bold 20px/34px ${({ theme }) => theme.fonts.montserrat} !important;
       }
 
       h1 {

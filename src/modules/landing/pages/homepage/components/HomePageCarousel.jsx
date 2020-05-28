@@ -15,7 +15,8 @@ const StoreName = (storeName: string) => {
   return (storeName.length < 15)
     ? (<h1>{storeName}</h1>)
     : (<TextFit mode="single" className="storeName">{storeName}</TextFit>)
-}
+};
+
 const HomePageCarousel = ({
   t,
   storesData,

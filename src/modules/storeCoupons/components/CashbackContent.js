@@ -106,6 +106,12 @@ CashbackContent.CategoryName = styled.div`
     }
   }
 
+  @media (max-width: 768px) {
+    h2 {
+      width: 615px;
+    }
+  }
+
   @media (max-width: 425px) {
     width: 228px;
   }

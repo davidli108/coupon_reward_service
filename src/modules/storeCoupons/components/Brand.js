@@ -53,8 +53,8 @@ const Brand = ({
         {isLoaded ? (
           <Brand.BrandImageWrapper>
             <Brand.BrandImageWrapperLink
-              href={store.store_info_link}
-              target="_blank"
+              href={!isAmazon ? store.store_info_link : undefined}
+              target={!isAmazon ? '_blank' : undefined}
             >
               <Brand.BrandImageWrapperHolder
                 src={
@@ -74,21 +74,23 @@ const Brand = ({
             </Brand.BrandImageWrapperLink>
 
             <Brand.CashBackActivateButton>
-              <CouponCode
-                t={t}
-                i18n={i18n}
-                code={coupon_code}
-                link={store.store_info_link}
-                store={store.store_name}
-                isAuthenticated={isAuthenticated}
-                isExtensionInstalled={isExtensionInstalled}
-                logo={
-                  store.store_logo_image_path
-                    ? `${AppConfig.cloudUrl}${store.store_logo_image_path}`
-                    : placeholder
-                }
-                isVisit={true}
-              />
+              {!isAmazon && (
+                <CouponCode
+                  t={t}
+                  i18n={i18n}
+                  code={coupon_code}
+                  link={store.store_info_link}
+                  store={store.store_name}
+                  isAuthenticated={isAuthenticated}
+                  isExtensionInstalled={isExtensionInstalled}
+                  logo={
+                    store.store_logo_image_path
+                      ? `${AppConfig.cloudUrl}${store.store_logo_image_path}`
+                      : placeholder
+                  }
+                  isVisit={true}
+                />
+              )}
               <Brand.CashBackActivate>
                 {isAmazon && t('global.noCashBack')}
                 {!isAmazon &&

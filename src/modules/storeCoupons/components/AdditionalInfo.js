@@ -42,8 +42,8 @@ const AdditionalInfo = ({
 
   return (
     <AdditionalInfo.Wrapper>
-      <AdditionalInfo.ContentWrapper isShow={true}>
-        {cashbackRates.length > 0 ? (
+      {cashbackRates.length > 0 ? (
+        <AdditionalInfo.ContentWrapper isShow={true} className="categories">
           <AdditionalInfo.CashBackUl>
             <h2>{t('storeCoupons.cashBackCategories')}</h2>
             {getSortedCashbackRate(cashbackRates, true).map(v => (
@@ -59,10 +59,11 @@ const AdditionalInfo = ({
               </AdditionalInfo.CashBackLi>
             ))}
           </AdditionalInfo.CashBackUl>
-        ) : null}
-      </AdditionalInfo.ContentWrapper>
+        </AdditionalInfo.ContentWrapper>
+      ) : null}
 
       <AdditionalInfo.ContentWrapper
+        className={'content-info'}
         isShow={additionalInfo.featured_store_secrets_body}
       >
         <h2>{t('storeCoupons.secrets')}</h2>
@@ -78,34 +79,38 @@ const AdditionalInfo = ({
       />
 
       <AdditionalInfo.ContentWrapper
+        className={'content-info'}
         isShow={additionalInfo.featured_store_secrets_body}
       >
-        <AdditionalInfo.Content>
-          <AdditionalInfo.ContentLink
-            href={store.store_info_link}
-            target="_blank"
-          >
-            {t('header.shop', {
-              storeName: store.store_name,
-              cashBack: getCashback(),
-            })}
-            <FiChevronsRight />
-          </AdditionalInfo.ContentLink>
-        </AdditionalInfo.Content>
+        {!isAmazon && (
+          <AdditionalInfo.Content>
+            <AdditionalInfo.ContentLink
+              href={store.store_info_link}
+              target="_blank"
+            >
+              {t('header.shop', {
+                storeName: store.store_name,
+                cashBack: getCashback(),
+              })}
+              <FiChevronsRight />
+            </AdditionalInfo.ContentLink>
+          </AdditionalInfo.Content>
+        )}
+
+        <AdditionalInfo.ContentWrapper isShow={store.store_description.trim()}>
+          <h2>{store.store_name}</h2>
+          <AdditionalInfo.Content>
+            <p>{store.store_description}</p>
+          </AdditionalInfo.Content>
+        </AdditionalInfo.ContentWrapper>
       </AdditionalInfo.ContentWrapper>
 
       <AdditionalInfo.Separator
         isShow={additionalInfo.featured_store_secrets_body}
       />
 
-      <AdditionalInfo.ContentWrapper isShow={store.store_description.trim()}>
-        <h2>{store.store_name}</h2>
-        <AdditionalInfo.Content>
-          <p>{store.store_description}</p>
-        </AdditionalInfo.Content>
-      </AdditionalInfo.ContentWrapper>
-      <AdditionalInfo.Separator isShow={store.store_description.trim()} />
       <AdditionalInfo.ContentWrapper
+        className={'content-info'}
         isShow={additionalInfo.featured_store_returns_body}
       >
         <h2>{t('storeCoupons.returnPolicy')}</h2>
@@ -114,20 +119,22 @@ const AdditionalInfo = ({
             __html: additionalInfo.featured_store_returns_body,
           }}
         />
+
+        <AdditionalInfo.ContentWrapper
+          isShow={additionalInfo.featured_store_shipping_content}
+        >
+          <h2>{t('storeCoupons.shipping')}</h2>
+          <AdditionalInfo.Content
+            dangerouslySetInnerHTML={{
+              __html: additionalInfo.featured_store_shipping_content,
+            }}
+          />
+        </AdditionalInfo.ContentWrapper>
       </AdditionalInfo.ContentWrapper>
+
       <AdditionalInfo.Separator
         isShow={additionalInfo.featured_store_returns_body}
       />
-      <AdditionalInfo.ContentWrapper
-        isShow={additionalInfo.featured_store_shipping_content}
-      >
-        <h2>{t('storeCoupons.shipping')}</h2>
-        <AdditionalInfo.Content
-          dangerouslySetInnerHTML={{
-            __html: additionalInfo.featured_store_shipping_content,
-          }}
-        />
-      </AdditionalInfo.ContentWrapper>
     </AdditionalInfo.Wrapper>
   );
 };
@@ -146,6 +153,14 @@ AdditionalInfo.Wrapper = styled.div`
     font-weight: 600;
   }
 
+  .content-info {
+    margin-right: 20px;
+
+    @media (max-width: 768px) {
+      margin: 0 15px;
+    }
+  }
+
   h2,
   h5,
   p {
@@ -162,6 +177,12 @@ AdditionalInfo.Wrapper = styled.div`
     flex-direction: column;
     margin-top: 0;
   `}
+
+  @media (max-width: 768px) {
+    .categories {
+      display: none;
+    }
+  }
 `;
 
 AdditionalInfo.ContentLink = styled.a`
@@ -202,21 +223,15 @@ AdditionalInfo.Separator = styled.div`
 `;
 
 AdditionalInfo.ContentWrapper = styled.div`
-  width: 95%;
+  width: 100%;
+  margin: 0;
   flex-grow: 1;
-  margin-left: 15px;
-  margin-right: 15px;
   display: ${props => (props.isShow ? 'flex' : 'none')};
   flex-direction: column;
 
-  ${breakpoint('sm')`
-    width: 33%;
-  `}
-
-  ${breakpoint('lg')`
-    width: 100%;
-    margin: 0;
-  `}
+  iframe {
+    width: 95%;
+  }
 `;
 
 AdditionalInfo.CashBackLi = styled.li`
