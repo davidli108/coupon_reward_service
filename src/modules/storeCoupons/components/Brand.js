@@ -88,10 +88,11 @@ const Brand = ({
                 isVisit={true}
               />
               <Brand.CashBackActivate>
-                {noCashback ||
-                  t('global.activateCashback', {
-                    discount: setDecimalFormat(`${store.store_discount} %`),
-                  })}
+                {noCashback || discount
+                  ? t('global.activateCashback', {
+                      discount: setDecimalFormat(discount),
+                    })
+                  : t('global.instantSaving')}
               </Brand.CashBackActivate>
             </Brand.CashBackActivateButton>
           </Brand.BrandImageWrapper>
