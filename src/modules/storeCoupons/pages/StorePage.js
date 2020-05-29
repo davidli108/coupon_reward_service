@@ -8,10 +8,13 @@ import { compose } from 'recompose';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { withTranslation } from 'react-i18next';
+import parse from 'html-react-parser';
+
 import {
   getFilteredList,
   getIsExtensionInstalled,
 } from '@modules/app/AppReducer';
+import { isAmazonStore } from '@config/Utils';
 import Brand from '../components/Brand';
 import Offers from '../components/Offers';
 import AdditionalInfo from '../components/AdditionalInfo';
@@ -31,8 +34,7 @@ import * as actions from '../StoreCouponsActions';
 import AdditionalInfoLoader from '../components/loaders/AdditionalInfoLoader';
 import OffersLoader from '../components/loaders/OffersLoader';
 import AddSaving from '../components/AddSaving';
-import { getDomainAttrs } from '@modules/localization/i18n';
-import parse from 'html-react-parser';
+
 import styles from './StorePage.styles';
 
 const StorePage = ({
@@ -56,7 +58,6 @@ const StorePage = ({
   const [storeName, setStoreName] = useState(match.params.name);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isAmazon, setIsAmazon] = useState(false);
-  const { tld } = getDomainAttrs();
 
   useEffect(() => {
     match.params.name &&
@@ -65,7 +66,7 @@ const StorePage = ({
   }, []);
 
   useEffect(() => {
-    if (storeName === 'amazon' && ['com', 'co.uk'].includes(tld)) {
+    if (isAmazonStore(storeName)) {
       setIsAmazon(true);
     } else {
       setIsAmazon(false);
@@ -126,14 +127,14 @@ const StorePage = ({
       <Brand
         t={t}
         isLoaded={isLoaded}
-        extensionActive={isLoaded && isExtensionInstalled}
+        extensionActive={isLoaded && (isExtensionInstalled || isAmazon)}
         offersCount={offersCount}
         reviews={reviews}
       />
       <StorePage.DesktopContent>
         <StorePage.ColumnNoWrapFlexBox
           order="2"
-          extensionActive={isLoaded && isExtensionInstalled}
+          extensionActive={isLoaded && (isExtensionInstalled || isAmazon)}
           style={{ marginBottom: 50 }}
         >
           {isLoaded ? (
@@ -168,7 +169,6 @@ const StorePage = ({
           </StorePage.TermsWrapper>
         </StorePage.ColumnNoWrapFlexBox>
       </StorePage.DesktopContent>
-      {/*{isLoaded && <StoreInformation />}*/}
     </StorePage.Wrapper>
   );
 };
@@ -238,8 +238,6 @@ StorePage.ColumnNoWrapFlexBox = styled.div`
     order: ${({ order }) => order};
     width: 100%;
   `}
-
-  ${({ order }) => (order === '1' ? 'margin-right: 45px;' : '')}
 `;
 
 StorePage.PreloaderWrapper = styled.div`

@@ -31,6 +31,8 @@ const HomeFavoriteStores = ({
         return require('../assets/de/stores-bg.svg');
       case 'fr':
         return require('../assets/fr/stores-bg.svg');
+      case 'gb':
+        return require('../assets/gb/stores-bg.svg');
       default:
         return require('../assets/en/stores-bg.svg');
     }
@@ -44,7 +46,7 @@ const HomeFavoriteStores = ({
         <h4 className="h4class text-center" dangerouslySetInnerHTML={{__html: t('homepage.worksWithStoresInfo')}} />
         <h6 className="h6class text-center">{t(day)} {t('homepage.worksWithStoresTop', {today})}</h6>
         <div className="stores placements">
-          {featuredStores.map((store, key) => (
+          {featuredStores && featuredStores.map((store, key) => (
             <div key={key} className="store-item">
               <Link to={`/coupon/${store.short_name}`}>
                 <img src={store.offer_img} alt={store.store_name}/>

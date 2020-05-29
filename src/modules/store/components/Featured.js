@@ -8,11 +8,11 @@ import moment from 'moment';
 import i18n, { 
   currencyLocaleFormat,
   setDecimalFormat,
-
 } from '@modules/localization/i18n';
 
+import i18n, { currencyLocaleFormat } from '@modules/localization/i18n';
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
-import i18next from 'i18next';
+import { isAmazonStore } from '@config/Utils';
 
 type FeaturedProps = {
   t: Function,
@@ -55,8 +55,9 @@ const Featured = ({ t, featured }: FeaturedProps) => {
                 ? 'global.amCashBack'
                 : 'global.upToCashBack'
               : 'global.instantSaving';
-            const cashBackText =
-              override || t(cashBackMessageKey, { discount });
+            const cashBackText = isAmazonStore(store_name)
+              ? t('global.noCashBack')
+              : override || t(cashBackMessageKey, { discount });
             Featured.CashComponent =
               i18next.language === 'jp' ? Featured.CashJp : Featured.Cash;
             const date = moment().format('MMMM | YYYY');

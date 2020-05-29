@@ -304,6 +304,9 @@ export default {
     secretRates: 'Geheime Tarife und Angebote',
     noCouponsAndDeal:
       'Für {{ storeName }} wurden keine Gutscheine oder Angebote gefunden. Werfen Sie einen Blick auf unsere Top-Angebote und Deals.',
+    getBestPrice: 'Get the Best Price',
+    alertAutomatically:
+      'Piggy will automatically alert you of the best price at {{ storeName }}. You can also track the price history on your items and get alerts if the price drops.',
   },
   sitemap: {
     meta: {

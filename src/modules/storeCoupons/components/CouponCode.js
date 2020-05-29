@@ -1,11 +1,13 @@
 // @flow
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import ModalActivateCoupons from '@components/ModalActivateCoupons/ModalActivateCoupons';
 import Cookie from 'js-cookie';
 import { isMobile } from 'react-device-detect';
 import breakpoint from 'styled-components-breakpoint';
 import { withRouter } from 'react-router-dom';
+
+import ModalActivateCoupons from '@components/ModalActivateCoupons/ModalActivateCoupons';
+import { isAmazonStore } from '@config/Utils';
 
 type CouponCodeProps = {
   t: Function,
@@ -34,10 +36,17 @@ const CouponCode = ({
 }: CouponCodeProps) => {
   const [isShowCode, setIsShowCode] = useState(false);
   const [showActivateModal, setShowActivateModal] = useState(false);
+  const [isAmazon, setIsAmazon] = useState(false);
 
   useEffect(() => {
     setIsShowCode((isAuthenticated && code) || (isExtensionInstalled && code));
   }, [isAuthenticated, isExtensionInstalled]);
+
+  useEffect(() => {
+    if (isAmazonStore(store)) {
+      setIsAmazon(true);
+    }
+  }, [store]);
 
   const handleClick = () => {
     setShowActivateModal(true);
@@ -47,7 +56,7 @@ const CouponCode = ({
     }
 
     if (showActivateModal && !code) {
-      window.open(link, '_blank');
+      window.open(`${link}${isAmazon ? '&direct=1' : ''}`, '_blank');
     }
 
     if (code && !isShowCode) {
@@ -74,7 +83,7 @@ const CouponCode = ({
     if (code && !isShowCode) {
       setIsShowCode(true);
     } else if (!dismiss) {
-      window.open(link, '_blank');
+      window.open(`${link}${isAmazon ? '&direct=1' : ''}`, '_blank');
     }
   };
 
@@ -84,7 +93,10 @@ const CouponCode = ({
 
     return code ? (
       <>
-        <CouponCode.Button onClick={handleClick} isShow={!isShowCode}>
+        <CouponCode.Button
+          onClick={handleClick}
+          isShow={!isShowCode && !isAmazon}
+        >
           {i18n.language === 'jp' ? (
             <CouponCode.p>{t('global.revealCoupon')}</CouponCode.p>
           ) : (
@@ -92,7 +104,11 @@ const CouponCode = ({
           )}
           <CouponCode.Rectangle isShow={!!code} />
         </CouponCode.Button>
-        <CouponCode.Code isShow={isShowCode} href={link} target={'_blank'}>
+        <CouponCode.Code
+          isShow={isShowCode || isAmazon}
+          href={`${link}${isAmazon ? '&direct=1' : ''}`}
+          target={'_blank'}
+        >
           {code}
           <CouponCode.Tooltip>
             {t('coupons.buttons.tooltip')}
@@ -104,6 +120,7 @@ const CouponCode = ({
       !isShowCode &&
       !isVisit &&
       !isAuthenticated &&
+      !isAmazon &&
       !isInstallProcessed ? (
       <CouponCode.Button onClick={handleClick} isShow={!isShowCode}>
         <p>{t('coupons.buttons.viewDeal')}</p>
@@ -113,7 +130,11 @@ const CouponCode = ({
         <p> {t('build.visitStore')}</p>
       </CouponCode.Button>
     ) : (
-      <CouponCode.Link href={link} target={'_blank'} onClick={triggerDealEvent}>
+      <CouponCode.Link
+        href={`${link}${isAmazon ? '&direct=1' : ''}`}
+        target={'_blank'}
+        onClick={triggerDealEvent}
+      >
         <p>{t('coupons.buttons.viewDeal')}</p>
       </CouponCode.Link>
     );

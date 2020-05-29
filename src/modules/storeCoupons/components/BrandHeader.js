@@ -27,6 +27,7 @@ import { getOrigin } from '@modules/auth/AuthHelper';
 
 import { getStore, getOffers } from '../StoreCouponsReducer';
 import AppConfig from '@config/AppConfig';
+import { isAmazonStore } from '@config/Utils';
 
 const modal = {
   modalSignIn: 'modalSignIn',

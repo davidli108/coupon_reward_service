@@ -171,7 +171,7 @@ export default {
     cashBack: 'Remise en Argent',
     cashBackPrint: '{{print}} Cashback',
     instantSaving: 'Économies instantanées',
-    noCashBack: 'Pas de Cashback',
+    noCashBack: 'Pas de remise en argent',
     upToCashBack: "Jusqu'à {{discount}} de remise en argent",
     downloadPiggy:
       "Téléchargez les coupons automatiques de Piggy's à la caisse et ne ratez plus jamais une affaire !",
@@ -307,6 +307,9 @@ export default {
     secretRates: 'Tarifs et offres secrets',
     noCouponsAndDeal:
       "Aucun Coupons ou Offre trouvé pour {{ storeName }}. Jetez un coup d'œil à nos meilleures offres et offres ci-dessous.",
+    getBestPrice: 'Get the Best Price',
+    alertAutomatically:
+      'Piggy will automatically alert you of the best price at {{ storeName }}. You can also track the price history on your items and get alerts if the price drops.',
   },
   sitemap: {
     meta: {

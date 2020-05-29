@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 import ModalActivateCoupons from '@components/ModalActivateCoupons/ModalActivateCoupons';
+import { isAmazonStore } from '@config/Utils';
 
 type CouponCodeProps = {
   t: Function,
@@ -31,10 +32,17 @@ const CouponCode = ({
 }: CouponCodeProps) => {
   const [isShowCode, setIsShowCode] = useState(false);
   const [showActivateModal, setShowActivateModal] = useState(false);
+  const [isAmazon, setIsAmazon] = useState(false);
 
   useEffect(() => {
     setIsShowCode((isAuthenticated && code) || (isExtensionInstalled && code));
   }, [isAuthenticated, isExtensionInstalled]);
+
+  useEffect(() => {
+    if (isAmazonStore(store)) {
+      setIsAmazon(true);
+    }
+  }, [store]);
 
   const handleClick = () => {
     setShowActivateModal(true);
@@ -44,7 +52,7 @@ const CouponCode = ({
     }
 
     if (showActivateModal && !code) {
-      window.open(link, '_blank');
+      window.open(`${link}${isAmazon ? '&direct=1' : ''}`, '_blank');
     }
 
     if (code) {
@@ -62,19 +70,26 @@ const CouponCode = ({
     if (code && !isShowCode) {
       setIsShowCode(true);
     } else {
-      window.open(link, '_blank');
+      window.open(`${link}${isAmazon ? '&direct=1' : ''}`, '_blank');
     }
   };
 
   return (
     <>
       <CouponCode.Wrapper>
-        <CouponCode.Button onClick={handleClick} isShow={!isShowCode}>
+        <CouponCode.Button
+          onClick={handleClick}
+          isShow={!isShowCode && !isAmazon}
+        >
           {code
             ? t('coupons.buttons.viewCoupon')
             : t('coupons.buttons.viewDeal')}
         </CouponCode.Button>
-        <CouponCode.Code isShow={isShowCode} href={link} target={'_blank'}>
+        <CouponCode.Code
+          isShow={isShowCode || isAmazon}
+          href={`${link}${isAmazon ? '&direct=1' : ''}`}
+          target={'_blank'}
+        >
           {code}
           <CouponCode.Tooltip>
             {t('coupons.buttons.tooltip')}

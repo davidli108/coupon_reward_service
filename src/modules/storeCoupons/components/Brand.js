@@ -12,6 +12,7 @@ import BrandXlLoader from './loaders/BrandXlLoader';
 import type { BrandProps } from '../models/StorePage';
 import { getStore } from '../StoreCouponsReducer';
 import AppConfig from '@config/AppConfig';
+import { isAmazonStore } from '@config/Utils';
 import CouponCode from './CouponCode';
 import { getDomainAttrs , setDecimalFormat} from '@modules/localization/i18n';
 
@@ -46,14 +47,20 @@ const Brand = ({
     }
   }, [store]);
 
+  useEffect(() => {
+    if (isAmazonStore(store.store_name)) {
+      setIsAmazon(true);
+    }
+  }, [store]);
+
   return (
     <>
       <Brand.Wrapper>
         {isLoaded ? (
           <Brand.BrandImageWrapper>
             <Brand.BrandImageWrapperLink
-              href={store.store_info_link}
-              target="_blank"
+              href={!isAmazon ? store.store_info_link : undefined}
+              target={!isAmazon ? '_blank' : undefined}
             >
               <Brand.BrandImageWrapperHolder
                 src={
@@ -105,7 +112,7 @@ const Brand = ({
           {isLoaded ? (
             <>
               <BrandHeader offersCount={offersCount} />
-              {!extensionActive && (
+              {!extensionActive && !isAmazon && (
                 <Brand.XlWrapper>
                   <Brand.NoWrapFlexBoxWithBorder>
                     <BrandContent
@@ -148,7 +155,13 @@ Brand.Wrapper = styled.div`
 `;
 
 Brand.BrandImageWrapperLink = styled.a`
-  display: block;
+  display: flex;
+  flex: 1 0 auto;
+  align-items: center;
+  justify-content: center;
+  padding: 0 25px;
+  width: 100%;
+  box-sizing: border-box;
 `;
 
 Brand.BrandWrapperBtn = styled.div`
@@ -184,11 +197,13 @@ Brand.BrandImageWrapper = styled.div`
     width: 280px;
     height: 320px;
   `}
-  > div > div {
+
+  > div > div[class*='CouponCode__Wrapper'] {
     width: 220px;
     height: 40px;
     margin: 20px auto !important;
     max-width: unset !important;
+    
     ${breakpoint('md')`
       width: 140px;
     `}

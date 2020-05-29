@@ -1,24 +1,40 @@
 // @flow
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
 import { MdKeyboardArrowUp } from 'react-icons/md';
 import AppConfig from '@config/AppConfig';
+import { isAmazonStore } from '@config/Utils';
 import type { BrandNeverOverpayProps } from '../models/StorePage';
 
 const BrandNeverOverpay = ({ t, i18n, storeName }: BrandNeverOverpayProps) => {
-  const [isCovered, setCovered] = React.useState(true);
+  const [isCovered, setCovered] = useState(true);
   const handleCoveredToggler = () => setCovered(!isCovered);
+  const [isAmazon, setIsAmazon] = useState(false);
 
   const addChromeLink = `${AppConfig.extension.url}?hl=${i18n.language}`;
+
+  useEffect(() => {
+    if (isAmazonStore(storeName)) {
+      setIsAmazon(true);
+    }
+  }, [storeName]);
 
   return (
     <>
       <BrandNeverOverpay.Cover>
         <BrandNeverOverpay.NeverOverpay isCovered={isCovered}>
-          <h2>{t('storeCoupons.neverOverlay', { storeName })}</h2>
-          <p>{t('storeCoupons.automaticallyAddAll', { storeName })}</p>
+          <h2>
+            {isAmazon
+              ? t('storeCoupons.getBestPrice')
+              : t('storeCoupons.neverOverlay', { storeName })}
+          </h2>
+          <p>
+            {isAmazon
+              ? t('storeCoupons.alertAutomatically', { storeName })
+              : t('storeCoupons.automaticallyAddAll', { storeName })}
+          </p>
         </BrandNeverOverpay.NeverOverpay>
         <span onClick={handleCoveredToggler}>
           {isCovered ? 'See More' : <MdKeyboardArrowUp />}
@@ -26,17 +42,21 @@ const BrandNeverOverpay = ({ t, i18n, storeName }: BrandNeverOverpayProps) => {
       </BrandNeverOverpay.Cover>
 
       <BrandNeverOverpay.Advantages>
-        <a href={addChromeLink} target="_blank" rel="noopener noreferrer">
-          {t('storeCoupons.automaticCoupons')}
-        </a>
-        <span>-</span>
-        <a href={addChromeLink} target="_blank" rel="noopener noreferrer">
-          {t('storeCoupons.priceCheck')}
-        </a>
-        <span>-</span>
-        <a href={addChromeLink} target="_blank" rel="noopener noreferrer">
-          {t('storeCoupons.secretRates')}
-        </a>
+        {!isAmazon && (
+          <>
+            <a href={addChromeLink} target="_blank" rel="noopener noreferrer">
+              {t('storeCoupons.automaticCoupons')}
+            </a>
+            <span>-</span>
+            <a href={addChromeLink} target="_blank" rel="noopener noreferrer">
+              {t('storeCoupons.priceCheck')}
+            </a>
+            <span>-</span>
+            <a href={addChromeLink} target="_blank" rel="noopener noreferrer">
+              {t('storeCoupons.secretRates')}
+            </a>
+          </>
+        )}
       </BrandNeverOverpay.Advantages>
     </>
   );

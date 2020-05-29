@@ -168,7 +168,7 @@ export default {
     cashBack: 'Cash back',
     cashBackPrint: '{{print}} Cash back',
     instantSaving: 'Instant Savings',
-    noCashBack: 'No Cash back',
+    noCashBack: 'No Cash Back',
     upToCashBack: 'Up to {{discount}} Cash Back',
     downloadPiggy:
       "Download Piggy's Automatic Coupons at Checkout and Never Miss a Deal Again!",
@@ -231,7 +231,6 @@ export default {
     },
     todaysFeatureCoupon: "Today's Featured Coupon From {{storeName}}",
     upToCashback: '+ up to {{discount}} Cash Back',
-    noCashback: 'Cash Back is not available',
     plusCashBack: '+{{discount}} Cash Back',
     noCouponsFound: 'No Coupons Found',
     noFeaturedCouponsFound: 'No Featured Coupons Found',
@@ -301,6 +300,9 @@ export default {
     secretRates: 'Secret Rates and Deals',
     noCouponsAndDeal:
       'No Coupons or Deals found for {{storeName}}. Take a look at our top offers and deals below.',
+    getBestPrice: 'Get the Best Price',
+    alertAutomatically:
+      'Piggy will automatically alert you of the best price at {{ storeName }}. You can also track the price history on your items and get alerts if the price drops.',
   },
   sitemap: {
     meta: {
