@@ -187,6 +187,28 @@ export default {
     about: 'About',
   },
   coupons: {
+    animateModal: {
+      title: 'Piggy is Searching for Automatic Coupons',
+      hangon: 'Please hang on for a second...',
+      save: 'You save time and money!',
+    },
+    animateModal1: {
+      subTitle: 'Piggy Found Automatic Coupons',
+      addPiggy:
+        "Don't overpay...<br/>Piggy automatically finds the best coupons.",
+      btnFree: 'Get Piggy - It´s Free',
+    },
+    animateModal2: {
+      subTitle: 'Automatically Apply Coupons & Savings Found',
+      addPiggy:
+        "Add Piggy's free Google Extension to apply the best savings instantly.",
+      btnFree: 'Continue - It´s Free',
+      animatedTitle01: 'Piggy is clipping your coupon...',
+      animatedTitle02: 'Piggy is applying for cash back...',
+      animatedTitle03: 'Piggy applied cash back.',
+      animatedTitle04:
+        'Piggy is detecting eligibility for automatic coupons...',
+    },
     shopBy: {
       couponSales: 'Voucher & Sales',
       browseByStore: 'Browse by Store',

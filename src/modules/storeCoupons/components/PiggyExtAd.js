@@ -122,6 +122,7 @@ PiggyExtAd.AddExtensionButton = styled.div`
   border: 2px solid ${props => props.theme.colors.greenMain};
   background: ${props => props.theme.colors.greenMain};
   transition: 0.3s;
+  text-align: center;
 
   ${breakpoint('md')`
     font-size: 15px;
