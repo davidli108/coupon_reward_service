@@ -65,7 +65,9 @@ const Brand = ({
                   e.target.onerror = null;
                   e.target.src = placeholder;
                 }}
-                alt={`${store.store_name || ''} Coupon Codes ${moment().format(
+                alt={`${store.store_name || ''} ${t(
+                            'storeCoupons.codes',
+                          )} ${moment().format(
                   'MMMM',
                 )} | ${moment().format('YYYY')}`}
               />
