@@ -191,6 +191,28 @@ export default {
     about: 'À propos de',
   },
   coupons: {
+    animateModal: {
+      title: 'Piggy est en train de chercher des coupons automatiques',
+      hangon: 'Attendez quelques secondes...',
+      save: "Economisez du temps et de l'argent !",
+    },
+    animateModal1: {
+      subTitle: 'Piggy a trouvé des coupons automatiques',
+      addPiggy:
+        'Ne surpayez pas...<br/>Piggy trouve automatiquement les meilleurs coupons.',
+      btnFree: "Téléchargez Piggy - C'est gratuit !",
+    },
+    animateModal2: {
+      subTitle: 'Appliquez automatiquement les coupons et économies retrouvés',
+      addPiggy:
+        "Ajoutez l'extension Chrome de Piggy gratuitement et appliquez les meilleurs économies instanément. ",
+      btnFree: "Continuez - C'est gratuit !",
+      animatedTitle01: "Piggy est en train d'ajouter votre coupon...",
+      animatedTitle02: "Piggy est en train d'appliquer du cashback...",
+      animatedTitle03: 'Piggy a appliqué votre cashback.',
+      animatedTitle04:
+        "Piggy est en train de détécter l'éligibilité de coupons automatiques...",
+    },
     shopBy: {
       couponSales: 'Coupon & Ventes',
       browseByStore: 'Voir par boutique',

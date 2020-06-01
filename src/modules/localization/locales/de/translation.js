@@ -188,6 +188,28 @@ export default {
     about: 'Über',
   },
   coupons: {
+    animateModal: {
+      title: 'Piggy sucht nach automatischen Coupons',
+      hangon: 'Warten Sie bitte einen Moment...',
+      save: 'Sie sparen Zeit und Geld!',
+    },
+    animateModal1: {
+      subTitle: 'Piggy fand automatische Coupons',
+      addPiggy:
+        'Bezahlen Sie nicht zu viel...<br/>Piggy findet automatisch die besten Coupons.',
+      btnFree: 'Holen Sie sich Piggy - Es ist kostenlos',
+    },
+    animateModal2: {
+      subTitle: 'Coupons und Ersparnisse automatisch anwenden & sichern',
+      addPiggy:
+        "Fügen Sie Piggy's kostenlose Google-Erweiterung hinzu, um die besten Coupons sofort anzuwenden.",
+      btnFree: 'Fortfahren - Es ist kostenlos',
+      animatedTitle01: 'Piggy schneidet Ihren Coupon aus...',
+      animatedTitle02: 'Piggy beantragt Cashback...',
+      animatedTitle03: 'Piggy hat Cashback beantragt.',
+      animatedTitle04:
+        'Piggy schaut ob die automatischen Coupons noch gültig sind...',
+    },
     shopBy: {
       couponSales: 'Gutschein & Verkauf',
       browseByStore: 'Nach Geschäft durchsuchen',

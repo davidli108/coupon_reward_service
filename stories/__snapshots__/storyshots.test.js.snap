@@ -1219,6 +1219,96 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
   padding: 20px;
   margin: 10px;
   box-sizing: border-box;
+  color: #000;
+  background: #bdbdbd;
+  border: solid 1px #bdbbb9;
+  border-radius: 2px;
+  font-family: Roboto,sans-serif;
+  cursor: pointer;
+}
+
+.c43:hover label {
+  opacity: 1;
+}
+
+.c44 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 150px;
+  width: 200px;
+  padding: 20px;
+  margin: 10px;
+  box-sizing: border-box;
+  color: #000;
+  background: #e9e9e9;
+  border: solid 1px #bdbbb9;
+  border-radius: 2px;
+  font-family: Roboto,sans-serif;
+  cursor: pointer;
+}
+
+.c44:hover label {
+  opacity: 1;
+}
+
+.c45 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 150px;
+  width: 200px;
+  padding: 20px;
+  margin: 10px;
+  box-sizing: border-box;
+  color: #fff;
+  background: #bb2333;
+  border: solid 1px #bdbbb9;
+  border-radius: 2px;
+  font-family: Roboto,sans-serif;
+  cursor: pointer;
+}
+
+.c45:hover label {
+  opacity: 1;
+}
+
+.c46 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 150px;
+  width: 200px;
+  padding: 20px;
+  margin: 10px;
+  box-sizing: border-box;
   color: #fff;
   background: rgba(70,73,77,.93);
   border: solid 1px #bdbbb9;
@@ -1227,7 +1317,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
   cursor: pointer;
 }
 
-.c43:hover label {
+.c46:hover label {
   opacity: 1;
 }
 
@@ -2095,7 +2185,7 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
       <p
         className="c1"
       >
-        darkBlueBlank
+        DarkBlueBlank
       </p>
       <p
         className="c2"
@@ -2110,6 +2200,69 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
     </div>
     <div
       className="c43"
+      color="#bdbdbd"
+      data-clipboard-text="\${props => props.theme.colors.darkBlank}"
+    >
+      <p
+        className="c1"
+      >
+        DarkBlank
+      </p>
+      <p
+        className="c2"
+      >
+        #bdbdbd
+      </p>
+      <label
+        className="c3"
+      >
+        Copy
+      </label>
+    </div>
+    <div
+      className="c44"
+      color="#e9e9e9"
+      data-clipboard-text="\${props => props.theme.colors.grayBlank}"
+    >
+      <p
+        className="c1"
+      >
+        GrayBlank
+      </p>
+      <p
+        className="c2"
+      >
+        #e9e9e9
+      </p>
+      <label
+        className="c3"
+      >
+        Copy
+      </label>
+    </div>
+    <div
+      className="c45"
+      color="#bb2333"
+      data-clipboard-text="\${props => props.theme.colors.bloodRed}"
+    >
+      <p
+        className="c1"
+      >
+        BloodRed
+      </p>
+      <p
+        className="c2"
+      >
+        #bb2333
+      </p>
+      <label
+        className="c3"
+      >
+        Copy
+      </label>
+    </div>
+    <div
+      className="c46"
       color="rgba(70, 73, 77, .93)"
       data-clipboard-text="\${props => props.theme.colors.modalOverlayBg}"
     >

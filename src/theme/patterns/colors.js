@@ -44,8 +44,10 @@ export const colorScheme = {
   skyLightDark: { value: '#01899e', name: 'SkyLightDark' },
   darkSky: { value: '#adb8c0', name: 'DarkSky' },
   darkGrayBlank: { value: '#a7a7a7', name: 'DarkGrayBlank' },
-  darkBlueBlank: { value: '#e3e6e9', name: 'darkBlueBlank' },
-
+  darkBlueBlank: { value: '#e3e6e9', name: 'DarkBlueBlank' },
+  darkBlank: { value: '#bdbdbd', name: 'DarkBlank' },
+  grayBlank: { value: '#e9e9e9', name: 'GrayBlank' },
+  bloodRed: { value: '#bb2333', name: 'BloodRed' },
   modalOverlayBg: {
     value: 'rgba(70, 73, 77, .93)',
     name: 'ModalOverlayBg',
