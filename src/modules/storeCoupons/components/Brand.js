@@ -14,7 +14,7 @@ import { getStore } from '../StoreCouponsReducer';
 import AppConfig from '@config/AppConfig';
 import { isAmazonStore } from '@config/Utils';
 import CouponCode from './CouponCode';
-import { getDomainAttrs , setDecimalFormat} from '@modules/localization/i18n';
+import { setDecimalFormat, currencyLocaleFormat} from '@modules/localization/i18n';
 
 const Brand = ({
   t,
@@ -31,21 +31,15 @@ const Brand = ({
   reviews,
   extensionActive,
 }: BrandProps) => {
-  const [noCashback, setNoCashback] = useState(false);
   const [isAmazon, setIsAmazon] = useState(false);
-  const { tld } = getDomainAttrs();
-
-  useEffect(() => {
-    if (store.store_discount === '0.0%' && ['com', 'co.uk'].includes(tld)) {
-      setNoCashback(t('coupons.noCashback'));
-    } else if (noCashback) {
-      setNoCashback(false);
-    }
-
-    if (store_name === 'Amazon') {
-      setIsAmazon(true);
-    }
-  }, [store]);
+  const discount = store.store_cashback_ok
+    ? store.store_numeric_type === 1
+      ? currencyLocaleFormat(
+          store.store_discount.replace(/[$£€]/, ''),
+          store.store_country_code,
+        )
+      : `${store.store_discount.replace('%', '')}%`
+    : '';
 
   useEffect(() => {
     if (isAmazonStore(store.store_name)) {
@@ -97,11 +91,13 @@ const Brand = ({
                 isVisit={true}
               />
               <Brand.CashBackActivate>
-                {noCashback || discount
-                  ? t('global.activateCashback', {
-                      discount: setDecimalFormat(discount),
-                    })
-                  : t('global.instantSaving')}
+              {isAmazon && t('global.noCashBack')}
+                {!isAmazon &&
+                  (discount
+                    ? t('global.activateCashback', {
+                        discount: setDecimalFormat(discount),
+                      })
+                    : t('global.instantSaving'))}
               </Brand.CashBackActivate>
             </Brand.CashBackActivateButton>
           </Brand.BrandImageWrapper>

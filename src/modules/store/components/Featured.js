@@ -5,12 +5,12 @@ import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
 import moment from 'moment';
+import i18next from 'i18next';
 import i18n, { 
   currencyLocaleFormat,
   setDecimalFormat,
 } from '@modules/localization/i18n';
 
-import i18n, { currencyLocaleFormat } from '@modules/localization/i18n';
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
 import { isAmazonStore } from '@config/Utils';
 

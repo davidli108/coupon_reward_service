@@ -1,7 +1,6 @@
 // @flow
 import * as R from 'ramda';
 import React, { useState, useEffect } from 'react';
-// eslint-disable-next-line no-unused-vars, import/no-unresolved
 import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
 import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
@@ -9,7 +8,6 @@ import { compose } from 'recompose';
 import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
-
 import { getIsAuthenticated } from '@modules/auth/AuthReducer';
 import SignInModal from '@modules/auth/components/SignInModal';
 import SignUpModal from '@modules/auth/components/SignUpModal';
@@ -20,7 +18,6 @@ import {
   getLocaleConfig,
   redirectToEnOrigin,
   currencyLocaleFormat,
-  getDomainAttrs,
   setDecimalFormat,
 } from '@modules/localization/i18n';
 import { getOrigin } from '@modules/auth/AuthHelper';
@@ -34,7 +31,6 @@ const modal = {
   modalSignUp: 'modalSignUp',
   modalResetPassword: 'modalResetPassword',
 };
-
 export type BrandHeaderProps = {
   t: Function,
   match: Object,
@@ -61,8 +57,7 @@ const BrandHeader = ({
   isAuthenticated,
 }: BrandHeaderProps) => {
   const [currentModal, setCurrentModal] = useState(null);
-  const [noCashback, setNoCashback] = useState(false);
-  const { tld } = getDomainAttrs();
+  const [isAmazon, setIsAmazon] = useState(false);
   const localeConfig = getLocaleConfig();
 
   const discount = store.store_cashback_ok
@@ -111,8 +106,8 @@ const BrandHeader = ({
   };
 
   useEffect(() => {
-    if (store.store_discount === '0.0%' && ['com', 'co.uk'].includes(tld)) {
-      setNoCashback(t('coupons.noCashback'));
+    if (isAmazonStore(store.store_name)) {
+      setIsAmazon(true);
     }
   }, [store]);
 
@@ -144,7 +139,11 @@ const BrandHeader = ({
             </>
           )}
           <BrandHeader.SmNonVisible>
-            <span>{noCashback || t(cashBackMessageKey, { discount })}</span>
+            <span>
+              {isAmazon
+                ? t('global.noCashBack')
+                : t(cashBackMessageKey, { discount })}
+            </span>
           </BrandHeader.SmNonVisible>
         </BrandHeader.OffersStats>
         <BrandHeader.SmVisible>
@@ -189,7 +188,6 @@ BrandHeader.Name = styled.h2`
   color: #374b5a;
   padding-top: 15px;
   text-align: center;
-
   @media (max-width: 320px) {
     font-size: 100%;
   }
@@ -267,15 +265,12 @@ BrandHeader.OffersStats = styled.div`
   @media (max-width: 1024px) {
     margin: 10px 0 0 0;
   }
-
   @media (min-width: 768px) {
     margin-left: 0;
   }
-
   @media (max-width: 425px) {
     margin: 0 auto;
   }
-
   & > span {
     font-size: 11px;
     color: #62707b;
@@ -320,13 +315,11 @@ BrandHeader.FollowStoreWrapper = styled.div`
     width: fit-content;
     height: auto;
     cursor: pointer;
-
     > svg {
       width: 22px;
       height: 22px;
       color: ${({ isFavorite }) => (isFavorite ? 'red' : '#d2d2d2')};
     }
-
     > span {
       padding-left: 5px;
       font-size: 14px;

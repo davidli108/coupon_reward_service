@@ -63,11 +63,9 @@ StoreMain.Title = styled.h3`
   font-weight: bold;
   font-size: 25px;
   color: ${props => props.theme.colors.blackLight};
-
   ${breakpoint('xs')`
     display: none;
   `}
-
   ${breakpoint('md')`
     display: block;
     font-size: 25px;

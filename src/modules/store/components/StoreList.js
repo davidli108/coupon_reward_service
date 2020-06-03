@@ -15,7 +15,7 @@ import i18n, {
 } from '@modules/localization/i18n';
 
 // import verificationIcon from '../assets/verif.png';
-
+import { isAmazonStore } from '@config/Utils';
 import { type Store } from '../models';
 
 type StoreListProps = {
