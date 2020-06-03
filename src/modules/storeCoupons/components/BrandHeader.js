@@ -188,6 +188,7 @@ BrandHeader.Name = styled.h2`
   color: #374b5a;
   padding-top: 15px;
   text-align: center;
+
   @media (max-width: 320px) {
     font-size: 100%;
   }
@@ -262,15 +263,19 @@ BrandHeader.OffersStats = styled.div`
   ${breakpoint('xl')`
     padding: 0 0 5px 0;
   `}
+
   @media (max-width: 1024px) {
     margin: 10px 0 0 0;
   }
+
   @media (min-width: 768px) {
     margin-left: 0;
   }
+
   @media (max-width: 425px) {
     margin: 0 auto;
   }
+
   & > span {
     font-size: 11px;
     color: #62707b;
@@ -315,11 +320,13 @@ BrandHeader.FollowStoreWrapper = styled.div`
     width: fit-content;
     height: auto;
     cursor: pointer;
+
     > svg {
       width: 22px;
       height: 22px;
       color: ${({ isFavorite }) => (isFavorite ? 'red' : '#d2d2d2')};
     }
+
     > span {
       padding-left: 5px;
       font-size: 14px;

@@ -199,7 +199,7 @@ Brand.BrandImageWrapper = styled.div`
     height: 40px;
     margin: 20px auto !important;
     max-width: unset !important;
-    
+
     ${breakpoint('md')`
       width: 140px;
     `}
