@@ -14,7 +14,7 @@ import { getStore } from '../StoreCouponsReducer';
 import AppConfig from '@config/AppConfig';
 import { isAmazonStore } from '@config/Utils';
 import CouponCode from './CouponCode';
-import i18n, {
+import {
   currencyLocaleFormat,
   setDecimalFormat,
 } from '@modules/localization/i18n';

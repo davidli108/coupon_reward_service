@@ -19,7 +19,6 @@ import {
   getLocaleConfig,
   redirectToEnOrigin,
   currencyLocaleFormat,
-  getDomainAttrs,
   setDecimalFormat,
 } from '@modules/localization/i18n';
 import { getOrigin } from '@modules/auth/AuthHelper';
