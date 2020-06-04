@@ -69,31 +69,30 @@ const Brand = ({
                   e.target.onerror = null;
                   e.target.src = placeholder;
                 }}
-                alt={`${store.store_name ||
-                  ''} {t('storeCoupons.codes')}  ${moment().format(
+                alt={`${store.store_name || ''} ${t(
+                            'storeCoupons.codes',
+                          )} ${moment().format(
                   'MMMM',
                 )} | ${moment().format('YYYY')}`}
               />
             </Brand.BrandImageWrapperLink>
 
             <Brand.CashBackActivateButton>
-              {!isAmazon && (
-                <CouponCode
-                  t={t}
-                  i18n={i18n}
-                  code={coupon_code}
-                  link={store.store_info_link}
-                  store={store.store_name}
-                  isAuthenticated={isAuthenticated}
-                  isExtensionInstalled={isExtensionInstalled}
-                  logo={
-                    store.store_logo_image_path
-                      ? `${AppConfig.cloudUrl}${store.store_logo_image_path}`
-                      : placeholder
-                  }
-                  isVisit={true}
-                />
-              )}
+              <CouponCode
+                t={t}
+                i18n={i18n}
+                code={coupon_code}
+                link={store.store_info_link}
+                store={store.store_name}
+                isAuthenticated={isAuthenticated}
+                isExtensionInstalled={isExtensionInstalled || isAmazon}
+                logo={
+                  store.store_logo_image_path
+                    ? `${AppConfig.cloudUrl}${store.store_logo_image_path}`
+                    : placeholder
+                }
+                isVisit={true}
+              />
               <Brand.CashBackActivate>
                 {isAmazon && t('global.noCashBack')}
                   {!isAmazon &&
@@ -149,7 +148,6 @@ Brand.Wrapper = styled.div`
   display: flex;
   flex-flow: column nowrap;
   padding-top: 15px;
-
   ${breakpoint('md')`
     flex-flow: row nowrap;
   `}
@@ -180,23 +178,20 @@ Brand.BrandImageWrapper = styled.div`
   justify-content: space-between;
   flex-direction: column;
   align-items: center;
-  border: 1px solid ${props => props.theme.colors.whiteLight};
+  border: 1px solid #dadde2;
   border-radius: 5px;
   overflow: hidden;
   box-sizing: border-box;
   margin-bottom: 20px;
-
   ${breakpoint('sm')`
     width: 340px;
     height: 340px;
   `}
-
   ${breakpoint('md')`
     width: 280px;
     height: 280px;
     margin-bottom: 0;
   `}
-
   ${breakpoint('lg')`
     width: 280px;
     height: 320px;
@@ -211,7 +206,6 @@ Brand.BrandImageWrapper = styled.div`
     ${breakpoint('md')`
       width: 140px;
     `}
-
     ${breakpoint('lg')`
       width: 80%;
       height: 45px;
@@ -223,14 +217,17 @@ Brand.BrandImageWrapper = styled.div`
 Brand.BrandImageWrapperHolder = styled.img`
   height: auto;
   width: auto;
-  max-width: 100%;
-  max-height: 165px;
+  max-width: 160px;
+  max-height: 160px;
+  ${breakpoint('md')`
+    max-width: 100%;
+    max-height: 130px;
+  `}
 `;
 
 Brand.NoWrapFlexBox = styled.div`
   display: flex;
   flex-direction: column;
-
   ${breakpoint('lg')`
     flex-flow: row nowrap;
     justify-content: space-between;
@@ -238,11 +235,9 @@ Brand.NoWrapFlexBox = styled.div`
     width: 100%;
     padding: 10px 0;
   `}
-
   ${breakpoint('md')`
     flex-direction: row;
   `}
-
   @media (min-width: 768px) and (max-width: 1024px) {
     padding: 8px 20px;
   }
@@ -254,17 +249,15 @@ Brand.NoWrapFlexBox = styled.div`
 
 Brand.NoWrapFlexBoxWithBorder = styled(Brand.NoWrapFlexBox)`
   ${breakpoint('md')`
-    border: 1px dashed ${props => props.theme.colors.blue};
+    border: 1px dashed #00CBE9;
     border-radius: 5px;
     padding: 8px 20px;
     align-items: center;
     height: auto;
-
     > * {
       padding: 0;
     }
   `}
-
   @media (min-width: 768px) and (max-width: 1024px) {
     padding: 8px 20px;
   }
@@ -282,11 +275,9 @@ Brand.XlWrapper = styled.div`
 Brand.MdWrapper = styled.div`
   margin-top: 10px;
   display: none;
-
   ${breakpoint('sm')`
     margin-top: 30px;
   `}
-
   ${breakpoint('xl')`
     display: none;
   `}
@@ -296,17 +287,14 @@ Brand.WrapFlexBox = styled.div`
   display: flex;
   flex-flow: column nowrap;
   width: 100%;
-
   ${breakpoint('xl')`
     display: block;
   `}
-
   ${breakpoint('md')`
     flex-flow: row wrap;
     align-items: center;
     width: 100%
   `}
-
   ${breakpoint('lg')`
     width: calc(100% - 310px);
   `}
@@ -314,6 +302,7 @@ Brand.WrapFlexBox = styled.div`
 
 Brand.ShopNow = styled.a`
   @media (max-width: 425px) {
+
     padding: 13px 140px;
   }
 
@@ -324,7 +313,6 @@ Brand.ShopNow = styled.a`
   @media (max-width: 320px) {
     padding: 13px 80px;
   }
-
   text-decoration: none;
   box-sizing: border-box;
   letter-spacing: 0.5px;
@@ -349,23 +337,21 @@ Brand.CashBackActivate = styled.p`
   line-height: 120%;
   text-align: center;
   letter-spacing: -0.188889px;
-  color: ${props => props.theme.colors.black};
+  color: #000;
 `;
 
 Brand.CashBackActivateButton = styled.div`
   height: auto;
   width: 100%;
 
-  > div > div[class*='CouponCode__Button'] {
+  > div > div {
     width: 220px;
     height: 40px;
     margin: 20px auto !important;
     max-width: unset !important;
-
     ${breakpoint('md')`
       width: 140px;
     `}
-
     ${breakpoint('lg')`
       width: 100%;
       height: 45px;
