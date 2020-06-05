@@ -36,7 +36,11 @@ export default () => {
     sagaMiddleware,
   ];
 
-  if (!isServer && typeof jest === 'undefined') {
+  if (
+    !isServer &&
+    typeof jest === 'undefined' &&
+    process.env.NODE_ENV === 'development'
+  ) {
     middlewares.push(loggerMiddleware);
   }
 
