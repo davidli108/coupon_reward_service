@@ -69,7 +69,7 @@ export const getDomainAttrs = () => {
 };
 
 export const setDecimalFormat = amount => {
-  ['de' , 'fr'].includes(getLocale())
+  return ['de' , 'fr'].includes(getLocale())
     ? amount.replace(/\./g, ',')
     : amount;
 };
