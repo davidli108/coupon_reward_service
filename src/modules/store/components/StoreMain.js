@@ -3,9 +3,12 @@ import React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
+
 import StoreList from './StoreList';
 import Featured from './Featured';
+
 import { type Store, type Feature } from '../models';
+
 type StoresListProps = {
   t: Function,
   stores: Store[],
@@ -17,6 +20,7 @@ type StoresListProps = {
   isLoadedMore: boolean,
   setIsLoadedMore: boolean => void,
 };
+
 const StoreMain = ({
   t,
   stores,
@@ -42,26 +46,32 @@ const StoreMain = ({
     />
   </StoreMain.Wrapper>
 );
+
 StoreMain.defaultProps = {
   stores: [],
   featured: [],
 };
+
 StoreMain.Wrapper = styled.div`
   flex: 1;
   min-width: 0;
 `;
+
 StoreMain.Title = styled.h3`
   padding: 7px 0 0 0;
   line-height: 29px;
   font-weight: bold;
   font-size: 25px;
   color: ${props => props.theme.colors.blackLight};
+
   ${breakpoint('xs')`
     display: none;
   `}
+
   ${breakpoint('md')`
     display: block;
     font-size: 25px;
   `}
 `;
+
 export default withTranslation()(StoreMain);
