@@ -8,6 +8,7 @@ import { compose } from 'recompose';
 import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
+
 import { getIsAuthenticated } from '@modules/auth/AuthReducer';
 import SignInModal from '@modules/auth/components/SignInModal';
 import SignUpModal from '@modules/auth/components/SignUpModal';
@@ -31,6 +32,7 @@ const modal = {
   modalSignUp: 'modalSignUp',
   modalResetPassword: 'modalResetPassword',
 };
+
 export type BrandHeaderProps = {
   t: Function,
   match: Object,
@@ -142,7 +144,9 @@ const BrandHeader = ({
             <span>
               {isAmazon
                 ? t('global.noCashBack')
-                : t(cashBackMessageKey, { discount })}
+                : discount
+                ? t(cashBackMessageKey, { discount })
+                : t('global.instantSaving')}
             </span>
           </BrandHeader.SmNonVisible>
         </BrandHeader.OffersStats>
@@ -192,13 +196,15 @@ BrandHeader.Name = styled.h2`
   @media (max-width: 320px) {
     font-size: 100%;
   }
+
   ${breakpoint('sx')`
-    text-align: center;
+    text-align: left;
   `}
+
   ${breakpoint('xl')`
     padding: 0;
     width: 100%;
-    text-align: left;
+
     line-height: 46px;
     font-size: 39px;
   `}
@@ -206,9 +212,11 @@ BrandHeader.Name = styled.h2`
 
 BrandHeader.SmNonVisible = styled.span`
   display: flex;
+
   ${breakpoint('sx')`
-    display: flex;
+    display: none;
   `}
+
   ${breakpoint('md')`
     display: flex;
   `}
@@ -216,9 +224,11 @@ BrandHeader.SmNonVisible = styled.span`
 
 BrandHeader.SmVisible = styled.span`
   display: none;
+
   ${breakpoint('sx')`
-    display: none;
+    display: flex;
   `}
+
   ${breakpoint('md')`
     display: none;
   `}
@@ -226,6 +236,7 @@ BrandHeader.SmVisible = styled.span`
 
 BrandHeader.Br = styled.br`
   display: flex;
+
   ${breakpoint('md')`
     display: none;
   `}
@@ -235,10 +246,12 @@ BrandHeader.NoWrapFlexBox = styled.div`
   width: 100%;
   display: flex;
   flex-flow: column nowrap;
+
   ${breakpoint('xl')`
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: baseline;
+
     width: 100%;
     padding: 10px 0;
   `}
@@ -250,41 +263,36 @@ BrandHeader.OffersStats = styled.div`
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
+
   padding: 15px 0 18px 0;
+
   ${breakpoint('sx')`
-    width: 80%;
-    margin: 0 auto;
+    width: 200px;
+    margin: 0;
   `}
+
   ${breakpoint('md')`
     width: 100%;
     max-width: 500px;
-    padding: 0 0 20px 0;
+    padding: 10px 0 20px 0;
   `}
+
   ${breakpoint('xl')`
     padding: 0 0 5px 0;
   `}
 
-  @media (max-width: 1024px) {
-    margin: 10px 0 0 0;
-  }
-
-  @media (min-width: 768px) {
-    margin-left: 0;
-  }
-
-  @media (max-width: 425px) {
-    margin: 0 auto;
-  }
-
   & > span {
     font-size: 11px;
     color: #62707b;
+
     ${breakpoint('sx')`
       font-size: 13px;
     `}
+
     ${breakpoint('md')`
       font-size: 16px;
     `}
+
     &:last-child {
       margin-right: 5px;
     }
@@ -294,6 +302,7 @@ BrandHeader.OffersStats = styled.div`
 BrandHeader.CashBack = styled.span`
   font-size: 13px;
   color: #62707b;
+
   ${breakpoint('md')`
     font-size: 16px;
   `}
@@ -303,22 +312,27 @@ BrandHeader.FollowStoreWrapper = styled.div`
   display: flex;
   align-items: center;
   margin: 0 auto;
+
   ${breakpoint('sx')`
     padding: 0px;
   `}
+
   ${breakpoint('md')`
     padding: 0;
-    margin: auto 0;
-    margin-bottom: 10px;
+    margin: auto 0 10px;
   `}
+
   ${breakpoint('xl')`
     padding: 0 0 0 30px;
   `}
+
   > div {
     display: flex;
     align-items: center;
+
     width: fit-content;
     height: auto;
+
     cursor: pointer;
 
     > svg {
