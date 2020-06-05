@@ -68,8 +68,10 @@ export const getDomainAttrs = () => {
   };
 };
 
-export const setDecimalFormat = (amount) => {
-  return ((getLocale() === Locale.de || getLocale() === Locale.fr) ? amount.replace(/\./g, ',') : amount)
+export const setDecimalFormat = amount => {
+  ['de' , 'fr'].includes(getLocale())
+    ? amount.replace(/\./g, ',')
+    : amount;
 };
 
 export const redirectToEnOrigin = () => {
