@@ -213,7 +213,7 @@ Brand.BrandImageWrapper = styled.div`
     ${breakpoint('md')`
       width: 140px;
     `}
-    
+
     ${breakpoint('lg')`
       width: 80%;
       height: 45px;
@@ -297,7 +297,7 @@ Brand.WrapFlexBox = styled.div`
   display: flex;
   flex-flow: column nowrap;
   width: 100%;
-  
+
   ${breakpoint('xl')`
     display: block;
   `}
@@ -362,11 +362,11 @@ Brand.CashBackActivateButton = styled.div`
     height: 40px;
     margin: 20px auto !important;
     max-width: unset !important;
-    
+
     ${breakpoint('md')`
       width: 140px;
     `}
-    
+
     ${breakpoint('lg')`
       width: 100%;
       height: 45px;
