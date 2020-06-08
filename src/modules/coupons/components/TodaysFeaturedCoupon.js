@@ -97,7 +97,7 @@ const TodaysFeaturedCoupon = ({
             store.discount_amt,
             store.country || i18n.language,
           )
-        : setDecimalFormat(`${parseFloat(store.discount_amt)} %`)
+        : setDecimalFormat(`${parseFloat(store.discount_amt)}%`)
       : '';
 
     return discount + t('coupons.off');
@@ -109,7 +109,7 @@ const TodaysFeaturedCoupon = ({
           store.discount_print,
           store.country || i18n.language,
         )
-      : setDecimalFormat(`${store.discount_print} %`)
+      : setDecimalFormat(`${store.discount_print}%`)
     : '';
 
   const cashBackMessageText = store.noCashBack

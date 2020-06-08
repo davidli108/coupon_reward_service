@@ -47,7 +47,7 @@ const Featured = ({ t, featured }: FeaturedProps) => {
             const discount = cashbackok
               ? pay_type === 1
                 ? currencyLocaleFormat(cashback_text, country)
-                : setDecimalFormat(`${cashback_text} %`)
+                : setDecimalFormat(`${cashback_text}%`)
               : '';
             const cashBackMessageKey = cashbackok
               ? pay_type === 1

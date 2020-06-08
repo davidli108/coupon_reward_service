@@ -9,7 +9,7 @@ import moment from 'moment';
 
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
 import LoadMoreLoader from './loaders/LoadMoreLoader';
-import { 
+import {
   currencyLocaleFormat,
   setDecimalFormat,
 } from '@modules/localization/i18n';
@@ -97,7 +97,7 @@ const StoreList = ({
               const discount = cashBackOk
                 ? payType === 1
                   ? currencyLocaleFormat(cashbackSave, country)
-                  : setDecimalFormat(`${cashbackSave} %`)
+                  : setDecimalFormat(`${cashbackSave}%`)
                 : '';
 
               const cashBackMessageText = noCashBack
