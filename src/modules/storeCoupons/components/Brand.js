@@ -70,10 +70,8 @@ const Brand = ({
                   e.target.src = placeholder;
                 }}
                 alt={`${store.store_name || ''} ${t(
-                            'storeCoupons.codes',
-                          )} ${moment().format(
-                  'MMMM',
-                )} | ${moment().format('YYYY')}`}
+                  'storeCoupons.codes',
+                )} ${moment().format('MMMM')} | ${moment().format('YYYY')}`}
               />
             </Brand.BrandImageWrapperLink>
 
@@ -97,12 +95,12 @@ const Brand = ({
               )}
               <Brand.CashBackActivate>
                 {isAmazon && t('global.noCashBack')}
-                  {!isAmazon &&
-                    (discount
-                      ? t('global.activateCashback', {
-                          discount: setDecimalFormat(discount),
-                        })
-                      : t('global.instantSaving'))}
+                {!isAmazon &&
+                  (discount && discount !== '%'
+                    ? t('global.activateCashback', {
+                        discount: setDecimalFormat(discount),
+                      })
+                    : t('global.instantSaving'))}
               </Brand.CashBackActivate>
             </Brand.CashBackActivateButton>
           </Brand.BrandImageWrapper>
@@ -182,7 +180,6 @@ Brand.BrandImageWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   border: 1px solid ${props => props.theme.colors.whiteLight};
-
   border-radius: 5px;
   overflow: hidden;
   box-sizing: border-box;
@@ -261,6 +258,7 @@ Brand.NoWrapFlexBoxWithBorder = styled(Brand.NoWrapFlexBox)`
     padding: 8px 20px;
     align-items: center;
     height: auto;
+
     > * {
       padding: 0;
     }
