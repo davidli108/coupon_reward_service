@@ -9,7 +9,10 @@ import moment from 'moment';
 
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
 import LoadMoreLoader from './loaders/LoadMoreLoader';
-import { currencyLocaleFormat } from '@modules/localization/i18n';
+import {
+  currencyLocaleFormat,
+  setDecimalFormat,
+} from '@modules/localization/i18n';
 import { isAmazonStore } from '@config/Utils';
 
 import { type Store } from '../models';
@@ -94,7 +97,7 @@ const StoreList = ({
               const discount = cashBackOk
                 ? payType === 1
                   ? currencyLocaleFormat(cashbackSave, country)
-                  : `${cashbackSave}%`
+                  : setDecimalFormat(`${cashbackSave}%`)
                 : '';
 
               const cashBackMessageText = noCashBack

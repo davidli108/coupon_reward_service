@@ -6,8 +6,10 @@ import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
 import moment from 'moment';
 import i18next from 'i18next';
-
-import i18n, { currencyLocaleFormat } from '@modules/localization/i18n';
+import {
+  currencyLocaleFormat,
+  setDecimalFormat,
+} from '@modules/localization/i18n';
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
 import { isAmazonStore } from '@config/Utils';
 
@@ -44,8 +46,8 @@ const Featured = ({ t, featured }: FeaturedProps) => {
           }) => {
             const discount = cashbackok
               ? pay_type === 1
-                ? currencyLocaleFormat(cashback_text, country || i18n.language)
-                : `${cashback_text}%`
+                ? currencyLocaleFormat(cashback_text, country)
+                : setDecimalFormat(`${cashback_text}%`)
               : '';
             const cashBackMessageKey = cashbackok
               ? pay_type === 1
