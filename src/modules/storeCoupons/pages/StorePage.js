@@ -137,6 +137,10 @@ const StorePage = ({
           extensionActive={isLoaded && (isExtensionInstalled || isAmazon)}
           style={{ marginBottom: 50 }}
         >
+          <StorePage.TermsWrapper isShow={terms}>
+            {parse(state ? terms : '')}
+          </StorePage.TermsWrapper>
+
           {isLoaded ? (
             <Offers
               offers={offers}
@@ -153,10 +157,6 @@ const StorePage = ({
             ))
           )}
           {!isExtensionInstalled && !isAmazon && <AddSaving />}
-
-          <StorePage.TermsWrapper isShow={terms} isMobile={false}>
-            {parse(state ? terms : '')}
-          </StorePage.TermsWrapper>
         </StorePage.ColumnNoWrapFlexBox>
         <StorePage.ColumnNoWrapFlexBox order="1">
           {isLoaded ? (
@@ -164,9 +164,6 @@ const StorePage = ({
           ) : (
             <AdditionalInfoLoader />
           )}
-          <StorePage.TermsWrapper isShow={terms} isMobile={true}>
-            {parse(state ? terms : '')}
-          </StorePage.TermsWrapper>
         </StorePage.ColumnNoWrapFlexBox>
       </StorePage.DesktopContent>
     </StorePage.Wrapper>

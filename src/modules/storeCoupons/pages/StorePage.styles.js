@@ -3,22 +3,14 @@ import styled from 'styled-components';
 
 const styles = (StorePage: Object) => {
   StorePage.TermsWrapper = styled.div`
-    display: ${({ isShow, isMobile }) => {
-      return !isMobile ? (isShow ? 'flex' : 'none') : 'none';
-    }};
-    margin-top: 40px;
+    display: flex;
+    margin-top: 10px;
     flex-direction: column;
     padding: 32px;
     width: auto;
     background: #f9f9f9;
     border-radius: 5px;
     color: #899197;
-
-    @media (max-width: 768px) {
-      display: ${({ isShow, isMobile }) => {
-        return isMobile ? (isShow ? 'flex' : 'none') : 'none';
-      }};
-    }
 
     body {
       display: block;
