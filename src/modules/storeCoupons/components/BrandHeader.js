@@ -19,6 +19,7 @@ import {
   getLocaleConfig,
   redirectToEnOrigin,
   currencyLocaleFormat,
+  setDecimalFormat,
 } from '@modules/localization/i18n';
 import { getOrigin } from '@modules/auth/AuthHelper';
 
@@ -64,7 +65,7 @@ const BrandHeader = ({
   const discount = store.store_cashback_ok
     ? store.store_numeric_type === 1
       ? currencyLocaleFormat(store.store_discount, store.store_country_code)
-      : `${store.store_discount}`
+      : setDecimalFormat(`${store.store_discount}`)
     : '';
 
   const cashBackMessageKey = store.store_cashback_ok

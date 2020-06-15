@@ -17,6 +17,7 @@ import {
   getLocaleConfig,
   redirectToEnOrigin,
   currencyLocaleFormat,
+  setDecimalFormat,
 } from '@modules/localization/i18n';
 import { getOrigin } from '@modules/auth/AuthHelper';
 
@@ -96,7 +97,7 @@ const TodaysFeaturedCoupon = ({
             store.discount_amt,
             store.country || i18n.language,
           )
-        : `${parseFloat(store.discount_amt)}%`
+        : setDecimalFormat(`${parseFloat(store.discount_amt)}%`)
       : '';
 
     return discount + t('coupons.off');
@@ -108,7 +109,7 @@ const TodaysFeaturedCoupon = ({
           store.discount_print,
           store.country || i18n.language,
         )
-      : `${store.discount_print}%`
+      : setDecimalFormat(`${store.discount_print}%`)
     : '';
 
   const cashBackMessageText = store.noCashBack

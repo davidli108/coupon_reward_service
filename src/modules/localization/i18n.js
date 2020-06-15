@@ -68,6 +68,12 @@ export const getDomainAttrs = () => {
   };
 };
 
+export const setDecimalFormat = amount => {
+  return ['de' , 'fr'].includes(getLocale())
+    ? amount.replace(/\./g, ',')
+    : amount;
+};
+
 export const redirectToEnOrigin = () => {
   const domainAttrs = getDomainAttrs();
   window.location.href = domainAttrs.enOrigin;
