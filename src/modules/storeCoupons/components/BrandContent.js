@@ -23,7 +23,7 @@ const BrandContent = ({
 
 BrandContent.Wrapper = styled.div`
   ${breakpoint('md')`
-    padding: 20px 20px 0 20px !important;
+    padding: 0px 20px 0 20px !important;
   `}
 
   @media (max-width: 425px) {

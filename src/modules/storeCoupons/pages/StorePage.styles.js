@@ -179,6 +179,18 @@ const styles = (StorePage: Object) => {
     small {
       font-size: smaller;
     }
+
+    @media (max-width: 768px) {
+      margin-top: 20px;
+    }
+
+    @media (max-width: 425px) {
+      margin-top: 30px;
+    }
+
+    @media (max-width: 375px) {
+      margin-top: 10px;
+    }
   `;
 };
 
