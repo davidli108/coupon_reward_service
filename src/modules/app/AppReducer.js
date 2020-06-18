@@ -44,15 +44,13 @@ export const getStoresList = R.path<string>([STATE_KEY, 'stores']);
 export const getFilteredList = (state: any) => (keyword: string) => {
   const sort = new RegExp(`^\\b${keyword}`, 'i');
 
-  const filtered = state.app.stores
+  return state.app.stores
     .filter(store => new RegExp(`\\b${keyword}`, 'gi').test(store.store_name))
     .sort(
       (a, b) =>
         Number(sort.test(b.store_name)) - Number(sort.test(a.store_name)),
     )
     .slice(0, 5);
-
-  return filtered;
 };
 
 export const getIsExtensionInstalled = R.path<boolean>([
