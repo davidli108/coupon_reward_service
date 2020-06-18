@@ -276,6 +276,7 @@ Brand.NoWrapFlexBoxWithBorder = styled(Brand.NoWrapFlexBox)`
 Brand.XlWrapper = styled.div`
   width: 100%;
   display: flex;
+  height: 220px;
 `;
 
 Brand.MdWrapper = styled.div`
