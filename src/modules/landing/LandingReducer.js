@@ -59,6 +59,21 @@ const LandingReducer = (
         ),
       };
 
+      const storeIntOffers = {
+        homepage_feature: 'link',
+        top_deals: 'link',
+        featured_stores: 'offer_link',
+      };
+
+      Object.entries(storeIntOffers).forEach(([storeProp, offerLink]) => {
+        if (paid_placements[storeProp] instanceof Array) {
+          paid_placements[storeProp] = paid_placements[storeProp].map(item => ({
+            ...item,
+            [offerLink]: `${item[offerLink]}&direct=1`,
+          }));
+        }
+      });
+
       const categories: Object = R.pathOr(
         [],
         ['payload', 'data', 'categories'],
