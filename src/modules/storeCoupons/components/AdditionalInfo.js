@@ -97,7 +97,9 @@ const AdditionalInfo = ({
           </AdditionalInfo.Content>
         )}
 
-        <AdditionalInfo.ContentWrapper isShow={store.store_description.trim()}>
+        <AdditionalInfo.ContentWrapper
+          isShow={store.store_description && store.store_description.trim()}
+        >
           <h2>{store.store_name}</h2>
           <AdditionalInfo.Content>
             <p>{store.store_description}</p>
