@@ -13,7 +13,8 @@ const HomepageFeatureLoader = () => (
 HomepageFeatureLoader.Wrapper = styled(ContentLoader)`
   width: 100%;
   height: 265px;
-  margin-top: 20px;
+  margin: 0 0 30px;
+  display: block;
   margin-left: 10px;
 `;
 

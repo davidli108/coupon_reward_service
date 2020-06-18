@@ -13,31 +13,34 @@ const HomePageFeaturedCashBack = ({
   isLoaded,
   handler,
 }: HomePageFeaturedCashBackProps) => {
-
-  return isLoaded ? (
+  return (
     <HomePageFeaturedCashBack.Wrapper>
       <HomePageFeaturedCashBack.Title>{t('homepage.featuredCashBack')}</HomePageFeaturedCashBack.Title>
-      <HomePageFeaturedCashBack.List>
-        {stores && stores.map((item, key) => (
-          <HomePageFeaturedCashBack.Item key={key}>
-            <span onClick={() => handler(item.offer_img, item.link, item.store_name)}>
-              <div className="wrapper">
-                <FaExternalLinkAlt />
-                <figure>
-                  <img src={item.offer_img} alt=""/>
-                </figure>
-                {item.was_price && <div className="details"><p>{t('homepage.was', {price: item.was_price})}</p></div>}
-                <div className="price">
-                  <b>{t('homepage.uptoCashback', {cashback: item.cashback})}</b>
+      { isLoaded ? (
+        <HomePageFeaturedCashBack.List>
+          {stores && stores.map((item, key) => (
+            <HomePageFeaturedCashBack.Item key={key}>
+              <span onClick={() => handler(item.offer_img, item.link, item.store_name)}>
+                <div className="wrapper">
+                  <FaExternalLinkAlt />
+                  <figure>
+                    <img src={item.offer_img} alt=""/>
+                  </figure>
+                  {item.was_price && <div className="details"><p>{t('homepage.was', {price: item.was_price})}</p></div>}
+                  <div className="price">
+                    <b>{t('homepage.uptoCashback', {cashback: item.cashback})}</b>
+                  </div>
+                  <small>{t('homepage.seeAllDeals', {storeName: item.store_name})}</small>
                 </div>
-                <small>{t('homepage.seeAllDeals', {storeName: item.store_name})}</small>
-              </div>
-            </span>
-          </HomePageFeaturedCashBack.Item>
-        ))}
-      </HomePageFeaturedCashBack.List>
+              </span>
+            </HomePageFeaturedCashBack.Item>
+          ))}
+        </HomePageFeaturedCashBack.List>
+      ) : (
+        <FeaturedCashbackLoader/>
+      )}
     </HomePageFeaturedCashBack.Wrapper>
-  ) : <FeaturedCashbackLoader/>
+  );
 };
 
 styles(HomePageFeaturedCashBack);

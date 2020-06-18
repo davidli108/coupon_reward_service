@@ -120,7 +120,7 @@ const styles = (HomePageCategories: Object) => {
     }
   `;
 
-  HomePageCategories.Title = styled.div`
+  HomePageCategories.Title = styled.h2`
     display: flex;
     align-items: center;
     padding: 0 15px 20px;

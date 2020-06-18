@@ -2,9 +2,13 @@
 export default {
   titles: {
     coupons:
-      'Automate Your Coupons, Savings and Cashback - %mmmm %yyyy - Piggy',
+      'Automate Your Coupons, Savings and Cashback - {{month}} {{year}} - Piggy',
+    storeCoupons: '{{storeName}} Coupons & Deals | Piggy',
+  },
+  description: {
     storeCoupons:
-      'Top Online {{ storeName }} Coupons, Promo Codes and Cashback - %mmmm %yyyy - Piggy',
+      'Browse {{nrOfOffers}}{{storeName}} coupons, promo codes, deals, and discounts now. Start saving money and earning cash back online shopping with Piggy!',
+    coupons: `Join Piggy’s quest to never overpay for anything online ever again. Piggy automatically finds and applies the internet's best coupon codes & cash back in cart.`,
   },
   header: {
     coupons: 'Coupons',
@@ -494,6 +498,12 @@ export default {
       text06:
         '“Love it! Do not have to go around finding discount codes. It automatically comes up when you are shopping online. Very simple”',
       name06: 'Tonya T.',
+    },
+    page: {
+      title: 'Coupons, Promo Codes, Deals, & Cash Back | Piggy',
+      description:
+        'Browse coupons, promo codes, and cash back deals now. Start saving money and earning cash back online shopping with the Piggy Chrome Extension!',
+      h1: 'Coupons, Promo Codes, Deals, & Cash Back',
     },
   },
   mortgage: {

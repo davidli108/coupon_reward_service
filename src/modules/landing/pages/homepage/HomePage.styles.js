@@ -33,6 +33,12 @@ const styles = (HomePage: Object) => {
       padding: 0 0 100px;
     `}
   `;
+
+  HomePage.Title = styled.h1`
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  `;
 };
 
 export default styles;

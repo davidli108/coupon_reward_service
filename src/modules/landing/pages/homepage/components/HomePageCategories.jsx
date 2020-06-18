@@ -24,7 +24,7 @@ const HomePageCategories = ({
     setDropdownOpened(!dropdownOpened);
   };
 
-  return isLoaded ? (
+  return (
     <HomePageCategories.Wrapper>
       <HomePageCategories.Backdrop
         active={dropdownOpened}
@@ -48,24 +48,28 @@ const HomePageCategories = ({
         </HomePageCategories.Category>
       </HomePageCategories.Title>
 
-      <Slider {...categories_settings}>
-        {categories && categories.map((item, key) => (
-            <HomePageCategories.Slide key={key}>
-              <Link to={item.link} >
-              <HomePageCategories.SlideWrapper>
-                <FaArrowRight />
-                <figure>
-                  <img src={item.image || placeholder} alt=""/>
-                </figure>
-                <b>{item.name}</b>
-              </HomePageCategories.SlideWrapper>
-              </Link>
-            </HomePageCategories.Slide>
-          )
-        )}
-      </Slider>
+      { isLoaded ? (
+        <Slider {...categories_settings}>
+          {categories && categories.map((item, key) => (
+              <HomePageCategories.Slide key={key}>
+                <Link to={item.link} >
+                <HomePageCategories.SlideWrapper>
+                  <FaArrowRight />
+                  <figure>
+                    <img src={item.image || placeholder} alt=""/>
+                  </figure>
+                  <b>{item.name}</b>
+                </HomePageCategories.SlideWrapper>
+                </Link>
+              </HomePageCategories.Slide>
+            )
+          )}
+        </Slider>
+      ) : (
+          <AmazonDealLoader />
+      )}
     </HomePageCategories.Wrapper>
-  ) : <AmazonDealLoader />;
+  );
 };
 
 styles(HomePageCategories);

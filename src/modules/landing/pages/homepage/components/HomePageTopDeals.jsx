@@ -14,12 +14,13 @@ const HomePageTopDeals = ({
   handler,
 }: HomePageTopDealsProps) => {
 
-  return isLoaded ? (
+  return (
     <HomePageTopDeals.Wrapper>
       <HomePageTopDeals.Title>{t('homepage.topDeals')}</HomePageTopDeals.Title>
-      <HomePageTopDeals.List>
-        {stores && stores.map((item, key) => (
-          <HomePageTopDeals.Item key={key}>
+      { isLoaded ? (
+        <HomePageTopDeals.List>
+          {stores && stores.map((item, key) => (
+            <HomePageTopDeals.Item key={key}>
             <span onClick={() => handler(item.img, item.link, item.store_name)}>
               <div className="wrapper">
                 <FaExternalLinkAlt/>
@@ -36,12 +37,14 @@ const HomePageTopDeals = ({
                 </div>
               </div>
             </span>
-          </HomePageTopDeals.Item>
-        ))}
-      </HomePageTopDeals.List>
-
+            </HomePageTopDeals.Item>
+          ))}
+        </HomePageTopDeals.List>
+      ): (
+        <TopDealsLoader/>
+      )}
     </HomePageTopDeals.Wrapper>
-  ) : <TopDealsLoader/>
+  )
 };
 
 styles(HomePageTopDeals);

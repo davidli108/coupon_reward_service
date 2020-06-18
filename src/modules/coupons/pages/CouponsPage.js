@@ -8,7 +8,6 @@ import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
-import moment from 'moment';
 
 import { getIsAuthenticated } from '@modules/auth/AuthReducer';
 import * as couponsActions from '@modules/coupons/CouponsActions';
@@ -29,6 +28,7 @@ import {
 } from '@modules/app/AppReducer';
 import * as authActions from '@modules/auth/AuthActions';
 import { getFavoritesMap } from '@modules/favorites/FavoritesReducer';
+import { month, year, metaTags, openGraph } from '@config/SeoTags';
 
 // import DownloadPiggy from '../components/DownloadPiggy';
 import TodaysFeaturedCoupon from '../components/TodaysFeaturedCoupon';
@@ -100,14 +100,13 @@ const CouponsPage = ({
   return (
     <CouponsPage.Wrapper>
       <Helmet
-        title={t('titles.coupons')
-          .replace('%mmmm', moment().format('MMMM'))
-          .replace('%yyyy', moment().format('YYYY'))}
+        title={t('titles.coupons', { month, year })}
         meta={[
-          {
-            name: 'description',
-            content: `Join Piggy’s quest to never overpay for anything online ever again. Piggy automatically finds and applies the internet's best coupon codes & cashback in cart.`,
-          },
+          ...metaTags({ description: t('description.coupons') }),
+          ...openGraph({
+            title: t('description.coupons'),
+            description: t('description.coupons'),
+          }),
         ]}
       />
 

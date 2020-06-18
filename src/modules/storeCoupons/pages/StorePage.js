@@ -4,7 +4,6 @@ import { Helmet } from 'react-helmet';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
-import moment from 'moment';
 import { withTranslation } from 'react-i18next';
 import parse from 'html-react-parser';
 
@@ -13,6 +12,7 @@ import {
   getIsExtensionInstalled,
 } from '@modules/app/AppReducer';
 import { isAmazonStore } from '@config/Utils';
+import { month, year, metaTags, openGraph } from '@config/SeoTags';
 import Brand from '../components/Brand';
 import Offers from '../components/Offers';
 import AdditionalInfo from '../components/AdditionalInfo';
@@ -56,6 +56,7 @@ const StorePage = ({
   const [storeName, setStoreName] = useState(match.params.name);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isAmazon, setIsAmazon] = useState(false);
+  const [nrOfOffers, setNrOfOffers] = useState('');
 
   useEffect(() => {
     match.params.name &&
@@ -72,6 +73,16 @@ const StorePage = ({
   }, [storeName]);
 
   useEffect(() => {
+    if (store && store.store_name) {
+      if (store.store_name !== storeName) {
+        setStoreName(store.store_name);
+      }
+
+      setNrOfOffers(store.offers_count ? `${store.offers_count} ` : '');
+    }
+  }, [store]);
+
+  useEffect(() => {
     const { name } = match.params;
 
     if (name && name !== storeName) {
@@ -80,10 +91,7 @@ const StorePage = ({
       // $FlowFixMe
       fetchStoreCoupons(name).then(() => setIsLoaded(true));
     }
-  }, [match]);
 
-  useEffect(() => {
-    const { name } = match.params;
     if (name) {
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
@@ -99,26 +107,22 @@ const StorePage = ({
   return (
     <StorePage.Wrapper>
       <Helmet
-        title={t('titles.storeCoupons')
-          .replace('storeName', storeName)
-          .replace('%mmmm', moment().format('MMMM'))
-          .replace('%yyyy', moment().format('YYYY'))}
+        title={t('titles.storeCoupons', { storeName, month, year })}
         meta={[
-          {
-            name: 'description',
-            content:
-              'Never overpay again with the latest ' +
-              store.store_name +
-              ' coupons and promotional codes automatically applied at checkout.' +
-              ' Plus ' +
-              store.store_cashback_text +
-              ' today when you use Piggy to ' +
-              store.store_name,
-          },
-          {
-            name: 'keywords',
-            content: `${store.store_name}`,
-          },
+          ...metaTags({
+            description: t('description.storeCoupons', {
+              storeName,
+              nrOfOffers,
+            }),
+            keywords: store.store_name,
+          }),
+          ...openGraph({
+            title: t('titles.storeCoupons', { storeName, month, year }),
+            description: t('description.storeCoupons', {
+              storeName,
+              nrOfOffers,
+            }),
+          }),
         ]}
       />
 

@@ -6,7 +6,6 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { withTranslation } from 'react-i18next';
-import moment from 'moment';
 
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
@@ -19,6 +18,7 @@ import { type Store, type Feature } from '../models';
 
 import * as storeActions from '../StoreActions';
 import { getFilteredList } from '@modules/app/AppReducer';
+import { month, year, metaTags, openGraph } from '@config/SeoTags';
 
 import {
   getFilteredStores,
@@ -93,14 +93,13 @@ const StoresPage = ({
   return (
     <React.Fragment>
       <Helmet
-        title={t('titles.coupons')
-          .replace('%mmmm', moment().format('MMMM'))
-          .replace('%yyyy', moment().format('YYYY'))}
+        title={t('titles.coupons', { month, year })}
         meta={[
-          {
-            name: 'description',
-            content: `Join Piggy’s quest to never overpay for anything online ever again. Piggy automatically finds and applies the internet's best coupon codes & cashback in cart.`,
-          },
+          ...metaTags({ description: t('description.coupons') }),
+          ...openGraph({
+            title: t('description.coupons'),
+            description: t('description.coupons'),
+          }),
         ]}
       />
 

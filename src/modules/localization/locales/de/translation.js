@@ -2,9 +2,14 @@
 export default {
   titles: {
     coupons:
-      'Automatisieren Sie Ihre Gutscheine, Einsparungen und Cashback - %mmmm %yyyy - Piggy',
+      'Automatisieren Sie Ihre Gutscheine, Einsparungen und Cashback - {{month}} {{year}} - Piggy',
     storeCoupons:
-      'Top Online {{ storeName }} Gutscheine, Gutscheincodes und Cashback - %mmmm %yyyy - Piggy',
+      'Top Online {{storeName}} Gutscheine, Gutscheincodes und Cashback | Piggy',
+  },
+  description: {
+    storeCoupons:
+      'Piggy, die einzige App, die automatisch Gutscheine und Cashback auf allen Geräten anwendet. Verfügbar bei 3600+ Stores - Holen Sie sich Piggy jetzt!',
+    coupons: `Piggy, die einzige App, die automatisch Gutscheine und Cashback auf allen Geräten anwendet. Verfügbar bei 3600+ Stores - Holen Sie sich Piggy jetzt!`,
   },
   header: {
     coupons: 'Gutscheine',
@@ -489,6 +494,13 @@ export default {
       name05: 'Angelika L.',
       text06: '“Spannende Aktion”',
       name06: 'Petra Q.',
+    },
+    page: {
+      title:
+        'Automatische Gutscheine, gewaltige Sonderverkäufe und Cashback! - Piggy',
+      description:
+        'Piggy, die einzige App, die automatisch Gutscheine und Cashback auf allen Geräten anwendet. Verfügbar bei 3600+ Stores - Holen Sie sich Piggy jetzt!',
+      h1: 'Automatische Gutscheine, gewaltige Sonderverkäufe und Cashback!',
     },
   },
 };

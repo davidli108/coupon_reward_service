@@ -36,7 +36,11 @@ const App = () => {
       <div>
         <Helmet titleTemplate="%s" defaultTitle="Piggy">
           <link rel="icon" type="image/png" href={favicon} sizes="16x16" />
-          <meta name="keywords" content={metaKeywords} />
+          <meta
+            name="keywords"
+            content={metaKeywords}
+            data-react-helmet="true"
+          />
           <meta name="og:image" content={logo} />
         </Helmet>
         <GlobalStyle />
