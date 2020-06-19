@@ -13,9 +13,7 @@ const HomePageFeaturedDeal = ({
   handler,
 }: HomePageFeaturedDealProps) => {
 
-  return (
-    <>
-      {isLoaded && stores && (
+  return isLoaded && stores && (
     <HomePageFeaturedDeal.Wrapper>
       <HomePageFeaturedDeal.Deal>
         <HomePageFeaturedDeal.Brand>
@@ -37,9 +35,7 @@ const HomePageFeaturedDeal = ({
         </HomePageFeaturedDeal.ProductWrapper>
       </HomePageFeaturedDeal.Deal>
     </HomePageFeaturedDeal.Wrapper>
-  )}
-  </>
-  )
+  );
 };
 
 styles(HomePageFeaturedDeal);

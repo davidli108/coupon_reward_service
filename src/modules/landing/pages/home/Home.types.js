@@ -1,6 +1,7 @@
 // @flow
 
 export type HomeProps = {
+  t: Function,
   fetchHomePageFeature: (type: string) => Promise<void>,
 };
 

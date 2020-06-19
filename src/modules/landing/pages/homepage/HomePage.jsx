@@ -1,8 +1,10 @@
 // @flow
 import React, {useEffect, useState} from 'react';
-import {compose} from "recompose";
-import {connect} from "react-redux";
-import {withTranslation} from "react-i18next";
+import {compose} from 'recompose';
+import {connect} from 'react-redux';
+import {withTranslation} from 'react-i18next';
+import {Helmet} from 'react-helmet';
+
 import {
   getFeaturedStore,
   getHomePageFeature,
@@ -13,6 +15,7 @@ import {
 } from '@modules/landing/LandingReducer';
 import {fetchHomePageFeature, FETCH_HOMEPAGE_FEATURE} from '@modules/landing/LandingActions';
 import ModalActivateCoupons from '@components/ModalActivateCoupons/ModalActivateCoupons';
+import {metaTags, openGraph} from '@config/SeoTags';
 
 import HomePageCarousel from './components/HomePageCarousel';
 import HomePageTopDeals from './components/HomePageTopDeals';
@@ -71,7 +74,18 @@ const HomePage = ({
 
   return (
     <HomePage.Wrapper>
+      <Helmet
+        title={t('homepage.page.title')}
+        meta={[
+          ...metaTags({description: t('homepage.page.description')}),
+          ...openGraph({
+            title: t('homepage.page.title'),
+            description: t('homepage.page.description'),
+          }),
+        ]}
+      />
       <HomePage.Container>
+        <HomePage.Title>{t('homepage.page.h1')}</HomePage.Title>
         <HomePageCarousel handler={handleClick} t={t} isLoaded={isLoaded} storesData={{homePageFeaturedStore, featuredStore}}/>
         <HomePageTopDeals handler={handleClick} t={t} isLoaded={isLoaded} stores={topDeals}/>
         <HomePageFeaturedCashBack handler={handleClick} t={t} isLoaded={isLoaded} stores={featuredSCashback} />

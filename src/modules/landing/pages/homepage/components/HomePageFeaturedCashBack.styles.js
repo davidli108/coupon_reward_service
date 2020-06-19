@@ -12,7 +12,7 @@ const styles = (HomePageFeaturedCashBack: Object) => {
     }
   `;
 
-  HomePageFeaturedCashBack.Title = styled.h3`
+  HomePageFeaturedCashBack.Title = styled.h2`
     margin: 0 0 20px;
     font: 700 20px/24px ${({ theme }) => theme.fonts.montserrat} !important;
     color: ${({ theme }) => theme.colors.blackGrey};

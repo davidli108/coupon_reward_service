@@ -2,9 +2,14 @@
 export default {
   titles: {
     coupons:
-      'Automatisez vos coupons, vos économies et votre cashback - %mmmm %yyyy - Piggy',
+      'Automatisez vos coupons, vos économies et votre cashback - {{month}} {{year}} - Piggy',
     storeCoupons:
-      'Top des bons de réduction, codes promo et remises en ligne de {{ storeName }} en ligne - %mmmm %yyyy - Piggy',
+      'Top des bons de réduction, codes promo et remises en ligne de {{storeName}} en ligne - {{month}} {{year}} - Piggy',
+  },
+  description: {
+    storeCoupons:
+      'Piggy, la seule application à employer automatiquement les coupons et les cashbacks sur tous les appareils. Disponible dans plus de 3 600 magasins - Obtenez Piggy Maintenant !',
+    coupons: `Piggy, la seule application à employer automatiquement les coupons et les cashbacks sur tous les appareils. Disponible dans plus de 3 600 magasins - Obtenez Piggy Maintenant !`,
   },
   header: {
     coupons: 'Codes promo',
@@ -493,6 +498,14 @@ export default {
       text06:
         '“Facile automatique et gratuit, les codes donnent de bonne reduction, c est parfait “',
       name06: 'Hortense G.',
+    },
+    page: {
+      title:
+        'Des coupons automatiques, des offres exceptionelles, et le cash back ! - Piggy',
+      description:
+        'Piggy, la seule application à employer automatiquement les coupons et les cashbacks sur tous les appareils. Disponible dans plus de 3 600 magasins - Obtenez Piggy Maintenant!',
+      h1:
+        'Des coupons automatiques, des offres exceptionelles, et le cash back!',
     },
   },
 };
