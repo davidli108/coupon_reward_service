@@ -44,18 +44,40 @@ const StoreCouponsReducer = (
         [],
         ['payload', 'data', 'cashback_rates'],
         action,
-      );
+      ).map(item => ({ ...item, int_url: `${item.int_url}&direct=1` }));
 
       const count: number = R.pathOr(0, ['payload', 'data', 'offers_count'])(
         action,
       );
-      const offers = R.pathOr([], ['payload', 'data', 'offers_data'])(action);
+      const offers = R.pathOr(
+        [],
+        ['payload', 'data', 'offers_data'],
+      )(action).map(item => ({
+        ...item,
+        offer_link: `${item.offer_link}&direct=1`,
+      }));
 
       const store = R.compose(
         R.fromPairs,
         R.toPairs,
         R.path(['payload', 'data']),
       )(action);
+
+      store.store_info_link = `${store.store_info_link}&direct=1`;
+      const storeIntOffers = {
+        cashback_rates: 'int_url',
+        featured_stores: 'offer_link',
+        offers_data: 'offer_link',
+      };
+
+      Object.entries(storeIntOffers).forEach(([storeProp, offerLink]) => {
+        if (store[storeProp] instanceof Array) {
+          store[storeProp] = store[storeProp].map(item => ({
+            ...item,
+            [offerLink]: `${item[offerLink]}&direct=1`,
+          }));
+        }
+      });
 
       const reviews = R.pathOr(0, ['payload', 'data', 'cws_reviews'])(action);
 

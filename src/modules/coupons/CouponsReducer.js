@@ -85,7 +85,7 @@ const CouponsReducer = (
         [],
         ['payload', 'data', 'offers_data'],
         action,
-      );
+      ).map(item => ({ ...item, offer_link: `${item.offer_link}&direct=1` }));
 
       const primaryFeaturedCoupons = R.pathOr(
         false,
@@ -116,8 +116,16 @@ const CouponsReducer = (
       const categories = {
         categories: R.pathOr([], ['payload', 'data', 'categories'], action),
         stores: R.pathOr([], ['payload', 'data', 'featured_stores'], action),
-        featuredCoupon: featuredCoupon,
+        featuredCoupon: {
+          ...featuredCoupon,
+          offer_link: `${featuredCoupon.offer_link}&direct=1`,
+        },
       };
+
+      categories.stores = categories.stores.map(item => ({
+        ...item,
+        offer_link: `${item.offer_link}&direct=1`,
+      }));
 
       const staticMerchantBar = R.pathOr(
         [],
@@ -198,10 +206,7 @@ export const getStoreSearch = R.path<string>([STATE_KEY, 'search']);
 export const searchIsLoading = R.path<string>([STATE_KEY, 'searchIsLoading']);
 
 // $FlowFixMe
-export const getStoresAll = R.compose(
-  R.values,
-  R.path([STATE_KEY, 'stores']),
-);
+export const getStoresAll = R.compose(R.values, R.path([STATE_KEY, 'stores']));
 
 export const getLoadState = R.path<Store[]>([STATE_KEY, 'loadState']);
 
