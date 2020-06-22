@@ -7,7 +7,7 @@ import breakpoint from 'styled-components-breakpoint';
 import { withRouter } from 'react-router-dom';
 
 import ModalActivateCoupons from '@components/ModalActivateCoupons/ModalActivateCoupons';
-import { isAmazonStore } from '@config/Utils';
+import { isAmazonStore, setDirectTrue } from '@config/Utils';
 
 type CouponCodeProps = {
   t: Function,
@@ -56,7 +56,7 @@ const CouponCode = ({
     }
 
     if (showActivateModal && !code) {
-      window.open(`${link}${isAmazon ? '&direct=1' : ''}`, '_blank');
+      window.open(isAmazon ? setDirectTrue(link) : link, '_blank');
     }
 
     if (code && !isShowCode) {
@@ -83,7 +83,7 @@ const CouponCode = ({
     if (code && !isShowCode) {
       setIsShowCode(true);
     } else if (!dismiss) {
-      window.open(`${link}${isAmazon ? '&direct=1' : ''}`, '_blank');
+      window.open(isAmazon ? setDirectTrue(link) : link, '_blank');
     }
   };
 
@@ -106,7 +106,7 @@ const CouponCode = ({
         </CouponCode.Button>
         <CouponCode.Code
           isShow={isShowCode || isAmazon}
-          href={`${link}${isAmazon ? '&direct=1' : ''}`}
+          href={isAmazon ? setDirectTrue(link) : link}
           target={'_blank'}
         >
           {code}
@@ -131,7 +131,7 @@ const CouponCode = ({
       </CouponCode.Button>
     ) : (
       <CouponCode.Link
-        href={`${link}${isAmazon ? '&direct=1' : ''}`}
+        href={isAmazon ? setDirectTrue(link) : link}
         target={'_blank'}
         onClick={triggerDealEvent}
       >

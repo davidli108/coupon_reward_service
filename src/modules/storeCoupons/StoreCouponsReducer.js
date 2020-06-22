@@ -1,5 +1,6 @@
 // @flow
 import * as R from 'ramda';
+import { getStoresWithDirectLinkSet, setDirectTrue } from '@config/Utils';
 
 import {
   FETCH_STORE_COUPONS,
@@ -40,22 +41,18 @@ const StoreCouponsReducer = (
       return R.assoc<Object, Object>('fetchingState', 'FETCHING')(state);
     }
     case `${FETCH_STORE_COUPONS}_SUCCESS`: {
-      const cashbackRates = R.pathOr(
-        [],
-        ['payload', 'data', 'cashback_rates'],
-        action,
-      ).map(item => ({ ...item, int_url: `${item.int_url}&direct=1` }));
+      const cashbackRates = getStoresWithDirectLinkSet(
+        R.pathOr([], ['payload', 'data', 'cashback_rates'], action),
+        'int_url',
+      );
 
       const count: number = R.pathOr(0, ['payload', 'data', 'offers_count'])(
         action,
       );
-      const offers = R.pathOr(
-        [],
-        ['payload', 'data', 'offers_data'],
-      )(action).map(item => ({
-        ...item,
-        offer_link: `${item.offer_link}&direct=1`,
-      }));
+      const offers = getStoresWithDirectLinkSet(
+        R.pathOr([], ['payload', 'data', 'offers_data'])(action),
+        'offer_link',
+      );
 
       const store = R.compose(
         R.fromPairs,
@@ -63,7 +60,7 @@ const StoreCouponsReducer = (
         R.path(['payload', 'data']),
       )(action);
 
-      store.store_info_link = `${store.store_info_link}&direct=1`;
+      store.store_info_link = setDirectTrue(store.store_info_link);
       const storeIntOffers = {
         cashback_rates: 'int_url',
         featured_stores: 'offer_link',
@@ -72,10 +69,10 @@ const StoreCouponsReducer = (
 
       Object.entries(storeIntOffers).forEach(([storeProp, offerLink]) => {
         if (store[storeProp] instanceof Array) {
-          store[storeProp] = store[storeProp].map(item => ({
-            ...item,
-            [offerLink]: `${item[offerLink]}&direct=1`,
-          }));
+          store[storeProp] = getStoresWithDirectLinkSet(
+            store[storeProp],
+            offerLink,
+          );
         }
       });
 

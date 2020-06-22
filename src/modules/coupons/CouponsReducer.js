@@ -20,6 +20,8 @@ import {
   RESET_COUPONS,
 } from './CouponsActions';
 
+import { getStoresWithDirectLinkSet, setDirectTrue } from '@config/Utils';
+
 export const STATE_KEY = 'coupons';
 
 const initialState: CouponsReducerProps = {
@@ -81,16 +83,18 @@ const CouponsReducer = (
       return R.assoc<Object, Object>('stores', [], state);
     }
     case `${GET_COUPONS_BY_CATEGORY}_SUCCESS`: {
-      const offersData = R.pathOr(
-        [],
-        ['payload', 'data', 'offers_data'],
-        action,
-      ).map(item => ({ ...item, offer_link: `${item.offer_link}&direct=1` }));
+      const offersData = getStoresWithDirectLinkSet(
+        R.pathOr([], ['payload', 'data', 'offers_data'], action),
+        'offer_link',
+      );
 
-      const primaryFeaturedCoupons = R.pathOr(
-        false,
-        ['payload', 'data', 'paid_placements', 'primary_featured_coupons'],
-        action,
+      const primaryFeaturedCoupons = getStoresWithDirectLinkSet(
+        R.pathOr(
+          false,
+          ['payload', 'data', 'paid_placements', 'primary_featured_coupons'],
+          action,
+        ),
+        'offer_link',
       );
 
       const featuredCoupon =
@@ -98,10 +102,13 @@ const CouponsReducer = (
           ? primaryFeaturedCoupons[0]
           : offersData[0];
 
-      const featuredPlacements = R.pathOr(
-        [],
-        ['payload', 'data', 'paid_placements', 'secondary_featured_coupons'],
-        action,
+      const featuredPlacements = getStoresWithDirectLinkSet(
+        R.pathOr(
+          [],
+          ['payload', 'data', 'paid_placements', 'secondary_featured_coupons'],
+          action,
+        ),
+        'offer_link',
       );
 
       featuredPlacements.forEach(offer => {
@@ -118,14 +125,14 @@ const CouponsReducer = (
         stores: R.pathOr([], ['payload', 'data', 'featured_stores'], action),
         featuredCoupon: {
           ...featuredCoupon,
-          offer_link: `${featuredCoupon.offer_link}&direct=1`,
+          offer_link: setDirectTrue(featuredCoupon.offer_link),
         },
       };
 
-      categories.stores = categories.stores.map(item => ({
-        ...item,
-        offer_link: `${item.offer_link}&direct=1`,
-      }));
+      categories.stores = getStoresWithDirectLinkSet(
+        categories.stores,
+        'offer_link',
+      );
 
       const staticMerchantBar = R.pathOr(
         [],
@@ -138,7 +145,7 @@ const CouponsReducer = (
         store.cashback_text = v.cashback_text;
         store.override = v.cashback_text_override || false;
         store.offer_img = v.logo_url;
-        store.offer_link = v.url;
+        store.offer_link = setDirectTrue(v.url);
         store.short_name = v.store_data.short_name;
         store.store_id = v.store_data.store_id;
         store.store_name = v.store_data.store_name;
