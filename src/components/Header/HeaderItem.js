@@ -35,7 +35,7 @@ const HeaderItem = ({
       border={border}
     >
       {direct && redirect && (
-        <HeaderItem.LogoLink href={redirect}>{children}</HeaderItem.LogoLink>
+        <HeaderItem.LogoLink to={redirect}>{children}</HeaderItem.LogoLink>
       )}
 
       {link && (
@@ -133,8 +133,7 @@ HeaderItem.Link = styled.a`
   justify-content: center;
   border-radius: 5px;
   position: relative;
-  background: ${({ border, theme }) =>
-    border ? theme.colors.greenLight : 0} 0;
+  background: ${({ border, theme }) => (border ? theme.colors.greenLight : 0)} 0;
   text-decoration: ${({ border }) => (border ? 'none' : 'underline')};
   transition: all 0.3s ease;
   cursor: pointer;
@@ -194,7 +193,7 @@ HeaderItem.Link = styled.a`
   }
 `;
 
-HeaderItem.LogoLink = styled.a`
+HeaderItem.LogoLink = styled(NavLink)`
   width: 100%;
   height: 100%;
   display: flex;

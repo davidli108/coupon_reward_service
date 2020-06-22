@@ -2,6 +2,7 @@
 import * as R from 'ramda';
 import { FETCH_HOMEPAGE_FEATURE, FETCH_HOME_FEATURE } from './LandingActions';
 import { stringElipsis } from './common/helpers';
+import { getStoresWithDirectLinkSet } from '@config/Utils';
 
 export type LandingReducerProps = {
   homePageFeaturedStore: Array<any>,
@@ -58,6 +59,21 @@ const LandingReducer = (
           action,
         ),
       };
+
+      const storeIntOffers = {
+        homepage_feature: 'link',
+        top_deals: 'link',
+        featured_stores: 'offer_link',
+      };
+
+      Object.entries(storeIntOffers).forEach(([storeProp, offerLink]) => {
+        if (paid_placements[storeProp] instanceof Array) {
+          paid_placements[storeProp] = getStoresWithDirectLinkSet(
+            paid_placements[storeProp],
+            offerLink,
+          );
+        }
+      });
 
       const categories: Object = R.pathOr(
         [],

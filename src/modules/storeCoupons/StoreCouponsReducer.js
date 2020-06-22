@@ -1,5 +1,6 @@
 // @flow
 import * as R from 'ramda';
+import { getStoresWithDirectLinkSet, setDirectTrue } from '@config/Utils';
 
 import {
   FETCH_STORE_COUPONS,
@@ -40,22 +41,40 @@ const StoreCouponsReducer = (
       return R.assoc<Object, Object>('fetchingState', 'FETCHING')(state);
     }
     case `${FETCH_STORE_COUPONS}_SUCCESS`: {
-      const cashbackRates = R.pathOr(
-        [],
-        ['payload', 'data', 'cashback_rates'],
-        action,
+      const cashbackRates = getStoresWithDirectLinkSet(
+        R.pathOr([], ['payload', 'data', 'cashback_rates'], action),
+        'int_url',
       );
 
       const count: number = R.pathOr(0, ['payload', 'data', 'offers_count'])(
         action,
       );
-      const offers = R.pathOr([], ['payload', 'data', 'offers_data'])(action);
+      const offers = getStoresWithDirectLinkSet(
+        R.pathOr([], ['payload', 'data', 'offers_data'])(action),
+        'offer_link',
+      );
 
       const store = R.compose(
         R.fromPairs,
         R.toPairs,
         R.path(['payload', 'data']),
       )(action);
+
+      store.store_info_link = setDirectTrue(store.store_info_link);
+      const storeIntOffers = {
+        cashback_rates: 'int_url',
+        featured_stores: 'offer_link',
+        offers_data: 'offer_link',
+      };
+
+      Object.entries(storeIntOffers).forEach(([storeProp, offerLink]) => {
+        if (store[storeProp] instanceof Array) {
+          store[storeProp] = getStoresWithDirectLinkSet(
+            store[storeProp],
+            offerLink,
+          );
+        }
+      });
 
       const reviews = R.pathOr(0, ['payload', 'data', 'cws_reviews'])(action);
 
