@@ -182,7 +182,7 @@ export default {
     loadMoreDeals: 'Lade mehr Angebote',
     loadMoreCoupons: 'Lade mehr Gutscheine',
     loadMoreStores: 'Weitere Shops laden',
-    search: 'Suche',
+    search: 'Suchen',
     nothingFound: 'Nicht gefunden',
     deals: 'Angebote',
     revealCoupon: 'Gutschein einblenden',
