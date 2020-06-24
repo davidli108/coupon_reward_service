@@ -22,7 +22,7 @@ const styles = (StorePage: Object) => {
     ${breakpoint('lg')`
       flex-flow: row nowrap;
       justify-content: space-between;
-  
+
       width: 100%;
       padding: 10px 0;
     `}
@@ -34,9 +34,9 @@ const styles = (StorePage: Object) => {
         border-radius: 5px;
         margin-left: 30px;
         padding: 8px 20px;
-  
+
         height: auto;
-  
+
         > * {
           padding: 0;
         }
@@ -50,7 +50,7 @@ const styles = (StorePage: Object) => {
       > div:first-child {
         width: calc(100% - 300px);
       }
-  
+
       > div:last-child {
         width: 262px;
       }
@@ -80,7 +80,7 @@ const styles = (StorePage: Object) => {
 
   StorePage.TermsWrapper = styled.div`
     display: flex;
-    margin-top: 10px;
+    margin-top: 30px;
     flex-direction: column;
     padding: 32px;
     width: auto;
