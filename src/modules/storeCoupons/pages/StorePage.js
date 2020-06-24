@@ -155,7 +155,9 @@ const StorePage = ({
             ))
           )}
           {!isExtensionInstalled && !isAmazon && <AddSaving />}
-          <StorePage.TermsWrapper>{parse(terms)}</StorePage.TermsWrapper>
+          {isLoaded && terms && (
+            <StorePage.TermsWrapper>{parse(terms)}</StorePage.TermsWrapper>
+          )}
         </StorePage.ColumnNoWrapFlexBox>
         <StorePage.ColumnNoWrapFlexBox order="1">
           {isLoaded ? (
