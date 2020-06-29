@@ -4,11 +4,12 @@ import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
 import moment from 'moment';
+
 import i18n, {
   currencyLocaleFormat,
   setDecimalFormat,
 } from '@modules/localization/i18n';
-
+import { isAmazonStore } from '@config/Utils';
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
 import StoreListLoader from './loaders/StoreListLoader';
 
@@ -19,47 +20,51 @@ type FeaturedStoreListProps = {
 };
 
 const FeaturedStoreList = ({ t, stores, loaded }: FeaturedStoreListProps) => {
+  const getDiscount = (store: Object) => {
+    const discount = store.cashbackok
+      ? store.pay_type === 1
+        ? currencyLocaleFormat(
+            store.cashback_text,
+            store.country || i18n.language,
+          )
+        : setDecimalFormat(`${store.cashback_text}%`)
+      : '';
+    const cashBackMessageKey = store.cashbackok
+      ? store.pay_type === 1
+        ? 'global.amCashBack'
+        : 'global.upToCashBack'
+      : 'global.instantSaving';
+    const cashBackText = store.override || t(cashBackMessageKey, { discount });
+
+    return isAmazonStore(store.store_name)
+      ? t('global.noCashBack')
+      : cashBackText;
+  };
+
+  const date = moment().format('MMMM | YYYY');
+
   if (loaded) {
     return (
       <FeaturedStoreList.Wrapper>
-        {stores.map(store => {
-          const discount = store.cashbackok
-            ? store.pay_type === 1
-              ? currencyLocaleFormat(
-                  store.cashback_text,
-                  store.country || i18n.language,
-                )
-              : setDecimalFormat(`${store.cashback_text}%`)
-            : '';
-          const cashBackMessageKey = store.cashbackok
-            ? store.pay_type === 1
-              ? 'global.amCashBack'
-              : 'global.upToCashBack'
-            : 'global.instantSaving';
-          const cashBackText =
-            store.override || t(cashBackMessageKey, { discount });
-          const date = moment().format('MMMM | YYYY');
-
-          return (
-            <FeaturedStoreList.Item
-              key={`store_${store.store_id}`}
-              href={store.offer_link}
-              target="_blank"
-            >
-              <img
-                src={store.offer_img || placeholder}
-                onError={e => {
-                  e.target.onerror = null;
-                  e.target.src = placeholder;
-                }}
-                alt={`${store.store_name || ''} ${t(
-                  'storeCoupons.codes',
-                )} ${date.charAt(0).toUpperCase() + date.slice(1)}`}
-              />
-              <p>{cashBackText}</p>
-            </FeaturedStoreList.Item>
-          );
-        })}
+        {stores.map(store => (
+          <FeaturedStoreList.Item
+            key={`store_${store.store_id}`}
+            href={store.offer_link}
+            target="_blank"
+          >
+            <img
+              src={store.offer_img || placeholder}
+              onError={e => {
+                e.target.onerror = null;
+                e.target.src = placeholder;
+              }}
+              alt={`${store.store_name || ''} ${t(
+                'storeCoupons.codes',
+              )} ${date.charAt(0).toUpperCase() + date.slice(1)}`}
+            />
+            <p>{getDiscount(store)}</p>
+          </FeaturedStoreList.Item>
+        ))}
       </FeaturedStoreList.Wrapper>
     );
   }

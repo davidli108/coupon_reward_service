@@ -47,6 +47,8 @@ const Brand = ({
   useEffect(() => {
     if (isAmazonStore(store.store_name)) {
       setIsAmazon(true);
+    } else {
+      setIsAmazon(false);
     }
   }, [store]);
 

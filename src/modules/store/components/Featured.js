@@ -6,6 +6,7 @@ import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
 import moment from 'moment';
 import i18next from 'i18next';
+
 import {
   currencyLocaleFormat,
   setDecimalFormat,
@@ -28,66 +29,59 @@ const Featured = ({ t, featured }: FeaturedProps) => {
     });
   };
 
+  const getDiscount = (store: Object) => {
+    const discount = store.cashbackok
+      ? store.pay_type === 1
+        ? currencyLocaleFormat(store.cashback_text, store.country)
+        : setDecimalFormat(`${store.cashback_text}%`)
+      : '';
+    const cashBackMessageKey = store.cashbackok
+      ? store.pay_type === 1
+        ? 'global.amCashBack'
+        : 'global.upToCashBack'
+      : 'global.instantSaving';
+    const cashBackText = store.override || t(cashBackMessageKey, { discount });
+
+    return isAmazonStore(store.store_name)
+      ? t('global.noCashBack')
+      : cashBackText;
+  };
+
+  Featured.CashComponent =
+    i18next.language === 'jp' ? Featured.CashJp : Featured.Cash;
+
+  const date = moment().format('MMMM | YYYY');
+
   return (
     <Featured.Wrapper>
       <Featured.List>
-        {featured.map(
-          ({
-            store_name,
-            cashback_text,
-            override,
-            cashbackok,
-            offer_img,
-            store_id,
-            offer_link,
-            short_name,
-            pay_type,
-            country,
-          }) => {
-            const discount = cashbackok
-              ? pay_type === 1
-                ? currencyLocaleFormat(cashback_text, country)
-                : setDecimalFormat(`${cashback_text}%`)
-              : '';
-            const cashBackMessageKey = cashbackok
-              ? pay_type === 1
-                ? 'global.amCashBack'
-                : 'global.upToCashBack'
-              : 'global.instantSaving';
-            const cashBackText = isAmazonStore(store_name)
-              ? t('global.noCashBack')
-              : override || t(cashBackMessageKey, { discount });
-            Featured.CashComponent =
-              i18next.language === 'jp' ? Featured.CashJp : Featured.Cash;
-            const date = moment().format('MMMM | YYYY');
-
-            return (
-              <Featured.Item key={store_id}>
-                {offer_img && (
-                  <Featured.WrapperImage to={`/coupons/${short_name}`}>
-                    <Featured.Image
-                      src={offer_img || placeholder}
-                      onError={e => {
-                        e.target.onerror = null;
-                        e.target.src = placeholder;
-                      }}
-                      alt={`${store_name || ''} ${t(
-                        'storeCoupons.codes',
-                      )} ${date.charAt(0).toUpperCase() + date.slice(1)}`}
-                    />
-                  </Featured.WrapperImage>
-                )}
-                <Featured.Link
-                  to={`/coupons/${short_name}`}
-                  onClick={triggerEvent(`/coupons/${short_name}`)}
-                >
-                  {t('build.visitStore')}
-                </Featured.Link>
-                <Featured.CashComponent>{cashBackText}</Featured.CashComponent>
-              </Featured.Item>
-            );
-          },
-        )}
+        {featured.map((store, index) => (
+          <Featured.Item key={index}>
+            {store.offer_img && (
+              <Featured.WrapperImage to={`/coupons/${store.short_name}`}>
+                <Featured.Image
+                  src={store.offer_img || placeholder}
+                  onError={e => {
+                    e.target.onerror = null;
+                    e.target.src = placeholder;
+                  }}
+                  alt={`${store.store_name || ''} ${t(
+                    'storeCoupons.codes',
+                  )} ${date.charAt(0).toUpperCase() + date.slice(1)}`}
+                />
+              </Featured.WrapperImage>
+            )}
+            <Featured.Link
+              to={`/coupons/${store.short_name}`}
+              onClick={triggerEvent(`/coupons/${store.short_name}`)}
+            >
+              {t('build.visitStore')}
+            </Featured.Link>
+            <Featured.CashComponent>
+              {getDiscount(store)}
+            </Featured.CashComponent>
+          </Featured.Item>
+        ))}
       </Featured.List>
     </Featured.Wrapper>
   );
