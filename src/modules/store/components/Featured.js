@@ -10,6 +10,7 @@ import i18next from 'i18next';
 import {
   currencyLocaleFormat,
   setDecimalFormat,
+  getDomainAttrs,
 } from '@modules/localization/i18n';
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
 import { isAmazonStore } from '@config/Utils';
@@ -29,6 +30,8 @@ const Featured = ({ t, featured }: FeaturedProps) => {
     });
   };
 
+  const { tld } = getDomainAttrs();
+
   const getDiscount = (store: Object) => {
     const discount = store.cashbackok
       ? store.pay_type === 1
@@ -40,7 +43,10 @@ const Featured = ({ t, featured }: FeaturedProps) => {
         ? 'global.amCashBack'
         : 'global.upToCashBack'
       : 'global.instantSaving';
-    const cashBackText = store.override || t(cashBackMessageKey, { discount });
+    const cashBackText =
+      store.cashback_text === '0.0' && ['com', 'co.uk'].includes(tld)
+        ? t('global.noCashBack')
+        : store.override || t(cashBackMessageKey, { discount });
 
     return isAmazonStore(store.store_name)
       ? t('global.noCashBack')
