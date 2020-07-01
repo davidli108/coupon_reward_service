@@ -77,19 +77,16 @@ const CouponCode = ({
 
   return (
     <>
-      <CouponCode.Wrapper isAmazon={isAmazon}>
-        <CouponCode.Button
-          onClick={handleClick}
-          isShow={!isShowCode && !isAmazon}
-        >
+      <CouponCode.Wrapper>
+        <CouponCode.Button onClick={handleClick} isShow={!isShowCode}>
           {code
             ? t('coupons.buttons.viewCoupon')
             : t('coupons.buttons.viewDeal')}
         </CouponCode.Button>
         <CouponCode.Code
-          isShow={isShowCode || isAmazon}
+          isShow={isShowCode}
           href={isAmazon ? setDirectTrue(link) : link}
-          target={'_blank'}
+          target="_blank"
         >
           {code}
           <CouponCode.Tooltip>
@@ -111,42 +108,8 @@ const CouponCode = ({
   );
 };
 
-CouponCode.Code = styled.a`
-  display: ${props => (props.isShow ? 'flex' : 'none')};
-  cursor: pointer;
-  width: 100%;
-  height: 50px;
-  margin-bottom: 10px;
-  justify-content: center;
-  align-items: center;
-  border: 2px dashed gray;
-  background-color: ${props => props.theme.colors.whiteEnLight};
-  color: black;
-  text-align: center;
-  box-sizing: border-box;
-  position: relative;
-
-  :hover {
-    > div {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-    }
-  }
-`;
-
 CouponCode.Wrapper = styled.div`
   width: 90%;
-
-  ${({ isAmazon }) =>
-    isAmazon
-      ? `
-    height: 60px;
-
-    ${CouponCode.Code} {
-      display: none;
-    }
-  `
-      : ''}
 `;
 
 CouponCode.Button = styled.div`
@@ -172,6 +135,29 @@ CouponCode.Button = styled.div`
     background: ${props => props.theme.colors.blueDark} !important;
     color: ${props => props.theme.colors.white} !important;
     border: 1px solid ${props => props.theme.colors.blueDark} !important;
+  }
+`;
+
+CouponCode.Code = styled.a`
+  display: ${props => (props.isShow ? 'flex' : 'none')};
+  cursor: pointer;
+  width: 100%;
+  height: 50px;
+  margin-bottom: 10px;
+  justify-content: center;
+  align-items: center;
+  border: 2px dashed gray;
+  background-color: ${props => props.theme.colors.whiteEnLight};
+  color: black;
+  text-align: center;
+  box-sizing: border-box;
+  position: relative;
+
+  :hover {
+    > div {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
   }
 `;
 
