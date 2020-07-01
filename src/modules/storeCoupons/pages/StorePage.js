@@ -139,10 +139,6 @@ const StorePage = ({
           extensionActive={isLoaded && (isExtensionInstalled || isAmazon)}
           style={{ marginBottom: 50 }}
         >
-          {isLoaded && terms && (
-            <StorePage.TermsWrapper>{parse(terms)}</StorePage.TermsWrapper>
-          )}
-
           {isLoaded ? (
             <Offers
               offers={offers}
@@ -159,6 +155,9 @@ const StorePage = ({
             ))
           )}
           {!isExtensionInstalled && !isAmazon && <AddSaving />}
+          {isLoaded && terms && (
+            <StorePage.TermsWrapper>{parse(terms)}</StorePage.TermsWrapper>
+          )}
         </StorePage.ColumnNoWrapFlexBox>
         <StorePage.ColumnNoWrapFlexBox order="1">
           {isLoaded ? (
