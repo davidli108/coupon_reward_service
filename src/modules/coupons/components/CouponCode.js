@@ -4,6 +4,7 @@ import { compose } from 'recompose';
 import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
+
 import ModalActivateCoupons from '@components/ModalActivateCoupons/ModalActivateCoupons';
 import { isAmazonStore, setDirectTrue } from '@config/Utils';
 
@@ -76,7 +77,7 @@ const CouponCode = ({
 
   return (
     <>
-      <CouponCode.Wrapper>
+      <CouponCode.Wrapper isAmazon={isAmazon}>
         <CouponCode.Button
           onClick={handleClick}
           isShow={!isShowCode && !isAmazon}
@@ -110,8 +111,42 @@ const CouponCode = ({
   );
 };
 
+CouponCode.Code = styled.a`
+  display: ${props => (props.isShow ? 'flex' : 'none')};
+  cursor: pointer;
+  width: 100%;
+  height: 50px;
+  margin-bottom: 10px;
+  justify-content: center;
+  align-items: center;
+  border: 2px dashed gray;
+  background-color: ${props => props.theme.colors.whiteEnLight};
+  color: black;
+  text-align: center;
+  box-sizing: border-box;
+  position: relative;
+
+  :hover {
+    > div {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+`;
+
 CouponCode.Wrapper = styled.div`
   width: 90%;
+
+  ${({ isAmazon }) =>
+    isAmazon
+      ? `
+    height: 60px;
+
+    ${CouponCode.Code} {
+      display: none;
+    }
+  `
+      : ''}
 `;
 
 CouponCode.Button = styled.div`
@@ -137,29 +172,6 @@ CouponCode.Button = styled.div`
     background: ${props => props.theme.colors.blueDark} !important;
     color: ${props => props.theme.colors.white} !important;
     border: 1px solid ${props => props.theme.colors.blueDark} !important;
-  }
-`;
-
-CouponCode.Code = styled.a`
-  display: ${props => (props.isShow ? 'flex' : 'none')};
-  cursor: pointer;
-  width: 100%;
-  height: 50px;
-  margin-bottom: 10px;
-  justify-content: center;
-  align-items: center;
-  border: 2px dashed gray;
-  background-color: ${props => props.theme.colors.whiteEnLight};
-  color: black;
-  text-align: center;
-  box-sizing: border-box;
-  position: relative;
-
-  :hover {
-    > div {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-    }
   }
 `;
 
