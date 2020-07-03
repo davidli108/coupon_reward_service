@@ -4,7 +4,6 @@ import { compose } from 'recompose';
 import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
-
 import ModalActivateCoupons from '@components/ModalActivateCoupons/ModalActivateCoupons';
 import { isAmazonStore, setDirectTrue } from '@config/Utils';
 
@@ -78,15 +77,18 @@ const CouponCode = ({
   return (
     <>
       <CouponCode.Wrapper>
-        <CouponCode.Button onClick={handleClick} isShow={!isShowCode}>
+        <CouponCode.Button
+          onClick={handleClick}
+          isShow={!isShowCode && !isAmazon}
+        >
           {code
             ? t('coupons.buttons.viewCoupon')
             : t('coupons.buttons.viewDeal')}
         </CouponCode.Button>
         <CouponCode.Code
-          isShow={isShowCode}
+          isShow={isShowCode || isAmazon}
           href={isAmazon ? setDirectTrue(link) : link}
-          target="_blank"
+          target={'_blank'}
         >
           {code}
           <CouponCode.Tooltip>
