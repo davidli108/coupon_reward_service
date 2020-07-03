@@ -77,10 +77,7 @@ const CouponCode = ({
   return (
     <>
       <CouponCode.Wrapper>
-        <CouponCode.Button
-          onClick={handleClick}
-          isShow={!isShowCode && isAmazon}
-        >
+        <CouponCode.Button onClick={handleClick} isShow={!isShowCode}>
           {code
             ? t('coupons.buttons.viewCoupon')
             : t('coupons.buttons.viewDeal')}
