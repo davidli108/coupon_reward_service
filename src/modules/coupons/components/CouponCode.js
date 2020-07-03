@@ -79,14 +79,14 @@ const CouponCode = ({
       <CouponCode.Wrapper>
         <CouponCode.Button
           onClick={handleClick}
-          isShow={!isShowCode && !isAmazon}
+          isShow={!isShowCode && isAmazon}
         >
           {code
             ? t('coupons.buttons.viewCoupon')
             : t('coupons.buttons.viewDeal')}
         </CouponCode.Button>
         <CouponCode.Code
-          isShow={isShowCode || isAmazon}
+          isShow={isShowCode}
           href={isAmazon ? setDirectTrue(link) : link}
           target={'_blank'}
         >
