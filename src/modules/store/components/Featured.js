@@ -29,7 +29,7 @@ const Featured = ({ t, featured }: FeaturedProps) => {
   };
 
   const getCashBack = store => {
-    if (isAmazonStore(store.store_name)) {
+    if (isAmazonStore(store.short_name)) {
       return t('global.noCashBack');
     }
 
