@@ -11,6 +11,7 @@ import i18n, {
 
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
 import StoreListLoader from './loaders/StoreListLoader';
+import { isAmazonStore } from '@config/Utils';
 
 type FeaturedStoreListProps = {
   t: Function,
@@ -19,27 +20,34 @@ type FeaturedStoreListProps = {
 };
 
 const FeaturedStoreList = ({ t, stores, loaded }: FeaturedStoreListProps) => {
+  const getCashBack = store => {
+    if (isAmazonStore(store.store_name)) {
+      return t('global.noCashBack');
+    }
+
+    const discount = store.cashbackok
+      ? store.pay_type === 1
+        ? currencyLocaleFormat(
+            store.cashback_text,
+            store.country || i18n.language,
+          )
+        : setDecimalFormat(`${store.cashback_text}%`)
+      : '';
+    const cashBackMessageKey = store.cashbackok
+      ? store.pay_type === 1
+        ? 'global.amCashBack'
+        : 'global.upToCashBack'
+      : 'global.instantSaving';
+
+    return store.override || t(cashBackMessageKey, { discount });
+  };
+
+  const date = moment().format('MMMM | YYYY');
+
   if (loaded) {
     return (
       <FeaturedStoreList.Wrapper>
         {stores.map(store => {
-          const discount = store.cashbackok
-            ? store.pay_type === 1
-              ? currencyLocaleFormat(
-                  store.cashback_text,
-                  store.country || i18n.language,
-                )
-              : setDecimalFormat(`${store.cashback_text}%`)
-            : '';
-          const cashBackMessageKey = store.cashbackok
-            ? store.pay_type === 1
-              ? 'global.amCashBack'
-              : 'global.upToCashBack'
-            : 'global.instantSaving';
-          const cashBackText =
-            store.override || t(cashBackMessageKey, { discount });
-          const date = moment().format('MMMM | YYYY');
-
           return (
             <FeaturedStoreList.Item
               key={`store_${store.store_id}`}
@@ -56,7 +64,7 @@ const FeaturedStoreList = ({ t, stores, loaded }: FeaturedStoreListProps) => {
                   'storeCoupons.codes',
                 )} ${date.charAt(0).toUpperCase() + date.slice(1)}`}
               />
-              <p>{cashBackText}</p>
+              <p>{getCashBack(store)}</p>
             </FeaturedStoreList.Item>
           );
         })}
