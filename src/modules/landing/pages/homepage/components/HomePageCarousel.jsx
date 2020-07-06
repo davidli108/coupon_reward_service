@@ -3,11 +3,12 @@ import React from 'react';
 import Slider from 'react-slick';
 import {withTranslation} from 'react-i18next';
 import { compose } from 'recompose';
+import TextFit  from 'react-textfit'
+
 import {slider_settings} from '../HomePage.constants';
 import {type HomePageCarouselProps} from '../HomePage.types';
 import HomepageFeatureLoader from '../loader/HompageFeatureLoader';
 import styles from './HomePageCarousel.styles';
-import TextFit  from 'react-textfit'
 import { currencyLocaleFormat } from '@modules/localization/i18n';
 
 import placeholder from '@modules/coupons/assets/image-placeholder.png';

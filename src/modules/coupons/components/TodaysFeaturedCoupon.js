@@ -25,6 +25,7 @@ import type { Store } from '../models/CouponsPage';
 import SocialShareFeatured from './SocialShareFeatured';
 import AppConfig from '@config/AppConfig';
 import CouponCode from './CouponCode';
+import { isAmazonStore } from '@config/Utils';
 
 const modal = {
   modalSignIn: 'modalSignIn',
@@ -87,38 +88,46 @@ const TodaysFeaturedCoupon = ({
   };
 
   const formatDiscountAmt = (store: Store) => {
+    if (isAmazonStore(store.store_name)) {
+      return '';
+    }
+
     if (!store.cashback_ok || parseFloat(store.discount_amt) === 0) {
       return <small>{t('global.instantSaving')}</small>;
     }
 
     const discount = store.cashback_ok
       ? store.discount_type === 1
-        ? currencyLocaleFormat(
-            store.discount_amt,
-            store.country || i18n.language,
-          )
+        ? currencyLocaleFormat(store.discount_amt, store.country)
         : setDecimalFormat(`${parseFloat(store.discount_amt)}%`)
       : '';
 
     return discount + t('coupons.off');
   };
 
-  const discount = store.cashback_ok
-    ? store.numeric_type === 1
-      ? currencyLocaleFormat(
-          store.discount_print,
-          store.country || i18n.language,
-        )
-      : setDecimalFormat(`${store.discount_print}%`)
-    : '';
+  const getCashBackText = store => {
+    const discount = store.cashback_ok
+      ? store.numeric_type === 1
+        ? currencyLocaleFormat(store.discount_print, store.country)
+        : setDecimalFormat(`${store.discount_print}%`)
+      : '';
 
-  const cashBackMessageText = store.noCashBack
-    ? 'global.noCashBack'
-    : store.cashback_ok
-    ? store.numeric_type === 1
-      ? 'coupons.plusCashBack'
-      : 'global.upToCashBack'
-    : '';
+    if (isAmazonStore(store.store_name)) {
+      return t('global.noCashBack');
+    }
+
+    if (store.noCashBack) {
+      return t('global.instantSaving');
+    }
+
+    if (store.cashback_ok) {
+      return store.numeric_type === 1
+        ? t('coupons.instantSavings', { discount })
+        : t('global.upToCashBack', { discount });
+    }
+
+    return '';
+  };
 
   return (
     <TodaysFeaturedCoupon.Wrapper>
@@ -172,7 +181,7 @@ const TodaysFeaturedCoupon = ({
             <span>
               {store.text_override
                 ? store.discount_print
-                : t(cashBackMessageText, { discount })}
+                : getCashBackText(store)}
             </span>
           </TodaysFeaturedCoupon.Offering>
         </TodaysFeaturedCoupon.OfferingWrapper>
@@ -187,7 +196,7 @@ const TodaysFeaturedCoupon = ({
             isExtensionInstalled={isExtensionInstalled}
             store={store.store_name}
             logo={store.store_logo || placeholder}
-            code={store.coupon_code}
+            code={store.coupon_code && !isAmazonStore(store.store_name)}
             link={store.offer_link}
           />
         </TodaysFeaturedCoupon.DescriptionButtonWrapper>
