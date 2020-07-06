@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
 import moment from 'moment';
-import i18n, {
+import {
   currencyLocaleFormat,
   setDecimalFormat,
 } from '@modules/localization/i18n';
@@ -27,10 +27,7 @@ const FeaturedStoreList = ({ t, stores, loaded }: FeaturedStoreListProps) => {
 
     const discount = store.cashbackok
       ? store.pay_type === 1
-        ? currencyLocaleFormat(
-            store.cashback_text,
-            store.country || i18n.language,
-          )
+        ? currencyLocaleFormat(store.cashback_text, store.country)
         : setDecimalFormat(`${store.cashback_text}%`)
       : '';
     const cashBackMessageKey = store.cashbackok

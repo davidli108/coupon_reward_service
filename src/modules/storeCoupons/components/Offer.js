@@ -78,7 +78,7 @@ const Offer = ({
 
   const discountAmount = cashback_ok
     ? numeric_type === 1
-      ? currencyLocaleFormat(discount_print, country || i18n.language)
+      ? currencyLocaleFormat(discount_print, country)
       : `${parseFloat(discount_print).toFixed(1)}%`
     : '';
   const cashBackMessageKey = cashback_ok
@@ -125,10 +125,7 @@ const Offer = ({
             <Offer.Discount color={discountColors[randomColor]}>
               <span>
                 {discount_type === 1 &&
-                  `${currencyLocaleFormat(
-                    discount_amt,
-                    country || i18n.language,
-                  )}`}
+                  currencyLocaleFormat(discount_amt, country)}
                 {discount_type === 2 && `${parseFloat(discount_amt)}%`}
               </span>
 

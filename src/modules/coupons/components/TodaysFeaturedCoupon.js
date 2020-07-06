@@ -98,10 +98,7 @@ const TodaysFeaturedCoupon = ({
 
     const discount = store.cashback_ok
       ? store.discount_type === 1
-        ? currencyLocaleFormat(
-            store.discount_amt,
-            store.country || i18n.language,
-          )
+        ? currencyLocaleFormat(store.discount_amt, store.country)
         : setDecimalFormat(`${parseFloat(store.discount_amt)}%`)
       : '';
 
