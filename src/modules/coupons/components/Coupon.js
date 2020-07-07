@@ -62,7 +62,7 @@ const Coupon = ({
   const [randomColor] = useState(Math.floor(Math.random() * 7));
   const discount = cashback_ok
     ? numeric_type === 1
-      ? currencyLocaleFormat(discount_print, country || i18n.language)
+      ? currencyLocaleFormat(discount_print, country)
       : setDecimalFormat(`${discount_print}%`)
     : '';
   const cashBackMessageKey = no_cashback
@@ -110,7 +110,7 @@ const Coupon = ({
           <Coupon.Discount color={discountColors[randomColor]}>
             <span>
               {discount_type === 1 &&
-                currencyLocaleFormat(discount_amt, country || i18n.language)}
+                currencyLocaleFormat(discount_amt, country)}
               {discount_type === 2 && `${parseFloat(discount_amt)}%`}
             </span>
             <span>{t('coupons.off')}</span>
