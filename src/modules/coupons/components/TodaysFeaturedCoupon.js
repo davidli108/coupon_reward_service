@@ -196,7 +196,7 @@ const TodaysFeaturedCoupon = ({
             isExtensionInstalled={isExtensionInstalled}
             store={store.store_name}
             logo={store.store_logo || placeholder}
-            code={store.coupon_code && !isAmazonStore(store.store_name)}
+            code={!isAmazonStore(store.store_name) && store.coupon_code}
             link={store.offer_link}
           />
         </TodaysFeaturedCoupon.DescriptionButtonWrapper>
