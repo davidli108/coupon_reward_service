@@ -4,13 +4,13 @@ import { ThemeProvider } from 'styled-components';
 
 import ScrollToTop from '@components/ScrollToTop/ScrollToTop';
 import { getTheme } from '@theme';
-import AppConfig from '@config/AppConfig';
 
 import routes from './routes';
 
 import favicon from './assets/favicon.ico';
 import logo from '@components/Header/logo.svg';
-import { renderIubendaScripts } from './config/IubendaScript';
+import { renderIubendaScripts } from '@config/IubendaScript';
+import { renderTrackRefsScript } from '@config/Utils';
 
 const { theme, GlobalStyle } = getTheme('base');
 
@@ -26,19 +26,6 @@ const metaKeywords = [
   'savings',
   'cashback',
 ];
-
-const renderTrackRefsScript = () => {
-  const baseUrl = new URL(AppConfig.apiUrl);
-  const apiHost = baseUrl.host.includes('www')
-    ? baseUrl.host.replace('www', 'api')
-    : `api-${baseUrl.host}`;
-  const scriptUrl = document.createElement('script');
-  scriptUrl.type = 'text/javascript';
-  scriptUrl.async = true;
-  scriptUrl.src = `${baseUrl.protocol}//${apiHost}/js/track-refs.js`;
-
-  document.body.appendChild(scriptUrl);
-};
 
 const App = () => {
   useEffect(() => {

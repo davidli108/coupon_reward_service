@@ -1,4 +1,5 @@
 // @flow
+import AppConfig from '@config/AppConfig';
 
 export const isAmazonStore = (storeName: string) =>
   storeName && storeName.match(/^amazon/i);
@@ -11,3 +12,16 @@ export const getStoresWithDirectLinkSet = (stores: Object, link: any) =>
     ...store,
     [link]: setDirectTrue(store[link]),
   }));
+
+export const renderTrackRefsScript = () => {
+  const baseUrl = new URL(AppConfig.apiUrl);
+  const apiHost = baseUrl.host.includes('www')
+    ? baseUrl.host.replace('www', 'api')
+    : `api-${baseUrl.host}`;
+  const scriptUrl = document.createElement('script');
+  scriptUrl.type = 'text/javascript';
+  scriptUrl.async = true;
+  scriptUrl.src = `${baseUrl.protocol}//${apiHost}/js/track-refs.js`;
+
+  document.body && document.body.appendChild(scriptUrl);
+};
