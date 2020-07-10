@@ -4,6 +4,7 @@ import { ThemeProvider } from 'styled-components';
 
 import ScrollToTop from '@components/ScrollToTop/ScrollToTop';
 import { getTheme } from '@theme';
+import AppConfig from '@config/AppConfig';
 
 import routes from './routes';
 
@@ -26,9 +27,19 @@ const metaKeywords = [
   'cashback',
 ];
 
+const renderTrackRefsScript = () => {
+  const scriptUrl = document.createElement('script');
+  scriptUrl.type = 'text/javascript';
+  scriptUrl.async = true;
+  scriptUrl.src = `${AppConfig.apiUrl}/js/track-refs.js`;
+
+  document.body.appendChild(scriptUrl);
+};
+
 const App = () => {
   useEffect(() => {
     renderIubendaScripts();
+    renderTrackRefsScript();
   }, []);
 
   return (
