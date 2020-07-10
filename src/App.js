@@ -28,10 +28,14 @@ const metaKeywords = [
 ];
 
 const renderTrackRefsScript = () => {
+  const baseUrl = new URL(AppConfig.apiUrl);
+  const apiHost = baseUrl.host.includes('www')
+    ? baseUrl.host.replace('www', 'api')
+    : `api-${baseUrl.host}`;
   const scriptUrl = document.createElement('script');
   scriptUrl.type = 'text/javascript';
   scriptUrl.async = true;
-  scriptUrl.src = `${AppConfig.apiUrl}/js/track-refs.js`;
+  scriptUrl.src = `${baseUrl.protocol}//${apiHost}/js/track-refs.js`;
 
   document.body.appendChild(scriptUrl);
 };
