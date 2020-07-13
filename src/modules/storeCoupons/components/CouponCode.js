@@ -34,12 +34,15 @@ const CouponCode = ({
   isExtensionInstalled,
   isVisit,
 }: CouponCodeProps) => {
-  const [isShowCode, setIsShowCode] = useState(false);
+  const [isCodeShown, setIsCodeShown] = useState(false);
   const [showActivateModal, setShowActivateModal] = useState(false);
   const [isAmazon, setIsAmazon] = useState(false);
 
+  const isInstallProcessed = Boolean(Cookie.get('installProcessed'));
+  const isChrome = !!window.chrome;
+
   useEffect(() => {
-    setIsShowCode((isAuthenticated && code) || (isExtensionInstalled && code));
+    setIsCodeShown((isAuthenticated || isExtensionInstalled) && code);
   }, [isAuthenticated, isExtensionInstalled]);
 
   useEffect(() => {
@@ -49,17 +52,21 @@ const CouponCode = ({
   }, [store]);
 
   const handleClick = () => {
-    setShowActivateModal(true);
+    if ((isMobile || !isChrome) && !code) {
+      window.open(link, '_blank');
+    } else {
+      setShowActivateModal(true);
+    }
 
     if (showActivateModal && code) {
-      setIsShowCode(true);
+      setIsCodeShown(true);
     }
 
     if (showActivateModal && !code) {
       window.open(isAmazon ? setDirectTrue(link) : link, '_blank');
     }
 
-    if (code && !isShowCode) {
+    if (code && !isCodeShown) {
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
         pageCategory: 'Store Pages',
@@ -80,22 +87,19 @@ const CouponCode = ({
 
   const modalCallback = (dismiss: boolean) => {
     setShowActivateModal(false);
-    if (code && !isShowCode) {
-      setIsShowCode(true);
+    if (code && !isCodeShown) {
+      setIsCodeShown(true);
     } else if (!dismiss) {
       window.open(isAmazon ? setDirectTrue(link) : link, '_blank');
     }
   };
 
   const renderCouponButton = () => {
-    const isChrome = !!window.chrome;
-    const isInstallProcessed = Boolean(Cookie.get('installProcessed'));
-
     return code ? (
       <>
         <CouponCode.Button
           onClick={handleClick}
-          isShow={!isShowCode && !isAmazon}
+          isShow={!isCodeShown && !isAmazon}
         >
           {i18n.language === 'jp' ? (
             <CouponCode.p>{t('global.revealCoupon')}</CouponCode.p>
@@ -105,7 +109,7 @@ const CouponCode = ({
           <CouponCode.Rectangle isShow={!!code} />
         </CouponCode.Button>
         <CouponCode.Code
-          isShow={isShowCode || isAmazon}
+          isShow={isCodeShown || isAmazon}
           href={isAmazon ? setDirectTrue(link) : link}
           target={'_blank'}
         >
@@ -117,16 +121,16 @@ const CouponCode = ({
       </>
     ) : isChrome &&
       !isMobile &&
-      !isShowCode &&
+      !isCodeShown &&
       !isVisit &&
       !isAuthenticated &&
       !isAmazon &&
       !isInstallProcessed ? (
-      <CouponCode.Button onClick={handleClick} isShow={!isShowCode}>
+      <CouponCode.Button onClick={handleClick} isShow={!isCodeShown}>
         <p>{t('coupons.buttons.viewDeal')}</p>
       </CouponCode.Button>
     ) : isVisit ? (
-      <CouponCode.Button onClick={handleClick} isShow={!isShowCode}>
+      <CouponCode.Button onClick={handleClick} isShow={!isCodeShown}>
         <p> {t('build.visitStore')}</p>
       </CouponCode.Button>
     ) : (

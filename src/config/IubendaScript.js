@@ -1,3 +1,4 @@
+// @flow
 export const renderIubendaScripts = () => {
   const domain = document.location.hostname.split('.');
   const location = domain[domain.length - 1];
@@ -34,6 +35,6 @@ export const renderIubendaScripts = () => {
   scriptUrl.async = true;
   scriptUrl.src = '//cdn.iubenda.com/cs/stable/iubenda_cs.js';
 
-  document.body.appendChild(iubendaConfig);
-  document.body.appendChild(scriptUrl);
+  document.body && document.body.appendChild(iubendaConfig);
+  document.body && document.body.appendChild(scriptUrl);
 };

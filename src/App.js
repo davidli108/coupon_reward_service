@@ -10,7 +10,8 @@ import routes from './routes';
 
 import favicon from './assets/favicon.ico';
 import logo from '@components/Header/logo.svg';
-import { renderIubendaScripts } from './config/IubendaScript';
+import { renderIubendaScripts } from '@config/IubendaScript';
+import { renderTrackRefsScript } from '@config/Utils';
 
 const { theme, GlobalStyle } = getTheme('base');
 
