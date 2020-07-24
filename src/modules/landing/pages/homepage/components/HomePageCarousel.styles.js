@@ -235,6 +235,11 @@ const styles = (HomePageCarousel: Object) => {
         font-weight: bold;
       }
 
+      .overrideText {
+        line-height: 16px;
+        max-height: 100px;
+      }
+
       p {
         margin: 0 0 10px;
         font: 600 18px/24px ${({ theme }) => theme.fonts.roboto};

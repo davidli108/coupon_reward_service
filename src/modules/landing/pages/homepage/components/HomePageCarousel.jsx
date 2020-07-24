@@ -17,8 +17,12 @@ const StoreName = (storeName: string) => {
   return (storeName.length < 15)
     ? (<h1>{storeName}</h1>)
     : (<TextFit mode="single" className="storeName">{storeName}</TextFit>)
-};
-
+}
+const OverrideText = (overrideText: string) => {
+  return (overrideText.length < 45)
+    ? (<h3>{overrideText}</h3>)
+    : (<TextFit mode="multi" className="overrideText">{overrideText}</TextFit>)
+}
 const HomePageCarousel = ({
   t,
   storesData,
@@ -44,7 +48,7 @@ const HomePageCarousel = ({
                   </div>
                   <div className="content">
                     {StoreName(item.store_name)}
-                    <h3>{item.override_text}</h3>
+                    {OverrideText(item.override_text)}
                     <p>{item.cashback ? t('homepage.plusCashback', {cashback: getCashBack(item)}) : ''}</p>
                     <button onClick={() => handler(item.img, item.link, item.store_name)}>{t('homepage.gtdn')}</button>
                   </div>

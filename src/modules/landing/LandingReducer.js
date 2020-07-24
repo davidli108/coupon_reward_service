@@ -81,12 +81,6 @@ const LandingReducer = (
         action,
       );
 
-      const homepageFeatures = paid_placements.homepage_feature.map(item => {
-        item['override_text'] = stringElipsis(item['override_text'], 45);
-        item['store_name'] = stringElipsis(item['store_name'], 25);
-        return item;
-      });
-
       const mapTopDeal = paid_placements.top_deals.map(item => {
         const limit = item['was_price'] ? 7 : 10;
         item['override_text'] = stringElipsis(item['override_text'], 45);
@@ -131,7 +125,10 @@ const LandingReducer = (
           'featured_stores',
           paid_placements.featured_stores,
         ),
-        R.assoc<Object, Object>('homepage_feature', homepageFeatures),
+        R.assoc<Object, Object>(
+          'homepage_feature',
+          paid_placements.homepage_feature,
+        ),
         R.assoc<Object, Object>('top_deals', mapTopDeal),
         R.assoc<Object, Object>('featured_cashback', mapFeaturedCashback),
         R.assoc<Object, Object>('categories', categories),
