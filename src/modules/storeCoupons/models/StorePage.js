@@ -96,6 +96,7 @@ export type StorePageProps = {
 
 export type BrandProps = {
   t: Function,
+  match: Object,
   i18n: Object,
   coupon_code: string,
   offer_link: string,
@@ -143,6 +144,7 @@ export type OffersProps = {
 
 export type AdditionalInfoProps = {
   t: Function,
+  match: Object,
   additionalInfo: AdditionalInfo,
   store: Object,
   cashbackRates: Array<CashBackRate>,

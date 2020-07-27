@@ -8,6 +8,7 @@ import twitterIcon from '../assets/twitterIcon.svg';
 import pinterestIcon from '../assets/pinterestIcon.svg';
 
 import facebookConfig from '@config/FacebookConfig';
+import { fireGTMEvent } from '@config/Utils';
 
 type SocialShareProps = {
   text: string,
@@ -15,12 +16,14 @@ type SocialShareProps = {
   t: Function,
   twitterLink: string,
   pinterestLink: string,
+  store: any,
 };
 
 const SocialShare = ({
   text,
   link,
   t,
+  store,
   twitterLink,
   pinterestLink,
 }: SocialShareProps) => {
@@ -28,24 +31,43 @@ const SocialShare = ({
 
   //const logo = 'https://d26fg97ql61k4.cloudfront.net/build/img/piggy/logo.svg';
 
-  const facebookLink = `https://www.facebook.com/v2.0/dialog/feed?app_id=${
-    facebookConfig.app_id
-  }&link=${link}&description=${link}`;
+  const facebookLink = `https://www.facebook.com/v2.0/dialog/feed?app_id=${facebookConfig.app_id}&link=${link}&description=${link}`;
+
+  const clickHandler = (share: string) => () => {
+    setIsShowSocial(!isShowSocial);
+    fireGTMEvent({
+      pageCategory: 'Coupons by Category',
+      event: share,
+      label: store,
+    });
+  };
 
   return (
     <SocialShare.Wrapper>
-      <SocialShare.Button onClick={() => setIsShowSocial(!isShowSocial)}>
+      <SocialShare.Button onClick={clickHandler('share')}>
         <SocialShare.ShareIcon src={shareIcon} alt="share" />
         <p>{t('coupons.shopBy.share')}</p>
       </SocialShare.Button>
       <SocialShare.SocialsWrapper isShow={isShowSocial}>
-        <SocialShare.Social href={facebookLink} target="_blank">
+        <SocialShare.Social
+          href={facebookLink}
+          onClick={clickHandler('facebook_share')}
+          target="_blank"
+        >
           <img src={facebookIcon} alt="facebook" />
         </SocialShare.Social>
-        <SocialShare.Social href={twitterLink} target="_blank">
+        <SocialShare.Social
+          href={twitterLink}
+          onClick={clickHandler('twitter_share')}
+          target="_blank"
+        >
           <img src={twitterIcon} alt="twitter" />
         </SocialShare.Social>
-        <SocialShare.Social href={pinterestLink} target="_blank">
+        <SocialShare.Social
+          href={pinterestLink}
+          onClick={clickHandler('pinterest_share')}
+          target="_blank"
+        >
           <img src={pinterestIcon} alt="pinterest" />
         </SocialShare.Social>
       </SocialShare.SocialsWrapper>

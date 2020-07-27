@@ -7,6 +7,7 @@ import { compose } from 'recompose';
 import type { HomePageFeaturedCashBackProps } from '../HomePage.types';
 import styles from './HomePageFeaturedCashBack.styles';
 import FeaturedCashbackLoader from '../loader/FeaturedCashbackLoader';
+import { fireGTMEvent } from '@config/Utils';
 import { currencyLocaleFormat } from '@modules/localization/i18n';
 
 const HomePageFeaturedCashBack = ({
@@ -15,6 +16,15 @@ const HomePageFeaturedCashBack = ({
   isLoaded,
   handler,
 }: HomePageFeaturedCashBackProps) => {
+  const clickHandler = (img: string, link: string, storeName: string) => () => {
+    handler(img, link, storeName);
+    fireGTMEvent({
+      pageCategory: 'Homepage',
+      event: 'cash_back_deal_click',
+      label: storeName,
+    });
+  };
+
   const getCashBack = item => {
     return !item.cashback.includes('%')
       ? currencyLocaleFormat(item.cashback)
@@ -28,7 +38,7 @@ const HomePageFeaturedCashBack = ({
         <HomePageFeaturedCashBack.List>
           {stores && stores.map((item, key) => (
             <HomePageFeaturedCashBack.Item key={key}>
-              <span onClick={() => handler(item.offer_img, item.link, item.store_name)}>
+              <span onClick={clickHandler(item.offer_img, item.link, item.store_name)}>
                 <div className="wrapper">
                   <FaExternalLinkAlt />
                   <figure>

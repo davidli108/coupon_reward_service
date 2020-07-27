@@ -13,7 +13,7 @@ import {
   currencyLocaleFormat,
   setDecimalFormat,
 } from '@modules/localization/i18n';
-import { isAmazonStore } from '@config/Utils';
+import { isAmazonStore, fireGTMEvent } from '@config/Utils';
 
 import { type Store } from '../models';
 
@@ -49,8 +49,7 @@ const StoreList = ({
   });
 
   const triggerEvent = (url: string) => () => {
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
+    fireGTMEvent({
       pageCategory: 'Stores by Category',
       event: 'secondary_store_click',
       label: url,
@@ -58,11 +57,10 @@ const StoreList = ({
   };
 
   const onLoad = () => {
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
+    fireGTMEvent({
       pageCategory: 'Stores by Category',
       event: 'load_more_stores',
-      label: match.url,
+      label: document.location.href,
     });
 
     if (isLoadedStores) {

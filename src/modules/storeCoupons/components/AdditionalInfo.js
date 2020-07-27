@@ -9,7 +9,7 @@ import { withTranslation } from 'react-i18next';
 import { getSortedCashbackRate } from './constant';
 import type { AdditionalInfoProps } from '../models/StorePage';
 import { getCurrencySymbol } from '@modules/localization/i18n';
-import { isAmazonStore } from '@config/Utils';
+import { isAmazonStore, fireGTMEvent } from '@config/Utils';
 import {
   getAdditionalInfo,
   getStore,
@@ -38,6 +38,14 @@ const AdditionalInfo = ({
             /\$/g,
             getCurrencySymbol() || '$',
           );
+  };
+
+  const clickShopLink = () => {
+    fireGTMEvent({
+      pageCategory: 'Store Pages',
+      event: 'shop_link',
+      label: document.location.href,
+    });
   };
 
   return (
@@ -85,6 +93,7 @@ const AdditionalInfo = ({
         {!isAmazon && (
           <AdditionalInfo.Content>
             <AdditionalInfo.ContentLink
+              onClick={clickShopLink}
               href={store.store_info_link}
               target="_blank"
             >

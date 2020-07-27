@@ -3,6 +3,8 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { fireGTMEvent } from '@config/Utils';
+
 type CategoryItemProps = {
   setOpen?: boolean => void,
   name: string,
@@ -11,6 +13,7 @@ type CategoryItemProps = {
   isActive: boolean,
   onActive: string => void,
   isCounter: boolean,
+  match: Object,
 };
 
 const CategoryItem = ({
@@ -21,20 +24,37 @@ const CategoryItem = ({
   isActive,
   onActive,
   isCounter,
-}: CategoryItemProps) => (
-  <CategoryItem.Wrapper
-    isActive={isActive}
-    onClick={() => {
-      onActive(shortName);
-      if (setOpen) {
-        setOpen(false);
-      }
-    }}
-  >
-    <CategoryItem.Title>{name}</CategoryItem.Title>
-    {isCounter && count > 0 && <CategoryItem.Value>{count}</CategoryItem.Value>}
-  </CategoryItem.Wrapper>
-);
+  match,
+}: CategoryItemProps) => {
+  const clickHandler = () => {
+    onActive(shortName);
+    if (setOpen) {
+      setOpen(false);
+    }
+
+    if (
+      match.url.includes('/coupons') ||
+      match.url.includes('/cashback-stores')
+    ) {
+      fireGTMEvent({
+        pageCategory: `${
+          match.url.includes('/coupons') ? 'Coupons' : 'Stores'
+        } by Category`,
+        event: 'category_click',
+        label: name,
+      });
+    }
+  };
+
+  return (
+    <CategoryItem.Wrapper isActive={isActive} onClick={clickHandler}>
+      <CategoryItem.Title>{name}</CategoryItem.Title>
+      {isCounter && count > 0 && (
+        <CategoryItem.Value>{count}</CategoryItem.Value>
+      )}
+    </CategoryItem.Wrapper>
+  );
+};
 
 CategoryItem.Wrapper = styled.div`
   display: flex;

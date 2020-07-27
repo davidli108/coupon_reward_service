@@ -19,6 +19,7 @@ import { type Store, type Feature } from '../models';
 import * as storeActions from '../StoreActions';
 import { getFilteredList } from '@modules/app/AppReducer';
 import { month, year, metaTags, openGraph } from '@config/SeoTags';
+import { fireGTMEvent } from '@config/Utils';
 
 import {
   getFilteredStores,
@@ -82,11 +83,10 @@ const StoresPage = ({
   const [isLoadedCategories, setIsLoadedCategories] = useState(false);
 
   useEffect(() => {
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
+    fireGTMEvent({
       pageCategory: 'Stores by Category',
       event: 'stores_page_load',
-      label: match.url,
+      label: document.location.href,
     });
   }, [match]);
 

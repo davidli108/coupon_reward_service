@@ -9,13 +9,14 @@ import { isMobile } from 'react-device-detect';
 import Cookie from 'js-cookie';
 import moment from 'moment';
 import { connect } from 'react-redux';
+import breakpoint from 'styled-components-breakpoint';
 
 import { getIsExtensionInstalled } from '../../modules/app/AppReducer';
 import { getIsAuthenticated } from '@modules/auth/AuthReducer';
 
 import ModalAnimation from '../ModalAnimation';
 import InstallOverlay from '@components/InstallOverlay/InstallOverlay';
-import breakpoint from 'styled-components-breakpoint';
+import { fireGTMEvent } from '@config/Utils';
 
 type ModalActivateCouponsProps = {
   t: Function,
@@ -47,11 +48,10 @@ const ModalActivateCoupons = ({
   const [showInstallOverlay, setInstallOverlay] = useState(false);
 
   const triggerEvent = () => {
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
+    fireGTMEvent({
       pageCategory: 'Web Modal - Start Install',
       event: 'install_screen_load',
-      label: match.url,
+      label: document.location.href,
     });
   };
 
@@ -89,11 +89,10 @@ const ModalActivateCoupons = ({
       setInstallOverlay(true);
     }, 300);
 
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
+    fireGTMEvent({
       pageCategory: 'Web Modal - Start Install',
       event: 'start_install',
-      label: match.url,
+      label: document.location.href,
     });
   };
 
@@ -114,11 +113,10 @@ const ModalActivateCoupons = ({
       callback();
     }, 300);
 
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
+    fireGTMEvent({
       pageCategory: 'Web Modal - Start Install',
       event: 'cancel_install_exit',
-      label: match.url,
+      label: document.location.href,
     });
   };
 

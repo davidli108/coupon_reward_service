@@ -13,6 +13,11 @@ export const getStoresWithDirectLinkSet = (stores: Object, link: any) =>
     [link]: setDirectTrue(store[link]),
   }));
 
+export const fireGTMEvent = (eventConfig: Object) => {
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push(eventConfig);
+};
+
 export const renderTrackRefsScript = () => {
   const baseUrl = new URL(AppConfig.apiUrl);
   const apiHost = baseUrl.host.includes('www')

@@ -9,9 +9,9 @@ import {slider_settings} from '../HomePage.constants';
 import {type HomePageCarouselProps} from '../HomePage.types';
 import HomepageFeatureLoader from '../loader/HompageFeatureLoader';
 import styles from './HomePageCarousel.styles';
-import { currencyLocaleFormat } from '@modules/localization/i18n';
-
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
+import { fireGTMEvent } from '@config/Utils';
+import { currencyLocaleFormat } from '@modules/localization/i18n';
 
 const StoreName = (storeName: string) => {
   return (storeName.length < 15)
@@ -30,6 +30,15 @@ const HomePageCarousel = ({
   handler,
 }: HomePageCarouselProps) => {
   const {homePageFeaturedStore, featuredStore} = storesData;
+
+  const clickHandler = (img: string, link: string, storeName: string) => () => {
+    handler(img, link, storeName);
+    fireGTMEvent({
+      pageCategory: 'Homepage',
+      event: 'featured_deal_click',
+      label: storeName,
+    });
+  };
 
   const getCashBack = item =>
     item.cashback_type === '1'
@@ -50,7 +59,7 @@ const HomePageCarousel = ({
                     {StoreName(item.store_name)}
                     {OverrideText(item.override_text)}
                     <p>{item.cashback ? t('homepage.plusCashback', {cashback: getCashBack(item)}) : ''}</p>
-                    <button onClick={() => handler(item.img, item.link, item.store_name)}>{t('homepage.gtdn')}</button>
+                    <button onClick={clickHandler(item.img, item.link, item.store_name)}>{t('homepage.gtdn')}</button>
                   </div>
               </HomePageCarousel.Slide>
             )
@@ -61,7 +70,10 @@ const HomePageCarousel = ({
         {
           featuredStore && featuredStore.map((item, key) => {
             return (
-              <span onClick={() => handler(item.offer_img, '/coupons/' + item.short_name, item.short_name)} key={key} >
+              <span
+                onClick={clickHandler(item.offer_img, `/coupons/${item.short_name}`, item.short_name)}
+                key={key}
+              >
                 <img src={item.offer_img}
                      onError={e => {
                        e.target.onerror = null;

@@ -6,12 +6,13 @@ import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
 import moment from 'moment';
 import i18next from 'i18next';
+
 import {
   currencyLocaleFormat,
   setDecimalFormat,
 } from '@modules/localization/i18n';
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
-import { isAmazonStore } from '@config/Utils';
+import { isAmazonStore, fireGTMEvent } from '@config/Utils';
 
 type FeaturedProps = {
   t: Function,
@@ -20,8 +21,7 @@ type FeaturedProps = {
 
 const Featured = ({ t, featured }: FeaturedProps) => {
   const triggerEvent = (url: string) => () => {
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
+    fireGTMEvent({
       pageCategory: 'Stores by Category',
       event: 'featured_store_click',
       label: url,

@@ -4,8 +4,9 @@ import { compose } from 'recompose';
 import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
+
 import ModalActivateCoupons from '@components/ModalActivateCoupons/ModalActivateCoupons';
-import { isAmazonStore, setDirectTrue } from '@config/Utils';
+import { isAmazonStore, setDirectTrue, fireGTMEvent } from '@config/Utils';
 
 type CouponCodeProps = {
   t: Function,
@@ -55,14 +56,17 @@ const CouponCode = ({
       window.open(isAmazon ? setDirectTrue(link) : link, '_blank');
     }
 
-    if (code) {
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({
-        pageCategory: 'Coupons by Category',
-        event: featured ? 'feature_coupon_reveal' : 'secondary_coupon_reveal',
-        label: match.url,
-      });
-    }
+    fireGTMEvent({
+      pageCategory: 'Coupons by Category',
+      event: featured
+        ? code
+          ? 'feature_coupon_reveal'
+          : 'feature_view_deal'
+        : code
+        ? 'secondary_coupon_reveal'
+        : 'secondary_view_deal',
+      label: document.location.href,
+    });
   };
 
   const modalCallback = () => {
