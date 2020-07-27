@@ -122,7 +122,7 @@ const TodaysFeaturedCoupon = ({
 
     if (store.cashback_ok) {
       return store.numeric_type === 1
-        ? t('coupons.instantSavings', { discount })
+        ? t('global.instantSaving', { discount })
         : t('global.upToCashBack', { discount });
     }
 

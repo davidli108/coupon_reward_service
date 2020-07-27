@@ -49,7 +49,7 @@ const SearchBarItems = ({
     }
 
     if (store.store_discount.includes('0.0%')) {
-      return t('coupons.instantSaving');
+      return t('global.instantSaving');
     }
 
     const discount = store.store_discount.includes('%')
