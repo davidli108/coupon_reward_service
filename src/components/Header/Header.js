@@ -27,6 +27,7 @@ import HeaderItemMyAccount from './HeaderItemMyAccount';
 import logo from './logo.svg';
 import axios from 'axios';
 import AppConfig from '@config/AppConfig';
+import { fireGTMEvent } from '@config/Utils';
 import { MdArrowForward } from 'react-icons/md';
 import { getOrigin, isMainSite } from '@modules/auth/AuthHelper';
 import SearchBar from '@components/SearchBar/SearchBar';
@@ -210,6 +211,11 @@ const Header = ({
       onClick: () => {
         setCurrentModal(modal.modalSignIn);
         setOpen(false);
+        fireGTMEvent({
+          pageCategory: 'Header Menu',
+          event: 'sign_in',
+          label: document.location.href,
+        });
       },
     },
     {
@@ -220,6 +226,11 @@ const Header = ({
       onClick: () => {
         setCurrentModal(modal.modalSignUp);
         setOpen(false);
+        fireGTMEvent({
+          pageCategory: 'Header Menu',
+          event: 'join_now',
+          label: document.location.href,
+        });
       },
     },
   ];

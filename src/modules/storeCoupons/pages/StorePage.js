@@ -11,7 +11,7 @@ import {
   getFilteredList,
   getIsExtensionInstalled,
 } from '@modules/app/AppReducer';
-import { isAmazonStore } from '@config/Utils';
+import { isAmazonStore, fireGTMEvent } from '@config/Utils';
 import { month, year, metaTags, openGraph } from '@config/SeoTags';
 import Brand from '../components/Brand';
 import Offers from '../components/Offers';
@@ -93,13 +93,12 @@ const StorePage = ({
     }
 
     if (name) {
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({
+      fireGTMEvent({
         pageCategory: 'Store Pages',
         event: isExtensionInstalled
           ? 'store_page_load_extension_installed'
           : 'store_page_load_no_extension',
-        label: match.url,
+        label: document.location.href,
       });
     }
   }, [match]);

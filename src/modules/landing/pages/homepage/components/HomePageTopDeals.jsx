@@ -2,10 +2,12 @@
 import React from 'react';
 import {withTranslation} from 'react-i18next';
 import {FaExternalLinkAlt} from 'react-icons/fa';
-import type {HomePageTopDealsProps} from '../HomePage.types';
 import { compose } from 'recompose';
+
+import type {HomePageTopDealsProps} from '../HomePage.types';
 import styles from './HomePageTopDeals.styles';
 import TopDealsLoader from '../loader/TopDealsLoader';
+import { fireGTMEvent } from '@config/Utils';
 
 const HomePageTopDeals = ({
   t,
@@ -14,6 +16,15 @@ const HomePageTopDeals = ({
   handler,
 }: HomePageTopDealsProps) => {
 
+  const clickHandler = (img: string, link: string, storeName: string) => () => {
+    handler(img, link, storeName);
+    fireGTMEvent({
+      pageCategory: 'Homepage',
+      event: 'top_deal_click',
+      label: storeName,
+    });
+  };
+
   return (
     <HomePageTopDeals.Wrapper>
       <HomePageTopDeals.Title>{t('homepage.topDeals')}</HomePageTopDeals.Title>
@@ -21,7 +32,7 @@ const HomePageTopDeals = ({
         <HomePageTopDeals.List>
           {stores && stores.map((item, key) => (
             <HomePageTopDeals.Item key={key}>
-            <span onClick={() => handler(item.img, item.link, item.store_name)}>
+            <span onClick={clickHandler(item.img, item.link, item.store_name)}>
               <div className="wrapper">
                 <FaExternalLinkAlt/>
                 <figure>

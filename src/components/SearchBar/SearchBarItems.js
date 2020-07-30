@@ -7,11 +7,12 @@ import moment from 'moment';
 
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
 import AppConfig from '@config/AppConfig';
-import { isAmazonStore } from '@config/Utils';
+import { isAmazonStore, fireGTMEvent } from '@config/Utils';
 import i18n, { currencyLocaleFormat } from '@modules/localization/i18n';
 
 type SearchBarItemsProps = {
   t: Function,
+  match: Object,
   result: Object,
   history: Object,
   currentIndex: number,
@@ -22,6 +23,7 @@ type SearchBarItemsProps = {
 
 const SearchBarItems = ({
   t,
+  match,
   result,
   history,
   currentIndex,
@@ -37,10 +39,16 @@ const SearchBarItems = ({
     }
   });
 
-  const onClickItem = shortName => {
+  const onClickItem = (shortName: string) => () => {
     setIsShowItems(false);
     setSearchValue('');
     history.push(`/coupons/${shortName}`);
+
+    fireGTMEvent({
+      pageCategory: 'Header Menu',
+      event: 'store_search',
+      label: document.location.href,
+    });
   };
 
   const getCashback = store => {
@@ -49,7 +57,7 @@ const SearchBarItems = ({
     }
 
     if (store.store_discount.includes('0.0%')) {
-      return t('coupons.instantSaving');
+      return t('global.instantSaving');
     }
 
     const discount = store.store_discount.includes('%')
@@ -72,7 +80,7 @@ const SearchBarItems = ({
             result.map((item, index) => (
               <SearchBarItems.Item
                 key={`store_item_${item.store_id}`}
-                onClick={() => onClickItem(item.short_name)}
+                onClick={onClickItem(item.short_name)}
                 isFocus={index === currentIndex}
                 tabIndex={index === currentIndex ? 1 : -1}
                 ref={e => index === currentIndex && setRefItem(e)}

@@ -125,7 +125,8 @@ const CouponsReducer = (
         stores: R.pathOr([], ['payload', 'data', 'featured_stores'], action),
         featuredCoupon: {
           ...featuredCoupon,
-          offer_link: setDirectTrue(featuredCoupon.offer_link),
+          offer_link:
+            featuredCoupon && setDirectTrue(featuredCoupon.offer_link),
         },
       };
 

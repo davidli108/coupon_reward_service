@@ -10,6 +10,7 @@ import { withTranslation } from 'react-i18next';
 
 import type { PiggyExtAdProps } from '../models/StorePage';
 import AppConfig from '@config/AppConfig';
+import { fireGTMEvent } from '@config/Utils';
 
 // eslint-disable-next-line no-unused-vars
 const renderStarsReview = rating => {
@@ -56,11 +57,10 @@ const PiggyExtAd = ({
   reviewsCount,
 }: PiggyExtAdProps) => {
   const triggerEvent = () => {
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
+    fireGTMEvent({
       pageCategory: 'Store Pages',
       event: 'click_to_add_extension',
-      label: match.url,
+      label: document.location.href,
     });
   };
 

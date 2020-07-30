@@ -7,7 +7,7 @@ import breakpoint from 'styled-components-breakpoint';
 import { withRouter } from 'react-router-dom';
 
 import ModalActivateCoupons from '@components/ModalActivateCoupons/ModalActivateCoupons';
-import { isAmazonStore, setDirectTrue } from '@config/Utils';
+import { isAmazonStore, setDirectTrue, fireGTMEvent } from '@config/Utils';
 
 type CouponCodeProps = {
   t: Function,
@@ -67,21 +67,19 @@ const CouponCode = ({
     }
 
     if (code && !isCodeShown) {
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({
+      fireGTMEvent({
         pageCategory: 'Store Pages',
         event: 'coupon_reveal',
-        label: match.url,
+        label: document.location.href,
       });
     }
   };
 
   const triggerDealEvent = () => {
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
+    fireGTMEvent({
       pageCategory: 'Store Pages',
       event: 'deal_reveal',
-      label: match.url,
+      label: document.location.href,
     });
   };
 

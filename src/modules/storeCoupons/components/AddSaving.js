@@ -9,6 +9,7 @@ import { withTranslation } from 'react-i18next';
 import DollarImg from './assets/DollarImg';
 import ClockIcon from './assets/ClockIcon';
 import AppConfig from '@config/AppConfig';
+import { fireGTMEvent } from '@config/Utils';
 
 type AddSavingProps = {
   t: Function,
@@ -18,11 +19,10 @@ type AddSavingProps = {
 
 const AddSaving = ({ t, match, i18n }: AddSavingProps) => {
   const triggerEvent = () => {
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
+    fireGTMEvent({
       pageCategory: 'Store Pages',
       event: 'click_to_activate_savings',
-      label: match.url,
+      label: document.location.href,
     });
   };
 

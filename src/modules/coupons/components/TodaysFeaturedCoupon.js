@@ -7,8 +7,9 @@ import { IoIosHeartEmpty, IoIosHeart } from 'react-icons/io';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
 import moment from 'moment';
-import ModalActivateCoupons from '@components/ModalActivateCoupons/ModalActivateCoupons';
 
+import ModalActivateCoupons from '@components/ModalActivateCoupons/ModalActivateCoupons';
+import { fireGTMEvent, isAmazonStore } from '@config/Utils';
 import SignInModal from '@modules/auth/components/SignInModal';
 import SignUpModal from '@modules/auth/components/SignUpModal';
 import ResetPasswordModal from '@modules/auth/components/ResetPasswordModal';
@@ -25,7 +26,6 @@ import type { Store } from '../models/CouponsPage';
 import SocialShareFeatured from './SocialShareFeatured';
 import AppConfig from '@config/AppConfig';
 import CouponCode from './CouponCode';
-import { isAmazonStore } from '@config/Utils';
 
 const modal = {
   modalSignIn: 'modalSignIn',
@@ -122,11 +122,19 @@ const TodaysFeaturedCoupon = ({
 
     if (store.cashback_ok) {
       return store.numeric_type === 1
-        ? t('coupons.instantSavings', { discount })
+        ? t('global.instantSaving', { discount })
         : t('global.upToCashBack', { discount });
     }
 
     return '';
+  };
+
+  const clickHandler = () => {
+    fireGTMEvent({
+      pageCategory: 'Coupons by Category',
+      event: 'store_click',
+      label: store.store_name,
+    });
   };
 
   return (
@@ -136,7 +144,7 @@ const TodaysFeaturedCoupon = ({
       </h2>
       <TodaysFeaturedCoupon.Content>
         <TodaysFeaturedCoupon.LogoControlsWrapper>
-          <Link to={store.store_page_link}>
+          <Link to={store.store_page_link} onClick={clickHandler}>
             <TodaysFeaturedCoupon.Logo
               src={store.store_logo || placeholder}
               onError={e => {

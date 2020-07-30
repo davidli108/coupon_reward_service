@@ -23,6 +23,7 @@ import Coupons from '../components/Coupons';
 
 import CategoriesLoader from '../components/loaders/CategoriesLoader';
 import { getCategories } from '../../sitemap/constants';
+import { fireGTMEvent } from '@config/Utils';
 
 const modal = {
   modalSignIn: 'modalSignIn',
@@ -111,11 +112,10 @@ const Content = ({
       });
     }
 
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
+    fireGTMEvent({
       pageCategory: 'Coupons by Category',
       event: 'load_more_coupons',
-      label: match.url,
+      label: document.location.href,
     });
   };
 

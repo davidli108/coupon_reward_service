@@ -7,13 +7,13 @@ import { withTranslation } from 'react-i18next';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
+
 import { getIsAuthenticated } from '@modules/auth/AuthReducer';
 import { getIsExtensionInstalled } from '@modules/app/AppReducer';
-
 import CouponCode from './CouponCode';
 import SocialShare from './SocialShare';
-
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
+import { fireGTMEvent } from '@config/Utils';
 import type { Deal as DealModel } from '../models/CouponsPage';
 import {
   currencyLocaleFormat,
@@ -71,6 +71,14 @@ const Coupon = ({
     ? 'global.amCashBack'
     : 'global.instantSaving';
 
+  const clickHandler = () => {
+    fireGTMEvent({
+      pageCategory: 'Coupons by Category',
+      event: 'store_click',
+      label: store_name,
+    });
+  };
+
   return (
     <Coupon.Wrapper>
       <Coupon.BorderWrapper>
@@ -79,7 +87,7 @@ const Coupon = ({
       </Coupon.BorderWrapper>
       <Coupon.Content>
         <Coupon.StoreLogoWrapper>
-          <Link to={store_page_link}>
+          <Link to={store_page_link} onClick={clickHandler}>
             <Coupon.StoreLogo
               src={store_logo || placeholder}
               onError={e => {
@@ -142,6 +150,7 @@ const Coupon = ({
           text={ref_text}
           link={offer_link}
           t={t}
+          store={store_name}
           twitterLink={twitter_link}
           pinterestLink={pinterest_link}
         />

@@ -8,6 +8,7 @@ import {FaArrowRight, FaChevronRight} from 'react-icons/fa';
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
 import {categories_settings} from '../HomePage.constants';
 import {type HomePageCategoriesProps} from '../HomePage.types';
+import { fireGTMEvent } from '@config/Utils';
 
 import styles from './HomePageCategories.styles';
 import {Link} from "react-router-dom";
@@ -22,6 +23,14 @@ const HomePageCategories = ({
 
   const toggleDropdown = () => {
     setDropdownOpened(!dropdownOpened);
+  };
+
+  const clickHandler = (category: Object) => () => {
+    fireGTMEvent({
+      pageCategory: 'Homepage',
+      event: 'category_click',
+      label: category.name,
+    });
   };
 
   return (
@@ -52,7 +61,7 @@ const HomePageCategories = ({
         <Slider {...categories_settings}>
           {categories && categories.map((item, key) => (
               <HomePageCategories.Slide key={key}>
-                <Link to={item.link} >
+                <Link to={item.link} onClick={clickHandler(item)}>
                 <HomePageCategories.SlideWrapper>
                   <FaArrowRight />
                   <figure>

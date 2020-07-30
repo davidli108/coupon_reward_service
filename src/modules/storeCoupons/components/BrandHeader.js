@@ -25,7 +25,7 @@ import { getOrigin } from '@modules/auth/AuthHelper';
 
 import { getStore, getOffers } from '../StoreCouponsReducer';
 import AppConfig from '@config/AppConfig';
-import { isAmazonStore } from '@config/Utils';
+import { isAmazonStore, fireGTMEvent } from '@config/Utils';
 
 const modal = {
   modalSignIn: 'modalSignIn',
@@ -77,11 +77,10 @@ const BrandHeader = ({
     : 'global.instantSaving';
 
   const toggleFavoriteStore = () => {
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
+    fireGTMEvent({
       pageCategory: 'Store Pages',
       event: 'favorite_store',
-      label: match.url,
+      label: document.location.href,
     });
 
     if (

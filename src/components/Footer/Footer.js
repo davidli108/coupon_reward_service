@@ -3,14 +3,15 @@ import * as React from 'react';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
+import { FaTwitter, FaFacebookF, FaInstagram } from 'react-icons/fa';
+
 import DesktopIcon from './desktop.svg';
 import DesktopIconHover from './desktoph.svg';
 import InstagramIcon from './instagram.svg';
-import { FaTwitter, FaFacebookF, FaInstagram } from 'react-icons/fa';
-
 import logo from '../Header/logo.svg';
 import FooterLink from './FooterLink/FooterLink';
 import AppConfig from '@config/AppConfig';
+import { fireGTMEvent } from '@config/Utils';
 
 type FooterProps = {
   t: Function,
@@ -99,6 +100,14 @@ const Footer = ({ t, i18n }: FooterProps) => {
     ],
   };
 
+  const clickHandler = () => {
+    fireGTMEvent({
+      pageCategory: 'Footer',
+      event: 'download_for_desktop',
+      label: document.location.href,
+    });
+  };
+
   return (
     <Footer.Wrapper>
       <Footer.Container>
@@ -135,6 +144,7 @@ const Footer = ({ t, i18n }: FooterProps) => {
             target="_blank"
             style={{ order: '1' }}
             lng={i18n.language}
+            onClick={clickHandler}
           >
             <div>
               <img src={DesktopIcon} alt="" />

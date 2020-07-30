@@ -35,6 +35,7 @@ import TodaysFeaturedCoupon from '../components/TodaysFeaturedCoupon';
 import FeaturedStoreList from '../components/FeaturedStoreList';
 import Content from '../components/Content';
 import FeatureCouponLoader from '../components/loaders/FeatureCouponLoader';
+import { fireGTMEvent } from '@config/Utils';
 
 type CouponsPageProps = {
   t: Function,
@@ -89,11 +90,10 @@ const CouponsPage = ({
   const [isLoaded, setIsLoaded] = useState(true);
 
   useEffect(() => {
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
+    fireGTMEvent({
       pageCategory: 'Coupons by Category',
       event: 'coupons_page_load',
-      label: match.url,
+      label: document.location.href,
     });
   }, [match]);
 

@@ -2,16 +2,18 @@
 import React, { useState } from 'react';
 import { compose } from 'recompose';
 import { withRouter } from 'react-router-dom';
-import Offer from './Offer';
-import type { OffersProps } from '../models/StorePage';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { withTranslation } from 'react-i18next';
+
+import Offer from './Offer';
+import type { OffersProps } from '../models/StorePage';
 import OffersLoader from '../components/loaders/OffersLoader';
 import dropDownArrow from '../assets/category_dropdown_arrow.svg';
 import dropDownArrowUp from '../assets/category_dropdown_arrow_up.svg';
 import CashbackContents from './CashbackContents';
 import { getSortedCashbackRate } from './constant';
+import { fireGTMEvent } from '@config/Utils';
 
 const Offers = ({
   t,
@@ -36,11 +38,10 @@ const Offers = ({
       });
     }
 
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
+    fireGTMEvent({
       pageCategory: 'Store Pages',
       event: 'load_more_deals',
-      label: match.url,
+      label: document.location.href,
     });
   };
 
@@ -74,10 +75,9 @@ const Offers = ({
                         href={v.int_url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        onClick={()=> {
-                            togglePanel()
-                          }
-                        }
+                        onClick={() => {
+                          togglePanel();
+                        }}
                       >
                         {v.category_name}
                       </a>
@@ -86,10 +86,9 @@ const Offers = ({
                           href={v.int_url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          onClick={()=> {
-                              togglePanel()
-                            }
-                          }
+                          onClick={() => {
+                            togglePanel();
+                          }}
                         >
                           {v.cashback_rate}
                         </a>

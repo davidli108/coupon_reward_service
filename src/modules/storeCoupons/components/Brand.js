@@ -1,9 +1,12 @@
 // @flow
 import React, { useEffect, useState } from 'react';
+import { withRouter } from 'react-router-dom';
+import { compose } from 'recompose';
 import styled from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 import { connect } from 'react-redux';
 import moment from 'moment';
+
 import BrandHeader from './BrandHeader';
 import BrandContent from './BrandContent';
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
@@ -12,7 +15,7 @@ import BrandXlLoader from './loaders/BrandXlLoader';
 import type { BrandProps } from '../models/StorePage';
 import { getStore } from '../StoreCouponsReducer';
 import AppConfig from '@config/AppConfig';
-import { isAmazonStore } from '@config/Utils';
+import { isAmazonStore, fireGTMEvent } from '@config/Utils';
 import CouponCode from './CouponCode';
 import {
   currencyLocaleFormat,
@@ -21,6 +24,7 @@ import {
 
 const Brand = ({
   t,
+  match,
   store,
   i18n,
   coupon_code,
@@ -52,6 +56,14 @@ const Brand = ({
     }
   }, [store]);
 
+  const triggerGTMEvent = () => {
+    fireGTMEvent({
+      pageCategory: 'Store Pages',
+      event: 'visit_store',
+      label: document.location.href,
+    });
+  };
+
   return (
     <>
       <Brand.Wrapper>
@@ -77,7 +89,7 @@ const Brand = ({
               />
             </Brand.BrandImageWrapperLink>
 
-            <Brand.CashBackActivateButton>
+            <Brand.CashBackActivateButton onClick={triggerGTMEvent}>
               {!isAmazon && (
                 <CouponCode
                   t={t}
@@ -385,6 +397,4 @@ const mapStateToProps = state => ({
   store: getStore(state),
 });
 
-const enhance = connect(mapStateToProps);
-
-export default enhance(Brand);
+export default compose(connect(mapStateToProps, null), withRouter)(Brand);

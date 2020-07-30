@@ -4,8 +4,10 @@ import { compose } from 'recompose';
 import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
+import { isMobile } from 'react-device-detect';
+
 import ModalActivateCoupons from '@components/ModalActivateCoupons/ModalActivateCoupons';
-import { isAmazonStore, setDirectTrue } from '@config/Utils';
+import { isAmazonStore, setDirectTrue, fireGTMEvent } from '@config/Utils';
 
 type CouponCodeProps = {
   t: Function,
@@ -30,12 +32,13 @@ const CouponCode = ({
   isExtensionInstalled,
   featured,
 }: CouponCodeProps) => {
-  const [isShowCode, setIsShowCode] = useState(false);
+  const [isCodeShown, setIsCodeShown] = useState(false);
   const [showActivateModal, setShowActivateModal] = useState(false);
   const [isAmazon, setIsAmazon] = useState(false);
+  const isChrome = !!window.chrome;
 
   useEffect(() => {
-    setIsShowCode((isAuthenticated && code) || (isExtensionInstalled && code));
+    setIsCodeShown((isAuthenticated && code) || (isExtensionInstalled && code));
   }, [isAuthenticated, isExtensionInstalled]);
 
   useEffect(() => {
@@ -45,30 +48,37 @@ const CouponCode = ({
   }, [store]);
 
   const handleClick = () => {
-    setShowActivateModal(true);
+    if ((isMobile || !isChrome) && !code) {
+      window.open(isAmazon ? setDirectTrue(link) : link, '_blank');
+    } else {
+      setShowActivateModal(true);
+    }
 
     if (showActivateModal && code) {
-      setIsShowCode(true);
+      setIsCodeShown(true);
     }
 
     if (showActivateModal && !code) {
       window.open(isAmazon ? setDirectTrue(link) : link, '_blank');
     }
 
-    if (code) {
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({
-        pageCategory: 'Coupons by Category',
-        event: featured ? 'feature_coupon_reveal' : 'secondary_coupon_reveal',
-        label: match.url,
-      });
-    }
+    fireGTMEvent({
+      pageCategory: 'Coupons by Category',
+      event: featured
+        ? code
+          ? 'feature_coupon_reveal'
+          : 'feature_view_deal'
+        : code
+        ? 'secondary_coupon_reveal'
+        : 'secondary_view_deal',
+      label: document.location.href,
+    });
   };
 
   const modalCallback = () => {
     setShowActivateModal(false);
-    if (code && !isShowCode) {
-      setIsShowCode(true);
+    if (code && !isCodeShown) {
+      setIsCodeShown(true);
     } else {
       window.open(isAmazon ? setDirectTrue(link) : link, '_blank');
     }
@@ -77,13 +87,13 @@ const CouponCode = ({
   return (
     <>
       <CouponCode.Wrapper>
-        <CouponCode.Button onClick={handleClick} isShow={!isShowCode}>
+        <CouponCode.Button onClick={handleClick} isShow={!isCodeShown}>
           {code
             ? t('coupons.buttons.viewCoupon')
             : t('coupons.buttons.viewDeal')}
         </CouponCode.Button>
         <CouponCode.Code
-          isShow={isShowCode}
+          isShow={isCodeShown}
           href={isAmazon ? setDirectTrue(link) : link}
           target={'_blank'}
         >
