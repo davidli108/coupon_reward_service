@@ -36,11 +36,10 @@ const CategoryItem = ({
       match.url.includes('/coupons') ||
       match.url.includes('/cashback-stores')
     ) {
+      const page = match.url.includes('/coupons') ? 'Coupons' : 'Stores';
       fireGTMEvent({
-        pageCategory: `${
-          match.url.includes('/coupons') ? 'Coupons' : 'Stores'
-        } by Category`,
-        event: 'category_click',
+        pageCategory: `${page} by Category`,
+        event: `${page.toLocaleLowerCase()}_category_click`,
         label: name,
       });
     }
