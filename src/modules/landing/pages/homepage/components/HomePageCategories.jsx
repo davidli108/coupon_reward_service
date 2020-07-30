@@ -28,7 +28,7 @@ const HomePageCategories = ({
   const clickHandler = (category: Object) => () => {
     fireGTMEvent({
       pageCategory: 'Homepage',
-      event: 'category_click',
+      event: 'homepage_category_click',
       label: category.name,
     });
   };

@@ -96,6 +96,7 @@ const CouponCode = ({
           isShow={isCodeShown}
           href={isAmazon ? setDirectTrue(link) : link}
           target={'_blank'}
+          codeLength={code.length}
         >
           {code}
           <CouponCode.Tooltip>
@@ -161,8 +162,10 @@ CouponCode.Code = styled.a`
   text-align: center;
   box-sizing: border-box;
   position: relative;
+  font-size: ${({ codeLength }) =>
+    codeLength > 22 ? 13 : codeLength > 19 ? 14 : 16}px;
 
-  :hover {
+  &:hover {
     > div {
       opacity: 1;
       transform: translate3d(0, 0, 0);
