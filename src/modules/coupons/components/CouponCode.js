@@ -96,7 +96,7 @@ const CouponCode = ({
           isShow={isCodeShown}
           href={isAmazon ? setDirectTrue(link) : link}
           target={'_blank'}
-          codeLength={code.length}
+          codeLength={code && code.length}
         >
           {code}
           <CouponCode.Tooltip>
