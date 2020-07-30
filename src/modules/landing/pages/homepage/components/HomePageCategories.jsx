@@ -1,7 +1,6 @@
 // @flow
 import React, {useState} from 'react';
 import Slider from 'react-slick';
-import {compose} from 'recompose';
 import {withTranslation} from 'react-i18next';
 import {FaArrowRight, FaChevronRight} from 'react-icons/fa';
 
@@ -83,6 +82,4 @@ const HomePageCategories = ({
 
 styles(HomePageCategories);
 
-export default compose(
-  withTranslation(),
-)(HomePageCategories);
+export default withTranslation()(HomePageCategories);

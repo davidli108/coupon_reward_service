@@ -9224,6 +9224,11 @@ os-tmpdir@~1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/os-tmpdir/-/os-tmpdir-1.0.2.tgz#bbe67406c79aa85c5cfec766fe5734555dfa1274"
 
+ouibounce@^0.0.12:
+  version "0.0.12"
+  resolved "https://registry.yarnpkg.com/ouibounce/-/ouibounce-0.0.12.tgz#3266f02364f7bd02873423b7b5df7850ca5743cf"
+  integrity sha1-MmbwI2T3vQKHNCO3td94UMpXQ88=
+
 p-cancelable@^0.4.0:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/p-cancelable/-/p-cancelable-0.4.1.tgz#35f363d67d52081c8d9585e37bcceb7e0bbcb2a0"

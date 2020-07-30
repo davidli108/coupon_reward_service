@@ -4,7 +4,6 @@ import {withTranslation} from 'react-i18next';
 import type {HomePageFeaturedDealProps} from '../HomePage.types';
 import styles from './HomePageFeaturedDeal.styles';
 import amazonImage from '../../../../../assets/homepage/amazon.jpg';
-import {compose} from 'recompose';
 
 const HomePageFeaturedDeal = ({
   t,
@@ -40,6 +39,4 @@ const HomePageFeaturedDeal = ({
 
 styles(HomePageFeaturedDeal);
 
-export default compose(
-  withTranslation(),
-)(HomePageFeaturedDeal);
+export default withTranslation()(HomePageFeaturedDeal);

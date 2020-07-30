@@ -2,7 +2,6 @@
 import React from 'react';
 import {withTranslation} from 'react-i18next';
 import {FaExternalLinkAlt} from 'react-icons/fa';
-import { compose } from 'recompose';
 
 import type {HomePageTopDealsProps} from '../HomePage.types';
 import styles from './HomePageTopDeals.styles';
@@ -60,6 +59,4 @@ const HomePageTopDeals = ({
 
 styles(HomePageTopDeals);
 
-export default compose(
-  withTranslation(),
-)(HomePageTopDeals);
+export default withTranslation()(HomePageTopDeals);

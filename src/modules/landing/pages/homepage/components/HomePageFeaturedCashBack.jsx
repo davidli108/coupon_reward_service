@@ -2,7 +2,6 @@
 import React from 'react';
 import { withTranslation } from 'react-i18next';
 import { FaExternalLinkAlt } from 'react-icons/fa';
-import { compose } from 'recompose';
 
 import type { HomePageFeaturedCashBackProps } from '../HomePage.types';
 import styles from './HomePageFeaturedCashBack.styles';
@@ -63,6 +62,4 @@ const HomePageFeaturedCashBack = ({
 
 styles(HomePageFeaturedCashBack);
 
-export default compose(
-  withTranslation(),
-)(HomePageFeaturedCashBack);
+export default withTranslation()(HomePageFeaturedCashBack);

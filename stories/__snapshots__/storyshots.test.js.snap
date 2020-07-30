@@ -1321,6 +1321,96 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
   opacity: 1;
 }
 
+.c47 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 150px;
+  width: 200px;
+  padding: 20px;
+  margin: 10px;
+  box-sizing: border-box;
+  color: #000;
+  background: #8ba8af;
+  border: solid 1px #bdbbb9;
+  border-radius: 2px;
+  font-family: Roboto,sans-serif;
+  cursor: pointer;
+}
+
+.c47:hover label {
+  opacity: 1;
+}
+
+.c48 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 150px;
+  width: 200px;
+  padding: 20px;
+  margin: 10px;
+  box-sizing: border-box;
+  color: #fff;
+  background: #133841;
+  border: solid 1px #bdbbb9;
+  border-radius: 2px;
+  font-family: Roboto,sans-serif;
+  cursor: pointer;
+}
+
+.c48:hover label {
+  opacity: 1;
+}
+
+.c49 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 150px;
+  width: 200px;
+  padding: 20px;
+  margin: 10px;
+  box-sizing: border-box;
+  color: #000;
+  background: #56B559;
+  border: solid 1px #bdbbb9;
+  border-radius: 2px;
+  font-family: Roboto,sans-serif;
+  cursor: pointer;
+}
+
+.c49:hover label {
+  opacity: 1;
+}
+
 .c1 {
   margin: 0 0 10px;
   font-weight: bold;
@@ -2275,6 +2365,69 @@ exports[`Storyshots @Overview|@Patterns Color 1`] = `
         className="c2"
       >
         rgba(70, 73, 77, .93)
+      </p>
+      <label
+        className="c3"
+      >
+        Copy
+      </label>
+    </div>
+    <div
+      className="c47"
+      color="#8ba8af"
+      data-clipboard-text="\${props => props.theme.colors.lightBlue}"
+    >
+      <p
+        className="c1"
+      >
+        LightBlue
+      </p>
+      <p
+        className="c2"
+      >
+        #8ba8af
+      </p>
+      <label
+        className="c3"
+      >
+        Copy
+      </label>
+    </div>
+    <div
+      className="c48"
+      color="#133841"
+      data-clipboard-text="\${props => props.theme.colors.darkBlue}"
+    >
+      <p
+        className="c1"
+      >
+        DarkBlue
+      </p>
+      <p
+        className="c2"
+      >
+        #133841
+      </p>
+      <label
+        className="c3"
+      >
+        Copy
+      </label>
+    </div>
+    <div
+      className="c49"
+      color="#56B559"
+      data-clipboard-text="\${props => props.theme.colors.lightGreen}"
+    >
+      <p
+        className="c1"
+      >
+        LightGreen
+      </p>
+      <p
+        className="c2"
+      >
+        #56B559
       </p>
       <label
         className="c3"
