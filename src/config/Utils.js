@@ -30,3 +30,23 @@ export const renderTrackRefsScript = () => {
 
   document.body && document.body.appendChild(scriptUrl);
 };
+
+type updateElementClassListProps = {
+  element: string,
+  className: string,
+  add: boolean,
+};
+
+export const updateElementClassList = ({
+  element,
+  className,
+  add,
+}: updateElementClassListProps) => {
+  const el = document && document.querySelector(element);
+
+  if (el) {
+    className.split(',').forEach(name => {
+      add ? el.classList.add(name) : el.classList.remove(name);
+    });
+  }
+};

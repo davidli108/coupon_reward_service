@@ -37,7 +37,7 @@ export type HomePageFeaturedCashBackProps = {
 
 export type HomePageProps = {
   t: Function,
-  match: Object,
+  location: Object,
   topDeals: any[],
   homePageFeaturedStore: any[],
   featuredStore: any[],
@@ -53,4 +53,10 @@ export type HomePageCategoriesProps = {
   t: Function,
   categories: any[],
   isLoaded: boolean,
+};
+
+export type HomePageExitIntentProps = {
+  location: Object,
+  isAuthenticated: boolean,
+  isExtensionInstalled: boolean,
 };

@@ -1,5 +1,6 @@
 // @flow
 import { createGlobalStyle } from 'styled-components';
+// eslint-disable-next-line import/no-named-as-default
 import reset from 'styled-reset';
 import breakpoints from '../patterns/breakpoints';
 import breakpoint from 'styled-components-breakpoint';
@@ -20,6 +21,17 @@ export const GlobalStyle = createGlobalStyle`
     ${breakpoint('ss')`
       margin-top: 105px;
     `}
+
+    &.landing-minimized {
+      margin-top: 191px;
+    }
+
+    &.no-scroll {
+      position: fixed;
+      max-height: 100%;
+      width: 100%;
+      overflow: hidden;
+    }
   }
 
   input:-webkit-autofill,
@@ -57,24 +69,24 @@ export const GlobalStyle = createGlobalStyle`
       z-index: 99999998 !important;
       background-color: rgba(255, 255, 255, .95);
       box-shadow: 0px 24px 64px rgba(0, 0, 0, 0.2);
-      
+
       @media only screen and (min-width: 320px) {
         padding: 10px 0 !important;
       }
-      
+
       @media only screen and (min-width: 768px) {
         padding: 10px 40px !important;
       }
-      
+
       @media only screen and (min-width: 992px) {
         padding: 10px 75px !important;
       }
-      
+
       @media only screen and (min-width: 1200px) {
         padding: 10px 20px !important;
       }
     }
-    
+
     .iubenda-cs-content {
       display: block;
       margin: 0 auto;
@@ -85,33 +97,33 @@ export const GlobalStyle = createGlobalStyle`
       font-size: 11px;
       background: 0 none;
       color: ${theme.colors.blackExLight};
-      
+
       @media only screen and (min-width: 320px) {
         max-width: padding: 0 10px;;
       }
-      
+
       @media only screen and (min-width: 768px) {
         max-width: padding: 0 15px;
       }
-      
+
       #iubenda-cs-title {
         display: none;
       }
-      
+
       #iubenda-cs-paragraph {
         @media only screen and (min-width: 320px) {
           max-width: calc(100% - 40px);
         }
-      
+
         @media only screen and (min-width: 992px) {
           max-width: 800px;
         }
-      
+
         @media only screen and (min-width: 1200px) {
           max-width: 900px;
         }
       }
-      
+
       .iubenda-cs-cookie-policy-lnk {
         font-family: ${theme.fonts.roboto};
         line-height: 14px;
@@ -119,23 +131,23 @@ export const GlobalStyle = createGlobalStyle`
         font-weight: 400;
         color: ${theme.colors.blackExLight};
       }
-      
+
       .iubenda-cs-rationale {
         max-width: 975px;
       }
     }
-    
+
     .iubenda-cs-rationale {
       max-width: 900px;
       position: relative;
       margin: 0 auto;
     }
-    
+
     .iubenda-banner-content > p {
       font-family: Helvetica,Arial,FreeSans,sans-serif;
       line-height: 1.5;
     }
-    
+
     .iubenda-cs-close-btn {
       margin:0;
       background: 0 none;
@@ -150,24 +162,24 @@ export const GlobalStyle = createGlobalStyle`
       color: transparent;
       display: block;
       cursor: pointer;
-      
+
       @media only screen and (min-width: 320px) {
         top: auto;
         bottom: -5px;
         right: -10px;
       }
-      
+
       @media only screen and (min-width: 768px) {
         right: -40px;
         top: -5px;
         bottom: auto;
       }
-      
+
       @media only screen and (min-width: 992px) {
         bottom: auto;
         top: -5px;
       }
-      
+
       &:before,
       &:after {
         content: '';
@@ -182,26 +194,26 @@ export const GlobalStyle = createGlobalStyle`
         transform-origin: center;
         transform: rotate(45deg);
       }
-      
+
       &:after {
         transform: rotate(-45deg);
       }
     }
-    
+
     .iubenda-cs-cookie-policy-lnk {
       text-decoration: underline;
       color: #fff;
       font-size: 14px;
       font-weight: 900;
     }
-    
+
     div#iubenda-iframe {
       box-sizing: border-box;
-    
+
       @media only screen and (min-width: 320px) {
         align-items: center !important;
       }
-    
+
       #iubenda-iframe-popup {
         width: 100% !important;
         margin: 0 15px !important;
@@ -213,48 +225,48 @@ export const GlobalStyle = createGlobalStyle`
         padding: 40px 20px 0!important;
         height: calc(100vh - 175px + 40px + 90px) !important;
         max-height: calc(650px + 40px + 90px) !important;
-        
+
         @media only screen and (min-width: 480px) {
           height: calc(100vh - 230px + 40px + 90px) !important;
         }
-        
+
         @media only screen and (min-width: 768px) {
           padding: 40px 40px 0 !important;
         }
-        
+
         @media only screen and (min-width: 1200px) {
           padding: 40px 90px 0 !important;
         }
-        
+
         #iubenda-iframe-content {
           margin: 0 auto !important;
           border-radius: 5px !important;
           background-color: #fff !important;
-          
+
           .iubenda-iframe-footer {
             justify-content: center !important;
             background-color: #fff !important;
-            
+
             > * {
               margin: 0 !important;
             }
-            
+
             #iubFooterBtnContainer {
               display: flex;
               align-items: center;
-              
+
               @media only screen and (min-width: 320px) {
                 transform: none !important;
                 justify-content: center !important;
                 height: 60px !important;
               }
-              
+
               @media only screen and (min-width: 768px) {
                 transform: none !important;
                 justify-content: center !important;
                 height: 90px !important;
               }
-            
+
               button {
                 height: 31px !important;
                 margin: 0 !important;
@@ -266,7 +278,7 @@ export const GlobalStyle = createGlobalStyle`
                 line-height: 15px !important;
                 font-weight: 700 !important;
                 text-transform: capitalize !important;
-                
+
                 @media only screen and (min-width: 320px) {
                   flex: none !important;
                 }
@@ -274,21 +286,21 @@ export const GlobalStyle = createGlobalStyle`
             }
           }
         }
-        
+
         .iubenda-iframe-close-btn {
           display: none !important;
         }
       }
-      
+
       .iubenda-iframe-top-container {
         padding: 0 !important;
-        
+
         // iframe {
         //   height: calc(100vh - 230px) !important;
         // }
       }
     }
-    
+
     #iubenda-iframe.iubenda-iframe-visible {
       background: 0 none !important;
     }

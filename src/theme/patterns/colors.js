@@ -52,6 +52,9 @@ export const colorScheme = {
     value: 'rgba(70, 73, 77, .93)',
     name: 'ModalOverlayBg',
   },
+  lightBlue: { value: '#8ba8af', name: 'LightBlue' },
+  darkBlue: { value: '#133841', name: 'DarkBlue' },
+  lightGreen: { value: '#56B559', name: 'LightGreen' },
 };
 export const getColor = (colorKey: string) =>
   R.path([colorKey, 'value'], colorScheme);

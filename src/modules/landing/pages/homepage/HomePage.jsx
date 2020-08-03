@@ -1,9 +1,12 @@
 // @flow
 import React, {useEffect, useState} from 'react';
+import { withRouter } from 'react-router-dom';
 import {compose} from 'recompose';
 import {connect} from 'react-redux';
 import {withTranslation} from 'react-i18next';
+import Cookie from 'js-cookie';
 import {Helmet} from 'react-helmet';
+import queryString from 'query-string';
 
 import {
   getFeaturedStore,
@@ -22,6 +25,7 @@ import HomePageTopDeals from './components/HomePageTopDeals';
 import HomePageFeaturedDeal from './components/HomePageFeaturedDeal';
 import HomePageFeaturedCashBack from './components/HomePageFeaturedCashBack';
 import HomePageCategories from './components/HomePageCategories';
+import HomePageExitIntent from './components/HomePageExitIntent';
 
 import { type HomePageProps } from './HomePage.types';
 
@@ -29,7 +33,7 @@ import styles from './HomePage.styles';
 
 const HomePage = ({
   t,
-  match,
+  location,
   topDeals,
   homePageFeaturedStore,
   featuredStore,
@@ -41,12 +45,13 @@ const HomePage = ({
   isExtensionInstalled,
 }: HomePageProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
-
   const [showActivateModal, setShowActivateModal] = useState(false);
   const [isModalShow, setIsModalShow] = useState(false);
   const [logo, setLogo] = useState('');
   const [link, setLink] = useState('');
   const [title, setTitle] = useState('');
+
+  const params = queryString.parse(location.search);
 
   useEffect(() => {
     fetchHomePageFeature(FETCH_HOMEPAGE_FEATURE).then(() => setIsLoaded(true));
@@ -62,13 +67,17 @@ const HomePage = ({
     if (showActivateModal && !isModalShow) {
       setIsModalShow(true);
     }
+
+    if (Boolean(Cookie.get('installProcessed'))) {
+      window.open(`${link}${params.lp ? '&ref3=lp' : ''}`, '_blank');
+    }
   };
 
   const modalCallback = (dismiss: boolean) => {
     setShowActivateModal(false);
 
     if (!dismiss) {
-      window.open(link, '_blank');
+      window.open(`${link}${params.lp ? '&ref3=lp' : ''}`, '_blank');
     }
   };
 
@@ -84,6 +93,8 @@ const HomePage = ({
           }),
         ]}
       />
+      {params.lp === 'never-overpay-again' && <HomePageExitIntent />}
+
       <HomePage.Container>
         <HomePage.Title>{t('homepage.page.h1')}</HomePage.Title>
         <HomePageCarousel handler={handleClick} t={t} isLoaded={isLoaded} storesData={{homePageFeaturedStore, featuredStore}}/>
@@ -127,4 +138,5 @@ const mapDispatchToProps = {
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   withTranslation(),
+  withRouter,
 )(HomePage);

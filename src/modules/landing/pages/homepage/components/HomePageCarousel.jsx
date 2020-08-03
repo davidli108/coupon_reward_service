@@ -2,7 +2,6 @@
 import React from 'react';
 import Slider from 'react-slick';
 import {withTranslation} from 'react-i18next';
-import { compose } from 'recompose';
 import TextFit  from 'react-textfit'
 
 import {slider_settings} from '../HomePage.constants';
@@ -91,5 +90,5 @@ const HomePageCarousel = ({
 
 styles(HomePageCarousel);
 
-export default compose( withTranslation())(HomePageCarousel);
+export default withTranslation()(HomePageCarousel);
 
