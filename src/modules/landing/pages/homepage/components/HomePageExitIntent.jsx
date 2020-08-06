@@ -22,9 +22,13 @@ const HomePageExitIntent = ({
   const [exitIntent, setExitIntent] = useState(null);
 
   const html: any = document && document.documentElement;
+  const options: any = {
+    timer: null,
+  };
 
   const handleMouseLeave = () => {
     minimizeLanding();
+    options.timer && clearTimeout(options.timer);
     setExitIntent(null);
   };
 
@@ -75,10 +79,10 @@ const HomePageExitIntent = ({
       });
       activateEventListener();
 
-      setTimeout(() => {
-        if (!isLandingMinimized) {
-          minimizeLanding();
-        }
+      options.timer = setTimeout(() => {
+          if (!isLandingMinimized) {
+            minimizeLanding();
+          }
       }, 30000);
     }
 
