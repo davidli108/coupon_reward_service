@@ -19,6 +19,7 @@ import {
 import {fetchHomePageFeature, FETCH_HOMEPAGE_FEATURE} from '@modules/landing/LandingActions';
 import ModalActivateCoupons from '@components/ModalActivateCoupons/ModalActivateCoupons';
 import {metaTags, openGraph} from '@config/SeoTags';
+import { useCurrentTld } from '@modules/localization/i18n';
 
 import HomePageCarousel from './components/HomePageCarousel';
 import HomePageTopDeals from './components/HomePageTopDeals';
@@ -58,6 +59,8 @@ const HomePage = ({
     setIsModalShow((isAuthenticated) || (isExtensionInstalled));
   }, [isAuthenticated, isExtensionInstalled]);
 
+  const isUK = useCurrentTld() === 'co.uk';
+
   const handleClick = (img: string, link: string, title: string) => {
     setLogo(img);
     setLink(link);
@@ -81,6 +84,23 @@ const HomePage = ({
     }
   };
 
+  const topDealsAndFeaturedCashBack = [
+    <HomePageTopDeals
+      handler={handleClick}
+      isLoaded={isLoaded}
+      stores={topDeals}
+    />,
+    <HomePageFeaturedCashBack
+      handler={handleClick}
+      isLoaded={isLoaded}
+      stores={featuredSCashback}
+    />,
+  ];
+
+  if (isUK) {
+    topDealsAndFeaturedCashBack.reverse();
+  }
+
   return (
     <HomePage.Wrapper>
       <Helmet
@@ -97,11 +117,18 @@ const HomePage = ({
 
       <HomePage.Container>
         <HomePage.Title>{t('homepage.page.h1')}</HomePage.Title>
-        <HomePageCarousel handler={handleClick} t={t} isLoaded={isLoaded} storesData={{homePageFeaturedStore, featuredStore}}/>
-        <HomePageTopDeals handler={handleClick} t={t} isLoaded={isLoaded} stores={topDeals}/>
-        <HomePageFeaturedCashBack handler={handleClick} t={t} isLoaded={isLoaded} stores={featuredSCashback} />
-        <HomePageFeaturedDeal handler={handleClick} t={t} isLoaded={isLoaded} stores={amazonDeal}/>
-        <HomePageCategories t={t} isLoaded={isLoaded} categories={categories}/>
+        <HomePageCarousel
+          handler={handleClick}
+          isLoaded={isLoaded}
+          storesData={{homePageFeaturedStore, featuredStore}}
+        />
+        {topDealsAndFeaturedCashBack}
+        <HomePageFeaturedDeal
+          handler={handleClick}
+          isLoaded={isLoaded}
+          stores={amazonDeal}
+        />
+        <HomePageCategories isLoaded={isLoaded} categories={categories}/>
       </HomePage.Container>
 
       {showActivateModal && (
