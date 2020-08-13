@@ -65,7 +65,6 @@ const HomePage = ({
     setLogo(img);
     setLink(link);
     setTitle(title);
-    setShowActivateModal(true);
 
     if (showActivateModal && !isModalShow) {
       setIsModalShow(true);
@@ -73,6 +72,8 @@ const HomePage = ({
 
     if (Boolean(Cookie.get('installProcessed'))) {
       window.open(`${link}${params.lp ? '&ref3=lp' : ''}`, '_blank');
+    } else {
+      setShowActivateModal(true);
     }
   };
 
