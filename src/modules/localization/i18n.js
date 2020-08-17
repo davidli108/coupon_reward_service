@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import i18n from 'i18next';
 import parseDomain from 'parse-domain';
 import * as R from 'ramda';
@@ -67,6 +68,8 @@ export const getDomainAttrs = () => {
     enOrigin,
   };
 };
+
+export const useCurrentTld = () => useMemo(() => getDomainAttrs().tld, []);
 
 export const setDecimalFormat = amount => {
   return ['de' , 'fr'].includes(getLocale())
