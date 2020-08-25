@@ -54,7 +54,7 @@ const AdditionalInfo = ({
         <AdditionalInfo.ContentWrapper isShow={true} className="categories">
           <AdditionalInfo.CashBackUl>
             <h2>{t('storeCoupons.cashBackCategories')}</h2>
-            {getSortedCashbackRate(cashbackRates, true).map(v => (
+            {getSortedCashbackRate(cashbackRates).map(v => (
               <AdditionalInfo.CashBackLi key={v.category_name}>
                 <a href={v.int_url} target={'_blank'}>
                   {v.category_name}

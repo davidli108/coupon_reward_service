@@ -144,7 +144,6 @@ export type OffersProps = {
 
 export type AdditionalInfoProps = {
   t: Function,
-  match: Object,
   additionalInfo: AdditionalInfo,
   store: Object,
   cashbackRates: Array<CashBackRate>,
