@@ -224,15 +224,15 @@ const styles = (HomePageCarousel: Object) => {
         font: bold 20px/34px ${({ theme }) => theme.fonts.montserrat} !important;
       }
 
-      h1 {
-        margin: 30px 0 10px;
-        font: bold 34px ${({ theme }) => theme.fonts.montserrat} !important;
-      }
-
       .storeName {
         margin: 30px 0 10px;
-        font-family: ${({ theme }) => theme.fonts.montserrat};
         font-weight: bold;
+        font-size: 30px;
+        font-family: ${({ theme }) => theme.fonts.montserrat} !important;
+
+        div {
+          font-family: ${({ theme }) => theme.fonts.montserrat} !important;
+        }
       }
 
       .overrideText {

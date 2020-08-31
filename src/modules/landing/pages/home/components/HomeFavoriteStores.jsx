@@ -48,7 +48,7 @@ const HomeFavoriteStores = ({
         <div className="stores placements">
           {featuredStores && featuredStores.map((store, key) => (
             <div key={key} className="store-item">
-              <Link to={`/coupon/${store.short_name}`}>
+              <Link to={`/coupons/${store.short_name}`}>
                 <img src={store.offer_img} alt={store.store_name}/>
               </Link>
             </div>
