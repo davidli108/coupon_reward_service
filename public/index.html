@@ -95,5 +95,12 @@
     </div>
 
     <script src="/js/track-refs.js"></script>
+    <script type="text/javascript">
+      (function() {
+        if (document.location.search.search(/(\?lp=|&lp=)/i) !== -1) {
+            document.querySelector('.lds-wrapper').style.display = 'none';
+        }
+      })()
+    </script>
   </body>
 </html>
