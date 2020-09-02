@@ -1,5 +1,5 @@
 // @flow
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
@@ -9,36 +9,27 @@ import { updateElementClassList } from '@config/Utils';
 import NeverOverpayAgain from '../../lp/NeverOverpayAgain';
 import {type HomePageExitIntentProps} from '../HomePage.types';
 import { getIsExtensionInstalled } from '@modules/app/AppReducer';
-import { getIsAuthenticated } from '@modules/auth/AuthReducer';
 
 const HomePageExitIntent = ({
-  location,
-  isAuthenticated,
   isExtensionInstalled,
+  isLandingMinimized,
+  setIsLandingMinimized,
+  unmountLanding,
 }: HomePageExitIntentProps) => {
-  const [isLandingMounted, setIsLandingMounted] = useState(false);
-  const [isLandingVisible, setIsLandingVisible] = useState(false);
-  const [isLandingMinimized, setIsLandingMinimized] = useState(false);
-  const [exitIntent, setExitIntent] = useState(null);
-
   const html: any = document && document.documentElement;
   const options: any = {
     timer: null,
+    exitIntent: null,
   };
 
   const handleMouseLeave = () => {
     minimizeLanding();
     options.timer && clearTimeout(options.timer);
-    setExitIntent(null);
+    options.exitIntent && options.exitIntent.disable();
   };
 
   const minimizeLanding = () => {
     setIsLandingMinimized(true);
-    updateElementClassList({
-      element: 'body',
-      className: 'no-scroll',
-      add: false,
-    });
     updateElementClassList({
       element: 'body',
       className: 'landing-minimized',
@@ -46,37 +37,20 @@ const HomePageExitIntent = ({
     });
   };
 
-  const isSafeToRenderLandingPage = () =>
-    isLandingMounted &&
-    !isAuthenticated &&
-    !isExtensionInstalled;
-
   const activateEventListener = () => {
-    if (!exitIntent) {
-      setIsLandingMounted(true);
+    if (!options.exitIntent) {
       if (html) {
-        setExitIntent(
-          ouibounce(html, {
-            aggressive: true,
-            sensitivity: 100,
-            callback: handleMouseLeave,
-          })
-        );
+        options.exitIntent = ouibounce(html, {
+          aggressive: true,
+          sensitivity: 100,
+          callback: handleMouseLeave,
+        });
       }
     }
   };
 
   useEffect(() => {
-    if (
-      !isAuthenticated &&
-      !isExtensionInstalled
-    ) {
-      setTimeout(() => setIsLandingVisible(true));
-      updateElementClassList({
-        element: 'body',
-        className: 'no-scroll',
-        add: true,
-      });
+    if (!isExtensionInstalled) {
       activateEventListener();
 
       options.timer = setTimeout(() => {
@@ -87,8 +61,8 @@ const HomePageExitIntent = ({
     }
 
     return () => {
-      setExitIntent(null);
-      setIsLandingMounted(false);
+      options.exitIntent && options.exitIntent.disable();
+      options.timer && clearTimeout(options.timer);
       updateElementClassList({
         element: 'body',
         className: 'landing-minimized,active',
@@ -97,18 +71,16 @@ const HomePageExitIntent = ({
     };
   }, []);
 
-  return isSafeToRenderLandingPage()
+  return !isExtensionInstalled
     ? <NeverOverpayAgain
-        isLandingVisible={isLandingVisible}
+        unmountLanding={unmountLanding}
+        minimizeLanding={minimizeLanding}
         isLandingMinimized={isLandingMinimized}
-        setIsLandingMounted={setIsLandingMounted}
-        setIsLandingVisible={setIsLandingVisible}
     />
     : null;
 };
 
 const mapStateToProps = state => ({
-  isAuthenticated: getIsAuthenticated(state),
   isExtensionInstalled: getIsExtensionInstalled(state),
 });
 

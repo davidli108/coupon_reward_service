@@ -20,6 +20,33 @@ const styles = (NeverOverpayAgain: Object) => {
     `}
   `;
 
+  NeverOverpayAgain.Action = styled.div`
+    position: fixed;
+    bottom: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 500px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+
+    p {
+      margin: 0 0 26px;
+      text-align: center;
+      font-size: 12px;
+      line-height: 14px;
+      letter-spacing: 0.11px;
+      color: ${({ theme }) => theme.colors.lightBlue};
+    }
+
+    svg {
+      width: 22px;
+      height: 22px;
+    }
+  `;
+
   NeverOverpayAgain.Content = styled.div`
     width: 930px;
     padding: 0 15px;
@@ -81,6 +108,10 @@ const styles = (NeverOverpayAgain: Object) => {
     font-size: 20px;
     max-width: none;
 
+    &:hover {
+      background-color: ${({ theme }) => theme.colors.lightGreenHover};
+    }
+
     ${breakpoint('md')`
       font-size: 23px;
       max-width: 457px;
@@ -98,8 +129,6 @@ const styles = (NeverOverpayAgain: Object) => {
     justify-content: center;
     background-color: ${({ theme }) => theme.colors.darkBlue};
     color: ${({ theme }) => theme.colors.white};
-    transform: ${({ isLandingVisible }) =>
-      isLandingVisible ? 'translate3d(0, 0, 0)' : 'translate3d(0, -100%, 0)'};
 
     &.minimized {
       display: flex;
@@ -113,6 +142,10 @@ const styles = (NeverOverpayAgain: Object) => {
       `}
 
       ${NeverOverpayAgain.Corner} {
+        display: none;
+      }
+
+      ${NeverOverpayAgain.Action} {
         display: none;
       }
 
@@ -154,6 +187,7 @@ const styles = (NeverOverpayAgain: Object) => {
           line-height: 20px;
 
           ${breakpoint('md')`
+            font-size: 20px;
             line-height: 32px;
           `}
         }
@@ -177,6 +211,42 @@ const styles = (NeverOverpayAgain: Object) => {
           font-size: 23px;
         `}
       }
+    }
+
+    .animate {
+      position: fixed;
+      z-index: 10;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: ${({ theme }) => theme.colors.darkBlue};
+    }
+
+    #animation_container {
+      background-color: 'rgba(0, 0, 0, 0)';
+      width: 350px;
+      height: 350px;
+    }
+
+    canvas {
+      position: absolute;
+      display: block;
+      background-color: rgba(0, 0, 51, 0);
+    }
+
+    #dom_overlay_container {
+      pointer-events: none;
+      overflow: hidden;
+      width: 350px;
+      height: 350px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      display: block;
     }
   `;
 };

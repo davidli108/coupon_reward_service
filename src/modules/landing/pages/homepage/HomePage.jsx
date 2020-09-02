@@ -26,7 +26,6 @@ import HomePageTopDeals from './components/HomePageTopDeals';
 import HomePageFeaturedDeal from './components/HomePageFeaturedDeal';
 import HomePageFeaturedCashBack from './components/HomePageFeaturedCashBack';
 import HomePageCategories from './components/HomePageCategories';
-import HomePageExitIntent from './components/HomePageExitIntent';
 
 import { type HomePageProps } from './HomePage.types';
 
@@ -45,14 +44,14 @@ const HomePage = ({
   isAuthenticated,
   isExtensionInstalled,
 }: HomePageProps) => {
+  const params = queryString.parse(location.search);
+
   const [isLoaded, setIsLoaded] = useState(false);
   const [showActivateModal, setShowActivateModal] = useState(false);
   const [isModalShow, setIsModalShow] = useState(false);
   const [logo, setLogo] = useState('');
   const [link, setLink] = useState('');
   const [title, setTitle] = useState('');
-
-  const params = queryString.parse(location.search);
 
   useEffect(() => {
     fetchHomePageFeature(FETCH_HOMEPAGE_FEATURE).then(() => setIsLoaded(true));
@@ -103,25 +102,23 @@ const HomePage = ({
   }
 
   return (
-    <HomePage.Wrapper>
+    <HomePage.Wrapper hasLp={params.lp}>
       <Helmet
         title={t('homepage.page.title')}
         meta={[
-          ...metaTags({description: t('homepage.page.description')}),
+          ...metaTags({ description: t('homepage.page.description') }),
           ...openGraph({
             title: t('homepage.page.title'),
             description: t('homepage.page.description'),
           }),
         ]}
       />
-      {params.lp === 'never-overpay-again' && <HomePageExitIntent />}
-
       <HomePage.Container>
         <HomePage.Title>{t('homepage.page.h1')}</HomePage.Title>
         <HomePageCarousel
           handler={handleClick}
           isLoaded={isLoaded}
-          storesData={{homePageFeaturedStore, featuredStore}}
+          storesData={{ homePageFeaturedStore, featuredStore }}
         />
         {topDealsAndFeaturedCashBack}
         <HomePageFeaturedDeal

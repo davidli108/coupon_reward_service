@@ -1,7 +1,8 @@
 // @flow
-import React from 'react';
+import React, { useState } from 'react';
 import Loadable from 'react-loadable';
 import { Route, Switch } from 'react-router-dom';
+import queryString from 'query-string';
 
 import Footer from '@components/Footer/Footer';
 import Header from '@components/Header/Header';
@@ -27,6 +28,14 @@ const Home = Loadable({
   loading: () => <Preloader />,
 });
 
+const HomePageLoader = Loadable({
+  loader: () =>
+    import(
+      '@modules/landing/pages/HomePageLoader' /* webpackChunkName: "HomePageLoader" */
+    ),
+  loading: () => <Preloader />,
+});
+
 const NotFoundPage = Loadable({
   loader: () =>
     import(
@@ -38,7 +47,6 @@ const NotFoundPage = Loadable({
 const StoresPage = Loadable({
   loader: () =>
     import(
-      //$FlowFixMe
       '@modules/store/pages/StoresPage.js' /* webpackChunkName: "StoresPage" */
     ),
   loading: () => <Preloader />,
@@ -76,27 +84,44 @@ const SitemapPage = Loadable({
   loading: () => <Preloader />,
 });
 
-export default (
-  <div style={{ overflow: 'hidden' }}>
-    <Header />
-    <Switch>
-      {isEN ? (
-        <Route exact path="/" component={HomePage} />
-      ) : (
-        <Route exact path="/" component={Home} />
-      )}
-      <Route exact path="/home" component={Home} />
-      <Route exact path="/register" component={HomePage} />
-      <Route exact path="/cashback-stores" component={StoresPage} />
-      <Route exact path="/cashback-stores/:name" component={StoresPage} />
-      <Route exact path="/coupons" component={CouponsPage} />
-      <Route exact path="/coupons/:name" component={SplitterPage} />
-      <Route exact path="/auth/not-authorized" component={NotAuthorizedPage} />
-      <Route exact path="/sitemap" component={SitemapPage} />
+const Routes = () => {
+  const params = queryString.parse(document.location.search) || {};
+  const [showHeaderFooter, setShowHeaderFooter] = useState(!Boolean(params.lp));
 
-      {/* Catch all routes */}
-      <Route component={NotFoundPage} />
-    </Switch>
-    <Footer />
-  </div>
-);
+  return (
+    <div style={{ overflow: 'hidden' }}>
+      {showHeaderFooter && <Header />}
+      <Switch>
+        <Route
+          exact
+          path="/"
+          render={props => (
+            <HomePageLoader
+              {...props}
+              isEN={isEN}
+              setShowHeaderFooter={setShowHeaderFooter}
+            />
+          )}
+        />
+        <Route exact path="/home" component={Home} />
+        <Route exact path="/register" component={HomePage} />
+        <Route exact path="/cashback-stores" component={StoresPage} />
+        <Route exact path="/cashback-stores/:name" component={StoresPage} />
+        <Route exact path="/coupons" component={CouponsPage} />
+        <Route exact path="/coupons/:name" component={SplitterPage} />
+        <Route
+          exact
+          path="/auth/not-authorized"
+          component={NotAuthorizedPage}
+        />
+        <Route exact path="/sitemap" component={SitemapPage} />
+
+        {/* Catch all routes */}
+        <Route component={NotFoundPage} />
+      </Switch>
+      {showHeaderFooter && <Footer />}
+    </div>
+  );
+};
+
+export default Routes;

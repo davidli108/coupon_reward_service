@@ -15,7 +15,7 @@ import { currencyLocaleFormat } from '@modules/localization/i18n';
 const StoreName = (storeName: string) => {
   return (storeName.length < 15)
     ? (<div className="storeName">{storeName}</div>)
-    : (<TextFit mode="single" max="30" className="storeName">{storeName}</TextFit>);
+    : (<TextFit mode="single" max={30} className="storeName">{storeName}</TextFit>);
 }
 const OverrideText = (overrideText: string) => {
   return (overrideText.length < 45)

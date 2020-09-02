@@ -1,42 +1,60 @@
 // @flow
 import React from 'react';
+import { MdArrowDownward } from 'react-icons/md';
 
 import AppConfig from '@config/AppConfig';
-import { updateElementClassList } from '@config/Utils';
+import { updateElementClassList, ScriptLoader } from '@config/Utils';
 import PiggyCorner from './assets/piggy-corner-new.png';
 import styles from './NeverOverpayAgain.styles';
 
 type NeverOverpayAgainProps = {
-  isLandingVisible: boolean,
   isLandingMinimized: boolean,
-  setIsLandingVisible: Function,
-  setIsLandingMounted: Function,
+  minimizeLanding: Function,
+  unmountLanding: Function,
 };
 
 const NeverOverpayAgain = ({
-  isLandingVisible,
   isLandingMinimized,
-  setIsLandingVisible,
-  setIsLandingMounted,
+  minimizeLanding,
+  unmountLanding,
 }: NeverOverpayAgainProps) => {
   const clickHandler = () => {
-    setIsLandingVisible(false);
+    unmountLanding();
     updateElementClassList({
       element: 'body',
       className: 'landing-minimized',
       add: false,
     });
-
-    setTimeout(() => {
-      setIsLandingMounted(false);
-    }, 400);
   };
+
+  const js = {
+    jquery: '/shared-assets/js/jquery-1.11.3.min.js',
+    createJs: '/shared-assets/js/hero-loader/createjs-2015.11.26.min.js',
+    animLibrary: '/shared-assets/js/hero-loader/animate-02-new.js',
+    animation: '/shared-assets/js/hero-loader/animate-02-new-fn.js',
+  };
+
+  const jQuery = new ScriptLoader({src: js.jquery, global: 'jQuery'});
+  const createJs = new ScriptLoader({src: js.createJs, global: 'cjs'});
+  const animLibrary = new ScriptLoader({src: js.animLibrary, global: 'al'});
+  const animation = new ScriptLoader({src: js.animation, global: 'animation'});
+
+  Promise.all([jQuery.load(), createJs.load()]).then(() => {
+    animLibrary.load();
+    animation.load();
+  });
 
   return (
     <NeverOverpayAgain.Wrapper
       className={isLandingMinimized ? 'minimized' : ''}
-      isLandingVisible={isLandingVisible}
     >
+      <div className="animate">
+        <div id="animation_container">
+          <canvas id="canvas" width="350" height="350" />
+          <div id="dom_overlay_container" />
+        </div>
+      </div>
+
       <NeverOverpayAgain.Content>
         <div>
           <h1>NEVER OVERPAY AGAIN</h1>
@@ -52,6 +70,9 @@ const NeverOverpayAgain = ({
           + Add extension to chrome
         </NeverOverpayAgain.Button>
       </NeverOverpayAgain.Content>
+      <NeverOverpayAgain.Action onClick={minimizeLanding}>
+        <MdArrowDownward/>
+      </NeverOverpayAgain.Action>
       <NeverOverpayAgain.Corner src={PiggyCorner} alt="JoinPiggy"/>
     </NeverOverpayAgain.Wrapper>
   );
