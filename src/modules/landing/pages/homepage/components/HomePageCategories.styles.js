@@ -120,16 +120,15 @@ const styles = (HomePageCategories: Object) => {
     }
   `;
 
-  HomePageCategories.Title = styled.h2`
+  HomePageCategories.TitleWrapper = styled.div`
     display: flex;
     align-items: center;
     padding: 0 15px 20px;
+  `;
 
-    b {
-      display: block;
-      font: 700 13px/19px ${({ theme }) => theme.fonts.montserrat} !important;
-      color: ${({ theme }) => theme.colors.blackGrey};
-    }
+  HomePageCategories.Title = styled.h2`
+    font: 700 13px/19px ${({ theme }) => theme.fonts.montserrat} !important;
+    color: ${({ theme }) => theme.colors.blackGrey};
   `;
 
   HomePageCategories.Category = styled.div`
