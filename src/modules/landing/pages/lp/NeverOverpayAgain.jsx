@@ -21,12 +21,12 @@ const NeverOverpayAgain = ({
   unmountLanding,
 }: NeverOverpayAgainProps) => {
   const lpMap = {
-    'com': '-usa',
-    'co.uk': '',
-    'de': '-de',
-    'fr': '-fr',
+    'com': 'noa-wait-usa',
+    'co.uk': 'noa-wait',
+    'de': 'noa-wait-de',
+    'fr': 'noa-wait-fr',
   };
-  const extensionLandingUrl = `/lp/noa-wait${lpMap[tld] || '-usa'}`;
+  const extensionLandingUrl = `/lp/${lpMap[tld] || lpMap['com']}`;
 
   const clickHandler = () => {
     unmountLanding();
