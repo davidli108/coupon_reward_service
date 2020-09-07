@@ -2,10 +2,12 @@
 import React from 'react';
 import { MdArrowDownward } from 'react-icons/md';
 
-import AppConfig from '@config/AppConfig';
 import { updateElementClassList, ScriptLoader } from '@config/Utils';
+import { getDomainAttrs } from '@modules/localization/i18n';
 import PiggyCorner from './assets/piggy-corner-new.png';
 import styles from './NeverOverpayAgain.styles';
+
+const { tld } = getDomainAttrs();
 
 type NeverOverpayAgainProps = {
   isLandingMinimized: boolean,
@@ -18,6 +20,14 @@ const NeverOverpayAgain = ({
   minimizeLanding,
   unmountLanding,
 }: NeverOverpayAgainProps) => {
+  const lpMap = {
+    'com': '-usa',
+    'co.uk': '',
+    'de': '-de',
+    'fr': '-fr',
+  };
+  const extensionLandingUrl = `/lp/noa-wait${lpMap[tld] || '-usa'}`;
+
   const clickHandler = () => {
     unmountLanding();
     updateElementClassList({
@@ -63,7 +73,7 @@ const NeverOverpayAgain = ({
           <h3>We find the coupons. You just shop.</h3>
         </div>
         <NeverOverpayAgain.Button
-          href={AppConfig.extension.url}
+          href={extensionLandingUrl}
           onClick={clickHandler}
           target="_blank"
         >
