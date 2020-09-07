@@ -508,4 +508,47 @@ export default {
         'Des coupons automatiques, des offres exceptionelles, et le cash back!',
     },
   },
+  user_review: {
+    page: {
+      title: 'Avis et évaluations des utilisateurs | Piggy',
+      description: `À la recherche d’authentiques critiques de Piggy, écrites par de véritables utilisateurs ? Ne vous contentez pas de nous croire sur parole. Découvrez par vous-même ce que disent les utilisateurs sur les possibilités d’économies offertes par Piggy.`,
+    },
+    hero: {
+      title:
+        'Plus de 47 000 utilisateurs ont évalué et attribué 5 étoiles à Piggy',
+      content: `Vous recherchez d’authentiques critiques de Piggy, écrites par de véritables utilisateurs ? Ne vous contentez pas de nous croire sur parole. Découvrez ce que les utilisateurs disent de Piggy en ce moment sur le Chrome Web Store de Google. Cliquez ci-dessous pour afficher tous les commentaires sur Piggy.`,
+      contentLink: `Cliquez ci-dessous pour afficher tous les commentaires sur Piggy.`,
+      btn: 'Voir les avis',
+    },
+    firstblock: {
+      name: 'Gloria Stevens',
+      description: 'Économiser est devenu simple comme bonjour !',
+      content:
+        'Économiser ne requiert littéralement qu’un clic et une seconde de votre temps. N’oubliez pas de nous laisser un commentaire lorsque vous économisez de l’argent grâce à nous !',
+    },
+    secondblock: {
+      name: 'Mark Harrington',
+      description: 'Piggy m’a trouvé un meilleur prix sur Amazon',
+      content:
+        'Piggy vous trouve le meilleur prix lorsque vous faites vos achats sur Amazon. Ne passez plus jamais à côté d’une meilleure affaire avec Piggy !',
+    },
+    review: {
+      btn: `+ Ajouter une extension à Chrome`,
+      text00:
+        'Facile automatique et gratuit, les codes donnent de bonne reduction, c est parfait',
+      name00: 'Hortense Gaffinel',
+      text01: `Toujours là pour nous donner réellement le bon prix et remises possibles.En temps réel c'est la magie de l'outil.`,
+      name01: 'Leila BENNIKOUS LEJARD',
+      text02: `C'est sympa, je ne peux pas toujours acheter, et là l'espoir renaît`,
+      name02: 'Claude-Jocelyne POITOU',
+      text03: `C'est automatique et gratuit les codes sont de grosse réduction je suis satisfait !!!!!!`,
+      name03: 'NaKy',
+      text04:
+        'merci a vous pour me permettre découter mes chaines de télévisions en direct des usa',
+      name04: 'danielle Pelletier',
+      text05: `parfait! j'aime cela`,
+      name05: `Thérèse Côté`,
+      rate: 'évaluation',
+    },
+  },
 };

@@ -19,6 +19,8 @@ export const colorScheme = {
   greenLight: { value: '#f5fff4', name: 'GreenLight' },
   greenWhite: { value: '#e2e2e2', name: 'GreenWhite' },
   greenBlank: { value: '#00ba4a', name: 'GreenBlank' },
+  blueBlanknew: { value: '#374b5a', name: 'BlueBlankNew' },
+  blueBg: { value: '#F4F4F4', name: 'BlueBg' },
   blackAlphaDark: {
     value: 'rgba(0, 0, 0, 0.5)',
     name: 'BlackAlphaDark',

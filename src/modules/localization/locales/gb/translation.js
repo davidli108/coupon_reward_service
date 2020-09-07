@@ -502,4 +502,49 @@ export default {
       h1: 'Voucher Codes, Top Offers, Hot Deals, & Cashback',
     },
   },
+  user_review: {
+    page: {
+      title: 'User Reviews & Ratings | Piggy',
+      description: `Looking for real Piggy reviews from real users? Don't just take our word for it. Find out what users are saying about Piggy’s money saving power for yourself.`,
+    },
+    hero: {
+      title: 'Over 47,000 users reviewed & rated piggy with 5 stars.',
+      content: `Are you looking for real reviews from real users? Don't take our word for it. Find out what users are saying about Piggy right now on Google's Chrome Web Store.`,
+      contentLink: `Click below to view all of Piggy's Reviews.`,
+      btn: 'View reviews',
+    },
+    firstblock: {
+      name: 'Gloria Stevens',
+      description: 'Savings as Easy as 1 ,2 , 3!',
+      content:
+        'Savings are literally as easy as 1 click, and 1 second of your time. Make sure to leave us a review when we save you money!',
+    },
+    secondblock: {
+      name: 'Mark Harrington',
+      description: 'Piggy found me a better price on Amazon',
+      content:
+        'Piggy finds you the best price when you shop on Amazon. Never miss a deal again with Piggy!',
+    },
+    review: {
+      btn: `+ Add Extension to Chrome`,
+      text00:
+        'I love Piggy. I  Do not have to go around finding discount codes. It automatically comes up when you are shopping online. So convenient.',
+      name00: 'Jess C',
+      text01:
+        'Piggy is Great !!! I love that Piggy automatically finds coupon codes and savings with just a click within your same shopping site. I love the convenience. Thank you',
+      name01: 'Tj Jjay',
+      text02:
+        'Piggy is always there to make the shopping experience great, love it and thanks for all the savings, Piggy helps me save so much money, Im so grateful',
+      name02: 'Gigi Castillero',
+      text03: `So easy to use and it saves me money. If you're not using Piggy, you're missing out.`,
+      name03: 'Carol Kuzniar',
+      text04:
+        'Really....this is the most useful extension that I have installed in my computer. Thanks for your help to save money.',
+      name04: 'Joel Gorrín Monzón',
+      text05:
+        'Just need to click on code and it automatically is subtracted from my total.  What could be any easier?',
+      name05: 'Michael Snyder',
+      rate: 'Review',
+    },
+  },
 };

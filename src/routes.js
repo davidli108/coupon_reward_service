@@ -28,6 +28,14 @@ const Home = Loadable({
   loading: () => <Preloader />,
 });
 
+const UserReview = Loadable({
+  loader: () =>
+    import(
+      '@modules/landing/pages/userreview/UserReview' /* webpackChunkName: "UserReview" */
+    ),
+  loading: () => <Preloader />,
+});
+
 const HomePageLoader = Loadable({
   loader: () =>
     import(
@@ -104,6 +112,7 @@ const Routes = () => {
           )}
         />
         <Route exact path="/home" component={Home} />
+        <Route exact path="/user-review" component={UserReview} />
         <Route exact path="/register" component={HomePage} />
         <Route exact path="/cashback-stores" component={StoresPage} />
         <Route exact path="/cashback-stores/:name" component={StoresPage} />
