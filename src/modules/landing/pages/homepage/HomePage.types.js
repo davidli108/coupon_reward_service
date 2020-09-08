@@ -56,7 +56,8 @@ export type HomePageCategoriesProps = {
 };
 
 export type HomePageExitIntentProps = {
-  location: Object,
-  isAuthenticated: boolean,
   isExtensionInstalled: boolean,
+  isLandingMinimized: boolean,
+  setIsLandingMinimized: Function,
+  unmountLanding: Function,
 };

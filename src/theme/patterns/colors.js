@@ -19,6 +19,8 @@ export const colorScheme = {
   greenLight: { value: '#f5fff4', name: 'GreenLight' },
   greenWhite: { value: '#e2e2e2', name: 'GreenWhite' },
   greenBlank: { value: '#00ba4a', name: 'GreenBlank' },
+  blueBlanknew: { value: '#374b5a', name: 'BlueBlankNew' },
+  blueBg: { value: '#F4F4F4', name: 'BlueBg' },
   blackAlphaDark: {
     value: 'rgba(0, 0, 0, 0.5)',
     name: 'BlackAlphaDark',
@@ -53,8 +55,9 @@ export const colorScheme = {
     name: 'ModalOverlayBg',
   },
   lightBlue: { value: '#8ba8af', name: 'LightBlue' },
-  darkBlue: { value: '#133841', name: 'DarkBlue' },
-  lightGreen: { value: '#56B559', name: 'LightGreen' },
+  darkBlue: { value: '#001c20', name: 'DarkBlue' },
+  lightGreen: { value: '#56b559', name: 'LightGreen' },
+  lightGreenHover: { value: '#2c9e25', name: 'LightGreenHover' },
 };
 export const getColor = (colorKey: string) =>
   R.path([colorKey, 'value'], colorScheme);

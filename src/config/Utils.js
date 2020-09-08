@@ -50,3 +50,66 @@ export const updateElementClassList = ({
     });
   }
 };
+
+type TScriptLoaderOptions = {
+  src: string,
+  host?: string,
+  global: string,
+  protocol?: string,
+};
+
+export class ScriptLoader {
+  src: string;
+  host: string;
+  global: any;
+  protocol: string;
+  isLoaded: boolean;
+  baseUrl: Object;
+
+  constructor(options: TScriptLoaderOptions) {
+    const { src, host = '', global, protocol } = options;
+
+    const baseUrl = new URL(AppConfig.apiUrl);
+    const apiHost = baseUrl.host.includes('www')
+      ? baseUrl.host.replace('www', 'api')
+      : `api-${baseUrl.host}`;
+
+    this.baseUrl = baseUrl;
+    this.src = src;
+    this.host = host === 'apiHost' ? apiHost : host;
+    this.global = global;
+    this.protocol = protocol === 'auto' ? '' : baseUrl.protocol;
+    this.isLoaded = false;
+  }
+
+  loadScript = () =>
+    new Promise<any>(resolve => {
+      const script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.async = true;
+      script.src = `${this.protocol}//${this.baseUrl.host}${this.src}`;
+
+      const el = document.getElementsByTagName('script')[0];
+      el && el.parentNode && el.parentNode.insertBefore(script, el);
+
+      script.addEventListener('load', () => {
+        this.isLoaded = true;
+        resolve(script);
+      });
+    });
+
+  load = () =>
+    new Promise<any>((resolve, reject) => {
+      if (!this.isLoaded) {
+        try {
+          this.loadScript().then(() => {
+            resolve(window[this.global]);
+          });
+        } catch (e) {
+          reject(e);
+        }
+      } else {
+        resolve(window[this.global]);
+      }
+    });
+}

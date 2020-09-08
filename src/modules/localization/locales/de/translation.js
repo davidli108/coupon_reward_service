@@ -503,4 +503,50 @@ export default {
       h1: 'Automatische Gutscheine, gewaltige Sonderverkäufe und Cashback!',
     },
   },
+  user_review: {
+    page: {
+      title: 'Nutzer-Rezensionen & Bewertungen | Piggy',
+      description: `Suchen Sie nach echten Piggy-Bewertungen von echten Nutzern? Glauben Sie uns nicht einfach so. Finden Sie selbst heraus, was Nutzer über Piggy sagen und wie sie damit Geld sparen.`,
+    },
+    hero: {
+      title:
+        'Mehr als 47.000 Benutzer haben eine Rezension geschrieben und Piggy mit 5 Sternen bewertet',
+      content: `Suchen Sie nach echten Bewertungen von echten Nutzern? Verlassen Sie sich nicht einfach darauf, was wir sagen. Finden Sie jetzt im Chrome Web Store von Google heraus, was Benutzer über Piggy sagen. Klicken Sie unten, um alle Rezensionen von Piggy anzuzeigen.`,
+      contentLink: `Klicken Sie unten, um alle Rezensionen von Piggy anzuzeigen.`,
+      btn: 'Rezensionen ansehen',
+    },
+    firstblock: {
+      name: 'Gloria Stevens',
+      description: 'Sparen leicht gemacht!',
+      content:
+        'Sparen sie buchstäblich in Sekundenschnelle mit nur einem einzigen Klick. Vergessen Sie nicht, uns zu bewerten, wenn Sie Geld mit uns sparen!',
+    },
+    secondblock: {
+      name: 'Mark Harrington',
+      description:
+        'Piggy hat bei Amazon einen besseren Preis für mich gefunden',
+      content:
+        'Piggy findet für Sie den besten Preis, wenn Sie bei Amazon einkaufen. Verpassen Sie mit Piggy nie wieder ein Angebot!',
+    },
+    review: {
+      btn: `+ Erweiterung zu Chrome hinzufügen`,
+      text00:
+        'heute 21,64 EUR bei meinem Einkauf gespart, ohne das ich was machen musste, nur den Gutschein Code eingeben! So macht Einkaufen Spaß :)',
+      name00: 'Christian Haller',
+      text01:
+        'Bis jetzt immer gespart,hatte auch noch nie Probleme das mal kein Code funktioniert hat. Kann ich nur weiter empfehlen.',
+      name01: 'DheZahnfee _',
+      text02:
+        'Immer wieder eine nette Überraschung!!! Und sparen kann man.... Wer will da nicht dabei sein!',
+      name02: 'Ein Google-Nutzer',
+      text03: `Schön wenn man spar kann,funktioniert zwar nicht immer und in jedem shop,macht gute laune`,
+      name03: 'Eva-Maria Piel',
+      text04: `Ich liebe Piggy, kein Online-Shopping ohne Piggy. Hin und wieder sind es kleine euro's die man spart aber man spart :)`,
+      name04: 'Jenny Neumann',
+      text05:
+        'Coole Sache. Man hat ja nicht immer gleich einen Gutschein zur Hand. Und nun muss man das auch nicht mehr haben.',
+      name05: 'Kerstin Wehrmann',
+      rate: 'Rezension',
+    },
+  },
 };

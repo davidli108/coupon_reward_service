@@ -24,13 +24,10 @@ export const GlobalStyle = createGlobalStyle`
 
     &.landing-minimized {
       margin-top: 191px;
-    }
 
-    &.no-scroll {
-      position: fixed;
-      max-height: 100%;
-      width: 100%;
-      overflow: hidden;
+      .animate {
+        display: none !important;
+      }
     }
   }
 

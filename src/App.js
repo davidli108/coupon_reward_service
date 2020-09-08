@@ -5,7 +5,7 @@ import { ThemeProvider } from 'styled-components';
 import ScrollToTop from '@components/ScrollToTop/ScrollToTop';
 import { getTheme } from '@theme';
 
-import routes from './routes';
+import Routes from './routes';
 
 import favicon from './assets/favicon.ico';
 import logo from '@components/Header/logo.svg';
@@ -46,7 +46,9 @@ const App = () => {
           <meta name="og:image" content={logo} />
         </Helmet>
         <GlobalStyle />
-        <ScrollToTop>{routes}</ScrollToTop>
+        <ScrollToTop>
+          <Routes />
+        </ScrollToTop>
       </div>
     </ThemeProvider>
   );

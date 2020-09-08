@@ -38,8 +38,8 @@ const HomePageCategories = ({
         active={dropdownOpened}
         onClick={toggleDropdown}
       />
-      <HomePageCategories.Title>
-        <b>{t('homepage.discover')}</b>
+      <HomePageCategories.TitleWrapper>
+        <HomePageCategories.Title>{t('homepage.discover')}</HomePageCategories.Title>
         <HomePageCategories.Category>
           <div className="selected" onClick={toggleDropdown}>
             <span>{t('homepage.all')}</span>
@@ -54,7 +54,7 @@ const HomePageCategories = ({
             }
           </HomePageCategories.Dropdown>
         </HomePageCategories.Category>
-      </HomePageCategories.Title>
+      </HomePageCategories.TitleWrapper>
 
       { isLoaded ? (
         <Slider {...categories_settings}>

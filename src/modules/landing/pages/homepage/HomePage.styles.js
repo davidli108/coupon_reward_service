@@ -5,11 +5,12 @@ import breakpoint from 'styled-components-breakpoint';
 const styles = (HomePage: Object) => {
   HomePage.Wrapper = styled.div`
     background-color: ${props => props.theme.colors.whitebg};
+    padding-top: ${({ hasLp }) => (hasLp ? '40px' : 0)};
   `;
 
   HomePage.Container = styled.div`
     width: 100%;
-  
+
     ::after {
       content: '';
       display: table;
