@@ -58,6 +58,7 @@ const styles = (NeverOverpayAgain: Object) => {
       margin: 40px 0 30px;
       padding: 0;
       font-size: 30px;
+      white-space: nowrap;
 
       ${breakpoint('md')`
         font-size: 62px;
