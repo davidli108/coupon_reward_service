@@ -70,7 +70,7 @@ const HomePage = ({
     }
 
     if (Boolean(Cookie.get('installProcessed'))) {
-      window.open(`${link}${params.lp ? '&ref3=lp' : ''}`, '_blank');
+      window.open(`${link}${params.lp ? '&ref2=lp' : ''}`, '_blank');
     } else {
       setShowActivateModal(true);
     }
@@ -80,7 +80,7 @@ const HomePage = ({
     setShowActivateModal(false);
 
     if (!dismiss) {
-      window.open(`${link}${params.lp ? '&ref3=lp' : ''}`, '_blank');
+      window.open(`${link}${params.lp ? '&ref2=lp' : ''}`, '_blank');
     }
   };
 
