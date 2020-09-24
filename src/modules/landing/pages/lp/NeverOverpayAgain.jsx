@@ -77,7 +77,7 @@ const NeverOverpayAgain = ({
           onClick={clickHandler}
           target="_blank"
         >
-          + Add extension to chrome
+          + ACTIVATE NOW
         </NeverOverpayAgain.Button>
       </NeverOverpayAgain.Content>
       <NeverOverpayAgain.Action onClick={minimizeLanding}>
