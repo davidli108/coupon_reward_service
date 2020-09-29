@@ -134,11 +134,10 @@ Featured.List = styled.ul`
 `;
 
 Featured.Item = styled.li`
-  padding: 11px 13px;
+  padding: 10px 13px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   border: 1px solid ${props => props.theme.colors.whiteLight};
   border-radius: 5px;
   box-sizing: border-box;
@@ -148,27 +147,22 @@ Featured.Item = styled.li`
   }
 
   ${breakpoint('xs')`
-    min-width: 140px;
+    min-width: 148px;
     padding: 9px;
     margin: 0 9px 0 0;
   `}
 
   ${breakpoint('sx')`
-    min-width: 147px;
     padding: 11px 9px;
   `}
 
   ${breakpoint('lg')`
-    min-width: 158px;
     margin: 0 27px 0 0;
-  `}
-
-  ${breakpoint('xl')`
-    min-width: 147px;
   `}
 `;
 
 Featured.WrapperImage = styled(Link)`
+  margin: 0 0 10px;
   height: 90px;
   width: 90px;
 `;
@@ -194,7 +188,7 @@ Featured.Link = styled(Link)`
   letter-spacing: 0.51px;
   color: ${props => props.theme.colors.white};
   cursor: pointer;
-  margin: 0 0 21px;
+  margin: 0 0 10px;
   transition: background 205ms linear;
 
   &:hover {
@@ -207,15 +201,16 @@ Featured.Link = styled(Link)`
 Featured.Cash = styled.p`
   text-align: center;
   font-weight: 500;
-  line-height: 23px;
+  line-height: 17px;
   font-size: 13px;
+  overflow: visible;
   color: ${props => props.theme.colors.blackExLight};
 `;
 
 Featured.CashJp = styled.p`
   text-align: center;
   font-weight: 500;
-  line-height: 23px;
+  line-height: 17px;
   font-size: 10px;
   color: ${props => props.theme.colors.blackExLight};
 `;
