@@ -110,9 +110,11 @@ const AdditionalInfo = ({
           isShow={store.store_description && store.store_description.trim()}
         >
           <h2>{store.store_name}</h2>
-          <AdditionalInfo.Content>
-            <p>{store.store_description}</p>
-          </AdditionalInfo.Content>
+          <AdditionalInfo.Content
+            dangerouslySetInnerHTML={{
+              __html: store.store_description,
+            }}
+          />
         </AdditionalInfo.ContentWrapper>
       </AdditionalInfo.ContentWrapper>
 
@@ -221,6 +223,18 @@ AdditionalInfo.Content = styled.div`
   p {
     margin-top: 10px;
     font-weight: 300;
+  }
+
+  ol,
+  ul {
+    list-style: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    padding-inline-start: 40px;
+  }
+
+  ol {
+    list-style: decimal;
   }
 `;
 
