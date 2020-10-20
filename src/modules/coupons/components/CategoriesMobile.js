@@ -69,11 +69,11 @@ const CategoriesMobile = ({
       <div ref={setRefItemsWrapper}>
         {isOpen && (
           <CategoriesMobile.ItemsWrapper items={categories[1]}>
-            {categories &&
-              Object.keys(categories).map(key => (
-                <CategoriesMobile.Section key={`key_${key}`}>
-                  <h2>{capitalizeOrNull(key)}</h2>
-                  {categories['categories'].map(i => (
+            {categories && (
+              <>
+                <CategoriesMobile.Section>
+                  <h2>{capitalizeOrNull('categories')}</h2>
+                  {categories.categories.map(i => (
                     <CategoryItem
                       setOpen={setOpen}
                       key={`key_${i.short_name}`}
@@ -82,11 +82,27 @@ const CategoriesMobile = ({
                       count={i.offers_count}
                       isActive={activeCategory === i.short_name}
                       onActive={onActiveCategory}
-                      isCounter={key !== 'stores'}
+                      isCounter
                     />
                   ))}
                 </CategoriesMobile.Section>
-              ))}
+                <CategoriesMobile.Section>
+                  <h2>{capitalizeOrNull('stores')}</h2>
+                  {categories.stores.map(i => (
+                    <CategoryItem
+                      setOpen={setOpen}
+                      key={`key_${i.short_name}`}
+                      name={i.name || i.store_name}
+                      shortName={i.short_name}
+                      count={i.offers_count}
+                      isActive={activeCategory === i.short_name}
+                      onActive={onActiveCategory}
+                      isCounter={false}
+                    />
+                  ))}
+                </CategoriesMobile.Section>
+              </>
+            )}
           </CategoriesMobile.ItemsWrapper>
         )}
       </div>
