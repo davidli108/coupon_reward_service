@@ -65,6 +65,7 @@ export type Deal = {
   isFavorite: boolean,
   category?: string,
   store_name?: string,
+  offer_name: string,
   offer_link: string,
   ref_text: string,
   offer_type: string,
