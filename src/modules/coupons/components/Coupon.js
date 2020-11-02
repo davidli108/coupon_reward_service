@@ -7,7 +7,7 @@ import { withTranslation } from 'react-i18next';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
-
+import truncate from 'lodash.truncate';
 import { getIsAuthenticated } from '@modules/auth/AuthReducer';
 import { getIsExtensionInstalled } from '@modules/app/AppReducer';
 import CouponCode from './CouponCode';
@@ -41,6 +41,7 @@ const Coupon = ({
   discount_print,
   discount_amt,
   discount_type,
+  offer_name,
   offer_type,
   offer_link,
   show_exp_date = '',
@@ -134,7 +135,9 @@ const Coupon = ({
                 )}
           </p>
         </Coupon.ExpDate>
-        <Coupon.OfferText>{ref_text}</Coupon.OfferText>
+        <Coupon.OfferText>
+          {truncate(offer_name, { length: 80, separator: /\s/ })}
+        </Coupon.OfferText>
         <CouponCode
           isAuthenticated={isAuthenticated}
           isExtensionInstalled={isExtensionInstalled}

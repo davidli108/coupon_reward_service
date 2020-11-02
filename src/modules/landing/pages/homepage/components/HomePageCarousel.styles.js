@@ -198,10 +198,12 @@ const styles = (HomePageCarousel: Object) => {
 
     .img-content {
       width: 35%;
+      display: flex;
+      justify-content: center;
     }
 
     img {
-      width: 100%;
+      width: 265px;
       height: 265px;
       object-fit: scale-down;
     }
@@ -236,7 +238,7 @@ const styles = (HomePageCarousel: Object) => {
       }
 
       .overrideText {
-        line-height: 16px;
+        line-height: normal;
         max-height: 100px;
       }
 
