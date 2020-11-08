@@ -2,7 +2,8 @@
 
 export type HomeProps = {
   t: Function,
-  fetchHomePageFeature: (type: string) => Promise<void>,
+  visible: boolean,
+  isLoaded: boolean,
 };
 
 export type HomeHeroProps = {

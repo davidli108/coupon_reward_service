@@ -1,29 +1,29 @@
 // @flow
 import * as R from 'ramda';
-import { FETCH_HOMEPAGE_FEATURE, FETCH_HOME_FEATURE } from './LandingActions';
+import { FETCH_HOME_FEATURE } from './LandingActions';
 import { stringElipsis } from './common/helpers';
 import { getStoresWithDirectLinkSet } from '@config/Utils';
 
 export type LandingReducerProps = {
-  homePageFeaturedStore: Array<any>,
-  featuredStores: Array<any>,
-  paidPlacements: Array<any>,
-  homePageFeature: Array<any>,
-  topDeals: Array<any>,
-  featuredCashback: Array<any>,
-  amazonDeal: Array<any>,
+  homepage_feature: any[],
+  featured_stores: any[],
+  top_deals: any[],
+  featured_cashback: any[],
+  amazon_deal: any[],
+  homepage_setting: string,
+  isLoaded: boolean,
 };
 
 export const STATE_KEY = 'landing';
 
 const initialState: LandingReducerProps = {
-  homePageFeaturedStore: [],
-  featuredStores: [],
-  paidPlacements: [],
-  homePageFeature: [],
-  topDeals: [],
-  featuredCashback: [],
-  amazonDeal: [],
+  homepage_feature: [],
+  featured_stores: [],
+  top_deals: [],
+  featured_cashback: [],
+  amazon_deal: [],
+  homepage_setting: '',
+  isLoaded: false,
 };
 
 const LandingReducer = (
@@ -31,7 +31,7 @@ const LandingReducer = (
   action: Object,
 ) => {
   switch (action.type) {
-    case `${FETCH_HOMEPAGE_FEATURE}_SUCCESS`: {
+    case `${FETCH_HOME_FEATURE}_SUCCESS`: {
       const paid_placements: Object = {
         homepage_feature: R.pathOr(
           [],
@@ -120,40 +120,23 @@ const LandingReducer = (
         return item;
       });
 
-      return R.compose(
-        R.assoc<Object, Object>(
-          'featured_stores',
-          paid_placements.featured_stores,
-        ),
-        R.assoc<Object, Object>(
-          'homepage_feature',
-          paid_placements.homepage_feature,
-        ),
-        R.assoc<Object, Object>('top_deals', mapTopDeal),
-        R.assoc<Object, Object>('featured_cashback', mapFeaturedCashback),
-        R.assoc<Object, Object>('categories', categories),
-        R.assoc<Object, Object>(
-          'amazon_deal',
-          mapAmazonDeal.length !== 0 ? mapAmazonDeal[0] : null,
-        ),
-      )(state);
-    }
-
-    case `${FETCH_HOME_FEATURE}_SUCCESS`: {
-      const paid_placements: Object = R.pathOr(
-        {
-          featured_stores: [],
-        },
-        ['payload', 'data', 'paid_placements'],
+      const homepageSetting = R.pathOr(
+        '',
+        ['payload', 'data', 'homepage_setting'],
         action,
       );
 
-      return R.compose(
-        R.assoc<Object, Object>(
-          'featuredStores',
-          paid_placements.featured_stores,
-        ),
-      )(state);
+      return {
+        ...state,
+        featured_stores: paid_placements.featured_stores,
+        homepage_feature: paid_placements.homepage_feature,
+        top_deals: mapTopDeal,
+        featured_cashback: mapFeaturedCashback,
+        categories: categories,
+        amazon_deal: mapAmazonDeal.length !== 0 ? mapAmazonDeal[0] : null,
+        homepage_setting: homepageSetting,
+        isLoaded: true,
+      };
     }
 
     default: {
@@ -171,6 +154,11 @@ export const getFeaturedCashback = R.path<any>([
 ]);
 export const getAmazonDeal = R.path<any>([STATE_KEY, 'amazon_deal']);
 export const getCategories = R.path<any>([STATE_KEY, 'categories']);
-export const getHomeFeaturedStores = R.path<any>([STATE_KEY, 'featuredStores']);
+export const getHomeFeaturedStores = R.path<any>([
+  STATE_KEY,
+  'featured_stores',
+]);
+export const getIsLoaded = R.path<any>([STATE_KEY, 'isLoaded']);
+export const getHomePageSetting = R.path<any>([STATE_KEY, 'homepage_setting']);
 
 export default LandingReducer;

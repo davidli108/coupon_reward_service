@@ -5,6 +5,12 @@ import breakpoint from 'styled-components-breakpoint';
 const styles = (HomePage: Object) => {
   HomePage.Wrapper = styled.div`
     background-color: ${props => props.theme.colors.whitebg};
+    height: ${({ visible }) => (visible ? '' : 0)};
+    opacity: ${({ visible }) => (visible ? 1 : 0)};
+    overflow: hidden;
+    position: ${({ visible }) => (visible ? 'static' : 'fixed')};
+    top: 0;
+    transition: 1s;
     padding-top: ${({ hasLp }) => (hasLp ? '40px' : 0)};
   `;
 

@@ -1,57 +1,60 @@
 // @flow
-import React, {useEffect} from 'react';
-import {withTranslation} from 'react-i18next';
+import React from 'react';
+import { withTranslation } from 'react-i18next';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
-import {Helmet} from 'react-helmet';
+import { Helmet } from 'react-helmet';
 
-import {metaTags, openGraph} from '@config/SeoTags';
+import { metaTags, openGraph } from '@config/SeoTags';
+import { getIsLoaded } from '@modules/landing/LandingReducer';
 
 import HomeHero from './components/HomeHero';
 import HomeHowItWorks from './components/HomeHowItWorks';
 import HomeFavoriteStores from './components/HomeFavoriteStores';
 import HomeQuotes from './components/HomeQuotes';
-import { fetchHomePageFeature, FETCH_HOME_FEATURE } from '../../LandingActions';
 
 import { type HomeProps } from './Home.types';
 
 import styles from './Home.styles';
+import GeneralLoader from '../../../../components/GeneralLoader';
 
 const Home = ({
   t,
-  fetchHomePageFeature,
+  visible = true,
+  isLoaded,
 }: HomeProps) => {
-  useEffect(() => {
-    fetchHomePageFeature(FETCH_HOME_FEATURE);
-  }, []);
 
   return (
-    <Home.Wrapper>
+    <Home.Wrapper visible={visible}>
       <Helmet
         title={t('homepage.page.title')}
         meta={[
-          ...metaTags({description: t('homepage.page.description')}),
+          ...metaTags({ description: t('homepage.page.description') }),
           ...openGraph({
             title: t('homepage.page.title'),
             description: t('homepage.page.description'),
           }),
         ]}
       />
-      <HomeHero />
-      <HomeHowItWorks />
-      <HomeFavoriteStores />
-      <HomeQuotes />
+      { isLoaded ?
+        <>
+          <HomeHero/>
+          <HomeHowItWorks/>
+          <HomeFavoriteStores/>
+          <HomeQuotes/>
+        </> : <GeneralLoader/>
+      }
     </Home.Wrapper>
   );
 };
 
 styles(Home);
 
-const mapDispatchToProps = {
-  fetchHomePageFeature,
-};
+const mapStateToProps = state => ({
+  isLoaded: getIsLoaded(state),
+});
 
 export default compose(
-  connect(null, mapDispatchToProps),
-  withTranslation()
+  connect(mapStateToProps, null),
+  withTranslation(),
 )(Home);

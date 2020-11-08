@@ -1,11 +1,11 @@
 // @flow
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { withRouter } from 'react-router-dom';
-import {compose} from 'recompose';
-import {connect} from 'react-redux';
-import {withTranslation} from 'react-i18next';
+import { compose } from 'recompose';
+import { connect } from 'react-redux';
+import { withTranslation } from 'react-i18next';
 import Cookie from 'js-cookie';
-import {Helmet} from 'react-helmet';
+import { Helmet } from 'react-helmet';
 import queryString from 'query-string';
 
 import {
@@ -15,10 +15,10 @@ import {
   getFeaturedCashback,
   getAmazonDeal,
   getCategories,
+  getIsLoaded,
 } from '@modules/landing/LandingReducer';
-import {fetchHomePageFeature, FETCH_HOMEPAGE_FEATURE} from '@modules/landing/LandingActions';
 import ModalActivateCoupons from '@components/ModalActivateCoupons/ModalActivateCoupons';
-import {metaTags, openGraph} from '@config/SeoTags';
+import { metaTags, openGraph } from '@config/SeoTags';
 import { useCurrentTld } from '@modules/localization/i18n';
 
 import HomePageCarousel from './components/HomePageCarousel';
@@ -26,6 +26,7 @@ import HomePageTopDeals from './components/HomePageTopDeals';
 import HomePageFeaturedDeal from './components/HomePageFeaturedDeal';
 import HomePageFeaturedCashBack from './components/HomePageFeaturedCashBack';
 import HomePageCategories from './components/HomePageCategories';
+import GeneralLoader from '@components/GeneralLoader';
 
 import { type HomePageProps } from './HomePage.types';
 
@@ -40,13 +41,13 @@ const HomePage = ({
   featuredSCashback,
   amazonDeal,
   categories,
-  fetchHomePageFeature,
+  isLoaded,
   isAuthenticated,
   isExtensionInstalled,
+  visible = true,
 }: HomePageProps) => {
   const params = queryString.parse(location.search);
 
-  const [isLoaded, setIsLoaded] = useState(false);
   const [showActivateModal, setShowActivateModal] = useState(false);
   const [isModalShow, setIsModalShow] = useState(false);
   const [logo, setLogo] = useState('');
@@ -54,8 +55,7 @@ const HomePage = ({
   const [title, setTitle] = useState('');
 
   useEffect(() => {
-    fetchHomePageFeature(FETCH_HOMEPAGE_FEATURE).then(() => setIsLoaded(true));
-    setIsModalShow((isAuthenticated) || (isExtensionInstalled));
+    setIsModalShow(isAuthenticated || isExtensionInstalled);
   }, [isAuthenticated, isExtensionInstalled]);
 
   const isUK = useCurrentTld() === 'co.uk';
@@ -102,7 +102,7 @@ const HomePage = ({
   }
 
   return (
-    <HomePage.Wrapper hasLp={params.lp}>
+    <HomePage.Wrapper visible={visible} hasLp={params.lp}>
       <Helmet
         title={t('homepage.page.title')}
         meta={[
@@ -113,32 +113,37 @@ const HomePage = ({
           }),
         ]}
       />
-      <HomePage.Container>
-        <HomePage.Title>{t('homepage.page.h1')}</HomePage.Title>
-        <HomePageCarousel
-          handler={handleClick}
-          isLoaded={isLoaded}
-          storesData={{ homePageFeaturedStore, featuredStore }}
-        />
-        {topDealsAndFeaturedCashBack}
-        <HomePageFeaturedDeal
-          handler={handleClick}
-          isLoaded={isLoaded}
-          stores={amazonDeal}
-        />
-        <HomePageCategories isLoaded={isLoaded} categories={categories}/>
-      </HomePage.Container>
+      {isLoaded ? (
+        <>
+          <HomePage.Container>
+            <HomePage.Title>{t('homepage.page.h1')}</HomePage.Title>
+            <HomePageCarousel
+              handler={handleClick}
+              isLoaded={isLoaded}
+              storesData={{ homePageFeaturedStore, featuredStore }}
+            />
+            {topDealsAndFeaturedCashBack}
+            <HomePageFeaturedDeal
+              handler={handleClick}
+              isLoaded={isLoaded}
+              stores={amazonDeal}
+            />
+            <HomePageCategories isLoaded={isLoaded} categories={categories} />
+          </HomePage.Container>
 
-      {showActivateModal && (
-        <ModalActivateCoupons
-          isActive={showActivateModal}
-          callback={modalCallback}
-          title={title}
-          logo={logo}
-          code={''}
-        />
+          {showActivateModal && (
+            <ModalActivateCoupons
+              isActive={showActivateModal}
+              callback={modalCallback}
+              title={title}
+              logo={logo}
+              code={''}
+            />
+          )}
+        </>
+      ) : (
+        <GeneralLoader />
       )}
-
     </HomePage.Wrapper>
   );
 };
@@ -154,11 +159,10 @@ const mapStateToProps = state => ({
   featuredSCashback: getFeaturedCashback(state),
   amazonDeal: getAmazonDeal(state),
   categories: getCategories(state),
+  isLoaded: getIsLoaded(state),
 });
 
-const mapDispatchToProps = {
-  fetchHomePageFeature: fetchHomePageFeature,
-};
+const mapDispatchToProps = null;
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),

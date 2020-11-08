@@ -1,19 +1,31 @@
 // @flow
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import queryString from 'query-string';
+import { compose } from 'recompose';
+import { connect } from 'react-redux';
 
 import Home from './home/Home';
-import HomePage from './homepage/HomePage';
 import HomePageExitIntent from './homepage/components/HomePageExitIntent';
+import LandingPage from './LandingPage';
+import { fetchHomePageFeature } from '../LandingActions';
+import { getHomePageSetting } from '../LandingReducer';
+import HomePage from './homepage/HomePage';
+import {
+  SHOW_OLD_HOMEPAGE,
+  SHOW_NEW_HOMEPAGE,
+  SHOW_BOTH_NEW_AND_OLD_HOMEPAGE,
+} from '../common/constants';
 
 type HomePageLoaderProps = {
   setShowHeaderFooter: Function,
-  isEN: boolean,
+  fetchHomePageFeature: any => Promise<Object>,
+  homePageSetting: string,
 };
 
 const HomePageLoader = ({
-  isEN,
   setShowHeaderFooter,
+  fetchHomePageFeature,
+  homePageSetting,
 }: HomePageLoaderProps) => {
   const params = queryString.parse(document.location.search) || {};
   const [isLandingMinimized, setIsLandingMinimized] = useState(false);
@@ -24,27 +36,46 @@ const HomePageLoader = ({
     setShowHeaderFooter(true);
   };
 
-  if (isEN) {
+  useEffect(() => {
+    fetchHomePageFeature();
+  }, []);
+
+  if (Boolean(params.lp)) {
     return (
       <>
-        { isLandingMounted && (
+        {isLandingMounted && (
           <HomePageExitIntent
             unmountLanding={unmountLanding}
             isLandingMinimized={isLandingMinimized}
             setIsLandingMinimized={setIsLandingMinimized}
           />
         )}
-
-        { (isLandingMinimized || !isLandingMounted) && (
-          <>
-            <HomePage />
-          </>
-        )}
+        <HomePage />
       </>
     );
   }
 
-  return <Home />;
+  switch (homePageSetting) {
+    case SHOW_NEW_HOMEPAGE:
+      return <HomePage />;
+    case SHOW_OLD_HOMEPAGE:
+      return <Home />;
+    case SHOW_BOTH_NEW_AND_OLD_HOMEPAGE:
+      return <LandingPage />;
+
+    default:
+      return <HomePage />;
+  }
 };
 
-export default HomePageLoader;
+const mapStateToProps = state => ({
+  homePageSetting: getHomePageSetting(state),
+});
+
+const mapDispatchToProps = {
+  fetchHomePageFeature: fetchHomePageFeature,
+};
+
+export default compose(connect(mapStateToProps, mapDispatchToProps))(
+  HomePageLoader,
+);
