@@ -47,6 +47,8 @@ export type HomePageProps = {
   fetchHomePageFeature: (type: string) => Promise<Object>,
   isAuthenticated: boolean,
   isExtensionInstalled: boolean,
+  visible: boolean,
+  isLoaded: boolean,
 };
 
 export type HomePageCategoriesProps = {

@@ -1,14 +1,15 @@
 // @flow
-import React, {useEffect} from 'react';
+import React, { useEffect, useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'recompose';
 import ouibounce from 'ouibounce';
 
-import { updateElementClassList } from '@config/Utils';
+import { updateElementClassList, ScriptLoader } from '@config/Utils';
 import NeverOverpayAgain from '../../lp/NeverOverpayAgain';
-import {type HomePageExitIntentProps} from '../HomePage.types';
+import { type HomePageExitIntentProps } from '../HomePage.types';
 import { getIsExtensionInstalled } from '@modules/app/AppReducer';
+import BonusModal from '../../lp/BonusModal';
 
 const HomePageExitIntent = ({
   isExtensionInstalled,
@@ -21,9 +22,16 @@ const HomePageExitIntent = ({
     timer: null,
     exitIntent: null,
   };
+  const [isModalShown, setIsModalShown] = useState(false);
+  const [modalData, setModalData] = useState(null);
+  const bonusJs = new ScriptLoader({ src: '/js/bonus.js', global: 'bonus' });
 
   const handleMouseLeave = () => {
-    minimizeLanding();
+    if (modalData && modalData.ApplicableBonusModals.length > 0) {
+      setIsModalShown(true);
+    } else {
+      minimizeLanding();
+    }
     options.timer && clearTimeout(options.timer);
     options.exitIntent && options.exitIntent.disable();
   };
@@ -50,13 +58,37 @@ const HomePageExitIntent = ({
   };
 
   useEffect(() => {
-    if (!isExtensionInstalled) {
-      activateEventListener();
+    bonusJs
+      .load()
+      .then(() => {
+        window.bonus
+          .getBonusProgramsByActivationPrompt(window.bonus.LP_INSTALL_BONUS)
+          .then(data => {
+            setModalData(data.programModals);
+          })
+          .catch(error => {
+            console.log('Error Fetching Programs ' + error);
+          });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, []);
 
+  useEffect(() => {
+    if (!isExtensionInstalled && modalData) {
+      activateEventListener();
+    }
+
+    if (
+      modalData &&
+      modalData.ApplicableBonusModals &&
+      modalData.ApplicableBonusModals.length === 0
+    ) {
       options.timer = setTimeout(() => {
-          if (!isLandingMinimized) {
-            minimizeLanding();
-          }
+        if (!isLandingMinimized) {
+          minimizeLanding();
+        }
       }, 30000);
     }
 
@@ -69,15 +101,21 @@ const HomePageExitIntent = ({
         add: false,
       });
     };
-  }, []);
+  }, [modalData]);
 
-  return !isExtensionInstalled
-    ? <NeverOverpayAgain
+  return !isExtensionInstalled ? (
+    <>
+      <NeverOverpayAgain
         unmountLanding={unmountLanding}
         minimizeLanding={minimizeLanding}
         isLandingMinimized={isLandingMinimized}
-    />
-    : null;
+        isModalShown={isModalShown}
+        setIsModalShown={setIsModalShown}
+      />
+
+      {isModalShown && <BonusModal data={modalData} />}
+    </>
+  ) : null;
 };
 
 const mapStateToProps = state => ({
@@ -86,5 +124,5 @@ const mapStateToProps = state => ({
 
 export default compose(
   connect(mapStateToProps, null),
-  withRouter
+  withRouter,
 )(HomePageExitIntent);

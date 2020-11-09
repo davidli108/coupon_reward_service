@@ -44,10 +44,13 @@ const NeverOverpayAgain = ({
     animation: '/shared-assets/js/hero-loader/animate-02-new-fn.js',
   };
 
-  const jQuery = new ScriptLoader({src: js.jquery, global: 'jQuery'});
-  const createJs = new ScriptLoader({src: js.createJs, global: 'cjs'});
-  const animLibrary = new ScriptLoader({src: js.animLibrary, global: 'al'});
-  const animation = new ScriptLoader({src: js.animation, global: 'animation'});
+  const jQuery = new ScriptLoader({ src: js.jquery, global: 'jQuery' });
+  const createJs = new ScriptLoader({ src: js.createJs, global: 'cjs' });
+  const animLibrary = new ScriptLoader({ src: js.animLibrary, global: 'al' });
+  const animation = new ScriptLoader({
+    src: js.animation,
+    global: 'animation',
+  });
 
   Promise.all([jQuery.load(), createJs.load()]).then(() => {
     animLibrary.load();
@@ -55,36 +58,43 @@ const NeverOverpayAgain = ({
   });
 
   return (
-    <NeverOverpayAgain.Wrapper
-      className={isLandingMinimized ? 'minimized' : ''}
-    >
-      <div className="animate">
-        <div id="animation_container">
-          <canvas id="canvas" width="350" height="350" />
-          <div id="dom_overlay_container" />
+    <>
+      <NeverOverpayAgain.Wrapper
+        className={isLandingMinimized ? 'minimized' : ''}
+      >
+        <div className="animate">
+          <div id="animation_container">
+            <canvas id="canvas" width="350" height="350" />
+            <div id="dom_overlay_container" />
+          </div>
         </div>
-      </div>
 
-      <NeverOverpayAgain.Content>
-        <div>
-          <h1>NEVER OVERPAY AGAIN</h1>
-          <p>Save time and money with Piggy's free Google Chrome Coupon App!</p>
-          <p>Piggy appears at checkout and automatically applies the best coupon code</p>
-          <h3>We find the coupons. You just shop.</h3>
-        </div>
-        <NeverOverpayAgain.Button
-          href={extensionLandingUrl}
-          onClick={clickHandler}
-          target="_blank"
-        >
-          + ACTIVATE NOW
-        </NeverOverpayAgain.Button>
-      </NeverOverpayAgain.Content>
-      <NeverOverpayAgain.Action onClick={minimizeLanding}>
-        <MdArrowDownward/>
-      </NeverOverpayAgain.Action>
-      <NeverOverpayAgain.Corner src={PiggyCorner} alt="JoinPiggy"/>
-    </NeverOverpayAgain.Wrapper>
+        <NeverOverpayAgain.Content>
+          <div>
+            <h1>NEVER OVERPAY AGAIN</h1>
+            <p>
+              Save time and money with Piggy's free Google Chrome Coupon App!
+            </p>
+            <p>
+              Piggy appears at checkout and automatically applies the best
+              coupon code
+            </p>
+            <h3>We find the coupons. You just shop.</h3>
+          </div>
+          <NeverOverpayAgain.Button
+            href={extensionLandingUrl}
+            onClick={clickHandler}
+            target="_blank"
+          >
+            + ACTIVATE NOW
+          </NeverOverpayAgain.Button>
+        </NeverOverpayAgain.Content>
+        <NeverOverpayAgain.Action onClick={minimizeLanding}>
+          <MdArrowDownward />
+        </NeverOverpayAgain.Action>
+        <NeverOverpayAgain.Corner src={PiggyCorner} alt="JoinPiggy" />
+      </NeverOverpayAgain.Wrapper>
+    </>
   );
 };
 

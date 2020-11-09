@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 
 import AppConfig from '@config/AppConfig';
-import { getHomeFeaturedStores } from '../../../LandingReducer';
+import { getFeaturedStore } from '@modules/landing/LandingReducer';
 
 import styles from './HomeFavoriteStores.styles';
 
@@ -72,7 +72,7 @@ const HomeFavoriteStores = ({
 styles(HomeFavoriteStores);
 
 const mapStateToProps = (state) => ({
-  featuredStores: getHomeFeaturedStores(state),
+  featuredStores: getFeaturedStore(state),
 });
 
 export default compose(

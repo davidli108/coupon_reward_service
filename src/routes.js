@@ -7,10 +7,6 @@ import queryString from 'query-string';
 import Footer from '@components/Footer/Footer';
 import Header from '@components/Header/Header';
 import Preloader from '@components/Preloader/Preloader';
-import { getDomainAttrs } from '@modules/localization/i18n';
-
-const { domain, tld } = getDomainAttrs();
-const isEN = tld === 'com' || tld === 'co.uk' || domain === 'localhost';
 
 const HomePage = Loadable({
   loader: () =>
@@ -106,7 +102,6 @@ const Routes = () => {
           render={props => (
             <HomePageLoader
               {...props}
-              isEN={isEN}
               setShowHeaderFooter={setShowHeaderFooter}
             />
           )}
