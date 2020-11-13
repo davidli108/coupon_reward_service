@@ -8,7 +8,6 @@ import moment from 'moment';
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
 import AppConfig from '@config/AppConfig';
 import { isAmazonStore, fireGTMEvent } from '@config/Utils';
-import i18n, { currencyLocaleFormat } from '@modules/localization/i18n';
 
 type SearchBarItemsProps = {
   t: Function,
@@ -62,10 +61,7 @@ const SearchBarItems = ({
 
     const discount = store.store_discount.includes('%')
       ? store.store_discount.replace(/[^@\d$|%£€ .]/g, '')
-      : currencyLocaleFormat(
-          store.store_discount.replace(/[^@\d .]/g, ''),
-          i18n.language,
-        );
+      : store.store_discount.replace(/[^@\d\s,.]/g, '');
 
     return discount
       ? t('global.earnCashBack', { discount })
