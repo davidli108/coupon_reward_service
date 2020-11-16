@@ -72,7 +72,7 @@ export const getDomainAttrs = () => {
 export const useCurrentTld = () => useMemo(() => getDomainAttrs().tld, []);
 
 export const setDecimalFormat = amount => {
-  return ['de' , 'fr'].includes(getLocale())
+  return ['de', 'fr'].includes(getLocale())
     ? amount.replace(/\./g, ',')
     : amount;
 };

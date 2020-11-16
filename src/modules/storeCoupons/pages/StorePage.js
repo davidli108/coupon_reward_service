@@ -27,6 +27,7 @@ import {
   getCountOffers,
   getStore,
   getReviews,
+  getTrackerProduct,
 } from '../StoreCouponsReducer';
 import * as actions from '../StoreCouponsActions';
 import AdditionalInfoLoader from '../components/loaders/AdditionalInfoLoader';
@@ -52,6 +53,7 @@ const StorePage = ({
   isExtensionInstalled,
   cashbackRates,
   terms,
+  priceTrackerProduct,
 }: StorePageProps) => {
   const [storeName, setStoreName] = useState(match.params.name);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -61,7 +63,9 @@ const StorePage = ({
   useEffect(() => {
     match.params.name &&
       // $FlowFixMe
-      fetchStoreCoupons(match.params.name).then(() => setIsLoaded(true));
+      fetchStoreCoupons(match.params.name, match.params.token).then(() =>
+        setIsLoaded(true),
+      );
   }, []);
 
   useEffect(() => {
@@ -89,7 +93,7 @@ const StorePage = ({
       setStoreName(name);
       setIsLoaded(false);
       // $FlowFixMe
-      fetchStoreCoupons(name).then(() => setIsLoaded(true));
+      fetchStoreCoupons(name, match.params.token).then(() => setIsLoaded(true));
     }
 
     if (name) {
@@ -131,11 +135,13 @@ const StorePage = ({
         extensionActive={isLoaded && (isExtensionInstalled || isAmazon)}
         offersCount={offersCount}
         reviews={reviews}
+        priceTracker={priceTrackerProduct}
       />
       <StorePage.DesktopContent>
         <StorePage.ColumnNoWrapFlexBox
           order="2"
-          extensionActive={isLoaded && (isExtensionInstalled || isAmazon)}
+          extensionActive={isLoaded && isExtensionInstalled}
+          hasTracker={isLoaded && priceTrackerProduct.has_tracker}
           style={{ marginBottom: 50 }}
         >
           {isLoaded ? (
@@ -182,6 +188,7 @@ const mapStateToProps = state => ({
   isExtensionInstalled: getIsExtensionInstalled(state),
   cashbackRates: getCashbackRates(state),
   terms: getTerms(state),
+  priceTrackerProduct: getTrackerProduct(state),
 });
 
 styles(StorePage);

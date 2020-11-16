@@ -331,9 +331,9 @@ export default {
     secretRates: 'Geheime Tarife und Angebote',
     noCouponsAndDeal:
       'Für {{ storeName }} wurden keine Gutscheine oder Angebote gefunden. Werfen Sie einen Blick auf unsere Top-Angebote und Deals.',
-    getBestPrice: 'Get the Best Price',
+    getBestPrice: 'Holen Sie sich den besten Preis',
     alertAutomatically:
-      'Piggy will automatically alert you of the best price at {{ storeName }}. You can also track the price history on your items and get alerts if the price drops.',
+      'Piggy benachrichtigt Sie automatisch über den besten Preis bei {{ storeName }}. Sie können auch den Preisverlauf Ihrer Artikel verfolgen und Benachrichtigungen erhalten, wenn der Preis fällt.',
   },
   sitemap: {
     meta: {
@@ -445,6 +445,8 @@ export default {
     action: 'Gehen Sie zur Startseite.',
   },
   homepage: {
+    was: 'Es waren',
+    now: 'Jetzt',
     hero: {
       title: 'Piggy ist der einfachste Weg, um Geld zu sparen!',
       text: {
@@ -548,5 +550,32 @@ export default {
       name05: 'Kerstin Wehrmann',
       rate: 'Rezension',
     },
+  },
+
+  price_tracker: {
+    extend: 'Price Watch erfolgreich um 30 Tage verlängert mehr.',
+    extend_done: 'Oops, Irgendetwas ist schief gelaufen...',
+    extend_try: 'Bitte versuchen Sie es später erneut',
+
+    unsubscribe_title:
+      'Sie sind nicht mehr für E-Mail-Benachrichtigungen zur Preisverfolgung dieses Produkts abonniert.',
+    unsubscribe_title_all:
+      'Sie erhalten für diese Produkte keine Email Benachrichtigungen zur Preisverfolgung mehr.',
+
+    delete_title:
+      'Ihr Preisverfolger für dieses Produkt wird dauerhaft gelöscht.',
+    delete_title_all: 'Sie verfolgen den Preis dieser Produkte nicht mehr. ↓',
+
+    done_unsubscribe:
+      'Sie haben sich bereits für die E-Mail-Benachrichtigung über diese Produktpreisspur abgemeldet.',
+    done_unsubscribe_all:
+      'Sie haben den Preisverfolger für diese Produkte bereits gelöscht',
+
+    done_delete:
+      'Sie haben den Preis-Tracker für dieses Produkt bereits gelöscht.',
+    done_delete_all:
+      'Sie haben den Preis-Tracker für diese Produkte bereits gelöscht.',
+
+    dismiss: 'Schließen',
   },
 };

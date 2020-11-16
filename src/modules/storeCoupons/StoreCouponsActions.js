@@ -5,12 +5,12 @@ export const REQUEST_SEARCH = `${namespace}/REQUEST_SEARCH`;
 export const SEARCH = `${namespace}/SEARCH`;
 export const FETCH_STORE_COUPONS_BY_PAGINATION = `${namespace}/FETCH_STORE_COUPONS_BY_PAGINATION`;
 
-export const fetchStoreCoupons = (storeName: string) => ({
+export const fetchStoreCoupons = (storeName: string, token: string = '') => ({
   type: FETCH_STORE_COUPONS,
   payload: {
     client: 'default',
     request: {
-      url: `/api/coupons/${storeName}`,
+      url: `/api/coupons/${storeName}${token ? `?pt_token=${token}` : ''}`,
     },
   },
 });

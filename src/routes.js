@@ -88,6 +88,28 @@ const SitemapPage = Loadable({
   loading: () => <Preloader />,
 });
 
+const ExtendPage = Loadable({
+  loader: () =>
+    import(
+      '@modules/pricetracker/pages/extend/Extend' /* webpackChunkName: "PriceTracker/Extend" */
+    ),
+  loading: () => <Preloader />,
+});
+const UnsubscribePage = Loadable({
+  loader: () =>
+    import(
+      '@modules/pricetracker/pages/unsubscribe/Unsubscribe' /* webpackChunkName: "PriceTracker/Extend" */
+    ),
+  loading: () => <Preloader />,
+});
+const StopTrackerPage = Loadable({
+  loader: () =>
+    import(
+      '@modules/pricetracker/pages/stoptracker/StopTracker' /* webpackChunkName: "PriceTracker/Extend" */
+    ),
+  loading: () => <Preloader />,
+});
+
 const Routes = () => {
   const params = queryString.parse(document.location.search) || {};
   const [showHeaderFooter, setShowHeaderFooter] = useState(!Boolean(params.lp));
@@ -119,6 +141,21 @@ const Routes = () => {
           component={NotAuthorizedPage}
         />
         <Route exact path="/sitemap" component={SitemapPage} />
+        <Route
+          exact
+          path="/pricetracker/extend/:token"
+          component={ExtendPage}
+        />
+        <Route
+          exact
+          path="/pricetracker/unsubscribe/:token/:type"
+          component={UnsubscribePage}
+        />
+        <Route
+          exact
+          path="/pricetracker/stoptracker/:token/:type"
+          component={StopTrackerPage}
+        />
 
         {/* Catch all routes */}
         <Route component={NotFoundPage} />

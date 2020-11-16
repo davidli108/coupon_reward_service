@@ -7,7 +7,7 @@ export default {
   },
   description: {
     storeCoupons:
-      'Browse {{nrOfOffers}}{{storeName}} discount codes, deals, and vouchers now. Start earning cashback and saving money online shopping with Piggy today!',
+      'Browse {{nrOfOffers}} {{storeName}} discount codes, deals, and vouchers now. Start earning cashback and saving money online shopping with Piggy today!',
     coupons: `Join Piggy’s quest to never overpay for anything online ever again. Piggy automatically finds and applies the internet's best discount codes & cash back in cart.`,
   },
   header: {
@@ -447,7 +447,8 @@ export default {
     plusCashback: 'Plus {{cashback}} Cashback',
     discover: 'Discover deals by category:',
     all: 'All',
-    was: 'Was {{price}}',
+    was: 'Was',
+    now: 'Now',
     hero: {
       title: 'Piggy is the easiest way to save money!',
       text: {
@@ -546,5 +547,31 @@ export default {
       name05: 'Michael Snyder',
       rate: 'Review',
     },
+  },
+
+  price_tracker: {
+    extend: 'Price Watch Successfully Extended for 30 Days More',
+    extend_done: 'Oops, Something went wrong...',
+    extend_try: 'Please try again later.',
+
+    unsubscribe_title:
+      'You are no longer subscribed for Email notifications on this product price tracking.',
+    unsubscribe_title_all:
+      'You wont receive price tracking email notifications on these products anymore.',
+
+    delete_title: 'Your price tracker for this product is permanently deleted.',
+    delete_title_all:
+      'You are no longer tracking the price of any of these products ↓',
+
+    done_unsubscribe:
+      "You've already unsubscribed for mail notification on this product price track.",
+    done_unsubscribe_all:
+      "You've already deleted the price tracker for these products.",
+
+    done_delete: "You've already deleted the price tracker for this product.",
+    done_delete_all:
+      "You've already deleted the price tracker for these products.",
+
+    dismiss: 'Dismiss',
   },
 };
