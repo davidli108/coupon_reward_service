@@ -134,7 +134,7 @@ const Routes = () => {
         <Route exact path="/cashback-stores" component={StoresPage} />
         <Route exact path="/cashback-stores/:name" component={StoresPage} />
         <Route exact path="/coupons" component={CouponsPage} />
-        <Route exact path="/coupons/:name" component={SplitterPage} />
+        <Route exact path={["/coupons/:name", "/coupons/:name/:token"]}  component={SplitterPage} />
         <Route
           exact
           path="/auth/not-authorized"
