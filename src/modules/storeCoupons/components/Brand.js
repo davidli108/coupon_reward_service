@@ -21,6 +21,7 @@ import {
   currencyLocaleFormat,
   setDecimalFormat,
 } from '@modules/localization/i18n';
+import PriceTrackerProduct from '../../pricetracker/components/PriceTrackerProduct/PriceTrackerProduct';
 
 const Brand = ({
   t,
@@ -37,6 +38,7 @@ const Brand = ({
   offersCount,
   reviews,
   extensionActive,
+  priceTracker,
 }: BrandProps) => {
   const [isAmazon, setIsAmazon] = useState(false);
   const discount = store.store_cashback_ok
@@ -121,20 +123,28 @@ const Brand = ({
         ) : (
           <BrandImageLoader />
         )}
+
         <Brand.WrapFlexBox>
           {isLoaded ? (
             <>
               <BrandHeader offersCount={offersCount} />
-              {!extensionActive && !isAmazon && (
-                <Brand.XlWrapper>
-                  <Brand.NoWrapFlexBoxWithBorder>
-                    <BrandContent
-                      storeName={store.store_name}
-                      stars={5}
-                      reviewsCount={reviews}
-                    />
-                  </Brand.NoWrapFlexBoxWithBorder>
-                </Brand.XlWrapper>
+              {priceTracker.has_tracker ? (
+                <PriceTrackerProduct
+                  match={match}
+                  priceTrackerProduct={priceTracker}
+                />
+              ) : (
+                !extensionActive && (
+                  <Brand.XlWrapper>
+                    <Brand.NoWrapFlexBoxWithBorder>
+                      <BrandContent
+                        storeName={store.store_name}
+                        stars={5}
+                        reviewsCount={reviews}
+                      />
+                    </Brand.NoWrapFlexBoxWithBorder>
+                  </Brand.XlWrapper>
+                )
               )}
             </>
           ) : (

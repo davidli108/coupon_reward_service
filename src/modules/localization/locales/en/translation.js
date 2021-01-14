@@ -448,7 +448,8 @@ export default {
     plusCashback: 'Plus {{cashback}} Cash Back',
     discover: 'Discover deals by category:',
     all: 'All',
-    was: 'Was {{price}}',
+    was: 'Was',
+    now: 'Now',
     hero: {
       title: 'Piggy is the easiest way to save money!',
       text: {
@@ -566,5 +567,31 @@ export default {
       'Government Announces FHA Refinancing to Get Less Expensive',
     fha_text:
       'FHA to reduce annual mortgage insurance premiums by $900 per year for the average first-time homebuyer. Mortgage insurance savings applies  for new home purchase or existing home refinance FHA loans. More than 800,000 FHA borrowers are projected to take advantage of these lower rates this year. Lowered premiums will create opportunities for 250,000 new homeowners to purchase a home in the next 3 years.',
+  },
+
+  price_tracker: {
+    extend: 'Price Watch Successfully Extended for 30 Days More',
+    extend_done: 'Oops, Something went wrong...',
+    extend_try: 'Please try again later.',
+
+    unsubscribe_title:
+      'You are no longer subscribed for email notifications on this product price tracking.',
+    unsubscribe_title_all:
+      "You won't receive price tracking email notifications on these products anymore.",
+
+    delete_title: 'Your price tracker for this product is permanently deleted.',
+    delete_title_all:
+      'You are no longer tracking the price of any of these products ↓',
+
+    done_unsubscribe:
+      "You've already unsubscribed for mail notification on this product price track.",
+    done_unsubscribe_all:
+      "You've already deleted the price tracker for these products.",
+
+    done_delete: "You've already deleted the price tracker for this product.",
+    done_delete_all:
+      "You've already deleted the price tracker for these products.",
+
+    dismiss: 'Dismiss',
   },
 };

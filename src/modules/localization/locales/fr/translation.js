@@ -334,9 +334,9 @@ export default {
     secretRates: 'Tarifs et offres secrets',
     noCouponsAndDeal:
       "Aucun Coupons ou Offre trouvé pour {{ storeName }}. Jetez un coup d'œil à nos meilleures offres et offres ci-dessous.",
-    getBestPrice: 'Get the Best Price',
+    getBestPrice: 'Obtenez le meilleur prix',
     alertAutomatically:
-      'Piggy will automatically alert you of the best price at {{ storeName }}. You can also track the price history on your items and get alerts if the price drops.',
+      "Piggy vous alertera automatiquement du meilleur prix chez {{ storeName }}. Vous pouvez également suivre l'historique des prix de vos articles et recevoir des alertes si le prix baisse.",
   },
   sitemap: {
     meta: {
@@ -396,14 +396,12 @@ export default {
     addToFavorites: 'Ajouter aux favoris',
     freeShipping: 'Livraison gratuite',
     freeShippingOver49:
-      'Livraison standarde par voie terrestre gratuite  pour les commandes de plus de 49€ !',
-    shopBuild:
-      "Shop Build avec 3.0% de cashback (shop build doesn't have any meaning in french)",
+      'Livraison standarde par voie terrestre gratuite  pour les commandes de plus de 49€!',
+    shopBuild: 'Shop Build avec 3.0% de cashback',
     returnPolicy: 'Politique de retour',
     returnItems30days:
       "Vous pouvez faire un retour de produit dans les 30 jours suivant la réception de celui-ci pour obtenir un remboursement. Les retours demandés entre 31 et 60 jours après réception ne donneront droit qu'à un crédit magasin.Les retours en dehors de notre politique de retour général de 30 à 60 jours ne seront pas acceptés.Les remboursements seront appliqués à votre compte(moins les frais de retour) une fois que le produit aura été reçu et inspecté par notre atelier.",
-    threePercentCashBack:
-      "De plus, obtenez 3,0 % de cashback from 'Build' ! (no meaning for build here also)",
+    threePercentCashBack: "De plus, obtenez 3,0 % de cashback sur 'Build'!",
     otherPopularStores: 'Autres boutiques populaires',
     indicatesMaximumCashBack:
       "- indique le cashback, la récompense ou le rabais maximum qu'un utilisateur peut gagner.Certains articles peuvent donner droit à un cashback moins élevée et il peut y avoir certaines exclusions.Toutes les boutiques n'offrent pas de cashback. Le cashback ne peut pas être combiné avec des coupons ou des offres extérieures. Veuillez consulter les conditions générales ou les profils individuels des boutiques pour plus d'informations.",
@@ -450,6 +448,8 @@ export default {
     action: "Aller à la page d'accueil",
   },
   homepage: {
+    was: "c'était",
+    now: 'Maintenant',
     hero: {
       title: "Piggy est le moyen le plus facile d'économiser de l'argent !",
       text: {
@@ -550,5 +550,31 @@ export default {
       name05: `Thérèse Côté`,
       rate: 'évaluation',
     },
+  },
+
+  price_tracker: {
+    extend: 'La montre de prix prolongée avec succès pendant 30 jours de plus',
+    extend_done: 'Oops, Quelque chose s’est mal passé...',
+    extend_try: 'S’il vous plaît essayer à nouveau plus tard',
+
+    unsubscribe_title:
+      "Vous n'êtes plus abonné aux notifications par courrier électronique sur le suivi des prix de ce produit.",
+    unsubscribe_title_all:
+      'Vous ne recevrez plus de notifications par courrier électronique sur le suivi des prix de ces produits.',
+
+    delete_title:
+      'Votre traceur de prix pour ce produit est définitivement supprimé.',
+    delete_title_all: 'Vous ne suivez plus le prix de ces produits. ↓',
+
+    done_unsubscribe:
+      'Vous vous êtes déjà désinscrit de la notification par courrier sur cette piste de prix de produit.',
+    done_unsubscribe_all:
+      'Vous avez déjà supprimé le suivi des prix de ces produits',
+
+    done_delete: 'Vous avez déjà supprimé le suivi des prix pour ce produit.',
+    done_delete_all:
+      'Vous avez déjà supprimé le suivi des prix de ces produits.',
+
+    dismiss: 'Rejeter',
   },
 };

@@ -59,7 +59,7 @@ const styles = (StorePage: Object) => {
 
   StorePage.ColumnNoWrapFlexBox = styled.div`
     ${breakpoint('xl')`
-      margin-top: ${({ extensionActive }) => (extensionActive ? '-200px' : '')}
+      margin-top: ${({ extensionActive, hasTracker }) => (!hasTracker ? (extensionActive ? '-200px' : '') : '')}
     `}
 
     ${breakpoint('lg')`

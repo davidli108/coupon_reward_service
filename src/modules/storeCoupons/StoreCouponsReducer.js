@@ -87,6 +87,12 @@ const StoreCouponsReducer = (
 
       const terms = R.pathOr('', ['payload', 'data', 'terms'], action).trim();
 
+      const priceTrackerProduct = R.pathOr(
+        [],
+        ['payload', 'data', 'price_tracker_product'],
+        action,
+      );
+
       const newState = {
         ...state,
         offers,
@@ -96,6 +102,7 @@ const StoreCouponsReducer = (
         reviews,
         cashbackRates,
         terms,
+        priceTrackerProduct,
       };
 
       return R.assoc<Object, Object>('fetchingState', 'LOADED')(newState);
@@ -147,5 +154,6 @@ export const getStoreSearch = R.path<string>([STATE_KEY, 'search']);
 export const searchIsLoading = R.path<string>([STATE_KEY, 'searchIsLoading']);
 export const getCountOffers = R.path<string>([STATE_KEY, 'count']);
 export const getReviews = R.path<string>([STATE_KEY, 'reviews']);
+export const getTrackerProduct = R.path<string>([STATE_KEY, 'priceTrackerProduct']);
 
 export default StoreCouponsReducer;

@@ -1,4 +1,6 @@
 // @flow
+import type { TrackerProduct } from '../../pricetracker/components/PriceTrackerProduct/PriceTrackerProduct.type';
+
 export type CashBackRate = {
   category_name: string,
   category_description: string,
@@ -92,6 +94,7 @@ export type StorePageProps = {
   isExtensionInstalled: boolean,
   cashbackRates: Array<CashBackRate>,
   terms: string,
+  priceTrackerProduct: TrackerProduct,
 };
 
 export type BrandProps = {
@@ -109,6 +112,7 @@ export type BrandProps = {
   offersCount: number,
   reviews: string,
   extensionActive?: boolean,
+  priceTracker: TrackerProduct,
 };
 
 export type BrandContentProps = {

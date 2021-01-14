@@ -31,6 +31,9 @@ import SitemapReducer, {
 import LandingReducer, {
   STATE_KEY as LANDING_STATE_KEY,
 } from '@modules/landing/LandingReducer';
+import PriceTrackerReducer, {
+  STATE_KEY as PRICE_TRACKER_STATE_KEY,
+} from '@modules/pricetracker/PriceTrackerReducer';
 
 const persist = R.curry(persistReducer)(ReduxPersist.storeConfig);
 
@@ -49,4 +52,5 @@ export default history =>
     R.assoc(STORE_STATE_KEY, StoreReducer),
     R.assoc(SITEMAP_STATE_KEY, SitemapReducer),
     R.assoc(LANDING_STATE_KEY, LandingReducer),
+    R.assoc(PRICE_TRACKER_STATE_KEY, PriceTrackerReducer),
   )({});
