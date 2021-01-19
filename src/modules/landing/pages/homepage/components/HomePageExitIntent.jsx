@@ -24,6 +24,7 @@ const HomePageExitIntent = ({
   };
   const [isModalShown, setIsModalShown] = useState(false);
   const [modalData, setModalData] = useState(null);
+  const [bonusesFetched, setBonusesFetched] = useState(false);
   const bonusJs = new ScriptLoader({ src: '/js/bonus.js', global: 'bonus' });
 
   const handleMouseLeave = () => {
@@ -41,6 +42,20 @@ const HomePageExitIntent = ({
     updateElementClassList({
       element: 'body',
       className: 'landing-minimized',
+      add: true,
+    });
+  };
+
+  const maximizeLanding = () => {
+    setIsLandingMinimized(false);
+    updateElementClassList({
+      element: 'body',
+      className: 'landing-minimized',
+      add: false,
+    });
+    updateElementClassList({
+      element: 'body',
+      className: 'landing-maximized',
       add: true,
     });
   };
@@ -68,7 +83,8 @@ const HomePageExitIntent = ({
           })
           .catch(error => {
             console.log('Error Fetching Programs ' + error);
-          });
+          })
+          .finally(_ => setBonusesFetched(true));
       })
       .catch(error => {
         console.log(error);
@@ -76,7 +92,7 @@ const HomePageExitIntent = ({
   }, []);
 
   useEffect(() => {
-    if (!isExtensionInstalled && modalData) {
+    if (!isExtensionInstalled) {
       activateEventListener();
     }
 
@@ -108,9 +124,11 @@ const HomePageExitIntent = ({
       <NeverOverpayAgain
         unmountLanding={unmountLanding}
         minimizeLanding={minimizeLanding}
+        maximizeLanding={maximizeLanding}
         isLandingMinimized={isLandingMinimized}
         isModalShown={isModalShown}
         setIsModalShown={setIsModalShown}
+        bonusesFetched={bonusesFetched}
       />
 
       {isModalShown && <BonusModal data={modalData} />}

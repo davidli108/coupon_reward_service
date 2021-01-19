@@ -1,5 +1,6 @@
 // @flow
 import AppConfig from '@config/AppConfig';
+import { getLocale } from '@modules/localization/i18n';
 
 export const isAmazonStore = (storeName: string) =>
   storeName && storeName.match(/^amazon/i);
@@ -50,6 +51,12 @@ export const updateElementClassList = ({
     });
   }
 };
+
+export const objectToQueryString = (params: Object) =>
+  Object.keys(params)
+    .filter(key => params[key])
+    .map(key => (params[key] ? `${key}=${params[key]}` : ''))
+    .join('&');
 
 type TScriptLoaderOptions = {
   src: string,
@@ -113,3 +120,21 @@ export class ScriptLoader {
       }
     });
 }
+
+export const getFilePathExtension = (filePath: string = '') => {
+  return filePath
+    .split('.')
+    .pop()
+    .toUpperCase();
+};
+
+export const getWaitUrl = () => {
+  const countryMap = {
+    en: '',
+    gb: '',
+    de: '-de',
+    fr: '-fr',
+  };
+
+  return `${AppConfig.apiUrl}/lp/noa-wait${countryMap[getLocale()]}`;
+};

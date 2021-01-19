@@ -11,7 +11,12 @@ const styles = (HomePage: Object) => {
     position: ${({ visible }) => (visible ? 'static' : 'fixed')};
     top: 0;
     transition: 1s;
-    padding-top: ${({ hasLp }) => (hasLp ? '40px' : 0)};
+    padding-top: ${({ hasLp }) => (hasLp ? '150px' : 0)};
+
+    ${breakpoint('md')`
+      padding-top: ${({ isLandingMounted }) =>
+        isLandingMounted ? '190px' : 0};
+    `}
   `;
 
   HomePage.Container = styled.div`

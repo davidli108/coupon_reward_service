@@ -1,8 +1,18 @@
 // @flow
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import breakpoint from 'styled-components-breakpoint';
 
 const styles = (NeverOverpayAgain: Object) => {
+  const showAnimation = keyframes`
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  `;
+
   NeverOverpayAgain.Corner = styled.img`
     position: absolute;
     right: 0;
@@ -20,35 +30,8 @@ const styles = (NeverOverpayAgain: Object) => {
     `}
   `;
 
-  NeverOverpayAgain.Action = styled.div`
-    position: fixed;
-    bottom: 22px;
-    left: 50%;
-    transform: translateX(-50%);
-    max-width: 500px;
-    width: 100%;
-    box-sizing: border-box;
-    padding: 15px;
-    text-align: center;
-    cursor: pointer;
-
-    p {
-      margin: 0 0 26px;
-      text-align: center;
-      font-size: 12px;
-      line-height: 14px;
-      letter-spacing: 0.11px;
-      color: ${({ theme }) => theme.colors.lightBlue};
-    }
-
-    svg {
-      width: 22px;
-      height: 22px;
-    }
-  `;
-
   NeverOverpayAgain.Content = styled.div`
-    width: 930px;
+    width: 1024px;
     padding: 0 15px;
     box-sizing: border-box;
 
@@ -58,7 +41,6 @@ const styles = (NeverOverpayAgain: Object) => {
       margin: 40px 0 30px;
       padding: 0;
       font-size: 30px;
-      white-space: nowrap;
 
       ${breakpoint('md')`
         font-size: 62px;
@@ -108,6 +90,8 @@ const styles = (NeverOverpayAgain: Object) => {
     color: ${({ theme }) => theme.colors.white};
     font-size: 20px;
     max-width: none;
+    position: relative;
+    z-index: 2;
 
     &:hover {
       background-color: ${({ theme }) => theme.colors.lightGreenHover};
@@ -117,6 +101,16 @@ const styles = (NeverOverpayAgain: Object) => {
       font-size: 23px;
       max-width: 457px;
     `}
+  `;
+
+  NeverOverpayAgain.Overlay = styled.div`
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    display: none;
   `;
 
   NeverOverpayAgain.Wrapper = styled.div`
@@ -130,45 +124,49 @@ const styles = (NeverOverpayAgain: Object) => {
     justify-content: center;
     background-color: ${({ theme }) => theme.colors.darkBlue};
     color: ${({ theme }) => theme.colors.white};
+    transition: all 0.4s ease-in-out;
 
     &.minimized {
       display: flex;
-      height: 191px;
+      height: 150px;
       padding: 10px 0;
       box-sizing: border-box;
-      transition: all 0.4s ease-in-out;
+      margin: 85px auto;
+      z-index: 5;
 
       ${breakpoint('md')`
         padding: 30px 0;
+        margin: 125px auto;
+      `}
+
+      ${breakpoint('xl')`
+        width: 1140px;
+        border-radius: 10px;
       `}
 
       ${NeverOverpayAgain.Corner} {
         display: none;
       }
 
-      ${NeverOverpayAgain.Action} {
-        display: none;
-      }
-
       ${NeverOverpayAgain.Content} {
-        width: 1027px;
+        width: 1090px;
         display: block;
         align-items: center;
         justify-content: space-between;
 
-        ${breakpoint('md')`
+        ${breakpoint('lg')`
           display: flex;
         `}
 
         h1 {
           padding: 0;
-          margin: 0 0 6px;
+          margin: 0 0 10px;
           font-size: 24px;
           line-height: 30px;
 
           ${breakpoint('md')`
-            font-size: 40px;
-            line-height: 47px;
+            font-size: 50px;
+            line-height: 59px;
           `}
         }
 
@@ -177,14 +175,14 @@ const styles = (NeverOverpayAgain: Object) => {
           line-height: 15px;
 
           ${breakpoint('md')`
-            font-size: 14px;
+            font-size: 17px;
             line-height: 20px;
           `}
         }
 
         h3 {
           margin: 6px 0 0;
-          font-size: 14px;
+          font-size: 17px;
           line-height: 20px;
 
           ${breakpoint('md')`
@@ -212,6 +210,10 @@ const styles = (NeverOverpayAgain: Object) => {
           font-size: 23px;
         `}
       }
+
+      ${NeverOverpayAgain.Overlay} {
+        display: block;
+      }
     }
 
     .animate {
@@ -225,6 +227,11 @@ const styles = (NeverOverpayAgain: Object) => {
       align-items: center;
       justify-content: center;
       background-color: ${({ theme }) => theme.colors.darkBlue};
+
+      #animation_container {
+        opacity: 0;
+        animation: ${showAnimation} 0s linear 2s forwards;
+      }
     }
 
     #animation_container {

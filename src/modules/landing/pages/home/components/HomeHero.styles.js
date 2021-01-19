@@ -13,10 +13,15 @@ const styles = (Home: Object) => {
     align-items: center;
     min-height: 580px;
     box-sizing: border-box;
+    margin-top: 150px;
 
     * {
       letter-spacing: .3px;
     }
+
+    ${breakpoint('md')`
+      margin-top: 100px;
+    `}
 
     ${breakpoint('lg')`
       height: 670px;

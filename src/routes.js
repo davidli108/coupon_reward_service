@@ -112,20 +112,17 @@ const StopTrackerPage = Loadable({
 
 const Routes = () => {
   const params = queryString.parse(document.location.search) || {};
-  const [showHeaderFooter, setShowHeaderFooter] = useState(!Boolean(params.lp));
+  const [showFooter, setShowFooter] = useState(!Boolean(params.lp));
 
   return (
     <div style={{ overflow: 'hidden' }}>
-      {showHeaderFooter && <Header />}
+      <Header />
       <Switch>
         <Route
           exact
           path="/"
           render={props => (
-            <HomePageLoader
-              {...props}
-              setShowHeaderFooter={setShowHeaderFooter}
-            />
+            <HomePageLoader {...props} setShowFooter={setShowFooter} />
           )}
         />
         <Route exact path="/home" component={Home} />
@@ -160,7 +157,7 @@ const Routes = () => {
         {/* Catch all routes */}
         <Route component={NotFoundPage} />
       </Switch>
-      {showHeaderFooter && <Footer />}
+      {showFooter && <Footer />}
     </div>
   );
 };
