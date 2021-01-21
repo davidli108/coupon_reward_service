@@ -100,15 +100,16 @@ const NeverOverpayAgain = ({
   }, [bonusesFetched, assetsLoaded]);
 
   return (
-    <NeverOverpayAgain.Wrapper
-      className={isLandingMinimized ? 'minimized' : ''}
-    >
-      <div className="animate">
-        <div id="animation_container">
-          <canvas id="canvas" width="350" height="350" />
-          <div id="dom_overlay_container" />
+    <>
+      <NeverOverpayAgain.Wrapper
+        className={isLandingMinimized ? 'minimized' : ''}
+      >
+        <div className="animate">
+          <div id="animation_container">
+            <canvas id="canvas" width="350" height="350" />
+            <div id="dom_overlay_container" />
+          </div>
         </div>
-      </div>
 
       <NeverOverpayAgain.Content>
         <div>
