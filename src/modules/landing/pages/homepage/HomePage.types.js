@@ -49,6 +49,7 @@ export type HomePageProps = {
   isExtensionInstalled: boolean,
   visible: boolean,
   isLoaded: boolean,
+  isLandingMounted?: boolean,
 };
 
 export type HomePageCategoriesProps = {

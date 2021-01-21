@@ -17,13 +17,13 @@ import {
 } from '../common/constants';
 
 type HomePageLoaderProps = {
-  setShowHeaderFooter: Function,
+  setShowFooter: Function,
   fetchHomePageFeature: any => Promise<Object>,
   homePageSetting: string,
 };
 
 const HomePageLoader = ({
-  setShowHeaderFooter,
+  setShowFooter,
   fetchHomePageFeature,
   homePageSetting,
 }: HomePageLoaderProps) => {
@@ -33,12 +33,18 @@ const HomePageLoader = ({
 
   const unmountLanding = () => {
     setIsLandingMounted(false);
-    setShowHeaderFooter(true);
+    setShowFooter(true);
   };
 
   useEffect(() => {
     fetchHomePageFeature();
   }, []);
+
+  useEffect(() => {
+    if (isLandingMinimized) {
+      setShowFooter(true);
+    }
+  }, [isLandingMinimized]);
 
   if (Boolean(params.lp)) {
     return (
@@ -50,7 +56,7 @@ const HomePageLoader = ({
             setIsLandingMinimized={setIsLandingMinimized}
           />
         )}
-        <HomePage />
+        <HomePage isLandingMounted={isLandingMounted} />
       </>
     );
   }

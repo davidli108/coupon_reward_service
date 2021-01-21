@@ -60,8 +60,8 @@ const SearchBarItems = ({
     }
 
     const discount = store.store_discount.includes('%')
-      ? store.store_discount.replace(/[^@\d$|%£€ .]/g, '')
-      : store.store_discount.replace(/[^@\d\s,.]/g, '');
+      ? store.store_discount.replace(/[^@\d%,.]/g, '')
+      : store.store_discount.replace(/[^@\d$£€,.]/g, '');
 
     return discount
       ? t('global.earnCashBack', { discount })

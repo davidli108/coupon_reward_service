@@ -45,6 +45,7 @@ const HomePage = ({
   isAuthenticated,
   isExtensionInstalled,
   visible = true,
+  isLandingMounted,
 }: HomePageProps) => {
   const params = queryString.parse(location.search);
 
@@ -102,7 +103,7 @@ const HomePage = ({
   }
 
   return (
-    <HomePage.Wrapper visible={visible} hasLp={params.lp}>
+    <HomePage.Wrapper visible={visible} isLandingMounted={isLandingMounted}>
       <Helmet
         title={t('homepage.page.title')}
         meta={[

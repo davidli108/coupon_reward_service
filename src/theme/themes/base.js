@@ -22,9 +22,8 @@ export const GlobalStyle = createGlobalStyle`
       margin-top: 105px;
     `}
 
-    &.landing-minimized {
-      margin-top: 191px;
-
+    &.landing-minimized,
+    &.landing-maximized {
       .animate {
         display: none !important;
       }

@@ -1,32 +1,67 @@
 // @flow
-import React from 'react';
-import { MdArrowDownward } from 'react-icons/md';
+import React, { useState, useEffect, memo } from 'react';
 
-import { updateElementClassList, ScriptLoader } from '@config/Utils';
-import { getDomainAttrs } from '@modules/localization/i18n';
+import {
+  updateElementClassList,
+  ScriptLoader,
+  getWaitUrl,
+} from '@config/Utils';
 import PiggyCorner from './assets/piggy-corner-new.png';
 import styles from './NeverOverpayAgain.styles';
 
-const { tld } = getDomainAttrs();
-
 type NeverOverpayAgainProps = {
   isLandingMinimized: boolean,
+  maximizeLanding: Function,
   minimizeLanding: Function,
   unmountLanding: Function,
+  bonusesFetched: boolean,
 };
 
 const NeverOverpayAgain = ({
   isLandingMinimized,
+  maximizeLanding,
   minimizeLanding,
   unmountLanding,
+  bonusesFetched,
 }: NeverOverpayAgainProps) => {
-  const lpMap = {
-    'com': 'noa-wait-usa',
-    'co.uk': 'noa-wait',
-    'de': 'noa-wait-de',
-    'fr': 'noa-wait-fr',
+  const [overFlag, setOverFlag] = useState(0);
+  const [assetsLoaded, setAssetsLoaded] = useState(false);
+
+  const onMouseEnter = () => {
+    if (!overFlag) {
+      setOverFlag(
+        setTimeout(function() {
+          setOverFlag(0);
+          maximizeLanding();
+        }, 2000),
+      );
+    }
   };
-  const extensionLandingUrl = `/lp/${lpMap[tld] || lpMap['com']}`;
+
+  const onMouseLeave = () => {
+    if (overFlag) {
+      clearTimeout(overFlag);
+      setOverFlag(0);
+    }
+  };
+
+  useEffect(() => {
+    const onHandleWheel = (event: WheelEvent) => {
+      if (event.deltaY > 0) {
+        minimizeLanding();
+      }
+    };
+
+    if (document.body) {
+      document.body.addEventListener('wheel', onHandleWheel);
+    }
+
+    return () => {
+      if (document.body) {
+        document.body.removeEventListener('wheel', onHandleWheel);
+      }
+    };
+  }, []);
 
   const clickHandler = () => {
     unmountLanding();
@@ -53,51 +88,68 @@ const NeverOverpayAgain = ({
   });
 
   Promise.all([jQuery.load(), createJs.load()]).then(() => {
-    animLibrary.load();
-    animation.load();
+    animLibrary.load().then(() => {
+      setAssetsLoaded(true);
+    });
   });
 
-  return (
-    <>
-      <NeverOverpayAgain.Wrapper
-        className={isLandingMinimized ? 'minimized' : ''}
-      >
-        <div className="animate">
-          <div id="animation_container">
-            <canvas id="canvas" width="350" height="350" />
-            <div id="dom_overlay_container" />
-          </div>
-        </div>
+  useEffect(() => {
+    if (assetsLoaded) {
+      animation.load();
+    }
+  }, [bonusesFetched, assetsLoaded]);
 
-        <NeverOverpayAgain.Content>
-          <div>
-            <h1>NEVER OVERPAY AGAIN</h1>
-            <p>
-              Save time and money with Piggy's free Google Chrome Coupon App!
-            </p>
-            <p>
-              Piggy appears at checkout and automatically applies the best
-              coupon code
-            </p>
-            <h3>We find the coupons. You just shop.</h3>
-          </div>
-          <NeverOverpayAgain.Button
-            href={extensionLandingUrl}
-            onClick={clickHandler}
-            target="_blank"
-          >
-            + ACTIVATE NOW
-          </NeverOverpayAgain.Button>
-        </NeverOverpayAgain.Content>
-        <NeverOverpayAgain.Action onClick={minimizeLanding}>
-          <MdArrowDownward />
-        </NeverOverpayAgain.Action>
-        <NeverOverpayAgain.Corner src={PiggyCorner} alt="JoinPiggy" />
-      </NeverOverpayAgain.Wrapper>
-    </>
+  return (
+    <NeverOverpayAgain.Wrapper
+      className={isLandingMinimized ? 'minimized' : ''}
+    >
+      <div className="animate">
+        <div id="animation_container">
+          <canvas id="canvas" width="350" height="350" />
+          <div id="dom_overlay_container" />
+        </div>
+      </div>
+
+      <NeverOverpayAgain.Content>
+        <div>
+          <h1>NEVER OVERPAY AGAIN</h1>
+          <p>
+            Save time and money with Piggy's free Google Chrome Coupon App!
+          </p>
+          {!isLandingMinimized && (
+            <>
+              <p>
+                Piggy appears at checkout and automatically applies the best
+                coupon code
+              </p>
+              <h3>We find the coupons. You just shop.</h3>
+            </>
+          )}
+        </div>
+        <NeverOverpayAgain.Button
+          href={getWaitUrl()}
+          onClick={clickHandler}
+          target="_blank"
+        >
+          + ACTIVATE NOW
+        </NeverOverpayAgain.Button>
+        <NeverOverpayAgain.Overlay
+          id="mouse-over"
+          onMouseEnter={onMouseEnter}
+          onMouseLeave={onMouseLeave}
+        />
+      </NeverOverpayAgain.Content>
+      <NeverOverpayAgain.Corner src={PiggyCorner} alt="JoinPiggy" />
+    </NeverOverpayAgain.Wrapper>
   );
 };
 
 styles(NeverOverpayAgain);
 
-export default NeverOverpayAgain;
+const shouldNotRerender = (prevProps, nextProps) =>
+  prevProps.isLandingMinimized === nextProps.isLandingMinimized;
+
+export default memo<NeverOverpayAgainProps, () => boolean>(
+  NeverOverpayAgain,
+  shouldNotRerender,
+);
