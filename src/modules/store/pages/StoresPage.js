@@ -20,6 +20,7 @@ import * as storeActions from '../StoreActions';
 import { getFilteredList } from '@modules/app/AppReducer';
 import { month, year, metaTags, openGraph } from '@config/SeoTags';
 import { fireGTMEvent } from '@config/Utils';
+import { hreflangMetas } from '@modules/localization/i18n';
 
 import {
   getFilteredStores,
@@ -101,7 +102,16 @@ const StoresPage = ({
             description: t('description.coupons'),
           }),
         ]}
-      />
+      >
+        {hreflangMetas.map(item => (
+          <link
+            rel="alternate"
+            hreflang={item.hreflang}
+            href={`${item.url}cashback-stores`}
+            key={item.hreflang}
+          />
+        ))}
+      </Helmet>
 
       <StoresPage.Wrapper>
         <StoresPage.Container>

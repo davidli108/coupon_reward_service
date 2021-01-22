@@ -594,4 +594,11 @@ export default {
 
     dismiss: 'Dismiss',
   },
+
+  country_names: {
+    us: 'United States',
+    uk: 'United Kingdom',
+    de: 'Germany',
+    fr: 'France',
+  },
 };

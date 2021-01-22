@@ -36,6 +36,7 @@ import FeaturedStoreList from '../components/FeaturedStoreList';
 import Content from '../components/Content';
 import FeatureCouponLoader from '../components/loaders/FeatureCouponLoader';
 import { fireGTMEvent } from '@config/Utils';
+import { hreflangMetas } from '@modules/localization/i18n';
 
 type CouponsPageProps = {
   t: Function,
@@ -108,7 +109,16 @@ const CouponsPage = ({
             description: t('description.coupons'),
           }),
         ]}
-      />
+      >
+        {hreflangMetas.map(item => (
+          <link
+            rel="alternate"
+            hreflang={item.hreflang}
+            href={`${item.url}coupons`}
+            key={item.hreflang}
+          />
+        ))}
+      </Helmet>
 
       {/* <DownloadPiggy /> */}
       {isLoaded ? (
