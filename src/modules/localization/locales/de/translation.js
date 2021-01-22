@@ -578,4 +578,11 @@ export default {
 
     dismiss: 'Schließen',
   },
+
+  country_names: {
+    us: 'Vereinigte Staaten',
+    uk: 'Vereinigtes Königreich',
+    de: 'Deutschland',
+    fr: 'Frankreich',
+  },
 };

@@ -51,6 +51,21 @@ const localeCodeCurrency = {
 
 const fallbackLocale = Locale.en;
 
+export const localeDomains = [
+  { url: 'https://www.joinpiggy.com/', code: 'us' },
+  { url: 'https://www.joinpiggy.co.uk/', code: 'uk' },
+  { url: 'https://www.joinpiggy.de/', code: 'de' },
+  { url: 'https://www.joinpiggy.fr/', code: 'fr' },
+];
+
+export const hreflangMetas = [
+  { hreflang: 'en', url: 'https://www.joinpiggy.com/' },
+  { hreflang: 'en-GB', url: 'https://www.joinpiggy.co.uk/' },
+  { hreflang: 'de', url: 'https://www.joinpiggy.de/' },
+  { hreflang: 'fr', url: 'https://www.joinpiggy.fr/' },
+  { hreflang: 'x-default', url: 'https://www.joinpiggy.com/' },
+];
+
 export const getDomainAttrs = () => {
   const domain = window.location.hostname;
   const protocol = window.location.protocol;

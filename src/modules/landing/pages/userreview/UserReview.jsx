@@ -12,6 +12,7 @@ import UserReviewSlider from './components/UserReviewSlider';
 
 import styles from './UserReview.styles.js';
 import { type UserReviewProps } from './UserReview.types';
+import { hreflangMetas } from '@modules/localization/i18n';
 
 const UserReview = ({ t }: UserReviewProps) => {
   return (
@@ -25,7 +26,16 @@ const UserReview = ({ t }: UserReviewProps) => {
             description: t('user_review.page.description'),
           }),
         ]}
-      />
+      >
+        {hreflangMetas.map(item => (
+          <link
+            rel="alternate"
+            hreflang={item.hreflang}
+            href={`${item.url}user-review`}
+            key={item.hreflang}
+          />
+        ))}
+      </Helmet>
       <UserReviewHero />
       <UserReviewSlider />
       <UserReviewBlock userContent={true} />

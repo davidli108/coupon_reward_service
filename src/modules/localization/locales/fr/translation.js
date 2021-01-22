@@ -577,4 +577,11 @@ export default {
 
     dismiss: 'Rejeter',
   },
+
+  country_names: {
+    us: 'États-Unis',
+    uk: 'Royaume-Uni',
+    de: 'Allemagne',
+    fr: 'France',
+  },
 };

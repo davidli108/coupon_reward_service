@@ -23,6 +23,7 @@ import StoreLinksLoader from '../components/StoreLinksLoader';
 import FooterLinksLoader from '../components/FooterLinksLoader';
 import PopularStoresLoader from '../components/PopularStoresLoader';
 import { getIsAuthenticated } from '@modules/auth/AuthReducer';
+import { hreflangMetas } from '@modules/localization/i18n';
 
 const SitemapPage = ({
   t,
@@ -79,7 +80,16 @@ const SitemapPage = ({
             content: t('sitemap.meta.description'),
           },
         ]}
-      />
+      >
+        {hreflangMetas.map(item => (
+          <link
+            rel="alternate"
+            hreflang={item.hreflang}
+            href={`${item.url}sitemap`}
+            key={item.hreflang}
+          />
+        ))}
+      </Helmet>
 
       <SitemapPage.Wrapper>
         <SitemapPage.Title>{t('sitemap.popular_stores')}</SitemapPage.Title>

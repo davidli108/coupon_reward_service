@@ -19,7 +19,7 @@ import {
 } from '@modules/landing/LandingReducer';
 import ModalActivateCoupons from '@components/ModalActivateCoupons/ModalActivateCoupons';
 import { metaTags, openGraph } from '@config/SeoTags';
-import { useCurrentTld } from '@modules/localization/i18n';
+import { useCurrentTld, hreflangMetas } from '@modules/localization/i18n';
 
 import HomePageCarousel from './components/HomePageCarousel';
 import HomePageTopDeals from './components/HomePageTopDeals';
@@ -113,7 +113,16 @@ const HomePage = ({
             description: t('homepage.page.description'),
           }),
         ]}
-      />
+      >
+        {hreflangMetas.map(item => (
+          <link
+            rel="alternate"
+            hreflang={item.hreflang}
+            href={`${item.url}`}
+            key={item.hreflang}
+          />
+        ))}
+      </Helmet>
       {isLoaded ? (
         <>
           <HomePage.Container>

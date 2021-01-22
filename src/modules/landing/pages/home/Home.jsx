@@ -7,6 +7,7 @@ import { Helmet } from 'react-helmet';
 
 import { metaTags, openGraph } from '@config/SeoTags';
 import { getIsLoaded } from '@modules/landing/LandingReducer';
+import { hreflangMetas } from '@modules/localization/i18n';
 
 import HomeHero from './components/HomeHero';
 import HomeHowItWorks from './components/HomeHowItWorks';
@@ -35,7 +36,16 @@ const Home = ({
             description: t('homepage.page.description'),
           }),
         ]}
-      />
+      >
+        {hreflangMetas.map(item => (
+          <link
+            rel="alternate"
+            hreflang={item.hreflang}
+            href={`${item.url}`}
+            key={item.hreflang}
+          />
+        ))}
+      </Helmet>
       { isLoaded ?
         <>
           <HomeHero/>
