@@ -1,12 +1,13 @@
 // @flow
-import React from 'react';
+import React, { useEffect } from 'react';
 import { withTranslation } from 'react-i18next';
 import { compose } from 'recompose';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 
 import { metaTags, openGraph } from '@config/SeoTags';
-import { getIsLoaded } from '@modules/landing/LandingReducer';
+import { getIsLoaded, getHomePageSetting } from '@modules/landing/LandingReducer';
+import { fetchHomePageFeature } from '@modules/landing/LandingActions';
 import { hreflangMetas } from '@modules/localization/i18n';
 
 import HomeHero from './components/HomeHero';
@@ -23,7 +24,14 @@ const Home = ({
   t,
   visible = true,
   isLoaded,
+  fetchHomePageFeature,
+  homePageSetting,
 }: HomeProps) => {
+  useEffect(() => {
+    if (!homePageSetting) {
+      fetchHomePageFeature();
+    }
+  }, []);
 
   return (
     <Home.Wrapper visible={visible}>
@@ -62,9 +70,14 @@ styles(Home);
 
 const mapStateToProps = state => ({
   isLoaded: getIsLoaded(state),
+  homePageSetting: getHomePageSetting(state),
 });
 
+const mapDispatchToProps = {
+  fetchHomePageFeature: fetchHomePageFeature,
+};
+
 export default compose(
-  connect(mapStateToProps, null),
+  connect(mapStateToProps, mapDispatchToProps),
   withTranslation(),
 )(Home);

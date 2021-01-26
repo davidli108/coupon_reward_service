@@ -44,11 +44,12 @@ export type HomePageProps = {
   featuredSCashback: any[],
   amazonDeal: any[],
   categories: any[],
-  fetchHomePageFeature: (type: string) => Promise<Object>,
+  fetchHomePageFeature: () => Promise<Object>,
   isAuthenticated: boolean,
   isExtensionInstalled: boolean,
   visible: boolean,
   isLoaded: boolean,
+  homePageSetting: string,
   isLandingMounted?: boolean,
 };
 

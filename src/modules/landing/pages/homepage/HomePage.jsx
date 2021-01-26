@@ -16,7 +16,9 @@ import {
   getAmazonDeal,
   getCategories,
   getIsLoaded,
+  getHomePageSetting,
 } from '@modules/landing/LandingReducer';
+import { fetchHomePageFeature } from '@modules/landing/LandingActions';
 import ModalActivateCoupons from '@components/ModalActivateCoupons/ModalActivateCoupons';
 import { metaTags, openGraph } from '@config/SeoTags';
 import { useCurrentTld, hreflangMetas } from '@modules/localization/i18n';
@@ -45,6 +47,8 @@ const HomePage = ({
   isAuthenticated,
   isExtensionInstalled,
   visible = true,
+  fetchHomePageFeature,
+  homePageSetting,
   isLandingMounted,
 }: HomePageProps) => {
   const params = queryString.parse(location.search);
@@ -54,6 +58,12 @@ const HomePage = ({
   const [logo, setLogo] = useState('');
   const [link, setLink] = useState('');
   const [title, setTitle] = useState('');
+
+  useEffect(() => {
+    if (!homePageSetting) {
+      fetchHomePageFeature();
+    }
+  }, []);
 
   useEffect(() => {
     setIsModalShow(isAuthenticated || isExtensionInstalled);
@@ -170,9 +180,12 @@ const mapStateToProps = state => ({
   amazonDeal: getAmazonDeal(state),
   categories: getCategories(state),
   isLoaded: getIsLoaded(state),
+  homePageSetting: getHomePageSetting(state),
 });
 
-const mapDispatchToProps = null;
+const mapDispatchToProps = {
+  fetchHomePageFeature: fetchHomePageFeature,
+};
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
