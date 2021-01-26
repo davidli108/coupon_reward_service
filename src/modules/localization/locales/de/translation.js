@@ -17,7 +17,7 @@ export default {
     getApp: 'Holen Sie sich die App!',
     signIn: 'Anmelden',
     login: 'Anmelden',
-    createAccount: 'Registrieren',
+    createAccount: 'Jetzt registrieren',
     myAccount: 'Mein Konto',
     inviteFriends: 'Freunde einladen',
     settings: 'Einstellungen',
@@ -31,6 +31,10 @@ export default {
     earningSaving: 'Einnahmen und Ersparnisse',
     favoriteStores: 'Lieblingsgeschäfte',
     shop: 'Kaufen Sie {{ storeName }} mit {{ cashBack }} ein',
+    with: 'mit',
+    hotels: 'Hotels',
+    personal_finance: 'Persönliche Finanzen',
+    amazon_price_tracking: 'Amazon Preisverfolgung',
   },
   auth: {
     social: {
@@ -447,6 +451,15 @@ export default {
   homepage: {
     was: 'Es waren',
     now: 'Jetzt',
+    topDeals: 'Piggys Top-Angebote des Tages',
+    matd: 'Mehr zu diesem Angebot',
+    seeAllDeals: 'Alle {{storeName}}-Angebote anzeigen',
+    uptoCashback: 'Bis zu {{cashback}} Cashback',
+    featuredCashBack: 'Die besten Cashback-Aktionen',
+    gtdn: 'Dieses Angebot jetzt sichern',
+    plusCashback: 'Plus {{cashback}} Cashback',
+    discover: 'Angebote nach Kategorien entdecken:',
+    all: 'Alle',
     hero: {
       title: 'Piggy ist der einfachste Weg, um Geld zu sparen!',
       text: {
