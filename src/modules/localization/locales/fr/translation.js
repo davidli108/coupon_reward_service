@@ -13,11 +13,11 @@ export default {
   },
   header: {
     coupons: 'Codes promo',
-    stores: 'Boutiques',
+    stores: 'Magasins',
     getApp: "Obtenez l'application !",
     signIn: 'Se Connecter',
     login: 'Se Connecter',
-    createAccount: 'Enregistrer',
+    createAccount: 'S’inscrire maintenant',
     myAccount: 'Mon Compte',
     inviteFriends: 'Inviter des amis',
     settings: 'Paramètres',
@@ -31,6 +31,10 @@ export default {
     earningSaving: 'Gains et Économies',
     favoriteStores: 'Boutiques Préférées',
     shop: 'Achetez {{ storeName }} avec {{ cashBack }}',
+    with: 'avec',
+    hotels: 'Hôtels',
+    personal_finance: 'Finances personnelles',
+    amazon_price_tracking: 'Suivi des prix Amazon',
   },
   auth: {
     social: {
@@ -448,8 +452,16 @@ export default {
     action: "Aller à la page d'accueil",
   },
   homepage: {
-    was: "c'était",
-    now: 'Maintenant',
+    topDeals: 'Meilleures affaires du jour Piggy',
+    matd: 'En savoir plus sur cette offre',
+    seeAllDeals: 'Voir toutes les offres de {{storeName}}',
+    uptoCashback: 'Jusqu’à {{cashback}} de cashback',
+    featuredCashBack: 'Offres de cashback en vedette',
+    gtdn: 'Bénéficier de cette offre maintenant',
+    plusCashback: 'Plus {{cashback}} de cashback',
+    discover: 'Découvrez les offres par catégorie:',
+    all: 'Tout voir',
+    was: 'Était de {{price}}',
     hero: {
       title: "Piggy est le moyen le plus facile d'économiser de l'argent !",
       text: {

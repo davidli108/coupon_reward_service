@@ -120,7 +120,7 @@ HeaderItem.NavLink = styled(NavLink)`
 
 HeaderItem.Link = styled.a`
   font-size: 16px;
-  line-height: 19px;
+  line-height: 17px;
   padding: 0 10px;
   height: 37px;
   box-sizing: border-box;
@@ -131,6 +131,7 @@ HeaderItem.Link = styled.a`
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
   border-radius: 5px;
   position: relative;
   background: ${({ border, theme }) => (border ? theme.colors.greenLight : 0)} 0;

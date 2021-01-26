@@ -116,8 +116,12 @@ const styles = (HomePageFeaturedCashBack: Object) => {
       display: flex;
       align-items: flex-end;
       margin: 0 0 3px;
-      font: 700 18px/24px ${({ theme }) => theme.fonts.montserrat} !important;
+      font-weight: 700;
+      font-size: ${({ fr }) => (fr ? 16 : 18)}px;
+      line-height: 24px;
+      font-family: ${({ theme }) => theme.fonts.montserrat} !important;
       color: ${({ theme }) => theme.colors.blackGrey};
+      text-align: center;
 
       span {
         font: 400 12px/24px ${({ theme }) => theme.fonts.montserrat} !important;
@@ -133,6 +137,17 @@ const styles = (HomePageFeaturedCashBack: Object) => {
 
     @media (max-width: 991px) {
       min-width: 170px;
+    }
+
+    @media (max-width: 767px) {
+      .price {
+        line-height: 20px;
+        margin: 0 0 5px;
+
+        span {
+          line-height: 20px;
+        }
+      }
     }
   `;
 };

@@ -251,7 +251,7 @@ const styles = (HomePageCarousel: Object) => {
         border: 0;
         width: 230px;
         background-color: ${({ theme }) => theme.colors.greenMain};
-        padding: 0 30px;
+        padding: 0 20px;
         height: 47px;
         border-radius: 5px;
         color: ${({ theme }) => theme.colors.white};

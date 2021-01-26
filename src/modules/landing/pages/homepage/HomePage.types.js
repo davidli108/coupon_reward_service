@@ -33,6 +33,7 @@ export type HomePageFeaturedCashBackProps = {
   isLoaded: boolean,
   handler: Function,
   t: Function,
+  i18n: Object,
 };
 
 export type HomePageProps = {

@@ -406,6 +406,7 @@ Header.Container = styled.div`
 
 Header.AuthItems = styled.div`
   display: flex;
+  max-width: 300px;
 
   a {
     font-size: 14px;
