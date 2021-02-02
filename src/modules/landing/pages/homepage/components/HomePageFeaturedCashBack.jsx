@@ -7,6 +7,7 @@ import type { HomePageFeaturedCashBackProps } from '../HomePage.types';
 import styles from './HomePageFeaturedCashBack.styles';
 import FeaturedCashbackLoader from '../loader/FeaturedCashbackLoader';
 import { fireGTMEvent } from '@config/Utils';
+import { currencyLocaleFormat } from '@modules/localization/i18n';
 
 const HomePageFeaturedCashBack = ({
   t,
@@ -24,6 +25,12 @@ const HomePageFeaturedCashBack = ({
     });
   };
 
+  const getCashBack = item => {
+    return !item.cashback.includes('%')
+      ? currencyLocaleFormat(item.cashback)
+      : item.cashback;
+  }
+
   return (
     <HomePageFeaturedCashBack.Wrapper>
       <HomePageFeaturedCashBack.Title>{t('homepage.featuredCashBack')}</HomePageFeaturedCashBack.Title>
@@ -39,7 +46,7 @@ const HomePageFeaturedCashBack = ({
                   </figure>
                   {item.was_price && <div className="details"><p>{t('homepage.was', {price: item.was_price})}</p></div>}
                   <div className="price">
-                    <b>{t('homepage.uptoCashback', {cashback: item.cashback})}</b>
+                    <b>{t('homepage.uptoCashback', {cashback: getCashBack(item)})}</b>
                   </div>
                   <small>{t('homepage.seeAllDeals', {storeName: item.store_name})}</small>
                 </div>
