@@ -75,7 +75,10 @@ const styles = (Product: Object) => {
     justify-content: center;
     width: 263px;
     height: 283px;
-    background: linear-gradient(126.04deg, #f29d39 -0.01%, rgba(255, 255, 255, 0.4) 47.95%), linear-gradient(300.71deg, #f90 0.95%, #ffb800 37.97%);
+    background: ${`
+      linear-gradient(126.04deg, #f29d39 -0.01%, rgba(255, 255, 255, 0.4) 47.95%),
+      linear-gradient(300.71deg, #f90 0.95%, #ffb800 37.97%)
+    `};
     box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.08);
     padding: 10px;
 
@@ -99,7 +102,10 @@ const styles = (Product: Object) => {
       height: 184px;
       width: 309px;
       padding: 20px 0 0 70px;
-      background: linear-gradient(126.04deg, #f29d39 -0.01%, rgba(255, 255, 255, 0.4) 47.95%), linear-gradient(300.71deg, #f90 0.95%, #ffb800 37.97%);
+      background: ${`
+        linear-gradient(126.04deg, #f29d39 -0.01%, rgba(255, 255, 255, 0.4) 47.95%),
+        linear-gradient(300.71deg, #f90 0.95%, #ffb800 37.97%)
+      `};
       box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.08);
       clip-path: polygon(8% 0, 100% 0, 100% 100%, 0 100%);
     }
@@ -142,7 +148,7 @@ const styles = (Product: Object) => {
   `;
 
   Product.OldPrice = styled.div`
-    display: ${({isZero}) => isZero ? 'block' : 'none'};
+    display: ${({ isZero }) => (isZero ? 'block' : 'none')};
     font-style: normal;
     font-weight: bold;
     font-size: 12px;
@@ -213,7 +219,6 @@ const styles = (Product: Object) => {
   Product.a = styled.a`
     width: 137px;
   `;
-
 };
 
 export default styles;

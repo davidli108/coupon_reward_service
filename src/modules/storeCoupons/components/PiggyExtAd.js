@@ -77,65 +77,58 @@ const PiggyExtAd = ({
       >
         {t('global.addToChrome')}
       </PiggyExtAd.AddExtensionButton>
-      <PiggyExtAd.Reviews>
-        <div>{renderStarsReview(stars)}</div>
-        <span>
-          {reviewsCount} {t('global.reviews')}
-        </span>
-      </PiggyExtAd.Reviews>
+      {reviewsCount && (
+        <PiggyExtAd.Reviews>
+          <div>{renderStarsReview(stars)}</div>
+          <span>
+            {reviewsCount} {t('global.reviews')}
+          </span>
+        </PiggyExtAd.Reviews>
+      )}
     </PiggyExtAd.Wrapper>
   );
 };
 
 PiggyExtAd.Wrapper = styled.div`
-  width: 100%;
-  margin-right: 20px;
   display: flex;
-  flex-direction: row-reverse;
-  padding-top: 25px;
+  justify-content: flex-end;
+  width: 100%;
 
   ${breakpoint('md')`
-    width: 300px;
-    flex-direction: column;
+    width: auto;
+    padding: 0 24px;
+    flex-flow: row nowrap;
+    flex: 1 0 auto;
+    box-sizing: border-box;
   `}
-
-  @media (min-width: 1024px) {
-    width: 100%;
-  }
-
-  @media (min-width: 768px) {
-    width: 146px;
-  }
 `;
 
 PiggyExtAd.AddExtensionButton = styled.div`
-  width: 50%;
-  height: 40px;
+  height: 44px;
   display: flex;
-  justify-content: center;
   align-items: center;
-  border-radius: 4px;
-  font-weight: 500;
-  font-size: 18px;
+  justify-content: center;
+  border-radius: 5px;
   cursor: pointer;
-  color: ${props => props.theme.colors.white};
-  border: 2px solid ${props => props.theme.colors.greenMain};
-  background: ${props => props.theme.colors.greenMain};
-  transition: 0.3s;
-  text-align: center;
-
-  ${breakpoint('md')`
-    font-size: 15px;
-  `}
-
-  ${breakpoint('sm')`
-    width: 100%;
-  `}
+  color: ${props => props.theme.colors.greenMain};
+  background: ${props => props.theme.colors.white};
+  padding: 0 20px;
+  width: 100%;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 700;
+  font-family: ${({ theme }) => theme.fonts.montserrat} !important;
 
   &:hover {
-    color: ${props => props.theme.colors.greenMain};
-    background: ${props => props.theme.colors.greenLight};
+    color: ${props => props.theme.colors.white};
+    background: ${props => props.theme.colors.greenMain};
   }
+
+  ${breakpoint('md')`
+    letter-spacing: 0.2px;
+    font-size: 16px;
+    line-height: 20px;
+  `}
 `;
 
 PiggyExtAd.Reviews = styled.div`

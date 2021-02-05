@@ -91,4 +91,3 @@ const HomePageCarousel = ({
 styles(HomePageCarousel);
 
 export default withTranslation()(HomePageCarousel);
-

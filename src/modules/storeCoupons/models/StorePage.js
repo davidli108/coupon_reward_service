@@ -33,22 +33,6 @@ export type StoreInformation = {
   body?: string,
 };
 
-export type Store = {
-  store_id: string,
-  store_name: string,
-  store_description: string,
-  store_cashback_text: string,
-  store_logo_image_path: string,
-  stores_sale_count: string,
-  stores_code_count: string,
-  store_info_link: string,
-  store_discount: string,
-  store_cashback_ok: string,
-  store_country_code: string,
-  store_numeric_type: number,
-  offers_count: number,
-};
-
 export type Offer = {
   store_logo: string,
   store_page_link: string,
@@ -73,26 +57,45 @@ export type Offer = {
   facebook_link: string,
   twitter_link: string,
   pinterest_link: string,
+  end_date: string,
+  country: string,
+};
+
+export type Store = {
+  store_id: string,
+  store_name: string,
+  store_description: string,
+  store_cashback_text: string,
+  store_logo_image_path: string,
+  stores_sale_count: string,
+  stores_code_count: string,
+  store_info_link: string,
+  store_discount: string,
+  store_cashback_ok: string,
+  store_country_code: string,
+  store_numeric_type: number,
+  offers_count: number,
+  random_offers: Offer[],
+  store_total_offers_count: string,
+  categories: Object[],
+  store_total_favorites: string,
+  store_total_uses: string,
+  store_total_savings: string,
+  store_average_savings: string,
+  terms: string | null,
 };
 
 export type StorePageProps = {
   t: Function,
+  i18n: Object,
   store: Store,
   offers: Offer[],
-  extension: Extension,
-  additionalInfo: AdditionalInfo[],
   fetchStoreCoupons: ({ storeName: string }) => void,
   match: Object,
-  state?: string,
-  requestSearch: Function,
-  storeSearchResult: Object,
-  searchIsLoading: boolean,
   fetchStoreCouponsByPagination: Function,
   offersCount: number,
-  reviews: string,
-  getFilteredList: any,
   isExtensionInstalled: boolean,
-  cashbackRates: Array<CashBackRate>,
+  cashbackRates: CashBackRate[],
   terms: string,
   priceTrackerProduct: TrackerProduct,
 };
@@ -112,13 +115,16 @@ export type BrandProps = {
   offersCount: number,
   reviews: string,
   extensionActive?: boolean,
+  offersMenu: string,
   priceTracker: TrackerProduct,
 };
 
 export type BrandContentProps = {
-  storeName: string,
-  stars: number,
-  reviewsCount: string,
+  t?: Function,
+  storeName?: string,
+  stars?: number,
+  reviewsCount?: string,
+  offersCount: number,
 };
 
 export type BrandNeverOverpayProps = {
@@ -137,20 +143,25 @@ export type PiggyExtAdProps = {
 
 export type OffersProps = {
   t: Function,
-  match: Object,
   offers: Offer[],
   offersCount: number,
   fetchStoreCoupons: Function,
   storeName: string,
   store: Object,
-  cashbackRates: Array<CashBackRate>,
+  cashbackRates: CashBackRate[],
+  selectedOfferType: string,
+  selectedCategories: any[],
+  isOffersLoading: boolean,
+  selectedSort: Object,
+  randomOffers: Offer[],
+  openTerms: Function,
 };
 
 export type AdditionalInfoProps = {
   t: Function,
   additionalInfo: AdditionalInfo,
   store: Object,
-  cashbackRates: Array<CashBackRate>,
+  terms: string,
 };
 
 export type AdditionalInfoSectionProps = {
@@ -180,4 +191,13 @@ export type CashBackContentProps = {
   t: Function,
   store: Object,
   item: CashBackRate,
+};
+
+export type OffersMenuProps = {
+  t: Function,
+  offers: Offer[],
+  storeName: string,
+  activeItem: string,
+  onChange: Function,
+  hideCashBackRate: boolean,
 };

@@ -22,15 +22,21 @@ BrandImageLoader.ContentLoader = styled(ContentLoader)`
   border-radius: 5px;
 
   ${breakpoint('xl')`
-    width: 270px;
-    height: 280px;
+    width: 263px;
+    min-height: 343px;
   `}
 
-  > img {
-    height: auto;
-    width: auto;
-    max-width: 100%;
-    max-height: 100%;
+  @media (max-width: 992px) {
+    width: 211px;
+    min-height: 333px;
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    min-height: 189px;
   }
 `;
 

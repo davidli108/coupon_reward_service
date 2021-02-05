@@ -12,7 +12,11 @@ const HomePageFeaturedDeal = ({
   handler,
 }: HomePageFeaturedDealProps) => {
 
-  return isLoaded && stores && (
+  if (!isLoaded || !stores) {
+    return null;
+  }
+
+  return (
     <HomePageFeaturedDeal.Wrapper>
       <HomePageFeaturedDeal.Deal>
         <HomePageFeaturedDeal.Brand>

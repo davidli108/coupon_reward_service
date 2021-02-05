@@ -162,7 +162,8 @@ export default {
     luxury: 'Luxury',
   },
   global: {
-    activateCashback: 'Activate {{discount}} Cashback',
+    activateCashback: 'Up to {{discount}} Cashback',
+    howCashBackWorks: 'How Cashback works',
     invalidDate: 'Invalid Date',
     earnCashBack: 'Earn {{discount}} Cashback!',
     learnMore: 'Learn more',
@@ -180,15 +181,16 @@ export default {
     loadMoreDeals: 'Load More Deals',
     loadMoreCoupons: 'Load More Vouchers',
     loadMoreStores: 'Load More Stores',
-    search: 'Search',
+    search: 'Search at Piggy',
     nothingFound: 'Nothing found',
     deals: 'Deals',
     revealCoupon: 'Reveal Voucher',
     newDeal: 'New Deal',
     verifiedToday: 'Verified today · XXX uses today.',
     reviews: 'reviews',
-    addToChrome: 'Add to Chrome',
+    addToChrome: 'Install Chrome Extension',
     about: 'About',
+    overview: 'Overview',
   },
   coupons: {
     animateModal: {
@@ -223,6 +225,7 @@ export default {
       share: 'Share',
       success: 'Success',
       freeShipping: 'Free Shipping',
+      freeGift: 'Free Gift',
       get5dollarOff: 'Get a $5 Off',
     },
     off: ' OFF',
@@ -252,7 +255,7 @@ export default {
     },
     buttons: {
       viewCoupon: 'View Voucher',
-      viewDeal: 'View Deal',
+      viewDeal: 'Get This Deal',
       tooltip: 'Click to shop. Use this code at checkout to save!',
     },
     todaysFeatureCoupon: "Today's Featured Voucher From {{storeName}}",
@@ -281,6 +284,11 @@ export default {
       step1text: 'Click the "Add to Chrome" Button',
       step2text: 'Then click "Add extension"',
     },
+    freeShipping: 'Free shipping',
+    cashBack: 'Cashback',
+    currentStoreTitle: 'Voucher up to {{discount}} Cashback',
+    otherStoreTitle: '{{store_name}} - Up to {{discount}} Cashback',
+    expiry_date: 'Expiry date',
   },
   cashbackStores: {
     shopBy: {
@@ -316,7 +324,7 @@ export default {
     shipping: 'Shipping',
     secrets: 'Secrets',
     codes: 'Voucher Codes',
-    codesAndDeals: 'Voucher Codes & Deals',
+    codesAndDeals: '{{storeName}} Vouchers, Promo Codes & Deals',
     followStore: 'Follow Store',
     neverOverlay: 'Never Overpay Again',
     automaticallyAddAll:
@@ -329,6 +337,50 @@ export default {
     getBestPrice: 'Get the Best Price',
     alertAutomatically:
       'Piggy will automatically alert you of the best price at {{ storeName }}. You can also track the price history on your items and get alerts if the price drops.',
+    applyAllCouponsWithNumber:
+      'Apply All {{couponsNumber}} Vouchers Using Piggy Extension',
+    applyAllCoupons: 'Apply All Vouchers Using Piggy Extension',
+    counterList: {
+      totalCoupons: 'Total Vouchers',
+      averageSavings: 'Average Savings',
+      totalSavings: 'Total Savings',
+      totalStoreSaves: 'Total Store Saves',
+      totalCouponsUses: 'Total Voucher Uses',
+    },
+    offersMenu: {
+      browse: 'Browse {{storeName}}',
+      coupons: 'Vouchers',
+      deals: 'Deals',
+      cashback: 'Cashback',
+      overview: 'Overview',
+    },
+    noCoupons:
+      'No Vouchers found for {{storeName}}. Take a look at our top vouchers below.',
+    noDeals:
+      'No Deals found for {{storeName}}. Take a look at our top offers and deals below.',
+    noCashback: 'No Cashback found for {{storeName}}',
+    filterByCategory: 'Filter By Category',
+    clear: 'Clear',
+    editFilter: 'Edit Filters',
+    apply: 'Apply',
+    categories: 'Categories',
+    hide: 'Hide',
+    show: 'Show more',
+    ourCouponExperts: {
+      title:
+        'Our coupon experts literally work around the clock (Three shifts, 365 days a year)',
+      addedToday: 'Added today',
+      addedYesterday: 'Added yesterday',
+      addedThisWeek: 'Added this week',
+      addedThisMonth: 'Added this month',
+    },
+    sortPromoCodesBy: 'Sort {{storeName}} Promo Codes by',
+    codesFilter: {
+      trending: 'Trending',
+      expiration: 'Expiring Soon',
+      recent: 'Recently Added',
+    },
+    terms: 'Terms',
   },
   sitemap: {
     meta: {

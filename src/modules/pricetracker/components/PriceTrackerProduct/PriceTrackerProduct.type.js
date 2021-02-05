@@ -8,10 +8,10 @@ export type TrackerProduct = {
   product_name: string,
   url_redirect: string,
   has_tracker: boolean,
-}
+};
 
 export type PriceTrackerProductType = {
   t: Function,
   match: Object,
-  priceTrackerProduct: TrackerProduct
+  priceTrackerProduct: TrackerProduct,
 };

@@ -168,7 +168,8 @@ export default {
     luxury: 'Luxus',
   },
   global: {
-    activateCashback: 'Aktivieren Sie  {{discount}} Cash back',
+    activateCashback: 'Bis zu {{discount}} Cashback',
+    howCashBackWorks: 'Wie Cashback funktioniert',
     invalidDate: 'Ablauf: Ungültiges Datum',
     earnCashBack: '{{discount}} Cashback verdienen!',
     learnMore: 'Mehr erfahren',
@@ -193,8 +194,9 @@ export default {
     newDeal: 'Neues Angebot',
     verifiedToday: 'Heute bestätigt',
     reviews: 'Überprüft',
-    addToChrome: 'zu Chrome hinzufügen',
+    addToChrome: 'Chrome-Erweiterung installieren',
     about: 'Über',
+    overview: 'Übersicht',
   },
   coupons: {
     animateModal: {
@@ -223,12 +225,13 @@ export default {
       couponSales: 'Gutschein & Verkauf',
       browseByStore: 'Nach Geschäft durchsuchen',
       newCoupon: 'Neuer Gutschein',
-      getCoupon: 'Gutschein erhalten',
+      getCoupon: 'Gutschein anwenden',
       exp: 'Exp. 21.03.2014',
       favorite: 'Favorisieren',
       share: 'Teilen',
       success: 'Erfolg',
       freeShipping: 'Kostenloser Versand',
+      freeGift: 'Kostenloses Geschenk',
       get5dollarOff: 'Holen Sie sich 5 € Rabatt',
     },
     off: ' Rabatt',
@@ -258,7 +261,7 @@ export default {
     },
     buttons: {
       viewCoupon: 'Gutschein anzeigen',
-      viewDeal: 'Angebot anzeigen',
+      viewDeal: 'Angebot holen',
       tooltip:
         'Klicken Sie um einzukaufen. Verwenden Sie diesen Code an der Kasse, um zu sparen.',
     },
@@ -288,6 +291,11 @@ export default {
       step1text: 'Klicken Sie auf "Zu Chrome hinzufügen".',
       step2text: 'Dann wählen Sie "Zu Erweiterungen zufügen"',
     },
+    freeShipping: 'Kostenloser Versand',
+    cashBack: 'Cashback',
+    currentStoreTitle: 'Gutschein {{discount}} Rabatt',
+    otherStoreTitle: '{{store_name}} Gutschein - {{discount}} Rabatt',
+    expiry_date: 'Verfallsdatum',
   },
   cashbackStores: {
     shopBy: {
@@ -325,7 +333,7 @@ export default {
     shipping: 'Lieferung',
     secrets: 'Geheimnis',
     codes: 'Gutschein Code',
-    codesAndDeals: 'Gutschein Code & Angebote',
+    codesAndDeals: '{{storeName}} Gutscheine, Rabatt-Codes und Angebote',
     followStore: 'Shops folgen',
     neverOverlay: 'Nie wieder zu viel bezahlen',
     automaticallyAddAll:
@@ -338,6 +346,50 @@ export default {
     getBestPrice: 'Holen Sie sich den besten Preis',
     alertAutomatically:
       'Piggy benachrichtigt Sie automatisch über den besten Preis bei {{ storeName }}. Sie können auch den Preisverlauf Ihrer Artikel verfolgen und Benachrichtigungen erhalten, wenn der Preis fällt.',
+    applyAllCouponsWithNumber:
+      'Alle {{couponsNumber}} Coupons mit der Piggy-Erweiterung anwenden',
+    applyAllCoupons: 'Wenden Sie alle Gutscheine mit Piggy Extension an',
+    counterList: {
+      totalCoupons: 'Gutscheine ingesamt',
+      averageSavings: 'Durchschnittliche Ersparnis',
+      totalSavings: 'Gesamteinsparungen',
+      totalStoreSaves: 'Gesamteinsparungen im Shop',
+      totalCouponsUses: 'Coupons insgesamt verwenden',
+    },
+    offersMenu: {
+      browse: '{{storeName}}',
+      coupons: 'Gutscheine',
+      deals: 'Angebote',
+      cashback: 'Cashback',
+      overview: 'Übersicht',
+    },
+    noCoupons:
+      'Für {{ storeName }} wurden keine Gutscheine gefunden. Werfen Sie einen Blick auf unsere Top-Gutscheine.',
+    noDeals:
+      'Für {{ storeName }} wurden keine Angebote gefunden. Werfen Sie einen Blick auf unsere Top-Angebote und Deals.',
+    noCashback: 'Für {{ storeName }} wurden keine Cashback gefunden.',
+    filterByCategory: 'Nach Kategorie filtern',
+    clear: 'Klar',
+    editFilter: 'Filter bearbeiten',
+    apply: 'Anwenden',
+    categories: 'Kategorien',
+    hide: 'Verstecken',
+    show: 'Mehr anzeigen',
+    ourCouponExperts: {
+      title:
+        'Unsere Coupon-Experten arbeiten wortwörtlich rund um die Uhr (drei Schichten, 365 Tage im Jahr)',
+      addedToday: 'Heute hinzugefügt',
+      addedYesterday: 'Gestern hinzugefügt',
+      addedThisWeek: 'Diese Woche hinzugefügt',
+      addedThisMonth: 'Diesen Monat hinzugefügt',
+    },
+    sortPromoCodesBy: '{{storeName}} Rabatt-Gutscheine sortieren nach',
+    codesFilter: {
+      trending: 'Aktuell beliebt',
+      expiration: 'Bald ablaufend',
+      recent: 'Kürzlich hinzugefügt',
+    },
+    terms: 'Cashback-Bedingungen',
   },
   sitemap: {
     meta: {

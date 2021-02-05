@@ -162,7 +162,8 @@ export default {
     luxury: 'Luxury',
   },
   global: {
-    activateCashback: 'Activate {{discount}} Cash back',
+    activateCashback: 'Up to {{discount}} Cash Back',
+    howCashBackWorks: 'How Cash Back works',
     invalidDate: 'Exp. Invalid Date',
     earnCashBack: 'Earn {{discount}} Cash Back!',
     learnMore: 'Learn more',
@@ -180,15 +181,16 @@ export default {
     loadMoreDeals: 'Load More Deals',
     loadMoreCoupons: 'Load More Coupons',
     loadMoreStores: 'Load More Stores',
-    search: 'Search',
+    search: 'Search at Piggy',
     nothingFound: 'Nothing found',
     deals: 'Deals',
     revealCoupon: 'Reveal Coupon',
     newDeal: 'New Deal',
     verifiedToday: 'Verified today · XXX uses today.',
     reviews: 'reviews',
-    addToChrome: 'Add to Chrome',
+    addToChrome: 'Install Chrome Extension',
     about: 'About',
+    overview: 'Overview',
   },
   coupons: {
     animateModal: {
@@ -224,6 +226,7 @@ export default {
       share: 'Share',
       success: 'Success',
       freeShipping: 'Free Shipping',
+      freeGift: 'Free Gift',
       get5dollarOff: 'Get a $5 Off',
     },
     off: ' OFF',
@@ -253,7 +256,7 @@ export default {
     },
     buttons: {
       viewCoupon: 'View Coupon',
-      viewDeal: 'View Deal',
+      viewDeal: 'Get This Deal',
       tooltip: 'Click to shop. Use this code at checkout to save!',
     },
     todaysFeatureCoupon: "Today's Featured Coupon From {{storeName}}",
@@ -282,6 +285,11 @@ export default {
       step1text: 'Click the "Add to Chrome" Button',
       step2text: 'Then click "Add extension"',
     },
+    freeShipping: 'Free Shipping',
+    cashBack: 'Cash Back',
+    currentStoreTitle: 'Coupon - {{discount}} Off',
+    otherStoreTitle: '{{store_name}} Coupon - {{discount}} Off',
+    expiry_date: 'Expiry date',
   },
   cashbackStores: {
     shopBy: {
@@ -315,9 +323,9 @@ export default {
       'View the latest Online Coupons for {{storeName}} below! Never miss a {{ storeName }} coupon or Cash Back opportunities from any of our 3,000 other stores with our Free Mobile App and Browser app! Any of {{ storeName }} online coupons can be combined with Free, Automatic Rebates.Up to 3.0% Cash Back! Only from Piggy!Any of these {{ storeName }} coupon codes and promotions can be combined with our Automatic Cash Back at {{ storeName }}',
     returnPolicy: 'Return Policy',
     shipping: 'Shipping',
-    secrets: 'Secrets',
+    secrets: 'Additional Information',
     codes: 'Coupon Codes',
-    codesAndDeals: 'Coupon Codes & Deals',
+    codesAndDeals: '{{storeName}} Coupons, Promo Codes & Deals',
     followStore: 'Follow Store',
     neverOverlay: 'Never Overpay Again',
     automaticallyAddAll:
@@ -327,6 +335,50 @@ export default {
     secretRates: 'Secret Rates and Deals',
     noCouponsAndDeal:
       'No Coupons or Deals found for {{storeName}}. Take a look at our top offers and deals below.',
+    applyAllCouponsWithNumber:
+      'Apply All {{couponsNumber}} Coupons Using Piggy Extension',
+    applyAllCoupons: 'Apply All Coupons Using Piggy Extension',
+    counterList: {
+      totalCoupons: 'Total Coupons',
+      averageSavings: 'Average Savings',
+      totalSavings: 'Total Savings',
+      totalStoreSaves: 'Total Store Saves',
+      totalCouponsUses: 'Total Coupon Uses',
+    },
+    offersMenu: {
+      browse: 'Browse {{storeName}}',
+      coupons: 'Coupons',
+      deals: 'Deals',
+      cashback: 'Cashback',
+      overview: 'Overview',
+    },
+    noCoupons:
+      'No Coupons found for {{storeName}}. Take a look at our top coupons below.',
+    noDeals:
+      'No Deals found for {{storeName}}. Take a look at our top offers and deals below.',
+    noCashback: 'No Cashback found for {{storeName}}',
+    filterByCategory: 'Filter By Category',
+    clear: 'Clear',
+    editFilter: 'Edit Filters',
+    apply: 'Apply',
+    categories: 'Categories',
+    hide: 'Hide',
+    show: 'Show more',
+    ourCouponExperts: {
+      title:
+        'Our coupon experts literally work around the clock (Three shifts, 365 days a year)',
+      addedToday: 'Added today',
+      addedYesterday: 'Added yesterday',
+      addedThisWeek: 'Added this week',
+      addedThisMonth: 'Added this month',
+    },
+    sortPromoCodesBy: 'Sort {{storeName}} Promo Codes by',
+    codesFilter: {
+      trending: 'Trending',
+      expiration: 'Expiring Soon',
+      recent: 'Recently Added',
+    },
+    terms: 'Terms',
     getBestPrice: 'Get the Best Price',
     alertAutomatically:
       'Piggy will automatically alert you of the best price at {{ storeName }}. You can also track the price history on your items and get alerts if the price drops.',

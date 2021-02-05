@@ -43,7 +43,7 @@ const App = () => {
             content={metaKeywords}
             data-react-helmet="true"
           />
-          <meta name="og:image" content={logo} />
+          <meta property="og:image" content={logo} data-react-helmet="true" />
         </Helmet>
         <GlobalStyle />
         <ScrollToTop>

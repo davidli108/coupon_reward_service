@@ -154,6 +154,9 @@ export const getStoreSearch = R.path<string>([STATE_KEY, 'search']);
 export const searchIsLoading = R.path<string>([STATE_KEY, 'searchIsLoading']);
 export const getCountOffers = R.path<string>([STATE_KEY, 'count']);
 export const getReviews = R.path<string>([STATE_KEY, 'reviews']);
-export const getTrackerProduct = R.path<string>([STATE_KEY, 'priceTrackerProduct']);
+export const getTrackerProduct = R.path<string>([
+  STATE_KEY,
+  'priceTrackerProduct',
+]);
 
 export default StoreCouponsReducer;

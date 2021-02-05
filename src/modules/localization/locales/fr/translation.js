@@ -8,8 +8,8 @@ export default {
   },
   description: {
     storeCoupons:
-      'Piggy, la seule application à employer automatiquement les coupons et les cashbacks sur tous les appareils. Disponible dans plus de 3 600 magasins - Obtenez Piggy Maintenant !',
-    coupons: `Piggy, la seule application à employer automatiquement les coupons et les cashbacks sur tous les appareils. Disponible dans plus de 3 600 magasins - Obtenez Piggy Maintenant !`,
+      'Parcourez les {{nrOfOffers}}coupons de {{storeName}}, les codes promotionnels, les offres et les réductions dès maintenant. Commencez à économiser et à gagner de l’argent sur vos achats en ligne grâce à Piggy!',
+    coupons: `Piggy, la seule application à employer automatiquement les coupons et les cashbacks sur tous les appareils. Disponible dans plus de 3 600 magasins - Obtenez Piggy Maintenant!`,
   },
   header: {
     coupons: 'Codes promo',
@@ -170,9 +170,10 @@ export default {
     luxury: 'Luxe',
   },
   global: {
-    activateCashback: 'Activer {{discount}} Cash back',
+    activateCashback: `Jusqu'à {{discount}} Cashback`,
+    howCashBackWorks: 'Comment fonctionne le Cashback',
     invalidDate: 'Exp: Date invalide',
-    earnCashBack: 'Gagnez {{discount}} cash Back!',
+    earnCashBack: 'Gagnez {{discount}} Cashback!',
     learnMore: 'En savoir plus',
     get25dollars: 'Obtenez 25€',
     amCashBack: '{{discount}} Remise en Argent',
@@ -196,8 +197,9 @@ export default {
     newDeal: 'Nouvelle offre',
     verifiedToday: "Vérifié aujourd'hui",
     reviews: 'commentaires',
-    addToChrome: 'Ajouter à Chrome',
+    addToChrome: 'Installer l’extension Chrome',
     about: 'À propos de',
+    overview: 'Overview',
   },
   coupons: {
     animateModal: {
@@ -226,12 +228,13 @@ export default {
       couponSales: 'Coupon & Ventes',
       browseByStore: 'Voir par boutique',
       newCoupon: 'Voir par boutique',
-      getCoupon: 'Nouveau coupon',
+      getCoupon: 'Obtenir un coupon',
       exp: 'Exp. 21/03/2019',
       favorite: 'Favoris',
       share: 'Partager',
       success: 'Succès',
       freeShipping: 'Livraison gratuite',
+      freeGift: 'Cadeau gratuit',
       get5dollarOff: 'Obtenez 5€ de réduction',
     },
     off: ' de rabais',
@@ -261,7 +264,7 @@ export default {
     },
     buttons: {
       viewCoupon: 'Voir le coupon',
-      viewDeal: "Voir l'offre",
+      viewDeal: 'Obtenir une offre',
       tooltip:
         'Cliquez pour fair vos achats. Utilisez ce code lorsque vous passez en caisse pour faire des économies!',
     },
@@ -291,6 +294,11 @@ export default {
       step1text: 'Cliquez sur "Ajouter à Chrome"',
       step2text: 'Ensuite, cliquez sur "ajouter une extension"',
     },
+    freeShipping: 'Livraison gratuite',
+    cashBack: 'Cashback',
+    currentStoreTitle: 'Coupon - {{discount}} de Rabais',
+    otherStoreTitle: `{{store_name}} Coupon - {{discount}} de Rabais`,
+    expiry_date: `Date d'expiration`,
   },
   cashbackStores: {
     shopBy: {
@@ -298,7 +306,7 @@ export default {
       browseByStore: 'Voir par boutique',
       viewSales: 'Voir les promotions et les codes promo',
       instantSaving: 'Économies instantanées',
-      shopNow: 'Ajouter aux favoris',
+      shopNow: 'Faire des achats',
       browseStore:
         'Parcourez les coupons et cashback des boutiques les plus connues.',
       findAmazing:
@@ -328,7 +336,7 @@ export default {
     shipping: 'Expédition',
     secrets: 'Secrets',
     codes: 'Codes de coupons',
-    codesAndDeals: 'Codes de coupons et offres',
+    codesAndDeals: 'Coupons, codes promotionnels et offres de {{ storeName }}',
     followStore: 'Suivre la boutique',
     neverOverlay: 'Ne plus jamais trop payer',
     automaticallyAddAll:
@@ -340,7 +348,51 @@ export default {
       "Aucun Coupons ou Offre trouvé pour {{ storeName }}. Jetez un coup d'œil à nos meilleures offres et offres ci-dessous.",
     getBestPrice: 'Obtenez le meilleur prix',
     alertAutomatically:
-      "Piggy vous alertera automatiquement du meilleur prix chez {{ storeName }}. Vous pouvez également suivre l'historique des prix de vos articles et recevoir des alertes si le prix baisse.",
+      'Piggy will automatically alert you of the best price at {{ storeName }}. You can also track the price history on your items and get alerts if the price drops.',
+    applyAllCouponsWithNumber:
+      'Appliquer tous les {{couponsNumber}} coupons à l’aide de l’extension Piggy',
+    applyAllCoupons: "Appliquer tous les coupons à l'aide de Piggy Extension",
+    counterList: {
+      totalCoupons: 'Coupons au total',
+      averageSavings: 'Économisés en moyenne',
+      totalSavings: 'Économisés au total',
+      totalStoreSaves: 'Magasins favoris au total',
+      totalCouponsUses: 'Coupons utilisés au total',
+    },
+    offersMenu: {
+      browse: 'Parcourir {{storeName}}',
+      coupons: 'Coupons',
+      deals: 'Offres',
+      cashback: 'Cashback',
+      overview: 'Vue d’ensemble',
+    },
+    noCoupons:
+      "Aucun Coupons trouvé pour {{ storeName }}. Jetez un coup d'œil à nos meilleures coupons ci-dessous.",
+    noDeals:
+      "Aucun Offre trouvé pour {{ storeName }}. Jetez un coup d'œil à nos meilleures offres ci-dessous.",
+    noCashback: 'Aucun Cashback trouvé pour {{storeName}}',
+    filterByCategory: 'Filtrer par catégorie',
+    clear: 'Claire',
+    editFilter: 'Modifier les filtres',
+    apply: 'Appliquer',
+    categories: 'Catégories',
+    hide: 'Cacher',
+    show: 'Montre plus',
+    ourCouponExperts: {
+      title:
+        'Nos experts en coupons travaillent littéralement 24 heures sur 24 (trois équipes en poste, 365 jours par an)',
+      addedToday: 'ajouté(s) aujourd’hui',
+      addedYesterday: 'ajouté(s) hier',
+      addedThisWeek: ' ajouté(s) cette semaine',
+      addedThisMonth: 'ajouté(s) ce mois-ci',
+    },
+    sortPromoCodesBy: 'Trier les codes promotionnels de {{storeName}} par',
+    codesFilter: {
+      trending: 'Tendance',
+      expiration: 'Expire bientôt',
+      recent: 'Récemment ajouté',
+    },
+    terms: 'Conditions de Cashback',
   },
   sitemap: {
     meta: {
@@ -468,7 +520,7 @@ export default {
         first:
           "Ajoutez Piggy aujourd'hui pour un remboursement de plus de 70 % dans plus de 6 000 magasins.",
         second:
-          'Piggy est une extension Chrome gratuite qui ajoute automatiquement des coupons, vérifie les prix et offre du cash back lorsque vous magasinez en ligne.',
+          'Piggy est une extension Chrome gratuite qui ajoute automatiquement des coupons, vérifie les prix et offre du cashback lorsque vous magasinez en ligne.',
       },
       activate_extension: `<strong>Ajoutez à {{browser}}</strong> C'est gratuit`,
       number_users: '1,000,000 utilisateurs',
@@ -513,11 +565,11 @@ export default {
     },
     page: {
       title:
-        'Des coupons automatiques, des offres exceptionelles, et le cash back ! - Piggy',
+        'Des coupons automatiques, des offres exceptionelles, et le cashback ! - Piggy',
       description:
         'Piggy, la seule application à employer automatiquement les coupons et les cashbacks sur tous les appareils. Disponible dans plus de 3 600 magasins - Obtenez Piggy Maintenant!',
       h1:
-        'Des coupons automatiques, des offres exceptionelles, et le cash back!',
+        'Des coupons automatiques, des offres exceptionelles, et le cashback!',
     },
   },
   user_review: {

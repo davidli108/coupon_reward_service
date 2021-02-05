@@ -1,11 +1,18 @@
 // @flow
 import moment from 'moment';
 
+import AppConfig from '@config/AppConfig';
+import logo from '@components/Header/logo.svg';
+
 type opeGraphProps = {
   url?: string,
   type?: string,
   title?: string,
   description?: string,
+  image?: string,
+  imageAlt?: string,
+  imageType?: string,
+  siteName?: string,
 };
 
 export const openGraph = ({
@@ -13,11 +20,15 @@ export const openGraph = ({
   type,
   title,
   description,
+  image,
+  imageAlt,
+  imageType,
+  siteName,
 }: opeGraphProps = {}) => {
   return [
     {
       property: 'og:url',
-      content: url || window.location.href,
+      content: url || AppConfig.apiUrl + window.location.pathname,
     },
     {
       property: 'og:type',
@@ -32,6 +43,22 @@ export const openGraph = ({
       content:
         description ||
         'Piggy, the only app to automatically apply coupons and cashback across all devices. Available at 3600+ Stores - Get Piggy Now!',
+    },
+    {
+      property: 'og:image',
+      content: image || AppConfig.apiUrl + logo,
+    },
+    {
+      property: 'og:image:alt',
+      content: imageAlt || '',
+    },
+    {
+      property: 'og:image:type',
+      content: imageType || '',
+    },
+    {
+      property: 'og:site_name',
+      content: siteName || 'Piggy',
     },
   ];
 };

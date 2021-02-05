@@ -17,11 +17,7 @@ export const fetchUnsubscribeTracker = (token: string, u: string) => ({
   type: FETCH_UNSUBSCRIBE,
   payload: {
     request: {
-      url:
-        '/api/pricetracker/unsubscribe/' +
-        token +
-        '?u=' +
-        u,
+      url: '/api/pricetracker/unsubscribe/' + token + '?u=' + u,
     },
   },
 });
@@ -30,11 +26,7 @@ export const fetchStopTracker = (token: string, u: string) => ({
   type: FETCH_STOP_TRACKER,
   payload: {
     request: {
-      url:
-        '/api/pricetracker/stoptracker/' +
-        token +
-        '?u=' +
-        u,
+      url: '/api/pricetracker/stoptracker/' + token + '?u=' + u,
     },
   },
 });

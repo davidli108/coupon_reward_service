@@ -17,25 +17,27 @@ const ErrorPage = ({ t, link, type }: NotFoundProps) => (
       <title>{t('404.title')}</title>
     </Helmet>
     {link === 'unsubscribe' ? (
-      <ErrorPage.Title>{
-        type === 'product'
+      <ErrorPage.Title>
+        {type === 'product'
           ? t('price_tracker.done_unsubscribe')
-          : t('price_tracker.done_unsubscribe_all')
-        }</ErrorPage.Title>
-    ) : (link === 'extend' ? (
+          : t('price_tracker.done_unsubscribe_all')}
+      </ErrorPage.Title>
+    ) : link === 'extend' ? (
       <>
         <ErrorPage.Title>{t('price_tracker.extend_done')}</ErrorPage.Title>
         <ErrorPage.Title>{t('price_tracker.extend_try')}</ErrorPage.Title>
       </>
-      ) : (
-      <ErrorPage.Title>{
-        type === 'product'
+    ) : (
+      <ErrorPage.Title>
+        {type === 'product'
           ? t('price_tracker.done_delete')
-          : t('price_tracker.done_delete_all')
-      }</ErrorPage.Title>))
-    }
+          : t('price_tracker.done_delete_all')}
+      </ErrorPage.Title>
+    )}
     <img className="product-image" src={error} alt="error-display" />
-    <ErrorPage.Link href="/coupons">{t('price_tracker.dismiss')}</ErrorPage.Link>
+    <ErrorPage.Link href="/coupons">
+      {t('price_tracker.dismiss')}
+    </ErrorPage.Link>
   </ErrorPage.Wrapper>
 );
 
