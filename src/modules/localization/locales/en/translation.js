@@ -351,6 +351,39 @@ export default {
       deals: 'Deals',
       cashback: 'Cashback',
       overview: 'Overview',
+      faqs: 'FAQs',
+    },
+    faqsSections: {
+      question1: 'How can I get {{storeName}} coupons?',
+      answer1:
+        'Don’t worry we did all the hard work for you! Once you’ve downloaded the <a href={{chromeLink}} target="_blank" rel="noopener noreferrer">Piggy Chrome Extension</a> just shop on {{storeName}}’s website and add to your cart like you normally do. Then before you check out click the Piggy icon in your browser to apply our best {{storeName}} coupons to your cart!',
+      question2: 'Are there any {{storeName}} coupons?',
+      answer2: {
+        subAnswer1: 'Yes! There are {{couponCount}} {{storeName}} coupons.',
+        subAnswer1_only: 'Yes! There is 1 {{storeName}} coupon.',
+        subAnswer2:
+          'Not yet! But we’re working on adding more {{storeName}} coupons soon.',
+      },
+      question3: 'How many {{storeName}} coupons are there?',
+      answer3:
+        '{{storeName}} has {{couponCount}} coupons available on Piggy right now.',
+      answer3_only: '{{storeName}} has 1 coupon available on Piggy right now.',
+      question4: 'How can I save money at {{storeName}}?',
+      answer4:
+        'Be sure you have the <a href={{chromeLink}} target="_blank" rel="noopener noreferrer">Piggy Extension</a> downloaded, and then shop on {{storeName}}’s website like you usually would. Once  your cart is full, just click on the Piggy icon and we’ll apply all the eligible {{storeName}} coupons straight to your shopping cart!',
+      question5: 'How to find the best deal at {{storeName}}?',
+      answer5:
+        'Just browse {{storeName}} deals on Piggy to find the best deal!',
+      question6: 'What is the average savings with {{storeName}} coupons?',
+      answer6:
+        '{{storeName}}’s average savings for a Piggy User is {{averageSaving}}.',
+      question7: 'How many deals does {{storeName}} have?',
+      answer7: {
+        subAnswer1: 'There are {{dealsCount}} deals available right now.',
+        subAnswer1_only: 'There is 1 deal available right now.',
+        subAnswer2:
+          'There aren’t any {{storeName}} deals available right now, but we’re working on it.',
+      },
     },
     noCoupons:
       'No Coupons found for {{storeName}}. Take a look at our top coupons below.',

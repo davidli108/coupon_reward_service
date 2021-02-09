@@ -365,6 +365,42 @@ export default {
       deals: 'Offres',
       cashback: 'Cashback',
       overview: 'Vue d’ensemble',
+      faqs: 'FAQs',
+    },
+    faqsSections: {
+      question1: 'Comment puis-je obtenir des coupons pour {{storeName}}?',
+      answer1:
+        'Ne vous inquiétez pas, nous avons fait tout le travail pour vous ! Une fois que vous avez téléchargé <a href={{chromeLink}} target="_blank" rel="noopener noreferrer">l’extension Piggy Chrome</a>, il vous suffit de faire vos achats sur le site web de {{storeName}} et d’ajouter vos articles à votre panier comme vous le faites habituellement. Puis, avant de passer à la caisse, cliquez sur l’icône Piggy dans votre navigateur pour appliquer nos meilleurs coupons {{storeName}} à votre panier!',
+      question2: 'Y a-t-il des coupons pour {{storeName}}?',
+      answer2: {
+        subAnswer1:
+          'Oui ! Il y a des {{couponCount}} coupons pour {{storeName}}',
+        subAnswer1_only: 'Oui ! Il y a 1 coupon pour {{storeName}}',
+        subAnswer2:
+          'Pas encore ! Mais nous ajoutons constamment des coupons supplémentaires.',
+      },
+      question3: 'Combien y a-t-il de coupons pour {{storeName}}?',
+      answer3:
+        '{{storeName}} dispose de {{couponCount}} coupons qui sont disponibles sur Piggy actuellement.',
+      answer3_only:
+        '{{storeName}} dispose de 1 coupon qui sont disponibles sur Piggy actuellement.',
+      question4: 'Comment puis-je économiser chez {{storeName}}?',
+      answer4:
+        'Assurez-vous d’avoir téléchargé <a href={{chromeLink}} target="_blank" rel="noopener noreferrer">l’extension Piggy</a>, puis faites vos achats sur le site web de {{storeName}} comme vous le feriez habituellement. Une fois votre panier rempli, il vous suffit de cliquer sur l’icône Piggy et nous appliquerons tous les coupons éligibles pour {{storeName}} directement à votre panier!',
+      question5: 'Comment trouver la meilleure offre chez {{storeName}}?',
+      answer5:
+        'Il suffit de parcourir les offres pour {{storeName}} sur Piggy afin de dénicher la meilleure affaire!',
+      question6:
+        'Quelles sont, en moyenne, les économies réalisées avec les coupons {{storeName}}?',
+      answer6:
+        'Les économies moyennes des utilisateurs de Piggy pour {{storeName}} sont de {{averageSaving}}.',
+      question7: 'Combien d’offres y a-t-il pour {{storeName}}?',
+      answer7: {
+        subAnswer1: 'Il y a {{dealsCount}} offres disponibles actuellement.',
+        subAnswer1_only: 'Il y a 1 offre disponible actuellement.',
+        subAnswer2:
+          'Il n’y a aucune offre disponible en ce moment, mais nous y travaillons.',
+      },
     },
     noCoupons:
       "Aucun Coupons trouvé pour {{ storeName }}. Jetez un coup d'œil à nos meilleures coupons ci-dessous.",

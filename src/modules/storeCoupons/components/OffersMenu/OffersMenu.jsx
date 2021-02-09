@@ -29,6 +29,10 @@ const OffersMenu = ({
       key: OfferTypes.OVERVIEW,
       label: t('storeCoupons.offersMenu.overview'),
     },
+    {
+      key: OfferTypes.FAQS,
+      label: t('storeCoupons.offersMenu.faqs'),
+    },
   ];
 
   menuItems.splice(getLocale() === 'en' ? 3 : 1, 0, {

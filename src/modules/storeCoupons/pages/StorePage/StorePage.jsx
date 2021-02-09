@@ -15,6 +15,7 @@ import BrandContent from '../../components/BrandContent';
 import CouponCode from '../../components/CouponCode/CouponCode';
 import AppConfig from '@config/AppConfig';
 import Offers from '../../components/Offers';
+import FAQs from '../../components/FAQs';
 import AdditionalInfo from '../../components/AdditionalInfo';
 import type { StorePageProps } from '../../models/StorePage';
 import placeholder from '@modules/coupons/assets/image-placeholder.png';
@@ -364,6 +365,55 @@ const StorePage = ({
     setIsTermsVisible(false);
   };
 
+  const OffersOrFAQsView = () => {
+    if (!isLoaded) {
+      return (
+        <>
+          {
+            Array.apply(null, Array(3)).map((_, ind) => (
+              <OffersLoader key={ind} />
+            ))
+          }
+          <AdditionalInfoLoader />
+        </>
+      )
+    }
+
+    const isFAQs = selectedOfferType === OfferTypes.FAQS;
+
+    return (
+      <>
+        {isFAQs ? (
+          <FAQs store={store} />
+        ) : (
+          <>
+            <Offers
+              openTerms={openTerms}
+              offers={offers}
+              cashbackRates={cashbackRates}
+              offersCount={offersCount}
+              randomOffers={store.random_offers}
+              fetchStoreCoupons={fetchStoreCouponsByPagination}
+              selectedSort={sort}
+              storeName={match.params.name}
+              match={match}
+              store={store}
+              isOffersLoading={isOffersLoading}
+              selectedCategories={selectedCategories}
+              selectedOfferType={selectedOfferType}
+            />
+            <StorePage.AdditionalInfoWrapper>
+              <AdditionalInfo
+                cashbackRates={cashbackRates}
+                terms={terms}
+              />
+            </StorePage.AdditionalInfoWrapper>
+          </>
+        )}
+      </>
+    )
+  }
+
   return (
     <StorePage.Container>
       <ScrollToTopArrow />
@@ -559,37 +609,7 @@ const StorePage = ({
                       onChange={handleSortChange}
                     />
                   )}
-                  {isLoaded ? (
-                    <Offers
-                      openTerms={openTerms}
-                      offers={offers}
-                      cashbackRates={cashbackRates}
-                      offersCount={offersCount}
-                      randomOffers={store.random_offers}
-                      fetchStoreCoupons={fetchStoreCouponsByPagination}
-                      selectedSort={sort}
-                      storeName={match.params.name}
-                      match={match}
-                      store={store}
-                      isOffersLoading={isOffersLoading}
-                      selectedCategories={selectedCategories}
-                      selectedOfferType={selectedOfferType}
-                    />
-                  ) : (
-                    Array.apply(null, Array(3)).map((_, ind) => (
-                      <OffersLoader key={ind} />
-                    ))
-                  )}
-                  {isLoaded ? (
-                    <StorePage.AdditionalInfoWrapper>
-                      <AdditionalInfo
-                        cashbackRates={cashbackRates}
-                        terms={terms}
-                      />
-                    </StorePage.AdditionalInfoWrapper>
-                  ) : (
-                    <AdditionalInfoLoader />
-                  )}
+                  <OffersOrFAQsView />
                   {!isExtensionInstalled && !isAmazon && showSaving && (
                     <AddSaving />
                   )}

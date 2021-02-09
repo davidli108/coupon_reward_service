@@ -362,6 +362,41 @@ export default {
       deals: 'Angebote',
       cashback: 'Cashback',
       overview: 'Übersicht',
+      faqs: 'FAQs',
+    },
+    faqsSections: {
+      question1: 'Wie kann ich {{storeName}}-Gutscheine bekommen?',
+      answer1:
+        'Keine Sorge, wir haben die harte Arbeit bereits für Sie erledigt! Sobald Sie die <a href={{chromeLink}} target="_blank" rel="noopener noreferrer">Piggy-Erweiterung für Chrome</a> heruntergeladen haben, shoppen Sie einfach wie gewohnt auf der {{storeName}}-Website und fügen die gewünschten Artikel dem Warenkorb hinzu. Bevor Sie zur Kasse gehen, klicken Sie dann auf das Piggy-Symbol in Ihrem Browser, um unsere besten {{storeName}}-Gutschein auf Ihren Warenkorb anzuwenden!',
+      question2: 'Gibt es irgendwelche {{storeName}}-Gutscheine?',
+      answer2: {
+        subAnswer1: 'Ja! Es gibt {{couponCount}} {{storeName}}-Gutscheine.',
+        subAnswer1_only: 'Ja! Es gibt 1 {{storeName}}-Gutschein.',
+        subAnswer2:
+          'Noch nicht! Wir arbeiten aber daran, bald weitere {{storeName}}-Gutscheine hinzuzufügen.',
+      },
+      question3: 'Wie viele {{storeName}}-Gutscheine gibt es?',
+      answer3:
+        'Bei Piggy gibt es momentan {{couponCount}} verfügbare {{storeName}}-Gutscheine.',
+      answer3_only:
+        'Bei Piggy gibt es momentan 1 verfügbare {{storeName}}-Gutschein.',
+      question4: 'Wie kann ich bei {{StoreName}} Geld sparen?',
+      answer4:
+        'Laden Sie sich unbedingt die <a href={{chromeLink}} target="_blank" rel="noopener noreferrer">Browsererweiterung von Piggy</a> herunter und kaufen Sie dann wie gewohnt auf der Website von {{storeName}} ein. Sobald Ihr Einkaufswagen voll ist, klicken Sie einfach auf das Piggy-Symbol und schon werden alle gültigen {{storeName}}-Gutscheine direkt auf Ihren Warenkorb angewendet!',
+      question5: 'Wie finde ich das beste Angebot bei {{StoreName}}?',
+      answer5:
+        'Durchstöbern Sie einfach die {{storeName}}-Angebote auf Piggy, um das beste Angebot zu finden!',
+      question6:
+        'Wie hoch ist die durchschnittliche Ersparnis mit {{storeName}}-Gutscheinen?',
+      answer6:
+        'Bei {{storeName}} beträgt die durchschnittliche Ersparnis für einen Piggy-Benutzer {{averageSaving}}.',
+      question7: 'Wie viele Angebote gibt es bei {{storeName}}?',
+      answer7: {
+        subAnswer1: 'Aktuell sind {{dealsCount}} Angebote verfügbar.',
+        subAnswer1_only: 'Aktuell sind 1 Angebot verfügbar.',
+        subAnswer2:
+          'Im Moment sind noch keine {{storeName}} Angebote verfügbar, wir arbeiten aber daran.',
+      },
     },
     noCoupons:
       'Für {{ storeName }} wurden keine Gutscheine gefunden. Werfen Sie einen Blick auf unsere Top-Gutscheine.',

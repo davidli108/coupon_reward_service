@@ -12,6 +12,7 @@ export const OfferTypes = {
   DEALS: 'sales',
   CASHBACK: 'cashback',
   OVERVIEW: 'overview',
+  FAQS: 'FAQs',
 };
 
 styles(OffersMenu);
