@@ -1,7 +1,8 @@
 // @flow
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import type { AdditionalInfoProps } from '../../models/StorePage';
+import CouponCodeTable from '../CouponCodeTable';
 
 const AdditionalInfo = ({
   t,
@@ -9,6 +10,12 @@ const AdditionalInfo = ({
   store,
   terms,
 }: AdditionalInfoProps) => {
+  const couponCodeTableData = useMemo(() => store.offers_data ? store.offers_data.filter((offer) => offer.coupon_code).map((offer) => ({
+    offerName: offer.offer_name,
+    offerCode: offer.coupon_code,
+    expireDate: offer.show_exp_date,
+  })) : [], [store.offers_data]);
+
   return (
     <AdditionalInfo.Wrapper>
       <AdditionalInfo.ContentWrapper
@@ -71,6 +78,14 @@ const AdditionalInfo = ({
             }}
           />
         </AdditionalInfo.ContentWrapper>
+      </AdditionalInfo.ContentWrapper>
+      <AdditionalInfo.ContentWrapper
+        isShow={couponCodeTableData.length >= 5}
+      >
+        <h2>{t('storeCoupons.popularDiscountCode', { storeName: store.store_name })}</h2>
+        <CouponCodeTable
+          couponCodeData={couponCodeTableData}
+        />
       </AdditionalInfo.ContentWrapper>
     </AdditionalInfo.Wrapper>
   );
