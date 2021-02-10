@@ -1,12 +1,14 @@
 // @flow
 import React, { useMemo } from 'react';
 
+import { OfferTypes } from '../../components/OffersMenu';
 import type { AdditionalInfoProps } from '../../models/StorePage';
 import CouponCodeTable from '../CouponCodeTable';
 
 const AdditionalInfo = ({
   t,
   additionalInfo,
+  selectedOfferType,
   store,
   terms,
 }: AdditionalInfoProps) => {
@@ -80,11 +82,11 @@ const AdditionalInfo = ({
         </AdditionalInfo.ContentWrapper>
       </AdditionalInfo.ContentWrapper>
       <AdditionalInfo.ContentWrapper
-        isShow={couponCodeTableData.length >= 5}
+        isShow={couponCodeTableData.length >= 5 && selectedOfferType !== OfferTypes.OVERVIEW}
       >
         <h2>{t('storeCoupons.popularDiscountCode', { storeName: store.store_name })}</h2>
         <CouponCodeTable
-          couponCodeData={couponCodeTableData}
+          couponCodeData={couponCodeTableData.slice(0, 5)}
         />
       </AdditionalInfo.ContentWrapper>
     </AdditionalInfo.Wrapper>

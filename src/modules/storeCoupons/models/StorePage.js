@@ -162,6 +162,7 @@ export type AdditionalInfoProps = {
   additionalInfo: AdditionalInfo,
   store: Object,
   terms: string,
+  selectedOfferType: string,
 };
 
 export type AdditionalInfoSectionProps = {

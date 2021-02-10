@@ -404,6 +404,7 @@ const StorePage = ({
             />
             <StorePage.AdditionalInfoWrapper>
               <AdditionalInfo
+                selectedOfferType={selectedOfferType}
                 cashbackRates={cashbackRates}
                 terms={terms}
               />
